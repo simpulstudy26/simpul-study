@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>/* 저장된 화면 모드를 먼저 적용해 깜빡임을 막는다 (기본 다크) */try{if(localStorage.getItem('simpul.theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
+  <title>과목 자료 · 심풀스터디</title>
+  <meta name="theme-color" content="#09090b">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="./styles/site.css">
+  <script src="./scripts/catalog.js" defer></script>
+  <script src="./scripts/common.js" defer></script>
+  <script src="./scripts/studytime.js" defer></script>
+  <script src="./scripts/timerbar.js" defer></script>
+  <script src="./scripts/subject.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="site-logo" href="./index.html"><img src="./assets/simpul-logo-white.png" alt="심풀스터디 홈" width="695" height="257"></a>
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="./index.html#subjects" aria-current="page">과목</a>
+        <a href="./exams.html">시험범위</a>
+        <a href="./cloud.html">무한 문제</a>
+        <a href="./make.html">문제 만들기</a>
+        <a href="./timer.html">공부 타이머</a>
+        <a href="./dict.html">사전</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="page-head">
+      <nav class="crumbs" aria-label="현재 위치"><a href="./index.html">홈</a> › <span id="crumb-subject">과목</span></nav>
+      <h1 id="subject-title">과목 자료</h1>
+      <p id="subject-summary"></p>
+    </div>
+
+    <ul class="subject-tabs" id="subject-tabs" aria-label="다른 과목"></ul>
+
+    <div id="groups"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>심풀스터디 · 최근 본 자료는 이 기기에만 저장돼요.</span>
+      <a href="./admin.html">관리자</a>
+    </div>
+  </footer>
+</body>
+</html>

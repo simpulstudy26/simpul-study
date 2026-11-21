@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>한국사 정O수 선생님 파트 연대기</title>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Serif+KR:wght@400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+ --ink:#0c0b09;
+ --ink-2:#14120e;
+ --ink-3:#1c1914;
+ --ivory:#ece3cf;
+ --ivory-dim:#b9ae97;
+ --muted:#8a8069;
+ --gold:#c9a75d;
+ --gold-hi:#e4c886;
+ --gold-lo:rgba(201,167,93,.28);
+ --line:rgba(201,167,93,.18);
+ --w:#7fa89c;   /* 국제·냉전 — 청록 녹 */
+ --s:#8ea7c9;   /* 남한 정치 — 쪽빛 */
+ --u:#93b07c;   /* 통일 운동 — 쑥 */
+ --e:#c49a52;   /* 경제·사회 — 청동 */
+ --n:#ae92c9;   /* 북한 — 자수정 */
+ --x:#c0634a;   /* 6·25 전쟁 — 주홍 */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+ font-family:'Noto Serif KR','Nanum Myeongjo',serif;
+ font-size:15px;line-height:1.8;color:var(--ivory);
+ background-color:var(--ink);
+ background-image:
+  radial-gradient(ellipse at 50% -10%,rgba(201,167,93,.10),transparent 55%),
+  radial-gradient(ellipse at 50% 120%,rgba(120,70,40,.10),transparent 60%),
+  repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);
+ background-attachment:fixed;
+ min-height:100vh;
+}
+::selection{background:rgba(201,167,93,.35)}
+
+/* ── Masthead ── */
+.mast{max-width:900px;margin:0 auto;padding:54px 22px 26px;text-align:center}
+.mast .eyebrow{font-family:'Cormorant Garamond',serif;letter-spacing:.42em;font-size:12px;color:var(--gold);text-transform:uppercase}
+.mast h1{font-family:'Nanum Myeongjo',serif;font-weight:800;font-size:clamp(28px,5.4vw,44px);letter-spacing:.06em;margin:12px 0 6px;color:var(--ivory)}
+.mast .sub{font-size:14px;color:var(--ivory-dim);letter-spacing:.14em}
+.orn{display:flex;align-items:center;justify-content:center;gap:14px;color:var(--gold);margin:18px auto 0;max-width:420px}
+.orn::before,.orn::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold) 40%,var(--gold) 60%,transparent)}
+.orn span{font-size:15px;letter-spacing:.5em;padding-left:.5em}
+
+/* ── Sticky controls ── */
+.bar{position:sticky;top:0;z-index:40;background:rgba(12,11,9,.92);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.bar-in{max-width:900px;margin:0 auto;padding:10px 22px;display:flex;flex-direction:column;gap:8px}
+.row{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.flt{font:inherit;font-size:12.5px;letter-spacing:.04em;background:none;border:1px solid var(--line);color:var(--ivory-dim);padding:2px 12px 3px;border-radius:2px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:.2s}
+.flt i{width:7px;height:7px;transform:rotate(45deg);background:var(--c);display:inline-block}
+.flt:hover{border-color:var(--gold-lo);color:var(--ivory)}
+.flt.off{opacity:.35}
+.flt.off i{background:transparent;outline:1px solid var(--c)}
+.search{flex:1 1 180px;min-width:150px;font:inherit;font-size:14px;color:var(--ivory);background:transparent;border:none;border-bottom:1px solid var(--gold-lo);padding:3px 2px;outline:none}
+.search::placeholder{color:var(--muted)}
+.search:focus{border-bottom-color:var(--gold)}
+.txt{font:inherit;font-size:12.5px;background:none;border:none;color:var(--gold);cursor:pointer;letter-spacing:.06em;padding:2px 6px}
+.txt:hover{color:var(--gold-hi);text-decoration:underline;text-underline-offset:4px}
+.dnav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.dnav::-webkit-scrollbar{display:none}
+.dnav button{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;background:none;border:none;color:var(--ivory-dim);padding:0 10px;cursor:pointer;white-space:nowrap;letter-spacing:.04em}
+.dnav button:hover{color:var(--gold-hi)}
+.dnav button+button{border-left:1px solid var(--line)}
+
+/* ── Body ── */
+main{max-width:900px;margin:0 auto;padding:10px 22px 120px}
+.guide{margin:26px auto 8px;max-width:640px;text-align:center;font-size:13.5px;color:var(--ivory-dim)}
+.guide b{color:var(--ivory);font-weight:600}
+
+.era{margin-top:64px;scroll-margin-top:130px}
+.era-head{text-align:center;margin-bottom:26px}
+.era-yr{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(40px,8vw,64px);line-height:1;color:var(--gold);letter-spacing:.02em}
+.era-name{margin-top:8px;font-family:'Nanum Myeongjo',serif;font-weight:700;font-size:17px;letter-spacing:.3em;padding-left:.3em;color:var(--ivory)}
+.era-desc{font-size:12.5px;color:var(--muted);letter-spacing:.08em;margin-top:2px}
+.era-head .orn{margin-top:12px;max-width:260px}
+
+.yr{display:grid;grid-template-columns:92px 1fr;gap:0 36px;position:relative}
+.yr::before{content:'';position:absolute;left:110px;top:0;bottom:0;width:1px;background:var(--line)}
+.yr-n{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;color:var(--gold-hi);text-align:right;line-height:1;padding-top:14px;letter-spacing:.02em}
+.yr-list{padding:4px 0 14px}
+.ev{position:relative;border-bottom:1px solid rgba(201,167,93,.08)}
+.ev::before{content:'';position:absolute;left:-22px;top:19px;width:8px;height:8px;transform:rotate(45deg);background:var(--ink);border:1px solid var(--c)}
+.ev.open::before{background:var(--c)}
+.ev button{all:unset;box-sizing:border-box;display:flex;align-items:baseline;gap:10px;width:100%;padding:10px 4px 10px 2px;cursor:pointer}
+.ev button:focus-visible{outline:1px solid var(--gold);outline-offset:2px}
+.ev .t{font-family:'Nanum Myeongjo',serif;font-weight:700;font-size:16.5px;color:var(--ivory);transition:color .2s}
+.ev .y{font-size:13.5px;color:var(--ivory-dim);white-space:nowrap}
+.ev .k{margin-left:auto;font-size:11px;letter-spacing:.12em;color:var(--c);white-space:nowrap;opacity:.85}
+.ev:hover .t{color:var(--gold-hi)}
+.ev .d{max-height:0;overflow:hidden;transition:max-height .3s ease,opacity .3s ease,padding .3s ease;opacity:0;font-size:14px;color:var(--ivory-dim);padding:0 4px 0 2px;border-left:2px solid transparent}
+.ev.open .d{max-height:160px;opacity:1;padding:0 8px 12px 12px;border-left-color:var(--c)}
+.ev.open .t{color:var(--gold-hi)}
+mark{background:rgba(201,167,93,.3);color:var(--ivory);padding:0 2px}
+.empty{display:none;text-align:center;color:var(--muted);padding:60px 0;font-style:italic}
+
+.c-w{--c:var(--w)}.c-s{--c:var(--s)}.c-u{--c:var(--u)}.c-e{--c:var(--e)}.c-n{--c:var(--n)}.c-x{--c:var(--x)}
+
+.foot{text-align:center;color:var(--muted);font-size:12px;letter-spacing:.2em;margin-top:70px}
+.totop{position:fixed;right:20px;bottom:20px;width:44px;height:44px;border-radius:50%;border:1px solid var(--gold-lo);background:rgba(12,11,9,.85);color:var(--gold);font-size:16px;cursor:pointer}
+.totop:hover{border-color:var(--gold);color:var(--gold-hi)}
+
+@media (max-width:640px){
+ body{font-size:14.5px}
+ .mast{padding:36px 16px 18px}
+ .bar-in{padding:8px 14px}
+ .row.flts{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+ .row.flts::-webkit-scrollbar{display:none}
+ .flt{flex:none}
+ main{padding:6px 14px 100px}
+ .yr{grid-template-columns:54px 1fr;gap:0 30px}
+ .yr::before{left:69px}
+ .ev::before{left:-19px}
+ .yr-n{font-size:20px}
+ .ev button{flex-wrap:wrap;gap:2px 8px}
+ .ev .t{font-size:15.5px}
+ .ev .k{margin-left:0;width:100%}
+ .era{scroll-margin-top:150px}
+}
+</style>
+</head>
+<body>
+
+<header class="mast">
+ <div class="eyebrow">Chronicle · 1939 — 1959</div>
+ <h1>한국사 정O수 선생님 파트</h1>
+ <div class="sub">대한민국 정부 수립과 6·25 전쟁 · 연대기</div>
+ <div class="orn"><span>❖</span></div>
+</header>
+
+<div class="bar">
+ <div class="bar-in">
+  <div class="row flts" id="flts"></div>
+  <div class="row">
+   <input class="search" id="q" type="search" placeholder="사건 · 인물 찾기">
+   <button class="txt" onclick="openAll(true)">모두 펼치기</button>
+   <button class="txt" onclick="openAll(false)">모두 접기</button>
+  </div>
+  <nav class="dnav" id="dnav"></nav>
+ </div>
+</div>
+
+<main>
+ <p class="guide">사건을 누르면 <b>한 줄 설명</b>이 펼쳐집니다. 위의 분야를 눌러 원하는 흐름만 볼 수 있습니다.</p>
+ <div id="tl"></div>
+ <div class="empty" id="empty">찾는 사건이 없습니다.</div>
+ <div class="foot">❖ &nbsp; 1960 · 4·19 혁명으로 &nbsp; ❖</div>
+</main>
+
+<button class="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="맨 위로">▲</button>
+
+<script>
+const CATS={w:'국제·냉전',s:'남한 정치',u:'통일 운동·좌우 대립',e:'경제·사회',n:'북한',x:'6·25 전쟁'};
+
+/* y 연도 · m 월(정렬·시기 구분용) · yl 표시 연도 · c 분야 · t 사건 · d 한 줄 설명 */
+const EV=[
+{y:1939,m:9,yl:'1939',c:'w',t:'제2차 세계 대전 발발',d:'독일의 폴란드 침공으로 시작되어 1945년 일본의 항복으로 끝났고, 연합국이 승리하였다.'},
+{y:1945,m:2,yl:'1945. 2.',c:'w',t:'얄타 회담',d:'미국의 요청으로 소련이 대일전 참전을 약속하였고, 이는 한반도 분할 점령의 배경이 되었다.'},
+{y:1945,m:8,yl:'1945. 8. 8.',c:'w',t:'소련, 대일 선전 포고',d:'소련군이 일주일 만에 만주를 함락하고 한반도로 빠르게 내려왔다.'},
+{y:1945,m:8,yl:'1945. 8.',c:'w',t:'38도선 설정',d:'소련의 한반도 독점을 막으려는 미국의 제안으로 그어진 일본군 무장 해제용 경계선이 훗날 분단선이 되었다.'},
+{y:1945,m:8,yl:'1945. 8. 15.',c:'s',t:'8·15 광복',d:'독립운동의 결실이자 연합국 승리의 결과였기에, 한반도의 운명은 강대국의 전후 처리에 좌우되었다.'},
+{y:1945,m:8,yl:'1945. 8. 15.',c:'s',t:'조선 건국 준비 위원회 결성',d:'여운형·안재홍이 총독부로부터 치안 유지권을 넘겨받아 전국에 지부를 두고 치안과 행정을 맡았다.'},
+{y:1945,m:8,yl:'1945. 8. 26.',c:'n',t:'소련군, 평양 진주',d:'소련군은 인민 위원회에 행정권을 넘겨 간접 통치하며 사회주의 세력을 지원하였다.'},
+{y:1945,m:9,yl:'1945. 9. 6.',c:'s',t:'조선 인민 공화국 선포',d:'좌익 영향력이 커진 건준이 미군 진주에 앞서 서둘러 선포하고 지부를 인민 위원회로 바꾸었다.'},
+{y:1945,m:9,yl:'1945. 9.',c:'s',t:'한국 민주당 창당',d:'김성수·송진우 중심의 지주·자본가 정당으로, 미군정에 적극 참여해 요직을 차지하였다.'},
+{y:1945,m:9,yl:'1945. 9.',c:'n',t:'김일성, 평양 귀국',d:'항일 유격대 세력이 원산항을 거쳐 평양에 들어와 소련의 지원을 받았다.'},
+{y:1945,m:9,yl:'1945. 9. 9.',c:'s',t:'미군 진주 · 미군정 실시',d:'맥아더 포고 제1호로 직접 통치를 시작했고, 총독부 관리와 경찰을 그대로 써서 친일파 재기의 길을 열었다.'},
+{y:1945,m:10,yl:'1945',c:'w',t:'국제 연합(UN) 창설',d:'국제 연맹과 달리 경제 제재뿐 아니라 군사적 제재 수단까지 갖춘 국제기구이다.'},
+{y:1945,m:10,yl:'1945',c:'s',t:'독립 촉성 중앙 협의회',d:'귀국한 이승만이 좌우를 망라하려 했으나 곧 이승만 지지 단체가 되었다.'},
+{y:1945,m:10,yl:'1945',c:'e',t:'미곡 자유화 정책',d:'미군정이 식량 통제를 풀자 쌀이 투기 대상이 되어 오히려 식량난이 심해졌다.'},
+{y:1945,m:11,yl:'1945',c:'s',t:'김구 등 임시 정부 요인 귀국',d:'미군정의 방침에 따라 정부가 아닌 개인 자격으로 들어와 임정 법통론을 내세웠다.'},
+{y:1945,m:11,yl:'1945 – 1946',c:'w',t:'뉘른베르크 국제 군사 재판',d:'나치 핵심 인물과 유대인 학살 관련자들을 처벌하였다.'},
+{y:1945,m:12,yl:'1945. 12.',c:'u',t:'모스크바 3국 외상 회의',d:'미소 공동 위원회 설치 → 임시 민주 정부 수립 → 최대 5년의 4개국 신탁 통치를 결정하였다.'},
+{y:1945,m:12,yl:'1945. 12. 27.',c:'u',t:'신탁 통치 왜곡 보도',d:'『동아일보』가 미국과 소련의 입장을 뒤바꾸어 보도하고 임시 정부 수립 내용을 빠뜨렸다.'},
+{y:1945,m:12,yl:'1945. 12.',c:'u',t:'반탁 운동 시작',d:'우익은 신탁 통치를 식민 통치의 연장으로 보고 반대하며 정국의 주도권을 잡았다.'},
+{y:1946,m:1,yl:'1946. 1.',c:'u',t:'좌익, 3상 회의 지지로 전환',d:'좌익은 결정의 핵심을 임시 정부 수립으로 보고 총체적 지지로 돌아서 좌우 대립이 격해졌다.'},
+{y:1946,m:1,yl:'1946',c:'n',t:'조만식 등 민족주의 세력 제거',d:'3상 회의 결정에 반대하자 소련군이 이들을 몰아냈다.'},
+{y:1946,m:1,yl:'1946',c:'e',t:'미곡 수집령',d:'미군정이 다시 식량을 통제했지만 농민의 식량 사정은 나아지지 않았다.'},
+{y:1946,m:2,yl:'1946. 2.',c:'n',t:'북조선 임시 인민 위원회',d:'김일성을 위원장으로 한 중앙 권력 기구로, 사실상 정부 역할을 하였다.'},
+{y:1946,m:3,yl:'1946. 3.',c:'n',t:'북한 토지 개혁',d:'5정보 이상 토지를 무상 몰수·무상 분배했지만, 분배 토지의 매매·소작·저당은 금지하였다.'},
+{y:1946,m:3,yl:'1946. 3.',c:'u',t:'제1차 미소 공동 위원회',d:'협의에 참여할 단체 자격(미국: 모든 단체 / 소련: 3상 결정 지지 단체만)을 두고 맞서 결렬되었다.'},
+{y:1946,m:5,yl:'1946',c:'w',t:'극동 국제 군사 재판 개시',d:'A급 전범 28명 중 7명이 교수형을 받았지만 일왕은 기소되지 않아 처벌에 한계가 있었다(~1948).'},
+{y:1946,m:6,yl:'1946. 6.',c:'s',t:'이승만, 정읍 발언',d:'남쪽만이라도 임시 정부를 세우자며 처음으로 단독 정부 수립을 주장하였다.'},
+{y:1946,m:7,yl:'1946. 7.',c:'u',t:'좌우 합작 위원회 조직',d:'여운형(중도 좌파)과 김규식(중도 우파)이 미군정의 지원 아래 분단을 막으려 나섰다.'},
+{y:1946,m:8,yl:'1946',c:'n',t:'중요 산업 국유화법 · 노동법 · 남녀 평등권법',d:'북조선 임시 인민 위원회가 사회주의 경제의 기반을 다졌다.'},
+{y:1946,m:10,yl:'1946. 10.',c:'e',t:'대구 10월 사건',d:'식량 배급을 요구하던 시위가 경찰 발포로 격화되어 남한 전역으로 번졌다.'},
+{y:1946,m:10,yl:'1946. 10.',c:'u',t:'좌우 합작 7원칙',d:'유상 매상·무상 분배 토지 개혁, 친일파 처벌 조례 등 절충안을 냈으나 한민당·조선 공산당 모두 반대하였다.'},
+{y:1946,m:11,yl:'1946',c:'s',t:'남조선노동당 결성',d:'박헌영 중심으로 조선 공산당과 좌익 정당들이 통합하였다.'},
+{y:1946,m:12,yl:'1946 – 1954',c:'w',t:'제1차 인도차이나 전쟁',d:'냉전 속 세계 곳곳에서 벌어진 대리 분쟁의 하나이다.'},
+{y:1947,m:2,yl:'1947. 2.',c:'n',t:'북조선 인민 위원회 출범',d:'임시 인민 위원회를 이어받아 정권 수립 준비를 본격화하였다.'},
+{y:1947,m:3,yl:'1947. 3. 1.',c:'s',t:'제주 3·1절 발포 사건',d:'경찰 발포로 사망자가 나오자 제주도민이 총파업했고, 미군정은 경찰과 서북 청년회로 진압하였다.'},
+{y:1947,m:3,yl:'1947. 3.',c:'w',t:'트루먼 독트린',d:'공산주의 확산을 막겠다는 미국의 봉쇄 정책 선언으로 냉전이 본격화하였다.'},
+{y:1947,m:5,yl:'1947. 5.',c:'u',t:'제2차 미소 공동 위원회',d:'같은 문제로 다시 맞서다 10월 최종 결렬되었다.'},
+{y:1947,m:6,yl:'1947',c:'w',t:'마셜 플랜',d:'서유럽의 공산화를 막으려는 미국의 대규모 경제 원조 계획이다.'},
+{y:1947,m:7,yl:'1947. 7.',c:'u',t:'여운형 암살',d:'냉전 심화로 미군정이 지원을 거두고 여운형이 암살되며 좌우 합작 운동은 힘을 잃었다.'},
+{y:1947,m:9,yl:'1947',c:'w',t:'코민포름 결성',d:'소련이 사회주의 국가의 결속을 다지려고 만든 공산당 정보국이다.'},
+{y:1947,m:11,yl:'1947. 11.',c:'u',t:'유엔 총회, 인구 비례 총선거 결의',d:'미국이 한국 문제를 유엔으로 넘겨, 한반도 전체에서 인구 비례 총선거를 하도록 결정하였다.'},
+{y:1947,m:12,yl:'1947. 12.',c:'n',t:'임시 헌법 초안',d:'북조선 인민 위원회가 독자 정권 수립을 위한 헌법 초안을 만들었다.'},
+{y:1948,m:1,yl:'1948. 1.',c:'u',t:'유엔 한국 임시 위원단 파견',d:'총선거를 감시하려 했으나 소련이 북한 입국을 거부하였다.'},
+{y:1949,m:1,yl:'1949. 1.',c:'w',t:'코메콘(COMECON)',d:'마셜 플랜에 맞선 소련 중심의 경제 상호 원조 회의이다.'},
+{y:1948,m:2,yl:'1948. 2.',c:'u',t:'유엔 소총회, 가능한 지역 선거 결의',d:'한반도 전체 선거가 어렵다며 남한만의 단독 총선거를 결정하였다.'},
+{y:1948,m:2,yl:'1948. 2.',c:'n',t:'조선 인민군 창설',d:'남북 협상에 나서는 한편 군대를 갖추며 독자 정권을 준비하였다.'},
+{y:1948,m:4,yl:'1948. 4. 3.',c:'s',t:'제주 4·3 사건',d:'남로당 제주도당 주도의 무장 봉기와 정부의 초토화 작전으로 무고한 제주도민이 대거 희생되었다.'},
+{y:1948,m:4,yl:'1948. 4.',c:'u',t:'남북 협상',d:'김구·김규식이 평양에서 외국군 철수·단독 선거 반대를 결의했으나 성과를 거두지 못하였다.'},
+{y:1948,m:5,yl:'1948. 5. 10.',c:'s',t:'5·10 총선거',d:'우리 역사상 첫 민주 선거로 198명의 제헌 의원을 뽑았으나 김구·김규식은 불참하였다.'},
+{y:1948,m:6,yl:'1948 – 1949',c:'w',t:'베를린 봉쇄',d:'소련이 서베를린을 봉쇄한 사건으로, 유럽 냉전의 상징이 되었다.'},
+{y:1948,m:7,yl:'1948. 7. 17.',c:'s',t:'제헌 헌법 공포',d:'임시 정부의 법통을 잇고 국민 주권의 민주 공화국을 밝혔다. 대통령은 국회 간선, 임기 4년·1차 중임.'},
+{y:1948,m:8,yl:'1948. 8. 15.',c:'s',t:'대한민국 정부 수립',d:'국회가 대통령 이승만, 부통령 이시영을 뽑아 정부 수립을 선포하였다.'},
+{y:1948,m:8,yl:'1948. 8.',c:'n',t:'최고 인민 회의 구성',d:'대한민국 정부 수립 뒤 북한이 선거로 구성하였다.'},
+{y:1948,m:9,yl:'1948. 9. 9.',c:'n',t:'조선 민주주의 인민 공화국 수립',d:'김일성을 수상으로 별도 정권이 들어서며 분단이 현실화하였다.'},
+{y:1948,m:9,yl:'1948. 9.',c:'s',t:'반민족 행위 처벌법 제정',d:'무소속 개혁 의원들이 주도해 친일 반민족 행위자 처벌에 나섰다.'},
+{y:1948,m:10,yl:'1948. 10.',c:'s',t:'반민 특위 활동 시작',d:'7천여 명을 선정했으나 682건 조사에 그쳤고 실형은 12명뿐이었다.'},
+{y:1948,m:10,yl:'1948. 10. 19.',c:'s',t:'여수·순천 10·19 사건',d:'제주 출동을 거부한 여수 주둔 부대의 봉기를 계엄령으로 진압하며 많은 민간인이 희생되었다.'},
+{y:1948,m:12,yl:'1948. 12.',c:'s',t:'국가 보안법 제정',d:'여수·순천 사건 이후 군 내 좌익 숙청과 함께 반공 체제를 강화하였다.'},
+{y:1948,m:12,yl:'1948. 12. 12.',c:'s',t:'유엔, 대한민국 승인',d:'선거가 실시된 지역에서 수립된 유일한 합법 정부로 인정받았다.'},
+{y:1948,m:12,yl:'1948',c:'e',t:'귀속 농지 매각',d:'미군정이 일본인 소유였던 농지를 농민에게 유상으로 팔았다.'},
+{y:1949,m:5,yl:'1949. 5.',c:'s',t:'국회 프락치 사건',d:'남북 협상·외국군 철수를 주장한 반민 특위 소속 의원들을 간첩 혐의로 구속하였다.'},
+{y:1949,m:6,yl:'1949. 6.',c:'s',t:'반민 특위 습격 · 김구 암살',d:'친일 경찰이 반민 특위를 습격하고 김구가 암살되며 친일파 청산이 좌절되었다.'},
+{y:1949,m:6,yl:'1949. 6.',c:'s',t:'국민 보도 연맹 조직',d:'전향한 좌익을 관리하려 만든 단체로, 6·25 전쟁 때 많은 가입자가 처형되었다.'},
+{y:1949,m:6,yl:'1949. 6.',c:'e',t:'농지 개혁법 제정',d:'3정보 초과 농지를 유상 매수·유상 분배하고 지주에게 지가 증권을 주었다.'},
+{y:1949,m:8,yl:'1949',c:'s',t:'반민 특위 해체',d:'공소 시효 단축과 정부 방해 속에 친일 청산이 중단되었다.'},
+{y:1949,m:9,yl:'1949',c:'n',t:'조선 의용군, 인민군 편입',d:'중국 내전에 참여했던 조선 의용군을 받아들이며 전쟁을 준비하였다.'},
+{y:1949,m:10,yl:'1949. 10.',c:'w',t:'중화 인민 공화국 수립',d:'국공 내전에서 공산당이 이기고 국민당 정부는 타이완으로 옮겨 갔다.'},
+{y:1949,m:12,yl:'1949. 12.',c:'e',t:'귀속 재산 처리법',d:'일본인이 남긴 기업을 권력층과 가까운 이들에게 헐값에 팔아 재벌 성장의 토대가 되었다.'},
+{y:1950,m:1,yl:'1950. 1.',c:'x',t:'애치슨 선언',d:'미국의 태평양 방위선에서 한국이 빠지자 북한은 미국이 개입하지 않으리라 판단하였다.'},
+{y:1950,m:3,yl:'1950. 3.',c:'e',t:'농지 개혁 실시',d:'개정된 법으로 시작해 전쟁 후 완료되었고, 지주-소작 관계가 무너지고 자작농이 늘었다.'},
+{y:1950,m:4,yl:'1950. 4.',c:'x',t:'스탈린, 남침 지원 약속',d:'중국 공산화·중소 동맹·원자탄 보유를 근거로 김일성의 남침을 승인하였다.'},
+{y:1950,m:5,yl:'1950. 5.',c:'s',t:'제2대 국회 의원 선거',d:'무소속이 210석 중 126석을 얻는 등 이승만에게 비판적인 의원이 대거 당선되었다.'},
+{y:1950,m:6,yl:'1950. 6. 25.',c:'x',t:'6·25 전쟁 발발',d:'북한군의 기습 남침으로 전쟁이 시작되어 3일 만에 서울이 함락(6. 28.)되었다.'},
+{y:1950,m:7,yl:'1950. 7.',c:'x',t:'유엔군 참전',d:'유엔이 북한의 행위를 침략으로 규정하고 군대를 보냈다. 북한군은 낙동강까지 내려왔다.'},
+{y:1950,m:9,yl:'1950. 9. 15.',c:'x',t:'인천 상륙 작전',d:'전세를 단숨에 뒤집어 9월 28일 서울을 되찾고, 10월 평양을 넘어 압록강까지 진격하였다.'},
+{y:1950,m:10,yl:'1950. 10. 19.',c:'x',t:'중국군 개입',d:'전쟁이 자본주의 대 공산주의의 국제전으로 커졌다.'},
+{y:1950,m:12,yl:'1950. 12. 14.',c:'x',t:'흥남 철수 작전',d:'중국군에 밀려 국군과 유엔군, 수많은 피란민이 배로 철수하였다.'},
+{y:1951,m:1,yl:'1951. 1. 4.',c:'x',t:'1·4 후퇴',d:'서울을 다시 빼앗겼다가 3월에 재수복한 뒤 38도선 부근에서 공방전이 이어졌다.'},
+{y:1951,m:2,yl:'1951',c:'s',t:'국민 방위군 사건 · 거창 민간인 학살',d:'군 간부의 횡령과 민간인 학살로 이승만 정부에 대한 여론이 크게 나빠졌다.'},
+{y:1951,m:7,yl:'1951. 7.',c:'x',t:'정전 회담 시작',d:'소련의 제안으로 시작했으나 군사 분계선과 포로 송환 문제로 2년을 끌며 고지전이 이어졌다.'},
+{y:1951,m:9,yl:'1951. 9.',c:'w',t:'샌프란시스코 강화 조약',d:'미국 주도로 일본이 주권을 되찾았지만 전쟁과 식민 지배에 대한 반성·사과는 빠졌다.'},
+{y:1951,m:12,yl:'1951. 12.',c:'s',t:'자유당 창당',d:'국회 간선으로는 재선이 어렵다고 본 이승만이 지지 세력을 모았다.'},
+{y:1952,m:5,yl:'1952. 5.',c:'s',t:'부산 정치 파동',d:'임시 수도 부산에 계엄령을 펴고 야당 의원을 탄압해 공포 분위기를 만들었다.'},
+{y:1952,m:7,yl:'1952. 7.',c:'s',t:'발췌 개헌',d:'대통령 직선제 개헌안을 토론 없이 기립 공개 투표로 통과시켰다.'},
+{y:1952,m:8,yl:'1952. 8.',c:'s',t:'제2대 대통령 선거',d:'반공을 내세운 이승만이 직선제로 재선되었다.'},
+{y:1953,m:6,yl:'1953. 6. 18.',c:'x',t:'반공 포로 석방',d:'정전에 반대한 이승만 정부가 반공 포로를 일방적으로 풀어 주었다.'},
+{y:1953,m:7,yl:'1953. 7. 27.',c:'x',t:'정전 협정 체결',d:'유엔군과 공산 측이 체결 순간의 전선을 군사 분계선으로 삼으며 전쟁이 멈추었다.'},
+{y:1953,m:8,yl:'1953 – 1955',c:'n',t:'남로당 세력 숙청',d:'전쟁 중 김무정(옌안파)·허가이(소련파)에 이어 박헌영 등 남로당 세력을 간첩 혐의로 제거하였다.'},
+{y:1953,m:9,yl:'1953 – 1958',c:'n',t:'농업 협동화',d:'전쟁 피해를 틈타 모든 농가를 협동 농장으로 묶어 1958년 사회주의 경제 체제를 완성하였다.'},
+{y:1953,m:10,yl:'1953. 10.',c:'w',t:'한미 상호 방위 조약',d:'미군이 한국에 주둔할 권리를 얻어 전후 한미 동맹의 뼈대가 되었다.'},
+{y:1954,m:1,yl:'1954',c:'n',t:'북한, 9개 도 행정 체계',d:'지방 행정 구역을 오늘날과 같이 개편하였다.'},
+{y:1954,m:11,yl:'1954. 11.',c:'w',t:'한미 합의 의사록',d:'7억 달러 원조, 한국군 72만 명 이내, 국군 작전 통제권의 유엔군 사령부 귀속을 정하였다.'},
+{y:1954,m:11,yl:'1954. 11.',c:'s',t:'사사오입 개헌',d:'203명의 2/3인 135.33…을 반올림해 부결을 가결로 뒤집고 초대 대통령의 중임 제한을 없앴다.'},
+{y:1954,m:12,yl:'1950년대',c:'e',t:'삼백 산업 발달',d:'미국 원조 물자로 제분·제당·면방직이 컸지만 생산재 산업은 부진하고 정경유착이 일어났다.'},
+{y:1955,m:9,yl:'1955',c:'s',t:'민주당 창당',d:'신익희·장면 등이 이승만의 독재에 맞서 결집하였다.'},
+{y:1956,m:1,yl:'1956',c:'n',t:'북한 경제, 전쟁 이전 수준 회복',d:'사회주의 국가들의 원조(예산의 23%)로 중공업 중심 복구를 마쳤다.'},
+{y:1956,m:3,yl:'1956~',c:'n',t:'천리마 운동',d:'주민의 희생과 헌신에 기댄 집단적 노력 경쟁 운동이었으나 기술·물질적 뒷받침이 부족하였다.'},
+{y:1956,m:5,yl:'1956. 5.',c:'s',t:'제3대 정·부통령 선거',d:'이승만이 3선했으나 조봉암이 30%를 얻고, 부통령에는 민주당 장면이 당선되었다.'},
+{y:1956,m:8,yl:'1956. 8.',c:'n',t:'8월 종파 사건',d:'김일성을 비판한 옌안파·소련파를 숙청하고 1인 독재와 주체를 내세웠다.'},
+{y:1956,m:11,yl:'1956',c:'s',t:'진보당 창당',d:'조봉암이 평화 통일과 혁신 정치를 내걸고 창당하였다.'},
+{y:1958,m:1,yl:'1958. 1.',c:'s',t:'진보당 사건',d:'진보당을 해산하고 조봉암에게 간첩 혐의를 씌워 이듬해 사형에 처하였다.'},
+{y:1958,m:6,yl:'1950년대 후반',c:'e',t:'미국 원조 감소 · 경제 개발 계획',d:'미국이 원조를 줄이고 차관으로 바꾸자 부흥부 산업 개발 위원회가 경제 개발 계획을 세웠다.'},
+{y:1958,m:12,yl:'1958. 12.',c:'s',t:'국가 보안법 개정',d:'반공을 명분으로 혁신 세력과 비판 세력을 탄압할 수단을 강화하였다.'},
+{y:1959,m:4,yl:'1959. 4.',c:'s',t:'『경향신문』 폐간',d:'정부 비판 칼럼을 문제 삼아 폐간하며 언론을 위축시켰다.'},
+{y:1959,m:8,yl:'1959. 8. 13.',c:'n',t:'캘커타 협정 · 재일 조선인 북송',d:'노동력이 필요한 북한과 인도주의를 내세운 일본의 합의로 약 9만 3천여 명이 북으로 갔다.'}
+];
+
+const ERAS=[
+ {k:'e1', from:193901,to:194507, yr:'1939 – 1945', name:'새 로 운 국 제 질 서', desc:'제2차 세계 대전 · 얄타 회담'},
+ {k:'e2', from:194508,to:194512, yr:'1945', name:'광 복 과 분 할 점 령', desc:'38도선 · 건준 · 미군정 · 모스크바 3국 외상 회의'},
+ {k:'e3', from:194601,to:194807, yr:'1946 – 1948', name:'통 일 정 부 를 향 한 노 력', desc:'미소 공위 · 좌우 합작 · 유엔 이관 · 남북 협상 · 5·10 총선거'},
+ {k:'e4', from:194808,to:195005, yr:'1948 – 1950', name:'두 개 의 정 부', desc:'정부 수립 · 반민 특위 · 농지 개혁 · 냉전의 확산'},
+ {k:'e5', from:195006,to:195307, yr:'1950 – 1953', name:'6·25 전 쟁', desc:'남침 · 인천 상륙 · 중국군 개입 · 정전'},
+ {k:'e6', from:195308,to:195912, yr:'1953 – 1959', name:'분 단 의 고 착 화', desc:'이승만 장기 집권 · 삼백 산업 · 김일성 독재 · 천리마 운동'}
+];
+
+const on=new Set(Object.keys(CATS));
+EV.forEach((e,i)=>{e.i=i;e.m=e.m||0});
+const SORTED=[...EV].sort((a,b)=>a.y-b.y||a.m-b.m||a.i-b.i);
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function hl(s,q){s=esc(s);if(!q)return s;const i=s.toLowerCase().indexOf(q.toLowerCase());return i<0?s:s.slice(0,i)+'<mark>'+s.slice(i,i+q.length)+'</mark>'+s.slice(i+q.length)}
+
+document.getElementById('flts').innerHTML=Object.entries(CATS).map(([k,v])=>`<button class="flt c-${k}" data-k="${k}" onclick="flt('${k}')"><i></i>${v}</button>`).join('')+`<button class="txt" onclick="fltAll()">전체</button>`;
+function flt(k){on.has(k)?on.delete(k):on.add(k);syncF();render()}
+function fltAll(){Object.keys(CATS).forEach(k=>on.add(k));syncF();render()}
+function syncF(){document.querySelectorAll('.flt').forEach(b=>b.classList.toggle('off',!on.has(b.dataset.k)))}
+
+function render(){
+ const q=document.getElementById('q').value.trim(), ql=q.toLowerCase();
+ const opened=new Set([...document.querySelectorAll('.ev.open')].map(x=>x.dataset.i));
+ let h='',nav='',n=0;
+ for(const E of ERAS){
+  const L=SORTED.filter(e=>(e.y*100+e.m)>=E.from&&(e.y*100+e.m)<=E.to&&on.has(e.c)&&(!q||(e.t+' '+e.d+' '+e.yl).toLowerCase().includes(ql)));
+  if(!L.length)continue;
+  n+=L.length;
+  nav+=`<button onclick="go('${E.k}')">${E.yr}</button>`;
+  h+=`<section class="era" id="${E.k}"><div class="era-head"><div class="era-yr">${E.yr}</div><div class="era-name">${E.name}</div><div class="era-desc">${E.desc}</div><div class="orn"><span>◆</span></div></div>`;
+  for(const y of [...new Set(L.map(e=>e.y))]){
+   h+=`<div class="yr"><div class="yr-n">${y}</div><div class="yr-list">`;
+   for(const e of L.filter(x=>x.y===y)){
+    const o=opened.has(String(e.i))||(q&&e.d.toLowerCase().includes(ql));
+    h+=`<div class="ev c-${e.c}${o?' open':''}" data-i="${e.i}"><button aria-expanded="${o}" onclick="tg(this)"><span class="t">${hl(e.t,q)}</span><span class="y">(${esc(e.yl)})</span><span class="k">${CATS[e.c]}</span></button><div class="d">${hl(e.d,q)}</div></div>`;
+   }
+   h+=`</div></div>`;
+  }
+  h+=`</section>`;
+ }
+ document.getElementById('tl').innerHTML=h;
+ document.getElementById('dnav').innerHTML=nav;
+ document.getElementById('empty').style.display=n?'none':'block';
+}
+function tg(b){const ev=b.parentElement;ev.classList.toggle('open');b.setAttribute('aria-expanded',ev.classList.contains('open'))}
+function openAll(o){document.querySelectorAll('.ev').forEach(ev=>{ev.classList.toggle('open',o);ev.firstElementChild.setAttribute('aria-expanded',o)})}
+function go(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'})}
+document.getElementById('q').addEventListener('input',render);
+render();
+</script>
+</body>
+</html>

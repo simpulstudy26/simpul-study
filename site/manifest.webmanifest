@@ -1,0 +1,17 @@
+{
+  "id": "./",
+  "name": "심풀스터디 · 고1 내신 대비 자료",
+  "short_name": "심풀스터디",
+  "description": "과목별 개념 정리와 문제를 모은 고1 내신 대비 자료실",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f5f7",
+  "theme_color": "#0b1830",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

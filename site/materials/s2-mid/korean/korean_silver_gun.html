@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>세상을 밝히는 힘 · 독해 노트</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Serif+KR:wght@400;500;600;700&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f7f4ee;
+  --sheet:#ffffff;
+  --rule:#e6e0d5;
+  --line:#e8e4dc;
+  --ink:#1d1b18;
+  --ink-2:#4e4941;
+  --ink-3:#8a837a;
+  --mark:#c0392b;        --mark-bg:#fdf1ef;   --mark-line:#e9bdb5;
+  --blue:#2b5fa8;        --blue-bg:#eef3fb;   --blue-line:#bccee7;
+  --green:#3f7d58;       --green-bg:#eef6f1;
+  --violet:#6b4fa0;      --violet-bg:#f3effa;
+  --gold:#8a6d3b;        --gold-bg:#fffdf3;
+  --serif:'Noto Serif KR', serif;
+  --sans:'Noto Sans KR', sans-serif;
+  --hand:'Nanum Pen Script', cursive;
+  --shadow:0 1px 2px rgba(40,34,24,.05), 0 6px 18px rgba(40,34,24,.05);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.8;-webkit-text-size-adjust:100%}
+
+/* ── 헤더 ── */
+.topbar{position:sticky;top:0;z-index:40;background:rgba(247,244,238,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+.topbar-in{max-width:1000px;margin:0 auto;padding:14px 20px 0}
+.brandline{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.course{font-size:11px;letter-spacing:.14em;font-weight:700;color:var(--ink-3);border:1px solid var(--rule);border-radius:3px;padding:3px 8px;background:#fff}
+.unit-name{font-family:var(--serif);font-size:19px;font-weight:700;letter-spacing:-.01em}
+.teacher-chip{font-family:var(--hand);font-size:19px;color:var(--mark);border-bottom:1.5px solid var(--mark-line);padding:0 2px;line-height:1}
+.navtabs{display:flex;gap:2px;margin-top:12px;overflow-x:auto;scrollbar-width:none}
+.navtabs::-webkit-scrollbar{display:none}
+.navtab{flex:0 0 auto;border:0;background:none;cursor:pointer;font-family:var(--sans);font-size:13.5px;font-weight:500;color:var(--ink-3);padding:9px 14px 11px;border-bottom:2.5px solid transparent;white-space:nowrap}
+.navtab:hover{color:var(--ink-2)}
+.navtab.active{color:var(--ink);font-weight:700;border-bottom-color:var(--mark)}
+.navtab .t-idx{display:inline-block;font-size:10.5px;font-weight:700;color:var(--ink-3);border:1px solid var(--rule);border-radius:50%;width:17px;height:17px;line-height:15px;text-align:center;margin-right:6px;background:#fff;vertical-align:1px}
+.navtab.active .t-idx{background:var(--mark);color:#fff;border-color:var(--mark)}
+
+/* ── 레이아웃 ── */
+.wrap{max-width:1000px;margin:0 auto;padding:30px 20px 110px}
+.panel{display:none;animation:fade .22s ease}
+.panel.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+
+/* ── 글 머리 ── */
+.work-head{margin-bottom:24px}
+.work-kicker{font-size:11.5px;letter-spacing:.12em;color:var(--ink-3);font-weight:700;margin-bottom:8px}
+.work-title{font-family:var(--serif);font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1.35}
+.work-author{font-family:var(--serif);font-size:15px;color:var(--ink-2);margin-top:6px}
+.work-title .src{font-size:14px;color:var(--ink-3);font-family:var(--sans);font-weight:400;margin-left:10px;letter-spacing:0}
+
+/* ── 작품 정보 (필기) ── */
+.spec{background:var(--sheet);border:1px solid var(--line);border-left:4px solid var(--mark);border-radius:0 4px 4px 0;box-shadow:var(--shadow);padding:18px 22px;margin:20px 0 34px;max-width:760px}
+.spec-cap{font-size:10.5px;letter-spacing:.12em;font-weight:700;color:var(--mark);margin-bottom:11px}
+.spec-row{display:flex;gap:16px;padding:6px 0;border-bottom:1px dashed var(--line);align-items:baseline}
+.spec-row:last-child{border-bottom:0;padding-bottom:0}
+.spec-k{flex:0 0 52px;font-family:var(--hand);font-size:21px;color:var(--ink-2);letter-spacing:.06em}
+.spec-v{font-family:var(--hand);font-size:21px;color:var(--mark);line-height:1.5}
+.spec-v .sub{display:block;color:var(--ink-2);font-size:19px;padding-left:12px}
+
+/* ── 본문 ── */
+.h2{font-family:var(--serif);font-size:20px;font-weight:700;letter-spacing:-.01em;margin:44px 0 16px;padding-bottom:9px;border-bottom:2px solid var(--ink);display:flex;align-items:center;gap:9px;max-width:760px}
+.h2 .n{font-family:var(--sans);font-size:12px;font-weight:900;color:#fff;background:var(--ink);width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex:0 0 22px}
+.h3{font-size:14.5px;font-weight:700;margin:26px 0 11px;padding-left:10px;border-left:3px solid var(--mark);line-height:1.5}
+
+.para{margin:0 0 6px;padding:22px 0;border-top:1px solid var(--line);max-width:760px}
+.para:first-of-type{border-top:0;padding-top:6px}
+.para-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.pnum{font-size:11px;font-weight:900;letter-spacing:.06em;color:#fff;background:var(--ink);border-radius:2px;padding:3px 8px}
+.ptag{font-size:11.5px;font-weight:700;letter-spacing:.02em;padding:3px 9px;border-radius:2px;background:var(--gold-bg);color:var(--gold);border:1px solid #e8dcc2}
+.ptag.b{background:var(--blue-bg);color:var(--blue);border-color:var(--blue-line)}
+.ptag.g{background:var(--green-bg);color:var(--green);border-color:#c5ddcf}
+.ptag.r{background:var(--mark-bg);color:var(--mark);border-color:var(--mark-line)}
+.ptag.v{background:var(--violet-bg);color:var(--violet);border-color:#d3c7ec}
+
+.body-text{
+  font-family:var(--serif);font-size:16.5px;line-height:2.05;color:var(--ink);
+  background:var(--sheet);border:1px solid var(--line);border-radius:4px;
+  padding:20px 24px;letter-spacing:-.004em;text-align:justify;word-break:keep-all;
+}
+.body-text + .body-text{margin-top:10px}
+.body-text .mk{border-bottom:1.6px solid var(--mark-line);padding-bottom:1px}
+.body-text .mkb{border-bottom:1.6px solid var(--blue-line);padding-bottom:1px}
+.body-text .bx{border:1.3px solid var(--mark-line);border-radius:3px;padding:0 4px;background:var(--mark-bg)}
+.body-text .fill{background:#fff6d9;border-bottom:1.5px solid #d9b84e;padding:0 3px;font-family:var(--hand);font-size:21px;color:#8a6d1b}
+.src-line{font-family:var(--serif);font-size:14px;color:var(--ink-2);text-align:right;margin-top:10px}
+
+/* 풀이 */
+.gloss{margin-top:14px}
+.gloss p{font-size:14.5px;line-height:1.85;color:var(--ink-2)}
+.gloss p + p{margin-top:9px}
+.gloss b{color:var(--ink);font-weight:700}
+.kw{background:linear-gradient(transparent 62%, #f3e2b8 62%);font-weight:500;color:var(--ink);padding:0 1px}
+
+/* 선생님 강조 */
+.tnote{background:var(--mark-bg);border:1px solid var(--mark-line);border-radius:3px;padding:11px 15px 12px;margin:14px 0;display:flex;gap:12px;align-items:flex-start}
+.tnote .tn-cap{flex:0 0 auto;font-family:var(--sans);font-size:9.5px;font-weight:700;letter-spacing:.1em;color:#fff;background:var(--mark);border-radius:2px;padding:3px 7px;margin-top:4px;white-space:nowrap}
+.tnote .tn-body{font-family:var(--hand);font-size:21px;line-height:1.5;color:var(--mark);letter-spacing:.01em}
+
+/* 공통 박스 */
+.card{background:var(--sheet);border:1px solid var(--line);border-radius:4px;box-shadow:var(--shadow);padding:22px 24px;margin:18px 0;max-width:760px}
+.lede{font-size:14.5px;color:var(--ink-2);line-height:1.85}
+.lede + .lede{margin-top:9px}
+.defbox{background:var(--sheet);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:0 3px 3px 0;padding:14px 17px;margin:12px 0}
+.defbox .dt{font-weight:700;font-size:14px;color:var(--blue);margin-bottom:5px}
+.defbox .dd{font-size:14px;color:var(--ink-2);line-height:1.8}
+.defbox.g{border-left-color:var(--green)} .defbox.g .dt{color:var(--green)}
+.defbox.r{border-left-color:var(--mark)} .defbox.r .dt{color:var(--mark)}
+.defbox.v{border-left-color:var(--violet)} .defbox.v .dt{color:var(--violet)}
+.memo{background:var(--gold-bg);border:1px solid #ecdfae;border-left:4px solid #d4a93a;border-radius:0 3px 3px 0;padding:13px 16px;margin:14px 0;font-size:13.5px;color:#6b5518;line-height:1.8;max-width:760px}
+.memo b{color:#5a4510}
+.caution{background:var(--mark-bg);border:1px solid var(--mark-line);border-left:4px solid var(--mark);border-radius:0 3px 3px 0;padding:13px 16px;margin:14px 0;font-size:13.5px;color:#8e3025;line-height:1.8;max-width:760px}
+
+/* 표 */
+.tbl{width:100%;border-collapse:collapse;font-size:13.5px;margin:14px 0;background:#fff}
+.tbl th,.tbl td{border:1px solid var(--line);padding:10px 12px;vertical-align:top;line-height:1.75}
+.tbl thead th{background:#3b3630;color:#fff;font-weight:700;font-size:12.5px;letter-spacing:.04em;border-color:#3b3630}
+.tbl tbody th{background:#f6f3ed;font-weight:700;width:96px;color:var(--ink);text-align:center;font-size:12.5px}
+.tbl td .hw{font-family:var(--hand);font-size:20px;color:var(--mark);line-height:1.45;display:block}
+.tbl-scroll{overflow-x:auto;max-width:900px}
+.tbl-scroll .tbl{min-width:560px}
+
+/* 2열 */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;max-width:900px}
+@media (max-width:760px){.duo{grid-template-columns:1fr}}
+.tcard{background:var(--sheet);border:1px solid var(--line);border-top:3px solid var(--blue);border-radius:3px;padding:15px 17px}
+.tcard.g{border-top-color:var(--green)} .tcard.r{border-top-color:var(--mark)} .tcard.v{border-top-color:var(--violet)}
+.tcard .tc-t{font-weight:700;font-size:14.5px;margin-bottom:7px;display:flex;align-items:center;gap:7px}
+.tcard .tc-t .mk{font-size:11px;font-weight:900;color:#fff;background:var(--blue);border-radius:2px;padding:2px 6px}
+.tcard.g .tc-t .mk{background:var(--green)} .tcard.r .tc-t .mk{background:var(--mark)} .tcard.v .tc-t .mk{background:var(--violet)}
+.tcard .tc-b{font-size:13.5px;color:var(--ink-2);line-height:1.8}
+
+/* 삼단논법 */
+.syll{border:1px solid var(--line);border-radius:4px;overflow:hidden;background:#fff;margin:14px 0;max-width:760px}
+.syll-row{display:grid;grid-template-columns:106px 1fr;border-bottom:1px solid var(--line)}
+.syll-row:last-child{border-bottom:0}
+.syll-k{background:#f6f3ed;padding:12px;font-size:12.5px;font-weight:700;text-align:center;display:flex;align-items:center;justify-content:center;border-right:1px solid var(--line);line-height:1.4}
+.syll-v{padding:12px 15px;font-size:13.5px;line-height:1.8;color:var(--ink-2)}
+.syll-row.concl .syll-k{background:var(--blue);color:#fff;border-right-color:var(--blue)}
+.syll-row.concl .syll-v{background:var(--blue-bg);font-weight:500;color:var(--ink)}
+
+/* 오류 박스 */
+.fallacy{background:#fff;border:2px solid var(--mark);border-radius:5px;margin:20px 0;overflow:hidden;max-width:860px}
+.fallacy-head{background:var(--mark);color:#fff;padding:11px 18px;font-weight:700;font-size:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.fallacy-head .fh-tag{font-family:var(--hand);font-size:21px;background:#fff;color:var(--mark);border-radius:2px;padding:0 9px;line-height:1.5}
+.fallacy-body{padding:18px 20px}
+.fstep{display:flex;gap:12px;padding:11px 0;border-bottom:1px dashed var(--line)}
+.fstep:last-child{border-bottom:0;padding-bottom:0}
+.fstep .fs-n{flex:0 0 24px;height:24px;border-radius:50%;background:var(--mark-bg);color:var(--mark);border:1px solid var(--mark-line);font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.fstep .fs-t{font-size:13.5px;line-height:1.85;color:var(--ink-2)}
+.fstep .fs-t b{color:var(--ink)}
+
+/* 홈 */
+.hero{background:var(--sheet);border:1px solid var(--line);border-radius:5px;box-shadow:var(--shadow);padding:32px 30px;margin-bottom:26px;max-width:900px}
+.hero h1{font-family:var(--serif);font-size:28px;font-weight:700;letter-spacing:-.02em;line-height:1.4}
+.hero .sub{font-size:14.5px;color:var(--ink-2);margin-top:12px;line-height:1.85;max-width:640px}
+.hero .hand-tag{font-family:var(--hand);font-size:23px;color:var(--mark);margin-top:14px;display:block}
+.idx-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;max-width:900px}
+.idx-card{background:var(--sheet);border:1px solid var(--line);border-top:3px solid var(--rule);border-radius:4px;padding:19px 20px;cursor:pointer;text-align:left;font-family:var(--sans);transition:.15s;box-shadow:var(--shadow)}
+.idx-card:hover{transform:translateY(-2px);border-top-color:var(--mark)}
+.idx-card .ic-n{font-size:10.5px;letter-spacing:.13em;font-weight:700;color:var(--ink-3)}
+.idx-card .ic-t{font-family:var(--serif);font-size:18px;font-weight:700;margin:7px 0 4px;letter-spacing:-.01em;color:var(--ink)}
+.idx-card .ic-a{font-size:12.5px;color:var(--ink-3);margin-bottom:9px}
+.idx-card .ic-d{font-size:13px;color:var(--ink-2);line-height:1.75}
+
+/* 통계 그래프 */
+.figure{background:var(--sheet);border:1px solid var(--line);border-radius:4px;box-shadow:var(--shadow);padding:20px 22px 16px;margin:16px 0;max-width:760px}
+.fig-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.fig-legend{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 18px}
+.fig-legend span{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:var(--ink-2)}
+.fig-legend i{width:9px;height:9px;border-radius:50%;display:inline-block;flex:0 0 9px}
+.chart-wrap{position:relative}
+.chart{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;align-items:end;height:210px;padding-top:26px}
+.chart .cbar{position:relative;display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+.chart .cval{position:absolute;top:-22px;left:0;right:0;text-align:center;font-size:12px;font-weight:700;color:var(--ink)}
+.chart .cfill{background:linear-gradient(180deg,#7a9b5e 0%,#7a9b5e 30%,#b8505f 30%,#b8505f 74%,#3f7d8a 74%,#3f7d8a 84%,#5a6fa8 84%,#5a6fa8 93%,#c98f36 93%,#c98f36 100%);border-radius:2px 2px 0 0}
+.chart-x{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:8px;border-top:1px solid var(--line);padding-top:8px}
+.chart-x span{text-align:center;font-size:11px;color:var(--ink-2);letter-spacing:-.03em}
+.trend{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.trend-tip{position:absolute;top:8px;left:68%;font-size:17px;font-weight:700;color:var(--mark);line-height:1}
+.fig-src{font-size:11.5px;color:var(--ink-3);margin-top:14px}
+@media (max-width:560px){.chart{height:165px;gap:9px}.chart-x{gap:9px}.chart-x span{font-size:9.5px}}
+
+.totop{position:fixed;right:20px;bottom:22px;z-index:50;width:42px;height:42px;border-radius:50%;border:1px solid var(--rule);background:#fff;box-shadow:var(--shadow);cursor:pointer;font-size:16px;color:var(--ink-2)}
+.foot{margin-top:50px;padding-top:18px;border-top:1px solid var(--rule);font-size:11.5px;color:var(--ink-3);line-height:1.9;max-width:760px}
+
+@media (max-width:640px){
+  .body-text{font-size:15.5px;line-height:1.95;padding:16px 17px}
+  .work-title{font-size:25px}
+  .tnote{flex-direction:column;gap:6px}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="brandline">
+      <span class="course">공통국어 2</span>
+      <span class="unit-name" id="unitName">1. 세상을 밝히는 힘</span>
+      <span class="teacher-chip">이O총 선생님 파트</span>
+    </div>
+    <nav class="navtabs">
+      <button class="navtab active" onclick="go(0)"><span class="t-idx">0</span>개관</button>
+      <button class="navtab" onclick="go(1)"><span class="t-idx">1</span>어떤 말은 죽지 않는다</button>
+      <button class="navtab" onclick="go(2)"><span class="t-idx">2</span>논증의 이해</button>
+      <button class="navtab" onclick="go(3)"><span class="t-idx">3</span>난민 수용 논설문</button>
+      <button class="navtab" onclick="go(4)"><span class="t-idx">4</span>논리적 오류</button>
+      <button class="navtab" onclick="go(5)"><span class="t-idx">5</span>책이 중심이 되는 사회</button>
+      <button class="navtab" onclick="go(6)"><span class="t-idx">6</span>더워진 지구에서 가장 위험한 건</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ══════════ 0. 개관 ══════════ -->
+<section class="panel active" id="p0">
+  <div class="hero">
+    <h1>이O총 선생님 파트<br>— 지문 전문과 해석</h1>
+    <p class="sub">
+      수업에서 다룬 지문을 <b>전문 그대로 싣고</b>, 문단마다 해석을 붙였습니다.
+      수업에서 강조하신 관점과 지적은 <b style="color:#c0392b">붉은 상자</b>로 따로 표시해 두었습니다.
+    </p>
+    <span class="hand-tag">본문을 먼저 읽고, 아래 해석으로 확인하세요</span>
+  </div>
+
+  <div class="idx-grid">
+    <button class="idx-card" onclick="go(1)">
+      <div class="ic-n">(1) 말의 힘 · 교과서 14~15쪽</div>
+      <div class="ic-t">어떤 말은 죽지 않는다</div>
+      <div class="ic-a">박준 · 수필</div>
+      <div class="ic-d">누군가와 나눈 마지막 말을 유언처럼 기억하는 경험에서 출발해, 마음속에 살아남는 말에 대한 성찰로 나아가는 글.</div>
+    </button>
+    <button class="idx-card" onclick="go(2)">
+      <div class="ic-n">(2) 힘 있는 글 · 알아 두기 / 활동</div>
+      <div class="ic-t">논증의 이해</div>
+      <div class="ic-a">논증 요소 · 연역 논증 · 귀납 논증</div>
+      <div class="ic-d">주장·이유·근거·예상 반론과 반박, 그리고 연역과 귀납. 교과서 활동 지문도 전문으로 실었습니다.</div>
+    </button>
+    <button class="idx-card" onclick="go(3)">
+      <div class="ic-n">(2) 힘 있는 글 · 교과서 24~25쪽</div>
+      <div class="ic-t">난민 수용 논설문</div>
+      <div class="ic-a">학생 글 · 논증하는 글</div>
+      <div class="ic-d">'한국은 난민 수용을 확대해야 한다'는 주장을 연역과 귀납으로 뒷받침한 글. 문단마다 논증 요소가 배치되어 있음.</div>
+    </button>
+    <button class="idx-card" onclick="go(4)">
+      <div class="ic-n">수업 중 집중 지적</div>
+      <div class="ic-t" style="color:#c0392b">논리적 오류</div>
+      <div class="ic-a">4문단 반박 · 5문단 마무리</div>
+      <div class="ic-d">교과서가 '잘 쓴 예시문'으로 실은 글에서 선생님이 오류를 짚은 두 지점.</div>
+    </button>
+    <button class="idx-card" onclick="go(5)">
+      <div class="ic-n">(3) 함께 읽기의 힘 · 교과서 30~31쪽</div>
+      <div class="ic-t">책이 중심이 되는 사회</div>
+      <div class="ic-a">장강명 · 수필</div>
+      <div class="ic-d">'그러나 만약 ~라면'이라는 가정을 반복해 책이 대화의 무게 중심이 되는 사회를 상상하는 글.</div>
+    </button>
+    <button class="idx-card" onclick="go(6)">
+      <div class="ic-n">3. 더불어 사는 우리 · 교과서 112~114쪽</div>
+      <div class="ic-t">더워진 지구에서 가장 위험한 건 무엇일까?</div>
+      <div class="ic-a">남성현 · 논설문 (제재 1)</div>
+      <div class="ic-d">주제 통합적 읽기 단원의 첫 글. 통계와 수치로 기후 위기의 크기를 보이고, 과학자의 관점에서 해결 방안을 제시합니다.</div>
+    </button>
+  </div>
+
+  <div class="h2"><span class="n">★</span>단원을 관통하는 한 문장</div>
+  <div class="card">
+    <p class="lede">
+      <b>1단원</b>의 세 글은 모두 <b class="kw">말과 글이 사람과 사회를 어떻게 움직이는가</b>를 다룹니다.
+      (1)은 <b>한 사람의 마음속</b>에 남는 말, (2)는 <b>사회적 담론</b>을 만드는 말, (3)은 <b>대화의 질</b>을 바꾸는 책의 말입니다.
+      순서대로 <b>개인 → 사회 → 공동체</b>로 범위가 넓어집니다.
+    </p>
+    <p class="lede">
+      <b>3단원</b>은 방향이 다릅니다. 하나의 주제를 <b class="kw">서로 다른 관점의 글로 나란히 읽는</b> 훈련입니다.
+      〈더워진 지구에서 가장 위험한 건 무엇일까?〉는 그중 <b>과학자의 관점</b>을 보여 주는 첫 글입니다.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ 1. 어떤 말은 죽지 않는다 ══════════ -->
+<section class="panel" id="p1">
+  <div class="work-head">
+    <div class="work-kicker">(1) 말의 힘 · 교과서 14~15쪽</div>
+    <h2 class="work-title">어떤 말은 죽지 않는다</h2>
+    <div class="work-author">박준 (1983~ ) · 시인 — 《운다고 달라지는 일은 아무것도 없겠지만》</div>
+  </div>
+
+  <div class="spec">
+    <div class="spec-cap">＊ 필기 · 작품 정보</div>
+    <div class="spec-row"><div class="spec-k">갈래</div><div class="spec-v">수필<span class="sub">ㄴ 화자 = 작가, 경험담 → 교훈</span></div></div>
+    <div class="spec-row"><div class="spec-k">주제</div><div class="spec-v">우리 마음 속에 살아남는 말에 대한 성찰</div></div>
+    <div class="spec-row"><div class="spec-k">특징</div><div class="spec-v">① 말을 살아있는 존재에 비유<br>② 글쓴이의 반성과 성찰</div></div>
+  </div>
+
+  <div class="h2"><span class="n">本</span>본문과 해석</div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">1문단</span><span class="ptag">경험 ① 두 분의 마지막 말</span></div>
+    <div class="body-text">
+      <span class="mk">나는 누군가와 대화를 나눌 때 한 문장 정도의 말을 기억하려 애쓰는 버릇이 있다.</span>
+      "뜨거운 물 좀 떠 와라."는 외할아버지께서 내게 남긴 마지막 말이었고,
+      "그때 만났던 청요릿집에서 곧 보세."는 평소 좋아하던 원로 소설가 선생님의 마지막 말이었다.
+      나는 죄송스럽게도, 두 분의 임종을 보지 못했으므로 <span class="mk">이 말들은 두 분이 내게 남긴 유언이 되었다.</span>
+    </div>
+    <div class="tnote">
+      <span class="tn-cap">선생님 강조</span>
+      <span class="tn-body">말에 민감한 글쓴이의 습관 (글쓴이의 주관적, 개성적 관점)</span>
+    </div>
+    <div class="gloss">
+      <p>
+        글쓴이는 자신의 <b class="kw">말에 민감한 습관</b>을 밝히며 글을 엽니다.
+        임종을 보지 못했기 때문에, 우연히 들은 평범한 한마디가 결과적으로 <b>유언</b>이 되어 버렸다는 것입니다.
+      </p>
+      <p>
+        두 말 모두 <b>유언다운 무게가 전혀 없는 일상어</b>라는 점이 중요합니다.
+        이 평범함이 뒤의 주제 — <b>아무 생각 없이 건넨 말도 누군가의 유언이 된다</b> — 로 이어지는 출발점입니다.
+      </p>
+      <p>
+        수필은 <b>화자 = 작가</b>인 갈래이므로, 글 속의 '나'를 곧 박준으로 읽어야 합니다.
+        선생님이 첫 문단에 '주관적·개성적 관점'이라고 적은 것도 이 갈래적 특성을 짚은 것입니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">2문단</span><span class="ptag">경험 ② 살아 있는 사람의 마지막 말</span></div>
+    <div class="body-text">
+      먼저 죽은 이들의 말이 아니더라도 나는 기억해 두고 있는 말이 많다.
+      "다음 만날 때에는 네가 좋아하는 종로에서 보자."라는 말은 분당의 어느 거리에서 헤어진 오래전 애인의 말이었고,
+      "요즘 충무로에는 영화가 없어."는 이제는 연이 다해 자연스레 멀어진 전 직장 동료의 마지막 말이었다.
+    </div>
+    <div class="gloss">
+      <p>
+        범위가 넓어집니다. <b class="kw">죽은 사람의 말</b>에서 <b class="kw">살아 있지만 다시 만나지 않을 사람의 말</b>로 확장되는 대목입니다.
+        죽음이 아니라 <b>관계의 끝</b>이 어떤 말을 마지막 말로 만든다는 인식입니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">3문단</span><span class="ptag">인식 — '유언인 셈'</span></div>
+    <div class="body-text">
+      이제 나는 그들을 만나지 않을 것이고, 혹 거리에서 스친다고 하더라도 아마 짧은 눈빛으로 인사 정도를 하며 멀어질 것이다.
+      <span class="mk">그러니 이 말들 역시 그들의 유언인 셈이다.</span>
+    </div>
+    <div class="tnote">
+      <span class="tn-cap">선생님 강조</span>
+      <span class="tn-body">유언은 아니지만 마지막 말이기 때문</span>
+    </div>
+    <div class="gloss">
+      <p>
+        <b>'셈이다'</b>라는 표현에 주목해야 합니다. 실제 유언은 아니지만
+        <b class="kw">다시 들을 일이 없는 마지막 말</b>이라는 점에서 유언과 같은 자리에 놓인다는 뜻입니다.
+      </p>
+      <p>
+        선지에서 <b>"이 말들도 유언이다"</b>처럼 단정으로 바꿔 놓으면 틀린 진술이 됩니다.
+        <b>비유적 규정</b>과 <b>사실적 단정</b>을 구별해야 하는 자리입니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">4문단</span><span class="ptag b">전환 — 나 역시 남기는 사람</span></div>
+    <div class="body-text">
+      역으로 나는 <span class="mk">타인에게 별생각 없이 건넨 말이 내가 그들에게 남긴 유언이 될 수 있다고 믿는다.</span>
+      그래서 <span class="mk">같은 말이라도 조금 따뜻하고 예쁘게 하려 노력하는 편이다.</span>
+    </div>
+    <div class="gloss">
+      <p>
+        글의 방향이 바뀝니다. 지금까지는 <b>듣는 사람</b>이었지만, 여기서부터는 <b class="kw">말하는 사람</b>으로 자리를 옮깁니다.
+        <b>'역으로'</b>가 그 전환 신호입니다.
+      </p>
+      <p>
+        앞 문장이 뒤 문장의 근거입니다 — <b>따뜻하게 말하려 애쓰는 까닭</b>은 내 말도 누군가에게 유언이 될 수 있기 때문입니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">5문단</span><span class="ptag r">반성 — 하지만 쉽지 않다</span></div>
+    <div class="body-text">
+      하지만 쉬운 일이 아니다. 오늘만 하더라도 아침 업무 회의 시간에 '전략', '전멸'같이 알고 보면 끔찍한 뜻의
+      <span class="bx">전쟁 용어</span>들을 아무렇지도 않게 썼고, 점심에는 식당에서 우연히 만난 지인에게 "언제 밥 먹자."라는
+      <span class="bx">진부한 말</span>을 했으며, 저녁부터는 혼자 있느라 누군가에게 말을 할 기회가 없었다.
+    </div>
+    <div class="gloss">
+      <p>
+        앞 문단의 다짐이 <b class="kw">하루도 못 가 무너지는 장면</b>입니다. 실패의 모습이 세 단계로 제시됩니다.
+      </p>
+      <p>
+        ① <b>전쟁 용어</b> — 뜻을 생각하지 않고 폭력적인 말을 씀(무신경) ②
+        <b>진부한 말</b> — "언제 밥 먹자"처럼 마음이 담기지 않은 빈말 ③
+        <b>저녁에는 말할 기회조차 없음</b> — 침묵.
+      </p>
+      <p>
+        무신경한 말 → 빈말 → 침묵으로 이어지며, <b class="kw">'따뜻하고 예쁜 말'과 가장 먼 하루</b>가 완성됩니다.
+        필기의 <b>특징 ② '글쓴이의 반성과 성찰'</b>이 실현되는 문단입니다.
+        다짐만 하고 끝내지 않고 <b>지키지 못한 자신</b>을 드러내는 것이 이 수필의 진정성입니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">6문단</span><span class="ptag v">주제 — 죽지 않는 말</span></div>
+    <div class="body-text">
+      말은 사람의 입에서 태어났다가 사람의 귀에서 죽는다. 하지만
+      <span class="mk">어떤 말들은 죽지 않고 사람의 마음속으로 들어가 살아남는다.</span>
+    </div>
+    <div class="tnote">
+      <span class="tn-cap">선생님 강조</span>
+      <span class="tn-body">말은 다른 사람에게 지대한 영향을 줌</span>
+    </div>
+    <div class="gloss">
+      <p>
+        제목이 회수되는 <b class="kw">주제문</b>입니다. 말을 <b>태어나고 죽는 생명체</b>로 그린 비유가 여기서 완성됩니다 —
+        필기의 <b>특징 ①</b>이 그것입니다.
+      </p>
+      <p>
+        대부분의 말은 <b>귀에서 죽습니다</b>(듣고 잊힘). 그러나 일부는 <b>마음속으로 들어가 살아남습니다</b>.
+        교과서 학습활동의 물음 "'죽지 않고 살아남는' 말이란?"에 대한 필기 답은
+        <b class="kw">사람들에게 지속적으로 영향을 주는 말</b>이었습니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">7문단</span><span class="ptag v">확대 — 누구에게나 있는 일</span></div>
+    <div class="body-text">
+      꼭 나처럼 습관적으로 타인의 말을 기억해 두는 버릇이 없다 하더라도, 대부분의 사람들은 저마다의 마음에 꽤나 많은 말을 쌓아 두고 지낸다.
+      어떤 말은 두렵고, 어떤 말은 반갑고, 어떤 말은 여전히 아플 것이며, 또 어떤 말은 설렘으로 남아 있을 것이다.
+    </div>
+    <div class="gloss">
+      <p>
+        시선이 <b class="kw">'나'에서 '대부분의 사람들'로</b> 옮겨 갑니다.
+        글쓴이만의 특별한 버릇처럼 시작했던 이야기가, <b>누구나 마음에 말을 쌓아 두고 산다</b>는 보편적 인식으로 확대됩니다.
+      </p>
+      <p>
+        두렵고 · 반갑고 · 아프고 · 설레는 — <b>네 가지 감정의 나열</b>이 '살아남은 말'의 다양한 얼굴을 보여 줍니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">8문단</span><span class="ptag v">마무리 — 당신의 마음</span></div>
+    <div class="body-text">
+      검은 글자가 빼곡하게 적힌 유서처럼 그 수많은 유언들을 가득 담고 있을 <b>당신</b>의 마음을 생각하는 밤이다.
+      <div class="src-line">— 《운다고 달라지는 일은 아무것도 없겠지만》</div>
+    </div>
+    <div class="gloss">
+      <p>
+        마지막 비유 — <b class="kw">당신의 마음 = 유언이 빼곡히 적힌 유서</b> — 가 1문단의 '유언'을 다시 불러와
+        <b>수미상관</b>의 구조를 만듭니다.
+      </p>
+      <p>
+        '<b>당신</b>'이라는 호칭으로 독자를 직접 부르며 끝맺고, '~것이다', '~밤이다' 같은
+        <b>추측과 여운의 종결</b>을 써서 단정 대신 <b class="kw">독자 스스로 돌아보게</b> 만듭니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="h2"><span class="n">1</span>글의 흐름 — 학습활동 정리</div>
+  <div class="tbl-scroll">
+  <table class="tbl">
+    <thead><tr><th style="width:92px">문단</th><th>중심 내용 <span style="opacity:.7">(필기)</span></th><th style="width:150px">성격</th></tr></thead>
+    <tbody>
+      <tr><th>1~3문단</th><td><span class="hw">누군가와 나눈 마지막 말을 유언처럼 기억하는 작가의 경험</span></td>
+          <td rowspan="2" style="vertical-align:middle;text-align:center"><span class="hw">작가의<br>생각과 경험</span></td></tr>
+      <tr><th>4~5문단</th><td><span class="hw">타인에게 한 말은 마지막 말이 될 수 있다.<br>예쁘게 말하려 하지만 쉽지 않다.</span></td></tr>
+      <tr><th>6~8문단</th><td><span class="hw">사람들이 마음 속에 쌓아두는 말에 대해 성찰</span></td>
+          <td style="text-align:center;vertical-align:middle"><span class="hw">독자를 향한<br>교훈</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="memo">
+    <b>이 표가 곧 '경험담 → 교훈' 구조입니다.</b> 앞의 두 덩어리(1~5문단)는 모두 <b>작가 개인</b>의 이야기이고,
+    마지막 덩어리(6~8문단)에서 <b>독자</b>로 방향이 바뀝니다.
+  </div>
+
+  <div class="memo" style="margin-top:38px">
+    <b>교과서 학습활동 3 —</b> "(가)와 (나)의 자료를 바탕으로 <b>말이 사회적 담론 형성에 미치는 영향</b>을 탐구해 보자."<br>
+    〈어떤 말은 죽지 않는다〉가 <b>한 사람의 마음</b>에 남는 말을 다뤘다면, 이 자료는 같은 물음을 <b class="kw">사회</b>로 넓혀 봅니다.
+  </div>
+
+  <div class="h2"><span class="n">2</span>말이 사회적 담론을 만든 사례</div>
+  <div class="para" style="border-top:0;padding-top:0">
+    <div class="para-head"><span class="pnum">(가)</span><span class="ptag">자료 — 당시의 사회적 상황</span></div>
+    <div class="body-text">
+      1865년 미국에서 노예 제도가 폐지되었지만 흑인에 대한 차별은 그 후에도 오랜 시간 이어졌다.
+      1876년부터 1965년까지 시행됐던 짐 크로 법(Jim Crow laws)은 미국 남부의 모든 공공 기관에서 흑인과 백인을 분리했던 인종 분리 정책이다.
+      이 법에 따라 흑인이 버스에 타면 오로지 흑인 전용 좌석에만 앉아야 했고, 화장실 역시 백인과 따로 사용해야 했다.
+      이처럼 미국 남부 사회에서는 대중교통, 학교, 식당, 식수대와 같은 모든 공공시설에서 흑인들에 대한 분리가 철저히 이루어졌다.
+      <div class="src-line">— &lt;흑인 민권 운동 이야기&gt;, 《이코노미21》(2020. 11. 10.) 중에서</div>
+    </div>
+    <div class="tnote">
+      <span class="tn-cap">필기 답</span>
+      <span class="tn-body">법적 노예 제도는 폐지되었으나 여전히 인종 차별이 성행하였다.</span>
+    </div>
+  </div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">(나)</span><span class="ptag v">연설 — 마틴 루터 킹</span></div>
+    <div class="body-text">
+      "나의 친구인 여러분들에게 말씀드립니다. 고난과 좌절의 순간에도, 나는 꿈을 가지고 있다고.
+      이 꿈은 아메리칸 드림에 깊이 뿌리를 내리고 있는 꿈입니다. 나에게는 꿈이 있습니다.
+      언젠가 이 나라가 모든 인간은 평등하게 태어났다는 것을 자명한 진실로 받아들이고,
+      그 진정한 의미를 신조로 살아가게 되는 날이 오리라는 꿈입니다.
+      언젠가는 조지아의 붉은 언덕 위에 예전에 노예였던 부모의 자식과 그 노예의 주인이었던 부모의 자식들이
+      형제애의 식탁에 함께 둘러앉는 날이 오리라는 꿈입니다."
+      <div class="src-line">— 마틴 루터 킹 목사의 연설 &lt;나에게는 꿈이 있습니다&gt; 중에서</div>
+    </div>
+    <div class="tnote">
+      <span class="tn-cap">필기 답</span>
+      <span class="tn-body">인종 차별 문제를 반성적 성찰해야 하고, 인종 차별 문제가 해결된 사회 모습을 제시하여 인종 차별을 해결해야 한다는 담론을 형성하였다.</span>
+    </div>
+    <div class="gloss">
+      <p>
+        <b>담론 형성의 두 단계 —</b> ① <b>성찰</b>(문제를 직시하게 함) ②
+        <b>전망 제시</b>("언젠가 ~하는 날이 오리라는 꿈입니다")로 <b class="kw">해결해야 할 과제</b>로 만들었다는 것이 필기의 요지입니다.
+      </p>
+      <p>
+        마틴 루터 킹(1929~1968)은 미국의 목사이자 인권 운동가로, 흑인 해방 운동가로서 1964년 노벨 평화상을 받았습니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="h2"><span class="n">3</span>핵심 정리</div>
+  <div class="duo">
+    <div class="tcard">
+      <div class="tc-t"><span class="mk">1</span>수필 = 화자가 곧 작가</div>
+      <div class="tc-b">'나'를 서술자로 분리해서 읽지 말 것. 경험의 진실성과 반성의 진정성이 이 글의 힘입니다.</div>
+    </div>
+    <div class="tcard v">
+      <div class="tc-t"><span class="mk">2</span>말 = 살아 있는 존재</div>
+      <div class="tc-b">"태어나고", "죽고", "살아남는다" — 비유가 제목·주제문·결말을 하나로 묶습니다.</div>
+    </div>
+    <div class="tcard r">
+      <div class="tc-t"><span class="mk">3</span>반성과 성찰</div>
+      <div class="tc-b">다짐(4문단) 뒤에 곧바로 실패(5문단)를 배치한 것이 이 글의 구성 전략입니다.</div>
+    </div>
+    <div class="tcard g">
+      <div class="tc-t"><span class="mk">4</span>나 → 당신</div>
+      <div class="tc-b">개인의 버릇에서 출발해 모두의 마음으로 확대. 마지막 문단의 '당신'이 교훈의 수신자입니다.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 2. 논증의 이해 ══════════ -->
+<section class="panel" id="p2">
+  <div class="work-head">
+    <div class="work-kicker">(2) 힘 있는 글 · 알아 두기 / 활동 안내</div>
+    <h2 class="work-title">논증의 이해</h2>
+    <div class="work-author">논증 요소 · 논증 방법(연역 / 귀납)</div>
+  </div>
+
+  <div class="h2"><span class="n">1</span>논증 요소와 논증하는 글</div>
+  <div class="body-text" style="max-width:760px">
+    '논증'은 다른 사람을 설득하기 위해 근거를 제시하여 주장이 타당하다는 것을 논리적으로 증명하는 것이다.
+    논증은 주장, 근거, 이유, 예상되는 반론과 이에 대한 반박 등의 요소로 이루어진다.
+    '근거'는 주장을 지지하는 객관적 자료로 사실, 데이터, 표본 등이 이에 해당한다.
+    '이유'는 근거를 바탕으로 주장을 가능하게 하는 주관적 요인이다.
+    '예상되는 반론과 반박'은 독자들이 제기할 만한 반론에 대해 필자의 주장을 어떻게 계속 유지할 것인지를 보여 주는 요소이다.
+    논증하는 글에는 글쓴이의 명확한 주장과 이를 뒷받침하는 근거가 담겨 있어야 한다.
+  </div>
+  <div class="card">
+    <div class="defbox"><div class="dt">주장</div><div class="dd">글쓴이가 내세우는 견해. <b>명확한 주장</b>과 이를 뒷받침하는 근거가 함께 있어야 합니다.</div></div>
+    <div class="defbox g"><div class="dt">근거 — 객관적</div><div class="dd">주장을 지지하는 <b>객관적 자료</b>. <b>사실, 데이터, 표본</b> 등.</div></div>
+    <div class="defbox v"><div class="dt">이유 — 주관적</div><div class="dd">근거를 바탕으로 <b>주장을 가능하게 하는 주관적 요인</b>.</div></div>
+    <div class="defbox r"><div class="dt">예상되는 반론과 반박</div><div class="dd">독자들이 제기할 만한 반론에 대해 <b>주장을 어떻게 계속 유지할 것인지</b>를 보여 주는 요소.</div></div>
+    <div class="memo">
+      <b>'이유'와 '근거'를 가르는 기준은 하나 —</b> <b>객관적 자료냐(근거), 주관적 판단이냐(이유)</b>입니다.
+      숫자·조사 결과·보고서가 나오면 근거, "~해야 한다 / ~할 수 있다"는 판단 문장이면 이유입니다.
+    </div>
+  </div>
+
+  <div class="h2"><span class="n">2</span>논증의 방법 — 연역과 귀납</div>
+  <div class="body-text" style="max-width:760px">
+    대표적인 논증 방법에는 <span class="mk">연역 논증</span>과 <span class="mk">귀납 논증</span>이 있다.
+    연역 논증은 <span class="mk">보편적 사실에서 구체적 결론을 끌어내는 방법</span>으로, 보편적 사실인 전제가 참이면 결론도 필연적으로 참이 된다.
+    귀납 논증은 <span class="mk">구체적 사실에서 보편적 결론을 끌어내는 방법</span>으로, 특정한 사례를 관찰하여 개연성을 갖는 결론을 확립한다.
+    설득력 있는 글을 쓰기 위해서는 이러한 논증 방법을 적절하게 활용하여 효과적으로 내용을 조직해야 한다.
+  </div>
+  <div class="duo">
+    <div class="tcard">
+      <div class="tc-t"><span class="mk">①</span>연역 논증</div>
+      <div class="tc-b">
+        <b>보편적 사실 → 구체적 결론</b>. 전제가 참이면 결론도 <b>필연적으로</b> 참.
+        <div style="margin-top:11px;padding:10px 0 10px 13px;border-left:1px solid #bccee7;font-size:12.5px;line-height:1.8">
+          전제1: 모든 사람은 죽는다.<br>전제2: ○○○은 사람이다.<br><b>결론: 따라서 ○○○은 죽는다.</b>
+        </div>
+      </div>
+    </div>
+    <div class="tcard g">
+      <div class="tc-t"><span class="mk">②</span>귀납 논증</div>
+      <div class="tc-b">
+        <b>구체적 사실 → 보편적 결론</b>. 사례를 관찰해 <b>개연성</b>을 갖는 결론을 확립.
+        <div style="margin-top:11px;padding:10px 0 10px 13px;border-left:1px solid #c5ddcf;font-size:12.5px;line-height:1.8">
+          전제1: 소크라테스는 죽었다.<br>전제2: 이순신은 죽었다.<br>전제3: 김구는 죽었다. ⋮<br><b>결론: 따라서 모든 사람은 죽는다.</b>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caution">
+    <b>가장 중요한 차이 —</b> 연역의 결론은 <b>필연적</b>이고, 귀납의 결론은 <b>개연적</b>입니다.
+    귀납은 사례를 아무리 많이 모아도 <b>100% 참을 보장하지 못합니다.</b>
+  </div>
+
+  <div class="h2"><span class="n">3</span>활동 ① 주장 완성하기</div>
+  <div class="body-text" style="max-width:760px">
+    여성 가족부 발표에 의하면 위기 상황에 처한 청소년은 78만 명에 이른다고 한다.
+    혹시 위기 청소년을 지원하기 위한 특별한 지자체 행정 조직이 있다는 사실을 알고 있는가?
+    바로 '청소년 안전망 팀'이다. 청소년 안전망 팀은 전담 공무원 및 청소년 통합 사례 관리사가 있는 행정 조직이다.
+    2020년 운영을 시작한 이래 가출 청소년의 일탈 행동 개선, 고위험군 학생들의 심리적 안정 확보 등 여러 긍정적 사례가 나타나고 있다.
+    <br><br>
+    이 청소년 안전망 팀은 현재 200곳이 넘는 전국 시·군·구 중 22곳만 운영하고 있다고 한다.
+    이 제도는 우리 사회의 위기 청소년 문제에 대응하기 위한 좋은 제도라 생각한다.
+    위기 청소년은 어디에나 있지만 아직 청소년 안전망 팀은 몇 군데 지자체에밖에 존재하지 않는다.
+    따라서 ( <span class="fill">청소년 안전망 팀의 운영을 확대해야 한다</span> ).
+  </div>
+  <div class="gloss" style="max-width:760px">
+    <p>
+      앞에서 <b>제도의 효과</b>(긍정적 사례)와 <b>제도의 한계</b>(200곳 중 22곳)를 나란히 제시했으므로,
+      빈칸에는 <b class="kw">'확대해야 한다'</b>는 주장이 들어가야 논리가 맞습니다.
+      논증하는 글에서는 <b>주장이 구체적이고 명확하게</b> 드러나야 합니다.
+    </p>
+  </div>
+
+  <div class="h2"><span class="n">4</span>활동 ② 이유와 근거 나누기</div>
+  <div class="body-text" style="max-width:760px">
+    • 주장: 우리나라 학교의 학급당 학생 수를 줄여야 한다.<br>
+    ① 미국 테네시주 에스티에이알(STAR) 프로젝트 연구 결과 소인수 학급(13~17명)의 학업 성취도가 일반 학급(22~25명) 학업 성취도보다 높았다.<br>
+    ② 학급당 학생 수를 줄이는 것이 교육 효과를 높일 수 있다.<br>
+    ③ 우리나라도 경제 협력 개발 기구(OECD) 수준의 교육 환경을 갖출 필요가 있다.<br>
+    ④ 경제 협력 개발 기구에서 나온 2019년 교육 현황 지표에 따르면 우리나라의 중학교 학급당 평균 학생 수는 26.1명으로, 경제 협력 개발 기구 평균 23.3명보다 많다.
+  </div>
+  <div class="tbl-scroll">
+  <table class="tbl">
+    <thead><tr><th style="width:110px">구분</th><th style="width:110px">번호 <span style="opacity:.7">(필기)</span></th><th>판단 기준</th></tr></thead>
+    <tbody>
+      <tr><th>이유<br><span style="font-weight:400;font-size:11px;color:#8a837a">주관적</span></th><td><span class="hw">② ③</span></td>
+          <td>"~할 수 있다 / ~필요가 있다" — <b>필자의 판단</b>을 담은 문장</td></tr>
+      <tr><th>근거<br><span style="font-weight:400;font-size:11px;color:#8a837a">객관적</span></th><td><span class="hw">① ④</span></td>
+          <td>연구 결과·통계 수치 — <b>확인 가능한 자료</b></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="memo"><b>문장 끝 서술어만 봐도 대부분 구분됩니다.</b> 자료 출처가 붙어 있으면 근거, 판단 서술어로 끝나면 이유입니다.</div>
+
+  <div class="h2"><span class="n">5</span>활동 ③ 예상 반론 반박하기</div>
+  <div class="body-text" style="max-width:760px">
+    • 주장: 사형제 폐지에 찬성한다.<br>
+    • 이유: 오판의 가능성이 있기 때문이다.<br>
+    • 근거: 오판으로 억울한 죽음을 당한 사례가 있다.
+  </div>
+  <div class="card">
+    <div class="defbox">
+      <div class="dt">예상되는 반론</div>
+      <div class="dd">오판의 가능성은 사형제뿐만 아니라 <b>모든 형사법에 동일하게 있으므로</b>, 오판의 가능성을 이유로 사형제를 폐지하자는 것은 무리한 주장이다.</div>
+    </div>
+    <div class="tnote">
+      <span class="tn-cap">필기 답</span>
+      <span class="tn-body">형사법에 의한 오판은 구제와 변상이 가능하나 사형은 회복이 불가능하다는 점에서 차이가 있다.</span>
+    </div>
+    <div class="memo">
+      <b>좋은 반박의 원리 —</b> 반론이 내세운 <b>"동일하다"는 전제 자체를 깨뜨렸습니다.</b>
+      '똑같지 않다, 사형만은 되돌릴 수 없다'는 <b>차이점</b>을 드러내는 것이 반박의 핵심 전략입니다.
+      <b>→ 이 원리가 4번 탭에서 난민 논설문의 반박을 평가하는 기준이 됩니다.</b>
+    </div>
+  </div>
+
+  <div class="h2"><span class="n">6</span>활동 ④ 연역과 귀납으로 결론 세우기</div>
+  <div class="body-text" style="max-width:760px">
+    • 주장: 의약품 개발을 위한 동물 실험을 폐지해야 한다.<br>
+    • 이유: 인간에게 부작용이 나타날 가능성을 배제할 수 없기 때문이다.
+  </div>
+  <div class="syll">
+    <div class="syll-row"><div class="syll-k">연역<br>대전제</div><div class="syll-v">생물학적 구조가 다르면 같은 약을 먹어도 다른 결과가 나타날 수 있다. <span style="color:#8a837a">(보편적 사실)</span></div></div>
+    <div class="syll-row"><div class="syll-k">소전제</div><div class="syll-v">인간과 동물은 생물학적 구조가 다르다.</div></div>
+    <div class="syll-row concl"><div class="syll-k">구체적 결론</div><div class="syll-v">인간과 동물은 같은 약을 먹어도 다른 결과가 나타날 수 있다. <span style="color:#8a837a;font-size:12px">(필기 답)</span></div></div>
+  </div>
+  <div class="syll">
+    <div class="syll-row"><div class="syll-k">귀납<br>구체적 사실</div><div class="syll-v">
+      • 1950년대 개발된 '탈리도마이드'라는 약은 동물 실험을 통과했지만 사람이 먹으면 기형아를 낳는 부작용이 있음이 밝혀졌다.<br>
+      • 관절염 치료제 '오프렌'은 동물 실험에서 안전하다고 판명되었으나 약 복용 후 61명이 사망했다.
+    </div></div>
+    <div class="syll-row concl"><div class="syll-k">보편적 결론</div><div class="syll-v">동물 실험을 하더라도 인간에게 미치는 부작용을 완전히 검출하지 못할 수 있다. <span style="color:#8a837a;font-size:12px">(필기 답)</span></div></div>
+  </div>
+
+  </section>
+
+<!-- ══════════ 3. 난민 수용 논설문 ══════════ -->
+<section class="panel" id="p3">
+  <div class="work-head">
+    <div class="work-kicker">(2) 힘 있는 글 · 교과서 24~25쪽</div>
+    <h2 class="work-title">난민 수용 논설문 <span class="src">— 한 학생이 '난민 수용'을 소재로 쓴 글</span></h2>
+    <div class="work-author">논증하는 글 · 주장: 대한민국은 난민 수용을 확대해야 한다</div>
+  </div>
+
+  <div class="memo">
+    <b>이 글은 감상하는 글이 아니라 분석하는 글입니다.</b>
+    문단 하나가 논증 요소 하나에 대응하므로, <b>문단 번호 = 논증 요소</b>로 외워 두면 구조가 그대로 보입니다.
+  </div>
+
+  <div class="h2"><span class="n">本</span>본문과 해석</div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">1문단</span><span class="ptag r">문제 상황 제시 → 주장</span></div>
+    <div class="body-text">
+      지구 곳곳에서 일어나는 전쟁과 자연재해로 인해 수많은 난민이 발생하고 있다.
+      국제 연합(UN)에 따르면, 2018년 전 세계 난민(강제 실향민) 수는 6,850만 명이었고 2.4초에 1명꼴의 속도로 늘어났다고 한다.
+      우리나라도 2018년과 2021년 난민 문제로 이미 사회적 갈등을 경험했다.
+      <span class="mk">국제 사회의 난민 문제가 심각해지는 상황 속에서 나는 한국이 난민 수용을 확대해야 한다고 생각한다.</span>
+    </div>
+    <div class="gloss">
+      <p>
+        <b class="kw">문제 상황 → 주장</b>의 전형적인 도입입니다.
+        객관적 통계(6,850만 명, 2.4초에 1명)로 문제의 심각성을 보이고, 국내 사례까지 끌어와 <b>독자와의 관련성</b>을 확보한 뒤,
+        마지막 문장에서 자기 입장을 분명히 밝힙니다.
+      </p>
+      <p>
+        주장의 주체가 <b>'한국'</b>이라는 점이 중요합니다. 뒤에 오는 모든 이유가 '한국'에 대한 것이어야 논증이 성립합니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">2문단</span><span class="ptag b">이유 ① · 연역 논증</span></div>
+    <div class="body-text">
+      우선, <span class="mk">한국은 난민을 적극적으로 보호할 의무를 가진 선진국이다.</span>
+      <span class="mkb">1992년 난민의 지위에 관한 국제 협약에 가입했고, 2012년엔 아시아 최초로 독립적인 난민법도 만드는 등
+      선진적 세계 시민의 역할을 하기 위해 노력해 온 나라다.</span>
+      이런 협약과 법은 난민 보호 의무를 규정하고 있다.
+      하지만 현재 한국의 난민 인정률과 보호율은 아쉽게도 다른 선진국에 비해 낮다.
+      국제 연합 난민 기구에 따르면, 2000~2017년 평균 난민 인정률은 경제 협력 개발 기구(OECD) 회원국 기준으로 24.8%이고
+      평균 난민 보호율은 38.0%이다. 한국의 난민 인정률은 3.5%이며, 난민 보호율도 10.7%로 낮다.
+      <span class="mkb">어떤 국가라도 가입된 협약과 자국법의 의무를 적극적으로 이행해야 한다.</span>
+    </div>
+    <div class="gloss">
+      <p>
+        <b class="kw">연역 논증</b>입니다. 다만 교과서 문단에서는 <b>소전제가 먼저, 대전제가 나중</b>에 나오므로
+        순서를 바로잡아 정리해야 합니다.
+      </p>
+    </div>
+    <div class="syll">
+      <div class="syll-row"><div class="syll-k">대전제<br><span style="font-weight:400;font-size:11px">보편적 사실</span></div><div class="syll-v">어떤 국가라도 가입된 협약과 자국법의 의무를 적극적으로 이행해야 한다.</div></div>
+      <div class="syll-row"><div class="syll-k">소전제<br><span style="font-weight:400;font-size:11px">구체적 사실</span></div><div class="syll-v">한국은 난민 협약에 가입했고 난민법도 제정했다.</div></div>
+      <div class="syll-row concl"><div class="syll-k">구체적 결론</div><div class="syll-v">한국은 난민의 보호 의무를 이행해야 한다.</div></div>
+    </div>
+    <div class="gloss">
+      <p>
+        중간의 인정률·보호율 수치(3.5% / 10.7%)는 <b>의무를 제대로 이행하지 못하고 있다</b>는 점을 보여 주는
+        <b>근거</b> 역할을 합니다. 당위(대전제)와 현실(수치)의 간극이 곧 <b class="kw">개선해야 할 이유</b>가 됩니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">3문단</span><span class="ptag g">이유 ② · 귀납 논증</span></div>
+    <div class="body-text">
+      또한, <span class="mk">난민 수용의 확대는 한국의 경제적 발전에 도움이 될 수 있다.</span>
+      한국은 저출산·고령화 등으로 생산 가능 인구가 줄어들고 있다.
+      <span class="mkb">한국 경제 연구원의 '이민 확대의 필요성과 경제적 효과' 보고서에 따르면,
+      경제 성장률 유지를 위해서 난민을 포함한 이민자 수의 증가가 필요한 상황이다.
+      또한 프랑스 국립 과학 연구원(CNRS)의 연구(2018년), 텐트 재단 보고서(2016년) 등에도
+      난민 수용이 장기적으로 긍정적인 경제적 효과를 가져온다는 연구 결과가 제시되었다.</span>
+    </div>
+    <div class="gloss">
+      <p>
+        <b class="kw">귀납 논증</b>입니다. 개별 보고서·연구라는 <b>구체적 사실들</b>을 나열한 뒤 <b>보편적 결론</b>을 끌어냅니다.
+      </p>
+    </div>
+    <div class="syll">
+      <div class="syll-row"><div class="syll-k">구체적<br>사실들</div><div class="syll-v">
+        • 경제 성장률 유지를 위해 이민자 수 증가가 필요하다는 <b>한국 경제 연구원</b> 보고서<br>
+        • <b>프랑스 국립 과학 연구원(CNRS)</b>의 연구와 <b>텐트 재단</b> 보고서
+      </div></div>
+      <div class="syll-row concl"><div class="syll-k">보편적 결론</div><div class="syll-v">난민 수용을 확대하면 한국 경제 발전에 도움이 된다.</div></div>
+    </div>
+    <div class="gloss">
+      <p>
+        2문단은 <b>의무(당위)</b>로, 3문단은 <b>이익(실리)</b>로 주장을 뒷받침합니다.
+        <b class="kw">설득의 두 축</b>을 나란히 세운 구성입니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">4문단</span><span class="ptag r">예상 반론 → 반박</span></div>
+    <div class="body-text">
+      한편에서는 난민이 저지르는 <span class="bx">범죄</span>나 난민 지원 등으로 발생하는 <span class="bx">사회적 비용</span> 때문에
+      문제가 생길 것이라고 주장한다. 하지만 한국 형사 정책 연구원의 '인구 10만 명당 내외국인의 검거 인원수'(2017년)에 따르면
+      <span class="mk">외국인의 범죄율이 내국인보다 낮다</span>는 것을 확인할 수 있다.
+      그리고 2020년 난민 관련 우리나라 <span class="mk">정부 예산은 24억 6,700만 원으로, 총예산 513조 5,000억 원의 0.0005%에 불과</span>하다는 점은
+      난민 때문에 발생하는 사회적 비용이 크지 않음을 보여 준다.
+    </div>
+    <div class="tnote">
+      <span class="tn-cap">선생님 강조</span>
+      <span class="tn-body">이 반박에는 오류가 있음 → 4번 탭에서 자세히</span>
+    </div>
+    <div class="gloss">
+      <p>
+        형식만 보면 <b>예상 반론 → 반박</b>의 모범적인 배치입니다.
+        반론을 <b>범죄</b>와 <b>사회적 비용</b> 두 갈래로 정리한 뒤, 각각에 자료를 하나씩 대응시켰습니다.
+      </p>
+      <p>
+        그러나 수업에서는 이 반박이 <b class="kw">반론을 제대로 무너뜨리지 못한다</b>는 점을 지적했습니다.
+        자세한 내용은 <b>4번 탭</b>에서 다룹니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">5문단</span><span class="ptag r">마무리 — 주장 재강조</span></div>
+    <div class="body-text">
+      전 세계 난민의 절반이 아동이며 이들은 열악한 상태에 놓여 있다.
+      <span class="mk">1919년 중국에 세워진 대한민국 임시 정부는 '정치적 난민'인 독립 투사들이 설립한 망명 정부였다.</span>
+      1950년 한국 전쟁 때 우리는 <span class="mk">국제 사회의 난민 지원에 큰 도움을 받았었다.</span>
+      이런 역사를 기억하며 <span class="mk">한국은 난민 수용을 확대해야 한다.</span>
+    </div>
+    <div class="tnote">
+      <span class="tn-cap">선생님 강조</span>
+      <span class="tn-body">논리적 오류 — 공식적으로 중국에서 난민으로 인정하지 않음</span>
+    </div>
+    <div class="gloss">
+      <p>
+        <b>아동 난민</b>(연민) → <b>임시 정부</b>(우리도 난민이었다) → <b>한국 전쟁</b>(우리도 도움을 받았다)으로
+        <b class="kw">감정적 공감</b>을 쌓은 뒤 주장을 다시 명확히 하는 마무리입니다.
+      </p>
+      <p>
+        그런데 수업에서는 임시 정부를 '난민이 세운 정부'로 규정한 대목에 <b style="color:#c0392b">논리적 오류</b>가 있다고 지적했습니다.
+        <b>4번 탭</b>에서 다룹니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="h2"><span class="n">1</span>논증 요소로 요약하기</div>
+  <div class="tbl-scroll">
+  <table class="tbl">
+    <thead><tr><th colspan="2" style="width:170px">논증 요소</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><th colspan="2">주장</th><td>대한민국은 난민 수용을 확대해야 한다.</td></tr>
+      <tr><th rowspan="4" style="vertical-align:middle">이유와<br>근거</th><th style="width:74px">이유 1</th>
+          <td><span class="hw">한국은 난민을 적극적으로 보호할 의무를 가진다.</span></td></tr>
+      <tr><th>근거</th><td>• 1992년 난민 협약에 가입했고 2012년 난민법을 제정함.<br>• 현재 난민 인정률 및 보호율이 다른 OECD 국가에 비해 낮은 편임을 보여 주는 UN 난민 기구 자료</td></tr>
+      <tr><th>이유 2</th><td><span class="hw">난민 수용의 확대는 한국의 경제적 발전에 도움이 된다.</span></td></tr>
+      <tr><th>근거</th><td>• 경제 성장률 유지를 위해서 난민을 포함한 이민자 수의 증가가 필요하다는 내용의 한국 경제 연구원의 보고서<br>• 난민 수용이 긍정적인 경제 효과를 가져온다는 내용의 보고서와 연구 결과</td></tr>
+      <tr><th colspan="2">예상 반론</th><td>난민이 저지르는 범죄나 난민 지원 등으로 발생하는 사회적 비용 때문에 문제가 생길 것이다.</td></tr>
+      <tr><th colspan="2">반박</th><td>• 외국인의 범죄율이 내국인보다 낮다는 한국 형사 정책 연구원 자료<br>• 난민 관련 정부 예산이 총예산의 0.0005%에 불과하다는 점</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="h2"><span class="n">2</span>2·3문단의 논증 방법</div>
+  <div class="tbl-scroll">
+  <table class="tbl">
+    <thead><tr><th colspan="2" style="width:180px">문단</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><th rowspan="3" style="vertical-align:middle">2문단<br>(연역)</th><th style="width:92px">대전제</th>
+          <td><span class="hw">국가가 난민 관련 국제 협약에 가입되어 있으며 난민법이 제정되어 있다면 난민 보호 의무를 적극적으로 이행해야 한다.</span></td></tr>
+      <tr><th>소전제</th><td>대한민국은 난민 관련 국제 협약에 가입되어 있으며 난민법도 제정되어 있다.</td></tr>
+      <tr><th>구체적 결론</th><td><span class="hw">대한민국은 난민 보호 의무를 적극적으로 이행해야 한다.</span></td></tr>
+      <tr><th rowspan="2" style="vertical-align:middle">3문단<br>(귀납)</th><th>구체적 사실들</th>
+          <td>• 경제 성장률 유지를 위해 이민자 수 증가가 필요한 상황이라는 한국 경제 연구원의 보고서 내용<br>• <span class="hw">프랑스 국립 과학 연구원과 텐트 재단 보고서</span></td></tr>
+      <tr><th>보편적 결론</th><td><span class="hw">난민 수용을 확대하면 한국 경제 발전에 도움이 된다.</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="memo">
+    <b>대전제 만드는 법 —</b> 필기의 대전제는 소전제에서 <b>'대한민국'을 '국가'로 바꾼 문장</b>입니다.
+    구체적 주어를 <b>일반적 주어로 치환</b>하면 대전제가 만들어집니다.
+  </div>
+</section>
+
+<!-- ══════════ 4. 논리적 오류 ══════════ -->
+<section class="panel" id="p4">
+  <div class="work-head">
+    <div class="work-kicker">수업 중 집중 지적 · 난민 수용 논설문</div>
+    <h2 class="work-title" style="color:#c0392b">논리적 오류</h2>
+    <div class="work-author">4문단 반박 · 5문단 마무리</div>
+  </div>
+
+  <div class="card" style="border-left:2px solid #c0392b;border-top:0;border-right:0;border-bottom:0;padding-left:20px;background:none">
+    <p class="lede">
+      이 글은 교과서에 <b>'잘 쓴 논증의 예'</b>로 실려 있습니다. 그런데 수업에서는 두 군데에 <b class="kw">오류</b>가 있다고 짚었습니다.
+      <b>형식(논증 요소의 배치)은 갖추었지만 내용(근거의 타당성)에는 문제가 있다</b>는 것입니다.
+    </p>
+  </div>
+
+  <div class="h2"><span class="n">①</span>4문단 — 반박의 오류</div>
+
+  <div class="fallacy">
+    <div class="fallacy-head">
+      <span class="fh-tag">오류</span>
+      반박에 쓴 두 자료가 반론을 제대로 겨냥하지 못함
+    </div>
+    <div class="fallacy-body">
+      <div class="defbox" style="margin-top:0">
+        <div class="dt">예상 반론</div>
+        <div class="dd">난민이 저지르는 <b>범죄</b>나 난민 지원 등으로 발생하는 <b>사회적 비용</b> 때문에 문제가 생길 것이다.</div>
+      </div>
+      <div class="defbox r">
+        <div class="dt">글쓴이의 반박</div>
+        <div class="dd">
+          ⓐ 한국 형사 정책 연구원 '인구 10만 명당 내외국인의 검거 인원수'(2017년) — <b>외국인의 범죄율이 내국인보다 낮다.</b><br>
+          ⓑ 2020년 난민 관련 정부 예산 24억 6,700만 원은 총예산 513조 5,000억 원의 <b>0.0005%에 불과</b>하다.
+        </div>
+      </div>
+
+      <div class="h3">ⓐ 범죄율 자료 — 분포의 차이를 무시함</div>
+      <div class="fstep">
+        <div class="fs-n">1</div>
+        <div class="fs-t">'인구 10만 명당 검거 인원수'는 <b>전체 평균 비율</b>입니다.
+          그런데 <b class="kw">내국인은 전국에 고르게 분포</b>하는 반면,
+          <b class="kw">외국인(난민)은 특정 지역에 밀집해 거주</b>합니다.</div>
+      </div>
+      <div class="fstep">
+        <div class="fs-n">2</div>
+        <div class="fs-t">분포 조건이 다르면 같은 비율이라도 <b>지역에서 체감되는 정도는 전혀 달라집니다.</b>
+          전국 평균으로는 낮게 나와도, 밀집 지역에서는 문제가 집중되어 나타날 수 있습니다.</div>
+      </div>
+      <div class="fstep">
+        <div class="fs-n">＝</div>
+        <div class="fs-t"><b>따라서</b> 전국 단위 평균 비율만으로 "난민이 범죄를 일으킨다"는 반론을 무너뜨릴 수는 없습니다.
+          <b class="kw">조건이 다른 두 집단을 단순 비교한 것</b>이 문제입니다.</div>
+      </div>
+
+      <div class="h3">ⓑ 예산 자료 — 비교 대상이 없음</div>
+      <div class="fstep">
+        <div class="fs-n">1</div>
+        <div class="fs-t">"총예산의 0.0005%"라는 수치는 <b>그 자체로는 크다 작다를 말해 주지 않습니다.</b>
+          정부 예산에서 특정 사업이 차지하는 비중은 대부분 소수점 아래로 내려갑니다.</div>
+      </div>
+      <div class="fstep">
+        <div class="fs-n">2</div>
+        <div class="fs-t">비중이 작다고 말하려면 <b class="kw">다른 분야 예산과 비교</b>해야 합니다.
+          예를 들어 <b>여성 관련 예산</b>이 난민 예산보다 더 적을 수도 있습니다.
+          그렇다면 0.0005%는 결코 '작은' 값이 아니게 됩니다.</div>
+      </div>
+      <div class="fstep">
+        <div class="fs-n">＝</div>
+        <div class="fs-t"><b>따라서</b> 비교 대상 없이 비율 하나만 제시하고
+          "사회적 비용이 크지 않음을 보여 준다"고 단정한 것은 <b class="kw">근거가 결론을 충분히 뒷받침하지 못하는 경우</b>입니다.</div>
+      </div>
+
+      <div class="caution">
+        <b>한 줄 정리 —</b> 두 자료 모두 <b>숫자 자체는 사실</b>이지만,
+        ⓐ는 <b>분포가 다른 집단을 단순 비교</b>했고 ⓑ는 <b>비교 대상 없이 비율만 제시</b>했습니다.
+        <b>반론이 제기한 논점을 정확히 겨냥하지 못한 반박</b>입니다.
+      </div>
+      <div class="memo">
+        <b>앞의 사형제 반박과 비교해 보면 —</b> 그 반박은 "오판 가능성은 모두 같다"는 반론의 <b>전제 자체를 깨뜨렸습니다.</b>
+        좋은 반박은 <b>반론이 서 있는 지점을 직접 무너뜨립니다.</b> 여기서는 그러지 못했습니다.
+      </div>
+    </div>
+  </div>
+
+  <div class="h2"><span class="n">②</span>5문단 — 논리적 오류</div>
+
+  <div class="fallacy">
+    <div class="fallacy-head">
+      <span class="fh-tag">논리적 오류</span>
+      대한민국 임시 정부를 '난민이 세운 정부'로 든 대목
+    </div>
+    <div class="fallacy-body">
+      <div class="defbox r" style="margin-top:0">
+        <div class="dt">문제가 된 문장</div>
+        <div class="dd">"1919년 중국에 세워진 대한민국 임시 정부는 <b>'정치적 난민'인 독립 투사들이 설립한 망명 정부</b>였다."</div>
+      </div>
+      <div class="tnote">
+        <span class="tn-cap">선생님 강조</span>
+        <span class="tn-body">공식적으로 중국에서 난민으로 인정하지 않음</span>
+      </div>
+      <div class="fstep">
+        <div class="fs-n">1</div>
+        <div class="fs-t">글쓴이는 <b>"우리도 난민이었다"</b>는 역사를 들어 <b>"그러니 난민을 받아야 한다"</b>는 주장을 뒷받침하려 했습니다.</div>
+      </div>
+      <div class="fstep">
+        <div class="fs-n">2</div>
+        <div class="fs-t">그러려면 <b>임시 정부의 독립 투사들이 실제로 '난민'이었다</b>는 사실이 전제되어야 합니다.
+          그런데 <b class="kw">당시 중국이 이들을 공식적으로 난민으로 인정한 것은 아닙니다.</b></div>
+      </div>
+      <div class="fstep">
+        <div class="fs-n">3</div>
+        <div class="fs-t">즉 <b>'정치적 망명'</b>이라는 역사적 사실을
+          오늘날의 <b>'난민'</b>이라는 법적·제도적 개념에 그대로 포갠 것입니다.
+          <b>근거로 삼은 사실이 정확하지 않습니다.</b></div>
+      </div>
+      <div class="fstep">
+        <div class="fs-n">＝</div>
+        <div class="fs-t"><b>따라서</b> 그 위에 세운 결론("이런 역사를 기억하며 난민 수용을 확대해야 한다")도 함께 흔들립니다.
+          논증하는 글에서 <b class="kw">근거의 사실성</b>이 무너지면 설득력 전체가 약해집니다.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="h2"><span class="n">★</span>두 오류 한 표로</div>
+  <div class="tbl-scroll">
+  <table class="tbl">
+    <thead><tr><th style="width:74px">위치</th><th style="width:120px">해당 자료</th><th>무엇이 문제인가</th><th style="width:150px">한마디로</th></tr></thead>
+    <tbody>
+      <tr><th rowspan="2">4문단<br>반박</th><td>내외국인 범죄율</td>
+          <td>내국인은 전국에 분포하지만 외국인(난민)은 <b>특정 지역에 밀집</b>해 있음. 조건이 다른 두 집단을 전국 평균 비율로 단순 비교함</td>
+          <td><b>분포 차이</b>를 무시한 비교</td></tr>
+      <tr><td>난민 예산 0.0005%</td>
+          <td><b>다른 분야 예산과의 비교가 없음.</b> 여성 관련 예산 등 다른 부문이 더 적을 수도 있으므로 '작다'고 단정할 수 없음</td>
+          <td><b>비교 대상</b>이 없는 비율</td></tr>
+      <tr><th>5문단<br>마무리</th><td>대한민국 임시 정부</td>
+          <td>중국이 공식적으로 난민으로 인정한 것이 아님. 정치적 망명을 오늘날의 법적 '난민' 개념에 그대로 포갬</td>
+          <td><b>근거의 사실성</b> 부족</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="memo">
+    <b>이 단원이 가르치려는 것 —</b> 논증 요소가 빠짐없이 들어 있다고 해서 좋은 논증이 되는 것은 아닙니다.
+    <b class="kw">근거가 사실인가</b>, <b class="kw">그 근거가 지금 이 주장을 뒷받침하는가</b>를 함께 따져야 합니다.
+  </div>
+</section>
+
+<!-- ══════════ 5. 책이 중심이 되는 사회 ══════════ -->
+<section class="panel" id="p5">
+  <div class="work-head">
+    <div class="work-kicker">(3) 함께 읽기의 힘 · 교과서 30~31쪽</div>
+    <h2 class="work-title">책이 중심이 되는 사회</h2>
+    <div class="work-author">장강명 (1975~ ) · 소설가 — 《책, 이게 뭐라고》</div>
+  </div>
+
+  <div class="spec">
+    <div class="spec-cap">＊ 필기 · 작품 정보</div>
+    <div class="spec-row"><div class="spec-k">갈래</div><div class="spec-v">수필</div></div>
+    <div class="spec-row"><div class="spec-k">주제</div><div class="spec-v">책이 중심이 되는 사회 소망</div></div>
+    <div class="spec-row"><div class="spec-k">특징</div><div class="spec-v">가정을 통해 책의 가치를 드러냄</div></div>
+  </div>
+
+  <div class="memo">
+    <b>특징 필기가 독해의 열쇠입니다 —</b> 이 글은 <b>"그러나 만약 ~를 읽고 토론하는 자리에서라면"</b>이라는
+    <b class="kw">가정</b>을 두 번 반복합니다. <b>현실(문제) ↔ 가정(해결)</b>의 짝이 반복되는 구조입니다.
+  </div>
+
+  <div class="h2"><span class="n">本</span>본문과 해석</div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">1문단</span><span class="ptag r">현실 ① 좋은 삶을 말하지 못한다</span></div>
+    <div class="body-text">
+      <span class="mk">'좋은 삶이 무엇이라고 생각하느냐'</span>와 같은 주제를 놓고 지인과 토론할 일은 거의 없다.
+      친구와 점심을 먹다가 그런 질문을 던지면 "뭐 잘못 먹었어?"라는 대꾸를 듣기 십상이다.
+      또는 걱정 어린 시선과 함께 "요즘 안 좋은 일 있는 거 아니지?" 하는 말을 듣게 될 수도 있고.
+      좋은 삶에 대한 고민은 너무도 중요하지만 <span class="mk">우리는 이것을 입 밖으로 쉽게 꺼내지 못한다.</span>
+    </div>
+    <div class="tnote">
+      <span class="tn-cap">선생님 강조</span>
+      <span class="tn-body">꺼내지 못하는 이유 → 상대방에게 오해를 살 수 있다</span>
+    </div>
+    <div class="gloss">
+      <p>
+        <b class="kw">문제 제기</b> 문단입니다. <b>삶에 대한 깊은 고민</b>일수록 일상 대화에서 꺼내기 어렵다는 것입니다.
+      </p>
+      <p>
+        "뭐 잘못 먹었어?", "요즘 안 좋은 일 있는 거 아니지?" — 두 반응 모두 진지한 말을
+        <b>이상한 것으로 받아들이는</b> 태도입니다. 오해를 살까 봐 말하지 못한다는 것이 이 문단의 핵심입니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">2문단</span><span class="ptag g">가정 ① 책이 있다면</span></div>
+    <div class="body-text">
+      <b>그러나 만약</b> 최인철 교수의 《굿 라이프》를 읽고 독서 토론을 하는 자리에서라면,
+      누구나 쑥스러워하지 않고 자신이 생각하는 좋은 삶에 대해, 인생의 가치와 행복에 대해 말할 수 있다.
+      아니, 말하게 된다. 그런 생각을 누군가 경청해 주는 것은 대단히 감동적인 경험이고,
+      그 자리에 모인 사람들은 점점 말이 많아진다. <span class="mk">생산적인 대화</span>가 오간다.
+      이처럼 <span class="bx">책</span>은 우리가 의미 있는 화제로 진지하게 말하고 들을 수 있게 하는 <span class="mk">매개체</span>가 되어 준다.
+    </div>
+    <div class="tnote">
+      <span class="tn-cap">선생님 강조</span>
+      <span class="tn-body">생산적인 대화 = 좋은 삶에 대해 유용한 대화</span>
+    </div>
+    <div class="gloss">
+      <p>
+        1문단의 문제가 <b class="kw">책이라는 조건</b> 하나로 해결됩니다.
+        핵심어는 <b>'매개체'</b> — 책이 대화의 <b>명분</b>이 되어 주기 때문에, 진지한 말이 더 이상 이상하게 보이지 않습니다.
+      </p>
+      <p>
+        "말할 수 있다"에서 <b>"아니, 말하게 된다"</b>로 고쳐 쓴 대목에 주목하세요.
+        가능성에서 <b>필연성</b>으로 강도를 높이는 <b class="kw">자기 수정</b> 방식이 이 글에서 반복됩니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">3문단</span><span class="ptag r">현실 ② 대화는 뒷담화로 흐른다</span></div>
+    <div class="body-text">
+      가만히 놔두면 우리는 <span class="bx">자꾸 다른 사람에 대해 이야기</span>하려 든다. 자기도 모르게 그렇게 된다.
+      우리 사회나 우주의 신비에 대해 진지한 대화를 나누다가도 <span class="bx">"그런데 그때 걔가……"</span>와 같은
+      몇 마디 말로 방향이 휙휙 바뀐다. 심지어 어떤 진화 심리학자들은 우리에게 <span class="bx">뒷담화</span>를 하는 본능이 있으며,
+      언어가 바로 그 본능으로 인해 탄생했다고 주장한다.
+      <span class="bx">인간은 타인에 대한 정보를 무엇보다 더 궁금</span>해하며,
+      그 정보를 공유하기 위해 언어라는 의사소통 수단을 만들어 냈다는 것이다.
+    </div>
+    <div class="gloss">
+      <p>
+        다시 <b>현실</b>로 돌아옵니다. 2문단이 이상적인 장면이었다면, 여기서는 <b class="kw">내버려 두었을 때의 대화</b>를 보여 줍니다.
+      </p>
+      <p>
+        더 나아가 <b>진화 심리학</b>까지 끌어와, 뒷담화가 <b>인간의 본능</b>이며 언어 자체가 그 본능에서 나왔다고 말합니다.
+        문제의 뿌리가 그만큼 깊다는 뜻이므로, 뒤에 올 <b>책의 역할</b>이 더 커 보이게 만드는 장치입니다.
+      </p>
+    </div>
+    <div class="duo">
+      <div class="tcard g">
+        <div class="tc-t"><span class="mk">生</span>생산적인 대화</div>
+        <div class="tc-b">좋은 삶, 인생의 가치, 사회나 우주의 신비 — 책이 있을 때 가능</div>
+      </div>
+      <div class="tcard r">
+        <div class="tc-t"><span class="mk">非</span>비생산적인 대화</div>
+        <div class="tc-b">"그런데 그때 걔가……", 뒷담화 — 타인에 대한 본능적 관심에서 나옴</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">4문단</span><span class="ptag g">가정 ② 책이 무게 중심이 된다</span></div>
+    <div class="body-text">
+      <b>그러나 만약</b> 유현준 교수의 《어디서 살 것인가》를 읽고 토론하는 자리에서라면,
+      누가 "걔가 그때 <span class="bx">산 집이 바로 값이 올랐잖아.</span>"라고 말하더라도,
+      부동산 투자로 돈을 번 사람들에 대한 뒷담화로 마냥 흘러가지는 않는다.
+      <span class="mk">사람들 앞에 책이 있고, 그 책 역시 말을 하고 있기 때문이다.</span>
+      책은 고집스럽게 한 가지 주제를 이야기한다. 그 자리에 모인 사람들은 책이 묻는 질문에 답변해야 한다.
+      책은 우리의 대화가 뒷담화로 번지지 않게 하는 <b>무게 중심</b>이 되어 준다.
+    </div>
+    <div class="tnote">
+      <span class="tn-cap">선생님 강조</span>
+      <span class="tn-body">책을 매개로 → 뒷담화 X</span>
+    </div>
+    <div class="gloss">
+      <p>
+        <b class="kw">"그 책 역시 말을 하고 있다"</b>가 이 글에서 가장 중요한 표현입니다.
+        책을 <b>대화에 참여하는 또 하나의 상대</b>로 의인화한 것입니다.
+      </p>
+      <p>
+        책은 <b>고집스럽게 한 가지 주제를 이야기</b>하므로, 대화가 옆길로 새려 할 때마다 주제로 되돌립니다.
+        2문단의 <b>매개체</b>가 '진지한 말을 꺼내게 하는' 역할이었다면,
+        여기서의 <b>무게 중심</b>은 '대화가 새지 않게 붙잡는' 역할입니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">5문단</span><span class="ptag v">소망 ① 책이 중심이 되는 사회</span></div>
+    <div class="body-text">
+      요즘 나는 '책이 중심이 되는 사회'를 상상한다. 사람들이 자신의 생각을 포털 뉴스 댓글이나 소셜 미디어가 아니라
+      책으로 만들어 이야기하는 사회. <span class="mk">책을 통한 진지한 사유가 오가는 사회.</span>
+    </div>
+    <div class="gloss">
+      <p>
+        앞의 두 '가정'이 개인 간 대화였다면, 여기서부터는 <b class="kw">사회 전체</b>로 범위가 넓어집니다.
+      </p>
+      <p>
+        <b>댓글·소셜 미디어 ↔ 책</b>의 대비가 핵심입니다. 앞쪽은 <b>짧고 즉각적</b>이어서 뒷담화로 흐르기 쉽고,
+        책은 <b>길고 정리된 사유</b>를 담기에 진지한 대화를 이끕니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">6문단</span><span class="ptag v">소망 ② 지역 공동체와의 결합</span></div>
+    <div class="body-text">
+      책이 중심이 되는 사회에서는 당연히 독서 토론도 많이 열려야 한다.
+      우리의 삶을 다룬 책을 매개로 참가자들이 자신의 내면을 여는 자리여야 한다.
+      그런 모임이 지역 공동체 네트워크와 결합하면 좋겠다.
+      아니, 그런 모임이 바로 지역 공동체 네트워크의 중심축이 되는 풍경을 상상한다.
+    </div>
+    <div class="tnote">
+      <span class="tn-cap">선생님 강조</span>
+      <span class="tn-body">독서 토론 모임 → 지역 공동체</span>
+    </div>
+    <div class="gloss">
+      <p>
+        소망이 한 단계 더 구체화됩니다 — <b class="kw">독서 토론 모임 → 지역 공동체의 중심축</b>.
+      </p>
+      <p>
+        여기서도 <b>"결합하면 좋겠다 → 아니, 중심축이 되는 풍경을 상상한다"</b>로 스스로 말을 고쳐 강도를 높입니다.
+        2문단과 같은 방식이며, 소망의 간절함을 드러내는 장치입니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">7문단</span><span class="ptag v">마무리 — 아직은 그냥 꿈</span></div>
+    <div class="body-text">
+      나이나 재산이나 성별에 관계없이, 같은 동네 이웃이라는 이유로 사람들이 열흘이나 보름에 한 번씩 모여
+      책을 놓고 자기 생각과 경험을 자연스럽게 말하고 듣는 공간.
+      책을 읽고 의견을 차분히 말할 수 있는 사람이라면 독거노인도, 미혼모도, 외국인 노동자도 모두 환영받는 자리.
+      그렇게 지역과 지식이 결합하는 세상. <span class="mk">아직은 그냥 꿈이다.</span>
+      <div class="src-line">— 《책, 이게 뭐라고》</div>
+    </div>
+    <div class="gloss">
+      <p>
+        <b>나이·재산·성별에 관계없이</b>, 그리고 사회적으로 소외되기 쉬운 사람들까지 환영받는다는 대목에서
+        이 글의 지향이 분명해집니다 — <b class="kw">책 앞에서는 모두가 동등한 대화 상대</b>입니다.
+      </p>
+      <p>
+        명사형으로 끝나는 짧은 문장('~공간.', '~자리.', '~세상.')을 이어 붙여
+        <b>상상하는 장면을 하나씩 펼쳐 보이는</b> 효과를 냅니다.
+      </p>
+      <p>
+        마지막 문장 <b>"아직은 그냥 꿈이다"</b>는 스스로 한 발 물러서는 표현이지만,
+        <b class="kw">'아직은'</b>이라는 말로 <b>실현 가능성에 대한 기대</b>를 남겨 둡니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="h2"><span class="n">1</span>글의 구조 한눈에</div>
+  <div class="tbl-scroll">
+  <table class="tbl">
+    <thead><tr><th style="width:80px">문단</th><th style="width:96px">성격</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><th>1문단</th><td style="color:#c0392b;font-weight:700">현실 ①</td><td>좋은 삶에 대한 고민은 중요하지만 입 밖으로 꺼내지 못한다 <span style="color:#8a837a">(오해를 살 수 있으므로)</span></td></tr>
+      <tr><th>2문단</th><td style="color:#3f7d58;font-weight:700">가정 ①</td><td>책을 읽고 토론하는 자리라면 누구나 좋은 삶을 말하게 된다 → 책 = <b>매개체</b></td></tr>
+      <tr><th>3문단</th><td style="color:#c0392b;font-weight:700">현실 ②</td><td>가만히 두면 대화는 뒷담화로 흐른다 <span style="color:#8a837a">(타인에 대한 본능적 관심)</span></td></tr>
+      <tr><th>4문단</th><td style="color:#3f7d58;font-weight:700">가정 ②</td><td>책이 앞에 있으면 뒷담화로 번지지 않는다 → 책 = <b>무게 중심</b></td></tr>
+      <tr><th>5문단</th><td style="color:#6b4fa0;font-weight:700">소망 ①</td><td>책을 통한 진지한 사유가 오가는 사회</td></tr>
+      <tr><th>6문단</th><td style="color:#6b4fa0;font-weight:700">소망 ②</td><td>독서 토론 모임이 지역 공동체 네트워크의 중심축이 되는 사회</td></tr>
+      <tr><th>7문단</th><td style="color:#6b4fa0;font-weight:700">마무리</td><td>누구나 환영받는 자리, 지역과 지식이 결합하는 세상 — "아직은 그냥 꿈이다"</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="h2"><span class="n">2</span>핵심 정리</div>
+  <div class="duo">
+    <div class="tcard g">
+      <div class="tc-t"><span class="mk">1</span>가정법이 곧 논지 전개</div>
+      <div class="tc-b">"그러나 만약 ~라면"이 두 번 반복됩니다. <b>현실 → 가정</b>의 짝을 찾는 것이 이 글 독해의 핵심입니다.</div>
+    </div>
+    <div class="tcard">
+      <div class="tc-t"><span class="mk">2</span>책의 두 가지 역할</div>
+      <div class="tc-b"><b>매개체</b>(2문단) — 진지한 말을 꺼내게 함 / <b>무게 중심</b>(4문단) — 대화가 새지 않게 붙잡음.</div>
+    </div>
+    <div class="tcard v">
+      <div class="tc-t"><span class="mk">3</span>개인 → 사회로 확대</div>
+      <div class="tc-b">1~4문단은 개인 간 대화, 5~7문단은 사회와 지역 공동체. <b>범위가 넓어지는 구성</b>입니다.</div>
+    </div>
+    <div class="tcard r">
+      <div class="tc-t"><span class="mk">4</span>대비 구조</div>
+      <div class="tc-b">생산적 ↔ 비생산적, 책 ↔ 댓글·소셜 미디어. <b>대비되는 항을 짝지어 정리</b>해 두면 선지 판단이 빨라집니다.</div>
+    </div>
+  </div>
+
+  <div class="memo">
+    <b>단원 전체와 이어 보면 —</b> (1) 〈어떤 말은 죽지 않는다〉가 <b>한 사람의 말</b>이 마음에 남는 이야기였다면,
+    이 글은 <b>여럿이 나누는 말</b>의 질을 책이 어떻게 바꾸는지를 말합니다.
+    그 사이에 (2) <b>논증</b>이 놓여 있습니다 — 말이 사회를 움직이려면 <b>논리가 있어야 한다</b>는 것입니다.
+  </div>
+
+  <div class="foot">
+    공통국어 2 · 1. 세상을 밝히는 힘 — 이O총 선생님 파트 독해 노트<br>
+    지문은 교과서 전문을 그대로 실었으며, 수업에서 강조하신 관점과 지적은 붉은 상자로 표시했습니다.
+  </div>
+</section>
+
+
+<!-- ══════════ 6. 더워진 지구에서 가장 위험한 건 무엇일까? ══════════ -->
+<section class="panel" id="p6">
+  <div class="work-head">
+    <div class="work-kicker">3. 더불어 사는 우리 · (1) 다양한 관점으로 세상 읽기 · 교과서 112~114쪽</div>
+    <h2 class="work-title">더워진 지구에서<br>가장 위험한 건 무엇일까?</h2>
+    <div class="work-author">남성현 · 제재 1 — 《2도가 오르기 전에》</div>
+  </div>
+
+  <div class="memo">
+    <b>읽기의 초점 —</b> 서로 다른 관점에서 기후 위기 문제를 다룬 두 편의 글입니다.
+    읽기 목적을 <b>'기후 위기의 심각성을 이해하고 대응 방법 모색하기'</b>로 구체화한 후
+    두 글에 나타난 <b class="kw">관점의 차이</b>를 파악하며 글을 읽어 봅시다.
+  </div>
+
+  <div class="h2"><span class="n">知</span>알아 두기 — 주제 통합적 읽기의 필요성</div>
+  <div class="body-text">
+    주제 통합적 읽기를 하면 <span class="mk">한 가지 주제</span>를 폭넓게 이해하고 깊이 있는 지식을 쌓을 수 있다.
+    여러 글과 자료를 분석하고 다양한 관점을 비교·대조함으로써 <span class="mk">비판적인 시각</span>으로 글을 읽을 수 있으며,
+    이를 통해 자신의 입장을 마련하는 능력을 기를 수 있다.
+    또한 여러 글과 자료를 통해 <span class="mk">다양한 관점</span>에서 주제에 접근하여 그 주제를 탐색함으로써
+    정보를 통합하고 새로운 아이디어를 생성하는 능력을 키울 수 있다.
+  </div>
+  <div class="tnote">
+    <span class="tn-cap">선생님 강조</span>
+    <span class="tn-body">한 가지 주제 → 서로 다른 관점 → 비판적 시각</span>
+  </div>
+  <div class="gloss" style="max-width:760px">
+    <p>
+      이 단원을 읽는 <b>태도</b>를 정해 주는 대목입니다. 하나의 주제(기후 위기)를 놓고
+      <b class="kw">서로 다른 관점의 글을 나란히 읽는 것</b>이 목적이므로,
+      각 글을 따로 감상하는 것이 아니라 <b>어떤 점에서 다르게 보는가</b>를 계속 의식하며 읽어야 합니다.
+    </p>
+    <p>
+      주제 통합적 읽기로 얻는 것은 세 가지입니다 — ① <b>폭넓고 깊은 지식</b>,
+      ② <b>비판적 시각과 자신의 입장</b>, ③ <b>정보 통합과 새로운 아이디어</b>.
+    </p>
+  </div>
+
+  <div class="spec">
+    <div class="spec-cap">＊ 필기 · 작품 정보</div>
+    <div class="spec-row"><div class="spec-k">갈래</div><div class="spec-v">논설문</div></div>
+    <div class="spec-row"><div class="spec-k">주제</div><div class="spec-v">기후 변화 → 자연재해 피해 심각성<span class="sub">→ 해결 방안, 국제 사회 노력</span></div></div>
+    <div class="spec-row"><div class="spec-k">특징</div><div class="spec-v">① 객관적 통계 자료 제시 → 주장 뒷받침<br>② 과학자의 관점 → 해결 방안 제시</div></div>
+  </div>
+
+  <div class="memo">
+    <b>'과학자의 관점'이 이 글의 열쇠입니다 —</b> 글쓴이는 해양과학자입니다.
+    그래서 감정에 호소하기보다 <b class="kw">측정값과 통계</b>로 문제의 크기를 보이고,
+    원인을 과학적으로 짚은 뒤 거기서 해결 방안을 끌어냅니다.
+    뒤에 실릴 <b>제재 2</b>와 비교할 때 바로 이 <b>관점의 차이</b>가 비교 대상이 됩니다.
+  </div>
+
+  <div class="h2"><span class="n">本</span>본문과 해석</div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">1문단</span><span class="ptag">서론 — 문제 제기</span></div>
+    <div class="body-text">
+      하와이 마우나로아 관측소에서는 오래전부터 대기 중 이산화 탄소 농도를 측정해 왔다.
+      이 수치는 지난 수십 년간 빠르게 상승해 지금까지 지구의 역사에서 볼 수 없었던 수준까지 도달했다.
+      오늘날 <span class="mk">대기 중 이산화 탄소 농도는 이미 400ppm을 넘어 회복 불가능한 기후 변화가 초래될 것으로 우려되는
+      450ppm 수준에 근접</span>하고 있다.
+      대기 중 온실가스 농도가 증가하면 온실 효과로 지구 온난화 같은 기후 변화가 발생한다.
+    </div>
+    <div class="tnote">
+      <span class="tn-cap">선생님 강조</span>
+      <span class="tn-body">출처 + 구체적 수치 제시 → 신뢰성 ↑</span>
+    </div>
+    <div class="gloss">
+      <p>
+        글의 첫 문장이 <b>'하와이 마우나로아 관측소'</b>라는 <b class="kw">출처</b>로 시작하는 것이 이 글의 성격을 보여 줍니다.
+        어디서 잰 수치인지를 먼저 밝히고 들어가는 것입니다.
+      </p>
+      <p>
+        <b>400ppm</b>(현재) 과 <b>450ppm</b>(회복 불가능해지는 선)이라는 두 숫자를 나란히 놓아,
+        <b class="kw">문제가 이미 임계점 가까이 와 있다</b>는 것을 한눈에 보이게 합니다.
+        막연히 "심각하다"고 말하지 않고 <b>남은 거리를 수치로 제시</b>하는 방식입니다.
+      </p>
+      <p>
+        마지막 문장은 <b>온실가스 증가 → 온실 효과 → 지구 온난화</b>라는 인과의 사슬을 정리해,
+        다음 문단의 논의가 딛고 설 과학적 전제를 깔아 둡니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">2문단</span><span class="ptag b">본론 ① — 정말 위험한 것은 무엇인가</span></div>
+    <div class="body-text">
+      지구 온난화로 지구 평균 기온이 오르고 있으니 무더위가 가장 위험하다고 할 수 있을까?
+      평균 기온 상승 폭은 지난 수십 년간 1도에 불과하며 그것이 곧 폭염을 의미하지는 않으므로
+      반드시 폭염이 가장 위험하다고 말하기는 어려울 것이다.
+      사실 지구 평균 기온 상승보다 훨씬 더 위험한 것은
+      <span class="mk">지구 온난화로 인한 극한 기후와 악기상(惡氣象)의 증가</span>라 할 수 있다.
+    </div>
+    <div class="tnote">
+      <span class="tn-cap">선생님 강조</span>
+      <span class="tn-body">지구 온난화가 위험한 이유</span>
+    </div>
+    <div class="gloss">
+      <p>
+        제목의 물음 — <b>"가장 위험한 건 무엇일까?"</b> — 에 직접 답하는 문단입니다.
+        먼저 <b class="kw">흔한 오해</b>(더워지니까 무더위가 제일 위험하다)를 스스로 질문 형태로 꺼낸 뒤,
+        <b>"1도에 불과하며"</b>라는 수치로 그 오해를 걷어 냅니다.
+      </p>
+      <p>
+        그리고 진짜 답을 제시합니다 — <b class="kw">극한 기후와 악기상의 증가</b>.
+        평균값이 아니라 <b>변동의 폭과 빈도</b>가 문제라는 것이 이 글의 핵심 주장입니다.
+      </p>
+      <p>
+        <b>악기상</b>은 심각한 사회 혼란 또는 인간 생명의 손실을 일으킬 가능성이 있는 위험한 기상 현상을 말합니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">3문단</span><span class="ptag b">본론 ② — 자연재해의 성질이 바뀐다</span></div>
+    <div class="body-text">
+      지구 온난화는 전 지구적인 열 수송과 물 순환 혹은 수문 순환의 변화를 시작으로
+      폭염과 한파뿐만 아니라 <span class="mk">폭우(호우), 폭설(대설)이나 태풍과 해일 등 각종 자연재해 특성까지 변화</span>시키고 있다.
+      또한 극한 기후 및 악기상의 빈도와 강도를 높여 점점 더 심각한 피해를 안기고 있다.
+      특히 <span class="mk">과거의 기후에 적응한 지역에서 이상 기후가 나타나면 대비도가 낮아 종종 큰 피해가 발생한다.</span>
+      그러한 자연재해의 피해 규모는 인재 피해 규모를 훨씬 웃돌며,
+      실제로 이러한 자연재해로 인한 인명 피해와 재산 피해는 지난 수십 년 동안 꾸준히 증가해 왔다.
+      지구 환경의 과학적 변화 원인을 파악해 기후 재앙에 대한 대비도를 빠르게 높이지 않으면
+      인류의 자연재해 피해 규모는 머지않아 감당하기 어려운 수준으로 치달을 것이다.
+    </div>
+    <div class="tnote">
+      <span class="tn-cap">선생님 강조</span>
+      <span class="tn-body">대비도 낮은 지역의 예) 유럽 — 에어컨 X, 더위에 취약 / 마지막 문장 = 대처 방안의 필요성</span>
+    </div>
+    <div class="gloss">
+      <p>
+        지구 온난화가 <b>단순히 기온만 올리는 것이 아니라</b>
+        <b class="kw">자연재해의 성질 자체를 바꾼다</b>는 것이 이 문단의 요지입니다.
+        열 수송과 수문 순환이 바뀌니, 폭염뿐 아니라 <b>한파·폭우·폭설·태풍·해일</b>까지 모두 달라집니다.
+      </p>
+      <p>
+        <b>"과거의 기후에 적응한 지역"</b>이 특히 위험하다는 대목이 중요합니다.
+        더운 지역보다 <b class="kw">더위에 대비가 없던 지역</b>이 더 큰 피해를 입습니다 —
+        수업에서 든 예가 <b>에어컨 보급률이 낮은 유럽</b>입니다.
+      </p>
+      <p>
+        마지막 문장은 <b>"~하지 않으면 ~할 것이다"</b>라는 조건·예측의 형식으로,
+        <b class="kw">대처 방안이 필요하다</b>는 뒤쪽 논의로 넘어가는 다리를 놓습니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="figure">
+    <div class="fig-title">전 세계 재해 발생 건수</div>
+    <div class="fig-legend">
+      <span><i style="background:#3f3a52"></i>가뭄</span>
+      <span><i style="background:#7a9b5e"></i>폭염·한파</span>
+      <span><i style="background:#3f7d8a"></i>홍수</span>
+      <span><i style="background:#b8505f"></i>산사태·눈사태</span>
+      <span><i style="background:#5a6fa8"></i>태풍·폭풍</span>
+      <span><i style="background:#c98f36"></i>산불</span>
+    </div>
+    <div class="chart-wrap">
+      <div class="chart">
+        <div class="cbar"><span class="cval">711</span><div class="cfill" style="height:20.1%"></div></div>
+        <div class="cbar"><span class="cval">1,410</span><div class="cfill" style="height:39.9%"></div></div>
+        <div class="cbar"><span class="cval">2,250</span><div class="cfill" style="height:63.6%"></div></div>
+        <div class="cbar"><span class="cval">3,536</span><div class="cfill" style="height:100%"></div></div>
+        <div class="cbar"><span class="cval">3,165</span><div class="cfill" style="height:89.5%"></div></div>
+      </div>
+      <svg class="trend" viewBox="0 0 100 210" preserveAspectRatio="none" aria-hidden="true">
+        <line x1="10" y1="172" x2="69" y2="34" stroke="#c0392b" stroke-width="1.4"
+              stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>
+      </svg>
+      <span class="trend-tip">↗</span>
+    </div>
+    <div class="chart-x">
+      <span>1970~1979</span><span>1980~1989</span><span>1990~1999</span><span>2000~2009</span><span>2010~2019</span>
+    </div>
+    <div class="fig-src">▲ 세계 기상 기구(WMO), &lt;자연재해 발생 현황 분석 보고서&gt;(2022)</div>
+  </div>
+  <div class="tnote">
+    <span class="tn-cap">선생님 강조</span>
+    <span class="tn-body">객관적 통계 자료 + 출처 분명 → 신뢰성 ↑</span>
+  </div>
+  <div class="gloss" style="max-width:760px">
+    <p>
+      <b>읽기 중 활동 1 —</b> 통계 자료에 그어진 <b class="kw">우상향 화살표</b>는
+      <b>재해 발생 건수가 시간이 갈수록 꾸준히 늘어나고 있다</b>는 사실, 곧
+      <b>기후 변화로 인한 자연재해가 실제로 증가하고 있음</b>을 한눈에 보여 줍니다.
+      711건(1970년대)에서 3,536건(2000년대)으로 <b>약 5배</b>가 되었습니다.
+    </p>
+    <p>
+      필기의 <b>특징 ①</b>이 여기서 확인됩니다 — 글쓴이는 주장만 하지 않고
+      <b>세계 기상 기구(WMO)라는 분명한 출처</b>의 객관적 통계를 붙여 주장을 뒷받침합니다.
+    </p>
+  </div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">4문단</span><span class="ptag b">본론 ③ — 2차 피해로 번진다</span></div>
+    <div class="body-text">
+      폭염, 한파, 폭우, 폭설, 가뭄, <span class="bx">산불</span>, 태풍, 해일, 홍수, 산사태 등 각종 자연재해 피해 규모 증가는
+      <span class="mk">심각한 환경 오염과 2차 피해로 이어지기도 한다.</span>
+      또 <span class="mk">식량 생산에도 차질을 가져오고, 곳곳에서 식수를 비롯한 여러 자원 부족에 직면하게 만들어
+      자원을 사이에 두고 국가와 사회 간의 대립과 갈등을 심화시킨다.</span>
+      무엇보다도 큰 문제는 <span class="mk">동식물의 서식지가 바뀌면서 생물 다양성이 감소하는 등 생태계 전반에 심각한 변화가 발생하는 점</span>이다.
+      인류가 지금의 방식을 바꾸지 않는다면 앞으로 수십 년 안에 지구상 생물종의 4분의 1은 절멸하고 말 것이다.
+      <span class="mk">이미 현재의 기후 변화로 매일 100종 이상의 생물이 사라지고 있다.</span>
+    </div>
+    <div class="tnote">
+      <span class="tn-cap">선생님 강조</span>
+      <span class="tn-body">산불 = 나무 X → 공기 정화 능력 저하 → 환경 오염 / 화재로 인간에게 피해<br>구체적 수치 제시 → 지구 온난화의 위험성 증가</span>
+    </div>
+    <div class="gloss">
+      <p>
+        <b class="kw">2차 피해</b>를 세 가지로 나누어 제시합니다 — ① <b>환경 오염</b>,
+        ② <b>식량·자원 부족 → 국가·사회 간 대립과 갈등</b>, ③ <b>생물 다양성 감소와 생태계 변화</b>.
+      </p>
+      <p>
+        <b>산불</b>이 대표적인 예입니다. 나무가 사라지면 <b>공기 정화 능력이 떨어져 환경 오염</b>으로 이어지고,
+        화재 자체로도 인간에게 직접 피해를 줍니다. 재해 하나가 <b>연쇄적으로</b> 다른 피해를 부른다는 것입니다.
+      </p>
+      <p>
+        여기서도 <b>"생물종의 4분의 1", "매일 100종 이상"</b>이라는 수치가 등장합니다.
+        추상적인 '생태계 파괴'를 <b class="kw">셀 수 있는 크기</b>로 바꿔 보여 주는 이 글의 일관된 방식입니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">5문단</span><span class="ptag b">본론 ④ — 감염병과 거주 불능</span></div>
+    <div class="body-text">
+      기후 변화로 생물종의 서식지에 기온 등의 환경 조건이 바뀌면 생물은 생존을 위해 보다 적합한 환경 조건을 찾아 이동한다.
+      빠르게 서식지가 바뀌고 있는 각종 동식물의 이동만으로도
+      인류는 코로나19 같은 '신종' 바이러스에 쉽게 노출되어 <span class="bx">감염병</span> 충격이 더 빈번해질 수 있다.
+      이처럼 기후 변화는 단순한 지구 온난화를 넘어
+      <span class="mk">전반적인 지구 환경을 변화시켜 지구를 거주 불능 상태로 만들고 있다.</span>
+    </div>
+    <div class="gloss">
+      <p>
+        앞 문단의 ①②③에 이어지는 <b class="kw">네 번째 피해</b>입니다 — <b>감염병</b>.
+        서식지 변화 → 동식물 이동 → 인간과의 접촉 증가 → 신종 바이러스 노출이라는 경로가 제시됩니다.
+      </p>
+      <p>
+        마지막 문장의 <b class="kw">'거주 불능 상태'</b>가 본론 전반을 한 단어로 묶습니다.
+        기온이 조금 오르는 정도의 문제가 아니라 <b>지구에서 살 수 있는가</b>의 문제라는 것입니다.
+      </p>
+      <p>
+        <b>읽기 중 활동 2</b>의 답이 4~5문단에 모여 있습니다 — 환경 오염 외에
+        <b>식량 생산 차질, 자원 부족과 갈등, 생물 다양성 감소, 감염병 확산</b>.
+      </p>
+    </div>
+  </div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">6문단</span><span class="ptag g">본론 ⑤ — 해결 방안 ①</span></div>
+    <div class="body-text">
+      그렇다면 문제를 어떻게 해결할 수 있을까? 자연적인 기후 변동성의 범위를 넘어
+      인위적 기후 변화를 만들어 낸 것이 인간 활동이었으니 이것을 해결하는 것도 당연히 인간의 몫이다.
+      영국의 천재 물리학자 스티븐 호킹 박사는 세상을 떠나기 전
+      "인류 멸망을 원치 않는다면, 200년 안에 지구를 떠나라."라고 말했다.
+      그러나 우리는 지구를 떠날 능력도 그럴 자격도 없다.
+      특히 <span class="mk">지금의 기성세대는 기후 변화를 인식한 첫 세대이자 이를 해결할 수 있는 유일한 세대</span>이다.
+      <span class="mk">화석 연료 사용을 획기적으로 줄이고 재생 에너지 상용화 비율을 높이는 것은 물론
+      각종 교통수단과 경제 활동을 위한 산업 방식을 뿌리째 바꾸어 탈탄소 문명을 새로 만들어야만 한다.</span>
+    </div>
+    <div class="tnote">
+      <span class="tn-cap">선생님 강조</span>
+      <span class="tn-body">지금 못 하면 나중에는 해결 불가능 / 해결 방안 ① — ex) 전기차</span>
+    </div>
+    <div class="gloss">
+      <p>
+        <b>"그렇다면 문제를 어떻게 해결할 수 있을까?"</b> — 질문 하나로 글의 방향이
+        <b class="kw">문제 제시에서 해결 방안으로</b> 바뀝니다.
+      </p>
+      <p>
+        스티븐 호킹의 말을 인용한 뒤 곧바로 <b>"우리는 지구를 떠날 능력도 그럴 자격도 없다"</b>고 받아칩니다.
+        <b>탈출은 답이 아니니 여기서 고쳐야 한다</b>는 것입니다. 원인이 인간 활동이므로 <b>해결도 인간의 몫</b>입니다.
+      </p>
+      <p>
+        <b class="kw">'첫 세대이자 유일한 세대'</b>라는 표현이 이 문단에서 가장 강한 대목입니다.
+        지금 세대가 하지 않으면 <b>다음에는 해결할 기회 자체가 없다</b>는 뜻이기 때문입니다.
+      </p>
+      <p>
+        <b>해결 방안 ①</b> — 화석 연료 감축, 재생 에너지 확대, 산업 방식 전환으로 <b>탈탄소 문명</b> 만들기.
+        교통수단을 바꾸는 예가 <b>전기차</b>입니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">7문단</span><span class="ptag g">본론 ⑥ — 해결 방안 ②</span></div>
+    <div class="body-text">
+      또 <span class="mk">이산화 탄소를 흡수하는 육상과 해양의 자연 생태계를 회복해야 하며</span> 무엇보다
+      <span class="mk">기후 변화를 감시하고 대응하는 역량을 높여서 <span class="bx">지속 가능한</span> 지구 환경을 다음 세대에 물려주어야 한다.</span>
+    </div>
+    <div class="gloss">
+      <p>
+        <b>해결 방안 ②</b> — ① 이 <b>배출을 줄이는</b> 쪽이었다면, 여기는 <b class="kw">흡수하는 쪽을 되살리는</b> 것입니다.
+        숲과 바다가 이산화 탄소를 흡수하므로, 생태계 회복 자체가 대책이 됩니다.
+      </p>
+      <p>
+        <b class="kw">'지속 가능한'</b>은 이 단원의 핵심어입니다 —
+        <b>지금 세대가 쓰면서도 다음 세대가 쓸 수 있게 남겨 두는</b> 상태를 뜻합니다.
+        글쓴이가 해결 방안을 '다음 세대에 물려주어야 한다'로 맺는 이유입니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">8문단</span><span class="ptag g">본론 ⑦ — 해결 방안 ③</span></div>
+    <div class="body-text">
+      건강과 지구 환경 문제뿐 아니라 기후 문제에까지 악영향을 미치는 육식 위주의 식단을 바꿔야 한다는 목소리도 높다.
+      모두가 채식을 하거나 비건(vegan)이 되어야 하는 것은 아니지만
+      <span class="mk">육류 소비를 줄여 공장식 축산 방식에 따른 지구 환경 파괴와 탄소 배출을 줄이는 것은
+      지구 환경 회복에 보탬이 될 것이 분명하다.</span>
+    </div>
+    <div class="gloss">
+      <p>
+        <b>해결 방안 ③</b> — <b class="kw">육류 소비 줄이기</b>. 앞의 두 방안이 국가·산업 차원이었다면,
+        이것은 <b>개인이 당장 실천할 수 있는</b> 방안입니다.
+      </p>
+      <p>
+        <b>"모두가 채식을 하거나 비건이 되어야 하는 것은 아니지만"</b>이라고 한 발 물러선 것이
+        이 문단의 설득 전략입니다. <b class="kw">극단적 요구가 아님을 먼저 밝혀</b>
+        독자의 거부감을 줄인 뒤 실천 가능한 수준을 제안합니다.
+      </p>
+      <p>
+        <b>비건</b>은 채소, 과일, 해초 따위의 식물성 음식 이외에는 아무것도 먹지 않는 철저하고 완전한 채식주의자를 말합니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="para">
+    <div class="para-head"><span class="pnum">9문단</span><span class="ptag v">결론 — 선언을 넘어 이행으로</span></div>
+    <div class="body-text">
+      국제 사회는 기후 변화 협정을 체결하고 각국이 2050년 전후로 탄소 중립을 선언하고 있다.
+      하지만 <span class="mk">선언만으로는 저탄소 사회로의 대전환이 이루어질 수 없다.</span>
+      따라서 <span class="mk">탄소 순 배출량을 조기에 없앨 수 있는 구체적인 이행 계획을 세우고
+      지속적으로 점검 및 보완하는 노력이 앞으로 점점 더 중요해질 것이다.</span>
+      <div class="src-line">— 《2도가 오르기 전에》</div>
+    </div>
+    <div class="gloss">
+      <p>
+        시선을 <b class="kw">개인에서 국제 사회로</b> 넓히며 글을 맺습니다.
+        협정과 선언은 이미 있지만, <b>"선언만으로는 안 된다"</b>는 것이 마지막 주장입니다.
+      </p>
+      <p>
+        글쓴이가 요구하는 것은 세 가지입니다 — <b>구체적인 이행 계획</b>, <b>지속적인 점검</b>, <b>보완</b>.
+        말이 아니라 <b class="kw">실행과 확인</b>으로 넘어가야 한다는 뜻입니다.
+      </p>
+      <p>
+        <b>읽기 중 활동 3 — '탄소 중립'</b>이란 배출한 이산화 탄소를 흡수·제거해
+        <b>실질적인 순 배출량을 0으로 만드는 것</b>을 말합니다.
+        본문의 <b>"탄소 순 배출량을 조기에 없앨 수 있는"</b>이 바로 그 뜻입니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="h2"><span class="n">1</span>글의 구조 한눈에</div>
+  <div class="tbl-scroll">
+  <table class="tbl">
+    <thead><tr><th style="width:74px">구성</th><th style="width:80px">문단</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><th rowspan="1" style="background:#f6f3ed">서론</th><td>1문단</td>
+          <td>이산화 탄소 농도가 <b>400ppm을 넘어 450ppm에 근접</b> — 문제 제기</td></tr>
+      <tr><th rowspan="7" style="vertical-align:middle;background:#eef3fb;color:#2b5fa8">본론</th><td>2문단</td>
+          <td>가장 위험한 것은 폭염이 아니라 <b>극한 기후와 악기상의 증가</b></td></tr>
+      <tr><td>3문단</td><td>자연재해의 <b>특성·빈도·강도</b>가 변함 — 대비 없는 지역일수록 큰 피해</td></tr>
+      <tr><td>4문단</td><td>2차 피해 ① 환경 오염 ② 식량·자원 부족과 갈등 ③ 생물 다양성 감소</td></tr>
+      <tr><td>5문단</td><td>2차 피해 ④ <b>감염병</b> — 지구가 <b>거주 불능 상태</b>로</td></tr>
+      <tr><td>6문단</td><td><b>해결 방안 ①</b> 화석 연료 감축·재생 에너지 확대 → <b>탈탄소 문명</b></td></tr>
+      <tr><td>7문단</td><td><b>해결 방안 ②</b> 육상·해양 <b>생태계 회복</b>, 감시·대응 역량 강화</td></tr>
+      <tr><td>8문단</td><td><b>해결 방안 ③</b> <b>육류 소비 줄이기</b> — 개인 차원의 실천</td></tr>
+      <tr><th style="background:#f3effa;color:#6b4fa0">결론</th><td>9문단</td>
+          <td>선언을 넘어 <b>구체적 이행 계획과 지속적 점검·보완</b>이 필요함</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="h2"><span class="n">2</span>핵심 정리</div>
+  <div class="duo">
+    <div class="tcard">
+      <div class="tc-t"><span class="mk">1</span>수치로 말하는 글</div>
+      <div class="tc-b">400ppm·450ppm, 1도, 재해 건수 711→3,536, 생물종 1/4, 매일 100종. <b>출처를 밝힌 객관적 자료</b>로 주장을 뒷받침합니다.</div>
+    </div>
+    <div class="tcard v">
+      <div class="tc-t"><span class="mk">2</span>평균이 아니라 극단</div>
+      <div class="tc-b">"1도에 불과"하지만 위험한 이유는 <b>극한 기후와 악기상의 빈도·강도</b>가 높아지기 때문입니다.</div>
+    </div>
+    <div class="tcard r">
+      <div class="tc-t"><span class="mk">3</span>연쇄되는 피해</div>
+      <div class="tc-b">자연재해 → 환경 오염 → 식량·자원 갈등 → 생태계 변화 → 감염병. <b>한 가지가 다음을 부릅니다.</b></div>
+    </div>
+    <div class="tcard g">
+      <div class="tc-t"><span class="mk">4</span>과학자의 해결 방안</div>
+      <div class="tc-b">국가·산업(①②)에서 개인(③), 다시 국제 사회(결론)로 <b>범위를 넓혀 가며</b> 대책을 제시합니다.</div>
+    </div>
+  </div>
+
+  <div class="memo">
+    <b>제재 2와 비교할 때 —</b> 이 글은 <b class="kw">과학자의 관점</b>에서 기후 위기를 다뤘습니다.
+    측정값과 통계로 문제의 크기를 보이고, 과학적 원인 분석에서 해결 방안을 끌어냅니다.
+    다른 관점의 글과 나란히 놓고 <b>무엇을 문제로 보는가 · 누구의 책임으로 보는가 · 어떤 해결을 제안하는가</b>를
+    비교하면 주제 통합적 읽기가 됩니다.
+  </div>
+</section>
+
+</main>
+
+<button class="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="맨 위로">↑</button>
+
+<script>
+var UNITS = ['1. 세상을 밝히는 힘','1. 세상을 밝히는 힘','1. 세상을 밝히는 힘','1. 세상을 밝히는 힘','1. 세상을 밝히는 힘','1. 세상을 밝히는 힘','3. 더불어 사는 우리'];
+function go(idx){
+  document.querySelectorAll('.navtab').forEach(function(b,i){ b.classList.toggle('active', i===idx); });
+  document.querySelectorAll('.panel').forEach(function(p,i){ p.classList.toggle('active', i===idx); });
+  var u = document.getElementById('unitName');
+  if (u && UNITS[idx]) u.textContent = UNITS[idx];
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+</script>
+</body>
+</html>

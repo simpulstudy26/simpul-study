@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>/* 저장된 화면 모드를 먼저 적용해 깜빡임을 막는다 (기본 다크) */try{if(localStorage.getItem('simpul.theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
+  <meta name="robots" content="noindex">
+  <script>/* 자료 채우기는 관리자 맥북(로컬 서버)에서만. 배포된 사이트에서는 관리자 페이지로 보냄 */
+    if (!/^(127\.0\.0\.1|localhost|\[::1\])$/.test(location.hostname)) location.replace('./admin.html');</script>
+  <title>자동화 센터 · 심풀스터디</title>
+  <meta name="theme-color" content="#09090b">
+  <link rel="stylesheet" href="./styles/site.css">
+  <script src="./scripts/catalog.js" defer></script>
+  <script src="./scripts/common.js" defer></script>
+  <script src="./scripts/automation.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="site-logo" href="./index.html"><img src="./assets/simpul-logo-white.png" alt="심풀스터디 홈" width="695" height="257"></a>
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="./automation.html" aria-current="page">자동화 센터</a>
+        <a href="./cloud.html">무한 문제</a>
+        <a href="./teacher.html">출제실</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap auto-wrap">
+    <div class="page-head">
+      <nav class="crumbs" aria-label="현재 위치"><a href="./index.html">홈</a> › 자동화 센터</nav>
+      <h1>자료만 올리면 끝나는 자동 출제</h1>
+      <p>자료를 올리면 글자 추출 → 과목·단원 판별 → AI 문제 생성 → 정답 검증 → 무한 문제 클라우드 공개까지 자동으로 진행돼요. 서버가 켜져 있는 동안 단원별 문제 수가 목표보다 적으면 계속 보충해요.</p>
+    </div>
+
+    <p class="notice" id="auto-notice" role="status">자동화 서버 연결을 확인하고 있어요.</p>
+
+    <dl class="cloud-stats auto-stats" aria-label="현황">
+      <div><dt>공개 문제</dt><dd id="s-approved">–</dd></div>
+      <div><dt>검토 대기</dt><dd id="s-review">–</dd></div>
+      <div><dt>올린 자료</dt><dd id="s-materials">–</dd></div>
+      <div><dt>대기 작업</dt><dd id="s-queued">–</dd></div>
+    </dl>
+    <div class="provider-row" id="provider-row" aria-label="AI 연결 상태"></div>
+
+    <form class="section panel" id="upload-form" novalidate>
+      <h2 class="section-title">1. 자료 올리기</h2>
+      <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-describedby="drop-help">
+        <strong>여기에 파일을 끌어다 놓거나 눌러서 고르세요</strong>
+        <span id="drop-help">PDF · 사진(JPG/PNG/WEBP) · HTML · TXT · MD · DOCX · RTF · 한 번에 30개, 합계 80MB</span>
+        <input id="upload-files" type="file" multiple hidden accept=".pdf,.jpg,.jpeg,.png,.webp,.html,.htm,.txt,.md,.csv,.json,.docx,.doc,.rtf,.odt,.pages">
+      </div>
+      <ul class="file-list" id="upload-list"></ul>
+      <div class="form-grid" style="margin-top:14px">
+        <label class="field"><span>과목</span><select class="select" id="up-subject"><option value="">AI가 자동 판별</option></select></label>
+        <label class="field"><span>단원 (비우면 자동)</span><input class="input" id="up-unit" list="unit-options" maxlength="120" placeholder="예: 공통수학1 · 이차방정식"><datalist id="unit-options"></datalist></label>
+        <label class="field"><span>난이도</span>
+          <select class="select" id="up-difficulty"><option value="mixed">섞어서</option><option value="easy">쉬움</option><option value="medium">보통</option><option value="hard">어려움</option></select></label>
+        <label class="field"><span>자료당 처음 만들 문항 수</span><input class="input" id="up-count" type="number" min="1" max="200" value="10"></label>
+        <label class="field"><span>사용할 AI</span>
+          <select class="select" id="up-provider"><option value="auto">자동 (API 우선, 실패하면 로컬)</option><option value="ollama">로컬 AI (Ollama)</option><option value="gemini">API (Google Gemini)</option></select></label>
+      </div>
+      <div class="toolbar" style="margin-top:16px">
+        <button class="btn btn-primary" id="upload-btn" type="submit">올리고 자동 처리 시작</button>
+        <button class="btn btn-secondary" id="import-btn" type="button">지금 시험 버전 자료 전부 불러오기</button>
+      </div>
+      <p class="status-line" id="upload-status" role="status"></p>
+      <p class="status-line tip">폴더로도 넣을 수 있어요: <code id="inbox-path">simpul-3.0/inbox</code> 안의 과목 폴더(예: 수학)에 파일을 복사하면 5초 안에 자동으로 처리돼요.</p>
+    </form>
+
+    <section class="section panel" aria-labelledby="jobs-title">
+      <h2 class="section-title" id="jobs-title">2. 진행 중인 작업 <small id="jobs-count"></small></h2>
+      <ul class="job-list" id="job-list"></ul>
+    </section>
+
+    <section class="section panel" aria-labelledby="units-title">
+      <h2 class="section-title" id="units-title">3. 단원별 문제 클라우드</h2>
+      <div class="table-wrap"><table class="unit-table">
+        <thead><tr><th>과목</th><th>단원</th><th>공개</th><th>검토</th><th></th></tr></thead>
+        <tbody id="unit-rows"></tbody>
+      </table></div>
+    </section>
+
+    <section class="section panel" aria-labelledby="review-title">
+      <h2 class="section-title" id="review-title">4. 문제 검토</h2>
+      <div class="toolbar">
+        <select class="select" id="review-status" aria-label="보기 상태" style="width:auto">
+          <option value="review">검토 대기 (검증 실패·수동 공개)</option>
+          <option value="approved">공개 중</option>
+          <option value="rejected">내린 문제</option>
+        </select>
+        <select class="select" id="review-subject" aria-label="과목" style="width:auto"><option value="">모든 과목</option></select>
+      </div>
+      <div class="question-list" id="review-list"></div>
+    </section>
+
+    <form class="section panel" id="settings-form">
+      <h2 class="section-title">5. 자동화 설정</h2>
+      <div class="form-grid">
+        <label class="check"><input type="checkbox" id="set-auto_publish"> 검증 통과 문제 바로 공개</label>
+        <label class="check"><input type="checkbox" id="set-verify"> AI 정답 재검증</label>
+        <label class="check"><input type="checkbox" id="set-keeper_enabled"> 무한 보충 켜기</label>
+        <label class="field"><span>단원별 유지 문항 수</span><input class="input" type="number" min="5" max="5000" id="set-keeper_target"></label>
+        <label class="field"><span>무한 보충에 쓸 AI</span><select class="select" id="set-keeper_provider"><option value="auto">자동 (API 우선, 안 되면 로컬)</option><option value="ollama">로컬 AI만 (무료, 느림)</option><option value="gemini">API만</option></select></label>
+        <label class="field"><span>로컬 AI 모델</span><select class="select" id="set-ollama_model"><option value="">자동 선택</option></select></label>
+        <label class="field"><span>업로드 기본 AI</span><select class="select" id="set-provider"><option value="auto">자동</option><option value="ollama">로컬 AI</option><option value="gemini">API</option></select></label>
+        <label class="field"><span>자료당 기본 문항 수</span><input class="input" type="number" min="1" max="200" id="set-default_count"></label>
+      </div>
+      <p class="status-line" id="settings-status" role="status">바꾸면 바로 저장돼요.</p>
+    </form>
+
+    <section class="section panel" aria-labelledby="log-title">
+      <h2 class="section-title" id="log-title">최근 기록</h2>
+      <ol class="log-list" id="log-list"></ol>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>자동화 센터는 맥북에서 ‘SIMPUL 실행’으로 연 로컬 서버에서만 작동해요. 공개된 문제는 site/cloud/ 폴더에 저장돼 사이트와 함께 배포돼요.</span>
+      <a href="./cloud.html">무한 문제 클라우드 보기</a>
+    </div>
+  </footer>
+</body>
+</html>

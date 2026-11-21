@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>/* 저장된 화면 모드를 먼저 적용해 깜빡임을 막는다 (기본 다크) */try{if(localStorage.getItem('simpul.theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
+  <meta name="robots" content="noindex, nofollow">
+  <title>관리자 · 심풀스터디</title>
+  <meta name="theme-color" content="#09090b">
+  <link rel="stylesheet" href="./styles/site.css">
+  <script src="./scripts/catalog.js" defer></script>
+  <script src="./scripts/common.js" defer></script>
+  <script src="./scripts/admin.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="site-logo" href="./index.html"><img src="./assets/simpul-logo-white.png" alt="심풀스터디 홈" width="695" height="257"></a>
+      <nav class="site-nav" aria-label="관리자 메뉴" id="admin-nav" hidden>
+        <a href="#stats">현황</a>
+        <a href="#concepts">범위 개념</a>
+        <a href="#api">API 관리</a>
+        <button class="nav-btn" type="button" id="logout">로그아웃</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap auto-wrap">
+    <div class="page-head">
+      <h1>관리자</h1>
+      <p>2학기 기말고사 범위 개념 업데이트, 사용자 현황, AI API를 관리해요.</p>
+    </div>
+
+    <form class="panel login-panel" id="login-form">
+      <h2 class="section-title">관리자 로그인</h2>
+      <div class="field">
+        <label for="login-password"><span>비밀번호</span></label>
+        <div class="pw-wrap">
+          <input class="input" id="login-password" type="password" autocomplete="current-password" autocapitalize="off" spellcheck="false" required aria-describedby="login-caps">
+          <button class="btn btn-secondary btn-sm pw-toggle" type="button" id="login-show" aria-controls="login-password" aria-pressed="false">보기</button>
+        </div>
+        <p class="pw-caps" id="login-caps" role="status" hidden>Caps Lock이 켜져 있어요. 대문자로 입력되고 있어요.</p>
+      </div>
+      <div class="toolbar" style="margin-top:14px"><button class="btn btn-primary" type="submit">로그인</button></div>
+      <p class="status-line" id="login-status" role="status"></p>
+    </form>
+
+    <div id="admin-app" hidden>
+      <!-- 현황 -->
+      <section class="section panel" id="stats" aria-labelledby="stats-title">
+        <h2 class="section-title" id="stats-title">사용자 현황 <small id="stats-updated"></small></h2>
+        <dl class="cloud-stats">
+          <div><dt>지금 접속 중</dt><dd id="st-online">–</dd></div>
+          <div><dt>오늘 방문 기기</dt><dd id="st-today">–</dd></div>
+          <div><dt>오늘 추정 인원</dt><dd id="st-people">–</dd></div>
+          <div><dt>전체 기기</dt><dd id="st-total">–</dd></div>
+        </dl>
+        <dl class="cloud-stats" style="margin-top:8px">
+          <div><dt>오늘 처음 온 기기</dt><dd id="st-new">–</dd></div>
+          <div><dt>오늘 다시 온 기기</dt><dd id="st-back">–</dd></div>
+          <div><dt>오늘 들어온 횟수</dt><dd><span id="st-entries">–</span> <small class="st-small" id="st-entries-avg"></small></dd></div>
+          <div><dt>빼고 센 관리자 기기</dt><dd><span id="st-admin">–</span> <button class="linkish st-small" type="button" id="st-unmark">초기화</button></dd></div>
+        </dl>
+        <dl class="cloud-stats" style="margin-top:8px">
+          <div><dt>오늘 문제 만들기</dt><dd id="st-req">–</dd></div>
+          <div><dt>오늘 만든 문제</dt><dd id="st-q">–</dd></div>
+          <div><dt>오늘 실패</dt><dd id="st-fail">–</dd></div>
+          <div><dt>범위 개념 단원</dt><dd id="st-units">–</dd></div>
+        </dl>
+        <h3 class="sub-title">최근 14일</h3>
+        <div class="chart" id="st-chart" role="img" aria-label="최근 14일 방문자와 문제 만들기 횟수"></div>
+        <h3 class="sub-title">중복 의심 묶음 <small>오늘 · 같은 인터넷 연결</small></h3>
+        <p class="status-line" id="st-dupes-sum" style="margin:0 0 10px"></p>
+        <ul class="item-list" id="st-dupes"><li class="empty">불러오는 중…</li></ul>
+        <p class="tip">사용자는 로그인 없이 <b>브라우저마다 익명 번호</b>로 세요. 같은 브라우저로 여러 번 들어오면 기기 1대, ‘들어온 횟수’는 새 탭·새로 연 브라우저마다 1번씩 늘어요.
+          한 사람이 폰·노트북·시크릿 창으로 들어오면 기기가 여러 대로 잡혀서, <b>같은 인터넷 연결 + 같은 기기 종류</b>는 한 사람으로 보고 ‘추정 인원’을 계산해요.
+          학교 와이파이처럼 여럿이 한 연결을 쓰면 같은 기종 친구들이 한 명으로 합쳐질 수 있어 정확하지 않아요. IP 주소 원문과 브라우저 정보 원문은 저장하지 않아요(해시 8글자와 ‘iPhone · Safari’ 같은 이름만).
+          관리자로 로그인한 기기는 모든 숫자에서 빠져요. ‘지금 접속 중’은 최근 5분 안에 사이트를 보고 있던 기기 수예요.</p>
+      </section>
+
+      <!-- 범위 개념 -->
+      <section class="section panel" id="concepts" aria-labelledby="concepts-title">
+        <h2 class="section-title" id="concepts-title">2학기 기말고사 범위 개념 업데이트</h2>
+        <p class="tip">교과서·학습지·선생님 프린트를 올리면 AI가 단원별 핵심 개념을 정리해요. 확인하고 저장하면 학생 화면에 보이고, 학생이 만드는 문제도 이 범위 안에서만 나와요. 올린 자료는 Google AI(무료 등급)로 보내지니 학생 개인정보가 담긴 자료는 올리지 마세요.</p>
+        <form id="extract-form" novalidate>
+          <div class="form-grid">
+            <label class="field"><span>과목</span><select class="select" id="ex-subject"></select></label>
+            <label class="field"><span>단원 이름 (비우면 AI가 나눔)</span><input class="input" id="ex-unit" maxlength="120" placeholder="예: 도형의 방정식"></label>
+            <label class="field"><span>시험 범위 안내 (선택)</span><input class="input" id="ex-scope" maxlength="500" placeholder="예: 교과서 112~168쪽, 프린트 3~5"></label>
+            <div class="field span-all">
+              <span id="ex-files-label">자료 파일 (PDF·사진·HTML·TXT · 한 번에 10개, 합계 18MB)</span>
+              <input class="input" id="ex-files" type="file" multiple accept=".pdf,.jpg,.jpeg,.png,.webp,.html,.htm,.txt,.md,.csv" aria-labelledby="ex-files-label">
+            </div>
+          </div>
+          <div class="toolbar" style="margin-top:14px"><button class="btn btn-primary" id="ex-btn" type="submit">AI로 개념 정리하기</button></div>
+          <p class="status-line" id="ex-status" role="status"></p>
+        </form>
+        <div id="draft" hidden>
+          <h3 class="sub-title">정리 결과 확인 <small>고칠 부분은 고친 뒤 저장하세요</small></h3>
+          <div class="question-list" id="draft-list"></div>
+          <div class="toolbar" style="margin-top:14px">
+            <button class="btn btn-primary" id="draft-save" type="button">선택한 단원 저장 (학생에게 공개)</button>
+            <button class="btn btn-secondary" id="draft-cancel" type="button">버리기</button>
+          </div>
+        </div>
+        <h3 class="sub-title">저장된 범위 개념</h3>
+        <div id="concept-list"></div>
+      </section>
+
+      <!-- API -->
+      <section class="section panel" id="api" aria-labelledby="api-title">
+        <h2 class="section-title" id="api-title">API 관리</h2>
+        <p class="tip">무료로 운영 중이에요. Gemini 무료 등급은 모델마다 하루 사용량이 따로 있어서, 기본 모델이 막히면 예비 모델로 넘어가요. 정확한 무료 한도는 Google AI Studio의 사용량 화면에서 볼 수 있어요. 무료 등급에 보낸 내용은 Google이 서비스 개선에 쓸 수 있어요.</p>
+        <form id="config-form" novalidate>
+          <div class="form-grid">
+            <label class="check"><input type="checkbox" id="cf-enabled"> 학생 문제 만들기 켜기</label>
+            <label class="check span-2"><input type="checkbox" id="cf-verify"> 정답 검사 후 통과한 문제만 주기 (AI 호출 2배, 정확도↑)</label>
+            <label class="field"><span>사용자 1명 하루 문제 만들기 횟수</span><input class="input" id="cf-daily_limit" type="number" min="0" max="1000"></label>
+            <label class="field"><span>사이트 전체 하루 최대 횟수 (무료 한도 보호)</span><input class="input" id="cf-global_daily_limit" type="number" min="0" max="100000"></label>
+            <label class="field"><span>기본 모델</span><input class="input" id="cf-model" list="model-list" maxlength="60"></label>
+            <label class="field span-2"><span>예비 모델 (쉼표로 여러 개 · 무료 한도가 차면 차례로 사용)</span><input class="input" id="cf-fallback_model" maxlength="200"></label>
+            <datalist id="model-list"></datalist>
+            <label class="field span-all"><span>학생 화면 안내 문구 (선택)</span><input class="input" id="cf-notice" maxlength="300" placeholder="예: 시험 전날은 문제 만들기를 쉽니다."></label>
+          </div>
+          <div class="toolbar" style="margin-top:14px">
+            <button class="btn btn-primary" type="submit">설정 저장</button>
+            <button class="btn btn-secondary" type="button" id="load-models">사용 가능한 모델 불러오기</button>
+          </div>
+        </form>
+        <div class="key-box">
+          <p><strong>Gemini API 키</strong> <span id="key-state"></span></p>
+          <div class="search-box">
+            <label class="visually-hidden" for="key-input">새 API 키</label>
+            <input class="input" id="key-input" type="password" autocomplete="off" placeholder="새 키를 붙여 넣으면 바로 교체돼요">
+            <button class="btn btn-secondary" type="button" id="key-save">키 저장</button>
+          </div>
+          <div class="toolbar">
+            <button class="btn btn-secondary" type="button" id="key-test">연결 테스트</button>
+            <button class="btn btn-secondary" type="button" id="key-clear">관리자 페이지 키 지우기</button>
+          </div>
+        </div>
+        <p class="status-line" id="cf-status" role="status"></p>
+      </section>
+
+      <section class="section panel" id="groups" aria-labelledby="groups-title">
+        <h2 class="section-title" id="groups-title">공부 타이머 랭킹 그룹</h2>
+        <p class="tip">학생들이 만든 반 그룹이에요. 그룹 이름은 반 랭킹에서 모두에게 보이니, 부적절한 이름은 지워 주세요. 지우면 멤버도 모두 빠져요.</p>
+        <ul class="item-list" id="group-list"><li class="empty">불러오는 중…</li></ul>
+      </section>
+
+      <section class="section panel" aria-labelledby="tools-title">
+        <h2 class="section-title" id="tools-title">맥북 전용 도구</h2>
+        <p class="tip">아래 도구는 맥북에서 ‘SIMPUL 실행’으로 연 로컬 서버(http://127.0.0.1:8001)에서만 작동해요. 공용 문제 은행을 대량으로 채울 때 써요.</p>
+        <ul class="item-list">
+          <li><a class="item-row" href="http://127.0.0.1:8001/automation.html"><span class="item-title">자동화 센터</span><span class="item-meta">자료를 올리면 공용 문제 은행(무한 문제)을 자동으로 채워요</span><span class="item-action">열기 →</span></a></li>
+          <li><a class="item-row" href="http://127.0.0.1:8001/teacher.html"><span class="item-title">출제실</span><span class="item-meta">문제 5개 초안을 바로 만들어 검토해요</span><span class="item-action">열기 →</span></a></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>관리자 로그인은 12시간 동안 유지돼요. 공용 컴퓨터에서는 꼭 로그아웃하세요.</span>
+      <a href="./index.html">학생용 홈</a>
+    </div>
+  </footer>
+</body>
+</html>

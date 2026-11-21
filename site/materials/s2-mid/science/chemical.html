@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>통합과학2 화학 파트</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+--primary:#2563eb;--primary-light:#eff6ff;
+--green:#16a34a;--green-light:#f0fdf4;
+--purple:#7c3aed;--purple-light:#f5f3ff;
+--orange:#ea580c;--orange-light:#fff7ed;
+--teal:#0d9488;--teal-light:#f0fdfa;
+--rose:#e11d48;--rose-light:#fff1f2;
+--gray:#475569;--gray-light:#f1f5f9;
+--bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#0f172a;--text-sec:#475569;
+--shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;font-size:14.5px;line-height:1.8;color:var(--text);background:var(--bg)}
+b,strong{font-weight:700}
+
+/* header */
+.page-header{position:sticky;top:0;z-index:50;background:var(--surface);border-bottom:1px solid var(--border);box-shadow:var(--shadow)}
+.header-inner{max-width:980px;margin:0 auto;padding:14px 20px 0}
+.subject-label{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--text-sec);text-transform:uppercase}
+.page-title{font-size:19px;font-weight:700;display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:2px 0 10px}
+.badge-unit{font-size:11.5px;font-weight:700;padding:2px 10px;border-radius:999px;background:var(--primary-light);color:var(--primary)}
+.badge-unit.teal{background:var(--teal-light);color:var(--teal)}
+.badge-unit.rose{background:var(--rose-light);color:var(--rose)}
+.tab-bar{display:flex;align-items:flex-end;gap:2px;overflow-x:auto;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab-group-label{font-size:10.5px;font-weight:700;color:var(--text-sec);opacity:.55;padding:0 4px 11px 10px;white-space:nowrap;user-select:none}
+.tab-group-label:first-child{padding-left:0}
+.tab-btn{background:none;border:none;border-bottom:3px solid transparent;padding:8px 10px 9px;font-family:inherit;font-size:13px;font-weight:500;color:var(--text-sec);cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{color:var(--primary);border-bottom-color:var(--primary);font-weight:700}
+.tab-num{display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;border-radius:50%;background:var(--border);font-size:10.5px;font-weight:700;color:var(--text-sec)}
+.tab-btn.active .tab-num{background:var(--primary);color:#fff}
+
+/* layout */
+.content-wrap{max-width:980px;margin:0 auto;padding:28px 20px 100px}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.unit-banner{display:inline-block;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;background:var(--primary-light);color:var(--primary);margin-bottom:18px}
+.section-title{font-size:17.5px;font-weight:700;padding-bottom:6px;border-bottom:2px solid var(--primary);margin:34px 0 14px;scroll-margin-top:130px}
+.section-title:first-of-type{margin-top:6px}
+.subsection-title{font-size:14.5px;font-weight:700;border-left:3px solid var(--primary);padding-left:9px;margin:20px 0 10px;scroll-margin-top:130px}
+.sub2-title{display:inline-block;font-size:13px;font-weight:700;background:#f1f5f9;border:1px solid var(--border);border-radius:6px;padding:1px 10px;margin:12px 0 8px}
+p{margin:6px 0}
+ul.list{padding-left:20px;margin:6px 0}
+ul.list li{margin:2px 0}
+.page-ref{font-size:11.5px;font-weight:500;color:var(--text-sec);margin-left:6px}
+
+/* boxes */
+.def-box,.green-box,.purple-box,.teal-box,.orange-box,.rose-box{border-left:4px solid var(--primary);background:var(--primary-light);border-radius:0 8px 8px 0;padding:12px 16px;margin:10px 0}
+.green-box{border-color:var(--green);background:var(--green-light)}
+.purple-box{border-color:var(--purple);background:var(--purple-light)}
+.teal-box{border-color:var(--teal);background:var(--teal-light)}
+.orange-box{border-color:var(--orange);background:var(--orange-light)}
+.rose-box{border-color:var(--rose);background:var(--rose-light)}
+.box-label{font-size:12px;font-weight:700;margin-bottom:2px;color:var(--text-sec)}
+.note,.tip,.warning{border-radius:8px;padding:10px 14px;margin:10px 0;font-size:13.5px}
+.note{background:#fefce8;border:1px solid #fde047}
+.tip{background:var(--green-light);border:1px solid #bbf7d0}
+.warning{background:var(--rose-light);border:1px solid #fecdd3}
+
+/* grids & cards */
+.factor-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:12px 0}
+.factor-grid.three{grid-template-columns:repeat(3,1fr)}
+.factor-grid.four{grid-template-columns:repeat(4,1fr)}
+.factor-card{background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--gray);border-radius:8px;padding:12px 14px;box-shadow:var(--shadow);font-size:13.5px}
+.factor-card h4{font-size:14px;margin-bottom:4px}
+.factor-card.blue{border-top-color:var(--primary)}.factor-card.blue h4{color:var(--primary)}
+.factor-card.green{border-top-color:var(--green)}.factor-card.green h4{color:var(--green)}
+.factor-card.purple{border-top-color:var(--purple)}.factor-card.purple h4{color:var(--purple)}
+.factor-card.orange{border-top-color:var(--orange)}.factor-card.orange h4{color:var(--orange)}
+.factor-card.teal{border-top-color:var(--teal)}.factor-card.teal h4{color:var(--teal)}
+.factor-card.rose{border-top-color:var(--rose)}.factor-card.rose h4{color:var(--rose)}
+.factor-card ul{padding-left:18px}
+.factor-card .sub{font-size:12.5px;color:var(--text-sec)}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;margin:10px 0}
+.cmp-table,.ex-table{width:100%;border-collapse:collapse;background:var(--surface);font-size:13px;box-shadow:var(--shadow);border-radius:8px;overflow:hidden}
+.cmp-table th,.cmp-table td,.ex-table th,.ex-table td{border:1px solid var(--border);padding:8px 10px;vertical-align:top;text-align:left}
+.cmp-table thead th{background:var(--primary);color:#fff;font-weight:700}
+.cmp-table.green-th thead th{background:var(--green)}
+.cmp-table.purple-th thead th{background:var(--purple)}
+.cmp-table.teal-th thead th{background:var(--teal)}
+.cmp-table.orange-th thead th{background:var(--orange)}
+.cmp-table.rose-th thead th{background:var(--rose)}
+.cmp-table tbody td:first-child{font-weight:700;color:var(--primary);white-space:nowrap;background:#fafcff}
+.cmp-table.green-th tbody td:first-child{color:var(--green)}
+.cmp-table.purple-th tbody td:first-child{color:var(--purple)}
+.cmp-table.teal-th tbody td:first-child{color:var(--teal)}
+.cmp-table.orange-th tbody td:first-child{color:var(--orange)}
+.cmp-table.rose-th tbody td:first-child{color:var(--rose)}
+.ex-table thead th{background:#334155;color:#fff}
+.ex-table td.c,.ex-table th.c{text-align:center}
+
+/* badges */
+.badge{display:inline-block;font-size:11.5px;font-weight:700;padding:1px 8px;border-radius:999px;margin:1px 2px;white-space:nowrap}
+.badge-blue{background:var(--primary-light);color:var(--primary)}
+.badge-green{background:var(--green-light);color:var(--green)}
+.badge-purple{background:var(--purple-light);color:var(--purple)}
+.badge-orange{background:var(--orange-light);color:var(--orange)}
+.badge-teal{background:var(--teal-light);color:var(--teal)}
+.badge-rose{background:var(--rose-light);color:var(--rose)}
+.badge-gray{background:var(--gray-light);color:var(--gray)}
+
+/* flow & stage */
+.flow-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:10px 0}
+.flow-item{background:var(--surface);border:1.5px solid var(--primary);color:var(--text);border-radius:8px;padding:6px 12px;font-size:13px;font-weight:700;box-shadow:var(--shadow)}
+.flow-item.green{border-color:var(--green)}.flow-item.purple{border-color:var(--purple)}.flow-item.teal{border-color:var(--teal)}.flow-item.orange{border-color:var(--orange)}.flow-item.rose{border-color:var(--rose)}
+.flow-item small{display:block;font-weight:500;font-size:11.5px;color:var(--text-sec)}
+.flow-arrow{color:var(--text-sec);font-weight:700}
+.stage-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+.stage-row.three{grid-template-columns:repeat(3,1fr)}
+.stage-row.five{grid-template-columns:repeat(5,1fr)}
+.stage-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:13px;position:relative;box-shadow:var(--shadow)}
+.stage-item .st-num{font-size:12px;font-weight:900;color:var(--primary)}
+.stage-item .st-name{font-weight:700;font-size:14px;margin-bottom:3px}
+.stage-item.hi{border:2px solid var(--primary);background:var(--primary-light)}
+.stage-row.green .st-num{color:var(--green)}.stage-row.green .stage-item.hi{border-color:var(--green);background:var(--green-light)}
+.stage-row.purple .st-num{color:var(--purple)}.stage-row.purple .stage-item.hi{border-color:var(--purple);background:var(--purple-light)}
+
+/* rule & pov cards */
+.rule-card{border:2px solid var(--primary);border-radius:10px;padding:12px 16px;margin:12px 0;background:var(--surface)}
+.rule-card.green{border-color:var(--green)}.rule-card.purple{border-color:var(--purple)}.rule-card.teal{border-color:var(--teal)}.rule-card.orange{border-color:var(--orange)}.rule-card.rose{border-color:var(--rose)}
+.rule-card h4{font-size:14.5px;margin-bottom:4px}
+.pov-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
+.pov-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;box-shadow:var(--shadow);font-size:13px}
+.pov-card .pv-num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--purple);color:#fff;font-size:12px;font-weight:700;margin-right:6px}
+.pov-card .pv-title{font-weight:700;font-size:14px}
+.pov-card .pv-who{font-size:12px;color:var(--purple);font-weight:700;margin:2px 0 4px}
+
+/* diagrams */
+.kit{display:flex;align-items:stretch;border:2px solid #94a3b8;border-radius:10px;overflow:hidden;margin:12px 0;background:#fff;font-size:12px;font-weight:700;text-align:center}
+.kit>div{padding:10px 6px;border-right:1px dashed #cbd5e1;display:flex;flex-direction:column;justify-content:center;gap:2px}
+.kit>div:last-child{border-right:none}
+.kit .k-sample{flex:1.2;background:#f1f5f9}
+.kit .k-ab{flex:1.2;background:#fef3c7}
+.kit .k-line{flex:.9;background:#fff}
+.kit .k-line .bar{width:6px;height:34px;background:var(--rose);margin:0 auto;border-radius:2px}
+.kit .k-end{flex:.9;background:#e2e8f0}
+.kit small{font-weight:500;color:var(--text-sec)}
+.kit-dir{font-size:12px;color:var(--green);font-weight:700;margin-top:-6px}
+.chrom{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.chrom .cbox{border:1px solid var(--border);background:#fff;border-radius:8px;padding:10px;text-align:center;font-size:12.5px}
+.chrom .cbox .ph{font-weight:900;color:var(--primary);font-size:13px}
+.chrom .pair{display:flex;justify-content:center;gap:4px;margin:6px 0}
+.chrom .c{width:9px;height:30px;border-radius:5px}
+.chrom .c.a{background:#3b82f6}.chrom .c.b{background:#f43f5e}
+.chrom .c.ab{background:linear-gradient(#3b82f6 0 55%,#f43f5e 55%)}.chrom .c.ba{background:linear-gradient(#f43f5e 0 55%,#3b82f6 55%)}
+.bubble-list{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.bubble{background:var(--purple-light);border:1px solid #ddd6fe;border-radius:18px;padding:6px 14px;font-size:13px}
+.bubble.t{background:var(--teal-light);border-color:#99f6e4}
+
+/* map */
+.map-root{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin:14px 0;overflow:hidden;box-shadow:var(--shadow)}
+.map-root-head{width:100%;border:none;text-align:left;font-family:inherit;font-size:14.5px;font-weight:700;color:#fff;padding:10px 16px;cursor:pointer;background:var(--primary)}
+.map-root.green .map-root-head{background:var(--green)}
+.map-root.purple .map-root-head{background:var(--purple)}
+.map-root.teal .map-root-head{background:var(--teal)}
+.map-root.orange .map-root-head{background:var(--orange)}
+.map-root.rose .map-root-head{background:var(--rose)}
+.map-root.gray .map-root-head{background:var(--gray)}
+.map-root-head:hover{filter:brightness(1.08)}
+.map-children{display:flex;flex-wrap:wrap;gap:8px;padding:12px 14px}
+.map-node{border:1px solid var(--border);background:#f8fafc;border-radius:8px;padding:6px 12px;font-family:inherit;font-size:13px;cursor:pointer;color:var(--text)}
+.map-node:hover{background:var(--primary-light);border-color:var(--primary)}
+.map-group{display:flex;flex-direction:column;gap:4px;border:1px solid var(--border);border-radius:8px;padding:6px 10px;background:#f8fafc}
+.map-group>.map-node{border:none;background:none;padding:0;font-weight:700;text-align:left}
+.map-subrow{display:flex;flex-wrap:wrap;gap:4px;border-left:2px solid #cbd5e1;padding-left:8px;margin-left:4px}
+.map-subchip{border:1px solid var(--border);background:#fff;border-radius:999px;padding:1px 9px;font-family:inherit;font-size:11.5px;cursor:pointer;color:var(--text-sec)}
+.map-subchip:hover{border-color:var(--primary);color:var(--primary)}
+
+.totop{position:fixed;right:18px;bottom:18px;width:42px;height:42px;border-radius:50%;border:none;background:var(--primary);color:#fff;font-size:18px;cursor:pointer;box-shadow:0 4px 10px rgba(37,99,235,.35);z-index:60}
+
+@media (max-width:680px){
+.factor-grid,.factor-grid.three,.factor-grid.four,.pov-grid,.stage-row,.stage-row.three,.stage-row.five,.chrom{grid-template-columns:1fr}
+.cmp-table,.ex-table{font-size:12px}
+.content-wrap{padding:20px 14px 100px}
+.kit{flex-direction:column}
+.kit>div{border-right:none;border-bottom:1px dashed #cbd5e1}
+}
+
+/* ---- additions for restructured version ---- */
+.lead{font-size:13.5px;color:var(--text-sec);background:var(--surface);border:1px dashed var(--border);border-radius:8px;padding:8px 14px;margin:0 0 16px}
+.lead b{color:var(--text)}
+.key-q{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin:10px 0;box-shadow:var(--shadow);font-size:13.5px}
+.key-q .kq-tag{flex:none;font-size:11px;font-weight:900;color:#fff;background:var(--primary);border-radius:6px;padding:2px 8px;margin-top:2px}
+.nest{margin:14px 0;font-size:13px}
+.nest .lv{border:2px solid var(--teal);border-radius:12px;padding:10px 14px 12px;background:#fff}
+.nest .lv .lv{margin-top:8px;border-color:#5eead4;background:var(--teal-light)}
+.nest .lv .lv .lv{border-color:#99f6e4;background:#fff}
+.nest .lv-name{font-weight:900;color:var(--teal)}
+.nest .lv-sub{color:var(--text-sec);font-size:12px}
+.cycle{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:6px;align-items:center;margin:12px 0}
+.cycle .cy{background:var(--teal-light);border:1.5px solid var(--teal);border-radius:10px;padding:8px 10px;text-align:center;font-weight:700;font-size:13px}
+.cycle .ar{font-weight:900;color:var(--teal);text-align:center}
+.cycle-desc{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.scale{display:flex;align-items:center;gap:8px;font-size:12px}
+.scale .track{flex:1;height:8px;border-radius:4px;background:#e2e8f0;overflow:hidden;min-width:60px}
+.scale .fill{height:100%;background:var(--rose);border-radius:4px}
+.link-btn{display:inline-flex;align-items:center;gap:6px;background:var(--rose);color:#fff !important;text-decoration:none;font-weight:700;font-size:13px;border-radius:8px;padding:7px 14px;margin:6px 0;box-shadow:0 2px 6px rgba(225,29,72,.25)}
+.link-btn:hover{filter:brightness(1.08)}
+.timeline{position:relative;margin:14px 0 14px 8px;padding-left:18px;border-left:3px solid #fdba74}
+.timeline .tl{position:relative;margin:0 0 10px;font-size:13px}
+.timeline .tl::before{content:'';position:absolute;left:-26px;top:5px;width:13px;height:13px;border-radius:50%;background:#fff;border:3px solid var(--orange)}
+.timeline .tl .yr{font-weight:900;color:var(--orange);margin-right:6px}
+.vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.vs-col{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);font-size:13px}
+.vs-col h4{margin:0;padding:8px 12px;color:#fff;font-size:13.5px}
+.vs-col ol{padding:10px 12px 10px 30px}
+.vs-col ol li{margin:3px 0}
+.check-list{list-style:none;padding:0;margin:8px 0}
+.check-list li{padding:6px 10px 6px 34px;position:relative;border-bottom:1px dashed var(--border);font-size:13.5px}
+.check-list li:last-child{border-bottom:none}
+.check-list li .mk{position:absolute;left:6px;top:6px;width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff}
+.mk.o{background:var(--green)}.mk.x{background:var(--rose)}
+.well-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0;text-align:center;font-size:12.5px}
+.well-grid .wg-h{font-weight:700;border-radius:6px;padding:3px 0}
+.well-grid .wg-h.ctrl{background:#fef3c7;color:#92400e}
+.well-grid .wg-h.exp{background:#fce7f3;color:#9d174d}
+@media (max-width:680px){
+.cycle{grid-template-columns:1fr}.cycle .ar{transform:rotate(90deg)}
+.cycle-desc,.vs-grid,.well-grid{grid-template-columns:1fr}
+}
+.sd-case{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:12px 0;box-shadow:var(--shadow)}
+.sd-head{font-weight:700;color:var(--teal);font-size:14px;margin-bottom:8px}
+.sd-sub{font-weight:500;color:var(--text-sec);font-size:12px}
+.sd-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sd-box{flex:1;min-width:200px;border:2px solid var(--border);border-radius:10px;padding:10px;text-align:center}
+.sd-box.win{border-color:var(--teal);background:var(--teal-light)}
+.sd-lab{font-weight:900;margin-bottom:6px}
+.forest{display:grid;grid-template-columns:repeat(6,26px);gap:5px;justify-content:center}
+.forest .tr{width:26px;height:26px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;color:#fff;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+.sd-cnt{font-size:12px;color:var(--text-sec);margin-top:6px}
+.sd-vs{font-size:22px;font-weight:900;color:var(--teal)}
+.sd-res{margin-top:8px;font-size:13.5px}
+.chem{font-family:'Times New Roman','Noto Sans KR',serif;font-size:1.08em;white-space:nowrap}
+.chem sub,.chem sup{font-size:.68em}
+.chem .coef{font-weight:700;color:#b45309;margin-right:1px}
+.chem .st{font-size:.72em;color:#64748b;margin-left:1px;font-family:'Noto Sans KR',sans-serif}
+.chem .op{margin:0 3px;color:#475569}
+.chem .arr{margin:0 6px;position:relative;display:inline-block}
+.chem .delta{position:absolute;left:50%;top:-12px;transform:translateX(-50%);font-size:.7em;color:#e11d48;font-weight:700}
+.eq-big{text-align:center;font-size:22px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 10px;margin:12px 0;box-shadow:var(--shadow);overflow-x:auto}
+.eq-mid{text-align:center;font-size:17px;background:#f8fafc;border-radius:8px;padding:8px;margin:6px 0;overflow-x:auto}
+.eq-sm{font-size:15px;margin-top:4px;overflow-x:auto}
+.steps{display:flex;flex-direction:column;gap:6px;margin:10px 0}
+.step{display:flex;align-items:center;flex-wrap:wrap;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 12px;font-size:17px}
+.step.done{border:2px solid var(--green);background:var(--green-light)}
+.step .sn{display:inline-flex;width:24px;height:24px;border-radius:50%;background:#0f172a;color:#fff;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none}
+.step .sc{font-size:12.5px;color:var(--text-sec);font-family:'Noto Sans KR',sans-serif}
+.atom-t{max-width:520px;margin:8px auto 16px}
+.atom-t td.ok{color:var(--green);font-weight:900;text-align:center}
+.redox{background:var(--surface);border:2px solid var(--border);border-radius:12px;padding:12px 16px;margin:12px 0;box-shadow:var(--shadow)}
+.rx-eq{text-align:center;font-size:22px;margin-bottom:4px;overflow-x:auto}
+.rx-note{font-size:14px;color:var(--text-sec);margin-left:8px}
+.rx-lab{display:flex;justify-content:space-around;font-size:11.5px;color:var(--text-sec);margin-bottom:6px}
+.rx-row{display:flex;align-items:center;flex-wrap:wrap;gap:8px;font-size:14px;padding:5px 8px;border-radius:8px;margin:4px 0}
+.rx-row.ox{background:var(--rose-light)}
+.rx-row.red{background:var(--orange-light)}
+.rx-tag{font-size:11.5px;font-weight:900;color:#fff;border-radius:6px;padding:1px 9px;flex:none}
+.rx-row.ox .rx-tag{background:var(--rose)}
+.rx-row.red .rx-tag{background:var(--orange)}
+.rule-card .rx-row{font-size:13.5px}
+.skip-box{border:2px dashed #94a3b8;background:#f8fafc;border-radius:12px;padding:10px 16px;margin:6px 0 16px}
+.skip-head{font-weight:700;font-size:14.5px;margin-bottom:4px}
+.skip-box ul{padding-left:20px;margin:4px 0}
+.skip-box p{font-size:13px;color:var(--text-sec)}
+.slag-fig{max-width:360px;margin:10px auto;border:3px solid #7c2d12;border-top:none;border-radius:0 0 14px 14px;overflow:hidden;text-align:center;font-size:13px;font-weight:700}
+.slag-fig .sl{background:#d6d3d1;padding:8px}
+.slag-fig .fe{background:#f97316;color:#fff;padding:14px}
+.ex-table.ab th.acid{background:#be123c}.ex-table.ab th.base{background:#1d4ed8}
+.ex-table td.hit{background:var(--rose-light);font-weight:700}
+.ex-table td.hitb{background:var(--primary-light);font-weight:700}
+.ion-t td.same{background:var(--teal-light);font-weight:700}
+.ionize{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;margin:12px 0}
+.iz-box{border:2px solid #94a3b8;border-radius:10px;padding:10px 14px;text-align:center;min-width:150px}
+.iz-t{font-weight:700;font-size:13px;margin-bottom:6px}
+.iz-mol{display:inline-flex;margin:3px}
+.at,.ion{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;font-weight:900;font-size:12px}
+.at.h,.ion.h{width:26px;height:26px;background:#e2e8f0;color:#0f172a}
+.at.cl,.ion.cl{width:36px;height:36px;background:#22c55e;color:#fff}
+.iz-mol .at.h{margin-right:-6px;z-index:1}
+.iz-ions{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;max-width:160px}
+.iz-arr{font-weight:900;color:var(--teal);font-size:18px}
+.struct{text-align:center}
+.struct pre{display:inline-block;text-align:left;font-family:'Courier New',monospace;font-size:16px;background:#0f172a;color:#e2e8f0;border-radius:10px;padding:12px 18px;line-height:1.35}
+.struct .hl{color:#fde047;font-weight:900}
+.ref-note{background:#f1f5f9;border:2px dashed #94a3b8;border-radius:10px;padding:10px 14px;margin:10px 0;font-size:14px}
+.series{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px;margin:10px 0;text-align:center}
+.sr-row{display:flex;flex-wrap:wrap;justify-content:center;gap:4px}
+.sr-row span{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:34px;border-radius:6px;font-weight:700;font-family:'Times New Roman',serif;font-size:16px;color:#fff;background:#7c3aed}
+.sr-row span:nth-child(n+6){background:#8b5cf6}.sr-row span:nth-child(n+10){background:#a78bfa}
+.sr-row span.h{background:#fff;color:#0f172a;border:2px dashed #0f172a}
+.sr-row span:nth-child(n+12){background:#cbd5e1;color:#0f172a}
+.sr-axis{display:flex;justify-content:space-between;font-size:12px;color:var(--text-sec);margin-top:6px}
+.sr-mn{margin-top:6px;font-size:13px;font-weight:700;color:var(--purple)}
+.ol{padding-left:20px}
+.fold{background:var(--surface);border:1px solid #94a3b8;border-radius:12px;margin:12px 0;box-shadow:var(--shadow);scroll-margin-top:130px}
+.fold>summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:15px;list-style:none;display:flex;align-items:center;gap:8px}
+.fold>summary::-webkit-details-marker{display:none}
+.fold>summary::before{content:'▶';font-size:11px;color:#64748b;transition:transform .2s}
+.fold[open]>summary::before{transform:rotate(90deg)}
+.fold-hint{font-size:11.5px;font-weight:500;color:var(--text-sec)}
+.fold[open] .fold-hint{display:none}
+.fold-body{padding:0 16px 12px}
+
+/* ================= QUIZ ================= */
+.quiz-section{margin-top:44px;border-top:3px dashed var(--border);padding-top:26px}
+.quiz-header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.quiz-title{font-size:17px;font-weight:700}
+.scoreboard{display:flex;flex-wrap:wrap;gap:6px}
+.score-chip{font-size:11.5px;font-weight:700;border-radius:999px;padding:3px 10px;border:1px solid var(--border);background:var(--surface)}
+.score-chip.ox{color:#2563eb;border-color:#bfdbfe;background:#eff6ff}
+.score-chip.mc{color:#16a34a;border-color:#bbf7d0;background:#f0fdf4}
+.score-chip.hard{color:#7c3aed;border-color:#ddd6fe;background:#f5f3ff}
+.quiz-type-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.qtype-btn{display:flex;align-items:center;gap:6px;border:1.5px solid var(--border);background:var(--surface);border-radius:10px;padding:7px 14px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;color:var(--text-sec)}
+.qtype-btn:hover{border-color:#94a3b8}
+.qtype-btn.active.ox{border-color:#2563eb;color:#2563eb;background:#eff6ff}
+.qtype-btn.active.mc{border-color:#16a34a;color:#16a34a;background:#f0fdf4}
+.qtype-btn.active.hard{border-color:#7c3aed;color:#7c3aed;background:#f5f3ff}
+.qtype-count{font-size:11px;font-weight:700;background:var(--gray-light);color:var(--text-sec);border-radius:999px;padding:1px 7px}
+.q-progress-wrap{display:flex;align-items:center;gap:10px;margin-bottom:14px;font-size:12px;color:var(--text-sec)}
+.q-progress-bar{flex:1;height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden}
+.q-progress-fill{height:100%;border-radius:4px;transition:width .3s}
+.q-card{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;box-shadow:var(--shadow)}
+.q-card.answered-correct{border-color:#86efac}
+.q-card.answered-wrong{border-color:#fda4af}
+.q-meta{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.q-num{font-size:12px;font-weight:900;color:var(--text-sec)}
+.q-difficulty{font-size:10.5px;font-weight:700;border-radius:999px;padding:1px 8px}
+.diff-basic{background:#eff6ff;color:#2563eb}
+.diff-mid{background:#f0fdf4;color:#16a34a}
+.diff-hard{background:#f5f3ff;color:#7c3aed}
+.q-text{font-weight:500;font-size:14px;margin-bottom:10px}
+.q-box{border:1px solid #cbd5e1;border-radius:8px;padding:8px 12px;margin:0 0 10px;background:#f8fafc;font-size:13.5px;position:relative}
+.q-box::before{content:'보기';position:absolute;top:-9px;left:12px;background:#f8fafc;padding:0 6px;font-size:11px;font-weight:700;color:var(--text-sec)}
+.q-box div{margin:3px 0}
+.ox-row{display:flex;gap:10px}
+.ox-btn{flex:1;max-width:160px;border:2px solid var(--border);background:#fff;border-radius:10px;padding:8px 0;font-size:20px;cursor:pointer;font-family:inherit}
+.ox-btn:hover:not(:disabled){border-color:#94a3b8}
+.ox-btn:disabled{cursor:default}
+.ox-btn.correct-picked{border-color:var(--green);background:var(--green-light)}
+.ox-btn.wrong-picked{border-color:var(--rose);background:var(--rose-light)}
+.ox-btn.correct-reveal{border-color:var(--green);border-style:dashed}
+.mc-options{display:flex;flex-direction:column;gap:6px}
+.mc-opt{display:flex;align-items:flex-start;gap:10px;text-align:left;border:1.5px solid var(--border);background:#fff;border-radius:8px;padding:8px 12px;font-family:inherit;font-size:13.5px;cursor:pointer;color:var(--text)}
+.mc-opt:hover:not(:disabled){border-color:#94a3b8;background:#f8fafc}
+.mc-opt:disabled{cursor:default}
+.mc-opt.correct{border-color:var(--green);background:var(--green-light)}
+.mc-opt.wrong{border-color:var(--rose);background:var(--rose-light)}
+.mc-opt-letter{flex:none;width:22px;height:22px;border-radius:50%;background:var(--gray-light);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--text-sec)}
+.mc-opt.correct .mc-opt-letter{background:var(--green);color:#fff}
+.mc-opt.wrong .mc-opt-letter{background:var(--rose);color:#fff}
+.q-feedback{margin-top:10px;border-radius:8px;padding:8px 12px;font-size:13px}
+.q-feedback.correct{background:var(--green-light);border:1px solid #bbf7d0}
+.q-feedback.wrong{background:var(--rose-light);border:1px solid #fecdd3}
+.quiz-result{background:var(--surface);border:2px solid var(--border);border-radius:14px;padding:18px;text-align:center;box-shadow:var(--shadow)}
+.quiz-result .big{font-size:30px;font-weight:900}
+.quiz-result .msg{color:var(--text-sec);margin:4px 0 12px}
+.mini-bar-wrap{max-width:420px;margin:0 auto 12px;text-align:left}
+.mini-bar-row{display:flex;align-items:center;gap:8px;font-size:12px;margin:5px 0}
+.mini-bar-label{width:60px;font-weight:700}
+.mini-bar-track{flex:1;height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden}
+.mini-bar-fill{height:100%;border-radius:4px}
+.mini-bar-val{width:52px;text-align:right;color:var(--text-sec)}
+.reset-btn{border:none;background:var(--primary);color:#fff;font-family:inherit;font-weight:700;font-size:13px;border-radius:8px;padding:8px 18px;cursor:pointer}
+.reset-btn.sm{background:#fff;color:var(--text-sec);border:1px solid var(--border);padding:4px 12px;font-size:12px}
+
+[id^="a-"],[id^="quiz-"]{scroll-margin-top:130px}
+</style>
+</head>
+<body>
+<header class="page-header">
+<div class="header-inner">
+<div class="subject-label">통합과학2 · 화학</div>
+<div class="page-title">통합과학2 화학 파트
+<span class="badge-unit">Ⅰ. 변화와 다양성 › 2. 화학 변화와 에너지 출입</span>
+</div>
+<nav class="tab-bar">
+<span class="tab-group-label">기본기</span>
+<button class="tab-btn active" onclick="switchTab(0)"><span class="tab-num">1</span>화학 반응식과 이온</button>
+<span class="tab-group-label">산화·환원</span>
+<button class="tab-btn" onclick="switchTab(1)"><span class="tab-num">2</span>산소의 이동</button>
+<button class="tab-btn" onclick="switchTab(2)"><span class="tab-num">3</span>전자의 이동</button>
+<button class="tab-btn" onclick="switchTab(3)"><span class="tab-num">4</span>생활 속 산화·환원</button>
+<span class="tab-group-label">산과 염기</span>
+<button class="tab-btn" onclick="switchTab(4)"><span class="tab-num">5</span>산과 염기의 성질</button>
+<button class="tab-btn" onclick="switchTab(5)"><span class="tab-num">6</span>산과 염기의 정체</button>
+<span class="tab-group-label">지도</span>
+<button class="tab-btn" onclick="switchTab(6)"><span class="tab-num">7</span>개념 한눈에 보기</button>
+</nav>
+</div>
+</header>
+
+<main class="content-wrap">
+
+<!-- ===================== TAB 0 : 기본기 ===================== -->
+<section class="tab-panel active" id="panel-0">
+<div class="unit-banner">📌 기본기 — 이 단원의 모든 반응식을 읽기 위한 준비</div>
+<div class="lead">🧭 <b>흐름</b> — 화학 반응식 읽는 법 → 질량 보존 법칙 → 원자 개수 맞추기(계수 맞추기) → 이온과 이온 화합물 읽기</div>
+
+<h2 class="section-title" id="a-grammar">✏️ 화학 반응식의 문법</h2>
+<div class="eq-big"><span class="chem"><span class="coef">6</span>CO<sub>2</sub> <span class="op">+</span> <span class="coef">6</span>H<sub>2</sub>O <span class="arr">⟶</span> C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> <span class="op">+</span> <span class="coef">6</span>O<sub>2</sub></span></div>
+<div class="tbl-wrap"><table class="cmp-table">
+<thead><tr><th>요소</th><th>표기</th><th>뜻</th></tr></thead>
+<tbody>
+<tr><td>반응물 → 생성물</td><td>화살표 왼쪽 / 오른쪽</td><td>반응 전 물질 / 반응 후 새로 생긴 물질</td></tr>
+<tr><td>계수</td><td>화학식 <b>앞</b>의 큰 숫자 <span class="chem"><span class="coef">6</span>CO<sub>2</sub></span></td><td>그 물질의 개수(입자 수의 비). 1은 생략한다.</td></tr>
+<tr><td>아래 첨자</td><td>원소 기호 <b>오른쪽 아래</b> 작은 숫자 <span class="chem">CO<sub>2</sub></span></td><td>한 물질 속 그 원자의 개수. <b>바꾸면 다른 물질</b>이 된다.</td></tr>
+<tr><td>기체 발생</td><td>↑</td><td>생성된 기체가 빠져나감 예) <span class="chem">CO<sub>2</sub>↑</span>, <span class="chem">H<sub>2</sub>↑</span></td></tr>
+<tr><td>이온의 전하</td><td>오른쪽 위 첨자 <span class="chem">Cu<sup>2+</sup></span> <span class="chem">O<sup>2−</sup></span></td><td><b>숫자 먼저, 부호 나중</b>(2+, 2−). 1은 생략(<span class="chem">Ag<sup>+</sup></span>, <span class="chem">Cl<sup>−</sup></span>)</td></tr>
+</tbody>
+</table></div>
+<div class="warning">⚠️ <b>계수 vs 아래 첨자</b>: <span class="chem"><span class="coef">2</span>H<sub>2</sub>O</span>는 '물 분자 2개'(H 4개, O 2개)이다. 원자 수를 맞추려고 아래 첨자를 바꾸면 전혀 다른 물질이 되므로, <b>원자 수는 반드시 계수로만 맞춘다</b>.</div>
+
+<h2 class="section-title" id="a-mass">⚖️ 질량 보존 법칙</h2>
+<div class="def-box">
+<div class="box-label">질량 보존 법칙</div>
+화학 반응이 일어날 때 반응 전 물질의 총질량 = 반응 후 물질의 총질량
+</div>
+<div class="flow-row">
+<span class="flow-item">원자는 새로 생기거나 사라지지 않고</span><span class="flow-arrow">→</span>
+<span class="flow-item">결합만 바뀌어 재배열된다</span><span class="flow-arrow">→</span>
+<span class="flow-item">원자의 <b>종류와 개수</b>가 반응 전후 같다</span><span class="flow-arrow">→</span>
+<span class="flow-item">질량 보존</span>
+</div>
+<div class="tip">✅ 그래서 화학 반응식은 <b>화살표 양쪽의 원자 개수가 같도록</b> 계수를 맞춰야 완성된다.</div>
+
+<h2 class="section-title" id="a-balance">🔢 원자 개수 맞추기 (계수 맞추기)</h2>
+<div class="rule-card">
+<h4>맞추는 순서</h4>
+<div class="stage-row">
+<div class="stage-item"><div class="st-num">1</div>반응물과 생성물의 <b>화학식</b>을 먼저 쓴다.</div>
+<div class="stage-item"><div class="st-num">2</div>원자 종류가 많은 <b>복잡한 물질</b>부터 맞춘다.</div>
+<div class="stage-item"><div class="st-num">3</div><span class="chem">O<sub>2</sub></span>, <span class="chem">Fe</span>처럼 <b>한 종류 원자로 된 물질은 마지막</b>에 맞춘다.</div>
+<div class="stage-item hi"><div class="st-num">4</div>계수는 <b>가장 간단한 정수비</b>로, 1은 생략한다.</div>
+</div>
+</div>
+
+<h3 class="subsection-title">예제 ① 메테인의 연소</h3>
+<div class="steps">
+<div class="step"><span class="sn">1</span><span class="chem">CH<sub>4</sub> <span class="op">+</span> O<sub>2</sub> <span class="arr">⟶</span> CO<sub>2</sub> <span class="op">+</span> H<sub>2</sub>O</span> <span class="sc">C: 1 = 1 ✓, H: 4 ≠ 2 ✗</span></div>
+<div class="step"><span class="sn">2</span><span class="chem">CH<sub>4</sub> <span class="op">+</span> O<sub>2</sub> <span class="arr">⟶</span> CO<sub>2</sub> <span class="op">+</span> <span class="coef">2</span>H<sub>2</sub>O</span> <span class="sc">H: 4 = 4 ✓, O: 2 ≠ 2 + 2 = 4 ✗</span></div>
+<div class="step done"><span class="sn">3</span><span class="chem">CH<sub>4</sub> <span class="op">+</span> <span class="coef">2</span>O<sub>2</sub> <span class="arr">⟶</span> CO<sub>2</sub> <span class="op">+</span> <span class="coef">2</span>H<sub>2</sub>O</span> <span class="sc">O: 4 = 4 ✓ 완성</span></div>
+</div>
+<div class="tbl-wrap atom-t"><table class="ex-table"><thead><tr><th>원자</th><th class="c">반응 전</th><th class="c">반응 후</th><th class="c">같다?</th></tr></thead><tbody><tr><td>C</td><td class="c">1</td><td class="c">1</td><td class="ok">✓</td></tr><tr><td>H</td><td class="c">4</td><td class="c">4</td><td class="ok">✓</td></tr><tr><td>O</td><td class="c">4</td><td class="c">4</td><td class="ok">✓</td></tr></tbody></table></div>
+
+<h3 class="subsection-title">예제 ② 철이 녹스는 반응</h3>
+<div class="steps">
+<div class="step"><span class="sn">1</span><span class="chem">Fe <span class="op">+</span> O<sub>2</sub> <span class="arr">⟶</span> Fe<sub>2</sub>O<sub>3</sub></span> <span class="sc">O: 2 ≠ 3 ✗ → 2와 3의 최소공배수 6으로</span></div>
+<div class="step"><span class="sn">2</span><span class="chem">Fe <span class="op">+</span> <span class="coef">3</span>O<sub>2</sub> <span class="arr">⟶</span> <span class="coef">2</span>Fe<sub>2</sub>O<sub>3</sub></span> <span class="sc">O: 6 = 6 ✓, Fe: 1 ≠ 4 ✗</span></div>
+<div class="step done"><span class="sn">3</span><span class="chem"><span class="coef">4</span>Fe <span class="op">+</span> <span class="coef">3</span>O<sub>2</sub> <span class="arr">⟶</span> <span class="coef">2</span>Fe<sub>2</sub>O<sub>3</sub></span> <span class="sc">Fe: 4 = 4 ✓ 완성</span></div>
+</div>
+<div class="tbl-wrap atom-t"><table class="ex-table"><thead><tr><th>원자</th><th class="c">반응 전</th><th class="c">반응 후</th><th class="c">같다?</th></tr></thead><tbody><tr><td>O</td><td class="c">6</td><td class="c">6</td><td class="ok">✓</td></tr><tr><td>Fe</td><td class="c">4</td><td class="c">4</td><td class="ok">✓</td></tr></tbody></table></div>
+
+<h3 class="subsection-title">확인 ③ 광합성 — 복잡해 보여도 원자 수는 같다</h3>
+<div class="eq-big"><span class="chem"><span class="coef">6</span>CO<sub>2</sub> <span class="op">+</span> <span class="coef">6</span>H<sub>2</sub>O <span class="arr">⟶</span> C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> <span class="op">+</span> <span class="coef">6</span>O<sub>2</sub></span></div>
+<div class="tbl-wrap atom-t"><table class="ex-table"><thead><tr><th>원자</th><th class="c">반응 전</th><th class="c">반응 후</th><th class="c">같다?</th></tr></thead><tbody><tr><td>C</td><td class="c">6</td><td class="c">6</td><td class="ok">✓</td></tr><tr><td>H</td><td class="c">12</td><td class="c">12</td><td class="ok">✓</td></tr><tr><td>O</td><td class="c">18</td><td class="c">18</td><td class="ok">✓</td></tr></tbody></table></div>
+
+<h2 class="section-title" id="a-ion">⚡ 이온과 이온 화합물 읽기</h2>
+<div class="factor-grid">
+<div class="factor-card rose"><h4>양이온</h4>전자를 <b>잃어</b> (+) 전하를 띠는 입자<p class="sub">예) <span class="chem">H<sup>+</sup></span>, <span class="chem">Na<sup>+</sup></span>, <span class="chem">K<sup>+</sup></span>, <span class="chem">Ag<sup>+</sup></span>, <span class="chem">Mg<sup>2+</sup></span>, <span class="chem">Ca<sup>2+</sup></span>, <span class="chem">Cu<sup>2+</sup></span>, <span class="chem">Fe<sup>3+</sup></span></p></div>
+<div class="factor-card blue"><h4>음이온</h4>전자를 <b>얻어</b> (−) 전하를 띠는 입자<p class="sub">예) <span class="chem">Cl<sup>−</sup></span>, <span class="chem">OH<sup>−</sup></span>, <span class="chem">NO<sub>3</sub><sup>−</sup></span>, <span class="chem">CH<sub>3</sub>COO<sup>−</sup></span>, <span class="chem">O<sup>2−</sup></span>, <span class="chem">SO<sub>4</sub><sup>2−</sup></span>, <span class="chem">CO<sub>3</sub><sup>2−</sup></span></p></div>
+</div>
+<div class="note">💡 <span class="chem">NO<sub>3</sub><sup>−</sup></span>, <span class="chem">SO<sub>4</sub><sup>2−</sup></span>, <span class="chem">CO<sub>3</sub><sup>2−</sup></span>, <span class="chem">OH<sup>−</sup></span>, <span class="chem">CH<sub>3</sub>COO<sup>−</sup></span>처럼 여러 원자가 한 덩어리로 움직이는 이온은 <b>통째로</b> 기억한다.</div>
+
+<h3 class="subsection-title" id="a-ioncomp">이온 화합물 판단법 — 양이온 + 음이온으로 쪼개기</h3>
+<div class="rule-card purple">
+<h4>3단계</h4>
+<div class="stage-row three purple">
+<div class="stage-item"><div class="st-num">1</div>앞쪽 = <b>양이온</b>(금속), 뒤쪽 = <b>음이온</b>(덩어리 이온 포함)으로 나눈다.</div>
+<div class="stage-item"><div class="st-num">2</div>아래 첨자로 각 이온의 <b>개수</b>를 읽는다. (괄호 밖 숫자는 괄호 속 덩어리의 개수)</div>
+<div class="stage-item hi"><div class="st-num">3</div>이온 화합물은 <b>전하의 총합 = 0</b>이다. 모르는 양이온의 전하는 이것으로 구한다.</div>
+</div>
+</div>
+<div class="tbl-wrap"><table class="ex-table">
+<thead><tr><th>화합물</th><th>양이온</th><th>음이온</th><th class="c">전하 합</th></tr></thead>
+<tbody><tr><td><span class="chem">AgNO<sub>3</sub></span> <span class="sub" style="font-size:11.5px;color:#64748b">질산 은</span></td><td><span class="chem">Ag<sup>+</sup></span></td><td><span class="chem">NO<sub>3</sub><sup>−</sup></span></td><td class="c" style="font-size:12px">(+1)×1 + (−1)×1 = 0</td></tr><tr><td><span class="chem">CuO</span> <span class="sub" style="font-size:11.5px;color:#64748b">산화 구리(Ⅱ)</span></td><td><span class="chem">Cu<sup>2+</sup></span></td><td><span class="chem">O<sup>2−</sup></span></td><td class="c" style="font-size:12px">(+2)×1 + (−2)×1 = 0</td></tr><tr><td><span class="chem">MgO</span> <span class="sub" style="font-size:11.5px;color:#64748b">산화 마그네슘</span></td><td><span class="chem">Mg<sup>2+</sup></span></td><td><span class="chem">O<sup>2−</sup></span></td><td class="c" style="font-size:12px">(+2)×1 + (−2)×1 = 0</td></tr><tr><td><span class="chem">Fe<sub>2</sub>O<sub>3</sub></span> <span class="sub" style="font-size:11.5px;color:#64748b">산화 철(Ⅲ)</span></td><td><span class="chem"><span class="coef">2</span>Fe<sup>3+</sup></span></td><td><span class="chem"><span class="coef">3</span>O<sup>2−</sup></span></td><td class="c" style="font-size:12px">(+3)×2 + (−2)×3 = 0</td></tr><tr><td><span class="chem">NaOH</span> <span class="sub" style="font-size:11.5px;color:#64748b">수산화 나트륨</span></td><td><span class="chem">Na<sup>+</sup></span></td><td><span class="chem">OH<sup>−</sup></span></td><td class="c" style="font-size:12px">(+1)×1 + (−1)×1 = 0</td></tr><tr><td><span class="chem">Ca(OH)<sub>2</sub></span> <span class="sub" style="font-size:11.5px;color:#64748b">수산화 칼슘</span></td><td><span class="chem">Ca<sup>2+</sup></span></td><td><span class="chem"><span class="coef">2</span>OH<sup>−</sup></span></td><td class="c" style="font-size:12px">(+2)×1 + (−1)×2 = 0</td></tr><tr><td><span class="chem">CaCO<sub>3</sub></span> <span class="sub" style="font-size:11.5px;color:#64748b">탄산 칼슘</span></td><td><span class="chem">Ca<sup>2+</sup></span></td><td><span class="chem">CO<sub>3</sub><sup>2−</sup></span></td><td class="c" style="font-size:12px">(+2)×1 + (−2)×1 = 0</td></tr><tr><td><span class="chem">CaCl<sub>2</sub></span> <span class="sub" style="font-size:11.5px;color:#64748b">염화 칼슘</span></td><td><span class="chem">Ca<sup>2+</sup></span></td><td><span class="chem"><span class="coef">2</span>Cl<sup>−</sup></span></td><td class="c" style="font-size:12px">(+2)×1 + (−1)×2 = 0</td></tr><tr><td><span class="chem">MgCl<sub>2</sub></span> <span class="sub" style="font-size:11.5px;color:#64748b">염화 마그네슘</span></td><td><span class="chem">Mg<sup>2+</sup></span></td><td><span class="chem"><span class="coef">2</span>Cl<sup>−</sup></span></td><td class="c" style="font-size:12px">(+2)×1 + (−1)×2 = 0</td></tr><tr><td><span class="chem">Ca(CH<sub>3</sub>COO)<sub>2</sub></span> <span class="sub" style="font-size:11.5px;color:#64748b">아세트산 칼슘</span></td><td><span class="chem">Ca<sup>2+</sup></span></td><td><span class="chem"><span class="coef">2</span>CH<sub>3</sub>COO<sup>−</sup></span></td><td class="c" style="font-size:12px">(+2)×1 + (−1)×2 = 0</td></tr></tbody>
+</table></div>
+<div class="tip">✅ 이름 속 로마 숫자는 <b>양이온의 전하</b>이다. 산화 구리(Ⅱ) = <span class="chem">Cu<sup>2+</sup></span>가 들어 있음, 산화 철(Ⅲ) = <span class="chem">Fe<sup>3+</sup></span>가 들어 있음.<br><span class="chem">Fe<sub>2</sub>O<sub>3</sub></span>: <span class="chem">O<sup>2−</sup></span> 3개 = −6 → <span class="chem">Fe</span> 2개가 +6 → 철 1개는 +3 → 산화 철(Ⅲ)</div>
+
+<div class="quiz-section" id="quiz-0"></div>
+</section>
+
+<!-- ===================== TAB 1 : 산소의 이동 ===================== -->
+<section class="tab-panel" id="panel-1">
+<div class="unit-banner" style="background:var(--orange-light);color:var(--orange)">📌 01. 산화·환원 반응의 규칙성</div>
+<div class="lead">🧭 <b>흐름</b> — 역사 속 화학 반응의 공통점(산소) → 산화·환원의 정의(산소 기준) → 실험으로 확인 → 동시성</div>
+
+<h2 class="section-title" id="a-history" style="border-color:var(--orange)">🌍 자연과 인류의 역사를 바꾼 화학 반응</h2>
+<div class="timeline">
+<div class="tl"><span class="yr">①</span><b>광합성 생물의 등장</b> — 바다에 광합성을 하는 남세균이 생겨나면서 지구 대기에 산소가 쌓이기 시작했다.<div class="eq-sm"><span class="chem"><span class="coef">6</span>CO<sub>2</sub> <span class="op">+</span> <span class="coef">6</span>H<sub>2</sub>O <span class="arr">⟶</span> C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> <span class="op">+</span> <span class="coef">6</span>O<sub>2</sub></span></div></div>
+<div class="tl"><span class="yr">②</span><b>산소 호흡을 하는 생물의 등장</b> — 산소를 이용해 영양소를 분해하고 에너지를 얻는 생물이 등장했다.<div class="eq-sm"><span class="chem">C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> <span class="op">+</span> <span class="coef">6</span>O<sub>2</sub> <span class="arr">⟶</span> <span class="coef">6</span>CO<sub>2</sub> <span class="op">+</span> <span class="coef">6</span>H<sub>2</sub>O</span></div></div>
+<div class="tl"><span class="yr">③</span><b>오존층 형성</b> — 대기 중 산소로부터 오존층이 형성되어 자외선을 흡수 → 생물이 바다에서 육지로 올라옴</div>
+<div class="tl"><span class="yr">④</span><b>철의 제련</b> — 철광석(산소와 결합된 산화 철)에서 산소를 떼어 내는 기술 → 철기 문명</div>
+<div class="tl"><span class="yr">⑤</span><b>화석 연료의 사용</b> — 석탄, 석유, 천연가스를 산소와 반응시켜(연소) 얻은 열에너지로 산업 발전</div>
+</div>
+<div class="key-q"><span class="kq-tag" style="background:var(--orange)">공통점</span><div>광합성, 철의 제련, 화석 연료의 사용에 공통으로 관여한 원소는 <b>산소</b>이다. 이처럼 산소의 이동에 의한 반응을 <b>산화·환원 반응</b>이라고 한다.</div></div>
+
+<h2 class="section-title" id="a-oxdef" style="border-color:var(--orange)">📐 산화와 환원 — 산소 기준</h2>
+<div class="factor-grid">
+<div class="factor-card rose"><h4>산화</h4>물질이 <b>산소를 얻는</b> 반응</div>
+<div class="factor-card orange"><h4>환원</h4>물질이 <b>산소를 잃는</b> 반응</div>
+</div>
+
+<h2 class="section-title" id="a-cuo" style="border-color:var(--orange)">🧪 해 보기: 산화 구리(Ⅱ)와 숯가루의 반응</h2>
+<div class="flow-row">
+<span class="flow-item orange">시험관에 산화 구리(Ⅱ) + 숯가루</span><span class="flow-arrow">→</span>
+<span class="flow-item orange">가열</span><span class="flow-arrow">→</span>
+<span class="flow-item orange">검은색 가루 → <b>붉은색</b> 구리</span>
+<span class="flow-item orange">석회수가 뿌옇게 흐려짐 → <span class="chem">CO<sub>2</sub></span> 발생</span>
+</div>
+<div class="redox">
+<div class="rx-eq"><span class="chem"><span class="coef">2</span>CuO <span class="op">+</span> C <span class="arr">⟶</span> <span class="coef">2</span>Cu <span class="op">+</span> CO<sub>2</sub></span></div>
+<div class="rx-lab"><span class="lab-l">반응물</span><span class="lab-r">생성물</span></div>
+<div class="rx-row red"><span class="rx-tag">환원</span><span class="chem">CuO</span> → <span class="chem">Cu</span> : 산소를 <b>잃음</b></div>
+<div class="rx-row ox"><span class="rx-tag">산화</span><span class="chem">C</span> → <span class="chem">CO<sub>2</sub></span> : 산소를 <b>얻음</b></div>
+</div>
+<p>산화 구리(Ⅱ)에서 산소가 분리되어 구리가 생성되고(환원), 이와 동시에 분리된 산소가 숯가루의 탄소와 결합하여 이산화 탄소가 생성된다(산화).</p>
+<div class="tip">✅ <b>산화와 환원은 항상 동시에 일어난다</b> — 한 물질이 잃은 산소를 다른 물질이 얻기 때문이다.</div>
+
+<h2 class="section-title" id="a-rust" style="border-color:var(--orange)">🔩 철이 녹스는 반응</h2>
+<div class="eq-big"><span class="chem"><span class="coef">4</span>Fe <span class="op">+</span> <span class="coef">3</span>O<sub>2</sub> <span class="arr">⟶</span> <span class="coef">2</span>Fe<sub>2</sub>O<sub>3</sub></span></div>
+<p>철(<span class="chem">Fe</span>)이 공기 중에 오래 노출되면 산소와 만나 서서히 <b>산화</b>되어 붉은색의 산화 철(Ⅲ)이 된다. 은회색 철과 성질이 달라 붉은색을 띠고 광택이 없다.</p>
+<div class="note">💡 페루의 무지개 산 일부가 붉게 보이는 까닭도 흙에 산화 철(Ⅲ)이 많기 때문이다.</div>
+
+<div class="quiz-section" id="quiz-1"></div>
+</section>
+
+<!-- ===================== TAB 2 : 전자의 이동 ===================== -->
+<section class="tab-panel" id="panel-2">
+<div class="unit-banner" style="background:var(--purple-light);color:var(--purple)">📌 01. 산화·환원 반응의 규칙성</div>
+<div class="lead">🧭 <b>흐름</b> — 산소 기준의 한계 → 전자 기준 정의 → 철·구리·마그네슘에 적용 → 양이온 관점에서 꼭 알아 둘 것(전하량 불변) → 참고: 금속의 반응성·산화수</div>
+
+<h2 class="section-title" id="a-why-e" style="border-color:var(--purple)">❓ 왜 전자로 설명할까?</h2>
+<p>산소가 관여하지 않는 산화·환원 반응도 있고, 산소가 관여해도 산소의 이동만으로는 설명하기 어려운 경우가 있다.</p>
+<div class="rule-card purple">
+<h4>철이 녹스는 반응을 전자로 보면</h4>
+<div class="eq-big"><span class="chem"><span class="coef">4</span>Fe <span class="op">+</span> <span class="coef">3</span>O<sub>2</sub> <span class="arr">⟶</span> <span class="coef">2</span>Fe<sub>2</sub>O<sub>3</sub></span></div>
+<p>생성물 산화 철(Ⅲ)을 구성하는 이온은 <span class="chem">Fe<sup>3+</sup></span>과 <span class="chem">O<sup>2−</sup></span>이다.</p>
+<div class="factor-grid">
+<div class="factor-card rose"><h4>철: 산화</h4>전자를 <b>잃어</b> <span class="chem">Fe<sup>3+</sup></span>이 된다.</div>
+<div class="factor-card orange"><h4>산소: 환원</h4>전자를 <b>얻어</b> <span class="chem">O<sup>2−</sup></span>이 된다.</div>
+</div>
+</div>
+
+<h2 class="section-title" id="a-edef" style="border-color:var(--purple)">📐 산화와 환원 — 전자 기준</h2>
+<div class="tbl-wrap"><table class="cmp-table purple-th">
+<thead><tr><th>구분</th><th>산소 기준</th><th>전자 기준</th><th>양이온 관점에서 보면</th></tr></thead>
+<tbody>
+<tr><td>산화</td><td>산소를 얻음</td><td>전자를 <b>잃음</b></td><td>금속 원자 → 양이온 (예: <span class="chem">Cu</span> → <span class="chem">Cu<sup>2+</sup></span>)</td></tr>
+<tr><td>환원</td><td>산소를 잃음</td><td>전자를 <b>얻음</b></td><td>양이온 → 금속 원자 (예: <span class="chem">Ag<sup>+</sup></span> → <span class="chem">Ag</span>)</td></tr>
+</tbody>
+</table></div>
+<div class="tip">✅ 한 물질이 잃은 전자를 다른 물질이 얻으므로 <b>산화와 환원은 동시에</b> 일어난다.</div>
+
+<h2 class="section-title" id="a-cuag" style="border-color:var(--purple)">🧪 탐구: 구리와 질산 은 수용액의 반응</h2>
+<div class="flow-row">
+<span class="flow-item purple">구리줄 표면을 사포로 문지름</span><span class="flow-arrow">→</span>
+<span class="flow-item purple">원하는 모양으로 만들어 페트리 접시에</span><span class="flow-arrow">→</span>
+<span class="flow-item purple">질산 은 수용액에 잠기도록 넣음</span><span class="flow-arrow">→</span>
+<span class="flow-item purple">수용액 색과 구리줄 표면 관찰</span>
+</div>
+<div class="factor-grid">
+<div class="factor-card blue"><h4>수용액</h4>무색 → 점점 <b>푸른색</b> (구리 이온 <span class="chem">Cu<sup>2+</sup></span> 생성)</div>
+<div class="factor-card gray"><h4>구리줄 표면</h4>은(<span class="chem">Ag</span>)이 석출되어 달라붙음</div>
+</div>
+<div class="eq-big"><span class="chem">Cu <span class="op">+</span> <span class="coef">2</span>AgNO<sub>3</sub> <span class="arr">⟶</span> Cu<sup>2+</sup> <span class="op">+</span> <span class="coef">2</span>Ag <span class="op">+</span> <span class="coef">2</span>NO<sub>3</sub><sup>−</sup></span></div>
+<p style="text-align:center;font-size:13px;color:var(--text-sec)">↓ 반응에 참여하지 않는 <span class="chem">NO<sub>3</sub><sup>−</sup></span>을 빼고 이온만 쓰면</p>
+<div class="redox">
+<div class="rx-eq"><span class="chem">Cu <span class="op">+</span> <span class="coef">2</span>Ag<sup>+</sup> <span class="arr">⟶</span> Cu<sup>2+</sup> <span class="op">+</span> <span class="coef">2</span>Ag</span></div>
+<div class="rx-row ox"><span class="rx-tag">산화</span><span class="chem">Cu <span class="arr">⟶</span> Cu<sup>2+</sup> <span class="op">+</span> <span class="coef">2</span>e<sup>−</sup></span> : 구리가 전자 2개를 <b>잃음</b></div>
+<div class="rx-row red"><span class="rx-tag">환원</span><span class="chem"><span class="coef">2</span>Ag<sup>+</sup> <span class="op">+</span> <span class="coef">2</span>e<sup>−</sup> <span class="arr">⟶</span> <span class="coef">2</span>Ag</span> : 은 이온 2개가 전자를 1개씩 <b>얻음</b></div>
+</div>
+
+<h2 class="section-title" id="a-charge" style="border-color:var(--purple)">🔒 양이온 관점에서 꼭 알아 둘 것 — 전하량 불변</h2>
+<div class="rule-card purple">
+<h4>규칙 ① 잃은 전자 수 = 얻은 전자 수</h4>
+<p>구리 1개가 잃은 전자 2개를 은 이온 2개가 1개씩 나누어 얻는다. 그래서 반응식에서 <span class="chem">Ag<sup>+</sup></span>의 계수가 2이다.</p>
+</div>
+<div class="rule-card purple">
+<h4>규칙 ② 반응 전후 전하의 총량은 변하지 않는다</h4>
+<div class="tbl-wrap"><table class="ex-table">
+<thead><tr><th></th><th class="c">반응 전</th><th class="c">반응 후</th><th class="c">변화</th></tr></thead>
+<tbody>
+<tr><td>수용액 속 양이온</td><td class="c"><span class="chem"><span class="coef">2</span>Ag<sup>+</sup></span></td><td class="c"><span class="chem">Cu<sup>2+</sup></span></td><td class="c">개수 2 → 1 (<b>감소</b>)</td></tr>
+<tr><td>양이온의 전하 총량</td><td class="c">(+1) × 2 = <b>+2</b></td><td class="c">(+2) × 1 = <b>+2</b></td><td class="c"><b>불변</b></td></tr>
+<tr><td><span class="chem">NO<sub>3</sub><sup>−</sup></span> (음이온)</td><td class="c">2개</td><td class="c">2개</td><td class="c">변화 없음 (반응에 참여 X)</td></tr>
+</tbody>
+</table></div>
+</div>
+<div class="tip">✅ 핵심: <b>양이온의 '개수'는 변할 수 있지만 전하의 '총량'은 변하지 않는다.</b> 음이온(<span class="chem">NO<sub>3</sub><sup>−</sup></span>)이 그대로이므로 양이온의 전하 총량도 그대로여야 한다.<br>이온 반응식도 화살표 양쪽의 <b>원자 수</b>와 <b>전하 합</b>이 모두 같아야 한다. (<span class="chem">Cu <span class="op">+</span> <span class="coef">2</span>Ag<sup>+</sup> <span class="arr">⟶</span> Cu<sup>2+</sup> <span class="op">+</span> <span class="coef">2</span>Ag</span> : 왼쪽 +2 = 오른쪽 +2)</div>
+
+<h2 class="section-title" id="a-mg" style="border-color:var(--purple)">🔥 마그네슘의 산화·환원</h2>
+<p>마그네슘 리본을 공기 중에서 가열하면 마그네슘이 산소와 반응하여 산화 마그네슘이 된다.</p>
+<div class="redox">
+<div class="rx-eq"><span class="chem"><span class="coef">2</span>Mg <span class="op">+</span> O<sub>2</sub> <span class="arr">⟶</span> <span class="coef">2</span>MgO</span> <span class="rx-note">( <span class="chem"><span class="coef">2</span>MgO</span> = <span class="chem"><span class="coef">2</span>Mg<sup>2+</sup></span> + <span class="chem"><span class="coef">2</span>O<sup>2−</sup></span> )</span></div>
+<div class="rx-row ox"><span class="rx-tag">산화</span><span class="chem">Mg</span> → <span class="chem">Mg<sup>2+</sup></span> : 전자를 <b>잃음</b></div>
+<div class="rx-row red"><span class="rx-tag">환원</span><span class="chem">O<sub>2</sub></span> → <span class="chem">O<sup>2−</sup></span> : 전자를 <b>얻음</b></div>
+</div>
+<div class="note">💡 산소 기준으로 보아도 마그네슘은 산소를 얻었으므로 산화이다. 두 기준은 서로 모순되지 않는다.</div>
+
+
+<div class="quiz-section" id="quiz-2"></div>
+
+<h2 class="section-title" id="a-extra" style="border-color:#94a3b8">📎 참고: 금속의 반응성과 산화수</h2>
+<div class="ref-note">📖 여기부터는 <b>반드시 알 필요는 없는</b> 참고 내용이에요. 알아 두면 산화·환원 반응을 이해하는 데 도움이 됩니다.</div>
+
+<details class="fold" id="a-reactivity"><summary>⚙️ 금속의 반응성 <span class="fold-hint">눌러서 펼치기</span></summary>
+<div class="fold-body">
+<div class="series">
+<div class="sr-row">
+<span>K</span><span>Ca</span><span>Na</span><span>Mg</span><span>Al</span><span>Zn</span><span>Fe</span><span>Ni</span><span>Sn</span><span>Pb</span><span class="h">(H)</span><span>Cu</span><span>Hg</span><span>Ag</span><span>Pt</span><span>Au</span>
+</div>
+<div class="sr-axis"><span>◀ 반응성 큼 (전자를 잃기 쉬움)</span><span>반응성 작음 ▶</span></div>
+<div class="sr-mn">암기: 칼 카 나 마 알 아 철 니 / 주 납 수 구 / 수 은 백 금</div>
+</div>
+<div class="tbl-wrap"><table class="cmp-table">
+<thead><tr><th>이렇게 쓰인다</th><th>설명</th></tr></thead>
+<tbody>
+<tr><td>구리 + 질산 은 수용액</td><td>반응성이 큰 구리(<span class="chem">Cu</span>)가 전자를 잃고, 반응성이 작은 은 이온(<span class="chem">Ag<sup>+</sup></span>)이 전자를 얻는다.</td></tr>
+<tr><td>금속 + 산 → 수소 기체</td><td>반응성이 <b>수소보다 큰</b> 금속(예: <span class="chem">Mg</span>)만 산과 반응하여 수소 기체를 발생시킨다. <span class="chem">Mg <span class="op">+</span> <span class="coef">2</span>HCl <span class="arr">⟶</span> MgCl<sub>2</sub> <span class="op">+</span> H<sub>2</sub>↑</span></td></tr>
+<tr><td>산과 반응하지 않는 금속</td><td>구리, 은, 금, 백금은 수소보다 반응성이 작아 산과 반응하지 않는다.</td></tr>
+</tbody>
+</table></div>
+
+</div></details>
+<details class="fold" id="a-oxnum"><summary>🔢 산화수 <span class="fold-hint">눌러서 펼치기</span></summary>
+<div class="fold-body">
+<div class="factor-grid">
+<div class="factor-card gray"><h4>산화수 규칙</h4><ol class="ol">
+<li>홑원소 물질의 산화수는 0이다.</li>
+<li>단원자 이온의 산화수는 이온의 전하와 같다. 예) <span class="chem">Ag<sup>+</sup></span> → +1</li>
+<li>다원자 이온은 각 원자 산화수의 합 = 이온의 전하 예) <span class="chem">NO<sub>3</sub><sup>−</sup></span> → 합 −1</li>
+<li>화합물은 산화수의 총합이 0이다.</li>
+</ol></div>
+<div class="factor-card gray"><h4>산화수 우선 규칙 (위에 있을수록 먼저 적용)</h4><ol class="ol">
+<li>1족, 2족, 3족 금속: +1, +2, +3</li>
+<li>F: −1</li>
+<li>H: +1</li>
+<li>O: −2</li>
+<li>C &gt; N &gt; S</li>
+<li>Cl &gt; Br &gt; I</li>
+</ol></div>
+</div>
+<div class="tbl-wrap"><table class="ex-table">
+<thead><tr><th>물질</th><th>산화수</th><th>설명</th></tr></thead>
+<tbody>
+<tr><td><span class="chem">H<sub>2</sub>O<sub>2</sub></span></td><td>H +1, O −1</td><td>H(+1)가 O(−2)보다 우선</td></tr>
+<tr><td><span class="chem">OF<sub>2</sub></span></td><td>O +2, F −1</td><td>F(−1)가 O(−2)보다 우선</td></tr>
+<tr><td><span class="chem">KO<sub>2</sub></span></td><td>K +1, O −½</td><td>1족 K(+1)가 O(−2)보다 우선</td></tr>
+<tr><td><span class="chem">NaH</span></td><td>Na +1, H −1</td><td>1족 Na(+1)가 H(+1)보다 우선</td></tr>
+</tbody>
+</table></div>
+<div class="note">💡 산화수가 <b>증가</b>하면 산화, <b>감소</b>하면 환원이다. 예) 산화 구리(Ⅱ) <span class="chem">CuO</span>에서 구리의 산화수는 +2, 산화 철(Ⅲ) <span class="chem">Fe<sub>2</sub>O<sub>3</sub></span>에서 철의 산화수는 +3이다.</div>
+</div></details>
+</section>
+
+<!-- ===================== TAB 3 : 생활 속 산화·환원 ===================== -->
+<section class="tab-panel" id="panel-3">
+<div class="unit-banner" style="background:var(--green-light);color:var(--green)">📌 02. 생활 주변의 산화·환원 반응</div>
+<div class="lead">🧭 <b>흐름</b> — 교과서 4대 반응을 같은 틀(무엇이 산화? 무엇이 환원? 에너지는?)로 분석 → 생활 속 사례</div>
+
+<h2 class="section-title" id="a-four" style="border-color:var(--green)">🔍 4대 반응 분석</h2>
+<div class="factor-grid">
+<div class="rule-card green" style="margin:0">
+<h4>🌿 광합성 (엽록체)</h4>
+<div class="eq-mid"><span class="chem"><span class="coef">6</span>CO<sub>2</sub> <span class="op">+</span> <span class="coef">6</span>H<sub>2</sub>O <span class="arr">⟶</span> C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> <span class="op">+</span> <span class="coef">6</span>O<sub>2</sub></span></div>
+<div class="rx-row red"><span class="rx-tag">환원</span><span class="chem">CO<sub>2</sub></span> → 포도당</div>
+<div class="rx-row ox"><span class="rx-tag">산화</span><span class="chem">H<sub>2</sub>O</span> → <span class="chem">O<sub>2</sub></span></div>
+<p class="sub">빛에너지 → 화학 에너지. 식물의 엽록체에서 일어난다.</p>
+</div>
+<div class="rule-card green" style="margin:0">
+<h4>🔋 세포호흡 (마이토콘드리아)</h4>
+<div class="eq-mid"><span class="chem">C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> <span class="op">+</span> <span class="coef">6</span>O<sub>2</sub> <span class="arr">⟶</span> <span class="coef">6</span>CO<sub>2</sub> <span class="op">+</span> <span class="coef">6</span>H<sub>2</sub>O</span></div>
+<div class="rx-row ox"><span class="rx-tag">산화</span>포도당 → <span class="chem">CO<sub>2</sub></span></div>
+<div class="rx-row red"><span class="rx-tag">환원</span><span class="chem">O<sub>2</sub></span> → <span class="chem">H<sub>2</sub>O</span></div>
+<p class="sub">화학 에너지를 이용하여 생명 활동에 필요한 에너지를 얻는다.</p>
+</div>
+<div class="rule-card green" style="margin:0">
+<h4>🔥 메테인의 연소</h4>
+<div class="eq-mid"><span class="chem">CH<sub>4</sub> <span class="op">+</span> <span class="coef">2</span>O<sub>2</sub> <span class="arr">⟶</span> CO<sub>2</sub> <span class="op">+</span> <span class="coef">2</span>H<sub>2</sub>O</span></div>
+<div class="rx-row ox"><span class="rx-tag">산화</span><span class="chem">CH<sub>4</sub></span> → <span class="chem">CO<sub>2</sub></span> (산소를 얻음)</div>
+<div class="rx-row red"><span class="rx-tag">환원</span><span class="chem">O<sub>2</sub></span> → <span class="chem">H<sub>2</sub>O</span></div>
+<p class="sub">화석 연료인 액화천연가스의 주성분. 연소할 때 열에너지가 발생한다.</p>
+</div>
+<div class="rule-card green" style="margin:0">
+<h4>🏭 철의 제련 (용광로)</h4>
+<div class="eq-mid"><span class="chem">Fe<sub>2</sub>O<sub>3</sub> <span class="op">+</span> <span class="coef">3</span>CO <span class="arr">⟶</span> <span class="coef">2</span>Fe <span class="op">+</span> <span class="coef">3</span>CO<sub>2</sub></span></div>
+<div class="rx-row red"><span class="rx-tag">환원</span><span class="chem">Fe<sub>2</sub>O<sub>3</sub></span> → <span class="chem">Fe</span> (산소를 잃음)</div>
+<div class="rx-row ox"><span class="rx-tag">산화</span><span class="chem">CO</span> → <span class="chem">CO<sub>2</sub></span></div>
+<p class="sub">용광로에 철광석, 코크스(C), 석회석을 넣는다. 코크스가 산소와 결합하여 일산화 탄소가 된 후 산화 철(Ⅲ)을 환원시킨다.</p>
+</div>
+</div>
+<div class="tip">✅ 판단 요령: 반응물에서 생성물로 갈 때 <b>산소가 붙으면 산화, 산소가 떨어지면 환원</b>. 메테인 연소에서 산화되는 물질은 <span class="chem">CH<sub>4</sub></span>, 철의 제련에서 환원되는 물질은 <span class="chem">Fe<sub>2</sub>O<sub>3</sub></span>이다.</div>
+
+<h3 class="subsection-title" id="a-slag" style="border-color:var(--green)">철의 제련에서 석회석의 역할 — 불순물 제거</h3>
+<div class="steps">
+<div class="step"><span class="sn">1</span><span class="chem">CaCO<sub>3</sub> <span class="arr">⟶</span> CaO <span class="op">+</span> CO<sub>2</sub></span> <span class="sc">석회석이 열분해된다.</span></div>
+<div class="step done"><span class="sn">2</span><span class="chem">CaO <span class="op">+</span> SiO<sub>2</sub> <span class="arr">⟶</span> CaSiO<sub>3</sub></span> <span class="sc">불순물과 결합해 슬래그가 된다.</span></div>
+</div>
+<div class="slag-fig"><div class="sl">슬래그 (<span class="chem">CaSiO<sub>3</sub></span>) — 가벼워서 위에 뜸</div><div class="fe">철 (<span class="chem">Fe</span>)</div></div>
+
+<h2 class="section-title" id="a-daily" style="border-color:var(--green)">🏠 생활 속 산화·환원</h2>
+<div class="tbl-wrap"><table class="cmp-table green-th">
+<thead><tr><th>장소</th><th>사례</th><th>일어나는 일</th></tr></thead>
+<tbody>
+<tr><td>집</td><td>섬유 표백</td><td>누렇게 변한 옷에 표백제를 넣으면 산화·환원 반응이 일어나 옷이 하얗게 된다.</td></tr>
+<tr><td>집</td><td>양초</td><td>주성분인 파라핀이 연소되어 이산화 탄소와 수증기로 변한다.</td></tr>
+<tr><td>길</td><td>손난로</td><td>철이 산소와 반응하여 산화 철(Ⅲ)로 <b>산화</b>될 때 열이 발생한다.</td></tr>
+<tr><td>길</td><td>자동차 배기관 촉매 장치</td><td>산화 질소가 <b>환원</b>되어 배기가스가 정화된다.</td></tr>
+<tr><td>학교</td><td>리튬 배터리</td><td>리튬이 전자를 잃고 <b>산화</b>된 뒤 양극에서 음극으로 이동하며 충전된다.</td></tr>
+<tr><td>학교</td><td>과일의 갈변</td><td>사과, 배, 바나나, 복숭아의 폴리페놀 성분이 <b>산화</b>되어 갈변한다.</td></tr>
+<tr><td>자연</td><td>반딧불이</td><td>광세포에서 루시페린이 <b>산화</b>되면서 빛에너지를 방출한다.</td></tr>
+</tbody>
+</table></div>
+<div class="note">💡 철은 자연에서 산화 철의 형태로 존재하므로 그대로 쓰기 어렵다 → 산화·환원 반응을 이용한 제련으로 순수한 철을 얻어 문명을 발전시켰다. 또 화석 연료를 연소시켜(산화) 많은 에너지를 얻는다.</div>
+
+<div class="quiz-section" id="quiz-3"></div>
+</section>
+
+<!-- ===================== TAB 4 : 산과 염기의 성질 ===================== -->
+<section class="tab-panel" id="panel-4">
+<div class="unit-banner" style="background:var(--rose-light);color:var(--rose)">📌 03. 산과 염기의 종류와 성질</div>
+<div class="lead">🧭 <b>흐름</b> — 실험(12홈판) 결과 → 산성·염기성 정리 → 반응식으로 확인 → 우리 주변의 산과 염기</div>
+
+<h2 class="section-title" id="a-ablab" style="border-color:var(--rose)">🧪 탐구: 산과 염기의 성질</h2>
+<p><span class="badge badge-gray">준비물</span> 묽은 염산, 아세트산 수용액, 수산화 나트륨 수용액, 수산화 칼륨 수용액, 탄산 칼슘, 마그네슘 조각, 두부, 12홈판, 간이 전기 전도계</p>
+<div class="tbl-wrap"><table class="ex-table ab">
+<thead><tr><th>넣은 것</th><th class="c acid">묽은 염산</th><th class="c acid">아세트산 수용액</th><th class="c base">수산화 나트륨 수용액</th><th class="c base">수산화 칼륨 수용액</th></tr></thead>
+<tbody>
+<tr><td>간이 전기 전도계</td><td class="c">전류 O</td><td class="c">전류 O</td><td class="c">전류 O</td><td class="c">전류 O</td></tr>
+<tr><td>탄산 칼슘</td><td class="c hit">기체 발생 (<span class="chem">CO<sub>2</sub></span>)</td><td class="c hit">기체 발생 (<span class="chem">CO<sub>2</sub></span>)</td><td class="c">변화 없음</td><td class="c">변화 없음</td></tr>
+<tr><td>마그네슘 조각</td><td class="c hit">기체 발생 (<span class="chem">H<sub>2</sub></span>)</td><td class="c hit">기체 발생 (<span class="chem">H<sub>2</sub></span>)</td><td class="c">변화 없음</td><td class="c">변화 없음</td></tr>
+<tr><td>두부 (단백질)</td><td class="c">변화 없음</td><td class="c">변화 없음</td><td class="c hitb">뿌옇게 흐려짐</td><td class="c hitb">뿌옇게 흐려짐</td></tr>
+<tr><td><b>분류</b></td><td class="c" colspan="2"><b>산</b>: <span class="chem">HCl</span>, <span class="chem">CH<sub>3</sub>COOH</span></td><td class="c" colspan="2"><b>염기</b>: <span class="chem">NaOH</span>, <span class="chem">KOH</span></td></tr>
+</tbody>
+</table></div>
+
+<h2 class="section-title" id="a-abprop" style="border-color:var(--rose)">📋 산성과 염기성</h2>
+<div class="tbl-wrap"><table class="cmp-table rose-th">
+<thead><tr><th>성질</th><th>산성 (산의 공통적인 성질)</th><th>염기성 (염기의 공통적인 성질)</th></tr></thead>
+<tbody>
+<tr><td>수용액의 전류</td><td>흐른다</td><td>흐른다</td></tr>
+<tr><td>탄산 칼슘</td><td>반응 → <b>이산화 탄소</b> 기체 발생</td><td>반응하지 않음</td></tr>
+<tr><td>마그네슘 등 금속</td><td>반응 → <b>수소</b> 기체 발생</td><td>반응하지 않음</td></tr>
+<tr><td>단백질</td><td>—</td><td><b>녹인다</b></td></tr>
+</tbody>
+</table></div>
+<div class="warning">⚠️ 모든 금속이 산과 반응하여 수소 기체를 발생시키는 것은 아니다. 구리, 은, 금, 백금 등은 산과 반응하지 않는다.</div>
+
+<h3 class="subsection-title" id="a-abeq" style="border-color:var(--rose)">반응식으로 확인하기</h3>
+<div class="tbl-wrap"><table class="ex-table">
+<thead><tr><th>반응</th><th>반응식</th></tr></thead>
+<tbody>
+<tr><td>염산 + 탄산 칼슘</td><td><span class="chem">CaCO<sub>3</sub> <span class="op">+</span> <span class="coef">2</span>HCl <span class="arr">⟶</span> H<sub>2</sub>O <span class="op">+</span> CaCl<sub>2</sub> <span class="op">+</span> CO<sub>2</sub>↑</span></td></tr>
+<tr><td>아세트산 + 탄산 칼슘</td><td><span class="chem">CaCO<sub>3</sub> <span class="op">+</span> <span class="coef">2</span>CH<sub>3</sub>COOH <span class="arr">⟶</span> H<sub>2</sub>O <span class="op">+</span> Ca(CH<sub>3</sub>COO)<sub>2</sub> <span class="op">+</span> CO<sub>2</sub>↑</span></td></tr>
+<tr><td>염산 + 마그네슘</td><td><span class="chem">Mg <span class="op">+</span> <span class="coef">2</span>HCl <span class="arr">⟶</span> MgCl<sub>2</sub> <span class="op">+</span> H<sub>2</sub>↑</span></td></tr>
+</tbody>
+</table></div>
+<div class="note">💡 <span class="chem">Ca(CH<sub>3</sub>COO)<sub>2</sub></span>는 <span class="chem">Ca<sup>2+</sup></span> 1개와 <span class="chem">CH<sub>3</sub>COO<sup>−</sup></span> 2개로 이루어진 이온 화합물이다. 화학식 안에는 이온의 전하를 쓰지 않는다. (기본기 탭의 이온 화합물 판단법)</div>
+
+<h2 class="section-title" id="a-around" style="border-color:var(--rose)">🏠 우리 주변의 산과 염기</h2>
+<div class="factor-grid">
+<div class="factor-card rose"><h4>산</h4><ul>
+<li><b>식초</b>: 아세트산</li>
+<li><b>과일</b>: 비타민 C 등의 산</li>
+<li><b>해열제·진통제</b>: 살리실산, 아세틸 살리실산</li>
+<li><b>산성비</b>: 화석 연료 연소 시 배출된 황산화물, 질소 산화물로부터 생성된 황산, 질산</li>
+<li><b>해양 산성화</b>: 대기 중 <span class="chem">CO<sub>2</sub></span>가 바다에 더 많이 녹아 해수 표면의 <span class="chem">H<sup>+</sup></span> 농도가 높아짐</li>
+</ul></div>
+<div class="factor-card blue"><h4>염기</h4><ul>
+<li><b>유리 세정제</b>: 기름 성분 제거를 위한 염기 성분</li>
+<li><b>비누</b>: 수산화 나트륨으로 세탁 비누를 만듦</li>
+<li><b>세제</b>: 빨래의 찌든 때 세탁</li>
+<li><b>혈액</b>: 약한 염기성</li>
+<li><b>염기성 호수</b>: 탄자니아의 나트론 호수</li>
+</ul></div>
+</div>
+<div class="note">💡 <b>수국</b>의 꽃잎은 산성 토양에서는 푸른색, 염기성 토양에서는 붉은색으로 피어난다. 소화 효소 중에도 산성이나 염기성을 띠는 것이 있다.</div>
+
+<div class="quiz-section" id="quiz-4"></div>
+</section>
+
+<!-- ===================== TAB 5 : 산과 염기의 정체 ===================== -->
+<section class="tab-panel" id="panel-5">
+<div class="unit-banner" style="background:var(--teal-light);color:var(--teal)">📌 03. 산과 염기의 종류와 성질</div>
+<div class="lead">🧭 <b>흐름</b> — 왜 전류가 흐를까(이온화) → 산의 공통 이온 <span class="chem">H<sup>+</sup></span> → 염기의 공통 이온 <span class="chem">OH<sup>−</sup></span> → 두 구조 비교</div>
+
+<h2 class="section-title" id="a-ionize" style="border-color:var(--teal)">🔌 수용액에서 전류가 흐르는 까닭 — 이온화</h2>
+<div class="ionize">
+<div class="iz-box"><div class="iz-t">염화 수소</div><div class="iz-mol"><span class="at h">H</span><span class="at cl">Cl</span></div><div class="iz-mol"><span class="at h">H</span><span class="at cl">Cl</span></div></div>
+<div class="iz-arr">+ 물 →</div>
+<div class="iz-box"><div class="iz-t">염산</div><div class="iz-ions"><span class="ion h">H<sup>+</sup></span><span class="ion cl">Cl<sup>−</sup></span><span class="ion h">H<sup>+</sup></span><span class="ion cl">Cl<sup>−</sup></span></div></div>
+</div>
+<p>염화 수소(<span class="chem">HCl</span>)는 물에 녹아 묽은 염산이 될 때 수소 이온(<span class="chem">H<sup>+</sup></span>)과 염화 이온(<span class="chem">Cl<sup>−</sup></span>)으로 <b>이온화</b>된다. 여기에 전극을 넣고 전원 장치를 연결하면 <b>이온들이 전극으로 움직이며 전류가 흐른다</b>. 수산화 나트륨 수용액도 <span class="chem">Na<sup>+</sup></span>과 <span class="chem">OH<sup>−</sup></span>으로 이온화되어 같은 까닭으로 전류가 흐른다.</p>
+
+<h2 class="section-title" id="a-acid" style="border-color:var(--teal)">🍋 산 = 수용액에서 수소 이온(H<sup>+</sup>)을 내놓는 물질</h2>
+<div class="tbl-wrap"><table class="ex-table ion-t">
+<thead><tr><th>산</th><th>이온화</th><th class="c">공통 (양이온)</th><th class="c">다름 (음이온)</th></tr></thead>
+<tbody>
+<tr><td>염화 수소</td><td><span class="chem">HCl <span class="arr">⟶</span> H<sup>+</sup> <span class="op">+</span> Cl<sup>−</sup></span></td><td class="c same"><span class="chem">H<sup>+</sup></span></td><td class="c">염화 이온</td></tr>
+<tr><td>질산</td><td><span class="chem">HNO<sub>3</sub> <span class="arr">⟶</span> H<sup>+</sup> <span class="op">+</span> NO<sub>3</sub><sup>−</sup></span></td><td class="c same"><span class="chem">H<sup>+</sup></span></td><td class="c">질산 이온</td></tr>
+<tr><td>황산</td><td><span class="chem">H<sub>2</sub>SO<sub>4</sub> <span class="arr">⟶</span> <span class="coef">2</span>H<sup>+</sup> <span class="op">+</span> SO<sub>4</sub><sup>2−</sup></span></td><td class="c same"><span class="chem"><span class="coef">2</span>H<sup>+</sup></span></td><td class="c">황산 이온</td></tr>
+<tr><td>탄산</td><td><span class="chem">H<sub>2</sub>CO<sub>3</sub> <span class="arr">⟶</span> <span class="coef">2</span>H<sup>+</sup> <span class="op">+</span> CO<sub>3</sub><sup>2−</sup></span></td><td class="c same"><span class="chem"><span class="coef">2</span>H<sup>+</sup></span></td><td class="c">탄산 이온</td></tr>
+<tr><td>아세트산</td><td><span class="chem">CH<sub>3</sub>COOH <span class="arr">⟶</span> H<sup>+</sup> <span class="op">+</span> CH<sub>3</sub>COO<sup>−</sup></span></td><td class="c same"><span class="chem">H<sup>+</sup></span></td><td class="c">아세트산 이온</td></tr>
+</tbody>
+</table></div>
+<div class="rule-card teal" id="a-acetic">
+<h4>아세트산은 H가 4개인데 왜 H<sup>+</sup>를 1개만 내놓을까?</h4>
+<div class="struct">
+<pre> H O
+| ‖
+H — C — C — O — <span class="hl">H</span> → <span class="hl">H⁺</span>
+|
+H</pre>
+</div>
+<p><span class="chem">CH<sub>3</sub>COOH</span>에서 산소(O)에 붙은 <b>맨 끝의 H 1개</b>만 <span class="chem">H<sup>+</sup></span>으로 떨어져 나간다. 탄소(C)에 붙은 H 3개는 떨어지지 않는다. → <span class="chem">CH<sub>3</sub>COOH <span class="arr">⟶</span> CH<sub>3</sub>COO<sup>−</sup> <span class="op">+</span> H<sup>+</sup></span></p>
+</div>
+<div class="tip">✅ 여러 가지 산이 공통적인 성질(산성)을 나타내는 것은 <b>수소 이온(<span class="chem">H<sup>+</sup></span>)</b> 때문이다.</div>
+
+<h2 class="section-title" id="a-base" style="border-color:var(--teal)">🧼 염기 = 수용액에서 수산화 이온(OH<sup>−</sup>)을 내놓는 물질</h2>
+<div class="tbl-wrap"><table class="ex-table ion-t">
+<thead><tr><th>염기</th><th>이온화</th><th class="c">다름 (양이온)</th><th class="c">공통 (음이온)</th></tr></thead>
+<tbody>
+<tr><td>수산화 나트륨</td><td><span class="chem">NaOH <span class="arr">⟶</span> Na<sup>+</sup> <span class="op">+</span> OH<sup>−</sup></span></td><td class="c">나트륨 이온</td><td class="c same"><span class="chem">OH<sup>−</sup></span></td></tr>
+<tr><td>수산화 칼륨</td><td><span class="chem">KOH <span class="arr">⟶</span> K<sup>+</sup> <span class="op">+</span> OH<sup>−</sup></span></td><td class="c">칼륨 이온</td><td class="c same"><span class="chem">OH<sup>−</sup></span></td></tr>
+<tr><td>수산화 칼슘</td><td><span class="chem">Ca(OH)<sub>2</sub> <span class="arr">⟶</span> Ca<sup>2+</sup> <span class="op">+</span> <span class="coef">2</span>OH<sup>−</sup></span></td><td class="c">칼슘 이온</td><td class="c same"><span class="chem"><span class="coef">2</span>OH<sup>−</sup></span></td></tr>
+</tbody>
+</table></div>
+<div class="tip">✅ 여러 가지 염기가 공통적인 성질(염기성)을 나타내는 것은 <b>수산화 이온(<span class="chem">OH<sup>−</sup></span>)</b> 때문이다.</div>
+
+<h2 class="section-title" id="a-mirror" style="border-color:var(--teal)">🪞 산과 염기 — 거울처럼 비교</h2>
+<div class="vs-grid">
+<div class="vs-col"><h4 style="background:var(--rose)">산</h4><ol>
+<li>수용액에서 <b><span class="chem">H<sup>+</sup></span></b>을 내놓는다.</li>
+<li><b>양이온이 같고</b>(H<sup>+</sup>), 음이온은 산의 종류에 따라 다르다.</li>
+<li>공통 성질의 원인: <span class="chem">H<sup>+</sup></span></li>
+</ol></div>
+<div class="vs-col"><h4 style="background:var(--primary)">염기</h4><ol>
+<li>수용액에서 <b><span class="chem">OH<sup>−</sup></span></b>을 내놓는다.</li>
+<li><b>음이온이 같고</b>(OH<sup>−</sup>), 양이온은 염기의 종류에 따라 다르다.</li>
+<li>공통 성질의 원인: <span class="chem">OH<sup>−</sup></span></li>
+</ol></div>
+</div>
+<div class="note">💡 이온화식도 반응식이므로 화살표 양쪽의 원자 수와 전하 합이 같다. 예) <span class="chem">H<sub>2</sub>SO<sub>4</sub> <span class="arr">⟶</span> <span class="coef">2</span>H<sup>+</sup> <span class="op">+</span> SO<sub>4</sub><sup>2−</sup></span> : 왼쪽 0 = 오른쪽 (+2) + (−2)</div>
+
+<div class="quiz-section" id="quiz-5"></div>
+</section>
+
+<!-- ===================== TAB 6 : 개념 지도 ===================== -->
+<section class="tab-panel" id="panel-6">
+<div class="unit-banner">📌 개념 한눈에 보기</div>
+<div class="tip">🧭 클릭하면 해당 탭과 섹션으로 이동합니다 — 색깔 있는 큰 헤더는 탭 전체로, 작은 칸은 세부 설명 위치로 스크롤됩니다.</div>
+<div class="map-root">
+<button class="map-root-head" onclick="goTo(0)">① 화학 반응식과 이온</button>
+<div class="map-children">
+<button class="map-node" onclick="goTo(0,'a-grammar')">✏️ 반응식의 문법</button>
+<button class="map-node" onclick="goTo(0,'a-mass')">⚖️ 질량 보존 법칙</button>
+<button class="map-node" onclick="goTo(0,'a-balance')">🔢 계수 맞추기</button>
+<div class="map-group">
+<button class="map-node" onclick="goTo(0,'a-ion')">⚡ 이온</button>
+<div class="map-subrow"><button class="map-subchip" onclick="goTo(0,'a-ioncomp')">이온 화합물 판단법</button></div>
+</div>
+</div>
+</div>
+<div class="map-root orange">
+<button class="map-root-head" onclick="goTo(1)">② 산소의 이동</button>
+<div class="map-children">
+<button class="map-node" onclick="goTo(1,'a-history')">🌍 역사를 바꾼 반응</button>
+<button class="map-node" onclick="goTo(1,'a-oxdef')">📐 산소 기준 정의</button>
+<button class="map-node" onclick="goTo(1,'a-cuo')">🧪 CuO + C</button>
+<button class="map-node" onclick="goTo(1,'a-rust')">🔩 철의 녹</button>
+</div>
+</div>
+<div class="map-root purple">
+<button class="map-root-head" onclick="goTo(2)">③ 전자의 이동</button>
+<div class="map-children">
+<button class="map-node" onclick="goTo(2,'a-why-e')">❓ 왜 전자로?</button>
+<button class="map-node" onclick="goTo(2,'a-edef')">📐 전자 기준 정의</button>
+<button class="map-node" onclick="goTo(2,'a-cuag')">🧪 Cu + AgNO₃</button>
+<button class="map-node" onclick="goTo(2,'a-charge')">🔒 전하량 불변</button>
+<button class="map-node" onclick="goTo(2,'a-mg')">🔥 마그네슘</button>
+<div class="map-group">
+<button class="map-node" onclick="goTo(2,'a-extra')">📎 참고</button>
+<div class="map-subrow">
+<button class="map-subchip" onclick="goTo(2,'a-reactivity')">금속의 반응성</button>
+<button class="map-subchip" onclick="goTo(2,'a-oxnum')">산화수</button>
+</div>
+</div>
+</div>
+</div>
+<div class="map-root green">
+<button class="map-root-head" onclick="goTo(3)">④ 생활 속 산화·환원</button>
+<div class="map-children">
+<div class="map-group">
+<button class="map-node" onclick="goTo(3,'a-four')">🔍 4대 반응</button>
+<div class="map-subrow">
+<button class="map-subchip" onclick="goTo(3,'a-four')">광합성</button>
+<button class="map-subchip" onclick="goTo(3,'a-four')">세포호흡</button>
+<button class="map-subchip" onclick="goTo(3,'a-four')">메테인 연소</button>
+<button class="map-subchip" onclick="goTo(3,'a-four')">철의 제련</button>
+</div>
+</div>
+<button class="map-node" onclick="goTo(3,'a-slag')">석회석과 슬래그</button>
+<button class="map-node" onclick="goTo(3,'a-daily')">🏠 생활 속 사례</button>
+</div>
+</div>
+<div class="map-root rose">
+<button class="map-root-head" onclick="goTo(4)">⑤ 산과 염기의 성질</button>
+<div class="map-children">
+<button class="map-node" onclick="goTo(4,'a-ablab')">🧪 12홈판 실험</button>
+<button class="map-node" onclick="goTo(4,'a-abprop')">📋 산성과 염기성</button>
+<button class="map-node" onclick="goTo(4,'a-abeq')">반응식 확인</button>
+<button class="map-node" onclick="goTo(4,'a-around')">🏠 우리 주변</button>
+</div>
+</div>
+<div class="map-root teal">
+<button class="map-root-head" onclick="goTo(5)">⑥ 산과 염기의 정체</button>
+<div class="map-children">
+<button class="map-node" onclick="goTo(5,'a-ionize')">🔌 이온화와 전류</button>
+<div class="map-group">
+<button class="map-node" onclick="goTo(5,'a-acid')">🍋 산 = H⁺</button>
+<div class="map-subrow"><button class="map-subchip" onclick="goTo(5,'a-acetic')">아세트산의 H</button></div>
+</div>
+<button class="map-node" onclick="goTo(5,'a-base')">🧼 염기 = OH⁻</button>
+<button class="map-node" onclick="goTo(5,'a-mirror')">🪞 거울 비교</button>
+</div>
+</div>
+</section>
+
+</main>
+
+<button class="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="맨 위로">↑</button>
+
+<script>
+function switchTab(idx){
+document.querySelectorAll('.tab-btn').forEach(function(b,i){b.classList.toggle('active',i===idx);});
+document.querySelectorAll('.tab-panel').forEach(function(p,i){p.classList.toggle('active',i===idx);});
+window.scrollTo({top:0,behavior:'smooth'});
+}
+function goTo(tabIdx,anchorId){
+switchTab(tabIdx);
+if(anchorId){
+setTimeout(function(){
+var el=document.getElementById(anchorId);
+if(el){ if(el.tagName==='DETAILS') el.open=true; el.scrollIntoView({behavior:'smooth',block:'start'}); }
+},120);
+}
+}
+</script>
+
+<script>
+const QUIZ_DATA = {"0": {"ox": [{"q": "화학 반응식에서 화학식 앞의 큰 숫자를 계수라고 한다.", "a": true, "exp": "계수는 물질의 개수(입자 수의 비)를 나타내며, 1은 생략한다."}, {"q": "2H₂O에는 수소 원자가 2개 들어 있다.", "a": false, "exp": "물 분자 2개이므로 H는 2 × 2 = 4개, O는 2개이다."}, {"q": "원자 수를 맞추기 위해 화학식의 아래 첨자를 바꾸어도 된다.", "a": false, "exp": "아래 첨자를 바꾸면 다른 물질이 된다. 원자 수는 계수로만 맞춘다."}, {"q": "화학 반응 전후에 원자의 종류와 개수는 변하지 않는다.", "a": true, "exp": "원자는 재배열될 뿐 새로 생기거나 사라지지 않는다 → 질량 보존"}, {"q": "화학 반응이 일어나면 반응 후 물질의 총질량이 반응 전보다 커진다.", "a": false, "exp": "질량 보존 법칙: 반응 전후 총질량은 같다."}, {"q": "CH₄ + 2O₂ → CO₂ + 2H₂O에서 반응 전후 산소 원자는 각각 4개이다.", "a": true, "exp": "반응 전 2 × 2 = 4, 반응 후 2 + 2 × 1 = 4"}, {"q": "반응식 속 ↑ 표시는 생성된 기체가 빠져나감을 뜻한다.", "a": true, "exp": "예) CO₂↑, H₂↑"}, {"q": "Cu²⁺의 전하 표기는 부호를 먼저, 숫자를 나중에 쓴다.", "a": false, "exp": "숫자 먼저, 부호 나중: 2+"}, {"q": "이온 화합물은 양이온과 음이온의 전하 총합이 0이다.", "a": true, "exp": "예) CaCl₂: (+2) + (−1) × 2 = 0"}, {"q": "산화 철(Ⅲ)의 로마 숫자 Ⅲ은 철 이온의 전하가 +3임을 나타낸다.", "a": true, "exp": "이름 속 로마 숫자 = 양이온의 전하"}], "mc": [{"q": "CH₄ + O₂ → CO₂ + H₂O의 계수를 옳게 맞춘 것은?", "opts": ["CH₄ + 2O₂ → CO₂ + 2H₂O", "CH₄ + 3O₂ → CO₂ + 2H₂O", "2CH₄ + O₂ → 2CO₂ + H₂O", "CH₄ + O₂ → CO₂ + 2H₂O"], "a": 0, "exp": "C 1=1, H 4=4(2H₂O), O 4=4(2O₂)"}, {"q": "철이 녹스는 반응 □Fe + □O₂ → □Fe₂O₃의 계수를 순서대로 옳게 쓴 것은?", "opts": ["2, 3, 1", "4, 3, 2", "4, 3, 1", "2, 1, 1"], "a": 1, "exp": "O: 3 × 2 = 6 = 2 × 3, Fe: 4 = 2 × 2"}, {"q": "6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂에서 반응 전 산소 원자 수는?", "opts": ["12개", "6개", "18개", "24개"], "a": 2, "exp": "6 × 2 + 6 × 1 = 18 (반응 후도 6 + 6 × 2 = 18)"}, {"q": "질량 보존 법칙이 성립하는 까닭으로 옳은 것은?", "opts": ["기체가 발생하지 않기 때문", "반응 후 새로운 원자가 생기기 때문", "분자의 개수가 항상 같기 때문", "반응 전후 원자의 종류와 개수가 변하지 않기 때문"], "a": 3, "exp": "원자는 결합만 바뀌어 재배열된다."}, {"q": "계수 맞추기 요령으로 옳지 않은 것은?", "opts": ["아래 첨자를 바꾸어 원자 수를 맞춘다.", "계수는 가장 간단한 정수비로 나타낸다.", "복잡한 물질부터 맞춘다.", "O₂처럼 한 종류 원자로 된 물질은 마지막에 맞춘다."], "a": 0, "exp": "아래 첨자는 바꿀 수 없다."}, {"q": "Fe₂O₃를 이루는 이온으로 옳은 것은?", "opts": ["Fe³⁺ 3개, O²⁻ 2개", "Fe³⁺ 2개, O²⁻ 3개", "Fe²⁺ 2개, O²⁻ 3개", "Fe²⁺ 3개, O²⁻ 2개"], "a": 1, "exp": "O²⁻ 3개 = −6 → Fe 2개 = +6 → Fe³⁺"}, {"q": "Ca(OH)₂에 대한 설명으로 옳은 것은?", "opts": ["Ca²⁺ 2개와 OH⁻ 1개로 이루어져 있다.", "전하의 총합은 +1이다.", "Ca²⁺ 1개와 OH⁻ 2개로 이루어져 있다.", "Ca⁺ 1개와 OH⁻ 1개로 이루어져 있다."], "a": 2, "exp": "괄호 밖 2는 OH 덩어리의 개수. (+2) + (−1) × 2 = 0"}, {"q": "산화 구리(Ⅱ) CuO 속 구리 이온은?", "opts": ["Cu⁺", "Cu²⁻", "Cu³⁺", "Cu²⁺"], "a": 3, "exp": "O²⁻ 1개(−2) → 구리 +2 → Cu²⁺, 이름의 (Ⅱ)와 같다."}], "hard": [{"q": "화학 반응식에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 계수는 화학식 앞에 쓰며, 1은 생략한다.", "ㄴ. 2Mg + O₂ → 2MgO에서 반응 전후 마그네슘 원자 수는 2개로 같다.", "ㄷ. CO₂를 CO로 바꾸면 산소 원자 수만 달라질 뿐 같은 물질이다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 아래 첨자가 바뀌면 다른 물질(이산화 탄소 ↔ 일산화 탄소)이 된다. / 옳은 것: ㄱ, ㄴ"}, {"q": "Fe₂O₃ + 3CO → 2Fe + 3CO₂에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 반응 전후 산소 원자는 6개로 같다.", "ㄴ. 반응 전후 탄소 원자 수가 다르다.", "ㄷ. 반응 전후 철 원자는 2개로 같다."], "opts": ["ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 반응 전 3개, 반응 후 3개로 같다. / 옳은 것: ㄱ, ㄷ"}, {"q": "이온 화합물에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. MgCl₂는 Mg⁺ 1개와 Cl⁻ 2개로 이루어져 있다.", "ㄴ. AgNO₃는 Ag⁺과 NO₃⁻으로 이루어져 있다.", "ㄷ. CaCO₃는 Ca²⁺ 1개와 CO₃²⁻ 1개로 이루어져 있다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄱ. (X) Cl⁻ 2개 = −2이므로 Mg²⁺이다. / 옳은 것: ㄴ, ㄷ"}, {"q": "질량 보존 법칙에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 반응 전 물질의 총질량과 반응 후 물질의 총질량은 같다.", "ㄴ. 화학 반응식의 계수를 맞추는 것은 원자 수를 맞추는 것이다.", "ㄷ. 기체가 발생하는 반응에서는 질량 보존 법칙이 성립하지 않는다."], "opts": ["ㄱ", "ㄴ", "ㄷ", "ㄱ, ㄴ"], "a": 3, "exp": "ㄷ. (X) 발생한 기체까지 포함하면 총질량은 같다. / 옳은 것: ㄱ, ㄴ"}, {"q": "이온에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 음이온은 전자를 얻어 (−) 전하를 띤다.", "ㄴ. SO₄²⁻처럼 여러 원자로 된 이온은 하나의 덩어리로 움직인다.", "ㄷ. 양이온은 전자를 잃어 (+) 전하를 띤다."], "opts": ["ㄱ", "ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 3, "exp": "옳은 것: ㄱ, ㄴ, ㄷ"}]}, "1": {"ox": [{"q": "산화는 물질이 산소를 얻는 반응이다.", "a": true, "exp": "산소 기준: 산화 = 산소를 얻음"}, {"q": "환원은 물질이 산소를 얻는 반응이다.", "a": false, "exp": "환원은 산소를 잃는 반응이다."}, {"q": "산화와 환원은 항상 동시에 일어난다.", "a": true, "exp": "한 물질이 잃은 산소를 다른 물질이 얻는다."}, {"q": "산화 구리(Ⅱ)와 숯가루를 함께 가열하면 붉은색 구리가 생성된다.", "a": true, "exp": "검은색 산화 구리(Ⅱ) → 붉은색 구리"}, {"q": "산화 구리(Ⅱ)와 숯가루의 반응에서 발생한 기체는 석회수를 뿌옇게 만든다.", "a": true, "exp": "이산화 탄소가 발생한다."}, {"q": "2CuO + C → 2Cu + CO₂에서 탄소는 환원된다.", "a": false, "exp": "탄소는 산소를 얻어 CO₂가 되므로 산화된다."}, {"q": "2CuO + C → 2Cu + CO₂에서 산화 구리(Ⅱ)는 산소를 잃고 환원된다.", "a": true, "exp": "CuO → Cu"}, {"q": "철이 공기 중에서 녹스는 것은 철이 산화되는 반응이다.", "a": true, "exp": "4Fe + 3O₂ → 2Fe₂O₃"}, {"q": "남세균이 광합성을 하면서 지구 대기에 산소가 쌓이기 시작했다.", "a": true, "exp": "광합성 생물의 등장"}, {"q": "페루 무지개 산의 붉은색은 흙에 구리 성분이 많기 때문이다.", "a": false, "exp": "철 성분(산화 철(Ⅲ))이 많기 때문이다."}], "mc": [{"q": "산소 기준으로 산화를 옳게 설명한 것은?", "opts": ["물질이 전자를 얻는 반응", "물질이 산소를 얻는 반응", "물질이 수소를 얻는 반응", "물질이 산소를 잃는 반응"], "a": 1, "exp": "산화 = 산소를 얻음, 환원 = 산소를 잃음"}, {"q": "2CuO + C → 2Cu + CO₂에서 산화되는 물질은?", "opts": ["Cu", "CO₂", "C", "CuO"], "a": 2, "exp": "C는 산소를 얻어 CO₂가 된다."}, {"q": "2CuO + C → 2Cu + CO₂에서 환원되는 물질은?", "opts": ["O₂", "C", "CO₂", "CuO"], "a": 3, "exp": "CuO는 산소를 잃고 Cu가 된다."}, {"q": "산화 구리(Ⅱ)와 숯가루를 가열했을 때 관찰되는 변화가 아닌 것은?", "opts": ["붉은색 가루가 검은색으로 변한다.", "검은색 가루가 붉은색으로 변한다.", "석회수가 뿌옇게 흐려진다.", "이산화 탄소가 발생한다."], "a": 0, "exp": "검은색(산화 구리(Ⅱ)) → 붉은색(구리)"}, {"q": "철이 녹슬 때 생성되는 물질은?", "opts": ["산화 구리(Ⅱ)", "산화 철(Ⅲ)", "산화 마그네슘", "이산화 탄소"], "a": 1, "exp": "4Fe + 3O₂ → 2Fe₂O₃"}, {"q": "광합성, 철의 제련, 화석 연료의 사용에 공통으로 관여한 원소는?", "opts": ["수소", "탄소", "산소", "질소"], "a": 2, "exp": "산소의 이동에 의한 반응 = 산화·환원 반응"}, {"q": "산화와 환원이 동시에 일어나는 까닭으로 옳은 것은?", "opts": ["반응물이 한 가지뿐이기 때문", "반응할 때 항상 열이 나기 때문", "산소가 새로 만들어지기 때문", "한 물질이 잃은 산소를 다른 물질이 얻기 때문"], "a": 3, "exp": "산소를 잃는 물질이 있으면 얻는 물질도 있다."}, {"q": "오존층이 형성된 뒤 생물에게 일어난 일로 옳은 것은?", "opts": ["자외선이 흡수되어 생물이 육지로 올라올 수 있게 되었다.", "철의 제련이 시작되었다.", "바닷속 생물이 모두 사라졌다.", "대기 중 산소가 사라졌다."], "a": 0, "exp": "오존층이 태양에서 오는 자외선을 흡수하였다."}], "hard": [{"q": "2CuO + C → 2Cu + CO₂에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 산화 반응만 일어나고 환원 반응은 일어나지 않는다.", "ㄴ. 산화 구리(Ⅱ)는 환원된다.", "ㄷ. 탄소는 산화된다."], "opts": ["ㄱ", "ㄴ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄱ. (X) 산화와 환원은 동시에 일어난다. / 옳은 것: ㄴ, ㄷ"}, {"q": "산화 구리(Ⅱ)와 숯가루 실험에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 시험관 속 검은색 가루가 붉은색으로 변한다.", "ㄴ. 석회수가 뿌옇게 흐려지는 것으로 이산화 탄소 발생을 알 수 있다.", "ㄷ. 분리된 산소는 구리와 다시 결합한다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 분리된 산소는 숯가루의 탄소와 결합한다. / 옳은 것: ㄱ, ㄴ"}, {"q": "철에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 산화 철(Ⅲ)은 은회색 철과 성질이 달라 붉은색을 띤다.", "ㄴ. 철이 녹스는 반응에서 산소는 산화된다.", "ㄷ. 철은 공기 중에서 산소와 만나 서서히 산화된다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 철이 산화되고 산소는 환원된다. / 옳은 것: ㄱ, ㄷ"}, {"q": "자연과 인류의 역사 속 화학 반응에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 화석 연료의 사용은 산소와 관계없는 반응이다.", "ㄴ. 광합성 생물이 등장하면서 대기 중 산소가 증가하였다.", "ㄷ. 인류는 철광석에서 철을 얻는 제련 기술로 철기 문명을 일으켰다."], "opts": ["ㄴ", "ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄱ. (X) 화석 연료를 산소와 반응시키면 연소가 일어난다. / 옳은 것: ㄴ, ㄷ"}, {"q": "산소 기준의 산화·환원에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 산소를 얻는 반응은 산화이다.", "ㄴ. 산소를 잃는 반응은 환원이다.", "ㄷ. 한 반응에서 산화되는 물질과 환원되는 물질이 함께 있다."], "opts": ["ㄷ", "ㄱ, ㄴ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 3, "exp": "옳은 것: ㄱ, ㄴ, ㄷ"}]}, "2": {"ox": [{"q": "전자 기준으로 산화는 전자를 잃는 반응이다.", "a": true, "exp": "산화 = 전자를 잃음, 환원 = 전자를 얻음"}, {"q": "철이 녹스는 반응에서 산소는 전자를 잃어 O²⁻이 된다.", "a": false, "exp": "산소는 전자를 얻어 O²⁻이 된다(환원)."}, {"q": "철이 녹스는 반응에서 철은 전자를 잃어 Fe³⁺이 된다.", "a": true, "exp": "철은 산화된다."}, {"q": "구리줄을 질산 은 수용액에 넣으면 수용액이 점점 푸른색으로 변한다.", "a": true, "exp": "Cu²⁺이 생성된다."}, {"q": "구리와 질산 은 수용액의 반응에서 은 이온은 산화된다.", "a": false, "exp": "은 이온은 전자를 얻어 은이 되므로 환원된다."}, {"q": "Cu + 2Ag⁺ → Cu²⁺ + 2Ag에서 구리 1개가 잃은 전자 수는 2개이다.", "a": true, "exp": "Cu → Cu²⁺ + 2e⁻"}, {"q": "구리와 질산 은 수용액의 반응이 진행되면 수용액 속 양이온의 수가 감소한다.", "a": true, "exp": "Ag⁺ 2개가 사라지고 Cu²⁺ 1개가 생긴다."}, {"q": "구리와 질산 은 수용액의 반응이 진행되면 수용액 속 양이온의 전하 총량이 감소한다.", "a": false, "exp": "+2 → +2로 변하지 않는다."}, {"q": "구리와 질산 은 수용액의 반응에서 NO₃⁻은 반응에 참여하지 않는다.", "a": true, "exp": "반응 전후 2개로 그대로이다."}, {"q": "2Mg + O₂ → 2MgO에서 마그네슘은 전자를 잃고 산화된다.", "a": true, "exp": "Mg → Mg²⁺"}], "mc": [{"q": "전자 기준으로 환원을 옳게 설명한 것은?", "opts": ["전자를 잃는 반응", "산소를 얻는 반응", "전자를 얻는 반응", "양이온이 되는 반응"], "a": 2, "exp": "환원 = 전자를 얻음"}, {"q": "Cu + 2Ag⁺ → Cu²⁺ + 2Ag에서 산화되는 물질은?", "opts": ["Ag⁺", "NO₃⁻", "Ag", "Cu"], "a": 3, "exp": "구리가 전자를 잃고 Cu²⁺이 된다."}, {"q": "구리줄을 질산 은 수용액에 넣었을 때 구리줄 표면에서 볼 수 있는 변화는?", "opts": ["은이 석출되어 달라붙는다.", "구리가 더 두꺼워진다.", "아무 변화가 없다.", "기체가 발생한다."], "a": 0, "exp": "Ag⁺이 전자를 얻어 Ag로 석출된다."}, {"q": "구리와 질산 은 수용액의 반응에서 Ag⁺의 계수가 2인 까닭은?", "opts": ["NO₃⁻이 2개이기 때문", "구리 1개가 잃은 전자 2개를 은 이온이 1개씩 얻기 때문", "구리 이온의 전하가 −2이기 때문", "은이 구리보다 2배 무겁기 때문"], "a": 1, "exp": "잃은 전자 수 = 얻은 전자 수"}, {"q": "Cu + 2Ag⁺ → Cu²⁺ + 2Ag에서 반응 전후 전하의 합은?", "opts": ["0 → +2", "+2 → +1", "+2 → +2", "+1 → +2"], "a": 2, "exp": "(+1) × 2 = +2 → (+2) × 1 = +2"}, {"q": "수용액이 푸른색으로 변하는 까닭이 되는 이온은?", "opts": ["Mg²⁺", "NO₃⁻", "Ag⁺", "Cu²⁺"], "a": 3, "exp": "구리 이온이 생성되면 푸른색을 띤다."}, {"q": "2Mg + O₂ → 2MgO에서 환원되는 물질과 그 결과를 옳게 짝지은 것은?", "opts": ["O₂ → O²⁻", "MgO → Mg", "O²⁻ → O₂", "Mg → Mg²⁺"], "a": 0, "exp": "산소가 전자를 얻어 O²⁻이 된다."}, {"q": "산소가 관여하지 않는 산화·환원 반응을 설명할 수 있는 기준은?", "opts": ["산소의 이동", "전자의 이동", "질량의 변화", "기체의 발생"], "a": 1, "exp": "Cu + 2Ag⁺ → Cu²⁺ + 2Ag처럼 산소가 없어도 전자의 이동으로 설명한다."}], "hard": [{"q": "구리와 질산 은 수용액의 반응에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 은 이온은 전자를 얻고 환원된다.", "ㄴ. 반응이 진행될수록 NO₃⁻의 수가 감소한다.", "ㄷ. 구리는 전자를 잃고 산화된다."], "opts": ["ㄱ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) NO₃⁻은 반응에 참여하지 않아 수가 변하지 않는다. / 옳은 것: ㄱ, ㄷ"}, {"q": "구리와 질산 은 수용액의 반응이 진행될 때 수용액에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 수용액의 색은 점점 옅어진다.", "ㄴ. 양이온의 수는 감소한다.", "ㄷ. 양이온의 전하 총량은 일정하다."], "opts": ["ㄷ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄱ. (X) Cu²⁺이 생성되어 점점 푸른색으로 변한다. / 옳은 것: ㄴ, ㄷ"}, {"q": "철이 녹스는 반응 4Fe + 3O₂ → 2Fe₂O₃에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 철은 전자를 잃어 Fe³⁺이 된다.", "ㄴ. 산소는 전자를 얻어 O²⁻이 된다.", "ㄷ. 철은 산소를 얻었으므로 산소 기준으로도 산화이다."], "opts": ["ㄴ", "ㄷ", "ㄱ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 3, "exp": "옳은 것: ㄱ, ㄴ, ㄷ"}, {"q": "산화·환원 반응에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 이온 반응식에서는 반응 전후 전하의 합이 같다.", "ㄴ. 양이온의 개수가 변하면 전하 총량도 반드시 변한다.", "ㄷ. 산화되는 물질이 잃은 전자 수와 환원되는 물질이 얻은 전자 수는 같다."], "opts": ["ㄱ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 개수는 변해도 전하 총량은 변하지 않는다(2Ag⁺ → Cu²⁺). / 옳은 것: ㄱ, ㄷ"}, {"q": "2Mg + O₂ → 2MgO에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 산소는 전자를 잃는다.", "ㄴ. 마그네슘은 산화된다.", "ㄷ. 산화 마그네슘은 Mg²⁺과 O²⁻으로 이루어져 있다."], "opts": ["ㄴ", "ㄱ, ㄴ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄱ. (X) 산소는 전자를 얻어 환원된다. / 옳은 것: ㄴ, ㄷ"}]}, "3": {"ox": [{"q": "광합성에서 이산화 탄소는 환원되어 포도당이 된다.", "a": true, "exp": "CO₂에서 환원, H₂O에서 산화"}, {"q": "광합성에서 물은 환원되어 산소가 된다.", "a": false, "exp": "물은 산화되어 산소가 된다."}, {"q": "세포호흡에서 포도당은 산화된다.", "a": true, "exp": "포도당 → CO₂"}, {"q": "세포호흡은 식물의 엽록체에서 일어난다.", "a": false, "exp": "세포호흡은 마이토콘드리아, 광합성은 엽록체에서 일어난다."}, {"q": "메테인이 연소될 때 메테인은 산화된다.", "a": true, "exp": "CH₄ → CO₂ (산소를 얻음)"}, {"q": "철의 제련에서 산화 철(Ⅲ)은 산화된다.", "a": false, "exp": "산화 철(Ⅲ)은 산소를 잃고 철로 환원된다."}, {"q": "철의 제련에서 일산화 탄소는 산화되어 이산화 탄소가 된다.", "a": true, "exp": "CO → CO₂"}, {"q": "철의 제련에서 석회석은 불순물과 결합하여 슬래그를 만든다.", "a": true, "exp": "CaO + SiO₂ → CaSiO₃"}, {"q": "손난로는 철이 산화될 때 발생하는 열을 이용한다.", "a": true, "exp": "철 → 산화 철(Ⅲ)"}, {"q": "과일의 갈변은 폴리페놀 성분이 환원되어 일어난다.", "a": false, "exp": "폴리페놀이 산화되어 갈변한다."}], "mc": [{"q": "광합성에 대한 설명으로 옳은 것은?", "opts": ["포도당이 산화된다.", "산소가 소모된다.", "마이토콘드리아에서 일어난다.", "빛에너지가 화학 에너지로 전환된다."], "a": 3, "exp": "엽록체에서 빛에너지 → 화학 에너지, 산소가 생성된다."}, {"q": "세포호흡 C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O에서 환원되는 물질은?", "opts": ["O₂", "CO₂", "C₆H₁₂O₆", "H₂O"], "a": 0, "exp": "O₂ → H₂O (환원), 포도당 → CO₂ (산화)"}, {"q": "메테인의 연소 CH₄ + 2O₂ → CO₂ + 2H₂O에서 산화되는 물질과 그 까닭은?", "opts": ["H₂O, 산소를 잃기 때문", "CH₄, 산소를 얻기 때문", "CH₄, 산소를 잃기 때문", "O₂, 산소를 얻기 때문"], "a": 1, "exp": "메테인은 산소를 얻어 CO₂가 된다."}, {"q": "철의 제련 Fe₂O₃ + 3CO → 2Fe + 3CO₂에서 환원되는 물질은?", "opts": ["Fe", "CO", "Fe₂O₃", "CO₂"], "a": 2, "exp": "산화 철(Ⅲ)이 산소를 잃고 철이 된다."}, {"q": "용광로에 넣는 물질이 아닌 것은?", "opts": ["철광석", "석회석", "코크스", "구리 광석"], "a": 3, "exp": "철광석, 코크스(C), 석회석을 넣는다."}, {"q": "자동차 배기관 촉매 장치에서 일어나는 일은?", "opts": ["산화 질소가 환원되어 배기가스가 정화된다.", "철이 산화되어 열이 발생한다.", "루시페린이 산화되어 빛이 난다.", "파라핀이 연소된다."], "a": 0, "exp": "촉매 장치에서 산화 질소가 환원된다."}, {"q": "반딧불이가 빛을 내는 과정과 관련 있는 것은?", "opts": ["리튬의 산화", "루시페린의 산화", "폴리페놀의 산화", "파라핀의 연소"], "a": 1, "exp": "광세포에서 루시페린이 산화되며 빛에너지를 방출한다."}, {"q": "양초가 탈 때 생성되는 물질로 옳은 것은?", "opts": ["철과 이산화 탄소", "산화 철(Ⅲ)", "이산화 탄소와 수증기", "산소와 수소"], "a": 2, "exp": "파라핀이 연소되어 이산화 탄소와 수증기로 변한다."}], "hard": [{"q": "광합성과 세포호흡에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 광합성에서 이산화 탄소는 환원된다.", "ㄴ. 세포호흡에서 산소는 환원되어 물이 된다.", "ㄷ. 광합성과 세포호흡 모두 포도당이 산화된다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 광합성에서는 포도당이 생성된다(CO₂가 환원됨). / 옳은 것: ㄱ, ㄴ"}, {"q": "철의 제련에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 일산화 탄소는 산화 철(Ⅲ)을 환원시킨다.", "ㄴ. 석회석은 철을 산화시키는 역할을 한다.", "ㄷ. 코크스가 산소와 결합하여 일산화 탄소가 된다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 석회석은 불순물과 결합해 슬래그를 만든다. / 옳은 것: ㄱ, ㄷ"}, {"q": "메테인의 연소에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 산소는 산화되어 물이 된다.", "ㄴ. 메테인은 액화천연가스의 주성분이다.", "ㄷ. 연소할 때 열에너지가 발생한다."], "opts": ["ㄱ", "ㄴ", "ㄷ", "ㄴ, ㄷ"], "a": 3, "exp": "ㄱ. (X) 산소는 환원되어 물이 된다. / 옳은 것: ㄴ, ㄷ"}, {"q": "생활 속 산화·환원에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 손난로 속 철은 산화된다.", "ㄴ. 리튬 배터리를 충전할 때 리튬은 전자를 잃고 산화된다.", "ㄷ. 과일의 갈변은 산화·환원 반응과 관계없다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 폴리페놀 성분이 산화되어 갈변한다. / 옳은 것: ㄱ, ㄴ"}, {"q": "석회석과 슬래그에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. CaO는 SiO₂와 결합하여 CaSiO₃가 된다.", "ㄴ. 슬래그는 철보다 무거워 용광로 아래에 가라앉는다.", "ㄷ. 석회석(CaCO₃)이 분해되면 CaO와 CO₂가 생성된다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 슬래그는 가벼워서 철 위에 뜬다. / 옳은 것: ㄱ, ㄷ"}]}, "4": {"ox": [{"q": "산의 수용액에는 전류가 흐른다.", "a": true, "exp": "산과 염기의 수용액 모두 전류가 흐른다."}, {"q": "염기의 수용액에는 전류가 흐르지 않는다.", "a": false, "exp": "염기의 수용액에도 전류가 흐른다."}, {"q": "묽은 염산에 탄산 칼슘을 넣으면 이산화 탄소 기체가 발생한다.", "a": true, "exp": "CaCO₃ + 2HCl → H₂O + CaCl₂ + CO₂↑"}, {"q": "아세트산 수용액에 마그네슘 조각을 넣으면 수소 기체가 발생한다.", "a": true, "exp": "산 + 금속 → 수소 기체"}, {"q": "수산화 나트륨 수용액에 마그네슘 조각을 넣으면 수소 기체가 발생한다.", "a": false, "exp": "염기는 마그네슘 등의 금속과 반응하지 않는다."}, {"q": "수산화 칼륨 수용액에 두부를 넣으면 뿌옇게 흐려진다.", "a": true, "exp": "염기는 단백질을 녹인다."}, {"q": "모든 금속은 산과 반응하여 수소 기체를 발생시킨다.", "a": false, "exp": "구리, 은, 금, 백금 등은 산과 반응하지 않는다."}, {"q": "식초에는 아세트산이 들어 있다.", "a": true, "exp": "과일에는 비타민 C 등의 산이 들어 있다."}, {"q": "비누를 만드는 데 사용되는 수산화 나트륨은 산이다.", "a": false, "exp": "수산화 나트륨은 염기이다."}, {"q": "수국의 꽃잎은 산성 토양에서 푸른색으로 피어난다.", "a": true, "exp": "염기성 토양에서는 붉은색"}], "mc": [{"q": "산의 공통적인 성질이 아닌 것은?", "opts": ["단백질을 녹인다.", "마그네슘과 반응하여 수소가 발생한다.", "수용액에서 전류가 흐른다.", "탄산 칼슘과 반응하여 이산화 탄소가 발생한다."], "a": 0, "exp": "단백질을 녹이는 것은 염기의 성질이다."}, {"q": "염기의 공통적인 성질로 옳은 것은?", "opts": ["수용액에서 전류가 흐르지 않는다.", "수용액에서 전류가 흐르고 단백질을 녹인다.", "탄산 칼슘과 반응하여 이산화 탄소가 발생한다.", "마그네슘과 반응하여 수소가 발생한다."], "a": 1, "exp": "염기: 전류 O, 단백질을 녹임, 탄산 칼슘·마그네슘과 반응 X"}, {"q": "12홈판 실험에서 산으로 분류되는 물질끼리 짝지은 것은?", "opts": ["아세트산 수용액, 수산화 나트륨 수용액", "묽은 염산, 수산화 칼륨 수용액", "묽은 염산, 아세트산 수용액", "수산화 나트륨 수용액, 수산화 칼륨 수용액"], "a": 2, "exp": "산: HCl, CH₃COOH / 염기: NaOH, KOH"}, {"q": "Mg + 2HCl → MgCl₂ + H₂↑에서 발생하는 기체는?", "opts": ["염소", "이산화 탄소", "산소", "수소"], "a": 3, "exp": "산 + 금속 → 수소 기체"}, {"q": "산에 탄산 칼슘을 넣었을 때 발생하는 기체는?", "opts": ["이산화 탄소", "질소", "산소", "수소"], "a": 0, "exp": "CaCO₃ + 2HCl → H₂O + CaCl₂ + CO₂↑"}, {"q": "산성비의 원인이 되는 물질은?", "opts": ["수산화 나트륨", "화석 연료 연소 시 배출된 황산화물, 질소 산화물", "탄산 칼슘", "대기 중 산소"], "a": 1, "exp": "황산화물, 질소 산화물 → 황산, 질산"}, {"q": "해양 산성화에 대한 설명으로 옳은 것은?", "opts": ["바닷물의 염분이 줄어들고 있다.", "바닷물의 수산화 이온 농도가 높아지고 있다.", "대기 중 이산화 탄소가 바다에 많이 녹아 해수 표면의 수소 이온 농도가 높아지고 있다.", "바다에 수산화 나트륨이 많이 녹고 있다."], "a": 2, "exp": "CO₂가 많이 녹을수록 H⁺ 농도가 높아진다."}, {"q": "염기가 들어 있는 것으로 옳은 것은?", "opts": ["식초", "과일", "해열제(아세틸 살리실산)", "유리 세정제"], "a": 3, "exp": "유리 세정제에는 기름 성분을 제거하기 위한 염기 성분이 들어 있다."}], "hard": [{"q": "12홈판 실험 결과에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 두부를 넣었을 때 뿌옇게 흐려진 것은 산이다.", "ㄴ. 네 가지 수용액 모두 전류가 흐른다.", "ㄷ. 탄산 칼슘을 넣었을 때 기체가 발생한 것은 묽은 염산과 아세트산 수용액이다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄱ. (X) 두부(단백질)를 녹인 것은 염기(NaOH, KOH)이다. / 옳은 것: ㄴ, ㄷ"}, {"q": "산과 금속의 반응에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 마그네슘은 묽은 염산과 반응하여 수소 기체를 발생시킨다.", "ㄴ. 구리, 은, 금, 백금은 산과 반응하지 않는다.", "ㄷ. 염기도 마그네슘과 반응하여 수소 기체를 발생시킨다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 염기는 마그네슘과 반응하지 않는다. / 옳은 것: ㄱ, ㄴ"}, {"q": "탄산 칼슘과 산의 반응에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 아세트산과 반응해도 이산화 탄소가 발생한다.", "ㄴ. 생성된 Ca(CH₃COO)₂는 Ca²⁺ 1개와 CH₃COO⁻ 2개로 이루어져 있다.", "ㄷ. CaCO₃ + 2HCl → H₂O + CaCl₂ + CO₂↑이다."], "opts": ["ㄱ", "ㄱ, ㄴ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 3, "exp": "옳은 것: ㄱ, ㄴ, ㄷ"}, {"q": "우리 주변의 산과 염기에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 살리실산과 아세틸 살리실산은 해열제나 진통제로 사용된다.", "ㄴ. 우리 몸의 혈액은 약한 염기성을 띤다.", "ㄷ. 탄자니아의 나트론 호수는 산성을 띤다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 나트론 호수는 염기성을 띤다. / 옳은 것: ㄱ, ㄴ"}, {"q": "산성과 염기성에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 산의 공통적인 성질을 산성이라고 한다.", "ㄴ. 염기의 공통적인 성질을 염기성이라고 한다.", "ㄷ. 산과 염기 모두 탄산 칼슘과 반응한다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 염기는 탄산 칼슘과 반응하지 않는다. / 옳은 것: ㄱ, ㄴ"}]}, "5": {"ox": [{"q": "염화 수소는 물에 녹아 H⁺과 Cl⁻으로 이온화된다.", "a": true, "exp": "HCl → H⁺ + Cl⁻"}, {"q": "묽은 염산에 전류가 흐르는 것은 이온들이 전극으로 움직이기 때문이다.", "a": true, "exp": "이온이 전하를 운반한다."}, {"q": "산은 수용액에서 수산화 이온(OH⁻)을 내놓는 물질이다.", "a": false, "exp": "산은 H⁺, 염기는 OH⁻을 내놓는다."}, {"q": "여러 가지 산에서 양이온의 종류는 같고 음이온의 종류는 다르다.", "a": true, "exp": "양이온은 모두 H⁺"}, {"q": "황산은 수용액에서 H⁺ 1개와 SO₄²⁻ 1개로 이온화된다.", "a": false, "exp": "H₂SO₄ → 2H⁺ + SO₄²⁻"}, {"q": "아세트산 분자 1개에 있는 수소 원자 4개가 모두 H⁺으로 이온화된다.", "a": false, "exp": "O에 붙은 H 1개만 H⁺으로 떨어진다."}, {"q": "염기의 공통적인 성질은 수산화 이온 때문이다.", "a": true, "exp": "염기 → OH⁻"}, {"q": "여러 가지 염기에서 음이온의 종류는 다르고 양이온의 종류는 같다.", "a": false, "exp": "음이온(OH⁻)이 같고 양이온이 다르다."}, {"q": "수산화 칼슘은 수용액에서 Ca²⁺ 1개와 OH⁻ 2개로 이온화된다.", "a": true, "exp": "Ca(OH)₂ → Ca²⁺ + 2OH⁻"}, {"q": "수산화 나트륨 수용액에 전류가 흐르는 것은 Na⁺과 OH⁻이 움직이기 때문이다.", "a": true, "exp": "NaOH → Na⁺ + OH⁻"}], "mc": [{"q": "산의 정의로 옳은 것은?", "opts": ["수용액에서 수산화 이온(OH⁻)을 내놓는 물질", "수용액에서 수소 이온(H⁺)을 내놓는 물질", "단백질을 녹이는 물질", "전류가 흐르지 않는 물질"], "a": 1, "exp": "산 = H⁺을 내놓는 물질"}, {"q": "염기의 정의로 옳은 것은?", "opts": ["수용액에서 수소 이온(H⁺)을 내놓는 물질", "탄산 칼슘과 반응하는 물질", "수용액에서 수산화 이온(OH⁻)을 내놓는 물질", "금속과 반응하는 물질"], "a": 2, "exp": "염기 = OH⁻을 내놓는 물질"}, {"q": "질산의 이온화식으로 옳은 것은?", "opts": ["HNO₃ → H⁺ + NO₃²⁻", "HNO₃ → H⁺ + NO₃", "HNO₃ → 2H⁺ + NO₃²⁻", "HNO₃ → H⁺ + NO₃⁻"], "a": 3, "exp": "질산 → 수소 이온 + 질산 이온"}, {"q": "탄산의 이온화식으로 옳은 것은?", "opts": ["H₂CO₃ → 2H⁺ + CO₃²⁻", "H₂CO₃ → 2H⁺ + CO₃⁻", "H₂CO₃ → H₂⁺ + CO₃²⁻", "H₂CO₃ → H⁺ + CO₃⁻"], "a": 0, "exp": "원자 수와 전하 합(0 = +2 −2)이 맞아야 한다."}, {"q": "수산화 칼슘의 이온화식으로 옳은 것은?", "opts": ["Ca(OH)₂ → 2Ca⁺ + 2OH⁻", "Ca(OH)₂ → Ca²⁺ + 2OH⁻", "Ca(OH)₂ → Ca⁺ + OH⁻", "Ca(OH)₂ → Ca²⁺ + OH⁻"], "a": 1, "exp": "Ca²⁺ 1개 + OH⁻ 2개, 전하 합 0"}, {"q": "아세트산 CH₃COOH가 이온화될 때 H⁺이 되는 수소는?", "opts": ["모든 H 4개", "H는 떨어지지 않는다", "산소(O)에 붙은 맨 끝의 H 1개", "탄소(C)에 붙은 H 3개"], "a": 2, "exp": "CH₃COOH → CH₃COO⁻ + H⁺"}, {"q": "여러 가지 산이 공통적인 성질을 나타내는 까닭은?", "opts": ["모두 같은 음이온을 내놓기 때문", "모두 OH⁻을 내놓기 때문", "모두 금속 원소를 포함하기 때문", "모두 수용액에서 H⁺을 내놓기 때문"], "a": 3, "exp": "산의 공통 성질 = H⁺ 때문"}, {"q": "수산화 나트륨과 수산화 칼륨의 수용액에 공통으로 들어 있는 이온은?", "opts": ["OH⁻", "K⁺", "H⁺", "Na⁺"], "a": 0, "exp": "염기의 공통 이온은 OH⁻"}], "hard": [{"q": "산의 이온화에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. H₂SO₄는 이온화되어 H⁺ 2개를 내놓는다.", "ㄴ. 산의 종류에 따라 양이온의 종류가 달라진다.", "ㄷ. HCl → H⁺ + Cl⁻이다."], "opts": ["ㄱ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 양이온은 모두 H⁺로 같고, 음이온이 달라진다. / 옳은 것: ㄱ, ㄷ"}, {"q": "염기의 이온화에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. Ca(OH)₂는 이온화되어 OH⁻ 1개를 내놓는다.", "ㄴ. NaOH → Na⁺ + OH⁻이다.", "ㄷ. KOH와 NaOH는 음이온의 종류가 같다."], "opts": ["ㄷ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄱ. (X) OH⁻ 2개를 내놓는다. / 옳은 것: ㄴ, ㄷ"}, {"q": "산과 염기의 수용액에 전류가 흐르는 까닭에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 물에 녹아 이온으로 나뉘기 때문이다.", "ㄴ. 전원을 연결하면 이온들이 전극으로 움직인다.", "ㄷ. 산의 수용액에는 이온이 없고 분자만 있다."], "opts": ["ㄱ", "ㄴ", "ㄷ", "ㄱ, ㄴ"], "a": 3, "exp": "ㄷ. (X) 산도 H⁺과 음이온으로 이온화된다. / 옳은 것: ㄱ, ㄴ"}, {"q": "아세트산에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 분자 속 수소 원자는 4개이다.", "ㄴ. 이온화될 때 H⁺ 4개를 내놓는다.", "ㄷ. 수용액에서 H⁺과 CH₃COO⁻으로 이온화된다."], "opts": ["ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) H⁺ 1개만 내놓는다. / 옳은 것: ㄱ, ㄷ"}, {"q": "산과 염기의 비교로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 이온화식에서도 반응 전후 전하의 합은 같다.", "ㄴ. 산은 양이온이 같고, 염기는 음이온이 같다.", "ㄷ. 산의 공통 성질은 H⁺, 염기의 공통 성질은 OH⁻ 때문이다."], "opts": ["ㄱ", "ㄴ", "ㄱ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 3, "exp": "옳은 것: ㄱ, ㄴ, ㄷ"}]}};
+
+const TYPE_CONFIG = [
+{ key:'ox', label:'OX 퀴즈', icon:'⭕', cls:'ox', diff:'기초', diffCls:'diff-basic', color:'#2563eb' },
+{ key:'mc', label:'객관식', icon:'📋', cls:'mc', diff:'중급', diffCls:'diff-mid', color:'#16a34a' },
+{ key:'hard', label:'고난도', icon:'🔥', cls:'hard', diff:'고난도', diffCls:'diff-hard', color:'#7c3aed' }
+];
+const QUIZ_UNITS = Object.keys(QUIZ_DATA).map(Number);
+const state = {};
+QUIZ_UNITS.forEach(function(u){
+state[u] = { activeType:0, answered:{ ox:[], mc:[], hard:[] } };
+});
+
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function typeStats(u, key){
+var qs = QUIZ_DATA[u][key], ans = state[u].answered[key], done = 0, correct = 0;
+for (var i = 0; i < qs.length; i++){
+if (ans[i] !== undefined){ done++; if (ans[i] === qs[i].a) correct++; }
+}
+return { total: qs.length, done: done, correct: correct };
+}
+
+function buildQuiz(u){
+var box = document.getElementById('quiz-' + u);
+if (!box) return;
+var st = state[u], cfg = TYPE_CONFIG[st.activeType], key = cfg.key;
+var qs = QUIZ_DATA[u][key], s = typeStats(u, key);
+var h = '';
+h += '<div class="quiz-header"><div class="quiz-title">📝 확인 문제</div><div class="scoreboard">';
+TYPE_CONFIG.forEach(function(c){
+var t = typeStats(u, c.key);
+h += '<span class="score-chip ' + c.cls + '">' + c.icon + ' ' + c.label + ' ' + t.correct + '/' + t.total + '</span>';
+});
+h += '</div></div>';
+h += '<div class="quiz-type-bar">';
+TYPE_CONFIG.forEach(function(c, i){
+var t = typeStats(u, c.key);
+h += '<button class="qtype-btn ' + c.cls + (i === st.activeType ? ' active' : '') + '" onclick="setType(' + u + ',' + i + ')">' +
+c.icon + ' ' + c.label + ' <span class="qtype-count">' + t.done + '/' + t.total + '</span></button>';
+});
+h += '</div>';
+var pct = s.total ? Math.round(s.done / s.total * 100) : 0;
+h += '<div class="q-progress-wrap"><span>진행</span><div class="q-progress-bar"><div class="q-progress-fill" style="width:' + pct + '%;background:' + cfg.color + '"></div></div><span>' + s.done + ' / ' + s.total + '</span></div>';
+
+if (s.done === s.total){
+h += buildResult(u, key, s);
+}
+qs.forEach(function(q, qi){ h += buildQCard(u, key, qi, q); });
+if (s.done > 0 && s.done < s.total){
+h += '<div style="text-align:right"><button class="reset-btn sm" onclick="resetType(' + u + ',\'' + key + '\')">↺ 이 유형 다시 풀기</button></div>';
+}
+box.innerHTML = h;
+}
+
+function buildResult(u, key, s){
+var p = Math.round(s.correct / s.total * 100);
+var msg = p === 100 ? '완벽해요! 🎉' : p >= 80 ? '아주 잘했어요! 틀린 문제의 해설만 다시 확인해 보세요.' : p >= 60 ? '좋아요. 해설을 읽고 본문을 한 번 더 확인해 보세요.' : '본문을 다시 읽고 도전해 보세요. 💪';
+var h = '<div class="quiz-result"><div class="big">' + s.correct + ' / ' + s.total + ' <span style="font-size:18px;color:var(--text-sec)">(' + p + '%)</span></div><div class="msg">' + msg + '</div><div class="mini-bar-wrap">';
+TYPE_CONFIG.forEach(function(c){
+var t = typeStats(u, c.key), w = t.total ? Math.round(t.correct / t.total * 100) : 0;
+h += '<div class="mini-bar-row"><span class="mini-bar-label" style="color:' + c.color + '">' + c.label + '</span><div class="mini-bar-track"><div class="mini-bar-fill" style="width:' + w + '%;background:' + c.color + '"></div></div><span class="mini-bar-val">' + t.correct + '/' + t.total + '</span></div>';
+});
+h += '</div><button class="reset-btn" onclick="resetType(' + u + ',\'' + key + '\')">↺ 다시 풀기</button></div><div style="height:14px"></div>';
+return h;
+}
+
+function buildQCard(u, key, qi, q){
+var cfg = TYPE_CONFIG.filter(function(c){ return c.key === key; })[0];
+var ans = state[u].answered[key][qi], done = ans !== undefined, ok = done && ans === q.a;
+var h = '<div class="q-card' + (done ? (ok ? ' answered-correct' : ' answered-wrong') : '') + '" id="qc-' + u + '-' + key + '-' + qi + '">';
+h += '<div class="q-meta"><span class="q-num">Q' + (qi + 1) + '</span><span class="q-difficulty ' + cfg.diffCls + '">' + cfg.diff + '</span></div>';
+h += '<div class="q-text">' + esc(q.q) + '</div>';
+if (q.box){
+h += '<div class="q-box">' + q.box.map(function(b){ return '<div>' + esc(b) + '</div>'; }).join('') + '</div>';
+}
+if (key === 'ox'){
+h += '<div class="ox-row">';
+[true, false].forEach(function(v){
+var cls = '';
+if (done){
+if (ans === v) cls = (v === q.a) ? ' correct-picked' : ' wrong-picked';
+else if (v === q.a) cls = ' correct-reveal';
+}
+h += '<button class="ox-btn' + cls + '"' + (done ? ' disabled' : '') + ' onclick="submitOX(' + u + ',' + qi + ',' + v + ')">' + (v ? '⭕' : '❌') + '</button>';
+});
+h += '</div>';
+} else {
+h += '<div class="mc-options">';
+q.opts.forEach(function(o, oi){
+var cls = '';
+if (done){
+if (oi === q.a) cls = ' correct';
+else if (oi === ans) cls = ' wrong';
+}
+h += '<button class="mc-opt' + cls + '"' + (done ? ' disabled' : '') + ' onclick="submitMC(' + u + ',\'' + key + '\',' + qi + ',' + oi + ')"><span class="mc-opt-letter">' + 'ABCD'.charAt(oi) + '</span><span>' + esc(o) + '</span></button>';
+});
+h += '</div>';
+}
+if (done){
+h += '<div class="q-feedback ' + (ok ? 'correct' : 'wrong') + '">' + (ok ? '✅ 정답! ' : '❌ 오답. ') +
+(key === 'ox' ? '(정답: ' + (q.a ? 'O' : 'X') + ') ' : (ok ? '' : '(정답: ' + 'ABCD'.charAt(q.a) + ') ')) + esc(q.exp) + '</div>';
+}
+h += '</div>';
+return h;
+}
+
+function submitOX(u, qi, v){
+if (state[u].answered.ox[qi] !== undefined) return;
+state[u].answered.ox[qi] = v;
+afterSubmit(u, 'ox');
+}
+function submitMC(u, key, qi, oi){
+if (state[u].answered[key][qi] !== undefined) return;
+state[u].answered[key][qi] = oi;
+afterSubmit(u, key);
+}
+function afterSubmit(u, key){
+buildQuiz(u);
+var qs = QUIZ_DATA[u][key], ans = state[u].answered[key];
+for (var i = 0; i < qs.length; i++){
+if (ans[i] === undefined){
+(function(id){
+setTimeout(function(){ var el = document.getElementById(id); if (el) el.scrollIntoView({behavior:'smooth', block:'center'}); }, 250);
+})('qc-' + u + '-' + key + '-' + i);
+return;
+}
+}
+setTimeout(function(){ var el = document.getElementById('quiz-' + u); if (el) el.scrollIntoView({behavior:'smooth', block:'start'}); }, 250);
+}
+function setType(u, i){ state[u].activeType = i; buildQuiz(u); }
+function resetType(u, key){ state[u].answered[key] = []; buildQuiz(u); }
+
+QUIZ_UNITS.forEach(buildQuiz);
+
+</script>
+</body>
+</html>

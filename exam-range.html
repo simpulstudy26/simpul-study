@@ -1,0 +1,206 @@
+<title>1학년 시험범위</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: a single study column — header with progress, subject filter chips, then one checklist card per subject */
+:root {
+  --bg: #f3f5f8;
+  --surface: #ffffff;
+  --fg: #1b2230;
+  --muted: #5d6779;
+  --line: #dde2ea;
+  --accent: #2f5bd3;
+  --accent-soft: #e6ecfb;
+  --done: #1f8a5b;
+  --done-soft: #e3f3ea;
+  --f-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #12161d; --surface: #1a2029; --fg: #e7ebf2; --muted: #9aa4b5; --line: #2b3340;
+  --accent: #7d9cf0; --accent-soft: #232d44; --done: #5cc493; --done-soft: #1c3329; color-scheme: dark;
+} }
+:root[data-theme="dark"] {
+  --bg: #12161d; --surface: #1a2029; --fg: #e7ebf2; --muted: #9aa4b5; --line: #2b3340;
+  --accent: #7d9cf0; --accent-soft: #232d44; --done: #5cc493; --done-soft: #1c3329; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--f-body); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 48px;
+}
+.wrap { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+header { display: flex; flex-direction: column; gap: 10px; }
+.eyebrow { font-size: 12px; letter-spacing: .08em; color: var(--muted); font-weight: 500; }
+h1 { margin: 0; font-size: 26px; font-weight: 700; text-wrap: balance; }
+.progress { display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--muted); }
+.bar { flex: 1; height: 8px; background: var(--line); border-radius: 99px; overflow: hidden; }
+.bar > i { display: block; height: 100%; width: 0; background: var(--done); transition: width .3s; }
+.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+
+.tools { display: flex; flex-direction: column; gap: 10px; }
+#q {
+  width: 100%; padding: 11px 14px; font: inherit; color: var(--fg); background: var(--surface);
+  border: 1px solid var(--line); border-radius: 10px;
+}
+#q:focus-visible, button:focus-visible, input[type=checkbox]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  font: inherit; font-size: 13px; padding: 5px 12px; border-radius: 99px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--surface); color: var(--fg);
+}
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+
+.list { display: flex; flex-direction: column; gap: 12px; }
+.subj { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; }
+.subj.complete { border-color: var(--done); }
+.head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.head h2 { margin: 0; font-size: 18px; font-weight: 700; }
+.unit { font-size: 12px; color: var(--accent); background: var(--accent-soft); padding: 2px 8px; border-radius: 6px; font-weight: 500; }
+.count { margin-left: auto; font-size: 12px; color: var(--muted); }
+.subj.complete .count { color: var(--done); font-weight: 500; }
+ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+li label { display: flex; gap: 10px; align-items: flex-start; padding: 7px 8px; border-radius: 8px; cursor: pointer; }
+li label:hover { background: var(--bg); }
+li input { margin-top: 4px; width: 17px; height: 17px; accent-color: var(--done); flex: none; }
+.txt { min-width: 0; flex: 1; }
+.src { font-size: 12px; color: var(--muted); margin-right: 6px; }
+.pg { font-family: var(--f-mono); font-size: 12px; color: var(--muted); white-space: nowrap; }
+li.checked .txt { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--line); }
+.empty { text-align: center; color: var(--muted); padding: 32px 0; }
+.foot { font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.foot button { font: inherit; font-size: 12px; color: var(--muted); background: none; border: 1px solid var(--line); border-radius: 8px; padding: 4px 10px; cursor: pointer; }
+mark { background: var(--accent-soft); color: inherit; border-radius: 3px; }
+@media (prefers-reduced-motion: reduce) { .bar > i { transition: none; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">2학기 기말고사 · 1학년</div>
+    <h1>1학년 시험범위</h1>
+    <div class="progress">
+      <div class="bar"><i id="bar"></i></div>
+      <span><span class="num" id="done">0</span> / <span class="num" id="total">0</span> 완료</span>
+    </div>
+  </header>
+
+  <div class="tools">
+    <input id="q" type="search" placeholder="과목이나 범위 검색 (예: 프린트, 부교재)" autocomplete="off">
+    <div class="chips" id="chips"></div>
+  </div>
+
+  <div class="list" id="list"></div>
+
+  <div class="foot">
+    <span>체크 표시는 이 기기에만 저장돼요.</span>
+    <button id="reset" type="button">체크 초기화</button>
+  </div>
+</div>
+
+<script>
+// p: [start, end] for page-count hint; null when open-ended
+const DATA = [
+  { name: "공통국어2", unit: 4, items: [
+    { src: "교과서", text: "p.115~121", p: [115,121] },
+    { src: "교과서", text: "p.152~156", p: [152,156] },
+    { src: "교과서", text: "p.160~166", p: [160,166] },
+    { src: "교과서", text: "p.60~105", p: [60,105] },
+    { src: "프린트", text: "문학 프린트 전체" } ] },
+  { name: "공통수학2", unit: 4, items: [
+    { src: "교과서", text: "p.72~끝" },
+    { src: "부교재", text: "92번~끝" } ] },
+  { name: "공통영어2", unit: 3, items: [
+    { src: "교과서", text: "p.39~44", p: [39,44] },
+    { src: "교과서", text: "p.46~47", p: [46,47] },
+    { src: "교과서", text: "p.66~70", p: [66,70] },
+    { src: "교과서", text: "p.72~73", p: [72,73] },
+    { src: "부교재", text: "p.59~165", p: [59,165] },
+    { src: "부교재", text: "p.216~277", p: [216,277] } ] },
+  { name: "한국사2", unit: 3, items: [
+    { src: "한국사A 교과서", text: "p.44~59", p: [44,59] },
+    { src: "한국사B 교과서", text: "p.94~157", p: [94,157] },
+    { src: "프린트", text: "프린트물 참조" } ] },
+  { name: "통합사회2", unit: 4, items: [
+    { src: "교과서", text: "Ⅱ-3~5 (p.48~65)", p: [48,65] },
+    { src: "교과서", text: "Ⅲ단원 전체 (p.68~99)", p: [68,99] },
+    { src: "교과서", text: "Ⅳ단원 전체 (p.102~125)", p: [102,125] },
+    { src: "프린트", text: "해당 영역 수업 프린트" } ] },
+  { name: "통합과학2", unit: 4, items: [
+    { src: "교과서", text: "p.48~85", p: [48,85] },
+    { src: "교과서", text: "p.90~125", p: [90,125] },
+    { src: "교과서", text: "p.138~157", p: [138,157] },
+    { src: "자료", text: "문제 풀이 자료" } ] },
+  { name: "일본어", unit: 3, items: [
+    { src: "교과서", text: "60p ~ 5과" } ] },
+  { name: "정보", unit: 3, items: [
+    { src: "교과서", text: "p.210~237", p: [210,237] },
+    { src: "교과서", text: "p.54~71", p: [54,71] },
+    { src: "교과서", text: "p.78~151", p: [78,151] },
+    { src: "학습지", text: "2학기 기간 내 제공된 모든 학습지 및 pdf 전체" } ] },
+];
+
+const KEY = "exam-range-g1-checks";
+let checks = {};
+try { checks = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { checks = {}; }
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(checks)); } catch (e) {} };
+
+let active = "전체";
+const $ = id => document.getElementById(id);
+const esc = s => s.replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+const hl = (s, q) => {
+  const e = esc(s); if (!q) return e;
+  const i = s.toLowerCase().indexOf(q.toLowerCase()); if (i < 0) return e;
+  return esc(s.slice(0,i)) + "<mark>" + esc(s.slice(i,i+q.length)) + "</mark>" + esc(s.slice(i+q.length));
+};
+
+function renderChips() {
+  $("chips").innerHTML = ["전체", ...DATA.map(d => d.name)].map(n =>
+    `<button class="chip" type="button" aria-pressed="${n===active}" data-n="${n}">${n}</button>`).join("");
+}
+
+function render() {
+  const q = $("q").value.trim();
+  const out = [];
+  DATA.forEach((d, si) => {
+    if (active !== "전체" && d.name !== active) return;
+    const nameHit = q && d.name.toLowerCase().includes(q.toLowerCase());
+    const items = d.items.map((it, ii) => ({ it, id: si + "-" + ii }))
+      .filter(({ it }) => !q || nameHit || (it.src + " " + it.text).toLowerCase().includes(q.toLowerCase()));
+    if (!items.length) return;
+    const doneN = d.items.filter((_, ii) => checks[si + "-" + ii]).length;
+    const complete = doneN === d.items.length;
+    out.push(`<section class="subj${complete ? " complete" : ""}">
+      <div class="head"><h2>${hl(d.name, q)}</h2><span class="unit">${d.unit}단위</span>
+        <span class="count">${complete ? "다 봤어요" : `<span class="num">${doneN}/${d.items.length}</span>`}</span></div>
+      <ul>${items.map(({ it, id }) => `<li class="${checks[id] ? "checked" : ""}"><label>
+        <input type="checkbox" id="c${id}" data-id="${id}" ${checks[id] ? "checked" : ""}>
+        <span class="txt"><span class="src">${hl(it.src, q)}</span>${hl(it.text, q)}</span>
+        ${it.p ? `<span class="pg">${it.p[1]-it.p[0]+1}쪽</span>` : ""}
+      </label></li>`).join("")}</ul></section>`);
+  });
+  $("list").innerHTML = out.length ? out.join("") : `<div class="empty">"${esc(q)}"에 맞는 범위가 없어요.</div>`;
+  const total = DATA.reduce((a, d) => a + d.items.length, 0);
+  const done = Object.values(checks).filter(Boolean).length;
+  $("total").textContent = total; $("done").textContent = done;
+  $("bar").style.width = (total ? done / total * 100 : 0) + "%";
+}
+
+$("chips").addEventListener("click", e => {
+  const b = e.target.closest(".chip"); if (!b) return;
+  active = b.dataset.n; renderChips(); render();
+});
+$("list").addEventListener("change", e => {
+  if (!e.target.dataset.id) return;
+  checks[e.target.dataset.id] = e.target.checked; save(); render();
+});
+$("q").addEventListener("input", render);
+let armed = false;
+$("reset").addEventListener("click", e => {
+  if (!armed) { armed = true; e.target.textContent = "한 번 더 누르면 초기화"; setTimeout(() => { armed = false; e.target.textContent = "체크 초기화"; }, 3000); return; }
+  armed = false; checks = {}; save(); e.target.textContent = "체크 초기화"; render();
+});
+renderChips(); render();
+</script>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>/* 저장된 화면 모드를 먼저 적용해 깜빡임을 막는다 (기본 다크) */try{if(localStorage.getItem('simpul.theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
+  <script>/* 듀오링고 모드 색을 먼저 적용 (2학기 기말 버전에서 켰을 때만) + 켜고 끈 직후 전환 애니메이션 표시 */try{var h=document.documentElement,d=JSON.parse(localStorage.getItem('simpul.duo.v1')||'{}'),v=new URLSearchParams(location.search).get('v')||localStorage.getItem('simpul.version')||'s2-final';if(d.on===true&&v==='s2-final')h.setAttribute('data-duo','');var a=sessionStorage.getItem('simpul.duo.anim');if(a){sessionStorage.removeItem('simpul.duo.anim');h.setAttribute('data-duo-anim',a)}}catch(e){}</script>
+  <title>심풀스터디 · 고1 과목별 내신 대비 자료</title>
+  <meta name="description" content="국어, 영어, 수학, 통합사회, 한국사, 통합과학, 일본어, 정보 과목의 개념 정리와 문제를 모은 고1 내신 대비 자료실">
+  <meta name="theme-color" content="#09090b">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="./styles/site.css">
+  <link rel="stylesheet" href="./styles/duo.css">
+  <link rel="stylesheet" href="./styles/intro.css">
+  <script>/* 인트로: 이 탭에서 처음 열 때만. 인트로가 뜨기 전 홈이 비치지 않게 잠깐 가린다 */try{if(sessionStorage.getItem('simpul.intro.seen')!=='1'||/[?&]intro=1/.test(location.search))document.documentElement.classList.add('intro-pending')}catch(e){}</script>
+  <script src="./scripts/catalog.js" defer></script>
+  <script src="./scripts/common.js" defer></script>
+  <script src="./scripts/generators.js" defer></script>
+  <script src="./scripts/mine.js" defer></script>
+  <script src="./scripts/duo.js" defer></script>
+  <script src="./scripts/studytime.js" defer></script>
+  <script src="./scripts/timerbar.js" defer></script>
+  <script src="./scripts/home.js" defer></script>
+  <script src="./scripts/ranges.js" defer></script>
+  <script src="./scripts/duo-home.js" defer></script>
+  <script src="./scripts/intro.js" defer></script>
+</head>
+<body>
+  <a class="visually-hidden" href="#subjects">과목 고르기로 건너뛰기</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="site-logo" href="./index.html"><img src="./assets/simpul-logo-white.png" alt="심풀스터디 홈" width="695" height="257"></a>
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="#subjects" aria-current="page">과목</a>
+        <a href="./exams.html">시험범위</a>
+        <a href="./cloud.html">무한 문제</a>
+        <a href="./make.html">문제 만들기</a>
+        <a href="./timer.html">공부 타이머</a>
+        <a href="./dict.html">사전</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="page-head">
+      <h1>고1 2학기 기말고사 대비</h1>
+      <p>과목을 고르면 2학기 기말고사 범위 핵심 개념과 자료가 나와요. 무한 문제로 연습하고, 나만의 문제도 만들어 보세요. <a href="./exams.html">시험범위 확인하기 →</a></p>
+    </div>
+
+    <div class="resume" id="resume" hidden>
+      <div class="resume-text">
+        <span class="resume-label">마지막으로 본 자료</span>
+        <span class="resume-title" id="resume-title"></span>
+      </div>
+      <a class="btn btn-primary" id="resume-link" href="#">이어서 보기</a>
+    </div>
+
+    <a class="home-timer" id="home-timer" href="./timer.html">
+      <span class="home-timer-dot" aria-hidden="true"></span>
+      <span class="home-timer-text"><span class="home-timer-label">오늘 공부</span> <strong id="home-timer-total">0분</strong> <span id="home-timer-now"></span></span>
+      <span class="home-timer-go">공부 타이머 →</span>
+    </a>
+
+    <div class="home-cloud">
+      <p><strong>무한 문제 클라우드</strong><span>과목만 고르면 문제가 끝없이 나와요. 내가 만든 문제는 나만 볼 수 있어요.</span></p>
+      <a class="btn btn-primary" href="./cloud.html">바로 풀기</a>
+      <a class="btn btn-secondary" href="./make.html">내 문제 만들기</a>
+    </div>
+
+    <section class="section" id="subjects" aria-labelledby="subjects-title">
+      <h2 class="section-title" id="subjects-title">과목 고르기</h2>
+      <ul class="subject-grid" id="subject-grid"></ul>
+    </section>
+
+    <section class="section" id="search" aria-labelledby="search-title">
+      <h2 class="section-title" id="search-title">자료 이름으로 찾기</h2>
+      <form class="search-box" id="search-form" role="search">
+        <label class="visually-hidden" for="search-input">찾을 자료 이름이나 단원</label>
+        <input class="input" id="search-input" type="search" autocomplete="off" placeholder="예: 음운, Unit 3, 판 구조론, 역함수">
+        <button class="btn btn-secondary" type="submit">자료 찾기</button>
+      </form>
+      <p class="search-status" id="search-status" role="status">자료 이름, 단원, 과목 이름으로 찾을 수 있어요.</p>
+      <ul class="item-list" id="search-results" hidden></ul>
+    </section>
+
+    <section class="section" id="recent" aria-labelledby="recent-title" hidden>
+      <h2 class="section-title" id="recent-title">최근에 본 자료</h2>
+      <ul class="item-list" id="recent-list"></ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>심풀스터디 · 최근 본 자료는 이 기기에만 저장돼요.</span>
+      <a href="./admin.html">관리자</a>
+    </div>
+  </footer>
+</body>
+</html>

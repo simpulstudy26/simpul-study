@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>통합과학2 물리 파트</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+ --primary:#2563eb;--primary-light:#eff6ff;
+ --green:#16a34a;--green-light:#f0fdf4;
+ --purple:#7c3aed;--purple-light:#f5f3ff;
+ --orange:#ea580c;--orange-light:#fff7ed;
+ --teal:#0d9488;--teal-light:#f0fdfa;
+ --rose:#e11d48;--rose-light:#fff1f2;
+ --gray:#475569;--gray-light:#f1f5f9;
+ --bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#0f172a;--text-sec:#475569;
+ --shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;font-size:14.5px;line-height:1.8;color:var(--text);background:var(--bg)}
+b,strong{font-weight:700}
+
+/* header */
+.page-header{position:sticky;top:0;z-index:50;background:var(--surface);border-bottom:1px solid var(--border);box-shadow:var(--shadow)}
+.header-inner{max-width:980px;margin:0 auto;padding:14px 20px 0}
+.subject-label{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--text-sec);text-transform:uppercase}
+.page-title{font-size:19px;font-weight:700;display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:2px 0 10px}
+.badge-unit{font-size:11.5px;font-weight:700;padding:2px 10px;border-radius:999px;background:var(--primary-light);color:var(--primary)}
+.badge-unit.teal{background:var(--teal-light);color:var(--teal)}
+.badge-unit.rose{background:var(--rose-light);color:var(--rose)}
+.tab-bar{display:flex;align-items:flex-end;gap:2px;overflow-x:auto;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab-group-label{font-size:10.5px;font-weight:700;color:var(--text-sec);opacity:.55;padding:0 4px 11px 10px;white-space:nowrap;user-select:none}
+.tab-group-label:first-child{padding-left:0}
+.tab-btn{background:none;border:none;border-bottom:3px solid transparent;padding:8px 10px 9px;font-family:inherit;font-size:13px;font-weight:500;color:var(--text-sec);cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{color:var(--primary);border-bottom-color:var(--primary);font-weight:700}
+.tab-num{display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;border-radius:50%;background:var(--border);font-size:10.5px;font-weight:700;color:var(--text-sec)}
+.tab-btn.active .tab-num{background:var(--primary);color:#fff}
+
+/* layout */
+.content-wrap{max-width:980px;margin:0 auto;padding:28px 20px 100px}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.unit-banner{display:inline-block;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;background:var(--primary-light);color:var(--primary);margin-bottom:18px}
+.section-title{font-size:17.5px;font-weight:700;padding-bottom:6px;border-bottom:2px solid var(--primary);margin:34px 0 14px;scroll-margin-top:130px}
+.section-title:first-of-type{margin-top:6px}
+.subsection-title{font-size:14.5px;font-weight:700;border-left:3px solid var(--primary);padding-left:9px;margin:20px 0 10px;scroll-margin-top:130px}
+.sub2-title{display:inline-block;font-size:13px;font-weight:700;background:#f1f5f9;border:1px solid var(--border);border-radius:6px;padding:1px 10px;margin:12px 0 8px}
+p{margin:6px 0}
+ul.list{padding-left:20px;margin:6px 0}
+ul.list li{margin:2px 0}
+.page-ref{font-size:11.5px;font-weight:500;color:var(--text-sec);margin-left:6px}
+
+/* boxes */
+.def-box,.green-box,.purple-box,.teal-box,.orange-box,.rose-box{border-left:4px solid var(--primary);background:var(--primary-light);border-radius:0 8px 8px 0;padding:12px 16px;margin:10px 0}
+.green-box{border-color:var(--green);background:var(--green-light)}
+.purple-box{border-color:var(--purple);background:var(--purple-light)}
+.teal-box{border-color:var(--teal);background:var(--teal-light)}
+.orange-box{border-color:var(--orange);background:var(--orange-light)}
+.rose-box{border-color:var(--rose);background:var(--rose-light)}
+.box-label{font-size:12px;font-weight:700;margin-bottom:2px;color:var(--text-sec)}
+.note,.tip,.warning{border-radius:8px;padding:10px 14px;margin:10px 0;font-size:13.5px}
+.note{background:#fefce8;border:1px solid #fde047}
+.tip{background:var(--green-light);border:1px solid #bbf7d0}
+.warning{background:var(--rose-light);border:1px solid #fecdd3}
+
+/* grids & cards */
+.factor-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:12px 0}
+.factor-grid.three{grid-template-columns:repeat(3,1fr)}
+.factor-grid.four{grid-template-columns:repeat(4,1fr)}
+.factor-card{background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--gray);border-radius:8px;padding:12px 14px;box-shadow:var(--shadow);font-size:13.5px}
+.factor-card h4{font-size:14px;margin-bottom:4px}
+.factor-card.blue{border-top-color:var(--primary)}.factor-card.blue h4{color:var(--primary)}
+.factor-card.green{border-top-color:var(--green)}.factor-card.green h4{color:var(--green)}
+.factor-card.purple{border-top-color:var(--purple)}.factor-card.purple h4{color:var(--purple)}
+.factor-card.orange{border-top-color:var(--orange)}.factor-card.orange h4{color:var(--orange)}
+.factor-card.teal{border-top-color:var(--teal)}.factor-card.teal h4{color:var(--teal)}
+.factor-card.rose{border-top-color:var(--rose)}.factor-card.rose h4{color:var(--rose)}
+.factor-card ul{padding-left:18px}
+.factor-card .sub{font-size:12.5px;color:var(--text-sec)}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;margin:10px 0}
+.cmp-table,.ex-table{width:100%;border-collapse:collapse;background:var(--surface);font-size:13px;box-shadow:var(--shadow);border-radius:8px;overflow:hidden}
+.cmp-table th,.cmp-table td,.ex-table th,.ex-table td{border:1px solid var(--border);padding:8px 10px;vertical-align:top;text-align:left}
+.cmp-table thead th{background:var(--primary);color:#fff;font-weight:700}
+.cmp-table.green-th thead th{background:var(--green)}
+.cmp-table.purple-th thead th{background:var(--purple)}
+.cmp-table.teal-th thead th{background:var(--teal)}
+.cmp-table.orange-th thead th{background:var(--orange)}
+.cmp-table.rose-th thead th{background:var(--rose)}
+.cmp-table tbody td:first-child{font-weight:700;color:var(--primary);white-space:nowrap;background:#fafcff}
+.cmp-table.green-th tbody td:first-child{color:var(--green)}
+.cmp-table.purple-th tbody td:first-child{color:var(--purple)}
+.cmp-table.teal-th tbody td:first-child{color:var(--teal)}
+.cmp-table.orange-th tbody td:first-child{color:var(--orange)}
+.cmp-table.rose-th tbody td:first-child{color:var(--rose)}
+.ex-table thead th{background:#334155;color:#fff}
+.ex-table td.c,.ex-table th.c{text-align:center}
+
+/* badges */
+.badge{display:inline-block;font-size:11.5px;font-weight:700;padding:1px 8px;border-radius:999px;margin:1px 2px;white-space:nowrap}
+.badge-blue{background:var(--primary-light);color:var(--primary)}
+.badge-green{background:var(--green-light);color:var(--green)}
+.badge-purple{background:var(--purple-light);color:var(--purple)}
+.badge-orange{background:var(--orange-light);color:var(--orange)}
+.badge-teal{background:var(--teal-light);color:var(--teal)}
+.badge-rose{background:var(--rose-light);color:var(--rose)}
+.badge-gray{background:var(--gray-light);color:var(--gray)}
+
+/* flow & stage */
+.flow-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:10px 0}
+.flow-item{background:var(--surface);border:1.5px solid var(--primary);color:var(--text);border-radius:8px;padding:6px 12px;font-size:13px;font-weight:700;box-shadow:var(--shadow)}
+.flow-item.green{border-color:var(--green)}.flow-item.purple{border-color:var(--purple)}.flow-item.teal{border-color:var(--teal)}.flow-item.orange{border-color:var(--orange)}.flow-item.rose{border-color:var(--rose)}
+.flow-item small{display:block;font-weight:500;font-size:11.5px;color:var(--text-sec)}
+.flow-arrow{color:var(--text-sec);font-weight:700}
+.stage-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+.stage-row.three{grid-template-columns:repeat(3,1fr)}
+.stage-row.five{grid-template-columns:repeat(5,1fr)}
+.stage-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:13px;position:relative;box-shadow:var(--shadow)}
+.stage-item .st-num{font-size:12px;font-weight:900;color:var(--primary)}
+.stage-item .st-name{font-weight:700;font-size:14px;margin-bottom:3px}
+.stage-item.hi{border:2px solid var(--primary);background:var(--primary-light)}
+.stage-row.green .st-num{color:var(--green)}.stage-row.green .stage-item.hi{border-color:var(--green);background:var(--green-light)}
+.stage-row.purple .st-num{color:var(--purple)}.stage-row.purple .stage-item.hi{border-color:var(--purple);background:var(--purple-light)}
+
+/* rule & pov cards */
+.rule-card{border:2px solid var(--primary);border-radius:10px;padding:12px 16px;margin:12px 0;background:var(--surface)}
+.rule-card.green{border-color:var(--green)}.rule-card.purple{border-color:var(--purple)}.rule-card.teal{border-color:var(--teal)}.rule-card.orange{border-color:var(--orange)}.rule-card.rose{border-color:var(--rose)}
+.rule-card h4{font-size:14.5px;margin-bottom:4px}
+.pov-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
+.pov-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;box-shadow:var(--shadow);font-size:13px}
+.pov-card .pv-num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--purple);color:#fff;font-size:12px;font-weight:700;margin-right:6px}
+.pov-card .pv-title{font-weight:700;font-size:14px}
+.pov-card .pv-who{font-size:12px;color:var(--purple);font-weight:700;margin:2px 0 4px}
+
+/* diagrams */
+.kit{display:flex;align-items:stretch;border:2px solid #94a3b8;border-radius:10px;overflow:hidden;margin:12px 0;background:#fff;font-size:12px;font-weight:700;text-align:center}
+.kit>div{padding:10px 6px;border-right:1px dashed #cbd5e1;display:flex;flex-direction:column;justify-content:center;gap:2px}
+.kit>div:last-child{border-right:none}
+.kit .k-sample{flex:1.2;background:#f1f5f9}
+.kit .k-ab{flex:1.2;background:#fef3c7}
+.kit .k-line{flex:.9;background:#fff}
+.kit .k-line .bar{width:6px;height:34px;background:var(--rose);margin:0 auto;border-radius:2px}
+.kit .k-end{flex:.9;background:#e2e8f0}
+.kit small{font-weight:500;color:var(--text-sec)}
+.kit-dir{font-size:12px;color:var(--green);font-weight:700;margin-top:-6px}
+.chrom{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.chrom .cbox{border:1px solid var(--border);background:#fff;border-radius:8px;padding:10px;text-align:center;font-size:12.5px}
+.chrom .cbox .ph{font-weight:900;color:var(--primary);font-size:13px}
+.chrom .pair{display:flex;justify-content:center;gap:4px;margin:6px 0}
+.chrom .c{width:9px;height:30px;border-radius:5px}
+.chrom .c.a{background:#3b82f6}.chrom .c.b{background:#f43f5e}
+.chrom .c.ab{background:linear-gradient(#3b82f6 0 55%,#f43f5e 55%)}.chrom .c.ba{background:linear-gradient(#f43f5e 0 55%,#3b82f6 55%)}
+.bubble-list{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.bubble{background:var(--purple-light);border:1px solid #ddd6fe;border-radius:18px;padding:6px 14px;font-size:13px}
+.bubble.t{background:var(--teal-light);border-color:#99f6e4}
+
+/* map */
+.map-root{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin:14px 0;overflow:hidden;box-shadow:var(--shadow)}
+.map-root-head{width:100%;border:none;text-align:left;font-family:inherit;font-size:14.5px;font-weight:700;color:#fff;padding:10px 16px;cursor:pointer;background:var(--primary)}
+.map-root.green .map-root-head{background:var(--green)}
+.map-root.purple .map-root-head{background:var(--purple)}
+.map-root.teal .map-root-head{background:var(--teal)}
+.map-root.orange .map-root-head{background:var(--orange)}
+.map-root.rose .map-root-head{background:var(--rose)}
+.map-root.gray .map-root-head{background:var(--gray)}
+.map-root-head:hover{filter:brightness(1.08)}
+.map-children{display:flex;flex-wrap:wrap;gap:8px;padding:12px 14px}
+.map-node{border:1px solid var(--border);background:#f8fafc;border-radius:8px;padding:6px 12px;font-family:inherit;font-size:13px;cursor:pointer;color:var(--text)}
+.map-node:hover{background:var(--primary-light);border-color:var(--primary)}
+.map-group{display:flex;flex-direction:column;gap:4px;border:1px solid var(--border);border-radius:8px;padding:6px 10px;background:#f8fafc}
+.map-group>.map-node{border:none;background:none;padding:0;font-weight:700;text-align:left}
+.map-subrow{display:flex;flex-wrap:wrap;gap:4px;border-left:2px solid #cbd5e1;padding-left:8px;margin-left:4px}
+.map-subchip{border:1px solid var(--border);background:#fff;border-radius:999px;padding:1px 9px;font-family:inherit;font-size:11.5px;cursor:pointer;color:var(--text-sec)}
+.map-subchip:hover{border-color:var(--primary);color:var(--primary)}
+
+.totop{position:fixed;right:18px;bottom:18px;width:42px;height:42px;border-radius:50%;border:none;background:var(--primary);color:#fff;font-size:18px;cursor:pointer;box-shadow:0 4px 10px rgba(37,99,235,.35);z-index:60}
+
+@media (max-width:680px){
+ .factor-grid,.factor-grid.three,.factor-grid.four,.pov-grid,.stage-row,.stage-row.three,.stage-row.five,.chrom{grid-template-columns:1fr}
+ .cmp-table,.ex-table{font-size:12px}
+ .content-wrap{padding:20px 14px 100px}
+ .kit{flex-direction:column}
+ .kit>div{border-right:none;border-bottom:1px dashed #cbd5e1}
+}
+
+/* ---- additions for restructured version ---- */
+.lead{font-size:13.5px;color:var(--text-sec);background:var(--surface);border:1px dashed var(--border);border-radius:8px;padding:8px 14px;margin:0 0 16px}
+.lead b{color:var(--text)}
+.key-q{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin:10px 0;box-shadow:var(--shadow);font-size:13.5px}
+.key-q .kq-tag{flex:none;font-size:11px;font-weight:900;color:#fff;background:var(--primary);border-radius:6px;padding:2px 8px;margin-top:2px}
+.nest{margin:14px 0;font-size:13px}
+.nest .lv{border:2px solid var(--teal);border-radius:12px;padding:10px 14px 12px;background:#fff}
+.nest .lv .lv{margin-top:8px;border-color:#5eead4;background:var(--teal-light)}
+.nest .lv .lv .lv{border-color:#99f6e4;background:#fff}
+.nest .lv-name{font-weight:900;color:var(--teal)}
+.nest .lv-sub{color:var(--text-sec);font-size:12px}
+.cycle{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:6px;align-items:center;margin:12px 0}
+.cycle .cy{background:var(--teal-light);border:1.5px solid var(--teal);border-radius:10px;padding:8px 10px;text-align:center;font-weight:700;font-size:13px}
+.cycle .ar{font-weight:900;color:var(--teal);text-align:center}
+.cycle-desc{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.scale{display:flex;align-items:center;gap:8px;font-size:12px}
+.scale .track{flex:1;height:8px;border-radius:4px;background:#e2e8f0;overflow:hidden;min-width:60px}
+.scale .fill{height:100%;background:var(--rose);border-radius:4px}
+.link-btn{display:inline-flex;align-items:center;gap:6px;background:var(--rose);color:#fff !important;text-decoration:none;font-weight:700;font-size:13px;border-radius:8px;padding:7px 14px;margin:6px 0;box-shadow:0 2px 6px rgba(225,29,72,.25)}
+.link-btn:hover{filter:brightness(1.08)}
+.timeline{position:relative;margin:14px 0 14px 8px;padding-left:18px;border-left:3px solid #fdba74}
+.timeline .tl{position:relative;margin:0 0 10px;font-size:13px}
+.timeline .tl::before{content:'';position:absolute;left:-26px;top:5px;width:13px;height:13px;border-radius:50%;background:#fff;border:3px solid var(--orange)}
+.timeline .tl .yr{font-weight:900;color:var(--orange);margin-right:6px}
+.vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.vs-col{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);font-size:13px}
+.vs-col h4{margin:0;padding:8px 12px;color:#fff;font-size:13.5px}
+.vs-col ol{padding:10px 12px 10px 30px}
+.vs-col ol li{margin:3px 0}
+.check-list{list-style:none;padding:0;margin:8px 0}
+.check-list li{padding:6px 10px 6px 34px;position:relative;border-bottom:1px dashed var(--border);font-size:13.5px}
+.check-list li:last-child{border-bottom:none}
+.check-list li .mk{position:absolute;left:6px;top:6px;width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff}
+.mk.o{background:var(--green)}.mk.x{background:var(--rose)}
+.well-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0;text-align:center;font-size:12.5px}
+.well-grid .wg-h{font-weight:700;border-radius:6px;padding:3px 0}
+.well-grid .wg-h.ctrl{background:#fef3c7;color:#92400e}
+.well-grid .wg-h.exp{background:#fce7f3;color:#9d174d}
+@media (max-width:680px){
+ .cycle{grid-template-columns:1fr}.cycle .ar{transform:rotate(90deg)}
+ .cycle-desc,.vs-grid,.well-grid{grid-template-columns:1fr}
+}
+.sd-case{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:12px 0;box-shadow:var(--shadow)}
+.sd-head{font-weight:700;color:var(--teal);font-size:14px;margin-bottom:8px}
+.sd-sub{font-weight:500;color:var(--text-sec);font-size:12px}
+.sd-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sd-box{flex:1;min-width:200px;border:2px solid var(--border);border-radius:10px;padding:10px;text-align:center}
+.sd-box.win{border-color:var(--teal);background:var(--teal-light)}
+.sd-lab{font-weight:900;margin-bottom:6px}
+.forest{display:grid;grid-template-columns:repeat(6,26px);gap:5px;justify-content:center}
+.forest .tr{width:26px;height:26px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;color:#fff;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+.sd-cnt{font-size:12px;color:var(--text-sec);margin-top:6px}
+.sd-vs{font-size:22px;font-weight:900;color:var(--teal)}
+.sd-res{margin-top:8px;font-size:13.5px}
+.gcell{padding:4px !important}
+.gauge{width:96px;height:64px;display:block;margin:0 auto}
+.gauge-lab{font-size:11px;color:var(--text-sec);text-align:center}
+.case-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0}
+.case-card{background:var(--surface);border:1px solid var(--border);border-top:5px solid var(--rose);border-radius:12px;padding:12px 14px;box-shadow:var(--shadow)}
+.case-card.blue{border-top-color:var(--primary)}
+.case-head{font-weight:700;font-size:15px;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.case-num{display:inline-flex;width:24px;height:24px;border-radius:50%;background:#0f172a;color:#fff;align-items:center;justify-content:center;font-size:13px}
+.case-svg{width:100%;height:auto;display:block}
+.case-steps{font-size:13px}
+.case-steps>div{margin:5px 0}
+.cs-k{display:inline-block;font-size:11px;font-weight:900;background:var(--gray-light);color:var(--text-sec);border-radius:5px;padding:0 6px;margin-right:6px}
+.case-hand{display:flex;align-items:center;gap:12px;background:#f8fafc;border:1px dashed var(--border);border-radius:8px;padding:6px 10px}
+.thumb{font-size:36px;display:inline-block;flex:none;width:44px;text-align:center}
+.rot{font-size:18px}
+.pole-N{color:#e11d48}.pole-S{color:#2563eb}
+.rhr{display:flex;align-items:center;gap:16px;background:var(--surface);border:2px solid var(--rose);border-radius:12px;padding:12px 16px;margin:12px 0;font-size:14px}
+.rhr-hand{font-size:48px}
+.rhr-tip{margin-top:6px;font-size:13px;background:var(--rose-light);border-radius:6px;padding:4px 8px}
+.fusion{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:14px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin:12px 0}
+.fu-group{text-align:center}
+.fu-h,.fu-he{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;color:#fff;font-weight:900}
+.fu-h{width:34px;height:34px;background:#64748b;margin:2px}
+.fu-he{width:56px;height:56px;background:#7c3aed;font-size:18px}
+.fu-e{display:inline-block;background:var(--orange-light);color:var(--orange);font-weight:900;border-radius:999px;padding:8px 14px}
+.fu-lab{font-size:12px;color:var(--text-sec);margin-top:4px}
+.fu-arrow,.fu-plus{font-size:26px;font-weight:900;color:var(--orange)}
+.mass-bars{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin:10px 0}
+.mb-row{display:flex;align-items:center;gap:0;margin:8px 0;flex-wrap:wrap}
+.mb-lab{width:190px;font-size:13px;font-weight:700}
+.mb-bar{height:18px;border-radius:4px 0 0 4px;max-width:calc(100% - 290px)}
+.mb-row .mb-bar:only-of-type{border-radius:4px}
+.mb-bar.gap{background:repeating-linear-gradient(45deg,#fdba74 0 4px,#fff7ed 4px 8px);border-radius:0 4px 4px 0}
+.mb-note{font-size:12px;color:var(--orange);font-weight:700;margin-left:6px}
+.calc{background:#0f172a;color:#e2e8f0;border-radius:8px;padding:10px 14px;font-family:'Noto Sans KR',monospace;font-size:13px;margin:8px 0}
+.calc-res{color:#fde68a;margin-top:4px}
+.calc-res b{color:#fff}
+.disk-fig{display:flex;align-items:center;justify-content:center;gap:10px;font-size:14px;margin:6px 0}
+.rays{font-size:26px;color:var(--orange)}
+.disk{display:inline-flex;width:54px;height:54px;border-radius:50%;background:#bfdbfe;align-items:center;justify-content:center;font-weight:700}
+.sun{font-size:30px}.au{font-size:12px;color:var(--text-sec)}
+.mini-flow{display:flex;flex-direction:column;align-items:center;gap:2px;margin:6px 0;text-align:center}
+.mini-flow span{background:#f8fafc;border:1px solid var(--border);border-radius:6px;padding:2px 8px;width:100%}
+.formula{text-align:center;margin:14px 0}
+.f-main{display:inline-flex;align-items:center;gap:8px;font-size:30px;font-weight:700;background:var(--surface);border:2px solid var(--purple);border-radius:12px;padding:10px 24px;font-family:'Times New Roman',serif}
+.f-minus{color:var(--rose)}.f-n{color:var(--orange)}
+.frac{display:inline-flex;flex-direction:column;align-items:center;font-size:24px;color:var(--primary)}
+.frac .f-phi{border-bottom:2px solid currentColor;padding:0 4px}
+.gen-fig{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:12px 0}
+.gen-part{border-radius:10px;padding:10px 14px;font-weight:700;text-align:center;font-size:14px}
+.gen-part small{display:block;font-weight:500;font-size:11.5px;color:var(--text-sec)}
+.gen-part.coil{background:#fed7aa;border:3px solid #c2410c;padding:12px 22px}
+.gen-part.mag{background:#e0e7ff;border:2px solid #6366f1;margin-top:8px}
+.gen-part.tur{background:#e2e8f0;border:2px solid #475569}
+.gen-shaft{font-weight:700;color:#475569}
+.angle-fig{text-align:center}
+@media (max-width:680px){.case-grid{grid-template-columns:1fr}.mb-lab{width:100%}.mb-bar{max-width:80%}}
+.fv{width:84px;flex:none}
+.rhr-svg{width:300px;max-width:100%;flex:none}
+.mass-fig{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin:10px 0;text-align:center}
+.essay{background:var(--surface);border:2px solid var(--orange);border-radius:12px;padding:12px 16px;margin:12px 0}
+.es-q{font-size:14px;font-weight:500}
+.es-tag{display:inline-block;background:var(--orange);color:#fff;font-size:11.5px;font-weight:900;border-radius:6px;padding:1px 8px;margin-right:8px}
+.es-a{margin-top:8px}
+.es-a summary{cursor:pointer;font-weight:700;color:var(--orange);font-size:13px}
+.es-point{margin:8px 0 4px;font-size:13.5px;background:var(--orange-light);border-radius:6px;padding:6px 10px}
+@media (max-width:680px){.rhr{flex-direction:column}}
+
+/* ================= QUIZ ================= */
+.quiz-section{margin-top:44px;border-top:3px dashed var(--border);padding-top:26px}
+.quiz-header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.quiz-title{font-size:17px;font-weight:700}
+.scoreboard{display:flex;flex-wrap:wrap;gap:6px}
+.score-chip{font-size:11.5px;font-weight:700;border-radius:999px;padding:3px 10px;border:1px solid var(--border);background:var(--surface)}
+.score-chip.ox{color:#2563eb;border-color:#bfdbfe;background:#eff6ff}
+.score-chip.mc{color:#16a34a;border-color:#bbf7d0;background:#f0fdf4}
+.score-chip.hard{color:#7c3aed;border-color:#ddd6fe;background:#f5f3ff}
+.quiz-type-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.qtype-btn{display:flex;align-items:center;gap:6px;border:1.5px solid var(--border);background:var(--surface);border-radius:10px;padding:7px 14px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;color:var(--text-sec)}
+.qtype-btn:hover{border-color:#94a3b8}
+.qtype-btn.active.ox{border-color:#2563eb;color:#2563eb;background:#eff6ff}
+.qtype-btn.active.mc{border-color:#16a34a;color:#16a34a;background:#f0fdf4}
+.qtype-btn.active.hard{border-color:#7c3aed;color:#7c3aed;background:#f5f3ff}
+.qtype-count{font-size:11px;font-weight:700;background:var(--gray-light);color:var(--text-sec);border-radius:999px;padding:1px 7px}
+.q-progress-wrap{display:flex;align-items:center;gap:10px;margin-bottom:14px;font-size:12px;color:var(--text-sec)}
+.q-progress-bar{flex:1;height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden}
+.q-progress-fill{height:100%;border-radius:4px;transition:width .3s}
+.q-card{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;box-shadow:var(--shadow)}
+.q-card.answered-correct{border-color:#86efac}
+.q-card.answered-wrong{border-color:#fda4af}
+.q-meta{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.q-num{font-size:12px;font-weight:900;color:var(--text-sec)}
+.q-difficulty{font-size:10.5px;font-weight:700;border-radius:999px;padding:1px 8px}
+.diff-basic{background:#eff6ff;color:#2563eb}
+.diff-mid{background:#f0fdf4;color:#16a34a}
+.diff-hard{background:#f5f3ff;color:#7c3aed}
+.q-text{font-weight:500;font-size:14px;margin-bottom:10px}
+.q-box{border:1px solid #cbd5e1;border-radius:8px;padding:8px 12px;margin:0 0 10px;background:#f8fafc;font-size:13.5px;position:relative}
+.q-box::before{content:'보기';position:absolute;top:-9px;left:12px;background:#f8fafc;padding:0 6px;font-size:11px;font-weight:700;color:var(--text-sec)}
+.q-box div{margin:3px 0}
+.ox-row{display:flex;gap:10px}
+.ox-btn{flex:1;max-width:160px;border:2px solid var(--border);background:#fff;border-radius:10px;padding:8px 0;font-size:20px;cursor:pointer;font-family:inherit}
+.ox-btn:hover:not(:disabled){border-color:#94a3b8}
+.ox-btn:disabled{cursor:default}
+.ox-btn.correct-picked{border-color:var(--green);background:var(--green-light)}
+.ox-btn.wrong-picked{border-color:var(--rose);background:var(--rose-light)}
+.ox-btn.correct-reveal{border-color:var(--green);border-style:dashed}
+.mc-options{display:flex;flex-direction:column;gap:6px}
+.mc-opt{display:flex;align-items:flex-start;gap:10px;text-align:left;border:1.5px solid var(--border);background:#fff;border-radius:8px;padding:8px 12px;font-family:inherit;font-size:13.5px;cursor:pointer;color:var(--text)}
+.mc-opt:hover:not(:disabled){border-color:#94a3b8;background:#f8fafc}
+.mc-opt:disabled{cursor:default}
+.mc-opt.correct{border-color:var(--green);background:var(--green-light)}
+.mc-opt.wrong{border-color:var(--rose);background:var(--rose-light)}
+.mc-opt-letter{flex:none;width:22px;height:22px;border-radius:50%;background:var(--gray-light);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--text-sec)}
+.mc-opt.correct .mc-opt-letter{background:var(--green);color:#fff}
+.mc-opt.wrong .mc-opt-letter{background:var(--rose);color:#fff}
+.q-feedback{margin-top:10px;border-radius:8px;padding:8px 12px;font-size:13px}
+.q-feedback.correct{background:var(--green-light);border:1px solid #bbf7d0}
+.q-feedback.wrong{background:var(--rose-light);border:1px solid #fecdd3}
+.quiz-result{background:var(--surface);border:2px solid var(--border);border-radius:14px;padding:18px;text-align:center;box-shadow:var(--shadow)}
+.quiz-result .big{font-size:30px;font-weight:900}
+.quiz-result .msg{color:var(--text-sec);margin:4px 0 12px}
+.mini-bar-wrap{max-width:420px;margin:0 auto 12px;text-align:left}
+.mini-bar-row{display:flex;align-items:center;gap:8px;font-size:12px;margin:5px 0}
+.mini-bar-label{width:60px;font-weight:700}
+.mini-bar-track{flex:1;height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden}
+.mini-bar-fill{height:100%;border-radius:4px}
+.mini-bar-val{width:52px;text-align:right;color:var(--text-sec)}
+.reset-btn{border:none;background:var(--primary);color:#fff;font-family:inherit;font-weight:700;font-size:13px;border-radius:8px;padding:8px 18px;cursor:pointer}
+.reset-btn.sm{background:#fff;color:var(--text-sec);border:1px solid var(--border);padding:4px 12px;font-size:12px}
+
+[id^="a-"],[id^="quiz-"]{scroll-margin-top:130px}
+</style>
+</head>
+<body>
+<header class="page-header">
+ <div class="header-inner">
+  <div class="subject-label">통합과학2 · 물리</div>
+  <div class="page-title">통합과학2 물리 파트
+   <span class="badge-unit">Ⅱ. 환경과 에너지 › 2. 에너지 자원과 활용</span>
+  </div>
+  <nav class="tab-bar">
+   <span class="tab-group-label">태양 에너지</span>
+   <button class="tab-btn active" onclick="switchTab(0)"><span class="tab-num">1</span>태양 에너지의 생성</button>
+   <button class="tab-btn" onclick="switchTab(1)"><span class="tab-num">2</span>태양 에너지의 양과 전환</button>
+   <span class="tab-group-label">전기 에너지</span>
+   <button class="tab-btn" onclick="switchTab(2)"><span class="tab-num">3</span>전자기 유도</button>
+   <button class="tab-btn" onclick="switchTab(3)"><span class="tab-num">4</span>유도 전류의 방향</button>
+   <button class="tab-btn" onclick="switchTab(4)"><span class="tab-num">5</span>발전기</button>
+   <span class="tab-group-label">지도</span>
+   <button class="tab-btn" onclick="switchTab(5)"><span class="tab-num">6</span>개념 한눈에 보기</button>
+  </nav>
+ </div>
+</header>
+
+<main class="content-wrap">
+
+<!-- ===================== TAB 1 : 태양 에너지의 생성 ===================== -->
+<section class="tab-panel active" id="panel-0">
+ <div class="unit-banner" style="background:var(--orange-light);color:var(--orange)">📌 01. 지구의 에너지원, 태양 에너지</div>
+ <div class="lead">🧭 <b>흐름</b> — 태양 중심부의 조건 → 수소 핵융합 → 질량 결손 → E = mc²로 에너지 계산</div>
+
+ <h2 class="section-title" id="a-fusion" style="border-color:var(--orange)">☀️ 수소 핵융합 반응</h2>
+ <div class="orange-box">
+  <div class="box-label">수소 핵융합 반응</div>
+  태양의 중심부는 약 <b>1500만 K</b>의 초고온 상태 → <b>4개의 수소 원자핵</b>이 융합하여 <b>1개의 헬륨 원자핵</b>이 된다.
+ </div>
+ <div class="fusion">
+  <div class="fu-group"><span class="fu-h">H</span><span class="fu-h">H</span><span class="fu-h">H</span><span class="fu-h">H</span><div class="fu-lab">수소 원자핵 4개</div></div>
+  <div class="fu-arrow">→</div>
+  <div class="fu-group"><span class="fu-he">He</span><div class="fu-lab">헬륨 원자핵 1개</div></div>
+  <div class="fu-plus">+</div>
+  <div class="fu-group"><span class="fu-e">⚡ 에너지</span><div class="fu-lab">방출</div></div>
+ </div>
+
+ <h2 class="section-title" id="a-massdefect" style="border-color:var(--orange)">⚖️ 에너지는 어디서 오나? — 질량 결손</h2>
+ <div class="mass-fig">
+  <svg viewBox="0 0 520 170" style="width:100%;max-width:620px">
+   <text x="0" y="36" font-size="13" font-weight="700" fill="#0f172a">반응 전</text>
+   <g font-size="13" font-weight="900" fill="#fff" text-anchor="middle">
+    <rect x="70" y="16" width="100" height="32" fill="#64748b" stroke="#fff"/><text x="120" y="37">H</text>
+    <rect x="170" y="16" width="100" height="32" fill="#64748b" stroke="#fff"/><text x="220" y="37">H</text>
+    <rect x="270" y="16" width="100" height="32" fill="#64748b" stroke="#fff"/><text x="320" y="37">H</text>
+    <rect x="370" y="16" width="100" height="32" fill="#64748b" stroke="#fff"/><text x="420" y="37">H</text>
+   </g>
+   <text x="0" y="96" font-size="13" font-weight="700" fill="#0f172a">반응 후</text>
+   <rect x="70" y="76" width="370" height="32" fill="#7c3aed"/>
+   <text x="255" y="97" font-size="13" font-weight="900" fill="#fff" text-anchor="middle">He</text>
+   <rect x="440" y="76" width="30" height="32" fill="#fff7ed" stroke="#ea580c" stroke-width="2" stroke-dasharray="4 3"/>
+   <line x1="440" y1="54" x2="440" y2="124" stroke="#94a3b8" stroke-dasharray="3 3"/>
+   <line x1="470" y1="54" x2="470" y2="124" stroke="#94a3b8" stroke-dasharray="3 3"/>
+   <path d="M440 130 L440 136 L470 136 L470 130" fill="none" stroke="#ea580c" stroke-width="2"/>
+   <text x="455" y="154" font-size="12.5" font-weight="700" fill="#ea580c" text-anchor="middle">질량 결손 Δm</text>
+   <text x="455" y="168" font-size="11.5" fill="#ea580c" text-anchor="middle">→ 에너지 (E = Δmc²)</text>
+  </svg>
+ </div>
+ <p style="font-size:12px;color:var(--text-sec)">(두 막대는 같은 기준으로 그렸으며, 줄어든 부분은 눈에 보이도록 과장한 것이다.)</p>
+ <div class="tip">✅ 헬륨 원자핵 1개의 질량은 수소 원자핵 4개의 질량 합보다 약간 작다 → <b>줄어든 질량에 해당하는 에너지</b>를 방출한다.</div>
+
+ <div class="rule-card orange" id="a-emc2">
+  <h4>E = m c² — 줄어든 질량을 에너지로 바꾸는 식</h4>
+  <div class="factor-grid three">
+   <div class="factor-card orange"><h4>E</h4>방출되는 에너지 (J)</div>
+   <div class="factor-card orange"><h4>m</h4>줄어든 질량 (kg)</div>
+   <div class="factor-card orange"><h4>c</h4>빛의 속력 = 3 × 10⁸ m/s</div>
+  </div>
+  <div class="sub2-title">계산 예: 질량이 1 g 줄어들 때</div>
+  <div class="calc">
+   <div>m = 1 g = 10⁻³ kg, c² = (3 × 10⁸)² = 9 × 10¹⁶</div>
+   <div class="calc-res">E = 10⁻³ × 9 × 10¹⁶ = <b>9 × 10¹³ J</b></div>
+  </div>
+  <div class="note">💡 아주 작은 질량도 c²(9 × 10¹⁶)이 곱해져 막대한 에너지가 된다.</div>
+ </div>
+
+ <div class="quiz-section" id="quiz-0"></div>
+</section>
+
+<!-- ===================== TAB 2 : 태양 에너지의 양과 전환 ===================== -->
+<section class="tab-panel" id="panel-1">
+ <div class="unit-banner" style="background:var(--orange-light);color:var(--orange)">📌 01. 지구의 에너지원, 태양 에너지</div>
+ <div class="lead">🧭 <b>흐름</b> — 지구에 오는 태양 에너지의 양(숫자로) → 지구에서 세 가지 흐름으로 전환 → 모든 에너지의 근원</div>
+
+ <h2 class="section-title" id="a-const" style="border-color:var(--orange)">📏 태양 에너지의 양</h2>
+ <div class="factor-grid">
+  <div class="factor-card orange"><h4>1초 동안 1 m²에 도달하는 태양 에너지</h4><span style="font-size:18px;font-weight:900">1361 J/s = 1361 W</span><p class="sub">(1 W = 1초에 1 J)</p></div>
+  <div class="factor-card orange"><h4>물 1 g을 1 ℃ 올리는 데 필요한 에너지</h4><span style="font-size:18px;font-weight:900">1 cal = 4.2 J</span></div>
+ </div>
+ <p>지구의 전 지역에서 <b>한 시간 동안</b> 도달하는 태양 에너지양을 모두 더하면 <b>인류가 일 년 동안 사용하는 에너지양</b>과 비슷하다.</p>
+
+ <h3 class="subsection-title" id="a-calc" style="border-color:var(--orange)">✍️ 서술형 출제 예상</h3>
+ <div class="essay">
+  <div class="es-q"><span class="es-tag">예상 1</span>지구가 1초 동안 받는 태양 에너지의 양을 구하는 식을 쓰고, 그 값을 구하시오. (단, 지구 반지름 r = 6.4 × 10³ km, 1 m²에 1초 동안 도달하는 태양 에너지 = 1361 J)</div>
+  <div class="disk-fig"><span class="rays">⟹</span><span class="disk">지구</span></div>
+  <details class="es-a"><summary>모범 답안 보기</summary>
+   <div class="es-point">핵심: 햇빛을 받는 면적은 지구의 겉넓이가 아니라 <b>단면적(원) πr²</b>이다.</div>
+   <div class="calc">
+    <div>식: πr² × 1361 J</div>
+    <div>r = 6.4 × 10³ km = 6.4 × 10³ × 10³ m</div>
+    <div class="calc-res">(6.4 × 10³ × 10³)² × π × 1361 J ≈ <b>1.8 × 10¹⁷ J</b></div>
+   </div>
+  </details>
+ </div>
+ <div class="essay">
+  <div class="es-q"><span class="es-tag">예상 2</span>태양이 1초 동안 방출하는 전체 에너지를 구하는 식을 쓰고, 그 값을 구하시오. (단, 태양 빛이 지구까지 오는 데 약 8분, 빛의 속력 = 3 × 10⁸ m/s, 1 m²에 1초 동안 도달하는 태양 에너지 = 1361 J)</div>
+  <div class="disk-fig"><span class="sun">☀️</span><span class="au">— 1 AU (빛으로 약 8분) —</span><span>🌍</span></div>
+  <details class="es-a"><summary>모범 답안 보기</summary>
+   <div class="es-point">핵심: 태양 에너지는 사방으로 퍼지므로, 태양~지구 거리 R을 반지름으로 하는 <b>구의 겉넓이 4πR²</b> 전체에 1 m²당 1361 J씩 도달한다.</div>
+   <div class="calc">
+    <div>R = 빛의 속력 × 시간 = 3 × 10⁸ × (8 × 60) m</div>
+    <div>식: 4πR² × 1361 J</div>
+    <div class="calc-res">(8 × 3 × 10⁸ × 60)² × 4π × 1361 J ≈ <b>3.5 × 10²⁶ J</b></div>
+   </div>
+  </details>
+ </div>
+ <div class="note">💡 예상 1은 '원판(πr²)', 예상 2는 '공 껍질(4πR²)' — 면적을 무엇으로 잡는지가 채점 포인트이다. 결과값은 반올림한 어림값이다.</div>
+
+ <h2 class="section-title" id="a-convert" style="border-color:var(--orange)">🔄 지구에서 태양 에너지의 전환 — 세 가지 흐름</h2>
+ <p>태양 에너지는 지구시스템의 각 권을 이동하며 다양한 자연 현상을 일으킨다.</p>
+ <div class="factor-grid three">
+  <div class="factor-card blue"><h4>🌪️ 대기 대순환</h4>
+   <div class="mini-flow"><span>태양 에너지</span>↓<span>공기의 <b>운동 에너지</b> (바람)</span>↓<span>파도의 <b>운동 에너지</b></span></div>
+   <p class="sub">해류나 바람을 일으켜 운동 에너지로 전환</p></div>
+  <div class="factor-card teal"><h4>💧 물의 순환</h4>
+   <div class="mini-flow"><span>태양 에너지</span>↓<span>물 증발 → 구름의 <b>위치 에너지</b></span>↓<span>빗방울의 <b>운동 에너지</b></span></div>
+   <p class="sub">대기와 지표에 흡수되어 물을 증발시킴</p></div>
+  <div class="factor-card green"><h4>🌿 먹이그물</h4>
+   <div class="mini-flow"><span>태양 에너지</span>↓<span>식물의 <b>화학 에너지</b> (광합성)</span>↓<span>동물의 화학 에너지 / 화석 연료의 화학 에너지</span></div>
+   <p class="sub">먹이그물을 따라 이동</p></div>
+ </div>
+
+ <div class="sub2-title">(가)~(라) 현상에 적용하기</div>
+ <div class="tbl-wrap"><table class="cmp-table orange-th">
+  <thead><tr><th>현상</th><th>태양 에너지가 전환된 에너지</th><th>흐름</th></tr></thead>
+  <tbody>
+   <tr><td>(가) 구름</td><td>위치 에너지</td><td>물의 순환</td></tr>
+   <tr><td>(나) 파도</td><td>운동 에너지</td><td>대기 대순환</td></tr>
+   <tr><td>(다) 식물의 광합성</td><td>화학 에너지</td><td>먹이그물</td></tr>
+   <tr><td>(라) 생물의 세포 호흡</td><td>화학 에너지(먹이 속) → 생명 활동에 사용</td><td>먹이그물</td></tr>
+  </tbody>
+ </table></div>
+ <div class="tip">✅ 인류가 사용하는 <b>화석 연료도 결국 근원은 태양 에너지</b>이다. 태양 에너지는 다양한 에너지로 전환되어 이동하면서 지구의 많은 생물과 자연 현상에 영향을 미친다.</div>
+
+ <div class="quiz-section" id="quiz-1"></div>
+</section>
+
+<!-- ===================== TAB 3 : 전자기 유도 ===================== -->
+<section class="tab-panel" id="panel-2">
+ <div class="unit-banner">📌 02. 전기 에너지의 생산과 발전기의 에너지 전환</div>
+ <div class="lead">🧭 <b>흐름</b> — 실험으로 조건 찾기 → 전자기 유도의 정의 → 자속 → 유도 전류의 세기(패러데이 법칙)</div>
+
+ <h2 class="section-title" id="a-exp">🧪 실험: 전기 에너지 만들어 보기</h2>
+ <p><span class="badge badge-gray">준비물</span> 코일, 막대자석, 검류계, 집게 달린 전선 두 개 → 코일과 검류계를 연결하고 자석과 코일을 움직여 검류계 바늘을 관찰한다.</p>
+ <div class="tbl-wrap"><table class="ex-table">
+  <thead><tr><th>조건</th><th class="c">검류계 바늘</th><th class="c">전류</th></tr></thead>
+  <tbody>
+   <tr><td>막대자석(N극)을 코일에 <b>가까이</b></td><td class="c gcell"><svg viewBox="0 0 120 80" class="gauge"><path d="M14 62 A46 46 0 0 1 106 62" fill="none" stroke="#94a3b8" stroke-width="2"/>
+<text x="16" y="36" font-size="13" fill="#e11d48" font-weight="700">−</text><text x="96" y="36" font-size="13" fill="#2563eb" font-weight="700">+</text>
+<line x1="60" y1="18" x2="60" y2="24" stroke="#94a3b8" stroke-width="2"/>
+<line x1="60" y1="62" x2="85.2" y2="26.0" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/>
+<circle cx="60" cy="62" r="5" fill="#0d9488"/></svg><div class="gauge-lab">+쪽</div></td><td class="c">흐름</td></tr>
+   <tr><td>막대자석을 코일에서 <b>멀리</b></td><td class="c gcell"><svg viewBox="0 0 120 80" class="gauge"><path d="M14 62 A46 46 0 0 1 106 62" fill="none" stroke="#94a3b8" stroke-width="2"/>
+<text x="16" y="36" font-size="13" fill="#e11d48" font-weight="700">−</text><text x="96" y="36" font-size="13" fill="#2563eb" font-weight="700">+</text>
+<line x1="60" y1="18" x2="60" y2="24" stroke="#94a3b8" stroke-width="2"/>
+<line x1="60" y1="62" x2="34.8" y2="26.0" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/>
+<circle cx="60" cy="62" r="5" fill="#0d9488"/></svg><div class="gauge-lab">−쪽</div></td><td class="c">흐름 (반대 방향)</td></tr>
+   <tr><td>코일 속에 막대자석이 <b>정지</b></td><td class="c gcell"><svg viewBox="0 0 120 80" class="gauge"><path d="M14 62 A46 46 0 0 1 106 62" fill="none" stroke="#94a3b8" stroke-width="2"/>
+<text x="16" y="36" font-size="13" fill="#e11d48" font-weight="700">−</text><text x="96" y="36" font-size="13" fill="#2563eb" font-weight="700">+</text>
+<line x1="60" y1="18" x2="60" y2="24" stroke="#94a3b8" stroke-width="2"/>
+<line x1="60" y1="62" x2="60.0" y2="18.0" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/>
+<circle cx="60" cy="62" r="5" fill="#0d9488"/></svg><div class="gauge-lab">움직이지 않음</div></td><td class="c"><b>흐르지 않음</b></td></tr>
+   <tr><td>자석은 가만히, <b>코일을</b> 자석에 가까이</td><td class="c gcell"><svg viewBox="0 0 120 80" class="gauge"><path d="M14 62 A46 46 0 0 1 106 62" fill="none" stroke="#94a3b8" stroke-width="2"/>
+<text x="16" y="36" font-size="13" fill="#e11d48" font-weight="700">−</text><text x="96" y="36" font-size="13" fill="#2563eb" font-weight="700">+</text>
+<line x1="60" y1="18" x2="60" y2="24" stroke="#94a3b8" stroke-width="2"/>
+<line x1="60" y1="62" x2="85.2" y2="26.0" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/>
+<circle cx="60" cy="62" r="5" fill="#0d9488"/></svg><div class="gauge-lab">+쪽</div></td><td class="c">흐름</td></tr>
+   <tr><td>자석은 가만히, <b>코일을</b> 자석에서 멀리</td><td class="c gcell"><svg viewBox="0 0 120 80" class="gauge"><path d="M14 62 A46 46 0 0 1 106 62" fill="none" stroke="#94a3b8" stroke-width="2"/>
+<text x="16" y="36" font-size="13" fill="#e11d48" font-weight="700">−</text><text x="96" y="36" font-size="13" fill="#2563eb" font-weight="700">+</text>
+<line x1="60" y1="18" x2="60" y2="24" stroke="#94a3b8" stroke-width="2"/>
+<line x1="60" y1="62" x2="34.8" y2="26.0" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/>
+<circle cx="60" cy="62" r="5" fill="#0d9488"/></svg><div class="gauge-lab">−쪽</div></td><td class="c">흐름 (반대 방향)</td></tr>
+  </tbody>
+ </table></div>
+ <div class="factor-grid">
+  <div class="factor-card green"><h4>전류가 흐르는 경우</h4>자석과 코일이 서로 <b>상대 운동</b>할 때 (누가 움직이든 상관없음)</div>
+  <div class="factor-card rose"><h4>전류가 흐르지 않는 경우</h4>자석과 코일이 서로 <b>정지</b>해 있을 때 — 아무리 센 자석이라도 흐르지 않는다.</div>
+ </div>
+
+ <h2 class="section-title" id="a-induction">⚡ 전자기 유도와 유도 전류</h2>
+ <div class="def-box">
+  <div class="box-label">전자기 유도</div>
+  코일을 통과하는 <b>자기장이 변할 때</b> 전류가 흐르는 현상
+ </div>
+ <div class="def-box">
+  <div class="box-label">유도 전류</div>
+  전자기 유도에 의해 코일에 흐르는 전류
+ </div>
+ <div class="flow-row">
+  <span class="flow-item">자석·코일의 상대 운동</span><span class="flow-arrow">→</span>
+  <span class="flow-item">코일을 통과하는 자기장(자속) 변화</span><span class="flow-arrow">→</span>
+  <span class="flow-item">유도 전류</span>
+ </div>
+ <div class="note">💡 전자기 유도 법칙: <b>패러데이</b>(세기), <b>렌츠</b>(방향)</div>
+
+ <h2 class="section-title" id="a-flux">🧲 자기장과 자속</h2>
+ <div class="factor-grid">
+  <div class="factor-card blue"><h4>자기력선</h4>자기장의 모양을 나타낸 선 (자석의 N극에서 나와 S극으로 들어감)</div>
+  <div class="factor-card blue"><h4>자속 Φ</h4>어떤 면을 수직으로 지나가는 <b>자기력선의 수</b></div>
+ </div>
+ <div class="rule-card">
+  <h4>B = Φ / A</h4>
+  <div class="factor-grid three">
+   <div class="factor-card gray"><h4>B</h4>자기장 (자속 밀도)</div>
+   <div class="factor-card gray"><h4>Φ</h4>자기력선 수 (자속)</div>
+   <div class="factor-card gray"><h4>A</h4>자기력선에 <b>수직인</b> 면적</div>
+  </div>
+  <p>자기장의 세기 = 단위 면적당 지나가는 자기력선의 수</p>
+ </div>
+ <div class="note">💡 지구의 자기장은 남 → 북 방향이다. 따라서 지리상 <b>북극 쪽이 자석의 S극</b>에 해당한다.</div>
+
+ <h2 class="section-title" id="a-faraday">📐 유도 전류의 세기 — 패러데이 법칙</h2>
+ <div class="formula">
+  <span class="f-main">ε = <span class="f-minus">−</span> <span class="f-n">N</span> <span class="frac"><span class="f-phi">ΔΦ</span><span class="f-t">Δt</span></span></span>
+ </div>
+ <div class="factor-grid four">
+  <div class="factor-card purple"><h4>ε</h4>유도 기전력 (유도 전류를 흐르게 하는 능력)</div>
+  <div class="factor-card rose"><h4>−</h4>자속 변화를 <b>방해하는 방향</b> (렌츠 법칙 → 다음 탭)</div>
+  <div class="factor-card orange"><h4>N</h4>코일의 감은 수</div>
+  <div class="factor-card blue"><h4>ΔΦ / Δt</h4>시간당 자속(자기력선 수)의 변화</div>
+ </div>
+
+ <h3 class="subsection-title">세기를 키우는 3가지 방법 ↔ 식의 어느 부분?</h3>
+ <div class="tbl-wrap"><table class="cmp-table">
+  <thead><tr><th>유도 전류가 세지는 조건</th><th>식에서 커지는 부분</th></tr></thead>
+  <tbody>
+   <tr><td>자석을 <b>빠르게</b> 움직일수록</td><td>Δt가 작아짐 → <b>ΔΦ/Δt ↑</b></td></tr>
+   <tr><td>자석의 자기장이 <b>셀수록</b></td><td>변하는 자기력선 수가 많아짐 → <b>ΔΦ ↑</b></td></tr>
+   <tr><td>코일을 <b>많이 감을수록</b></td><td><b>N ↑</b></td></tr>
+  </tbody>
+ </table></div>
+ <div class="warning">⚠️ 자석과 코일이 정지해 있으면 ΔΦ = 0 → 유도 전류 0</div>
+
+ <div class="quiz-section" id="quiz-2"></div>
+</section>
+
+<!-- ===================== TAB 4 : 유도 전류의 방향 ===================== -->
+<section class="tab-panel" id="panel-3">
+ <div class="unit-banner">📌 02. 전기 에너지의 생산과 발전기의 에너지 전환</div>
+ <div class="lead">🧭 <b>흐름</b> — 렌츠 법칙(변화를 방해) → 오른손 법칙(전류 방향 찾기) → 4가지 경우 → 에너지 보존과 연결</div>
+
+ <h2 class="section-title" id="a-lenz" style="border-color:var(--rose)">🛑 렌츠 법칙 — 변화를 방해하는 방향</h2>
+ <div class="rose-box">유도 전류는 코일을 통과하는 <b>자속의 변화를 방해하는 방향</b>으로 흐른다. (패러데이 법칙 식의 <b>−</b> 부호)</div>
+ <div class="factor-grid">
+  <div class="factor-card rose"><h4>자석이 가까이 오면 (자속 증가)</h4>코일이 같은 극을 만들어 <b>밀어낸다</b> (척력)</div>
+  <div class="factor-card blue"><h4>자석이 멀어지면 (자속 감소)</h4>코일이 다른 극을 만들어 <b>끌어당긴다</b> (인력)</div>
+ </div>
+
+ <h2 class="section-title" id="a-rhr" style="border-color:var(--rose)">🌀 오른손 법칙 — 코일의 극 ↔ 전류 방향</h2>
+ <div class="rhr">
+  <svg viewBox="0 0 300 150" class="rhr-svg">
+   <defs>
+    <marker id="rh-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#16a34a"/></marker>
+    <marker id="rh-o" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#ea580c"/></marker>
+   </defs>
+   <rect x="50" y="45" width="150" height="60" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+   <g fill="none" stroke="#b45309" stroke-width="3">
+    <ellipse cx="80" cy="75" rx="8" ry="38"/><ellipse cx="110" cy="75" rx="8" ry="38"/><ellipse cx="140" cy="75" rx="8" ry="38"/><ellipse cx="170" cy="75" rx="8" ry="38"/>
+   </g>
+   <g stroke="#ea580c" stroke-width="3">
+    <line x1="88" y1="58" x2="88" y2="90" marker-end="url(#rh-o)"/><line x1="118" y1="58" x2="118" y2="90" marker-end="url(#rh-o)"/>
+    <line x1="148" y1="58" x2="148" y2="90" marker-end="url(#rh-o)"/><line x1="178" y1="58" x2="178" y2="90" marker-end="url(#rh-o)"/>
+   </g>
+   <line x1="60" y1="20" x2="250" y2="20" stroke="#16a34a" stroke-width="7" marker-end="url(#rh-g)"/>
+   <text x="100" y="14" font-size="12" font-weight="700" fill="#16a34a">엄지 = 코일 속 자기장</text>
+   <rect x="232" y="58" width="32" height="32" rx="6" fill="#e11d48"/><text x="248" y="80" font-size="16" font-weight="900" fill="#fff" text-anchor="middle">N</text>
+   <rect x="14" y="58" width="32" height="32" rx="6" fill="#2563eb"/><text x="30" y="80" font-size="16" font-weight="900" fill="#fff" text-anchor="middle">S</text>
+   <text x="125" y="135" font-size="12" font-weight="700" fill="#ea580c" text-anchor="middle">네 손가락 = 전류 (앞면에서 아래로)</text>
+  </svg>
+  <div>
+   <div><b>오른손</b> 네 손가락을 <b>전류</b> 방향으로 코일을 감아쥐면</div>
+   <div><b>엄지</b>가 가리키는 쪽 = 코일 속 자기장 방향 = 코일의 <b>N극</b></div>
+   <div class="rhr-tip">정면에서 볼 때 전류가 <b>시계 반대 방향 ↺</b> → 보는 쪽이 <b>N극</b> / <b>시계 방향 ↻</b> → 보는 쪽이 <b>S극</b></div>
+  </div>
+ </div>
+
+ <h2 class="section-title" id="a-cases" style="border-color:var(--rose)">🔀 4가지 경우</h2>
+ <p style="font-size:13px;color:var(--text-sec)">그림: 코일(왼쪽)과 자석(오른쪽). 회색 점선 = 자석에 의한 자기장, 초록 실선 = 유도 전류가 만든 자기장, 코일 오른쪽 위 칸 = 자석 쪽 코일 끝의 극, 주황 화살표 = 코일 앞면에 흐르는 유도 전류</p>
+ <div class="case-grid"><div class="case-card rose">
+ <div class="case-head"><span class="case-num">①</span>N극을 가까이 할 때</div>
+ <svg viewBox="0 10 330 150" class="case-svg">
+<defs>
+<marker id="arr-94a3b8" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#94a3b8"/></marker>
+<marker id="arr-16a34a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#16a34a"/></marker>
+<marker id="arr-ea580c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#ea580c"/></marker>
+<marker id="arr-0f172a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0f172a"/></marker>
+</defs>
+<rect x="36" y="40" width="140" height="70" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+<ellipse cx="46" cy="75" rx="9" ry="42" fill="none" stroke="#b45309" stroke-width="3"/><ellipse cx="64" cy="75" rx="9" ry="42" fill="none" stroke="#b45309" stroke-width="3"/><ellipse cx="82" cy="75" rx="9" ry="42" fill="none" stroke="#b45309" stroke-width="3"/><ellipse cx="100" cy="75" rx="9" ry="42" fill="none" stroke="#b45309" stroke-width="3"/><ellipse cx="118" cy="75" rx="9" ry="42" fill="none" stroke="#b45309" stroke-width="3"/><ellipse cx="136" cy="75" rx="9" ry="42" fill="none" stroke="#b45309" stroke-width="3"/><ellipse cx="154" cy="75" rx="9" ry="42" fill="none" stroke="#b45309" stroke-width="3"/>
+<line x1="55" y1="66" x2="55" y2="84" stroke="#ea580c" stroke-width="3" marker-end="url(#arr-ea580c)"/><line x1="91" y1="66" x2="91" y2="84" stroke="#ea580c" stroke-width="3" marker-end="url(#arr-ea580c)"/><line x1="127" y1="66" x2="127" y2="84" stroke="#ea580c" stroke-width="3" marker-end="url(#arr-ea580c)"/><line x1="163" y1="66" x2="163" y2="84" stroke="#ea580c" stroke-width="3" marker-end="url(#arr-ea580c)"/>
+<line x1="150" y1="58" x2="60" y2="58" stroke="#94a3b8" stroke-width="3" stroke-dasharray="6 4" marker-end="url(#arr-94a3b8)"/>
+<line x1="60" y1="92" x2="150" y2="92" stroke="#16a34a" stroke-width="3" marker-end="url(#arr-16a34a)"/>
+<rect x="160" y="18" width="28" height="22" rx="5" fill="#e11d48"/>
+<text x="174" y="34" font-size="14" font-weight="900" fill="#fff" text-anchor="middle">N</text>
+<rect x="200" y="60" width="44" height="30" fill="#e11d48"/><text x="222" y="81" font-size="16" font-weight="900" fill="#fff" text-anchor="middle">N</text>
+<rect x="244" y="60" width="44" height="30" fill="#2563eb"/><text x="266" y="81" font-size="16" font-weight="900" fill="#fff" text-anchor="middle">S</text>
+<line x1="270" y1="112" x2="220" y2="112" stroke="#0f172a" stroke-width="3" marker-end="url(#arr-0f172a)"/>
+<text x="244" y="136" font-size="12" text-anchor="middle" fill="#0f172a" font-weight="700">가까이</text>
+<text x="40" y="150" font-size="11" fill="#64748b">- - 자석에 의한 자기장(증가)</text>
+<text x="200" y="150" font-size="11" fill="#16a34a" font-weight="700">━ 유도 자기장</text>
+</svg>
+ <div class="case-steps">
+  <div><span class="cs-k">① 자속 변화</span>코일을 지나는 자기장 <b>증가</b></div>
+  <div><span class="cs-k">② 방해</span>증가를 막는 방향으로 유도 자기장 → 자석 쪽 코일 끝 = <b class="pole-N">N극</b> → <b>척력(밀어냄)</b></div>
+  <div class="case-hand">
+   <svg viewBox="0 0 80 96" class="fv"><defs><marker id="fv-o" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#ea580c"/></marker></defs>
+<circle cx="40" cy="40" r="26" fill="#fff7ed" stroke="#b45309" stroke-width="2"/>
+<path d="M64.4 31.1 A26 26 0 1 0 62.5 53.0" fill="none" stroke="#ea580c" stroke-width="4" marker-end="url(#fv-o)"/>
+<text x="40" y="47" font-size="20" font-weight="900" fill="#e11d48" text-anchor="middle">N</text>
+<text x="40" y="88" font-size="10" fill="#64748b" text-anchor="middle">자석 쪽에서 본 코일</text></svg>
+   <div><span class="cs-k">③ 오른손</span>엄지 = 초록 화살표(유도 자기장) <b>오른쪽(자석 쪽)</b><br>네 손가락 = 전류 → 자석 쪽에서 보면 <b>시계 반대 방향 <span class="rot">↺</span></b></div>
+  </div>
+ </div>
+</div><div class="case-card rose">
+ <div class="case-head"><span class="case-num">②</span>N극을 멀리 할 때</div>
+ <svg viewBox="0 10 330 150" class="case-svg">
+<defs>
+<marker id="arr-94a3b8" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#94a3b8"/></marker>
+<marker id="arr-16a34a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#16a34a"/></marker>
+<marker id="arr-ea580c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#ea580c"/></marker>
+<marker id="arr-0f172a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0f172a"/></marker>
+</defs>
+<rect x="36" y="40" width="140" height="70" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+<ellipse cx="46" cy="75" rx="9" ry="42" fill="none" stroke="#b45309" stroke-width="3"/><ellipse cx="64" cy="75" rx="9" ry="42" fill="none" stroke="#b45309" stroke-width="3"/><ellipse cx="82" cy="75" rx="9" ry="42" fill="none" stroke="#b45309" stroke-width="3"/><ellipse cx="100" cy="75" rx="9" ry="42" fill="none" stroke="#b45309" stroke-width="3"/><ellipse cx="118" cy="75" rx="9" ry="42" fill="none" stroke="#b45309" stroke-width="3"/><ellipse cx="136" cy="75" rx="9" ry="42" fill="none" stroke="#b45309" stroke-width="3"/><ellipse cx="154" cy="75" rx="9" ry="42" fill="none" stroke="#b45309" stroke-width="3"/>
+<line x1="55" y1="84" x2="55" y2="66" stroke="#ea580c" stroke-width="3" marker-end="url(#arr-ea580c)"/><line x1="91" y1="84" x2="91" y2="66" stroke="#ea580c" stroke-width="3" marker-end="url(#arr-ea580c)"/><line x1="127" y1="84" x2="127" y2="66" stroke="#ea580c" stroke-width="3" marker-end="url(#arr-ea580c)"/><line x1="163" y1="84" x2="163" y2="66" stroke="#ea580c" stroke-width="3" marker-end="url(#arr-ea580c)"/>
+<line x1="150" y1="58" x2="60" y2="58" stroke="#94a3b8" stroke-width="3" stroke-dasharray="6 4" marker-end="url(#arr-94a3b8)"/>
+<line x1="150" y1="92" x2="60" y2="92" stroke="#16a34a" stroke-width="3" marker-end="url(#arr-16a34a)"/>
+<rect x="160" y="18" width="28" height="22" rx="5" fill="#2563eb"/>
+<text x="174" y="34" font-size="14" font-weight="900" fill="#fff" text-anchor="middle">S</text>
+<rect x="226" y="60" width="44" height="30" fill="#e11d48"/><text x="248" y="81" font-size="16" font-weight="900" fill="#fff" text-anchor="middle">N</text>
+<rect x="270" y="60" width="44" height="30" fill="#2563eb"/><text x="292" y="81" font-size="16" font-weight="900" fill="#fff" text-anchor="middle">S</text>
+<line x1="246" y1="112" x2="296" y2="112" stroke="#0f172a" stroke-width="3" marker-end="url(#arr-0f172a)"/>
+<text x="270" y="136" font-size="12" text-anchor="middle" fill="#0f172a" font-weight="700">멀리</text>
+<text x="40" y="150" font-size="11" fill="#64748b">- - 자석에 의한 자기장(감소)</text>
+<text x="200" y="150" font-size="11" fill="#16a34a" font-weight="700">━ 유도 자기장</text>
+</svg>
+ <div class="case-steps">
+  <div><span class="cs-k">① 자속 변화</span>코일을 지나는 자기장 <b>감소</b></div>
+  <div><span class="cs-k">② 방해</span>감소를 막는 방향으로 유도 자기장 → 자석 쪽 코일 끝 = <b class="pole-S">S극</b> → <b>인력(끌어당김)</b></div>
+  <div class="case-hand">
+   <svg viewBox="0 0 80 96" class="fv"><defs><marker id="fv-o" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#ea580c"/></marker></defs>
+<circle cx="40" cy="40" r="26" fill="#fff7ed" stroke="#b45309" stroke-width="2"/>
+<path d="M15.6 31.1 A26 26 0 1 1 17.5 53.0" fill="none" stroke="#ea580c" stroke-width="4" marker-end="url(#fv-o)"/>
+<text x="40" y="47" font-size="20" font-weight="900" fill="#2563eb" text-anchor="middle">S</text>
+<text x="40" y="88" font-size="10" fill="#64748b" text-anchor="middle">자석 쪽에서 본 코일</text></svg>
+   <div><span class="cs-k">③ 오른손</span>엄지 = 초록 화살표(유도 자기장) <b>왼쪽(자석 반대쪽)</b><br>네 손가락 = 전류 → 자석 쪽에서 보면 <b>시계 방향 <span class="rot">↻</span></b></div>
+  </div>
+ </div>
+</div><div class="case-card blue">
+ <div class="case-head"><span class="case-num">③</span>S극을 가까이 할 때</div>
+ <svg viewBox="0 10 330 150" class="case-svg">
+<defs>
+<marker id="arr-94a3b8" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#94a3b8"/></marker>
+<marker id="arr-16a34a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#16a34a"/></marker>
+<marker id="arr-ea580c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#ea580c"/></marker>
+<marker id="arr-0f172a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0f172a"/></marker>
+</defs>
+<rect x="36" y="40" width="140" height="70" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+<ellipse cx="46" cy="75" rx="9" ry="42" fill="none" stroke="#b45309" stroke-width="3"/><ellipse cx="64" cy="75" rx="9" ry="42" fill="none" stroke="#b45309" stroke-width="3"/><ellipse cx="82" cy="75" rx="9" ry="42" fill="none" stroke="#b45309" stroke-width="3"/><ellipse cx="100" cy="75" rx="9" ry="42" fill="none" stroke="#b45309" stroke-width="3"/><ellipse cx="118" cy="75" rx="9" ry="42" fill="none" stroke="#b45309" stroke-width="3"/><ellipse cx="136" cy="75" rx="9" ry="42" fill="none" stroke="#b45309" stroke-width="3"/><ellipse cx="154" cy="75" rx="9" ry="42" fill="none" stroke="#b45309" stroke-width="3"/>
+<line x1="55" y1="84" x2="55" y2="66" stroke="#ea580c" stroke-width="3" marker-end="url(#arr-ea580c)"/><line x1="91" y1="84" x2="91" y2="66" stroke="#ea580c" stroke-width="3" marker-end="url(#arr-ea580c)"/><line x1="127" y1="84" x2="127" y2="66" stroke="#ea580c" stroke-width="3" marker-end="url(#arr-ea580c)"/><line x1="163" y1="84" x2="163" y2="66" stroke="#ea580c" stroke-width="3" marker-end="url(#arr-ea580c)"/>
+<line x1="60" y1="58" x2="150" y2="58" stroke="#94a3b8" stroke-width="3" stroke-dasharray="6 4" marker-end="url(#arr-94a3b8)"/>
+<line x1="150" y1="92" x2="60" y2="92" stroke="#16a34a" stroke-width="3" marker-end="url(#arr-16a34a)"/>
+<rect x="160" y="18" width="28" height="22" rx="5" fill="#2563eb"/>
+<text x="174" y="34" font-size="14" font-weight="900" fill="#fff" text-anchor="middle">S</text>
+<rect x="200" y="60" width="44" height="30" fill="#2563eb"/><text x="222" y="81" font-size="16" font-weight="900" fill="#fff" text-anchor="middle">S</text>
+<rect x="244" y="60" width="44" height="30" fill="#e11d48"/><text x="266" y="81" font-size="16" font-weight="900" fill="#fff" text-anchor="middle">N</text>
+<line x1="270" y1="112" x2="220" y2="112" stroke="#0f172a" stroke-width="3" marker-end="url(#arr-0f172a)"/>
+<text x="244" y="136" font-size="12" text-anchor="middle" fill="#0f172a" font-weight="700">가까이</text>
+<text x="40" y="150" font-size="11" fill="#64748b">- - 자석에 의한 자기장(증가)</text>
+<text x="200" y="150" font-size="11" fill="#16a34a" font-weight="700">━ 유도 자기장</text>
+</svg>
+ <div class="case-steps">
+  <div><span class="cs-k">① 자속 변화</span>코일을 지나는 자기장 <b>증가</b></div>
+  <div><span class="cs-k">② 방해</span>증가를 막는 방향으로 유도 자기장 → 자석 쪽 코일 끝 = <b class="pole-S">S극</b> → <b>척력(밀어냄)</b></div>
+  <div class="case-hand">
+   <svg viewBox="0 0 80 96" class="fv"><defs><marker id="fv-o" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#ea580c"/></marker></defs>
+<circle cx="40" cy="40" r="26" fill="#fff7ed" stroke="#b45309" stroke-width="2"/>
+<path d="M15.6 31.1 A26 26 0 1 1 17.5 53.0" fill="none" stroke="#ea580c" stroke-width="4" marker-end="url(#fv-o)"/>
+<text x="40" y="47" font-size="20" font-weight="900" fill="#2563eb" text-anchor="middle">S</text>
+<text x="40" y="88" font-size="10" fill="#64748b" text-anchor="middle">자석 쪽에서 본 코일</text></svg>
+   <div><span class="cs-k">③ 오른손</span>엄지 = 초록 화살표(유도 자기장) <b>왼쪽(자석 반대쪽)</b><br>네 손가락 = 전류 → 자석 쪽에서 보면 <b>시계 방향 <span class="rot">↻</span></b></div>
+  </div>
+ </div>
+</div><div class="case-card blue">
+ <div class="case-head"><span class="case-num">④</span>S극을 멀리 할 때</div>
+ <svg viewBox="0 10 330 150" class="case-svg">
+<defs>
+<marker id="arr-94a3b8" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#94a3b8"/></marker>
+<marker id="arr-16a34a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#16a34a"/></marker>
+<marker id="arr-ea580c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#ea580c"/></marker>
+<marker id="arr-0f172a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0f172a"/></marker>
+</defs>
+<rect x="36" y="40" width="140" height="70" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+<ellipse cx="46" cy="75" rx="9" ry="42" fill="none" stroke="#b45309" stroke-width="3"/><ellipse cx="64" cy="75" rx="9" ry="42" fill="none" stroke="#b45309" stroke-width="3"/><ellipse cx="82" cy="75" rx="9" ry="42" fill="none" stroke="#b45309" stroke-width="3"/><ellipse cx="100" cy="75" rx="9" ry="42" fill="none" stroke="#b45309" stroke-width="3"/><ellipse cx="118" cy="75" rx="9" ry="42" fill="none" stroke="#b45309" stroke-width="3"/><ellipse cx="136" cy="75" rx="9" ry="42" fill="none" stroke="#b45309" stroke-width="3"/><ellipse cx="154" cy="75" rx="9" ry="42" fill="none" stroke="#b45309" stroke-width="3"/>
+<line x1="55" y1="66" x2="55" y2="84" stroke="#ea580c" stroke-width="3" marker-end="url(#arr-ea580c)"/><line x1="91" y1="66" x2="91" y2="84" stroke="#ea580c" stroke-width="3" marker-end="url(#arr-ea580c)"/><line x1="127" y1="66" x2="127" y2="84" stroke="#ea580c" stroke-width="3" marker-end="url(#arr-ea580c)"/><line x1="163" y1="66" x2="163" y2="84" stroke="#ea580c" stroke-width="3" marker-end="url(#arr-ea580c)"/>
+<line x1="60" y1="58" x2="150" y2="58" stroke="#94a3b8" stroke-width="3" stroke-dasharray="6 4" marker-end="url(#arr-94a3b8)"/>
+<line x1="60" y1="92" x2="150" y2="92" stroke="#16a34a" stroke-width="3" marker-end="url(#arr-16a34a)"/>
+<rect x="160" y="18" width="28" height="22" rx="5" fill="#e11d48"/>
+<text x="174" y="34" font-size="14" font-weight="900" fill="#fff" text-anchor="middle">N</text>
+<rect x="226" y="60" width="44" height="30" fill="#2563eb"/><text x="248" y="81" font-size="16" font-weight="900" fill="#fff" text-anchor="middle">S</text>
+<rect x="270" y="60" width="44" height="30" fill="#e11d48"/><text x="292" y="81" font-size="16" font-weight="900" fill="#fff" text-anchor="middle">N</text>
+<line x1="246" y1="112" x2="296" y2="112" stroke="#0f172a" stroke-width="3" marker-end="url(#arr-0f172a)"/>
+<text x="270" y="136" font-size="12" text-anchor="middle" fill="#0f172a" font-weight="700">멀리</text>
+<text x="40" y="150" font-size="11" fill="#64748b">- - 자석에 의한 자기장(감소)</text>
+<text x="200" y="150" font-size="11" fill="#16a34a" font-weight="700">━ 유도 자기장</text>
+</svg>
+ <div class="case-steps">
+  <div><span class="cs-k">① 자속 변화</span>코일을 지나는 자기장 <b>감소</b></div>
+  <div><span class="cs-k">② 방해</span>감소를 막는 방향으로 유도 자기장 → 자석 쪽 코일 끝 = <b class="pole-N">N극</b> → <b>인력(끌어당김)</b></div>
+  <div class="case-hand">
+   <svg viewBox="0 0 80 96" class="fv"><defs><marker id="fv-o" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#ea580c"/></marker></defs>
+<circle cx="40" cy="40" r="26" fill="#fff7ed" stroke="#b45309" stroke-width="2"/>
+<path d="M64.4 31.1 A26 26 0 1 0 62.5 53.0" fill="none" stroke="#ea580c" stroke-width="4" marker-end="url(#fv-o)"/>
+<text x="40" y="47" font-size="20" font-weight="900" fill="#e11d48" text-anchor="middle">N</text>
+<text x="40" y="88" font-size="10" fill="#64748b" text-anchor="middle">자석 쪽에서 본 코일</text></svg>
+   <div><span class="cs-k">③ 오른손</span>엄지 = 초록 화살표(유도 자기장) <b>오른쪽(자석 쪽)</b><br>네 손가락 = 전류 → 자석 쪽에서 보면 <b>시계 반대 방향 <span class="rot">↺</span></b></div>
+  </div>
+ </div>
+</div></div>
+
+ <h3 class="subsection-title" style="border-color:var(--rose)">한 표로 정리</h3>
+ <div class="tbl-wrap"><table class="cmp-table rose-th">
+  <thead><tr><th>경우</th><th>코일 속 자속</th><th>자석 쪽 코일 끝</th><th>힘</th><th>전류 (자석 쪽에서 볼 때)</th></tr></thead>
+  <tbody>
+   <tr><td>① N극 가까이</td><td>증가</td><td><b class="pole-N">N극</b></td><td>척력</td><td>↺ 시계 반대</td></tr>
+   <tr><td>② N극 멀리</td><td>감소</td><td><b class="pole-S">S극</b></td><td>인력</td><td>↻ 시계</td></tr>
+   <tr><td>③ S극 가까이</td><td>증가</td><td><b class="pole-S">S극</b></td><td>척력</td><td>↻ 시계</td></tr>
+   <tr><td>④ S극 멀리</td><td>감소</td><td><b class="pole-N">N극</b></td><td>인력</td><td>↺ 시계 반대</td></tr>
+  </tbody>
+ </table></div>
+ <div class="tip">✅ 암기 요령: <b>가까이 → 같은 극(밀어냄), 멀리 → 다른 극(당김)</b>. 극만 정하면 오른손 법칙으로 전류 방향이 나온다.<br>①과 ②, ③과 ④처럼 <b>운동 방향이 반대면 전류 방향도 반대</b>이고, ①과 ③처럼 <b>극이 바뀌어도 전류 방향이 반대</b>가 된다.</div>
+
+ <h2 class="section-title" id="a-energy" style="border-color:var(--rose)">🔋 방향이 '방해'인 이유 — 에너지 보존</h2>
+ <div class="flow-row">
+  <span class="flow-item rose">자석을 움직임</span><span class="flow-arrow">→</span>
+  <span class="flow-item rose">유도 전류가 운동을 <b>방해</b>하는 힘</span><span class="flow-arrow">→</span>
+  <span class="flow-item rose">방해를 이기며 한 일(운동 에너지)</span><span class="flow-arrow">→</span>
+  <span class="flow-item rose"><b>전기 에너지</b></span>
+ </div>
+ <div class="note">💡 에너지 전환(보존): <b>운동 에너지 → 전기 에너지</b>. 만약 유도 전류가 운동을 돕는 방향이라면 에너지가 저절로 늘어나게 되므로, 유도 전류는 항상 운동을 방해하는 방향으로 흐른다.</div>
+
+ <div class="quiz-section" id="quiz-3"></div>
+</section>
+
+<!-- ===================== TAB 5 : 발전기 ===================== -->
+<section class="tab-panel" id="panel-4">
+ <div class="unit-banner">📌 02. 전기 에너지의 생산과 발전기의 에너지 전환</div>
+ <div class="lead">🧭 <b>흐름</b> — 간이 발전기 만들기 → 발전소 발전기의 구조 → 에너지 전환 → 계속 돌려야 하는 이유</div>
+
+ <h2 class="section-title" id="a-simple" style="border-color:var(--green)">🔧 실험: 간이 발전기 만들기</h2>
+ <div class="green-box"><div class="box-label">목표</div>간이 발전기를 만들어 발광 다이오드(LED)를 켜 보고, 에너지 전환 과정을 설명할 수 있다.</div>
+ <div class="stage-row five green">
+  <div class="stage-item"><div class="st-num">1</div>빈 테이프 통에 에나멜선을 <b>400회 이상</b> 감는다.</div>
+  <div class="stage-item"><div class="st-num">2</div>에나멜선 양 끝을 사포로 벗기고 <b>LED</b>를 연결한다.</div>
+  <div class="stage-item"><div class="st-num">3</div>글루건으로 <b>네오디뮴 자석</b>에 나무젓가락을 붙인다.</div>
+  <div class="stage-item"><div class="st-num">4</div>덮개를 끼우고 셀로판테이프로 클립을 덮개에 붙인다.</div>
+  <div class="stage-item hi"><div class="st-num">5</div>나무젓가락을 두 클립 사이에 끼우고 <b>빠르게 회전</b> → LED가 켜지는지 확인</div>
+ </div>
+ <div class="warning">⚠️ 네오디뮴 자석은 자기력이 매우 강하므로 조심히 다루고, 글루건에 화상을 입지 않도록 주의한다.</div>
+ <div class="rule-card green">
+  <h4>간이 발전기의 원리 — 5개 용어로</h4>
+  <div class="flow-row">
+   <span class="flow-item green"><b>자석</b>이 회전(<b>운동</b>)</span><span class="flow-arrow">→</span>
+   <span class="flow-item green"><b>코일</b>을 통과하는 <b>자기장</b> 변화</span><span class="flow-arrow">→</span>
+   <span class="flow-item green"><b>유도 전류</b> → LED 켜짐</span>
+  </div>
+  <p>에너지 전환: <b>역학적(운동) 에너지 → 전기 에너지</b> (→ LED에서 빛 에너지)</p>
+ </div>
+
+ <h2 class="section-title" id="a-plant" style="border-color:var(--green)">🏭 발전소의 발전기</h2>
+ <p>발전소의 발전기로 전기 에너지를 만드는 원리도 <b>간이 발전기와 같다</b>.</p>
+ <div class="gen-fig">
+  <div class="gen-part coil">코일<small>바깥쪽에 고정</small><div class="gen-part mag">자석<small>회전축에 연결</small></div></div>
+  <div class="gen-shaft">━━ 회전축 ━━</div>
+  <div class="gen-part tur">터빈<small>물·증기로 회전</small></div>
+ </div>
+ <div class="tbl-wrap"><table class="cmp-table green-th">
+  <thead><tr><th>구성</th><th>간이 발전기</th><th>발전소 발전기</th></tr></thead>
+  <tbody>
+   <tr><td>코일</td><td>테이프 통에 감은 에나멜선</td><td>발전기 바깥쪽에 고정</td></tr>
+   <tr><td>자석</td><td>나무젓가락에 붙인 네오디뮴 자석</td><td>회전축에 연결</td></tr>
+   <tr><td>회전시키는 것</td><td>손</td><td>물이나 증기로 회전하는 <b>터빈</b></td></tr>
+  </tbody>
+ </table></div>
+ <div class="flow-row">
+  <span class="flow-item green">물·증기</span><span class="flow-arrow">→</span>
+  <span class="flow-item green">터빈 회전</span><span class="flow-arrow">→</span>
+  <span class="flow-item green">자석이 터빈과 함께 회전</span><span class="flow-arrow">→</span>
+  <span class="flow-item green">코일을 지나는 자기장 변화</span><span class="flow-arrow">→</span>
+  <span class="flow-item green">전기 에너지 생산</span>
+ </div>
+
+ <h2 class="section-title" id="a-keep" style="border-color:var(--green)">🔁 왜 계속 돌려야 할까?</h2>
+ <div class="key-q"><span class="kq-tag" style="background:var(--green)">이유</span><div>코일 속에서 자석을 회전시키면 <b>운동 에너지가 전기 에너지로 전환</b>되므로 자석의 운동 에너지가 <b>감소</b>한다. → 전기 에너지를 지속적으로 생산하려면 <b>계속해서 자석을 돌려주어야</b> 한다.</div></div>
+ <div class="note">💡 앞 탭의 렌츠 법칙과 같은 이야기이다. 유도 전류가 자석의 운동을 방해하므로, 돌려 주지 않으면 자석은 멈춘다.</div>
+
+ <h3 class="subsection-title" id="a-pipe" style="border-color:var(--green)">관련 실험: 관 속으로 자석 떨어뜨리기</h3>
+ <div class="tbl-wrap"><table class="cmp-table green-th">
+  <thead><tr><th>관</th><th>자석의 낙하</th><th>까닭</th></tr></thead>
+  <tbody>
+   <tr><td>구리 관</td><td rowspan="2">천천히 떨어진다</td><td rowspan="2">금속 관에 유도 전류가 흘러 자석의 운동을 방해 → 역학적 에너지 일부가 전기 에너지로 전환</td></tr>
+   <tr><td>알루미늄 관</td></tr>
+   <tr><td>플라스틱 관</td><td>그냥 떨어진다</td><td>전류가 흐르지 않아 방해가 없음</td></tr>
+  </tbody>
+ </table></div>
+
+ <div class="quiz-section" id="quiz-4"></div>
+</section>
+
+<!-- ===================== TAB 6 : 개념 지도 ===================== -->
+<section class="tab-panel" id="panel-5">
+ <div class="unit-banner">📌 개념 한눈에 보기</div>
+ <div class="tip">🧭 클릭하면 해당 탭과 섹션으로 이동합니다 — 색깔 있는 큰 헤더는 탭 전체로, 작은 칸은 세부 설명 위치로 스크롤됩니다.</div>
+
+ <div class="map-root orange">
+  <button class="map-root-head" onclick="goTo(0)">① 태양 에너지의 생성</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(0,'a-fusion')">☀️ 수소 핵융합</button>
+   <button class="map-node" onclick="goTo(0,'a-massdefect')">⚖️ 질량 결손</button>
+   <button class="map-node" onclick="goTo(0,'a-emc2')">E = mc²</button>
+  </div>
+ </div>
+ <div class="map-root orange">
+  <button class="map-root-head" onclick="goTo(1)">② 태양 에너지의 양과 전환</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(1,'a-const')">📏 1361 W · 4.2 J</button>
+   <button class="map-node" onclick="goTo(1,'a-calc')">✍️ 서술형 출제 예상</button>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(1,'a-convert')">🔄 세 가지 흐름</button>
+    <div class="map-subrow">
+     <button class="map-subchip" onclick="goTo(1,'a-convert')">대기 대순환</button>
+     <button class="map-subchip" onclick="goTo(1,'a-convert')">물의 순환</button>
+     <button class="map-subchip" onclick="goTo(1,'a-convert')">먹이그물</button>
+    </div>
+   </div>
+  </div>
+ </div>
+ <div class="map-root">
+  <button class="map-root-head" onclick="goTo(2)">③ 전자기 유도</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(2,'a-exp')">🧪 검류계 실험</button>
+   <button class="map-node" onclick="goTo(2,'a-induction')">⚡ 전자기 유도 · 유도 전류</button>
+   <button class="map-node" onclick="goTo(2,'a-flux')">🧲 자속 B = Φ/A</button>
+   <button class="map-node" onclick="goTo(2,'a-faraday')">📐 패러데이 법칙 · 세기 3요인</button>
+  </div>
+ </div>
+ <div class="map-root rose">
+  <button class="map-root-head" onclick="goTo(3)">④ 유도 전류의 방향</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(3,'a-lenz')">🛑 렌츠 법칙</button>
+   <button class="map-node" onclick="goTo(3,'a-rhr')">🌀 오른손 법칙</button>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(3,'a-cases')">🔀 4가지 경우</button>
+    <div class="map-subrow">
+     <button class="map-subchip" onclick="goTo(3,'a-cases')">N 가까이</button>
+     <button class="map-subchip" onclick="goTo(3,'a-cases')">N 멀리</button>
+     <button class="map-subchip" onclick="goTo(3,'a-cases')">S 가까이</button>
+     <button class="map-subchip" onclick="goTo(3,'a-cases')">S 멀리</button>
+    </div>
+   </div>
+   <button class="map-node" onclick="goTo(3,'a-energy')">🔋 에너지 보존</button>
+  </div>
+ </div>
+ <div class="map-root green">
+  <button class="map-root-head" onclick="goTo(4)">⑤ 발전기</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(4,'a-simple')">🔧 간이 발전기</button>
+   <button class="map-node" onclick="goTo(4,'a-plant')">🏭 발전소 발전기</button>
+   <button class="map-node" onclick="goTo(4,'a-keep')">🔁 계속 돌려야 하는 이유</button>
+   <button class="map-node" onclick="goTo(4,'a-pipe')">관 속 자석 낙하</button>
+  </div>
+ </div>
+</section>
+
+</main>
+
+<button class="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="맨 위로">↑</button>
+
+<script>
+function switchTab(idx){
+ document.querySelectorAll('.tab-btn').forEach(function(b,i){b.classList.toggle('active',i===idx);});
+ document.querySelectorAll('.tab-panel').forEach(function(p,i){p.classList.toggle('active',i===idx);});
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function goTo(tabIdx,anchorId){
+ switchTab(tabIdx);
+ if(anchorId){
+  setTimeout(function(){
+   var el=document.getElementById(anchorId);
+   if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+  },120);
+ }
+}
+</script>
+
+<script>
+const QUIZ_DATA = {"0": {"ox": [{"q": "태양의 중심부는 약 1500만 K의 초고온 상태이다.", "a": true, "exp": "초고온 상태에서 수소 핵융합 반응이 일어난다."}, {"q": "태양 중심부에서는 4개의 수소 원자핵이 융합하여 2개의 헬륨 원자핵이 된다.", "a": false, "exp": "4개의 수소 원자핵 → 1개의 헬륨 원자핵"}, {"q": "헬륨 원자핵 1개의 질량은 수소 원자핵 4개의 질량 합보다 약간 작다.", "a": true, "exp": "이 줄어든 질량을 질량 결손이라고 한다."}, {"q": "핵융합 반응에서 방출되는 에너지는 늘어난 질량에 해당하는 에너지이다.", "a": false, "exp": "줄어든 질량(질량 결손)에 해당하는 에너지를 방출한다."}, {"q": "E = mc²에서 c는 빛의 속력으로 3 × 10⁸ m/s이다.", "a": true, "exp": "c² = 9 × 10¹⁶"}, {"q": "질량 1 g이 모두 에너지로 바뀌면 9 × 10¹⁶ J의 에너지가 나온다.", "a": false, "exp": "1 g = 10⁻³ kg이므로 10⁻³ × 9 × 10¹⁶ = 9 × 10¹³ J"}], "mc": [{"q": "태양 중심부에서 일어나는 반응으로 옳은 것은?", "opts": ["수소 원자핵 4개 → 헬륨 원자핵 1개", "헬륨 원자핵 4개 → 수소 원자핵 1개", "헬륨 원자핵 1개 → 수소 원자핵 4개", "수소 원자핵 2개 → 헬륨 원자핵 2개"], "a": 0, "exp": "수소 핵융합 반응: 4H → He + 에너지"}, {"q": "핵융합 반응에서 에너지가 방출되는 까닭은?", "opts": ["수소 원자핵이 쪼개지기 때문", "반응 후 질량이 줄어들고, 줄어든 질량이 에너지로 전환되기 때문", "반응 후 질량이 늘어나기 때문", "태양 표면의 온도가 낮기 때문"], "a": 1, "exp": "질량 결손이 에너지로 전환된다(E = mc²)."}, {"q": "E = mc²에서 m이 뜻하는 것은?", "opts": ["빛의 속력", "헬륨 원자핵의 질량", "줄어든 질량(질량 결손)", "태양 전체의 질량"], "a": 2, "exp": "E: 방출 에너지, m: 줄어든 질량, c: 빛의 속력"}, {"q": "질량이 1 g 줄어들 때 방출되는 에너지는?", "opts": ["3 × 10⁸ J", "9 × 10¹⁶ J", "3 × 10⁵ J", "9 × 10¹³ J"], "a": 3, "exp": "10⁻³ kg × (3 × 10⁸)² = 9 × 10¹³ J"}, {"q": "질량 결손이 아주 작아도 막대한 에너지가 나오는 까닭은?", "opts": ["질량에 매우 큰 수인 c²(9 × 10¹⁶)을 곱하기 때문", "반응이 한 번만 일어나기 때문", "수소가 매우 무겁기 때문", "질량에 c(3 × 10⁸)를 나누기 때문"], "a": 0, "exp": "E = mc²에서 c²이 매우 크다."}], "hard": [{"q": "태양 에너지의 생성에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 태양 중심부는 약 1500만 K의 초고온 상태이다.", "ㄴ. 반응 후 헬륨 원자핵의 질량은 반응 전 수소 원자핵 4개의 질량 합보다 크다.", "ㄷ. 줄어든 질량에 해당하는 에너지가 방출된다."], "opts": ["ㄷ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 반응 후 질량이 더 작다. / 옳은 것: ㄱ, ㄷ"}, {"q": "E = mc²에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 질량이 1 g 줄면 9 × 10¹³ J의 에너지가 방출된다.", "ㄴ. 줄어든 질량이 2배가 되면 방출 에너지는 4배가 된다.", "ㄷ. c는 빛의 속력이다."], "opts": ["ㄱ", "ㄷ", "ㄱ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄴ. (X) E는 m에 비례하므로 2배가 된다. / 옳은 것: ㄱ, ㄷ"}, {"q": "수소 핵융합 반응에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 반응 전후 질량은 변하지 않는다.", "ㄴ. 4개의 수소 원자핵이 융합한다.", "ㄷ. 1개의 헬륨 원자핵이 만들어진다."], "opts": ["ㄴ", "ㄷ", "ㄱ, ㄴ", "ㄴ, ㄷ"], "a": 3, "exp": "ㄱ. (X) 질량 결손이 생긴다. / 옳은 것: ㄴ, ㄷ"}]}, "1": {"ox": [{"q": "1초 동안 1 m²에 도달하는 태양 에너지의 양은 1361 J이다.", "a": true, "exp": "1361 J/s = 1361 W"}, {"q": "물 1 g의 온도를 1 ℃ 올리는 데 필요한 에너지는 약 4.2 J이다.", "a": true, "exp": "1 cal = 4.2 J"}, {"q": "지구가 햇빛을 받는 면적은 지구의 겉넓이 4πr²로 계산한다.", "a": false, "exp": "햇빛을 받는 면적은 지구의 단면적 πr²이다."}, {"q": "대기와 지표에 흡수된 태양 에너지는 물을 증발시켜 구름을 만들며 위치 에너지로 전환된다.", "a": true, "exp": "물의 순환: 구름의 위치 에너지 → 빗방울의 운동 에너지"}, {"q": "식물은 광합성으로 태양 에너지를 운동 에너지로 전환한다.", "a": false, "exp": "광합성으로 화학 에너지로 전환한다."}, {"q": "화석 연료의 근원은 태양 에너지이다.", "a": true, "exp": "먹이그물을 따라 이동한 화학 에너지가 화석 연료가 되었다."}], "mc": [{"q": "태양이 1초 동안 방출하는 전체 에너지를 구할 때 사용하는 면적은?", "opts": ["지구의 겉넓이 4πr²", "태양의 단면적", "지구의 단면적 πr²", "태양~지구 거리를 반지름으로 하는 구의 겉넓이 4πR²"], "a": 3, "exp": "태양 에너지는 사방으로 퍼지므로 구의 겉넓이 전체로 계산한다."}, {"q": "대기 대순환에 따른 에너지 전환으로 옳은 것은?", "opts": ["식물의 화학 에너지 → 동물의 화학 에너지", "공기의 운동 에너지 → 파도의 운동 에너지", "파도의 운동 에너지 → 공기의 운동 에너지", "구름의 위치 에너지 → 빗방울의 운동 에너지"], "a": 1, "exp": "해류나 바람을 일으켜 운동 에너지로 전환된다."}, {"q": "구름이 만들어질 때 태양 에너지가 전환된 에너지는?", "opts": ["전기 에너지", "핵에너지", "위치 에너지", "화학 에너지"], "a": 2, "exp": "물이 증발해 높은 곳의 구름이 된다 → 위치 에너지"}, {"q": "태양 에너지가 먹이그물을 따라 이동할 때의 에너지 형태는?", "opts": ["운동 에너지", "위치 에너지", "화학 에너지", "전기 에너지"], "a": 2, "exp": "식물의 화학 에너지(광합성) → 동물의 화학 에너지"}, {"q": "지구 전 지역에 한 시간 동안 도달하는 태양 에너지양과 비슷한 것은?", "opts": ["인류가 하루 동안 사용하는 에너지양", "지구 내부 에너지 전체", "태양이 1초 동안 방출하는 에너지양", "인류가 일 년 동안 사용하는 에너지양"], "a": 3, "exp": "교과서 본문 내용이다."}], "hard": [{"q": "지구에 도달하는 태양 에너지의 계산에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 지구가 1초 동안 받는 에너지는 πr² × 1361 J로 구한다.", "ㄴ. 태양~지구 거리 R은 빛의 속력 × 약 8분으로 구할 수 있다.", "ㄷ. 태양이 1초 동안 방출하는 전체 에너지는 πR² × 1361 J로 구한다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 구의 겉넓이 4πR²을 사용한다. / 옳은 것: ㄱ, ㄴ"}, {"q": "지구에서 태양 에너지의 전환에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 대기 대순환은 공기와 파도의 운동 에너지를 만든다.", "ㄴ. 먹이그물에서 식물의 화학 에너지는 동물의 화학 에너지로 이동한다.", "ㄷ. 물의 순환에서 구름의 위치 에너지는 빗방울의 운동 에너지로 전환된다."], "opts": ["ㄷ", "ㄱ, ㄴ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 3, "exp": "옳은 것: ㄱ, ㄴ, ㄷ"}, {"q": "태양 에너지에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 식물의 광합성은 태양 에너지를 화학 에너지로 전환한다.", "ㄴ. 1 m²에 1초 동안 1361 J이 도달한다.", "ㄷ. 화석 연료는 태양 에너지와 관계없이 만들어졌다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 화석 연료의 근원도 태양 에너지이다. / 옳은 것: ㄱ, ㄴ"}]}, "2": {"ox": [{"q": "코일 속에 막대자석을 넣고 가만히 두면 유도 전류가 흐른다.", "a": false, "exp": "자석과 코일이 서로 정지해 있으면 유도 전류가 흐르지 않는다."}, {"q": "자석을 가만히 두고 코일을 움직여도 유도 전류가 흐른다.", "a": true, "exp": "자석과 코일의 상대 운동이면 된다."}, {"q": "전자기 유도는 코일을 통과하는 자기장이 변할 때 전류가 흐르는 현상이다.", "a": true, "exp": "이때 흐르는 전류가 유도 전류이다."}, {"q": "B = Φ / A에서 A는 자기력선에 수직인 면적이다.", "a": true, "exp": "B 자기장, Φ 자기력선 수(자속), A 수직 면적"}, {"q": "코일의 감은 수가 적을수록 유도 전류의 세기가 크다.", "a": false, "exp": "코일을 많이 감을수록(N↑) 유도 전류가 세다."}, {"q": "지리상 북극 쪽은 자석의 S극에 해당한다.", "a": true, "exp": "지구의 자기장은 남 → 북 방향이다."}], "mc": [{"q": "유도 전류가 흐르지 않는 경우는?", "opts": ["코일 속에 자석이 정지해 있을 때", "자석을 코일에 가까이 할 때", "자석을 코일에서 멀리 할 때", "자석은 가만히 두고 코일을 움직일 때"], "a": 0, "exp": "상대 운동이 없으면 자속 변화가 없다."}, {"q": "유도 전류의 세기를 크게 하는 방법이 아닌 것은?", "opts": ["코일을 더 많이 감는다.", "자석을 천천히 움직인다.", "자석을 빠르게 움직인다.", "더 센 자석을 사용한다."], "a": 1, "exp": "빠르게(Δt↓), 센 자석(ΔΦ↑), 많이 감기(N↑)"}, {"q": "ε = −N ΔΦ/Δt에서 N이 뜻하는 것은?", "opts": ["코일의 감은 수", "자기력선 수", "유도 기전력", "시간"], "a": 0, "exp": "ε 유도 기전력, N 감은 수, ΔΦ/Δt 시간당 자속 변화"}, {"q": "'자석을 빠르게 움직일수록 유도 전류가 세다'는 식에서 어느 부분과 관련 있나?", "opts": ["A가 작아진다.", "Δt가 작아져 ΔΦ/Δt가 커진다.", "N이 커진다.", "부호가 −가 된다."], "a": 1, "exp": "같은 자속 변화가 더 짧은 시간에 일어난다."}, {"q": "자속(Φ)에 대한 설명으로 옳은 것은?", "opts": ["코일에 흐르는 전류의 세기", "자석의 질량", "어떤 면을 수직으로 지나가는 자기력선의 수", "코일의 길이"], "a": 2, "exp": "B = Φ / A"}], "hard": [{"q": "전자기 유도 실험에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 자석을 가까이 할 때와 멀리 할 때 검류계 바늘은 반대로 움직인다.", "ㄴ. 아무리 센 자석이라도 코일과 정지해 있으면 전류가 흐르지 않는다.", "ㄷ. 자석이 움직여야만 전류가 흐르고, 코일이 움직이면 흐르지 않는다."], "opts": ["ㄱ", "ㄱ, ㄴ", "ㄱ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄷ. (X) 코일이 움직여도 상대 운동이므로 흐른다. / 옳은 것: ㄱ, ㄴ"}, {"q": "유도 전류의 세기에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 자석의 자기장이 셀수록 세다.", "ㄴ. 자석을 빠르게 움직일수록 약하다.", "ㄷ. 코일을 많이 감을수록 세다."], "opts": ["ㄱ", "ㄱ, ㄴ", "ㄱ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄴ. (X) 빠르게 움직일수록 세다. / 옳은 것: ㄱ, ㄷ"}, {"q": "ε = −N ΔΦ/Δt에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. N은 자기력선의 수를 뜻한다.", "ㄴ. − 부호는 자속 변화를 방해하는 방향을 뜻한다.", "ㄷ. ΔΦ = 0이면 유도 기전력도 0이다."], "opts": ["ㄱ", "ㄱ, ㄴ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄱ. (X) N은 코일의 감은 수이다. / 옳은 것: ㄴ, ㄷ"}]}, "3": {"ox": [{"q": "유도 전류는 자속의 변화를 방해하는 방향으로 흐른다.", "a": true, "exp": "렌츠 법칙"}, {"q": "N극을 코일에 가까이 하면 자석 쪽 코일 끝은 S극이 된다.", "a": false, "exp": "가까이 오면 같은 극(N극)을 만들어 밀어낸다."}, {"q": "자석을 코일에서 멀리 하면 코일은 자석을 끌어당기는 극을 만든다.", "a": true, "exp": "멀어지면 다른 극 → 인력"}, {"q": "오른손 네 손가락을 전류 방향으로 감아쥐면 엄지가 가리키는 쪽이 코일의 N극이다.", "a": true, "exp": "오른손 법칙"}, {"q": "S극을 코일에 가까이 할 때와 N극을 코일에 가까이 할 때 유도 전류의 방향은 같다.", "a": false, "exp": "극이 바뀌면 전류 방향이 반대가 된다."}, {"q": "유도 전류가 자석의 운동을 방해하므로, 자석의 운동 에너지가 전기 에너지로 전환된다.", "a": true, "exp": "에너지 전환(보존)"}], "mc": [{"q": "N극을 코일에 가까이 할 때 자석 쪽 코일 끝의 극과 힘은?", "opts": ["N극, 인력", "S극, 인력", "S극, 척력", "N극, 척력"], "a": 3, "exp": "자속 증가 → 같은 극으로 밀어냄"}, {"q": "S극을 코일에서 멀리 할 때 자석 쪽 코일 끝의 극은?", "opts": ["극이 생기지 않는다", "N극과 S극이 번갈아 생긴다", "N극", "S극"], "a": 2, "exp": "멀어지면 다른 극으로 끌어당긴다 → S극의 반대인 N극"}, {"q": "자석 쪽에서 코일을 볼 때 전류가 시계 반대 방향(↺)으로 흐르면 그쪽 코일 끝은?", "opts": ["알 수 없다", "극이 없다", "S극", "N극"], "a": 3, "exp": "정면에서 ↺ → 보는 쪽이 N극, ↻ → S극"}, {"q": "N극을 가까이 할 때와 전류 방향이 같은 경우는?", "opts": ["S극을 멀리 할 때", "N극을 멀리 할 때", "자석을 정지시킬 때", "S극을 가까이 할 때"], "a": 0, "exp": "① N 가까이와 ④ S 멀리는 둘 다 자석 쪽 코일 끝이 N극 → 전류 방향이 같다."}, {"q": "유도 전류가 항상 자석의 운동을 방해하는 방향으로 흐르는 것과 관련 깊은 것은?", "opts": ["대기 대순환", "에너지 보존", "질량 결손", "광합성"], "a": 1, "exp": "방해를 이기며 한 일이 전기 에너지로 전환된다."}], "hard": [{"q": "렌츠 법칙에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 자석이 가까이 오면 코일은 같은 극을 만들어 밀어낸다.", "ㄴ. 자석이 멀어지면 코일은 다른 극을 만들어 끌어당긴다.", "ㄷ. 유도 전류는 자속의 변화를 돕는 방향으로 흐른다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 변화를 방해하는 방향으로 흐른다. / 옳은 것: ㄱ, ㄴ"}, {"q": "유도 전류의 방향에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. N극을 가까이 할 때와 S극을 가까이 할 때 전류 방향은 반대이다.", "ㄴ. N극을 가까이 할 때와 S극을 멀리 할 때 전류 방향은 반대이다.", "ㄷ. N극을 가까이 할 때와 N극을 멀리 할 때 전류 방향은 반대이다."], "opts": ["ㄷ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 두 경우 모두 자석 쪽 코일 끝이 N극 → 전류 방향이 같다. / 옳은 것: ㄱ, ㄷ"}, {"q": "S극을 코일에 가까이 할 때에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 자석과 코일 사이에 인력이 작용한다.", "ㄴ. 코일을 통과하는 자속이 증가한다.", "ㄷ. 자석 쪽 코일 끝은 S극이 된다."], "opts": ["ㄱ", "ㄴ", "ㄷ", "ㄴ, ㄷ"], "a": 3, "exp": "ㄱ. (X) 같은 극(S-S)이므로 척력이 작용한다. / 옳은 것: ㄴ, ㄷ"}]}, "4": {"ox": [{"q": "간이 발전기에서 자석이 회전하면 코일을 통과하는 자기장이 변하여 유도 전류가 흐른다.", "a": true, "exp": "전자기 유도"}, {"q": "발전소의 발전기는 간이 발전기와 다른 원리로 전기 에너지를 만든다.", "a": false, "exp": "원리가 같다(전자기 유도)."}, {"q": "발전소 발전기에서 코일은 바깥쪽에 고정되어 있고 자석은 회전축에 연결되어 있다.", "a": true, "exp": "발전기의 구조"}, {"q": "터빈은 물이나 증기 등으로 회전한다.", "a": true, "exp": "터빈이 돌면 자석이 함께 회전한다."}, {"q": "발전기에서 전기 에너지가 만들어져도 자석의 운동 에너지는 줄지 않는다.", "a": false, "exp": "운동 에너지가 전기 에너지로 전환되므로 감소한다."}, {"q": "플라스틱 관보다 구리 관 속에서 자석이 더 천천히 떨어진다.", "a": true, "exp": "금속 관에 유도 전류가 흘러 자석의 운동을 방해한다."}], "mc": [{"q": "간이 발전기에서 일어나는 에너지 전환으로 옳은 것은?", "opts": ["역학적(운동) 에너지 → 전기 에너지", "화학 에너지 → 전기 에너지", "빛에너지 → 운동 에너지", "전기 에너지 → 운동 에너지"], "a": 0, "exp": "자석을 돌리는 운동 에너지가 전기 에너지로 전환된다."}, {"q": "발전소 발전기에서 회전축을 돌리는 장치는?", "opts": ["발광 다이오드", "터빈", "코일", "검류계"], "a": 1, "exp": "물이나 증기로 터빈을 회전시킨다."}, {"q": "발전소에서 전기 에너지를 지속적으로 생산하려면 자석을 계속 돌려야 하는 까닭은?", "opts": ["코일이 녹기 때문", "터빈이 전기를 저장하기 때문", "자석의 운동 에너지가 전기 에너지로 전환되어 감소하기 때문", "자석의 질량이 줄어들기 때문"], "a": 2, "exp": "유도 전류가 운동을 방해 → 돌려 주지 않으면 멈춘다."}, {"q": "간이 발전기 만들기에서 LED가 켜지게 하는 조작은?", "opts": ["자석을 코일 속에 가만히 둔다.", "코일을 적게 감는다.", "에나멜선의 피복을 벗기지 않는다.", "나무젓가락을 빠르게 회전시킨다."], "a": 3, "exp": "자석이 회전해야 자기장이 변한다."}, {"q": "관 속으로 자석을 떨어뜨릴 때 가장 빨리 떨어지는 관은?", "opts": ["플라스틱 관", "알루미늄 관", "세 관 모두 같다", "구리 관"], "a": 0, "exp": "플라스틱 관에는 유도 전류가 흐르지 않아 방해가 없다."}], "hard": [{"q": "발전소의 발전기에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 코일은 발전기의 바깥쪽에 고정되어 있다.", "ㄴ. 터빈이 회전하면 자석이 함께 회전한다.", "ㄷ. 전자기 유도와 관계없이 전기 에너지를 만든다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 전자기 유도를 이용한다. / 옳은 것: ㄱ, ㄴ"}, {"q": "간이 발전기에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 역학적 에너지가 전기 에너지로 전환된다.", "ㄴ. 자석을 빠르게 회전시킬수록 LED가 어두워진다.", "ㄷ. 자석이 회전하면 코일에 유도 전류가 흐른다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 빠를수록 유도 전류가 세다. / 옳은 것: ㄱ, ㄷ"}, {"q": "관 속 자석 낙하에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 플라스틱 관에서 자석이 가장 천천히 떨어진다.", "ㄴ. 구리 관에서는 유도 전류가 자석의 운동을 방해한다.", "ㄷ. 알루미늄 관에서도 자석이 천천히 떨어진다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄱ. (X) 플라스틱 관에서는 방해가 없어 가장 빨리 떨어진다. / 옳은 것: ㄴ, ㄷ"}]}};
+
+const TYPE_CONFIG = [
+ { key:'ox',   label:'OX 퀴즈', icon:'⭕', cls:'ox',   diff:'기초',   diffCls:'diff-basic', color:'#2563eb' },
+ { key:'mc',   label:'객관식',  icon:'📋', cls:'mc',   diff:'중급',   diffCls:'diff-mid',   color:'#16a34a' },
+ { key:'hard', label:'고난도',  icon:'🔥', cls:'hard', diff:'고난도', diffCls:'diff-hard',  color:'#7c3aed' }
+];
+const QUIZ_UNITS = Object.keys(QUIZ_DATA).map(Number);
+const state = {};
+QUIZ_UNITS.forEach(function(u){
+ state[u] = { activeType:0, answered:{ ox:[], mc:[], hard:[] } };
+});
+
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function typeStats(u, key){
+ var qs = QUIZ_DATA[u][key], ans = state[u].answered[key], done = 0, correct = 0;
+ for (var i = 0; i < qs.length; i++){
+  if (ans[i] !== undefined){ done++; if (ans[i] === qs[i].a) correct++; }
+ }
+ return { total: qs.length, done: done, correct: correct };
+}
+
+function buildQuiz(u){
+ var box = document.getElementById('quiz-' + u);
+ if (!box) return;
+ var st = state[u], cfg = TYPE_CONFIG[st.activeType], key = cfg.key;
+ var qs = QUIZ_DATA[u][key], s = typeStats(u, key);
+ var h = '';
+ h += '<div class="quiz-header"><div class="quiz-title">📝 확인 문제</div><div class="scoreboard">';
+ TYPE_CONFIG.forEach(function(c){
+  var t = typeStats(u, c.key);
+  h += '<span class="score-chip ' + c.cls + '">' + c.icon + ' ' + c.label + ' ' + t.correct + '/' + t.total + '</span>';
+ });
+ h += '</div></div>';
+ h += '<div class="quiz-type-bar">';
+ TYPE_CONFIG.forEach(function(c, i){
+  var t = typeStats(u, c.key);
+  h += '<button class="qtype-btn ' + c.cls + (i === st.activeType ? ' active' : '') + '" onclick="setType(' + u + ',' + i + ')">' +
+       c.icon + ' ' + c.label + ' <span class="qtype-count">' + t.done + '/' + t.total + '</span></button>';
+ });
+ h += '</div>';
+ var pct = s.total ? Math.round(s.done / s.total * 100) : 0;
+ h += '<div class="q-progress-wrap"><span>진행</span><div class="q-progress-bar"><div class="q-progress-fill" style="width:' + pct + '%;background:' + cfg.color + '"></div></div><span>' + s.done + ' / ' + s.total + '</span></div>';
+
+ if (s.done === s.total){
+  h += buildResult(u, key, s);
+ }
+ qs.forEach(function(q, qi){ h += buildQCard(u, key, qi, q); });
+ if (s.done > 0 && s.done < s.total){
+  h += '<div style="text-align:right"><button class="reset-btn sm" onclick="resetType(' + u + ',\'' + key + '\')">↺ 이 유형 다시 풀기</button></div>';
+ }
+ box.innerHTML = h;
+}
+
+function buildResult(u, key, s){
+ var p = Math.round(s.correct / s.total * 100);
+ var msg = p === 100 ? '완벽해요! 🎉' : p >= 80 ? '아주 잘했어요! 틀린 문제의 해설만 다시 확인해 보세요.' : p >= 60 ? '좋아요. 해설을 읽고 본문을 한 번 더 확인해 보세요.' : '본문을 다시 읽고 도전해 보세요. 💪';
+ var h = '<div class="quiz-result"><div class="big">' + s.correct + ' / ' + s.total + ' <span style="font-size:18px;color:var(--text-sec)">(' + p + '%)</span></div><div class="msg">' + msg + '</div><div class="mini-bar-wrap">';
+ TYPE_CONFIG.forEach(function(c){
+  var t = typeStats(u, c.key), w = t.total ? Math.round(t.correct / t.total * 100) : 0;
+  h += '<div class="mini-bar-row"><span class="mini-bar-label" style="color:' + c.color + '">' + c.label + '</span><div class="mini-bar-track"><div class="mini-bar-fill" style="width:' + w + '%;background:' + c.color + '"></div></div><span class="mini-bar-val">' + t.correct + '/' + t.total + '</span></div>';
+ });
+ h += '</div><button class="reset-btn" onclick="resetType(' + u + ',\'' + key + '\')">↺ 다시 풀기</button></div><div style="height:14px"></div>';
+ return h;
+}
+
+function buildQCard(u, key, qi, q){
+ var cfg = TYPE_CONFIG.filter(function(c){ return c.key === key; })[0];
+ var ans = state[u].answered[key][qi], done = ans !== undefined, ok = done && ans === q.a;
+ var h = '<div class="q-card' + (done ? (ok ? ' answered-correct' : ' answered-wrong') : '') + '" id="qc-' + u + '-' + key + '-' + qi + '">';
+ h += '<div class="q-meta"><span class="q-num">Q' + (qi + 1) + '</span><span class="q-difficulty ' + cfg.diffCls + '">' + cfg.diff + '</span></div>';
+ h += '<div class="q-text">' + esc(q.q) + '</div>';
+ if (q.box){
+  h += '<div class="q-box">' + q.box.map(function(b){ return '<div>' + esc(b) + '</div>'; }).join('') + '</div>';
+ }
+ if (key === 'ox'){
+  h += '<div class="ox-row">';
+  [true, false].forEach(function(v){
+   var cls = '';
+   if (done){
+    if (ans === v) cls = (v === q.a) ? ' correct-picked' : ' wrong-picked';
+    else if (v === q.a) cls = ' correct-reveal';
+   }
+   h += '<button class="ox-btn' + cls + '"' + (done ? ' disabled' : '') + ' onclick="submitOX(' + u + ',' + qi + ',' + v + ')">' + (v ? '⭕' : '❌') + '</button>';
+  });
+  h += '</div>';
+ } else {
+  h += '<div class="mc-options">';
+  q.opts.forEach(function(o, oi){
+   var cls = '';
+   if (done){
+    if (oi === q.a) cls = ' correct';
+    else if (oi === ans) cls = ' wrong';
+   }
+   h += '<button class="mc-opt' + cls + '"' + (done ? ' disabled' : '') + ' onclick="submitMC(' + u + ',\'' + key + '\',' + qi + ',' + oi + ')"><span class="mc-opt-letter">' + 'ABCD'.charAt(oi) + '</span><span>' + esc(o) + '</span></button>';
+  });
+  h += '</div>';
+ }
+ if (done){
+  h += '<div class="q-feedback ' + (ok ? 'correct' : 'wrong') + '">' + (ok ? '✅ 정답! ' : '❌ 오답. ') +
+       (key === 'ox' ? '(정답: ' + (q.a ? 'O' : 'X') + ') ' : (ok ? '' : '(정답: ' + 'ABCD'.charAt(q.a) + ') ')) + esc(q.exp) + '</div>';
+ }
+ h += '</div>';
+ return h;
+}
+
+function submitOX(u, qi, v){
+ if (state[u].answered.ox[qi] !== undefined) return;
+ state[u].answered.ox[qi] = v;
+ afterSubmit(u, 'ox');
+}
+function submitMC(u, key, qi, oi){
+ if (state[u].answered[key][qi] !== undefined) return;
+ state[u].answered[key][qi] = oi;
+ afterSubmit(u, key);
+}
+function afterSubmit(u, key){
+ buildQuiz(u);
+ var qs = QUIZ_DATA[u][key], ans = state[u].answered[key];
+ for (var i = 0; i < qs.length; i++){
+  if (ans[i] === undefined){
+   (function(id){
+    setTimeout(function(){ var el = document.getElementById(id); if (el) el.scrollIntoView({behavior:'smooth', block:'center'}); }, 250);
+   })('qc-' + u + '-' + key + '-' + i);
+   return;
+  }
+ }
+ setTimeout(function(){ var el = document.getElementById('quiz-' + u); if (el) el.scrollIntoView({behavior:'smooth', block:'start'}); }, 250);
+}
+function setType(u, i){ state[u].activeType = i; buildQuiz(u); }
+function resetType(u, key){ state[u].answered[key] = []; buildQuiz(u); }
+
+QUIZ_UNITS.forEach(buildQuiz);
+
+</script>
+</body>
+</html>

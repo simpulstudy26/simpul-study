@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>심풀스터디 · 영어 학습</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@400;500;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fbfaf6; --grid:#dcd6c8; --card:#ffffff; --line:#e7e2d6;
+  --ink:#1c2340; --ink2:#5b6178; --pen:#2447c9; --mark:#ffe38a;
+  --intro:#56607a; --discover:#2f6fdf; --examine:#8a4fd8; --goals:#2e9e5b; --gaps:#d98a00; --next:#e5533d;
+  --ok:#1f9d63; --okbg:#e8f7ef; --bad:#d93b3b; --badbg:#fdecec; --star:#e0a100;
+  --radius:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Noto Sans KR',sans-serif;color:var(--ink);font-size:15px;line-height:1.7;
+  background-color:var(--paper);
+  background-image:radial-gradient(var(--grid) 1.1px,transparent 1.3px);
+  background-size:22px 22px;
+}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+/* ---------- home / lesson picker ---------- */
+#home{display:none}
+body.showhome #home{display:block}
+body.showhome #appShell{display:none}
+body.showhome .totop{display:none}
+.home-wrap{max-width:640px;margin:0 auto;padding:56px 16px 60px}
+.home-brand{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;letter-spacing:.08em;color:var(--ink2);text-transform:uppercase}
+.home-wrap h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:26px;margin:6px 0 4px;letter-spacing:-.01em}
+.home-wrap .sub{color:var(--ink2);font-size:14px;margin-bottom:26px}
+.lesson-card{display:flex;gap:15px;align-items:center;background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:18px;margin-bottom:14px;cursor:pointer;transition:.15s;text-align:left;width:100%}
+.lesson-card:hover{border-color:var(--ink);transform:translateY(-2px);box-shadow:0 8px 20px rgba(28,35,64,.08)}
+.lesson-card .ico{flex:none;width:54px;height:54px;border-radius:15px;display:grid;place-items:center;font-size:26px;color:#fff}
+.lesson-card .body2{flex:1;min-width:0}
+.lesson-card .tag2{font-size:11px;font-weight:700;color:var(--ink2);text-transform:uppercase;letter-spacing:.06em}
+.lesson-card .ttl{display:block;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:17.5px;margin-top:2px}
+.lesson-card .desc{font-size:12.8px;color:var(--ink2);margin-top:4px;line-height:1.5}
+.lesson-card .arrow2{flex:none;color:var(--ink2);font-size:19px}
+
+/* ---------- header ---------- */
+#appShell{display:block}
+.top{position:sticky;top:0;z-index:50;background:rgba(251,250,246,.94);backdrop-filter:blur(8px);border-bottom:1.5px solid var(--line)}
+.top-in{max-width:880px;margin:0 auto;padding:12px 16px 0}
+.backbtn{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:var(--ink2);margin-bottom:8px;padding:4px 0}
+.backbtn:hover{color:var(--ink)}
+.unit{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;letter-spacing:.08em;color:var(--ink2);text-transform:uppercase}
+.unit i{width:8px;height:8px;border-radius:50%;background:var(--next);display:inline-block}
+h1{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:22px;line-height:1.2;margin:2px 0 10px;letter-spacing:-.01em}
+.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-bottom:0}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;display:flex;align-items:center;gap:7px;padding:9px 12px 11px;font-size:14px;font-weight:500;color:var(--ink2);border-bottom:3px solid transparent;white-space:nowrap}
+.tab .dot{width:9px;height:9px;border-radius:50%;border:2px solid currentColor;transition:.2s}
+.tab.on{color:var(--ink);font-weight:700;border-bottom-color:var(--ink)}
+.tab.on .dot{background:var(--accent,var(--next));border-color:var(--accent,var(--next))}
+
+main{max-width:880px;margin:0 auto;padding:22px 16px 110px}
+.panel{display:none}
+.panel.on{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+/* ---------- common ---------- */
+.card{background:var(--card);border:1.5px solid var(--line);border-radius:var(--radius);padding:18px 18px;margin-bottom:16px}
+.h2{font-family:'Bricolage Grotesque',sans-serif;font-size:20px;font-weight:800;margin:26px 0 12px;display:flex;align-items:center;gap:10px}
+.h2::before{content:"";width:14px;height:14px;border-radius:50%;background:var(--c,var(--ink));box-shadow:0 0 0 4px color-mix(in srgb,var(--c,var(--ink)) 18%,transparent)}
+.h2 small{font-family:'Noto Sans KR';font-size:13px;font-weight:500;color:var(--ink2)}
+.h2:first-child{margin-top:4px}
+.lead{color:var(--ink2);font-size:13.5px;margin:-4px 0 14px}
+.pen{font-family:'Nanum Pen Script',cursive;color:var(--pen);font-size:21px;line-height:1.25}
+.tag{display:inline-block;font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:99px;vertical-align:middle;letter-spacing:.02em}
+.tag.memo{background:#e7edff;color:var(--pen)}
+.tag.add{background:#f1efe8;color:#7a7462;border:1px dashed #b9b19a}
+.blank{display:inline-block;min-width:74px;padding:0 8px;margin:0 2px;border-bottom:2px solid var(--ink);text-align:center;cursor:pointer;color:transparent;background:#f4f1e8;border-radius:6px 6px 0 0;font-weight:700;transition:.2s;user-select:none}
+.blank::after{content:"탭";color:#b0a98f;font-size:11px;font-weight:500}
+.blank.show{color:var(--next);background:#fff1ec}
+.blank.show::after{content:""}
+.chip{display:inline-block;font-size:12.5px;padding:3px 10px;border-radius:99px;background:#f3f1ea;border:1px solid var(--line);margin:2px 3px 2px 0}
+.star{color:var(--star)}
+.go{font-size:12.5px;font-weight:700;display:inline-flex;align-items:center;gap:4px}
+
+/* ---------- overview ---------- */
+.hero{position:relative;overflow:hidden}
+.hero .theme{font-family:'Source Serif 4',serif;font-size:18px;font-weight:600;line-height:1.5}
+.hero .theme-ko{font-size:13.5px;color:var(--ink2);margin-top:5px}
+.hero svg{position:absolute;right:-10px;top:-10px;opacity:.9}
+.flow{list-style:none;position:relative;margin:6px 0 4px}
+.flow::before{content:"";position:absolute;left:21px;top:22px;bottom:22px;border-left:3px dashed #c9c2b0}
+.flow li{position:relative;display:flex;gap:14px;padding:10px 0}
+.flow .num{flex:none;width:45px;height:45px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;font-family:'Bricolage Grotesque';font-weight:800;font-size:18px;box-shadow:0 0 0 5px var(--paper),0 0 0 7px color-mix(in srgb,var(--c) 30%,transparent);z-index:1}
+.flow .body{flex:1;background:var(--card);border:1.5px solid var(--line);border-left:5px solid var(--c);border-radius:12px;padding:11px 14px}
+.flow .sec{font-family:'Bricolage Grotesque';font-weight:800;font-size:16.5px;color:var(--c)}
+.flow .sum{font-family:'Source Serif 4',serif;font-size:15.5px;margin:4px 0 6px}
+.flow .go{color:var(--c)}
+.boxcard{border-left:5px solid var(--c);margin-top:12px}
+.boxcard .bh{font-family:'Bricolage Grotesque';font-weight:800;font-size:16.5px;color:var(--c);margin-bottom:6px}
+.boxcard .bs{font-family:'Source Serif 4',serif;font-size:15.5px;line-height:1.6}
+.boxcard .go{color:var(--c);margin-top:9px}
+.bracket{border:1.5px solid #c9c2b0;border-radius:6px;padding:0 4px}
+.legend{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:13px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{display:inline-block;width:30px;height:14px;border-radius:3px}
+.sw.v{background:linear-gradient(transparent 50%,var(--mark) 50%)}
+.sw.g{border-bottom:2.5px solid var(--pen)}
+.sw.s{border-bottom:2.5px dotted var(--goals)}
+.tipbox{background:#fffbea;border:1.5px solid #f1dd8e;border-radius:12px;padding:12px 14px;font-size:13.5px}
+.tipbox b{color:#8a6a00}
+
+/* ---------- passage ---------- */
+.toolbar{position:sticky;top:calc(var(--hh,112px) + 8px);z-index:20;display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;padding:8px;background:rgba(255,255,255,.92);border:1.5px solid var(--line);border-radius:99px;backdrop-filter:blur(6px);width:max-content;max-width:100%}
+.tg{display:flex;align-items:center;gap:7px;padding:6px 12px;border-radius:99px;font-size:13px;font-weight:700;color:var(--ink2);background:#f3f1ea}
+.tg .sw2{width:30px;height:17px;border-radius:99px;background:#cfc9b8;position:relative;transition:.2s}
+.tg .sw2::after{content:"";position:absolute;left:2px;top:2px;width:13px;height:13px;border-radius:50%;background:#fff;transition:.2s}
+.tg.on{color:var(--ink);background:#e9eefc}
+.tg.on .sw2{background:var(--pen)}
+.tg.on .sw2::after{left:15px}
+.sec-head{margin:30px 0 12px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.sec-head:first-of-type{margin-top:6px}
+.sec-head h3{font-family:'Bricolage Grotesque';font-weight:800;font-size:25px;color:var(--c);letter-spacing:-.01em}
+.sec-head .pen{font-size:20px}
+.para{border-top:5px solid var(--c)}
+.para-no{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--ink2);margin-bottom:8px}
+.para-no b{width:22px;height:22px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;font-size:12px}
+.sent{display:flex;gap:10px;padding:7px 0;border-bottom:1px dashed #ece7db}
+.sent:last-child{border-bottom:none}
+.sno{flex:none;width:24px;height:24px;margin-top:4px;border-radius:7px;border:1.5px solid var(--line);font-size:11.5px;font-weight:700;color:var(--ink2);background:#faf8f2}
+.sent.show .sno,body.ko-all .sno{background:var(--ink);color:#fff;border-color:var(--ink)}
+.en{font-family:'Source Serif 4',serif;font-size:17px;line-height:1.75}
+.ko{display:none;font-size:13.5px;color:#4b5064;background:#f7f5ef;border-radius:8px;padding:5px 10px;margin-top:4px}
+.sent.show .ko,body.ko-all .ko{display:block}
+.an{cursor:pointer;transition:background .2s;border-radius:3px}
+.an sup{font-family:'Bricolage Grotesque';font-size:10px;font-weight:800;color:var(--pen);margin-left:1px}
+.an.v{background:linear-gradient(transparent 55%,var(--mark) 55%)}
+.an.g{border-bottom:2px solid var(--pen)}
+.an.s{border-bottom:2px dotted var(--goals)}
+.an.st{background:linear-gradient(transparent 55%,#ffd3c4 55%)}
+.an:hover{background-color:#eef2ff}
+body.no-notes .an{background:none!important;border-bottom:none!important;cursor:text}
+body.no-notes .an sup,body.no-notes .notes,body.no-notes .psum{display:none}
+.notes{margin-top:12px;background:#f7f9ff;border:1.5px solid #dfe6fb;border-radius:12px;padding:10px 12px}
+.notes h5{font-family:'Nanum Pen Script';font-size:22px;color:var(--pen);font-weight:400;margin-bottom:2px}
+.note{display:flex;gap:10px;padding:7px 6px;border-radius:9px;transition:background .4s}
+.note + .note{border-top:1px dashed #dfe6fb}
+.note.flash{background:#fff3b0}
+.nnum{flex:none;width:20px;height:20px;border-radius:50%;background:var(--pen);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;margin-top:3px}
+.note.v .nnum{background:#c79a00}
+.note.s .nnum{background:var(--goals)}
+.nt{font-family:'Nanum Pen Script';font-size:21px;line-height:1.2;color:var(--pen)}
+.note.v .nt{color:#9a7400}
+.note.s .nt{color:#23794a}
+.nb{font-size:13.2px;color:#394056}
+.psum{margin-top:10px;border:2px dashed var(--c);border-radius:12px;padding:10px 14px;background:color-mix(in srgb,var(--c) 6%,#fff)}
+.psum .lab{font-size:11.5px;font-weight:700;color:var(--c)}
+.psum .pen{font-size:22px;color:var(--ink)}
+
+/* ---------- vocab ---------- */
+.filters{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin-bottom:12px;padding-bottom:2px}
+.filters button{flex:none;padding:6px 13px;border-radius:99px;border:1.5px solid var(--line);background:#fff;font-size:13px;font-weight:500}
+.filters button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.vc{background:#fff;border:1.5px solid var(--line);border-left:5px solid var(--c);border-radius:12px;padding:10px 12px}
+.vc .w{font-family:'Bricolage Grotesque';font-weight:700;font-size:17px;display:flex;justify-content:space-between;align-items:center;gap:6px}
+.vc .m{font-size:14px;margin-top:1px}
+.vc .syn{margin-top:4px;font-size:12.5px;color:var(--pen)}
+.syn-set{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.set{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px}
+.set .k{font-family:'Bricolage Grotesque';font-weight:800;font-size:16px}
+.set .eq{color:var(--pen);font-weight:700;margin:0 4px}
+.set .src{font-size:12px;color:var(--ink2);margin-top:3px}
+.opp{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:9px 12px;margin-bottom:8px;font-size:14px}
+.opp .a{text-align:right;font-weight:700}
+.opp .x{color:var(--next);font-weight:800}
+.opp .s2{grid-column:1/-1;font-size:12px;color:var(--ink2);text-align:center;font-family:'Source Serif 4',serif}
+.drill{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:11px 14px;margin-bottom:9px;display:flex;gap:12px}
+.drill .n{flex:none;font-family:'Bricolage Grotesque';font-weight:800;color:var(--c);font-size:15px;width:24px}
+.drill .e{font-family:'Source Serif 4',serif;font-size:16px}
+.drill .e u{text-decoration:none;border-bottom:2.5px solid var(--c);font-weight:600}
+.drill .k{font-size:14px;color:#3e4459;margin-top:3px}
+.drill .blank{min-width:90px}
+.btnrow{display:flex;gap:8px;margin:0 0 12px;flex-wrap:wrap}
+.btn{padding:7px 14px;border-radius:99px;border:1.5px solid var(--ink);font-size:13px;font-weight:700;background:#fff}
+.btn.fill{background:var(--ink);color:#fff}
+
+/* ---------- grammar ---------- */
+.gcard{background:#fff;border:1.5px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden}
+.gcard .gh{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:11px 14px;background:#f7f5ef;border-bottom:1.5px solid var(--line)}
+.gcard .gt{font-weight:700;font-size:15.5px}
+.gcard .form{font-family:'Bricolage Grotesque';font-weight:700;font-size:14px;color:var(--pen);padding:10px 14px 0;line-height:1.6}
+.gcard .ex{padding:8px 14px 12px}
+.gx{padding:8px 0;border-bottom:1px dashed #ece7db}
+.gx:last-child{border-bottom:none}
+.gx .e{font-family:'Source Serif 4',serif;font-size:16px;line-height:1.8}
+.gx .k{font-size:13.2px;color:#474d63}
+.gx .p{font-size:11px;font-weight:700;color:var(--ink2);margin-right:4px}
+.e .h1{background:#dce6ff;border-radius:4px;padding:0 3px}
+.e .h2x{background:#ffe0d6;border-radius:4px;padding:0 3px}
+.e .h3{background:#dcf3e5;border-radius:4px;padding:0 3px}
+.e .br{color:var(--pen);font-weight:700}
+.e .lb{font-family:'Noto Sans KR';font-size:10.5px;font-weight:700;color:#fff;background:var(--pen);border-radius:4px;padding:0 4px;margin:0 2px;vertical-align:2px}
+.e .lb.o{background:var(--next)}
+.e .lb.gr{background:var(--goals)}
+.e .om{color:#9aa0b3;font-style:italic}
+.gcard.add{border-style:dashed}
+.gcard.add .gh{background:#faf9f4}
+.gcard.hi{border:2px solid var(--next)}
+.gcard.hi .gh{background:#fff4f1}
+.cond-table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0 2px}
+.cond-table th,.cond-table td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+.cond-table th{background:#f7f5ef;font-weight:700;font-size:12px;color:var(--ink2)}
+.cond-table td.f{font-family:'Source Serif 4',serif;font-size:14px}
+
+/* ---------- paraphrase ---------- */
+.pp-core{border:2px solid var(--next);background:#fffaf8}
+.orig{font-family:'Source Serif 4',serif;font-size:17px;font-weight:600;padding:10px 12px;background:#fff;border-radius:10px;border:1.5px solid var(--line)}
+.pp-list{list-style:none;margin-top:10px}
+.pp-list li{display:flex;gap:10px;padding:8px 0;border-bottom:1px dashed #efd9d0}
+.pp-list li:last-child{border:none}
+.pp-list .arrow{flex:none;color:var(--next);font-weight:800}
+.pp-list .t{font-family:'Source Serif 4',serif;font-size:16px}
+.pp-list .k{font-size:13px;color:var(--ink2)}
+.pair{display:grid;grid-template-columns:1fr;gap:6px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:11px 13px;margin-bottom:10px}
+.pair .o,.pair .r{font-family:'Source Serif 4',serif;font-size:15.5px;padding-left:34px;position:relative}
+.pair .o::before,.pair .r::before{position:absolute;left:0;top:3px;font-family:'Noto Sans KR';font-size:10.5px;font-weight:700;padding:1px 5px;border-radius:5px}
+.pair .o::before{content:"본문";background:#eef0f5;color:var(--ink2)}
+.pair .r::before{content:"변형";background:#fff0ea;color:var(--next)}
+.pair .why{font-size:12.8px;color:#474d63;border-top:1px dashed var(--line);padding-top:6px}
+.pair .res{font-weight:800;margin-right:4px}
+.pair .res.t{color:var(--ok)} .pair .res.f{color:var(--bad)}
+.voice{display:grid;gap:6px}
+.voice .row{display:flex;gap:10px;align-items:baseline;background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:8px 12px}
+.voice .lab{flex:none;font-size:11px;font-weight:700;color:#fff;border-radius:5px;padding:1px 7px}
+
+/* ---------- practice ---------- */
+.score{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.score .sc{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:6px 12px;font-size:12.5px}
+.score .sc b{font-family:'Bricolage Grotesque';font-size:17px;margin-left:4px}
+.q{background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:14px 15px;margin-bottom:11px}
+.q .qh{display:flex;gap:8px;align-items:center;font-size:12px;font-weight:700;color:var(--ink2);margin-bottom:4px}
+.q .qh .qb{background:var(--ink);color:#fff;border-radius:6px;padding:1px 7px}
+.q .qt{font-size:15px;font-weight:500}
+.q .qt.en{font-family:'Source Serif 4',serif;font-size:16.5px;font-weight:400}
+.opts{display:flex;flex-direction:column;gap:7px;margin-top:10px}
+.opts.row{flex-direction:row}
+.opts.row .opt{flex:1;justify-content:center}
+.opt{display:flex;gap:9px;align-items:center;text-align:left;padding:9px 12px;border-radius:10px;border:1.5px solid var(--line);background:#fcfbf8;font-size:14.5px;transition:.15s}
+.opt:hover:not([disabled]){border-color:var(--ink)}
+.opt .l{flex:none;width:22px;height:22px;border-radius:50%;background:#ece8dc;display:grid;place-items:center;font-size:12px;font-weight:700}
+.opt.ok{border-color:var(--ok);background:var(--okbg)}
+.opt.ok .l{background:var(--ok);color:#fff}
+.opt.no{border-color:var(--bad);background:var(--badbg)}
+.opt.no .l{background:var(--bad);color:#fff}
+.opt[disabled]{cursor:default}
+.fb{display:none;margin-top:9px;font-size:13.3px;padding:8px 11px;border-radius:9px;background:#f7f5ef;color:#3e4459}
+.fb.on{display:block}
+.fb .r{font-weight:800;margin-right:5px}
+.reveal-btn{margin-top:9px;font-size:13px;font-weight:700;color:var(--pen);border:1.5px solid #d6defa;border-radius:99px;padding:5px 12px;background:#f5f7ff}
+.ans{display:none;margin-top:8px;padding:9px 12px;border-radius:10px;background:#fff8e1;border:1.5px solid #f1dd8e;font-size:14px}
+.ans.on{display:block}
+.ans .en2{font-family:'Source Serif 4',serif;font-size:15.5px}
+.part{font-family:'Bricolage Grotesque';font-weight:800;font-size:18px;margin:24px 0 8px}
+.part:first-of-type{margin-top:0}
+
+.totop{position:fixed;right:18px;bottom:22px;width:46px;height:46px;border-radius:50%;background:var(--ink);color:#fff;font-size:19px;box-shadow:0 6px 18px rgba(28,35,64,.25);z-index:60}
+
+@media (max-width:640px){
+  h1{font-size:19px}
+  .en{font-size:16.2px}
+  .toolbar{border-radius:14px}
+  .sec-head h3{font-size:22px}
+  .opp{grid-template-columns:1fr}
+  .opp .a{text-align:left}
+  .opts.row{flex-direction:column}
+  .home-wrap{padding-top:36px}
+}
+@media print{.top,.toolbar,.totop,.backbtn{display:none}.panel{display:block!important}}
+</style>
+</head>
+<body class="showhome">
+
+<!-- ============ HOME : 단원 선택 ============ -->
+<section id="home">
+  <div class="home-wrap">
+    <span class="home-brand"><i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--next)"></i>심풀스터디 · 영어 학습</span>
+    <h2>단원을 선택하세요</h2>
+    <div class="sub">학습할 Lesson을 골라 시작하세요.</div>
+
+    <button class="lesson-card" onclick="loadLesson('u1')">
+      <span class="ico" style="background:var(--discover)">🔗</span>
+      <span class="body2">
+        <span class="tag2">Unit 1 · Reading</span>
+        <span class="ttl">Start Connecting Your Dots Today</span>
+        <span class="desc">점을 연결해 나의 진로를 설계하는 법 — 5단계 요약, 필기 기반 어휘·문법·패러프레이즈</span>
+      </span>
+      <span class="arrow2">→</span>
+    </button>
+
+    <button class="lesson-card" onclick="loadLesson('u4')">
+      <span class="ico" style="background:var(--examine)">🚀</span>
+      <span class="body2">
+        <span class="tag2">Unit 4 · Reading</span>
+        <span class="ttl">Space: The Final Frontier</span>
+        <span class="desc">소행성 채굴과 우주 제조업 — 가정법·완료부정사 등 심화 문법 중심</span>
+      </span>
+      <span class="arrow2">→</span>
+    </button>
+  </div>
+</section>
+
+<!-- ============ APP SHELL ============ -->
+<div id="appShell">
+<header class="top">
+  <div class="top-in">
+    <button class="backbtn" onclick="showHome()">← 단원 선택</button>
+    <span class="unit"><i id="unitDot"></i><span id="unitCode"></span></span>
+    <h1 id="titleText"></h1>
+    <nav class="tabs" id="tabs"></nav>
+  </div>
+</header>
+
+<main>
+  <!-- 0. 한눈에 보기 -->
+  <section class="panel" id="p0">
+    <div id="ovBody"></div>
+  </section>
+
+  <!-- 1. 본문 -->
+  <section class="panel" id="p1">
+    <div class="toolbar">
+      <button class="tg on" id="tgNotes"><span class="sw2"></span>필기 표시</button>
+      <button class="tg" id="tgKo"><span class="sw2"></span>전체 해석</button>
+    </div>
+    <div id="passage"></div>
+  </section>
+
+  <!-- 2. 어휘 -->
+  <section class="panel" id="p2">
+    <div class="h2" style="--c:var(--pen)">같은 뜻 묶음 <small>필기 속 동의어·바꿔 쓰기</small></div>
+    <div class="syn-set" id="synset"></div>
+
+    <div class="h2" style="--c:var(--next)"><span id="oppHeadingText">본문 속 대립 쌍</span></div>
+    <div id="opps"></div>
+
+    <div class="h2" style="--c:var(--goals)">단어장</div>
+    <div class="filters" id="vfilter"></div>
+    <div class="vgrid" id="vgrid"></div>
+
+    <div class="h2" style="--c:var(--examine)">어휘 훈련 <small>밑줄 친 말의 뜻을 떠올린 뒤 빈칸 탭</small></div>
+    <div class="filters" id="dfilter"></div>
+    <div class="btnrow"><button class="btn fill" id="dShow">모두 보기</button><button class="btn" id="dHide">모두 가리기</button></div>
+    <div id="drills"></div>
+  </section>
+
+  <!-- 3. 문법 -->
+  <section class="panel" id="p3">
+    <p class="lead" style="margin-top:0"><span class="tag memo">필기</span> 선생님이 본문에 표시한 구문 &nbsp; <span class="tag add">추가</span> 본문에 반복되는 구조 보충</p>
+    <div id="grammar"></div>
+  </section>
+
+  <!-- 4. 패러프레이즈 -->
+  <section class="panel" id="p4">
+    <div id="paraExtra"></div>
+
+    <div class="h2" style="--c:var(--examine)">문단 요약 (필기)</div>
+    <div id="psums"></div>
+
+    <div class="h2" style="--c:var(--discover)">본문 ↔ 문제 속 바꿔 쓰기 <small>교과서 문항·요약문</small></div>
+    <p class="lead">본문 문장이 문제에서 어떻게 바뀌었는지 비교하세요. <b style="color:var(--ok)">일치</b>는 같은 뜻, <b style="color:var(--bad)">불일치</b>는 뜻이 바뀐 것입니다.</p>
+    <div id="pairs"></div>
+  </section>
+
+  <!-- 5. 확인 문제 -->
+  <section class="panel" id="p5">
+    <div class="score" id="score"></div>
+    <div class="part" id="partALabel">A. 교과서 문항</div>
+    <div id="qA"></div>
+    <div class="part">B. 내용 일치 T/F</div>
+    <div id="qB"></div>
+    <div class="part">C. 어법 선택</div>
+    <div id="qC"></div>
+    <div style="text-align:center;margin-top:18px"><button class="btn" id="resetQ">↺ 다시 풀기</button></div>
+  </section>
+</main>
+</div>
+
+<button class="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="맨 위로">↑</button>
+
+<script>
+/* header height → sticky toolbar offset */
+function setHH(){const t=document.querySelector('.top');if(t)document.documentElement.style.setProperty('--hh',t.offsetHeight+'px');}
+window.addEventListener('resize',setHH);window.addEventListener('load',setHH);
+
+const $ = s => document.querySelector(s);
+const TABS = ['한눈에 보기','본문','어휘','문법','패러프레이즈','확인 문제'];
+
+/* ========================================================================
+   UNIT 1 — Start Connecting Your Dots Today
+   ======================================================================== */
+const U1_SECS = {
+  intro:{en:'Introduction',ko:'도입 · 문제 제기',c:'var(--intro)'},
+  discover:{en:'Discover Yourself',ko:'나를 발견하기',c:'var(--discover)'},
+  examine:{en:'Examine Your Resources',ko:'나의 자원 살펴보기',c:'var(--examine)'},
+  goals:{en:'Set Up Goals',ko:'목표 세우기',c:'var(--goals)'},
+  gaps:{en:'Fill in the Gaps',ko:'틈 채우기',c:'var(--gaps)'},
+  next:{en:'Take the Next Steps',ko:'다음 단계로 나아가기',c:'var(--next)'}
+};
+
+const U1_P = [
+{sec:'intro',no:1,s:[
+ {en:`"What do you want to do in the future?" Parents and teachers ask students this question all the time.`,ko:`"너는 장래에 무엇을 하고 싶니?" 부모님과 선생님들은 학생들에게 늘 이 질문을 한다.`},
+ {en:`But how many students actually know what they want to do in the future?`,ko:`하지만 실제로 자신이 장래에 무엇을 하고 싶은지 아는 학생은 얼마나 될까?`},
+ {en:`Many students are [[either unsure of what they know or confused about how to find the right career|1]].`,ko:`많은 학생들은 자신이 무엇을 아는지 확신하지 못하거나, 알맞은 진로를 찾는 방법에 대해 혼란스러워한다.`},
+ {en:`The following may help students discover a new way to look at themselves and [[design|2]] a path for their future.`,ko:`다음 내용은 학생들이 자신을 바라보는 새로운 방법을 발견하고 미래를 위한 길을 설계하는 데 도움이 될 것이다.`}
+],notes:[
+ {k:'g',t:'either A or B — 형용사구 병렬',b:'either [unsure of what they know] or [confused about how to find the right career] : 둘 중 하나. 형용사 unsure / confused가 나란히 연결됨'},
+ {k:'v',t:'design = plan or create',b:'Q1 — 여기서 design은 "그리다(paint or draw)"가 아니라 "계획하다·만들다(plan or create)"'}
+]},
+{sec:'discover',no:2,s:[
+ {en:`It's hard to climb a mountain without preparation, and [[designing a career path requires preparation too|1]].`,ko:`준비 없이 산을 오르기는 어렵고, 진로를 설계하는 것 또한 준비가 필요하다.`},
+ {en:`[[Begin your career map by taking a blank piece of paper and drawing some dots on it.|2]]`,ko:`빈 종이 한 장을 가져와 그 위에 점 몇 개를 그리는 것으로 진로 지도를 시작하라.`},
+ {en:`[[These dots|3]] will be [[a representation of who you are|4]] at this moment in time, so make [[as many dots as you can|5]].`,ko:`이 점들은 지금 이 순간 당신이 누구인지를 나타내는 것이 될 것이므로, 가능한 한 많은 점을 만들어라.`},
+ {en:`Write one or two words to describe one aspect of yourself next to each dot.`,ko:`각 점 옆에 자신의 한 측면을 묘사하는 한두 단어를 적어라.`},
+ {en:`[[Awards, certifications, and courses taken at school|6]] are great places to start.`,ko:`상, 자격증, 그리고 학교에서 수강한 과목들은 시작하기에 좋은 출발점이다.`},
+ {en:`You can also think about your [[past and present achievements, interests, and strengths|7]].`,ko:`당신의 과거와 현재의 성취, 관심사, 강점에 대해 생각해 볼 수도 있다.`},
+ {en:`[[Parents, teachers, friends, and others you trust|8]] can also provide insight into you [[that you may not have noticed|9]].`,ko:`부모님, 선생님, 친구, 그리고 당신이 신뢰하는 다른 사람들도 당신이 알아차리지 못했을지도 모르는, 당신에 대한 통찰을 줄 수 있다.`},
+ {en:`If you think [[it|10]] describes you, write it down as a new dot.`,ko:`그것이 당신을 묘사한다고 생각되면, 그것을 새로운 점으로 적어라.`},
+ {en:`Hopefully doing this exercise will show you that [[there's more to being you than you may have thought|11]].`,ko:`바라건대 이 활동은 당신이라는 존재에는 당신이 생각했을지도 모르는 것 이상의 것이 있다는 것을 보여 줄 것이다.`}
+],notes:[
+ {k:'s',t:'비유로 시작 → //',b:'산을 오르려면 준비가 필요하듯 진로 설계도 준비가 필요하다. 필기의 // 표시 뒤, 다음 문장이 주제문'},
+ {k:'g',st:1,t:'주제문 · by ①~ing and ②~ing',b:'by [①taking a blank piece of paper] and [②drawing some dots on it] : 전치사 by 뒤 동명사 병렬 — "~하고 ~함으로써"'},
+ {k:'s',t:'These dots — 지시어',b:'앞 문장에서 종이 위에 그린 some dots'},
+ {k:'g',t:'a representation of [who you are]',b:'who you are : 명사절 "네가 누구인지" → 점 = 너라는 사람을 나타낸 것 (필기: 동격)'},
+ {k:'g',t:'as many + 복수명사 + as you can',b:'= as many dots as possible : 가능한 한 많은 점'},
+ {k:'g',t:'점의 출발점 ① · 과거분사구',b:'certification = 자격증 · courses (that are) taken at school : 과거분사구가 뒤에서 수식 "학교에서 수강한 과목"'},
+ {k:'v',t:'점의 출발점 ② · strengths = forte',b:'과거·현재의 성취, 관심사, 강점 (Q2)'},
+ {k:'g',t:'점의 출발점 ③ · 목적격 관계대명사 생략',b:'others [(whom/that) you trust] : "네가 신뢰하는 다른 사람들"'},
+ {k:'g',t:'insight를 꾸미는 that절 · may not have p.p.',b:'insight [that you may not have noticed] "네가 알아차리지 못했을지도 모르는 통찰" · may not have p.p. = ~하지 않았을지도 모른다'},
+ {k:'s',t:'it = 윗 문장 전체',b:'주변 사람들이 알려 주는 너에 대한 insight (윗 문장의 내용)'},
+ {k:'g',st:1,t:"there's more to A than B",b:'A에는 B 이상의 (깊은 의미·가치·숨겨진 것)이 있다 · being you = 너 자체 · may have thought = ~했었을지도 모른다 → 패러프레이즈 탭 참고'}
+]},
+{sec:'examine',no:3,s:[
+ {en:`Now, take a step back and look at your dots.`,ko:`이제 한 걸음 물러서서 당신의 점들을 보라.`},
+ {en:`A good idea at this stage is to start [[categorizing|1]] your dots.`,ko:`이 단계에서 좋은 방법은 점들을 분류하기 시작하는 것이다.`},
+ {en:`Do you [[see any patterns emerging|2]]?`,ko:`어떤 패턴이 나타나는 것이 보이는가?`},
+ {en:`[[For example|3]], you might have several dots that [[highlight|4]] scientific skills [[or maybe some dots that point to creativity|5]].`,ko:`예를 들어, 과학적 기술을 강조하는 점이 여러 개 있거나, 어쩌면 창의성을 가리키는 점이 몇 개 있을 수도 있다.`},
+ {en:`These patterns may point to something [[that is meaningful to you|6]].`,ko:`이러한 패턴은 당신에게 의미 있는 무언가를 가리킬 수 있다.`},
+ {en:`Another perspective is to look at what is missing from your map, [[which you can call "gaps."|7]]`,ko:`또 다른 관점은 당신의 지도에서 빠져 있는 것을 보는 것인데, 그것을 '틈'이라고 부를 수 있다.`},
+ {en:`For example, you may feel that you [[need some work on mathematics or a foreign language|8]].`,ko:`예를 들어, 수학이나 외국어에 노력이 좀 필요하다고 느낄 수도 있다.`},
+ {en:`At such a young age, you probably don't have certain skills: [[your technical knowledge might be at a beginner level|9]], or your [[physical conditioning|10]] might need work.`,ko:`그렇게 어린 나이에는 아마 어떤 기술들은 갖추지 못했을 것이다. 기술적 지식이 초보 수준일 수도 있고, 신체적 조절에 노력이 필요할 수도 있다.`},
+ {en:`Noticing these gaps will help you in the next steps of your map.`,ko:`이러한 틈을 알아차리는 것은 지도의 다음 단계에서 당신에게 도움이 될 것이다.`}
+],notes:[
+ {k:'v',t:'categorize = 분류하다',b:'start ~ing : ~하기 시작하다'},
+ {k:'g',t:'지각동사 see + O + O.C.',b:'see(V) + any patterns(O) + emerging(O.C.) : "패턴이 나타나는 것을 보다" · emerge = 나타나다'},
+ {k:'s',t:'For example — 예시를 이끄는 표현',b:'Q4 정답. 이 문단에 For example이 두 번 — ① 패턴의 예 ② 틈(gaps)의 예'},
+ {k:'v',t:'highlight = 강조하다',b:'= emphasize, stress, underline, underscore · dots [that highlight ~] 주격 관계대명사절'},
+ {k:'g',t:'[that ~] or [that ~] 병렬',b:'several dots [that highlight scientific skills] or maybe some dots [that point to creativity] · point to = ~을 가리키다'},
+ {k:'g',t:'주격 관계대명사 that',b:'something [that is meaningful to you] "너에게 의미 있는 무언가" · -ful : meaningful / careful / helpful'},
+ {k:'g',t:'계속적 용법 관계대명사',b:', which ~ : 앞의 what is missing from your map을 보충 설명 → "그것을 gaps라고 부를 수 있다" · call + O + O.C.'},
+ {k:'s',t:'gaps 예시 ①',b:'Q5 — 수학이나 외국어에 노력이 필요함'},
+ {k:'s',t:'gaps 예시 ②',b:'Q5 — 기술적 지식이 초보 수준'},
+ {k:'s',t:'gaps 예시 ③ · physical conditioning = 신체적 조절',b:'Q5 — 신체적 조절에 노력이 필요함'}
+],sum:`After drawing the dots, find patterns through categorization and gaps through identifying missing skills.`},
+{sec:'goals',no:4,s:[
+ {en:`By comparing your strengths and weaknesses, [[or the dots and the gaps|1]], your map should show you [[what you possess and what you need to work on|2]].`,ko:`당신의 강점과 약점, 즉 점과 틈을 비교함으로써, 당신의 지도는 당신이 가진 것과 노력해야 할 것을 보여 줄 것이다.`},
+ {en:`Now, think of a long-term goal, like becoming a musician.`,ko:`이제 음악가가 되는 것과 같은 장기적인 목표를 생각해 보라.`},
+ {en:`Your goal doesn't have to be realistic; remember that the purpose of [[having the goal clearly written|3]] is to [[map out|4]] a way to get there.`,ko:`목표가 현실적일 필요는 없다. 목표를 명확하게 적어 두는 목적은 그곳에 도달하는 길을 계획하는 것임을 기억하라.`},
+ {en:`Understanding [[where you want to go|5]] is an important step, so the next step is [[laying out|6]] a plan to [[push on|7]] to that goal.`,ko:`당신이 어디로 가고 싶은지 이해하는 것은 중요한 단계이므로, 다음 단계는 그 목표를 향해 계속 나아가기 위한 계획을 설계하는 것이다.`}
+],notes:[
+ {k:'g',t:'A, or B = 즉',b:'strengths and weaknesses = the dots and the gaps (강점 = 점, 약점 = 틈)'},
+ {k:'g',t:'show + IO + DO(명사절)',b:'show you(IO) [what you possess](DO) and [what you need to work on] · what = "~하는 것" · possess = 소유하다'},
+ {k:'g',st:1,t:'5형식 have + O + p.p.',b:'having(5V) + the goal(O) + clearly written(O.C.) = 목표를 명확히 세우는 것 · 주어 the purpose of ~ // 동사 is (Q6)'},
+ {k:'v',t:'map out = 계획하다',b:'Q6 목표를 세우는 목적 = to map out a way to get there'},
+ {k:'g',t:'where절 = 명사절 (목표)',b:'Understanding [where you want to go] "네가 어디로 가고 싶은지 이해하는 것"'},
+ {k:'v',t:'lay out = 설계하다',b:'is laying out : 동명사 보어 "설계하는 것"'},
+ {k:'v',t:'push on = 계속하다',b:'push on to ~ : ~을 향해 계속 나아가다'}
+],sum:`Based on your strengths and weaknesses, define a long-term goal, and create a plan to reach it.`},
+{sec:'gaps',no:5,s:[
+ {en:`To reach your goal of becoming a musician, you need to fill in the gaps between the dots to create a path toward your goal.`,ko:`음악가가 된다는 목표에 도달하기 위해, 당신은 점들 사이의 틈을 채워 목표를 향한 길을 만들어야 한다.`},
+ {en:`Do you need to [[work on voice techniques or set up a personal website|1]] to promote yourself first?`,ko:`먼저 발성 기술을 연마해야 하는가, 아니면 자신을 홍보할 개인 웹사이트를 만들어야 하는가?`},
+ {en:`You can plan other paths [[by researching what essential skills, training or education, or type of personality you may need to achieve a particular goal|2]].`,ko:`특정한 목표를 이루기 위해 어떤 필수 기술, 훈련이나 교육, 혹은 어떤 유형의 성격이 필요할지 조사함으로써 다른 길을 계획할 수 있다.`},
+ {en:`Talking to or [[shadowing|3]] [[people considered to be successful|4]] is a great way to learn about a specific profession too.`,ko:`성공했다고 여겨지는 사람들과 이야기하거나 그들을 따라 하는 것 또한 특정한 직업에 대해 배우는 훌륭한 방법이다.`},
+ {en:`As you fill in each gap with a new dot, you can decide what to do next.`,ko:`각각의 틈을 새로운 점으로 채워 가면서, 다음에 무엇을 할지 결정할 수 있다.`},
+ {en:`Each path is unique and has different challenges.`,ko:`각각의 길은 고유하며 서로 다른 어려움을 가지고 있다.`}
+],notes:[
+ {k:'g',t:'or 병렬',b:'need to [work on voice techniques] or [set up a personal website] · promote = 홍보하다'},
+ {k:'g',t:'by ~ing + what 명사절',b:'by researching [what + 명사(essential skills, training or education, or type of personality) + you may need ~] "어떤 ~가 필요할지 조사함으로써" · essential = important = critical'},
+ {k:'v',t:'shadow = 따라하다',b:'Talking to or shadowing ~ : 동명사 주어 두 개가 or로 연결 → 동사 is'},
+ {k:'g',st:1,t:'people (who are) considered to be successful',b:'과거분사구가 people을 뒤에서 수식 · to be successful = O.C. → consider people to be successful의 수동 (패러프레이즈 탭)'}
+],sum:`fill in the gaps = ① improving skills  ② doing some research  ③ learning from successful people`},
+{sec:'next',no:6,s:[
+ {en:`Now, instead of [[aimlessly|1]] trying random things, you can look at your map to see what to do next.`,ko:`이제 목적 없이 아무것이나 시도하는 대신, 지도를 보고 다음에 무엇을 할지 알 수 있다.`},
+ {en:`Just look for a gap to fill.`,ko:`그저 채울 틈을 찾아라.`},
+ {en:`Deciding which gap to fill is up to you, but your dot map should show you that [[whatever you choose|2]], you will be moving toward your goal.`,ko:`어느 틈을 채울지 결정하는 것은 당신에게 달려 있지만, 당신의 점 지도는 당신이 무엇을 선택하든 목표를 향해 나아가고 있을 것임을 보여 줄 것이다.`},
+ {en:`There is no need to rush anything [[though|3]].`,ko:`하지만 어떤 것도 서두를 필요는 없다.`},
+ {en:`Take your time filling the gaps.`,ko:`시간을 들여 틈을 채워라.`},
+ {en:`Since you've designed your own map, [[each gap you fill and dot you make|4]] "levels you up."`,ko:`당신은 자신만의 지도를 설계했으므로, 당신이 채우는 각각의 틈과 만드는 각각의 점이 당신을 '레벨 업'시킨다.`}
+],notes:[
+ {k:'v',t:'aimlessly = 목적 없이',b:'instead of + ~ing : ~하는 대신 (Q8-1 → F)'},
+ {k:'g',t:'whatever = no matter what',b:'"~하는 것은 무엇이든지" → 여기서는 "네가 무엇을 선택하든"'},
+ {k:'v',t:'though = 하지만',b:'문장 끝에 온 부사 though (Q8-2 → T)'},
+ {k:'g',t:'목적격 관계대명사 생략 + and 병렬',b:'each gap [(that) you fill] and (each) dot [(that) you make] = 주어 → 동사 levels'}
+]},
+{sec:'next',no:7,s:[
+ {en:`If you've made it this far, you probably realize some dots will take time to complete, and other dots will take great effort.`,ko:`여기까지 왔다면, 어떤 점들은 완성하는 데 시간이 걸리고 또 다른 점들은 큰 노력이 필요하다는 것을 아마 깨달았을 것이다.`},
+ {en:`No one knows what kind of person you will be five or ten years [[down the road|1]], so [[each investment you make in yourself now|2]] will [[grow into|3]] expertise and experience in the future.`,ko:`5년 혹은 10년 후에 당신이 어떤 사람이 될지는 아무도 모르므로, 지금 당신이 자신에게 하는 각각의 투자는 미래에 전문 지식과 경험으로 발전할 것이다.`},
+ {en:`The dots are a way [[to see yourself in the present and then imagine|4]] yourself in [[as many futures as you can|5]].`,ko:`점들은 현재의 자신을 보고 나서 가능한 한 많은 미래 속의 자신을 상상해 보는 방법이다.`},
+ {en:`It's up to you to start connecting your dots now.`,ko:`지금 점들을 연결하기 시작하는 것은 당신에게 달려 있다.`}
+],notes:[
+ {k:'v',t:'down the road = 장래에',b:'= in the future'},
+ {k:'g',t:'목적격 관계대명사 생략',b:'each investment [(that) you make in yourself now] = 주어 / will grow = 동사 (Q9)'},
+ {k:'v',t:'grow into',b:'① 특정 사람/물건으로 발전하다 ② 나이가 들어갈수록 점점 익숙해지고 좋아지다 → 여기서는 ①'},
+ {k:'g',t:'to부정사 병렬',b:'a way to ①see ~ and then (to) ②imagine ~ : 두 번째 to 생략'},
+ {k:'g',t:'as many futures as you can',b:'= as many futures as possible'}
+]}
+];
+
+const U1_FLOW = [
+ {sec:'discover',p:2,h:'Discover Yourself',s:`Take a blank piece of paper and draw some <span class="blank">dots</span> describing who you are.`},
+ {sec:'examine',p:3,h:'Examine Your Resources',s:`Find <span class="blank">patterns</span> of the dots to see what is meaningful to you or your gaps.`},
+ {sec:'goals',p:4,h:'Set Up Goals',s:`By looking at your dots and gaps, think of a <span class="blank">goal</span> and map out a way to get there.`},
+ {sec:'gaps',p:5,h:'Fill in the Gaps',s:`Do some research or get help to create a <span class="blank">path</span> toward your goal.`},
+ {sec:'next',p:6,h:'Take the Next Steps',s:`<span class="star">★</span> Figure out <span class="bracket">what to do next</span> and move toward your goal. Each dot and gap levels you <span class="blank">up</span>.`}
+];
+
+const U1_VOCAB = [
+ {sec:'intro',w:'confused',m:'혼란스러워하는'},
+ {sec:'intro',w:'career',m:'진로, 직업'},
+ {sec:'intro',w:'path',m:'길, 경로'},
+ {sec:'intro',w:'design',m:'계획하다, 만들다',syn:'= plan or create (Q1)',h:1},
+ {sec:'discover',w:'preparation',m:'준비'},
+ {sec:'discover',w:'representation',m:'나타낸 것, 표현'},
+ {sec:'discover',w:'describe',m:'묘사하다'},
+ {sec:'discover',w:'aspect',m:'측면'},
+ {sec:'discover',w:'certification',m:'자격증',h:1},
+ {sec:'discover',w:'course',m:'강좌, 수강 과목'},
+ {sec:'discover',w:'achievement',m:'성취'},
+ {sec:'discover',w:'strength',m:'강점',syn:'= forte',h:1},
+ {sec:'discover',w:'insight',m:'통찰(력)'},
+ {sec:'discover',w:'notice',m:'알아차리다'},
+ {sec:'discover',w:'hopefully',m:'바라건대'},
+ {sec:'examine',w:'categorize',m:'분류하다',h:1},
+ {sec:'examine',w:'pattern',m:'패턴, 양식'},
+ {sec:'examine',w:'emerge',m:'나타나다'},
+ {sec:'examine',w:'highlight',m:'강조하다',syn:'= emphasize, stress, underline, underscore',h:1},
+ {sec:'examine',w:'meaningful',m:'의미 있는',syn:'-ful : careful / helpful',h:1},
+ {sec:'examine',w:'perspective',m:'관점'},
+ {sec:'examine',w:'missing',m:'빠진, 없는'},
+ {sec:'examine',w:'physical conditioning',m:'신체적 조절',h:1},
+ {sec:'goals',w:'possess',m:'소유하다',h:1},
+ {sec:'goals',w:'long-term',m:'장기적인'},
+ {sec:'goals',w:'realistic',m:'현실적인'},
+ {sec:'goals',w:'map out',m:'계획하다',h:1},
+ {sec:'goals',w:'lay out',m:'설계하다',h:1},
+ {sec:'goals',w:'push on',m:'계속하다, 계속 나아가다',h:1},
+ {sec:'gaps',w:'promote',m:'홍보하다'},
+ {sec:'gaps',w:'essential',m:'필수적인',syn:'= important = critical',h:1},
+ {sec:'gaps',w:'shadow',m:'따라하다',h:1},
+ {sec:'gaps',w:'specific',m:'특정한'},
+ {sec:'gaps',w:'profession',m:'직업'},
+ {sec:'gaps',w:'unique',m:'고유한, 독특한'},
+ {sec:'gaps',w:'challenge',m:'어려움, 도전'},
+ {sec:'next',w:'aimlessly',m:'목적 없이',h:1},
+ {sec:'next',w:'random',m:'무작위의, 아무렇게나 고른'},
+ {sec:'next',w:'whatever',m:'~하는 것은 무엇이든지',syn:'= no matter what',h:1},
+ {sec:'next',w:'rush',m:'서두르다'},
+ {sec:'next',w:'though',m:'(문장 끝) 하지만',h:1},
+ {sec:'next',w:'down the road',m:'장래에',syn:'= in the future',h:1},
+ {sec:'next',w:'investment',m:'투자'},
+ {sec:'next',w:'grow into',m:'① ~으로 발전하다 ② 점점 익숙해지고 좋아지다',h:1},
+ {sec:'next',w:'expertise',m:'전문 지식'},
+ {sec:'next',w:'connect',m:'연결하다'}
+];
+
+const U1_SYN = [
+ {k:'highlight',eq:'emphasize · stress · underline · underscore',src:'강조하다 — dots that highlight scientific skills'},
+ {k:'essential',eq:'important · critical',src:'Vocabulary Plus — what essential skills'},
+ {k:'down the road',eq:'in the future',src:'장래에 — five or ten years down the road'},
+ {k:'whatever you choose',eq:'no matter what you choose',src:'네가 무엇을 선택하든'},
+ {k:'as many dots as you can',eq:'as many dots as possible',src:'as many futures as you can = as many futures as possible'},
+ {k:'strengths',eq:'forte',src:'강점 — achievements, interests, and strengths'},
+ {k:'design (a path)',eq:'plan or create',src:'Q1 — paint or draw (×)'},
+ {k:'A, or B',eq:'A, 즉 B',src:'strengths and weaknesses, or the dots and the gaps'},
+ {k:'having the goal clearly written',eq:'목표를 명확히 세우는 것',src:'★★ Set Up Goals'},
+ {k:'where you want to go',eq:'목표',src:'Understanding where you want to go'}
+];
+
+const U1_OPPS = [
+ {a:'strengths',b:'weaknesses',s:'By comparing your strengths and weaknesses'},
+ {a:'the dots',b:'the gaps',s:'or the dots and the gaps'},
+ {a:'what you possess',b:'what you need to work on',s:'your map should show you ...'},
+ {a:'aimlessly trying random things',b:'look at your map to see what to do next',s:'instead of A, you can B'},
+ {a:'in the present',b:'in as many futures as you can',s:'see yourself ... and then imagine yourself ...'}
+];
+
+const U1_DRILL = [
+ {sec:'intro',e:`Many students are either unsure of what they know or <u>confused</u> about how to find the right career.`,k:`많은 학생들은 자신이 무엇을 아는지 확신하지 못하거나 알맞은 진로를 찾는 방법에 대해 {혼란스러워한다}.`},
+ {sec:'intro',e:`... or confused about how to find the right <u>career</u>.`,k:`알맞은 {진로}를 찾는 방법에 대해 혼란스러워한다.`},
+ {sec:'intro',e:`... discover a new way to look at themselves and <u>design</u> a <u>path</u> for their future.`,k:`자신을 바라보는 새로운 방법을 발견하고 미래를 위한 {길}을 {설계하다}.`},
+ {sec:'discover',e:`It's hard to climb a mountain without <u>preparation</u>.`,k:`{준비} 없이 산을 오르기는 어렵다.`},
+ {sec:'discover',e:`These dots will be a <u>representation</u> of who you are at this moment in time.`,k:`이 점들은 지금 이 순간 네가 누구인지를 {나타낸 것}이 될 것이다.`},
+ {sec:'discover',e:`Write one or two words to <u>describe</u> one <u>aspect</u> of yourself next to each dot.`,k:`각 점 옆에 자신의 한 {측면}을 {묘사하는} 한두 단어를 적어라.`},
+ {sec:'discover',e:`Awards, <u>certifications</u>, and <u>courses</u> taken at school are great places to start.`,k:`상, {자격증}, 그리고 학교에서 수강한 {과목}은 시작하기 좋은 출발점이다.`},
+ {sec:'discover',e:`You can also think about your past and present <u>achievements</u>, interests, and <u>strengths</u>.`,k:`과거와 현재의 {성취}, 관심사, {강점}에 대해 생각해 볼 수도 있다.`},
+ {sec:'discover',e:`Parents, teachers, friends, and others you trust can also provide <u>insight</u> into you.`,k:`부모님, 선생님, 친구, 그리고 네가 신뢰하는 사람들도 너에 대한 {통찰}을 줄 수 있다.`},
+ {sec:'discover',e:`... insight into you that you may not have <u>noticed</u>.`,k:`네가 {알아차리지} 못했을지도 모르는 너에 대한 통찰`},
+ {sec:'discover',e:`<u>Hopefully</u> doing this exercise will show you that there's more to being you than you may have thought.`,k:`{바라건대} 이 활동은 너라는 존재에 네가 생각했던 것 이상의 것이 있음을 보여 줄 것이다.`},
+ {sec:'examine',e:`A good idea at this stage is to start <u>categorizing</u> your dots.`,k:`이 단계에서 좋은 방법은 점들을 {분류하기} 시작하는 것이다.`},
+ {sec:'examine',e:`Do you see any <u>patterns</u> <u>emerging</u>?`,k:`어떤 {패턴}이 {나타나는} 것이 보이는가?`},
+ {sec:'examine',e:`You might have several dots that <u>highlight</u> scientific skills.`,k:`과학적 기술을 {강조하는} 점이 여러 개 있을 수도 있다.`},
+ {sec:'examine',e:`These patterns may point to something that is <u>meaningful</u> to you.`,k:`이 패턴들은 너에게 {의미 있는} 무언가를 가리킬 수 있다.`},
+ {sec:'examine',e:`Another <u>perspective</u> is to look at what is <u>missing</u> from your map.`,k:`또 다른 {관점}은 네 지도에서 {빠져 있는} 것을 보는 것이다.`},
+ {sec:'examine',e:`... or your <u>physical conditioning</u> might need work.`,k:`또는 너의 {신체적 조절}에 노력이 필요할 수도 있다.`},
+ {sec:'goals',e:`Your map should show you what you <u>possess</u> and what you need to work on.`,k:`너의 지도는 네가 {소유한} 것과 노력해야 할 것을 보여 줄 것이다.`},
+ {sec:'goals',e:`Now, think of a <u>long-term</u> goal, like becoming a musician.`,k:`이제 음악가가 되는 것과 같은 {장기적인} 목표를 생각해 보라.`},
+ {sec:'goals',e:`Your goal doesn't have to be <u>realistic</u>.`,k:`너의 목표가 {현실적일} 필요는 없다.`},
+ {sec:'goals',e:`The purpose of having the goal clearly written is to <u>map out</u> a way to get there.`,k:`목표를 명확히 적어 두는 목적은 그곳에 가는 길을 {계획하는} 것이다.`},
+ {sec:'goals',e:`The next step is <u>laying out</u> a plan to <u>push on</u> to that goal.`,k:`다음 단계는 그 목표를 향해 {계속} 나아가기 위한 계획을 {설계하는} 것이다.`},
+ {sec:'gaps',e:`... set up a personal website to <u>promote</u> yourself first?`,k:`먼저 자신을 {홍보할} 개인 웹사이트를 만들어야 하는가?`},
+ {sec:'gaps',e:`... by researching what <u>essential</u> skills, training or education, or type of personality you may need.`,k:`어떤 {필수적인} 기술, 훈련이나 교육, 혹은 어떤 유형의 성격이 필요할지 조사함으로써`},
+ {sec:'gaps',e:`Talking to or <u>shadowing</u> people considered to be successful ...`,k:`성공했다고 여겨지는 사람들과 이야기하거나 그들을 {따라하는} 것`},
+ {sec:'gaps',e:`... is a great way to learn about a <u>specific</u> <u>profession</u> too.`,k:`또한 {특정한} {직업}에 대해 배우는 훌륭한 방법이다.`},
+ {sec:'gaps',e:`Each path is <u>unique</u> and has different <u>challenges</u>.`,k:`각각의 길은 {고유하며} 서로 다른 {어려움}을 가지고 있다.`},
+ {sec:'next',e:`Now, instead of <u>aimlessly</u> trying <u>random</u> things, you can look at your map.`,k:`이제 {목적 없이} {아무렇게나 고른} 것들을 시도하는 대신 지도를 볼 수 있다.`},
+ {sec:'next',e:`<u>Whatever</u> you choose, you will be moving toward your goal.`,k:`네가 {무엇을} 선택하든, 너는 목표를 향해 나아가고 있을 것이다.`},
+ {sec:'next',e:`There is no need to <u>rush</u> anything <u>though</u>.`,k:`{하지만} 어떤 것도 {서두를} 필요는 없다.`},
+ {sec:'next',e:`No one knows what kind of person you will be five or ten years <u>down the road</u>.`,k:`5년 혹은 10년 {후에(장래에)} 네가 어떤 사람이 될지는 아무도 모른다.`},
+ {sec:'next',e:`Each <u>investment</u> you make in yourself now will <u>grow into</u> <u>expertise</u> and experience.`,k:`지금 네가 자신에게 하는 각각의 {투자}는 {전문 지식}과 경험으로 {발전할} 것이다.`},
+ {sec:'next',e:`It's up to you to start <u>connecting</u> your dots now.`,k:`지금 점들을 {연결하기} 시작하는 것은 너에게 달려 있다.`}
+];
+
+const U1_GRAM = [
+ {t:'병렬 구조',m:'memo',f:'either A or B · by ~ing and ~ing · [관계절] or [관계절] · to ① and (to) ②',x:[
+  {p:'¶1',e:`Many students are <span class="lb">either</span> <span class="h1">unsure of what they know</span> <span class="lb">or</span> <span class="h2x">confused about how to find the right career</span>.`,k:'형용사구 병렬 — 둘 중 하나'},
+  {p:'¶2',e:`Begin your career map by <span class="h1">①taking a blank piece of paper</span> <span class="lb">and</span> <span class="h2x">②drawing some dots on it</span>.`,k:'전치사 by 뒤 동명사 두 개 병렬 (주제문)'},
+  {p:'¶3',e:`several dots <span class="h1">[that highlight scientific skills]</span> <span class="lb">or</span> maybe some dots <span class="h2x">[that point to creativity]</span>`,k:'관계절이 붙은 명사구 두 개가 or로 연결'},
+  {p:'¶5',e:`Do you need to <span class="h1">work on voice techniques</span> <span class="lb">or</span> <span class="h2x">set up a personal website</span> ...?`,k:'need to 뒤 동사원형 병렬'},
+  {p:'¶6',e:`each <span class="h1">gap [you fill]</span> <span class="lb">and</span> <span class="h2x">dot [you make]</span> "levels you up."`,k:'주어 두 개 병렬'},
+  {p:'¶7',e:`a way <span class="h1">to ①see yourself in the present</span> and then <span class="om">(to)</span> <span class="h2x">②imagine yourself ...</span>`,k:'to부정사 병렬 — 두 번째 to 생략'}
+ ]},
+ {t:'목적격 관계대명사 생략',m:'memo',f:'명사 + [(that/whom) + S + V]',x:[
+  {p:'¶2',e:`Parents, teachers, friends, and others <span class="om">(whom)</span> <span class="h1">[you trust]</span> can also provide insight`,k:'"네가 신뢰하는 다른 사람들"'},
+  {p:'¶6',e:`each gap <span class="om">(that)</span> <span class="h1">[you fill]</span> and dot <span class="om">(that)</span> <span class="h1">[you make]</span> "levels you up."`,k:'주어가 길어짐 → 동사 levels 찾기'},
+  {p:'¶7',e:`each investment <span class="om">(that)</span> <span class="h1">[you make in yourself now]</span> <span class="lb o">V</span> will grow into expertise`,k:'주어 each investment ~ now / 동사 will grow'}
+ ]},
+ {t:'주격 관계대명사 · 계속적 용법',m:'memo',f:'명사 + [that + V] · , which ~',x:[
+  {p:'¶3',e:`several dots <span class="h1">[that highlight scientific skills]</span>`,k:'dots를 꾸미는 주격 관계대명사절'},
+  {p:'¶3',e:`something <span class="h1">[that is meaningful to you]</span>`,k:'"너에게 의미 있는 무언가"'},
+  {p:'¶3',e:`to look at what is missing from your map<span class="lb">,</span> <span class="h2x">which you can call "gaps."</span>`,k:'계속적 용법 관계대명사 — 앞 내용을 보충 설명 "그리고 그것을 gaps라고 부를 수 있다"'},
+  {p:'¶2',e:`insight into you <span class="h1">[that you may not have noticed]</span>`,k:'insight를 꾸미는 that절'}
+ ]},
+ {t:'과거분사구 후치수식',m:'memo',f:'명사 + (that are / who are) + p.p. ~',x:[
+  {p:'¶2',e:`courses <span class="om">(that are)</span> <span class="h1">taken at school</span>`,k:'"학교에서 수강한 과목" — 과거분사구'},
+  {p:'¶5',e:`★ shadowing people <span class="om">(who are)</span> <span class="h1">considered <span class="lb gr">O.C.</span>to be successful</span>`,k:'"성공했다고 여겨지는 사람들" — consider O to be ~의 수동'}
+ ]},
+ {t:'문장의 형식 — 4형식 · 5형식 · 지각동사',m:'memo',f:'show + IO + DO · have + O + p.p. · see + O + ~ing',x:[
+  {p:'¶3',e:`Do you <span class="lb">V</span>see <span class="h1">any patterns</span><span class="lb">O</span> <span class="h2x">emerging</span><span class="lb o">O.C.</span>?`,k:'지각동사 see + O + 현재분사 : "패턴이 나타나는 것을 보다"'},
+  {p:'¶4',e:`your map should show <span class="h1">you</span><span class="lb">IO</span> <span class="h2x">what you possess and what you need to work on</span><span class="lb o">DO</span>.`,k:'4형식 — 직접목적어가 what 명사절 두 개'},
+  {p:'¶4',e:`★★ the purpose of <span class="lb">5V</span>having <span class="h1">the goal</span><span class="lb">O</span> <span class="h2x">clearly written</span><span class="lb o">O.C.</span> // is to map out a way to get there.`,k:'have + O + p.p. : "목표를 명확히 적힌 상태로 두는 것" = 목표를 명확히 세우는 것'},
+  {p:'¶3',e:`what is missing from your map, which you can <span class="lb">V</span>call <span class="h1">(which)</span><span class="lb">O</span> <span class="h2x">"gaps."</span><span class="lb o">O.C.</span>`,k:'call + O + O.C. : ~을 …라고 부르다'}
+ ]},
+ {t:'명사절 (의문사절 · what절)',m:'memo',f:'who / what / where + S + V = 명사 역할',x:[
+  {p:'¶2',e:`a representation of <span class="h1">[who you are]</span>`,k:'"네가 누구인지" — 전치사 of의 목적어 (필기: 동격)'},
+  {p:'¶4',e:`<span class="h1">[what you possess]</span> and <span class="h1">[what you need to work on]</span>`,k:'what = "~하는 것"'},
+  {p:'¶4',e:`Understanding <span class="h1">[where you want to go]</span> is an important step`,k:'where절 = 목표 (동명사 Understanding의 목적어)'},
+  {p:'¶5',e:`by researching <span class="h1">[what essential skills, training or education, or type of personality you may need ...]</span>`,k:'what + 명사 + S + V : "어떤 ~가 필요할지"'}
+ ]},
+ {t:'꼭 외울 구문',m:'memo',f:'as many ~ as you can · there\'s more to A than B · may have p.p. · whatever · A, or B · grow into',x:[
+  {p:'¶2',e:`make <span class="h1">as many dots as you can</span>`,k:'= as many dots as possible "가능한 한 많은 점" (¶7 as many futures as you can)'},
+  {p:'¶2',e:`★ <span class="h1">there's more to</span> being you <span class="h1">than</span> you may have thought`,k:'A에는 B 이상의 (깊은 의미·가치·숨겨진 것)이 있다'},
+  {p:'¶2',e:`than you <span class="h2x">may have thought</span> / that you <span class="h2x">may not have noticed</span>`,k:'may (not) have p.p. = ~했었을지도(하지 않았을지도) 모른다'},
+  {p:'¶6',e:`<span class="h1">whatever</span> you choose, you will be moving toward your goal`,k:'whatever = no matter what "무엇을 ~하든"'},
+  {p:'¶4',e:`your strengths and weaknesses<span class="lb">, or</span> the dots and the gaps`,k:'A, or B = A, 즉 B'},
+  {p:'¶7',e:`each investment ... will <span class="h1">grow into</span> expertise and experience`,k:'① 특정 사람/물건으로 발전하다 ② 나이가 들어갈수록 점점 익숙해지고 좋아지다'}
+ ]},
+ {t:'동명사 주어 + 단수 동사',m:'add',f:'~ing (구) + 단수 동사',x:[
+  {p:'¶2',e:`<span class="h3">designing a career path</span> <span class="lb gr">V</span>requires preparation too`,k:''},
+  {p:'¶4',e:`<span class="h3">Understanding where you want to go</span> <span class="lb gr">V</span>is an important step`,k:''},
+  {p:'¶5',e:`<span class="h3">Talking to or shadowing people considered to be successful</span> <span class="lb gr">V</span>is a great way`,k:'주어 안의 복수 명사 people에 속지 말 것'},
+  {p:'¶6',e:`<span class="h3">Deciding which gap to fill</span> <span class="lb gr">V</span>is up to you`,k:''}
+ ]},
+ {t:'그 밖의 본문 구조',m:'add',f:'help + O + 동사원형 · don\'t have to · It\'s up to you to ~ · 의문사 + to부정사',x:[
+  {p:'¶1',e:`The following may <span class="h3">help students discover</span> a new way ... and design a path`,k:'help + O + 동사원형 (discover와 design 병렬)'},
+  {p:'¶4',e:`Your goal <span class="h3">doesn't have to be</span> realistic`,k:'~할 필요가 없다'},
+  {p:'¶7',e:`<span class="h3">It's up to you to</span> start connecting your dots now.`,k:'~하는 것은 너에게 달려 있다 (¶6 Deciding ~ is up to you)'},
+  {p:'¶5·6',e:`decide <span class="h3">what to do next</span> / <span class="h3">which gap to fill</span>`,k:'의문사 + to부정사 : 무엇을 할지 / 어느 틈을 채울지'},
+  {p:'¶6',e:`<span class="h3">instead of</span> aimlessly <span class="h3">trying</span> random things · <span class="h3">Take your time filling</span> the gaps`,k:'instead of ~ing : ~하는 대신 · take one\'s time ~ing : 시간을 들여 ~하다'}
+ ]}
+];
+
+const U1_PARA_EXTRA = `
+<div class="h2" style="--c:var(--next)">★ 핵심 문장 바꿔 쓰기 <small>Discover Yourself</small></div>
+<div class="card pp-core">
+  <div class="orig">Hopefully doing this exercise will show you that <b>there's more to being you than you may have thought.</b></div>
+  <p class="pen" style="margin:10px 0 2px;color:var(--ink)">너는 너가 생각했던 것보다 더 가치 있는 존재이다.</p>
+  <ul class="pp-list">
+    <li><span class="arrow">→</span><div><div class="t">There's so much more potential inside you than you give yourself credit (for).</div><div class="k">give yourself credit = 스스로 공을 인정하다</div></div></li>
+    <li><span class="arrow">→</span><div><div class="t">There's more to you than meets your own eye.</div><div class="k">meets the eye : 눈에 보이는 것 이상의 무언가가 있다</div></div></li>
+    <li><span class="arrow">→</span><div><div class="t">There are deeper layers to who you are than you have ever imagined.</div><div class="k">네가 상상했던 것보다 더 깊은 층이 너라는 사람에게 있다</div></div></li>
+  </ul>
+  <div class="tipbox" style="margin-top:10px"><b>there's more to A than B</b> : A에는 B 이상의 (깊은 의미·가치·숨겨진 것)이 있다 · being you = 너 자체 · may have thought = ~했었을지도 모른다</div>
+</div>
+
+<div class="h2" style="--c:var(--gaps)">5형식 능동 ↔ 수동 <small>Fill in the Gaps ★</small></div>
+<div class="voice">
+  <div class="row"><span class="lab" style="background:var(--pen)">능동</span><div><div class="en" style="font-size:16px">Many people <b>consider</b> people <b>to be successful</b>.</div><div style="font-size:12.5px;color:var(--ink2)">consider + O + O.C.(to be ~)</div></div></div>
+  <div class="row"><span class="lab" style="background:var(--next)">수동</span><div><div class="en" style="font-size:16px">People <b>are considered to be successful</b> (by many people).</div><div style="font-size:12.5px;color:var(--ink2)">O가 주어로 → be p.p. + to be ~</div></div></div>
+  <div class="row"><span class="lab" style="background:var(--goals)">본문</span><div><div class="en" style="font-size:16px">shadowing people <span class="om" style="color:#9aa0b3">(who are)</span> <b>considered to be successful</b></div><div style="font-size:12.5px;color:var(--ink2)">주격 관계대명사 + be 생략 → 과거분사구가 people을 뒤에서 수식</div></div></div>
+</div>
+`;
+
+const U1_PAIRS = [
+ {o:`You can also think about your past and present achievements, interests, and strengths.`,r:`Your past and present achievements, interests, and strengths can be your dots on the map.`,t:1,w:'Q2 — think about ~ → ~ can be your dots'},
+ {o:`Begin your career map by taking a blank piece of paper and drawing some dots on it. These dots will be a representation of who you are ...`,r:`Take a blank piece of paper and draw some dots describing who you are.`,t:1,w:'요약 ① — a representation of who you are → describing who you are'},
+ {o:`Do you see any patterns emerging? ... These patterns may point to something that is meaningful to you. ... what is missing from your map, which you can call "gaps."`,r:`Find patterns of the dots to see what is meaningful to you or your gaps.`,t:1,w:'요약 ②'},
+ {o:`remember that the purpose of having the goal clearly written is to map out a way to get there.`,r:`What is the purpose of setting a goal? — To map out a way to get there.`,t:1,w:'Q6 — having the goal clearly written = setting a goal'},
+ {o:`You can plan other paths by researching ... Talking to or shadowing people considered to be successful is a great way ...`,r:`Do some research or get help to create a path toward your goal.`,t:1,w:'요약 ④ — researching → do some research / talking to, shadowing → get help'},
+ {o:`Now, instead of aimlessly trying random things, you can look at your map to see what to do next.`,r:`Trying random things can help you see what to do next.`,t:0,w:'Q8-1 F — 본문은 무작위 시도 "대신" 지도를 보라고 함'},
+ {o:`There is no need to rush anything though. Take your time filling the gaps.`,r:`You do not have to fill the gaps in a rush.`,t:1,w:'Q8-2 T — no need to rush = do not have to ~ in a rush'},
+ {o:`Since you've designed your own map, each gap you fill and dot you make "levels you up."`,r:`Each dot and gap levels you up.`,t:1,w:'요약 ⑤'},
+ {o:`each investment you make in yourself now will grow into expertise and experience in the future.`,r:`Investing in yourself now will become expertise and experience in the future.`,t:1,w:'Q9 — each investment you make in yourself → investing in yourself / grow into → become'},
+ {o:`The dots are a way to see yourself in the present and then imagine yourself in as many futures as you can.`,r:`The dots are a way to see yourself in the present and the future.`,t:1,w:'요약 마지막 문장'}
+];
+
+const U1_QA = [
+ {id:'Q1',type:'mc',q:`What does the word "design" in line 6 mean?`,o:['paint or draw','plan or create','evaluate or analyze'],a:1,x:'design a path for their future : 미래를 위한 길을 계획하다·만들다'},
+ {id:'Q2',type:'rev',q:`Fill in the blanks.<br>Your past and present ______, interests, and ______ can be your dots on the map.`,ans:`<span class="en2"><b>achievements</b>, <b>strengths</b></span><br>You can also think about your past and present achievements, interests, and strengths.`},
+ {id:'Q3',type:'rev',own:1,q:`Over to YOU — What will be your first dot on the paper?`,ans:`자유롭게 답해 보세요. 출발점: 상·자격증·학교 수강 과목 / 과거와 현재의 성취·관심사·강점 / 신뢰하는 사람들의 insight`},
+ {id:'Q4',type:'rev',q:`What expression does the author use to introduce examples?`,ans:`<span class="en2"><b>For example</b></span> — ¶3에 두 번 (패턴의 예, 틈의 예)`},
+ {id:'Q5',type:'rev',q:`Underline the parts that show the examples of "gaps."`,ans:`<span class="en2">① you need some work on mathematics or a foreign language<br>② your technical knowledge might be at a beginner level<br>③ your physical conditioning might need work</span>`},
+ {id:'Q6',type:'rev',q:`What is the purpose of setting a goal?`,ans:`<span class="en2">To <b>map out a way to get there</b>.</span><br>the purpose of having the goal clearly written is to map out a way to get there.`},
+ {id:'Q7',type:'rev',own:1,q:`Over to YOU — Is there anyone who is considered successful in your field of interest? Who would that be?`,ans:`자유롭게 답해 보세요. (people considered to be successful — Talking to or shadowing ~)`},
+ {id:'Q8-1',type:'tf',q:`Trying random things can help you see what to do next.`,a:0,x:'instead of aimlessly trying random things, you can look at your map to see what to do next — 무작위 시도가 아니라 지도를 보는 것'},
+ {id:'Q8-2',type:'tf',q:`You do not have to fill the gaps in a rush.`,a:1,x:'There is no need to rush anything though. Take your time filling the gaps.'},
+ {id:'Q9',type:'rev',q:`Fill in the blanks.<br>Investing in yourself now will become ______ and ______ in the future.`,ans:`<span class="en2"><b>expertise</b>, <b>experience</b></span><br>each investment you make in yourself now will grow into expertise and experience in the future.`}
+];
+
+const U1_QB = [
+ {q:`Your dots represent who you are at this moment in time.`,a:1,x:'These dots will be a representation of who you are at this moment in time.'},
+ {q:`Your long-term goal must be realistic.`,a:0,x:"Your goal doesn't have to be realistic — 현실적일 필요가 없다."},
+ {q:`Other people can give you insight into yourself that you may not have noticed.`,a:1,x:'Parents, teachers, friends, and others you trust can also provide insight into you that you may not have noticed.'},
+ {q:`Gaps are what is missing from your map.`,a:1,x:'what is missing from your map, which you can call "gaps."'},
+ {q:`You should compare only your strengths to see what you possess.`,a:0,x:'By comparing your strengths and weaknesses, or the dots and the gaps — 강점과 약점을 비교'},
+ {q:`Talking to successful people is one way to learn about a specific profession.`,a:1,x:'Talking to or shadowing people considered to be successful is a great way to learn about a specific profession too.'},
+ {q:`Every path toward a goal has the same challenges.`,a:0,x:'Each path is unique and has different challenges.'},
+ {q:`Whichever gap you choose to fill, you will be moving toward your goal.`,a:1,x:'whatever you choose, you will be moving toward your goal'},
+ {q:`Everyone knows what kind of person you will be five years down the road.`,a:0,x:'No one knows what kind of person you will be five or ten years down the road.'},
+ {q:`Some dots will take time to complete, and others will take great effort.`,a:1,x:'some dots will take time to complete, and other dots will take great effort.'}
+];
+
+const U1_QC = [
+ {q:`Do you see any patterns (    )?`,o:['emerging','to emerge'],a:0,x:'지각동사 see + O + 현재분사(O.C.) — to부정사 불가'},
+ {q:`Talking to or shadowing people (    ) to be successful is a great way ...`,o:['considering','considered'],a:1,x:'people이 "여겨지는" 대상 → 과거분사 considered (who are 생략)'},
+ {q:`These dots will be a representation of who you are, so make as many dots as (    ).`,o:['possible','possibly'],a:0,x:'as many ~ as you can = as many ~ as possible'},
+ {q:`The purpose of having the goal clearly (    ) is to map out a way to get there.`,o:['writing','written'],a:1,x:'have + O + p.p. — 목표가 "적히는" 대상'},
+ {q:`Understanding where you want to go (    ) an important step.`,o:['is','are'],a:0,x:'동명사 주어 Understanding ~ → 단수 동사'},
+ {q:`Deciding which gap to fill (    ) up to you.`,o:['are','is'],a:1,x:'동명사 주어 Deciding ~ → 단수 동사'},
+ {q:`Begin your career map by taking a blank piece of paper and (    ) some dots on it.`,o:['drawing','draw'],a:0,x:'by ①taking and ②drawing — 동명사 병렬'},
+ {q:`Your map should show you (    ) you possess and what you need to work on.`,o:['that','what'],a:1,x:'possess의 목적어가 없는 불완전한 절 → what "~하는 것"'},
+ {q:`These dots will be a representation of (    ) at this moment in time.`,o:['who you are','who are you'],a:0,x:'의문사절(명사절) 어순 = 의문사 + S + V'},
+ {q:`The dots are a way to see yourself in the present and then (    ) yourself in as many futures as you can.`,o:['imagining','imagine'],a:1,x:'to ①see and then (to) ②imagine — to부정사 병렬'}
+];
+
+/* ========================================================================
+   UNIT 4 — Space: The Final Frontier
+   ======================================================================== */
+const U4_SECS = {
+  intro:{en:'Introduction',ko:'도입 · 우주라는 새 개척지',c:'var(--intro)'},
+  asteroid:{en:'Asteroid Mining',ko:'소행성 채굴',c:'var(--examine)'},
+  offearth:{en:'Off-Earth Manufacturing',ko:'지구 밖의 제조업',c:'var(--discover)'}
+};
+
+const U4_P = [
+{sec:'intro',no:1,s:[
+ {en:`The need to explore new [[frontiers|1]] like the Arctic and the American West [[may have been sparked|2]] by curiosity, but a major reason was to discover new resources.`,ko:`북극이나 아메리카 서부와 같은 새로운 개척지를 탐험하려는 욕구는 호기심에서 촉발되었을 수도 있지만, 주된 이유는 새로운 자원을 발견하는 것이었다.`},
+ {en:`[[Without new resources and technology, the Industrial Revolution of the 19th century would not have led to the rise of new industries and the growth of cities|3]].`,ko:`새로운 자원과 기술이 없었다면, 19세기의 산업 혁명은 새로운 산업의 발흥과 도시의 성장으로 이어지지 못했을 것이다.`},
+ {en:`In the late 20th century, the Information Technology Revolution connected the world and transformed economies.`,ko:`20세기 후반에는 정보 기술 혁명이 세계를 연결하고 경제를 변화시켰다.`},
+ {en:`Now, it seems that space is the latest frontier for entrepreneurs to explore.`,ko:`이제, 우주가 기업가들이 탐험할 최신 개척지인 것처럼 보인다.`},
+ {en:`[[Finding new resources and exploring the unique environment are new opportunities|4]] for those who [[dare to take up|5]] the challenge.`,ko:`새로운 자원을 찾고 독특한 환경을 탐험하는 것은 감히 그 도전을 받아들이는 사람들에게 새로운 기회이다.`}
+],notes:[
+ {k:'v',t:'frontier',b:'개척자, 국경, 한계'},
+ {k:'g',t:'may have been sparked by — 조동사+완료수동',b:'may have p.p. : ~했을지도 모른다(추측) · be sparked by : ~에 의해 촉발되다'},
+ {k:'g',st:1,t:'가정법 과거완료 — Without ~, would not have p.p.',b:'= If there had not been new resources and technology, ~ (과거 사실의 반대 가정) · A lead to B : A가 B라는 결과로 이어지다(인과) = result in = translate into → 실제로는 자원·기술이 있었으므로 산업 발흥과 도시 성장이 일어났음'},
+ {k:'g',t:'동명사구 주어 병렬 + 복수 동사',b:'[Finding new resources] and [exploring the unique environment] = 주어 두 개 → 복수 동사 are'},
+ {k:'v',t:'dare to = 감히 ~하다 · take up',b:'take up : ①받아들이다, 다루다 ②처리하다'}
+]},
+{sec:'asteroid',no:2,s:[
+ {en:`The solar system [[is composed of|1]] many [[rocks floating in space|2]].`,ko:`태양계는 우주에 떠다니는 많은 암석들로 구성되어 있다.`},
+ {en:`The large ones are called planets, and the smaller ones are called asteroids.`,ko:`큰 것들은 행성이라고 불리고, 더 작은 것들은 소행성이라고 불린다.`},
+ {en:`Research has shown that asteroids contain valuable resources like gold and [[rare earth elements|3]].`,ko:`연구에 따르면 소행성은 금과 희토류 같은 귀중한 자원을 포함하고 있다.`},
+ {en:`For example, one asteroid, 16 Psyche, is reported to consist mainly of gold and other precious metals, [[whose value is equal to billions of dollars per person on Earth|4]].`,ko:`예를 들어, 16 프시케라는 한 소행성은 주로 금과 다른 귀금속으로 이루어져 있다고 알려져 있는데, 그것들의 가치는 지구의 한 사람당 수십억 달러에 달한다.`},
+ {en:`From a space explorers' perspective, however, the most valuable resources from asteroids are [[neither valuable precious metals nor rare mineral deposits|5]].`,ko:`그러나 우주 탐험가의 관점에서, 소행성에서 나오는 가장 가치 있는 자원은 귀금속도 희귀 광물 매장층도 아니다.`},
+ {en:`That valuable resource could actually be water, and [[it seems to have been overlooked|6]] because it doesn't seem as exciting as gold.`,ko:`그 귀중한 자원은 실제로는 물일 수도 있는데, 그것은 금만큼 흥미로워 보이지 않기 때문에 간과되어 온 것처럼 보인다.`},
+ {en:`Water is expensive to transport into space [[due to|7]] its weight and volume.`,ko:`물은 그 무게와 부피 때문에 우주로 운반하는 데 비용이 많이 든다.`},
+ {en:`[[Having a space station with sufficient water supplies in orbit around Earth would make space explorations much easier|8]].`,ko:`지구 궤도에 충분한 물 공급을 갖춘 우주 정거장을 두는 것은 우주 탐사를 훨씬 더 쉽게 만들어 줄 것이다.`}
+],notes:[
+ {k:'v',t:'be composed of',b:'= be made up of = consist of = comprise (~로 구성되다)'},
+ {k:'g',t:'현재분사구 후치수식',b:'rocks [floating in space] : "우주에 떠다니는 암석들"'},
+ {k:'v',t:'rare earth elements',b:'희토류'},
+ {k:'g',t:'소유격 관계대명사 whose · 계속적 용법',b:'whose = and their : ", and their value is equal to ~" 앞 내용을 보충 설명'},
+ {k:'v',t:'neither A nor B',b:'A도 B도 아닌 · deposit = 매장층'},
+ {k:'g',st:1,t:'완료부정사 — seem to have p.p.',b:'주절 시제(seems, 현재) ≠ that절 시제(간과된 시점이 더 이전) → to have p.p. 사용 = It seems that water was overlooked. · overlook = neglect, underestimate, undervalue, disregard'},
+ {k:'v',t:'due to',b:'~때문에'},
+ {k:'g',t:'동명사 주어 + 5형식 사역동사 make · 비교급 강조',b:'Having ~(동명사 주어, 단수) would make + space explorations(O) + much easier(O.C.) : much가 비교급 easier를 강조'}
+]},
+{sec:'asteroid',no:3,s:[
+ {en:`[[No one knows for sure what asteroid mining will look like, but it seems that robotic mining is most likely|1]].`,ko:`소행성 채굴이 어떤 모습일지 확실히 아는 사람은 없지만, 로봇 채굴이 가장 유력해 보인다.`},
+ {en:`Robots will be sent to [[dig|2]] for target materials and send [[them|3]] back towards Earth.`,ko:`로봇들은 목표 물질을 캐내어 지구로 다시 보내기 위해 보내질 것이다.`},
+ {en:`They will be [[programmed to explore the surface and identify materials, and be equipped for tasks such as drilling, collecting, and transporting|4]].`,ko:`그것들은 표면을 탐사하고 물질을 식별하도록, 그리고 굴착, 수집, 운반과 같은 작업을 위해 장비를 갖추도록 프로그램될 것이다.`},
+ {en:`They may work independently or be controlled remotely from Earth.`,ko:`그것들은 독립적으로 작동하거나 지구로부터 원격으로 제어될 수도 있다.`},
+ {en:`Unfortunately, these types of robots [[have yet to be developed|5]] since the technology is still young.`,ko:`안타깝게도, 이러한 유형의 로봇은 아직 개발되지 않았는데, 그 기술이 아직 초기 단계이기 때문이다.`},
+ {en:`As technology continues to develop, better methods for [[obtaining|6]] materials will undoubtedly emerge.`,ko:`기술이 계속 발전함에 따라, 물질을 획득하는 더 나은 방법들이 틀림없이 나타날 것이다.`}
+],notes:[
+ {k:'s',t:'= Robotic mining seems to be most likely.',b:'it seems that S+V = S seems to be ~ (패러프레이즈 탭 참고)'},
+ {k:'v',t:'dig',b:'캐다'},
+ {k:'s',t:'them = target materials',b:'앞에 나온 목표 물질을 가리키는 대명사'},
+ {k:'g',st:1,t:'to부정사 병렬 (수동형 포함)',b:'be programmed to ①explore ~ and ②be equipped for ~ : to부정사 두 개 병렬 · 장비를 갖추다(be equipped)'},
+ {k:'v',t:'have yet to = 아직 ~하지 않았다',b:'the technology is still young = in early stages (기술이 아직 초기 단계이다)'},
+ {k:'v',t:'obtain',b:'= acquire, secure (얻다, 획득하다)'}
+]},
+{sec:'offearth',no:4,s:[
+ {en:`[[Being on the International Space Station (ISS) is a unique experience|1]].`,ko:`국제우주정거장(ISS)에 있는 것은 특별한 경험이다.`},
+ {en:`Astronauts live and work in [[microgravity|2]], floating around instead of walking.`,ko:`우주비행사들은 미세중력 속에서 살고 일하며, 걷는 대신 떠다닌다.`},
+ {en:`Researchers get to see Earth from a completely new perspective, and they get to work on important scientific research in conditions [[that are different from Earth's|3]].`,ko:`연구자들은 완전히 새로운 관점에서 지구를 볼 수 있게 되고, 지구의 조건과는 다른 조건에서 중요한 과학 연구를 할 수 있게 된다.`},
+ {en:`Many manufacturers are interested in manufacturing in space because the quality of a lot of [[products manufactured on Earth|4]] is influenced by temperature, pressure, [[radiation|5]], and even the effects of gravity.`,ko:`많은 제조업체들이 우주에서 제조하는 것에 관심이 있는데, 지구에서 제조된 많은 제품의 품질이 온도, 압력, 방사선, 그리고 심지어 중력의 영향까지 받기 때문이다.`}
+],notes:[
+ {k:'g',t:'동명사 주어 + 단수 동사',b:'Being on the ISS(동명사 주어) is(단수 동사) a unique experience'},
+ {k:'v',t:'microgravity',b:'미세중력'},
+ {k:'g',t:"소유대명사 Earth's",b:"Earth's = Earth's conditions (반복을 피하기 위한 소유대명사)"},
+ {k:'g',t:'과거분사구 후치수식',b:'products [(that are) manufactured on Earth] : 관계대명사+be 생략'},
+ {k:'v',t:'radiation',b:'방사, 복사'}
+]},
+{sec:'offearth',no:5,s:[
+ {en:`[[Creating good conditions for certain types of manufacturing on Earth requires the use of a lot of energy and resources|1]], but those conditions occur naturally in space.`,ko:`지구에서 특정 유형의 제조를 위한 좋은 조건을 만드는 것은 많은 에너지와 자원의 사용을 필요로 하지만, 그러한 조건들은 우주에서는 자연적으로 발생한다.`},
+ {en:`Drugs, beauty and food products, and advanced materials are all potential [[candidates to be tested and produced in space|2]].`,ko:`의약품, 미용 및 식품, 그리고 첨단 소재는 모두 우주에서 시험되고 생산될 잠재적 후보이다.`},
+ {en:`For example, [[without the effects of gravity|3]], products that require a uniform quality like cosmetics would be easier to mix.`,ko:`예를 들어, 중력의 영향이 없다면, 화장품처럼 균일한 품질을 필요로 하는 제품들은 섞기가 더 쉬울 것이다.`},
+ {en:`Other materials like 3D printed skin or muscle benefit from low pressure and gravity too.`,ko:`3D 프린팅된 피부나 근육과 같은 다른 소재들도 낮은 압력과 중력의 혜택을 받는다.`},
+ {en:`Although the sun's radiation can be unhealthy for our skin, getting away from the protective effects of the [[atmosphere|4]] could also benefit the testing of products.`,ko:`태양의 방사선이 우리 피부에 해로울 수 있지만, 대기의 보호 효과로부터 벗어나는 것이 제품 시험에도 도움이 될 수 있다.`},
+ {en:`For example, fabrics and skin creams could be tested for their ability to protect against solar radiation.`,ko:`예를 들어, 직물과 피부 크림은 태양 방사선을 막는 능력에 대해 시험될 수 있다.`},
+ {en:`Also, semiconductors and glass communication cables could be produced with [[higher purity and fewer faults|5]].`,ko:`또한, 반도체와 광섬유 케이블은 더 높은 순도와 더 적은 결함으로 생산될 수 있다.`}
+],notes:[
+ {k:'g',t:'동명사 주어 + 단수 동사',b:'Creating good conditions ~ on Earth(동명사 주어) requires(단수 동사)'},
+ {k:'g',t:'to부정사 수동형이 명사 수식',b:'candidates [to be tested and produced in space] : "시험되고 생산될 후보"'},
+ {k:'g',st:1,t:'가정법 과거의 축약 — without = If it were not for',b:'without the effects of gravity, ~ would be easier to mix = If it were not for the effects of gravity, ~ (가정법 과거)'},
+ {k:'v',t:'atmosphere',b:'대기'},
+ {k:'v',t:'purity · fault',b:'순도(purity), 결함(fault) · 광섬유 케이블(glass communication cables)'}
+]},
+{sec:'offearth',no:6,s:[
+ {en:`Space technology has advanced greatly, and it seems that [[the cost of running a space program and improving it has decreased substantially|1]] since ambitious entrepreneurs have joined the adventure.`,ko:`우주 기술은 크게 발전했고, 야심 찬 기업가들이 그 모험에 합류한 이후로 우주 프로그램을 운영하고 개선하는 비용이 상당히 감소한 것처럼 보인다.`},
+ {en:`The conditions in space open up the possibility of manufacturing newer and better products.`,ko:`우주의 조건은 더 새롭고 더 나은 제품을 제조할 가능성을 열어준다.`},
+ {en:`Challenges remain, but it's not [[unreasonable to imagine sending a message|2]] from a device [[equipped with semiconductors that were produced in space|3]].`,ko:`어려움은 남아 있지만, 우주에서 생산된 반도체가 장착된 기기로부터 메시지를 보내는 것을 상상하는 것이 불합리하지는 않다.`},
+ {en:`The space project will ultimately reach [[a point where adventurous minds and their technological innovations will be able to travel safely to stars beyond the solar system|4]].`,ko:`그 우주 프로젝트는 결국 모험적인 사람들과 그들의 기술 혁신이 태양계 너머의 별들로 안전하게 여행할 수 있는 지점에 도달할 것이다.`},
+ {en:`[[The resources required to drive economic activity that have existed far beyond the reach of humanity are becoming much more reachable|5]].`,ko:`인류가 닿을 수 있는 범위를 훨씬 넘어 존재해 왔던, 경제 활동을 이끄는 데 필요한 자원들이 훨씬 더 도달 가능해지고 있다.`},
+ {en:`The question is no longer about how; it's about when.`,ko:`그 질문은 더 이상 '어떻게'에 관한 것이 아니라 '언제'에 관한 것이다.`}
+],notes:[
+ {k:'v',t:'considerable ↔ considerate · substantial / substance',b:'considerable 상당한 / considerate 사려 깊은 (혼동 주의) · substantial 상당한(형용사) / substance 존재·실체, 물질·골자·내용(명사) · substantially = considerably(상당히)'},
+ {k:'g',t:'동명사 목적어 imagine + ~ing',b:'imagine은 동명사를 목적어로 취함 · unreasonable = irrational, absurd (불합리한, 터무니없는)'},
+ {k:'g',t:'과거분사구 + 관계대명사절 이중 수식',b:'a device [equipped with semiconductors] [that were produced in space] : equip A with B(A에 B를 장착시키다)의 수동형'},
+ {k:'g',t:'관계부사 where',b:'a point [where ~] = a point [that at which ~] : 선행사 a point(장소)를 수식'},
+ {k:'g',st:1,t:'이중 수식 구조 — 분사구 + 관계대명사절',b:'The resources [required to drive economic activity] [that have existed far beyond the reach of humanity] // are becoming(V) much more reachable(비교급 강조) : 주어를 두 수식어가 함께 꾸밈'}
+]}
+];
+
+const U4_INTRO_SUMMARY = `Just as new <span class="blank" data-a="resources">resources</span> and technology introduced new ages in the past, <span class="blank" data-a="space">space</span> will provide new opportunities in the future.`;
+const U4_BOXES = [
+ {sec:'asteroid',p:2,h:'🚀 Asteroid Mining',s:`<span class="blank" data-a="Water">Water</span> may be the most valuable resource. Asteroids will probably be mined by <span class="blank" data-a="robots">robots</span>.`},
+ {sec:'offearth',p:4,h:'🧪 Off-Earth Manufacturing',s:`Creating good conditions for some industries requires a lot of energy and resources on <span class="blank" data-a="Earth">Earth</span>, while space already has these conditions; therefore, it offers <span class="blank" data-a="opportunities">opportunities</span> to invent new, high-tech ways of producing things.`}
+];
+const U4_SUMMARY_FINAL = `Space technology has advanced and become cheaper, making many resources <span class="blank" data-a="reachable">reachable</span>.`;
+
+const U4_VOCAB = [
+ {sec:'intro',w:'frontier',m:'개척자, 국경, 한계',h:1},
+ {sec:'intro',w:'resource',m:'자원'},
+ {sec:'intro',w:'transform',m:'변화시키다'},
+ {sec:'intro',w:'entrepreneur',m:'기업가'},
+ {sec:'intro',w:'dare (to)',m:'감히 ~하다',h:1},
+ {sec:'intro',w:'take up',m:'①받아들이다, 다루다 ②처리하다',h:1},
+ {sec:'asteroid',w:'be composed of',m:'~로 구성되다',syn:'= be made up of = consist of = comprise',h:1},
+ {sec:'asteroid',w:'rare earth element',m:'희토류',h:1},
+ {sec:'asteroid',w:'precious',m:'귀중한'},
+ {sec:'asteroid',w:'deposit',m:'매장층',h:1},
+ {sec:'asteroid',w:'overlook',m:'간과하다',syn:'= neglect, underestimate, undervalue, disregard',h:1},
+ {sec:'asteroid',w:'due to',m:'~때문에',h:1},
+ {sec:'asteroid',w:'sufficient',m:'충분한'},
+ {sec:'asteroid',w:'orbit',m:'궤도'},
+ {sec:'asteroid',w:'exploration',m:'탐사'},
+ {sec:'asteroid',w:'dig',m:'캐다',h:1},
+ {sec:'asteroid',w:'identify',m:'식별하다'},
+ {sec:'asteroid',w:'drill',m:'굴착하다'},
+ {sec:'asteroid',w:'remotely',m:'원격으로',h:1},
+ {sec:'asteroid',w:'obtain',m:'얻다, 획득하다',syn:'= acquire, secure',h:1},
+ {sec:'asteroid',w:'undoubtedly',m:'틀림없이'},
+ {sec:'offearth',w:'microgravity',m:'미세중력',h:1},
+ {sec:'offearth',w:'perspective',m:'관점'},
+ {sec:'offearth',w:'manufacture',m:'제조하다'},
+ {sec:'offearth',w:'radiation',m:'방사, 복사',h:1},
+ {sec:'offearth',w:'candidate',m:'후보'},
+ {sec:'offearth',w:'uniform',m:'균일한'},
+ {sec:'offearth',w:'atmosphere',m:'대기'},
+ {sec:'offearth',w:'purity',m:'순도',h:1},
+ {sec:'offearth',w:'fault',m:'결함',h:1},
+ {sec:'offearth',w:'considerable',m:'상당한',syn:'구분: considerate(사려 깊은)와 혼동 주의',h:1},
+ {sec:'offearth',w:'considerate',m:'사려 깊은',syn:'구분: considerable(상당한)과 혼동 주의',h:1},
+ {sec:'offearth',w:'substantial',m:'상당한 (형용사)',syn:'substantially = considerably',h:1},
+ {sec:'offearth',w:'substance',m:'존재·실체; 물질, 골자, 내용 (명사)',h:1},
+ {sec:'offearth',w:'unreasonable',m:'불합리한, 터무니없는',syn:'= irrational, absurd',h:1},
+ {sec:'offearth',w:'ultimately',m:'결국'},
+ {sec:'offearth',w:'drive',m:'이끌다, 추진하다'},
+ {sec:'offearth',w:'reachable',m:'도달 가능한'}
+];
+
+const U4_SYN = [
+ {k:'is composed of',eq:'be made up of · consist of · comprise',src:'구성되다 — The solar system is composed of many rocks'},
+ {k:'overlook',eq:'neglect · underestimate · undervalue · disregard',src:'간과하다 — it seems to have been overlooked'},
+ {k:'obtain',eq:'acquire · secure',src:'얻다, 획득하다 — better methods for obtaining materials'},
+ {k:'substantially',eq:'considerably',src:'상당히 — has decreased substantially'},
+ {k:'unreasonable',eq:'irrational · absurd',src:"it's not unreasonable to imagine"},
+ {k:'A lead to B',eq:'A result in B · A translate into B',src:'A가 B라는 결과로 이어지다 — would not have led to'},
+ {k:'the technology is still young',eq:'the technology is in early stages',src:'기술이 아직 초기 단계이다'}
+];
+
+const U4_OPPS = [
+ {a:'considerable (상당한)',b:'considerate (사려 깊은)',s:'형태가 비슷하지만 뜻이 다른 단어 — 혼동 주의'},
+ {a:'substantial (형용사, 상당한)',b:'substance (명사, 존재·실체)',s:'substantially = considerably (상당히)'},
+ {a:'neither',b:'nor',s:'neither A nor B : A도 B도 아니다'},
+ {a:'precious metals · rare mineral deposits',b:'water',s:'우주 탐험가 관점에서 가장 가치 있는 자원은 귀금속·광물이 아니라 물'}
+];
+
+const U4_DRILL = [
+ {sec:'intro',e:`The need to explore new <u>frontiers</u> like the Arctic and the American West may have been sparked by curiosity.`,k:`북극이나 아메리카 서부와 같은 새로운 {개척지}를 탐험하려는 욕구는 호기심에서 촉발되었을 수도 있다.`},
+ {sec:'intro',e:`Without new resources and technology, the Industrial Revolution of the 19th century would not have led to the rise of new industries and the growth of cities.`,k:`새로운 자원과 기술이 없었다면, 19세기의 산업 혁명은 새로운 산업의 발흥과 도시의 {성장}으로 이어지지 못했을 것이다.`},
+ {sec:'intro',e:`In the late 20th century, the Information Technology Revolution <u>connected</u> the world and <u>transformed</u> economies.`,k:`20세기 후반에는 정보 기술 혁명이 세계를 {연결하고} 경제를 {변화시켰다}.`},
+ {sec:'intro',e:`Finding new resources and exploring the unique environment are new opportunities for those who <u>dare to take up</u> the challenge.`,k:`새로운 자원을 찾고 독특한 환경을 탐험하는 것은 {감히} 그 도전을 {받아들이는} 사람들에게 새로운 기회이다.`},
+ {sec:'asteroid',e:`The solar system <u>is composed of</u> many rocks floating in space.`,k:`태양계는 우주에 떠다니는 많은 암석들로 {구성되어} 있다.`},
+ {sec:'asteroid',e:`Research has shown that asteroids contain valuable resources like gold and <u>rare earth elements</u>.`,k:`연구에 따르면 소행성은 금과 {희토류} 같은 귀중한 자원을 포함하고 있다.`},
+ {sec:'asteroid',e:`the most valuable resources from asteroids are <u>neither</u> valuable precious metals <u>nor</u> rare mineral <u>deposits</u>.`,k:`소행성에서 나오는 가장 가치 있는 자원은 귀금속{도} 희귀 광물 {매장층도} 아니다.`},
+ {sec:'asteroid',e:`it seems to have been <u>overlooked</u> because it doesn't seem as exciting as gold.`,k:`그것은 금만큼 흥미로워 보이지 않기 때문에 {간과되어} 온 것처럼 보인다.`},
+ {sec:'asteroid',e:`Water is expensive to transport into space <u>due to</u> its weight and volume.`,k:`물은 그 무게와 부피 {때문에} 우주로 운반하는 데 비용이 많이 든다.`},
+ {sec:'asteroid',e:`Having a space station with <u>sufficient</u> water supplies in <u>orbit</u> around Earth would make space explorations much easier.`,k:`지구 {궤도}에 {충분한} 물 공급을 갖춘 우주 정거장을 두는 것은 우주 탐사를 훨씬 더 쉽게 만들어 줄 것이다.`},
+ {sec:'asteroid',e:`Robots will be sent to <u>dig</u> for target materials and send them back towards Earth.`,k:`로봇들은 목표 물질을 {캐내어} 지구로 다시 보내기 위해 보내질 것이다.`},
+ {sec:'asteroid',e:`They will be programmed to explore the surface and <u>identify</u> materials.`,k:`그것들은 표면을 탐사하고 물질을 {식별하도록} 프로그램될 것이다.`},
+ {sec:'asteroid',e:`They may work independently or be controlled <u>remotely</u> from Earth.`,k:`그것들은 독립적으로 작동하거나 지구로부터 {원격으로} 제어될 수도 있다.`},
+ {sec:'asteroid',e:`better methods for <u>obtaining</u> materials will <u>undoubtedly</u> emerge.`,k:`물질을 {획득하는} 더 나은 방법들이 {틀림없이} 나타날 것이다.`},
+ {sec:'offearth',e:`Astronauts live and work in <u>microgravity</u>, floating around instead of walking.`,k:`우주비행사들은 {미세중력} 속에서 살고 일하며, 걷는 대신 떠다닌다.`},
+ {sec:'offearth',e:`the quality of a lot of products manufactured on Earth is influenced by temperature, pressure, <u>radiation</u>, and even the effects of gravity.`,k:`지구에서 제조된 많은 제품의 품질이 온도, 압력, {방사선}, 그리고 심지어 중력의 영향까지 받는다.`},
+ {sec:'offearth',e:`Drugs, beauty and food products, and advanced materials are all potential <u>candidates</u> to be tested and produced in space.`,k:`의약품, 미용 및 식품, 그리고 첨단 소재는 모두 우주에서 시험되고 생산될 잠재적 {후보}이다.`},
+ {sec:'offearth',e:`products that require a <u>uniform</u> quality like cosmetics would be easier to mix.`,k:`화장품처럼 {균일한} 품질을 필요로 하는 제품들은 섞기가 더 쉬울 것이다.`},
+ {sec:'offearth',e:`getting away from the protective effects of the <u>atmosphere</u> could also benefit the testing of products.`,k:`{대기}의 보호 효과로부터 벗어나는 것이 제품 시험에도 도움이 될 수 있다.`},
+ {sec:'offearth',e:`semiconductors and glass communication cables could be produced with higher <u>purity</u> and fewer <u>faults</u>.`,k:`반도체와 광섬유 케이블은 더 높은 {순도}와 더 적은 {결함}으로 생산될 수 있다.`},
+ {sec:'offearth',e:`the cost of running a space program has decreased <u>substantially</u> since ambitious <u>entrepreneurs</u> have joined the adventure.`,k:`{야심 찬} 기업가들이 그 모험에 합류한 이후로 우주 프로그램을 운영하는 비용이 {상당히} 감소했다.`},
+ {sec:'offearth',e:`it's not <u>unreasonable</u> to imagine sending a message from a device equipped with semiconductors.`,k:`반도체가 장착된 기기로부터 메시지를 보내는 것을 상상하는 것이 {불합리하지는} 않다.`},
+ {sec:'offearth',e:`The space project will <u>ultimately</u> reach a point where adventurous minds will be able to travel safely to stars beyond the solar system.`,k:`그 우주 프로젝트는 {결국} 모험적인 사람들이 별들로 안전하게 여행할 수 있는 지점에 도달할 것이다.`},
+ {sec:'offearth',e:`The resources required to <u>drive</u> economic activity ... are becoming much more reachable.`,k:`경제 활동을 {이끄는} 데 필요한 자원들이 훨씬 더 도달 가능해지고 있다.`}
+];
+
+const U4_GRAM = [
+ {t:'★ 가정법 과거 · 가정법 과거완료 (선생님 필기 정리)',m:'memo',hi:1,f:`가정법 과거: If S 과거V/were, S 조동사과거 V (현재 사실의 반대)<br>가정법 과거완료: If S had p.p., S 조동사과거 have p.p. (과거 사실의 반대)`,x:[
+  {p:'공식',e:`If it <span class="h1">were not for</span> N, ~ → <span class="h2x">Were it not for</span> N, ~ = Without N, ~ = But for N, ~`,k:'N이 없다면 ~할 것이다 (가정법 과거, 주절 도치로 가정법임을 구분)'},
+  {p:'공식',e:`If it <span class="h1">had not been for</span> N, ~ → <span class="h2x">Had it not been for</span> N, ~ = Without N, ~ = But for N, ~`,k:'N이 없었다면 ~했을 것이다 (가정법 과거완료) · (prep) but = ~을 제외하고'},
+  {p:'¶5',e:`For example, <span class="h1">without the effects of gravity</span>, products that require a uniform quality like cosmetics <span class="h2x">would be</span> easier to mix.`,k:'= If it were not for the effects of gravity, ~ would be easier to mix (가정법 과거)'},
+  {p:'¶1',e:`<span class="h1">Without</span> new resources and technology, the Industrial Revolution of the 19th century <span class="h2x">would not have led to</span> the rise of new industries and the growth of cities.`,k:'= If there had not been new resources and technology, ~ (가정법 과거완료) = Had there not been new resources and technology, ~'}
+ ]},
+ {t:'완료부정사 (to have p.p.) — 주절 시제 vs that절 시제',m:'memo',f:'주절 시제 = that절 시제 → to + 동사원형<br>주절 시제 ≠ that절 시제(that절이 더 이전) → to have p.p.',x:[
+  {p:'¶2 ★',e:`it <span class="h1">seems</span> <span class="h2x">to have been overlooked</span> because it doesn't seem as exciting as gold.`,k:'= It seems that water was overlooked. (주절 seems는 현재, that절의 간과된 시점은 그보다 이전 → to have p.p.)'}
+ ]},
+ {t:'5형식 사역동사 make · 비교급 강조',m:'memo',f:'make + O + O.C.(형용사) · much/even/still/far/a lot + 비교급',x:[
+  {p:'¶2',e:`Having a space station ... <span class="h1">would make</span> space explorations<span class="lb o">O</span> <span class="h2x">much easier</span><span class="lb o">O.C.</span>.`,k:'much가 비교급 easier를 강조 (very는 비교급 수식 불가)'},
+  {p:'¶6',e:`The resources ... are becoming <span class="h2x">much more reachable</span>.`,k:'much + 비교급 more reachable'}
+ ]},
+ {t:'관계대명사 — 소유격 whose · 과거분사구 후치수식',m:'memo',f:'명사, whose + 명사 ~ (계속적) · 명사 + (that/which are) p.p. ~',x:[
+  {p:'¶2',e:`one asteroid, 16 Psyche, is reported to consist mainly of gold and other precious metals, <span class="h1">whose</span> value is equal to billions of dollars per person on Earth.`,k:'whose = and their (소유격 관계대명사, 계속적 용법)'},
+  {p:'¶4',e:`the quality of a lot of products <span class="h1">(that are)</span> <span class="h2x">manufactured on Earth</span> is influenced by ...`,k:'과거분사구 후치수식 (관계대명사+be 생략)'},
+  {p:'¶4',e:`important scientific research in conditions <span class="h1">that are different from</span> Earth's.`,k:"Earth's = Earth's conditions (소유대명사, 반복 회피)"}
+ ]},
+ {t:'관계부사 where',m:'memo',f:'명사(장소) + where + 완전한 절 = that at which',x:[
+  {p:'¶6',e:`The space project will ultimately reach a point <span class="h1">where</span> adventurous minds and their technological innovations will be able to travel safely to stars beyond the solar system.`,k:'where = that at which (a point을 수식하는 관계부사)'}
+ ]},
+ {t:'동명사 주어 + 단수 동사',m:'memo',f:'~ing (구) + 단수 동사',x:[
+  {p:'¶4',e:`<span class="h3">Being on the International Space Station (ISS)</span> <span class="lb gr">V</span>is a unique experience.`,k:''},
+  {p:'¶5',e:`<span class="h3">Creating good conditions for certain types of manufacturing on Earth</span> <span class="lb gr">V</span>requires the use of a lot of energy and resources.`,k:''}
+ ]},
+ {t:'동명사 주어 병렬 + 복수 동사',m:'add',f:'~ing and ~ing (주어) + 복수 동사',x:[
+  {p:'¶1',e:`<span class="h3">Finding new resources</span> and <span class="h3">exploring the unique environment</span> <span class="lb gr">V</span>are new opportunities for those who dare to take up the challenge.`,k:'동명사구 두 개가 and로 연결 → 복수 취급 (are)'}
+ ]},
+ {t:'to부정사 병렬 · 동명사 목적어',m:'add',f:'be programmed to ① and (to) ② · imagine + ~ing',x:[
+  {p:'¶3',e:`They will be programmed to <span class="h1">①explore the surface and identify materials</span>, and <span class="h2x">②be equipped for tasks</span> such as drilling, collecting, and transporting.`,k:'to부정사 병렬 (두 번째 to 생략, 수동형 be equipped 포함)'},
+  {p:'¶6',e:`it's not unreasonable to <span class="h1">imagine</span> <span class="h2x">sending</span> a message from a device ...`,k:'imagine은 동명사를 목적어로 취함'},
+  {p:'¶5',e:`Drugs, beauty and food products, and advanced materials are all potential candidates <span class="h1">to be tested and produced</span> in space.`,k:'to부정사 수동형이 candidates를 수식'}
+ ]},
+ {t:'이중 수식 구조 (분사구 + 관계대명사절)',m:'add',f:'명사 + [분사구] + [관계대명사절]',x:[
+  {p:'¶6 ★',e:`The resources <span class="h1">[required to drive economic activity]</span> <span class="h2x">[that have existed far beyond the reach of humanity]</span> <span class="lb gr">V</span>are becoming much more reachable.`,k:'주어 The resources를 과거분사구와 관계대명사절이 함께 수식, 동사는 are becoming'},
+  {p:'¶6',e:`a device <span class="h1">[equipped with semiconductors]</span> <span class="h2x">[that were produced in space]</span>`,k:'과거분사구 + 관계대명사절이 device를 중첩 수식'}
+ ]},
+ {t:'기타 구문',m:'add',f:'due to · have yet to · dare to · neither A nor B',x:[
+  {p:'¶2',e:`Water is expensive to transport into space <span class="h3">due to</span> its weight and volume.`,k:'due to = ~때문에 (전치사)'},
+  {p:'¶3',e:`these types of robots <span class="h3">have yet to be developed</span> since the technology is still young.`,k:'have yet to = 아직 ~하지 않았다'},
+  {p:'¶1',e:`... for those who <span class="h3">dare to</span> take up the challenge.`,k:'dare to = 감히 ~하다'},
+  {p:'¶2',e:`the most valuable resources from asteroids are <span class="h3">neither</span> valuable precious metals <span class="h3">nor</span> rare mineral deposits.`,k:'neither A nor B = A도 B도 아닌'}
+ ]}
+];
+
+const U4_PARA_EXTRA = `
+<div class="h2" style="--c:var(--next)">★ 완료부정사 — 시제 차이 표현하기</div>
+<div class="card pp-core">
+  <div class="orig">it seems <b>to have been overlooked</b> because it doesn't seem as exciting as gold.</div>
+  <ul class="pp-list">
+    <li><span class="arrow">→</span><div><div class="t">It seems that water was overlooked.</div><div class="k">to have p.p. → that + 과거시제 (주절보다 이전에 일어난 일)</div></div></li>
+  </ul>
+  <div class="tipbox" style="margin-top:10px"><b>seem to have p.p.</b> : (that절이 주절보다 이전 시점) ~했던 것처럼 보이다 · seem to + 동사원형 : (동시) ~인 것처럼 보이다</div>
+</div>
+
+<div class="h2" style="--c:var(--gaps)">가정법 ↔ without 전치사구 전환</div>
+<div class="voice">
+  <div class="row"><span class="lab" style="background:var(--pen)">본문</span><div><div class="en" style="font-size:16px">Without the effects of gravity, products ... would be easier to mix.</div><div style="font-size:12.5px;color:var(--ink2)">without + 명사 = 가정법 과거의 축약 표현</div></div></div>
+  <div class="row"><span class="lab" style="background:var(--next)">전환</span><div><div class="en" style="font-size:16px">If it were not for the effects of gravity, products ... would be easier to mix.</div><div style="font-size:12.5px;color:var(--ink2)">= Were it not for the effects of gravity, ~ (도치)</div></div></div>
+  <div class="row"><span class="lab" style="background:var(--pen)">본문</span><div><div class="en" style="font-size:16px">Without new resources and technology, the Industrial Revolution ... would not have led to ~</div><div style="font-size:12.5px;color:var(--ink2)">without + 명사 = 가정법 과거완료의 축약 표현</div></div></div>
+  <div class="row"><span class="lab" style="background:var(--next)">전환</span><div><div class="en" style="font-size:16px">Had there not been new resources and technology, the Industrial Revolution ... would not have led to ~</div><div style="font-size:12.5px;color:var(--ink2)">= If there had not been new resources and technology, ~ (도치)</div></div></div>
+</div>
+`;
+
+const U4_PAIRS = [
+ {o:`Without new resources and technology, the Industrial Revolution of the 19th century would not have led to the rise of new industries and the growth of cities.`,r:`The Industrial Revolution led to the rise of new industries and the growth of cities.`,t:1,w:'Q1 — 가정법 과거완료 문장을 사실 진술로 바꾼 것 (실제로는 자원·기술이 있었으므로 산업 발흥과 도시 성장이 일어남)'},
+ {o:`No one knows for sure what asteroid mining will look like, but it seems that robotic mining is most likely.`,r:`Robotic mining seems to be most likely.`,t:1,w:'Q3 — it seems that S+V = S seems to be'},
+ {o:`That valuable resource could actually be water, and it seems to have been overlooked because it doesn't seem as exciting as gold.`,r:`It seems that water was overlooked.`,t:1,w:'완료부정사 → that절 시제 변환'},
+ {o:`Unfortunately, these types of robots have yet to be developed since the technology is still young.`,r:`Mining robots have already been fully developed.`,t:0,w:'불일치 — have yet to be developed(아직 개발되지 않음)와 반대'},
+ {o:`Water is expensive to transport into space due to its weight and volume.`,r:`Water is cheap to bring into space.`,t:0,w:'불일치 — expensive와 반대'},
+ {o:`Unfortunately, these types of robots have yet to be developed since the technology is still young.`,r:`The technology is in early stages.`,t:1,w:'still young = in early stages'},
+ {o:`Many manufacturers are interested in manufacturing in space because the quality of a lot of products manufactured on Earth is influenced by temperature, pressure, radiation, and even the effects of gravity.`,r:`Products made on Earth are not affected by temperature, pressure, radiation, or gravity.`,t:0,w:'불일치 — 본문과 반대'},
+ {o:`The resources required to drive economic activity that have existed far beyond the reach of humanity are becoming much more reachable.`,r:`Our economic activity will eventually extend beyond the solar system.`,t:1,w:'Q8 — 자원이 도달 가능해짐에 따라 경제 활동 범위가 확장될 것'}
+];
+
+const U4_QA = [
+ {id:'Q1',type:'rev',q:`What were the consequences of the Industrial Revolution in the 19th century?`,ans:`<span class="en2">the rise of new industries and the growth of cities</span><br>Without new resources and technology, the Industrial Revolution ... would not have led to the rise of new industries and the growth of cities. (가정법 과거완료 — 실제로는 자원·기술이 있었으므로 두 가지 결과가 일어남)`},
+ {id:'Q2-1',type:'tf',q:`Asteroids are reported to contain mineral resources high in demand on Earth, such as gold.`,a:1,x:'Research has shown that asteroids contain valuable resources like gold and rare earth elements.'},
+ {id:'Q2-2',type:'tf',q:`16 Psyche is reported to contain about billions of dollars worth of water.`,a:0,x:'16 Psyche is reported to consist mainly of gold and other precious metals — 물이 아니라 금과 귀금속'},
+ {id:'Q3',type:'rev',q:`What is the most likely method of asteroid mining?`,ans:`<span class="en2">Robotic mining</span> — it seems that robotic mining is most likely.`},
+ {id:'Q4',type:'rev',q:`Underline the examples of what mining robots will likely do.`,ans:`<span class="en2">dig for target materials and send them back towards Earth / explore the surface and identify materials / equipped for drilling, collecting, and transporting / work independently or be controlled remotely</span>`},
+ {id:'Q5',type:'rev',q:`Why are many manufacturers interested in making products in space?`,ans:`제품의 품질이 온도·압력·방사선·중력의 영향을 받는데, 우주의 조건은 지구와 다르기 때문에`},
+ {id:'Q6',type:'rev',q:`Underline three types of products that could be tested and produced in space.`,ans:`<span class="en2">Drugs, beauty and food products, and advanced materials</span>`},
+ {id:'Q7',type:'rev',q:`Fill in the blank.<br>______ pressure and gravity cause better mixing.`,ans:`<span class="en2"><b>Low</b></span><br>products ... would be easier to mix / Other materials ... benefit from low pressure and gravity`},
+ {id:'Q8',type:'mc',q:`What does "The question is no longer about how; it's about when" in line 15 mean?`,o:['Our economic activity will eventually extend beyond the solar system.','We should set a specific date for space projects.','The majority of technological challenges remain to be solved.'],a:0,x:'자원이 도달 가능해지고 별로의 안전한 여행이 가능해진다는 문맥 — 가능성(how)은 이미 확보되었고 남은 것은 시기(when)의 문제'}
+];
+
+const U4_QB = [
+ {q:`The main reason humans explored frontiers like the Arctic was pure curiosity.`,a:0,x:'a major reason was to discover new resources — 주된 이유는 호기심이 아니라 자원 발견'},
+ {q:`The Industrial Revolution led to the rise of new industries and the growth of cities.`,a:1,x:'가정법 과거완료 문장(would not have led to)을 사실 진술로 바꾸면 일치'},
+ {q:`Space is considered the latest frontier for entrepreneurs.`,a:1,x:'it seems that space is the latest frontier for entrepreneurs to explore.'},
+ {q:`The solar system is composed of many rocks floating in space.`,a:1,x:'The solar system is composed of many rocks floating in space.'},
+ {q:`From a space explorer's perspective, precious metals are the most valuable resource from asteroids.`,a:0,x:'the most valuable resources ... are neither valuable precious metals nor rare mineral deposits — 물이다'},
+ {q:`Water is cheap to transport into space.`,a:0,x:'Water is expensive to transport into space due to its weight and volume.'},
+ {q:`Robots for asteroid mining have already been fully developed.`,a:0,x:'these types of robots have yet to be developed since the technology is still young.'},
+ {q:`Astronauts on the ISS float around instead of walking due to microgravity.`,a:1,x:'Astronauts live and work in microgravity, floating around instead of walking.'},
+ {q:`The quality of many products made on Earth is affected by temperature, pressure, radiation, and gravity.`,a:1,x:'the quality of a lot of products manufactured on Earth is influenced by temperature, pressure, radiation, and even the effects of gravity.'},
+ {q:`The cost of running a space program has increased since entrepreneurs joined the field.`,a:0,x:'the cost of running a space program and improving it has decreased substantially since ambitious entrepreneurs have joined the adventure.'}
+];
+
+const U4_QC = [
+ {q:`Without new resources and technology, the Industrial Revolution of the 19th century (    ) not have led to the rise of new industries.`,o:['will','would'],a:1,x:'가정법 과거완료 — If there had not been ~, S would not have p.p.'},
+ {q:`That valuable resource could actually be water, and it seems (    ) overlooked because it doesn't seem as exciting as gold.`,o:['to be','to have been'],a:1,x:'완료부정사 — that절의 시점이 주절보다 이전이므로 to have p.p.'},
+ {q:`Having a space station with sufficient water supplies ... would make space explorations (    ) easier.`,o:['very','much'],a:1,x:'much가 비교급 easier를 강조 (very는 비교급 수식 불가)'},
+ {q:`They will be programmed to explore the surface and identify materials, and (    ) equipped for tasks such as drilling, collecting, and transporting.`,o:['being','be'],a:1,x:'to부정사 병렬 — to explore ... and (to) be equipped ~'},
+ {q:`If it (    ) not for the effects of gravity, products that require a uniform quality would be easier to mix.`,o:['was','were'],a:1,x:'가정법 과거의 be동사는 인칭에 관계없이 were'},
+ {q:`The space project will reach a point (    ) adventurous minds and their innovations will be able to travel to stars beyond the solar system.`,o:['which','where'],a:1,x:'관계부사 where — 선행사 a point(장소)를 수식하며 뒤에 완전한 절'},
+ {q:`The resources required to drive economic activity that (    ) existed far beyond the reach of humanity are becoming much more reachable.`,o:['has','have'],a:1,x:'선행사 resources가 복수 → that절의 동사도 have'},
+ {q:`One asteroid, 16 Psyche, is reported to consist mainly of gold and other precious metals, (    ) value is equal to billions of dollars.`,o:['which','whose'],a:1,x:'소유격 관계대명사 whose (= and their)'},
+ {q:`Creating good conditions for certain types of manufacturing on Earth (    ) the use of a lot of energy.`,o:['require','requires'],a:1,x:'동명사구 주어 Creating ~ → 단수 동사 requires'},
+ {q:`Challenges remain, but it's not unreasonable (    ) sending a message from a device equipped with semiconductors.`,o:['imagining','to imagine'],a:1,x:"it's + 형용사 + to부정사(가주어-진주어 구문) — to imagine이 진주어"}
+];
+
+/* ========================================================================
+   LESSON WRAPPER
+   ======================================================================== */
+const LESSONS = {
+ u1:{id:'u1',code:'UNIT 1 · READING',accent:'var(--next)',
+   titleHTML:'Start Connecting Your <span style="color:var(--discover)">Dots</span> Today',
+   theme:{en:'Connecting dots helps students<br>design their future path.',ko:'점을 연결하는 것은 학생들이 자신의 미래의 길을 설계하도록 돕는다.'},
+   readingTip:{title:'Reading Tip · Identifying examples',body:'글에서 구체적으로 제시된 예시를 파악하여 글의 전체 맥락을 이해할 수 있다. (Q4, Q5 — Examine Your Resources)'},
+   SECS:U1_SECS, flow:U1_FLOW, summaryFinal:`The dots are a way to see yourself in the present and the <span class="blank" data-a="future">future</span>.`,
+   P:U1_P, VOCAB:U1_VOCAB, SYN:U1_SYN, OPPS:U1_OPPS, oppHeading:'본문 속 대립 쌍', DRILL:U1_DRILL, GRAM:U1_GRAM,
+   paraExtraHTML:U1_PARA_EXTRA, PAIRS:U1_PAIRS, QA:U1_QA, QB:U1_QB, QC:U1_QC, partALabel:'A. 교과서 Q1–Q9'
+ },
+ u4:{id:'u4',code:'UNIT 4 · READING',accent:'var(--gaps)',
+   titleHTML:'Space: The <span style="color:var(--gaps)">Final Frontier</span>',
+   theme:{en:'Just as new resources and technology introduced new ages in the past,<br>space will provide new opportunities in the future.',ko:'과거에 새로운 자원과 기술이 새로운 시대를 열었던 것처럼, 우주는 미래에 새로운 기회를 제공할 것이다.'},
+   readingTip:{title:'Reading Tip · Identifying cause and effect',body:'글에 제시된 정보 사이의 논리적 인과 관계를 파악하며 글의 흐름을 이해한다. (Q1, Q7)'},
+   SECS:U4_SECS, boxes:U4_BOXES, introSummary:U4_INTRO_SUMMARY, summaryFinal:U4_SUMMARY_FINAL,
+   P:U4_P, VOCAB:U4_VOCAB, SYN:U4_SYN, OPPS:U4_OPPS, oppHeading:'혼동 어휘 · 비교 구문', DRILL:U4_DRILL, GRAM:U4_GRAM,
+   paraExtraHTML:U4_PARA_EXTRA, PAIRS:U4_PAIRS, QA:U4_QA, QB:U4_QB, QC:U4_QC, partALabel:'A. 교과서 문항'
+ }
+};
+
+/* ========================================================================
+   RENDER (generic, driven by currentLesson)
+   ======================================================================== */
+let currentLesson = null;
+
+function showHome(){ document.body.classList.add('showhome'); window.scrollTo(0,0); }
+
+function cOf(L,sec){ return L.SECS[sec].c; }
+
+function renderOverview(L){
+  let out = `<div class="card hero">
+    <svg width="140" height="110" viewBox="0 0 140 110" aria-hidden="true">
+      <path d="M20 90 L55 60 L80 75 L118 22" fill="none" stroke="#c9c2b0" stroke-width="2.5" stroke-dasharray="5 5"/>
+      <circle cx="20" cy="90" r="8" fill="#2f6fdf"/><circle cx="55" cy="60" r="8" fill="#8a4fd8"/>
+      <circle cx="80" cy="75" r="8" fill="#2e9e5b"/><circle cx="118" cy="22" r="10" fill="${L.accent.startsWith('var')?'#e5533d':L.accent}"/>
+    </svg>
+    <div class="unit" style="margin-bottom:6px">글의 주제</div>
+    <div class="theme">${L.theme.en}</div>
+    <div class="theme-ko">${L.theme.ko}</div>
+  </div>`;
+
+  if(L.flow){
+    out += `<div class="h2" style="--c:${L.accent}">단계별 요약 <small>빈칸을 탭하면 정답</small></div>
+    <p class="lead">교과서 Understand the Text 요약문입니다. 각 단계에서 <b>본문 보기</b>를 누르면 해당 문단으로 이동합니다.</p>
+    <ol class="flow">${L.flow.map((f,i)=>`
+      <li style="--c:${cOf(L,f.sec)}">
+        <span class="num">${i+1}</span>
+        <div class="body">
+          <div class="sec">${f.h}</div>
+          <div class="sum">${f.s}</div>
+          <button class="go" onclick="goPara('${L.id}',${f.p})">본문 보기 →</button>
+        </div>
+      </li>`).join('')}</ol>`;
+  } else if(L.boxes){
+    out += `<div class="h2" style="--c:${L.accent}">Understand the Text <small>빈칸을 탭하면 정답</small></div>
+    <p class="lead">교과서 요약 워크시트입니다. 각 카드의 <b>본문 보기</b>를 누르면 해당 문단으로 이동합니다.</p>`;
+    if(L.introSummary) out += `<div class="card" style="font-family:'Source Serif 4',serif;font-size:15.5px">${L.introSummary}</div>`;
+    out += L.boxes.map(b=>`<div class="card boxcard" style="--c:${cOf(L,b.sec)}">
+      <div class="bh">${b.h}</div>
+      <div class="bs">${b.s}</div>
+      <button class="go" onclick="goPara('${L.id}',${b.p})">본문 보기 →</button>
+    </div>`).join('');
+  }
+  if(L.summaryFinal) out += `<div class="card" style="text-align:center;font-family:'Source Serif 4',serif;font-size:16px;margin-top:8px">${L.summaryFinal}</div>`;
+
+  out += `<div class="h2" style="--c:var(--pen)">필기 표시 읽는 법</div>
+  <div class="card">
+    <div class="legend">
+      <span><i class="sw v"></i>어휘·뜻</span>
+      <span><i class="sw g"></i>문법·구문</span>
+      <span><i class="sw s"></i>내용·예시</span>
+      <span><span class="star">★</span>선생님 강조</span>
+      <span><span class="tag memo">필기</span>선생님 필기 기반</span>
+      <span><span class="tag add">추가</span>본문 구조 보충</span>
+    </div>
+    <p style="font-size:13.5px;margin-top:10px;color:var(--ink2)">본문에서 표시된 부분을 탭하면 아래 <span class="pen" style="font-size:18px">선생님 필기</span> 칸의 해당 번호가 반짝입니다. 문장 앞 번호를 탭하면 그 문장의 해석이 열립니다.</p>
+  </div>`;
+  if(L.readingTip) out += `<div class="tipbox"><b>${L.readingTip.title}</b><br>${L.readingTip.body}</div>`;
+
+  $('#ovBody').innerHTML = out;
+}
+
+function goPara(lessonId, no){
+  if(!currentLesson || currentLesson.id!==lessonId) return;
+  switchTab(1);
+  setTimeout(()=>{
+    const el=document.getElementById('para-'+lessonId+'-'+no);
+    if(el){const top=document.querySelector('.top');const y=el.getBoundingClientRect().top+window.scrollY-((top?top.offsetHeight:110)+70);window.scrollTo({top:y,behavior:'smooth'});}
+  },150);
+}
+
+function markup(str,lessonId,no,notes){
+  return str.replace(/\[\[(.+?)\|(\d+)\]\]/g,(m,t,n)=>{
+    const nt=notes[n-1]||{};
+    const cls=(nt.st?'st ':'')+(nt.k||'g');
+    return `<span class="an ${cls}" data-t="n-${lessonId}-${no}-${n}">${t}<sup>${n}</sup></span>`;
+  });
+}
+
+function renderPassage(L){
+  let html='', lastSec='';
+  L.P.forEach(p=>{
+    const S=L.SECS[p.sec];
+    if(p.sec!==lastSec){
+      html+=`<div class="sec-head" style="--c:${S.c}"><h3>${S.en}</h3><span class="pen">${S.ko}</span></div>`;
+      lastSec=p.sec;
+    }
+    html+=`<div class="card para" id="para-${L.id}-${p.no}" style="--c:${S.c}">
+      <div class="para-no"><b>${p.no}</b>Paragraph</div>
+      ${p.s.map((s,i)=>`<div class="sent"><button class="sno" aria-label="해석">${i+1}</button><div><p class="en">${markup(s.en,L.id,p.no,p.notes)}</p><p class="ko">${s.ko}</p></div></div>`).join('')}
+      ${p.notes.length?`<div class="notes"><h5>선생님 필기</h5>${p.notes.map((n,i)=>`
+        <div class="note ${n.k}" id="n-${L.id}-${p.no}-${i+1}"><span class="nnum">${i+1}</span><div><div class="nt">${n.st?'<span class="star">★</span> ':''}${n.t}</div><div class="nb">${n.b}</div></div></div>`).join('')}</div>`:''}
+      ${p.sum?`<div class="psum"><div class="lab">✎ 문단 요약 (필기)</div><div class="pen">${p.sum}</div></div>`:''}
+    </div>`;
+  });
+  $('#passage').innerHTML=html;
+}
+
+function renderVocab(L){
+  $('#oppHeadingText').textContent = L.oppHeading || '본문 속 대립 쌍';
+  $('#synset').innerHTML=L.SYN.map(s=>`<div class="set"><div class="k">${s.k}<span class="eq">=</span><span style="font-family:'Noto Sans KR';font-weight:500;font-size:14.5px">${s.eq}</span></div><div class="src">${s.src}</div></div>`).join('');
+  $('#opps').innerHTML=L.OPPS.map(o=>`<div class="opp"><span class="a">${o.a}</span><span class="x">↔</span><span>${o.b}</span><span class="s2">${o.s}</span></div>`).join('');
+
+  const FKEYS=['all',...Object.keys(L.SECS)];
+  const fLabel=k=>k==='all'?'전체':L.SECS[k].en;
+  function buildFilter(el,cb){
+    el.innerHTML=FKEYS.map((k,i)=>`<button data-k="${k}" class="${i===0?'on':''}">${fLabel(k)}</button>`).join('');
+    el.onclick=e=>{const b=e.target.closest('button');if(!b)return;
+      el.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));cb(b.dataset.k);};
+  }
+  function rv(k){
+    $('#vgrid').innerHTML=L.VOCAB.filter(v=>k==='all'||v.sec===k).map(v=>`
+     <div class="vc" style="--c:${cOf(L,v.sec)}"><div class="w">${v.w}${v.h?'<span class="tag memo">필기</span>':''}</div>
+     <div class="m">${v.m}</div>${v.syn?`<div class="syn">${v.syn}</div>`:''}</div>`).join('');
+  }
+  function rd(k){
+    let n=0;
+    $('#drills').innerHTML=L.DRILL.filter(d=>k==='all'||d.sec===k).map(d=>{n++;
+      const kk=d.k.replace(/\{(.+?)\}/g,'<span class="blank">$1</span>');
+      return `<div class="drill" style="--c:${cOf(L,d.sec)}"><span class="n">${n}</span><div><div class="e">${d.e}</div><div class="k">${kk}</div></div></div>`;}).join('');
+  }
+  buildFilter($('#vfilter'),rv); rv('all');
+  buildFilter($('#dfilter'),rd); rd('all');
+  $('#dShow').onclick=()=>document.querySelectorAll('#drills .blank').forEach(b=>b.classList.add('show'));
+  $('#dHide').onclick=()=>document.querySelectorAll('#drills .blank').forEach(b=>b.classList.remove('show'));
+}
+
+function renderGrammar(L){
+  $('#grammar').innerHTML=L.GRAM.map(g=>`
+   <div class="gcard ${g.m==='add'?'add':''}${g.hi?' hi':''}">
+    <div class="gh"><span class="gt">${g.t}</span><span class="tag ${g.m}">${g.m==='memo'?'필기':'추가'}</span></div>
+    <div class="form">${g.f}</div>
+    <div class="ex">${g.x.map(x=>`<div class="gx"><div class="e"><span class="p">${x.p}</span>${x.e}</div>${x.k?`<div class="k">${x.k}</div>`:''}</div>`).join('')}</div>
+   </div>`).join('');
+}
+
+function renderParaphrase(L){
+  $('#paraExtra').innerHTML = L.paraExtraHTML || '';
+  $('#psums').innerHTML=L.P.filter(p=>p.sum).map(p=>`<div class="psum" style="--c:${cOf(L,p.sec)};margin-bottom:10px;margin-top:0"><div class="lab">¶${p.no} ${L.SECS[p.sec].en}</div><div class="pen">${p.sum}</div></div>`).join('');
+  $('#pairs').innerHTML=L.PAIRS.map(p=>`<div class="pair"><div class="o">${p.o}</div><div class="r">${p.r}</div><div class="why"><span class="res ${p.t?'t':'f'}">${p.t?'일치':'불일치'}</span>${p.w}</div></div>`).join('');
+}
+
+function gradableA(L){ return L.QA.filter(q=>q.type==='mc'||q.type==='tf').length; }
+
+function renderScore(){
+  const L=currentLesson;
+  $('#score').innerHTML=[['A','교과서'],['B','내용 일치'],['C','어법']].map(([k,l])=>`<div class="sc">${l}<b>${L.score[k][0]}</b> / ${L.total[k]}</div>`).join('');
+}
+function optBtns(opts,grp,idx,row){
+  const LT='ABCD';
+  return `<div class="opts ${row?'row':''}" data-g="${grp}" data-i="${idx}">${opts.map((o,j)=>`<button class="opt" data-j="${j}"><span class="l">${LT[j]}</span>${o}</button>`).join('')}</div>`;
+}
+function renderPractice(L){
+  $('#partALabel').textContent = L.partALabel || 'A. 교과서 문항';
+  $('#qA').innerHTML=L.QA.map((q,i)=>{
+    let body='';
+    if(q.type==='mc') body=optBtns(q.o.map((o,j)=>['a','b','c'][j]+'. '+o),'A',i);
+    else if(q.type==='tf') body=optBtns(['F','T'],'A',i,1);
+    else body=`<button class="reveal-btn">${q.own?'참고 보기':'정답 보기'}</button><div class="ans">${q.ans}</div>`;
+    return `<div class="q"><div class="qh"><span class="qb">${q.id}</span>${q.type==='tf'?'True or False?':''}</div><div class="qt en">${q.q}</div>${body}<div class="fb"></div></div>`;
+  }).join('');
+  $('#qB').innerHTML=L.QB.map((q,i)=>`<div class="q"><div class="qh"><span class="qb">B${i+1}</span>True or False?</div><div class="qt en">${q.q}</div>${optBtns(['F','T'],'B',i,1)}<div class="fb"></div></div>`).join('');
+  $('#qC').innerHTML=L.QC.map((q,i)=>`<div class="q"><div class="qh"><span class="qb">C${i+1}</span>어법상 알맞은 것</div><div class="qt en">${q.q}</div>${optBtns(q.o,'C',i,1)}<div class="fb"></div></div>`).join('');
+  renderScore();
+}
+function answerOf(L,g,i){
+  if(g==='A'){const q=L.QA[i];return {a:q.type==='tf'?(q.a?1:0):q.a,x:q.x,tf:q.type==='tf'};}
+  if(g==='B'){const q=L.QB[i];return {a:q.a?1:0,x:q.x,tf:true};}
+  const q=L.QC[i];return {a:q.a,x:q.x};
+}
+
+/* ---- tabs / global nav ---- */
+const tabsEl = $('#tabs');
+TABS.forEach((t,i)=>{
+  const b=document.createElement('button');
+  b.className='tab'+(i===0?' on':'');
+  b.innerHTML=`<span class="dot"></span>${t}`;
+  b.onclick=()=>switchTab(i);
+  tabsEl.appendChild(b);
+});
+function switchTab(i){
+  document.querySelectorAll('.tab').forEach((b,j)=>b.classList.toggle('on',j===i));
+  document.querySelectorAll('.panel').forEach((p,j)=>p.classList.toggle('on',j===i));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* blanks (delegated, works for any lesson) */
+document.addEventListener('click',e=>{
+  const b=e.target.closest('.blank');
+  if(b) b.classList.toggle('show');
+});
+
+/* passage interactions (delegated) */
+$('#passage').addEventListener('click',e=>{
+  const sno=e.target.closest('.sno');
+  if(sno){sno.closest('.sent').classList.toggle('show');return;}
+  const an=e.target.closest('.an');
+  if(an && !document.body.classList.contains('no-notes')){
+    const n=document.getElementById(an.dataset.t);
+    if(n){
+      n.classList.remove('flash'); void n.offsetWidth; n.classList.add('flash');
+      n.scrollIntoView({behavior:'smooth',block:'nearest'});
+      setTimeout(()=>n.classList.remove('flash'),1600);
+    }
+  }
+});
+$('#tgNotes').onclick=function(){this.classList.toggle('on');document.body.classList.toggle('no-notes',!this.classList.contains('on'));};
+$('#tgKo').onclick=function(){this.classList.toggle('on');document.body.classList.toggle('ko-all',this.classList.contains('on'));};
+
+/* practice interactions (delegated) */
+document.getElementById('p5').addEventListener('click',e=>{
+  const rv=e.target.closest('.reveal-btn');
+  if(rv){rv.nextElementSibling.classList.toggle('on');return;}
+  const op=e.target.closest('.opt'); if(!op||op.disabled) return;
+  const L=currentLesson; if(!L) return;
+  const box=op.parentElement, g=box.dataset.g, i=+box.dataset.i, j=+op.dataset.j;
+  const {a,x}=answerOf(L,g,i);
+  box.querySelectorAll('.opt').forEach(b=>{b.disabled=true; const k=+b.dataset.j;
+    if(k===a) b.classList.add('ok'); else if(k===j) b.classList.add('no');});
+  const ok=j===a; L.score[g][1]++; if(ok) L.score[g][0]++;
+  const fb=box.parentElement.querySelector('.fb');
+  fb.innerHTML=`<span class="r" style="color:${ok?'var(--ok)':'var(--bad)'}">${ok?'✅ 정답':'❌ 오답'}</span>${x}`;
+  fb.classList.add('on');
+  renderScore();
+});
+$('#resetQ').onclick=()=>{
+  const L=currentLesson; if(!L) return;
+  Object.keys(L.score).forEach(k=>L.score[k]=[0,0]);
+  renderPractice(L);
+  window.scrollTo({top:0,behavior:'smooth'});
+};
+
+/* ---- lesson loader ---- */
+function loadLesson(key){
+  const L = LESSONS[key];
+  if(!L) return;
+  if(!L.score) L.score={A:[0,0],B:[0,0],C:[0,0]};
+  if(!L.total) L.total={A:gradableA(L),B:L.QB.length,C:L.QC.length};
+  currentLesson = L;
+
+  document.getElementById('unitDot').style.background = L.accent;
+  document.getElementById('unitCode').textContent = L.code;
+  document.getElementById('titleText').innerHTML = L.titleHTML;
+  document.documentElement.style.setProperty('--accent', L.accent);
+
+  document.body.classList.remove('no-notes','ko-all');
+  $('#tgNotes').classList.add('on'); $('#tgKo').classList.remove('on');
+
+  renderOverview(L);
+  renderPassage(L);
+  renderVocab(L);
+  renderGrammar(L);
+  renderParaphrase(L);
+  renderPractice(L);
+
+  document.body.classList.remove('showhome');
+  switchTab(0);
+  setTimeout(setHH,50);
+}
+</script>
+</body>
+</html>

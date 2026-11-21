@@ -1,0 +1,97 @@
+/* 시험범위 페이지 (exams.html) — site.css 토큰과 컴포넌트 위에 필요한 것만 더함 */
+
+.ex-progress { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; padding: 16px 20px; margin: 0 0 20px; }
+.ex-progress-text { display: flex; align-items: baseline; gap: 10px; }
+.ex-progress-label { font-size: 13px; color: hsl(var(--muted-foreground)); font-weight: 500; }
+.ex-progress strong { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.ex-bar { flex: 1 1 200px; height: 8px; border-radius: 999px; background: hsl(var(--muted)); overflow: hidden; }
+.ex-bar > span { display: block; height: 100%; width: 0; background: hsl(var(--success)); border-radius: inherit; transition: width .3s; }
+
+.ex-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 0 0 16px; }
+.ex-tools .subject-tabs { margin: 0; flex-wrap: wrap; overflow: visible; }
+.ex-tools .subject-tabs button {
+  display: inline-flex; align-items: center; height: 30px; padding: 0 12px; border: 0; border-radius: calc(var(--radius) - 2px);
+  background: none; font: inherit; font-size: 14px; font-weight: 500; white-space: nowrap; cursor: pointer;
+  color: hsl(var(--muted-foreground)); transition: color .15s;
+}
+.ex-tools .subject-tabs button:hover { color: hsl(var(--foreground)); }
+.ex-tools .subject-tabs button[aria-pressed="true"] { background: hsl(var(--background)); color: hsl(var(--foreground)); box-shadow: var(--shadow-sm); }
+.ex-search { flex: 1 1 220px; max-width: 320px; margin-left: auto; }
+
+.ex-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; align-items: start; }
+.ex-card {
+  background: hsl(var(--card)); color: hsl(var(--card-foreground));
+  border: 1px solid hsl(var(--border)); border-radius: calc(var(--radius) + 4px); box-shadow: var(--shadow-xs);
+  padding: 16px 18px 10px; min-width: 0;
+}
+.ex-card.is-done { border-color: hsl(var(--success) / 0.6); }
+.ex-head { display: grid; grid-template-columns: auto 1fr auto; align-items: center; column-gap: 12px; margin-bottom: 8px; }
+.ex-head .subject-mark { grid-row: 1 / span 2; width: 36px; height: 36px; font-size: 15px; }
+.ex-name { font-size: 16px; font-weight: 600; letter-spacing: -0.01em; margin: 0; }
+.ex-meta { grid-column: 2; font-size: 13px; color: hsl(var(--muted-foreground)); }
+.ex-count { grid-row: 1 / span 2; grid-column: 3; font-size: 13px; font-weight: 500; color: hsl(var(--muted-foreground)); font-variant-numeric: tabular-nums; }
+.ex-card.is-done .ex-count { color: hsl(var(--success)); }
+
+.ex-items { list-style: none; margin: 0; padding: 0; }
+.ex-items li + li { border-top: 1px solid hsl(var(--border)); }
+.ex-items label { display: flex; align-items: flex-start; gap: 10px; padding: 10px 2px; cursor: pointer; }
+.ex-items input { width: 16px; height: 16px; margin: 3px 0 0; flex: none; accent-color: hsl(var(--success)); }
+.ex-text { flex: 1; min-width: 0; font-size: 15px; line-height: 1.5; }
+.ex-src { display: inline-block; font-size: 12px; font-weight: 500; color: hsl(var(--muted-foreground)); background: hsl(var(--muted)); padding: 1px 7px; border-radius: calc(var(--radius) - 4px); margin-right: 8px; vertical-align: 1px; }
+.ex-pages { font-size: 12px; color: hsl(var(--muted-foreground)); white-space: nowrap; font-variant-numeric: tabular-nums; margin-top: 3px; }
+.ex-items li.is-checked .ex-text { color: hsl(var(--muted-foreground)); text-decoration: line-through; text-decoration-color: hsl(var(--muted-foreground) / 0.5); }
+.ex-go { display: inline-block; margin: 6px 0 4px; font-size: 13px; font-weight: 500; color: hsl(var(--muted-foreground)); text-decoration: none; }
+.ex-go:hover { color: hsl(var(--foreground)); }
+.ex-list mark { background: hsl(var(--warning) / 0.3); color: inherit; border-radius: 2px; }
+.ex-list .empty { grid-column: 1 / -1; }
+
+.ex-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; margin: 20px 0 0; font-size: 13px; color: hsl(var(--muted-foreground)); }
+
+@media (max-width: 760px) {
+  .ex-list { grid-template-columns: 1fr; }
+  .ex-search { max-width: none; margin-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .ex-bar > span { transition: none; } }
+
+/* ── 듀오링고 모드 (html[data-duo]): 두툼한 카드·버튼, 초록 진행 막대, 큰 체크 칸 ── */
+html[data-duo] .ex-progress {
+  background: #58CC02; border: 2px solid #58A700; border-radius: 18px; box-shadow: 0 4px 0 #58A700; color: #131F24;
+}
+html[data-duo] .ex-progress-label { color: #131F24; opacity: .8; font-weight: 700; }
+html[data-duo] .ex-progress strong { color: #131F24; font-weight: 800; font-size: 22px; }
+html[data-duo] .ex-bar { height: 16px; background: rgb(19 31 36 / 0.18); }
+html[data-duo] .ex-bar > span { background: #FFC800; box-shadow: inset 0 4px 0 rgb(255 255 255 / 0.35); }
+
+html[data-duo] .ex-tools .subject-tabs { background: none; padding: 0; gap: 6px; }
+html[data-duo] .ex-tools .subject-tabs button {
+  height: 34px; padding: 0 14px; font-weight: 700; border: 2px solid hsl(var(--border)); border-radius: 12px; box-shadow: 0 2px 0 hsl(var(--border));
+}
+html[data-duo] .ex-tools .subject-tabs button[aria-pressed="true"] {
+  color: hsl(var(--duo)); border-color: hsl(var(--duo)); background: hsl(var(--duo-soft)); box-shadow: 0 2px 0 hsl(var(--duo));
+}
+html[data-duo] .ex-search { height: 44px; border-width: 2px; border-radius: 14px; }
+
+html[data-duo] .ex-card { border-width: 2px; border-radius: 18px; box-shadow: 0 3px 0 hsl(var(--border)); padding: 18px 18px 12px; }
+html[data-duo] .ex-card.is-done { border-color: #FFC800; box-shadow: 0 3px 0 #CD7900; }
+html[data-duo] .ex-head .subject-mark { border-radius: 50%; box-shadow: 0 3px 0 rgb(0 0 0 / 0.25); }
+html[data-duo] .ex-name { font-weight: 800; }
+html[data-duo] .ex-count { font-weight: 800; }
+html[data-duo] .ex-card.is-done .ex-count { color: #FFC800; }
+html[data-duo] .ex-src { border-radius: 8px; font-weight: 700; }
+html[data-duo] .ex-items label { padding: 11px 4px; border-radius: 12px; }
+html[data-duo] .ex-items label:hover { background: hsl(var(--background) / 0.6); }
+html[data-duo] .ex-items input {
+  appearance: none; -webkit-appearance: none; width: 24px; height: 24px; margin: 0; border-radius: 8px; cursor: pointer;
+  border: 2px solid hsl(var(--border)); background: hsl(var(--background)); box-shadow: 0 2px 0 hsl(var(--border));
+  display: grid; place-items: center;
+}
+html[data-duo] .ex-items input::after { content: ''; width: 10px; height: 6px; border: 3px solid transparent; border-top: 0; border-right: 0; transform: translateY(-2px) rotate(-45deg); }
+html[data-duo] .ex-items input:checked { background: #58CC02; border-color: #58A700; box-shadow: 0 2px 0 #58A700; }
+html[data-duo] .ex-items input:checked::after { border-color: #fff; }
+html[data-duo] .ex-items input:indeterminate { background: #FFC800; border-color: #CD7900; box-shadow: 0 2px 0 #CD7900; }
+html[data-duo] .ex-items input:indeterminate::after { width: 10px; height: 0; border: 0; border-top: 3px solid #131F24; transform: none; }
+html[data-duo] .ex-items input:focus-visible { outline: 2px solid #1CB0F6; outline-offset: 2px; }
+html[data-duo] .ex-items .ex-text { padding-top: 1px; }
+html[data-duo] .ex-pages { margin-top: 4px; font-weight: 700; }
+html[data-duo] .ex-go { color: #1CB0F6; font-weight: 800; letter-spacing: .02em; }
+html[data-duo] .ex-go:hover { color: #1899D6; }

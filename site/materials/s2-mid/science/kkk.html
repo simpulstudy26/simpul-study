@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>통합과학2 지구과학 파트</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+ --primary:#2563eb;--primary-light:#eff6ff;
+ --green:#16a34a;--green-light:#f0fdf4;
+ --purple:#7c3aed;--purple-light:#f5f3ff;
+ --orange:#ea580c;--orange-light:#fff7ed;
+ --teal:#0d9488;--teal-light:#f0fdfa;
+ --rose:#e11d48;--rose-light:#fff1f2;
+ --gray:#475569;--gray-light:#f1f5f9;
+ --bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#0f172a;--text-sec:#475569;
+ --shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;font-size:14.5px;line-height:1.8;color:var(--text);background:var(--bg)}
+b,strong{font-weight:700}
+
+/* header */
+.page-header{position:sticky;top:0;z-index:50;background:var(--surface);border-bottom:1px solid var(--border);box-shadow:var(--shadow)}
+.header-inner{max-width:980px;margin:0 auto;padding:14px 20px 0}
+.subject-label{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--text-sec);text-transform:uppercase}
+.page-title{font-size:19px;font-weight:700;display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:2px 0 10px}
+.badge-unit{font-size:11.5px;font-weight:700;padding:2px 10px;border-radius:999px;background:var(--primary-light);color:var(--primary)}
+.badge-unit.teal{background:var(--teal-light);color:var(--teal)}
+.badge-unit.rose{background:var(--rose-light);color:var(--rose)}
+.tab-bar{display:flex;align-items:flex-end;gap:2px;overflow-x:auto;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab-group-label{font-size:10.5px;font-weight:700;color:var(--text-sec);opacity:.55;padding:0 4px 11px 10px;white-space:nowrap;user-select:none}
+.tab-group-label:first-child{padding-left:0}
+.tab-btn{background:none;border:none;border-bottom:3px solid transparent;padding:8px 10px 9px;font-family:inherit;font-size:13px;font-weight:500;color:var(--text-sec);cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{color:var(--primary);border-bottom-color:var(--primary);font-weight:700}
+.tab-num{display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;border-radius:50%;background:var(--border);font-size:10.5px;font-weight:700;color:var(--text-sec)}
+.tab-btn.active .tab-num{background:var(--primary);color:#fff}
+
+/* layout */
+.content-wrap{max-width:980px;margin:0 auto;padding:28px 20px 100px}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.unit-banner{display:inline-block;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;background:var(--primary-light);color:var(--primary);margin-bottom:18px}
+.section-title{font-size:17.5px;font-weight:700;padding-bottom:6px;border-bottom:2px solid var(--primary);margin:34px 0 14px;scroll-margin-top:130px}
+.section-title:first-of-type{margin-top:6px}
+.subsection-title{font-size:14.5px;font-weight:700;border-left:3px solid var(--primary);padding-left:9px;margin:20px 0 10px;scroll-margin-top:130px}
+.sub2-title{display:inline-block;font-size:13px;font-weight:700;background:#f1f5f9;border:1px solid var(--border);border-radius:6px;padding:1px 10px;margin:12px 0 8px}
+p{margin:6px 0}
+ul.list{padding-left:20px;margin:6px 0}
+ul.list li{margin:2px 0}
+.page-ref{font-size:11.5px;font-weight:500;color:var(--text-sec);margin-left:6px}
+
+/* boxes */
+.def-box,.green-box,.purple-box,.teal-box,.orange-box,.rose-box{border-left:4px solid var(--primary);background:var(--primary-light);border-radius:0 8px 8px 0;padding:12px 16px;margin:10px 0}
+.green-box{border-color:var(--green);background:var(--green-light)}
+.purple-box{border-color:var(--purple);background:var(--purple-light)}
+.teal-box{border-color:var(--teal);background:var(--teal-light)}
+.orange-box{border-color:var(--orange);background:var(--orange-light)}
+.rose-box{border-color:var(--rose);background:var(--rose-light)}
+.box-label{font-size:12px;font-weight:700;margin-bottom:2px;color:var(--text-sec)}
+.note,.tip,.warning{border-radius:8px;padding:10px 14px;margin:10px 0;font-size:13.5px}
+.note{background:#fefce8;border:1px solid #fde047}
+.tip{background:var(--green-light);border:1px solid #bbf7d0}
+.warning{background:var(--rose-light);border:1px solid #fecdd3}
+
+/* grids & cards */
+.factor-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:12px 0}
+.factor-grid.three{grid-template-columns:repeat(3,1fr)}
+.factor-grid.four{grid-template-columns:repeat(4,1fr)}
+.factor-card{background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--gray);border-radius:8px;padding:12px 14px;box-shadow:var(--shadow);font-size:13.5px}
+.factor-card h4{font-size:14px;margin-bottom:4px}
+.factor-card.blue{border-top-color:var(--primary)}.factor-card.blue h4{color:var(--primary)}
+.factor-card.green{border-top-color:var(--green)}.factor-card.green h4{color:var(--green)}
+.factor-card.purple{border-top-color:var(--purple)}.factor-card.purple h4{color:var(--purple)}
+.factor-card.orange{border-top-color:var(--orange)}.factor-card.orange h4{color:var(--orange)}
+.factor-card.teal{border-top-color:var(--teal)}.factor-card.teal h4{color:var(--teal)}
+.factor-card.rose{border-top-color:var(--rose)}.factor-card.rose h4{color:var(--rose)}
+.factor-card ul{padding-left:18px}
+.factor-card .sub{font-size:12.5px;color:var(--text-sec)}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;margin:10px 0}
+.cmp-table,.ex-table{width:100%;border-collapse:collapse;background:var(--surface);font-size:13px;box-shadow:var(--shadow);border-radius:8px;overflow:hidden}
+.cmp-table th,.cmp-table td,.ex-table th,.ex-table td{border:1px solid var(--border);padding:8px 10px;vertical-align:top;text-align:left}
+.cmp-table thead th{background:var(--primary);color:#fff;font-weight:700}
+.cmp-table.green-th thead th{background:var(--green)}
+.cmp-table.purple-th thead th{background:var(--purple)}
+.cmp-table.teal-th thead th{background:var(--teal)}
+.cmp-table.orange-th thead th{background:var(--orange)}
+.cmp-table.rose-th thead th{background:var(--rose)}
+.cmp-table tbody td:first-child{font-weight:700;color:var(--primary);white-space:nowrap;background:#fafcff}
+.cmp-table.green-th tbody td:first-child{color:var(--green)}
+.cmp-table.purple-th tbody td:first-child{color:var(--purple)}
+.cmp-table.teal-th tbody td:first-child{color:var(--teal)}
+.cmp-table.orange-th tbody td:first-child{color:var(--orange)}
+.cmp-table.rose-th tbody td:first-child{color:var(--rose)}
+.ex-table thead th{background:#334155;color:#fff}
+.ex-table td.c,.ex-table th.c{text-align:center}
+
+/* badges */
+.badge{display:inline-block;font-size:11.5px;font-weight:700;padding:1px 8px;border-radius:999px;margin:1px 2px;white-space:nowrap}
+.badge-blue{background:var(--primary-light);color:var(--primary)}
+.badge-green{background:var(--green-light);color:var(--green)}
+.badge-purple{background:var(--purple-light);color:var(--purple)}
+.badge-orange{background:var(--orange-light);color:var(--orange)}
+.badge-teal{background:var(--teal-light);color:var(--teal)}
+.badge-rose{background:var(--rose-light);color:var(--rose)}
+.badge-gray{background:var(--gray-light);color:var(--gray)}
+
+/* flow & stage */
+.flow-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:10px 0}
+.flow-item{background:var(--surface);border:1.5px solid var(--primary);color:var(--text);border-radius:8px;padding:6px 12px;font-size:13px;font-weight:700;box-shadow:var(--shadow)}
+.flow-item.green{border-color:var(--green)}.flow-item.purple{border-color:var(--purple)}.flow-item.teal{border-color:var(--teal)}.flow-item.orange{border-color:var(--orange)}.flow-item.rose{border-color:var(--rose)}
+.flow-item small{display:block;font-weight:500;font-size:11.5px;color:var(--text-sec)}
+.flow-arrow{color:var(--text-sec);font-weight:700}
+.stage-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+.stage-row.three{grid-template-columns:repeat(3,1fr)}
+.stage-row.five{grid-template-columns:repeat(5,1fr)}
+.stage-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:13px;position:relative;box-shadow:var(--shadow)}
+.stage-item .st-num{font-size:12px;font-weight:900;color:var(--primary)}
+.stage-item .st-name{font-weight:700;font-size:14px;margin-bottom:3px}
+.stage-item.hi{border:2px solid var(--primary);background:var(--primary-light)}
+.stage-row.green .st-num{color:var(--green)}.stage-row.green .stage-item.hi{border-color:var(--green);background:var(--green-light)}
+.stage-row.purple .st-num{color:var(--purple)}.stage-row.purple .stage-item.hi{border-color:var(--purple);background:var(--purple-light)}
+
+/* rule & pov cards */
+.rule-card{border:2px solid var(--primary);border-radius:10px;padding:12px 16px;margin:12px 0;background:var(--surface)}
+.rule-card.green{border-color:var(--green)}.rule-card.purple{border-color:var(--purple)}.rule-card.teal{border-color:var(--teal)}.rule-card.orange{border-color:var(--orange)}.rule-card.rose{border-color:var(--rose)}
+.rule-card h4{font-size:14.5px;margin-bottom:4px}
+.pov-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
+.pov-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;box-shadow:var(--shadow);font-size:13px}
+.pov-card .pv-num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--purple);color:#fff;font-size:12px;font-weight:700;margin-right:6px}
+.pov-card .pv-title{font-weight:700;font-size:14px}
+.pov-card .pv-who{font-size:12px;color:var(--purple);font-weight:700;margin:2px 0 4px}
+
+/* diagrams */
+.kit{display:flex;align-items:stretch;border:2px solid #94a3b8;border-radius:10px;overflow:hidden;margin:12px 0;background:#fff;font-size:12px;font-weight:700;text-align:center}
+.kit>div{padding:10px 6px;border-right:1px dashed #cbd5e1;display:flex;flex-direction:column;justify-content:center;gap:2px}
+.kit>div:last-child{border-right:none}
+.kit .k-sample{flex:1.2;background:#f1f5f9}
+.kit .k-ab{flex:1.2;background:#fef3c7}
+.kit .k-line{flex:.9;background:#fff}
+.kit .k-line .bar{width:6px;height:34px;background:var(--rose);margin:0 auto;border-radius:2px}
+.kit .k-end{flex:.9;background:#e2e8f0}
+.kit small{font-weight:500;color:var(--text-sec)}
+.kit-dir{font-size:12px;color:var(--green);font-weight:700;margin-top:-6px}
+.chrom{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.chrom .cbox{border:1px solid var(--border);background:#fff;border-radius:8px;padding:10px;text-align:center;font-size:12.5px}
+.chrom .cbox .ph{font-weight:900;color:var(--primary);font-size:13px}
+.chrom .pair{display:flex;justify-content:center;gap:4px;margin:6px 0}
+.chrom .c{width:9px;height:30px;border-radius:5px}
+.chrom .c.a{background:#3b82f6}.chrom .c.b{background:#f43f5e}
+.chrom .c.ab{background:linear-gradient(#3b82f6 0 55%,#f43f5e 55%)}.chrom .c.ba{background:linear-gradient(#f43f5e 0 55%,#3b82f6 55%)}
+.bubble-list{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.bubble{background:var(--purple-light);border:1px solid #ddd6fe;border-radius:18px;padding:6px 14px;font-size:13px}
+.bubble.t{background:var(--teal-light);border-color:#99f6e4}
+
+/* map */
+.map-root{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin:14px 0;overflow:hidden;box-shadow:var(--shadow)}
+.map-root-head{width:100%;border:none;text-align:left;font-family:inherit;font-size:14.5px;font-weight:700;color:#fff;padding:10px 16px;cursor:pointer;background:var(--primary)}
+.map-root.green .map-root-head{background:var(--green)}
+.map-root.purple .map-root-head{background:var(--purple)}
+.map-root.teal .map-root-head{background:var(--teal)}
+.map-root.orange .map-root-head{background:var(--orange)}
+.map-root.rose .map-root-head{background:var(--rose)}
+.map-root.gray .map-root-head{background:var(--gray)}
+.map-root-head:hover{filter:brightness(1.08)}
+.map-children{display:flex;flex-wrap:wrap;gap:8px;padding:12px 14px}
+.map-node{border:1px solid var(--border);background:#f8fafc;border-radius:8px;padding:6px 12px;font-family:inherit;font-size:13px;cursor:pointer;color:var(--text)}
+.map-node:hover{background:var(--primary-light);border-color:var(--primary)}
+.map-group{display:flex;flex-direction:column;gap:4px;border:1px solid var(--border);border-radius:8px;padding:6px 10px;background:#f8fafc}
+.map-group>.map-node{border:none;background:none;padding:0;font-weight:700;text-align:left}
+.map-subrow{display:flex;flex-wrap:wrap;gap:4px;border-left:2px solid #cbd5e1;padding-left:8px;margin-left:4px}
+.map-subchip{border:1px solid var(--border);background:#fff;border-radius:999px;padding:1px 9px;font-family:inherit;font-size:11.5px;cursor:pointer;color:var(--text-sec)}
+.map-subchip:hover{border-color:var(--primary);color:var(--primary)}
+
+.totop{position:fixed;right:18px;bottom:18px;width:42px;height:42px;border-radius:50%;border:none;background:var(--primary);color:#fff;font-size:18px;cursor:pointer;box-shadow:0 4px 10px rgba(37,99,235,.35);z-index:60}
+
+@media (max-width:680px){
+ .factor-grid,.factor-grid.three,.factor-grid.four,.pov-grid,.stage-row,.stage-row.three,.stage-row.five,.chrom{grid-template-columns:1fr}
+ .cmp-table,.ex-table{font-size:12px}
+ .content-wrap{padding:20px 14px 100px}
+ .kit{flex-direction:column}
+ .kit>div{border-right:none;border-bottom:1px dashed #cbd5e1}
+}
+
+/* ---- additions for restructured version ---- */
+.lead{font-size:13.5px;color:var(--text-sec);background:var(--surface);border:1px dashed var(--border);border-radius:8px;padding:8px 14px;margin:0 0 16px}
+.lead b{color:var(--text)}
+.key-q{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin:10px 0;box-shadow:var(--shadow);font-size:13.5px}
+.key-q .kq-tag{flex:none;font-size:11px;font-weight:900;color:#fff;background:var(--primary);border-radius:6px;padding:2px 8px;margin-top:2px}
+.nest{margin:14px 0;font-size:13px}
+.nest .lv{border:2px solid var(--teal);border-radius:12px;padding:10px 14px 12px;background:#fff}
+.nest .lv .lv{margin-top:8px;border-color:#5eead4;background:var(--teal-light)}
+.nest .lv .lv .lv{border-color:#99f6e4;background:#fff}
+.nest .lv-name{font-weight:900;color:var(--teal)}
+.nest .lv-sub{color:var(--text-sec);font-size:12px}
+.cycle{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:6px;align-items:center;margin:12px 0}
+.cycle .cy{background:var(--teal-light);border:1.5px solid var(--teal);border-radius:10px;padding:8px 10px;text-align:center;font-weight:700;font-size:13px}
+.cycle .ar{font-weight:900;color:var(--teal);text-align:center}
+.cycle-desc{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.scale{display:flex;align-items:center;gap:8px;font-size:12px}
+.scale .track{flex:1;height:8px;border-radius:4px;background:#e2e8f0;overflow:hidden;min-width:60px}
+.scale .fill{height:100%;background:var(--rose);border-radius:4px}
+.link-btn{display:inline-flex;align-items:center;gap:6px;background:var(--rose);color:#fff !important;text-decoration:none;font-weight:700;font-size:13px;border-radius:8px;padding:7px 14px;margin:6px 0;box-shadow:0 2px 6px rgba(225,29,72,.25)}
+.link-btn:hover{filter:brightness(1.08)}
+.timeline{position:relative;margin:14px 0 14px 8px;padding-left:18px;border-left:3px solid #fdba74}
+.timeline .tl{position:relative;margin:0 0 10px;font-size:13px}
+.timeline .tl::before{content:'';position:absolute;left:-26px;top:5px;width:13px;height:13px;border-radius:50%;background:#fff;border:3px solid var(--orange)}
+.timeline .tl .yr{font-weight:900;color:var(--orange);margin-right:6px}
+.vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.vs-col{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);font-size:13px}
+.vs-col h4{margin:0;padding:8px 12px;color:#fff;font-size:13.5px}
+.vs-col ol{padding:10px 12px 10px 30px}
+.vs-col ol li{margin:3px 0}
+.check-list{list-style:none;padding:0;margin:8px 0}
+.check-list li{padding:6px 10px 6px 34px;position:relative;border-bottom:1px dashed var(--border);font-size:13.5px}
+.check-list li:last-child{border-bottom:none}
+.check-list li .mk{position:absolute;left:6px;top:6px;width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff}
+.mk.o{background:var(--green)}.mk.x{background:var(--rose)}
+.well-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0;text-align:center;font-size:12.5px}
+.well-grid .wg-h{font-weight:700;border-radius:6px;padding:3px 0}
+.well-grid .wg-h.ctrl{background:#fef3c7;color:#92400e}
+.well-grid .wg-h.exp{background:#fce7f3;color:#9d174d}
+@media (max-width:680px){
+ .cycle{grid-template-columns:1fr}.cycle .ar{transform:rotate(90deg)}
+ .cycle-desc,.vs-grid,.well-grid{grid-template-columns:1fr}
+}
+.sd-case{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:12px 0;box-shadow:var(--shadow)}
+.sd-head{font-weight:700;color:var(--teal);font-size:14px;margin-bottom:8px}
+.sd-sub{font-weight:500;color:var(--text-sec);font-size:12px}
+.sd-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sd-box{flex:1;min-width:200px;border:2px solid var(--border);border-radius:10px;padding:10px;text-align:center}
+.sd-box.win{border-color:var(--teal);background:var(--teal-light)}
+.sd-lab{font-weight:900;margin-bottom:6px}
+.forest{display:grid;grid-template-columns:repeat(6,26px);gap:5px;justify-content:center}
+.forest .tr{width:26px;height:26px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;color:#fff;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+.sd-cnt{font-size:12px;color:var(--text-sec);margin-top:6px}
+.sd-vs{font-size:22px;font-weight:900;color:var(--teal)}
+.sd-res{margin-top:8px;font-size:13.5px}
+.era-bar{display:flex;height:46px;border-radius:10px;overflow:hidden;margin:12px 0 4px;box-shadow:var(--shadow)}
+.eb{display:flex;align-items:center;justify-content:center;flex-direction:column;color:#fff;font-size:12px;font-weight:700;line-height:1.2;min-width:0}
+.eb b{font-size:13px}
+.eb.pc{background:#7c3aed}.eb.pa{background:#16a34a}.eb.me{background:#ea580c}.eb.ce{background:#0d9488}
+.era-axis{display:flex;justify-content:space-between;font-size:11.5px;color:var(--text-sec);margin-bottom:10px}
+.era-t td{font-size:12.5px}
+.ozone{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;font-size:18px;font-weight:700;margin:8px 0;font-family:'Times New Roman',serif}
+.ozone .oz{display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:44px;border-radius:50%;background:#dbeafe;color:#1e3a8a}
+.ozone .oz.o3{background:#7c3aed;color:#fff}
+.ozone .ar{font-size:12px;color:var(--text-sec);font-family:'Noto Sans KR',sans-serif}
+.ext-graph,.circ-fig{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px;margin:12px 0;box-shadow:var(--shadow)}
+.ext-graph svg,.circ-fig svg{width:100%;height:auto;display:block}
+.gnote{font-size:11.5px;color:var(--text-sec);text-align:center;margin-top:4px}
+.rad-fig{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;background:#0f172a;color:#e2e8f0;border-radius:12px;padding:14px;margin:12px 0;font-size:12.5px}
+.rf-col{text-align:center}
+.rf-n{font-size:24px;font-weight:900;margin-bottom:2px}
+.rf-n.in,.rf-n.abs{color:#facc15}.rf-n.ref{color:#fde68a}.rf-n.out{color:#fb923c}
+.rf-arrow{font-size:22px;color:#94a3b8}
+.calc-box{background:#0f172a;color:#e2e8f0;border-radius:10px;padding:12px 16px;margin:10px 0;font-size:14px;line-height:1.9}
+.calc-box .res{color:#fde68a}.calc-box b{color:#fff}
+.pac{display:grid;grid-template-columns:1fr;gap:14px;margin:12px 0}
+.pac-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.pac-h{padding:8px 14px;color:#fff;font-weight:700}
+.pac-h.normal{background:var(--primary)}.pac-h.nino{background:var(--rose)}
+.pac-row{display:grid;grid-template-columns:1fr 2fr 1fr;gap:8px;padding:12px;align-items:stretch}
+.land{background:#fef3c7;border:2px solid #d97706;border-radius:10px;padding:8px;text-align:center;font-size:13px}
+.wx{margin-top:6px;font-size:12.5px;background:#fff;border-radius:6px;padding:4px}
+.sea{background:linear-gradient(#bae6fd,#0ea5e9);border-radius:10px;padding:8px;display:flex;flex-direction:column;justify-content:space-between;text-align:center;font-size:12.5px;font-weight:700}
+.wind{color:#0f172a}.wind.weak{opacity:.6}
+.water .warm{background:#f97316;color:#fff;border-radius:999px;padding:2px 10px;display:inline-block}
+.water .warm.big{padding:4px 16px}
+.up{color:#1e3a8a;text-align:right}.up.faint{opacity:.55}
+.pac-sum{padding:0 14px 10px;font-size:13px}
+@media (max-width:680px){.pac-row{grid-template-columns:1fr}}
+.ol,.factor-card ol,.factor-card ul{padding-left:20px}
+.era-card{background:var(--surface);border:1px solid var(--border);border-top:5px solid #7c3aed;border-radius:12px;padding:12px 14px;margin:10px 0 18px;box-shadow:var(--shadow)}
+.era-card.pa{border-top-color:#16a34a}.era-card.me{border-top-color:#ea580c}.era-card.ce{border-top-color:#0d9488}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;margin-bottom:10px}
+.tile{background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:8px 10px;font-size:13px;line-height:1.6}
+.tl-h{font-weight:700;font-size:12px;color:var(--text-sec);margin-bottom:3px}
+.era-card.pc .tile b{color:#7c3aed}.era-card.pa .tile b{color:#16a34a}.era-card.me .tile b{color:#ea580c}.era-card.ce .tile b{color:#0d9488}
+.chains{display:flex;flex-direction:column;gap:6px}
+.chain{display:flex;align-items:center;flex-wrap:wrap;gap:6px;font-size:13px;color:#94a3b8;font-weight:700}
+.chain .ck{flex:none;min-width:84px;text-align:center;font-size:11.5px;font-weight:900;color:#fff;background:#475569;border-radius:6px;padding:3px 8px}
+.chain.end .ck{background:var(--rose)}
+.chain .cs{background:#fff;border:1px solid var(--border);border-radius:8px;padding:3px 10px;color:var(--text);font-weight:500}
+.chain .cs small{display:block;font-size:11px;color:var(--text-sec)}
+.rb-flow{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:12px 0;box-shadow:var(--shadow)}
+.rb-t{font-weight:700;margin-bottom:6px}
+.rb-bars{display:flex;border-radius:8px;overflow:hidden;height:40px}
+.rb{display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:700;color:#fff;text-align:center;line-height:1.2;padding:0 2px}
+.rb.ref{background:#94a3b8}.rb.ref2{background:#cbd5e1;color:#0f172a}.rb.atm{background:#0ea5e9}.rb.sfc{background:#16a34a}
+.rb-note{font-size:12.5px;color:var(--text-sec);margin-top:6px}
+.bal-grid{display:grid;grid-template-columns:1fr;gap:12px;margin:12px 0}
+.bal{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.bal-h{padding:8px 14px;font-weight:700;color:#fff}
+.bal-h.sfc{background:#16a34a}.bal-h.atm{background:#0ea5e9}.bal-h.all{background:var(--orange)}
+.bal-eq{display:flex;align-items:stretch;gap:10px;padding:12px;flex-wrap:wrap}
+.side{flex:1;min-width:220px;border-radius:10px;padding:8px 10px;display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-weight:700;color:var(--text-sec)}
+.side.in{background:var(--orange-light)}.side.out{background:var(--primary-light)}
+.side .lab{width:100%;font-size:11.5px;font-weight:900;color:var(--text-sec)}
+.term{display:inline-flex;flex-direction:column;align-items:center;background:#fff;border:1px solid var(--border);border-radius:8px;padding:4px 10px;font-size:18px;font-weight:900;color:var(--text)}
+.term small{font-size:10.5px;font-weight:500;color:var(--text-sec);text-align:center;line-height:1.25}
+.side .tot{width:100%;text-align:right;font-size:15px;font-weight:900;color:var(--text)}
+.eqs{align-self:center;font-size:26px;font-weight:900;color:var(--orange)}
+.layer-fig{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px;margin:12px 0;box-shadow:var(--shadow)}
+.layer-svg{width:100%;height:auto;display:block;border-radius:8px}
+
+/* ================= QUIZ ================= */
+.quiz-section{margin-top:44px;border-top:3px dashed var(--border);padding-top:26px}
+.quiz-header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.quiz-title{font-size:17px;font-weight:700}
+.scoreboard{display:flex;flex-wrap:wrap;gap:6px}
+.score-chip{font-size:11.5px;font-weight:700;border-radius:999px;padding:3px 10px;border:1px solid var(--border);background:var(--surface)}
+.score-chip.ox{color:#2563eb;border-color:#bfdbfe;background:#eff6ff}
+.score-chip.mc{color:#16a34a;border-color:#bbf7d0;background:#f0fdf4}
+.score-chip.hard{color:#7c3aed;border-color:#ddd6fe;background:#f5f3ff}
+.quiz-type-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.qtype-btn{display:flex;align-items:center;gap:6px;border:1.5px solid var(--border);background:var(--surface);border-radius:10px;padding:7px 14px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;color:var(--text-sec)}
+.qtype-btn:hover{border-color:#94a3b8}
+.qtype-btn.active.ox{border-color:#2563eb;color:#2563eb;background:#eff6ff}
+.qtype-btn.active.mc{border-color:#16a34a;color:#16a34a;background:#f0fdf4}
+.qtype-btn.active.hard{border-color:#7c3aed;color:#7c3aed;background:#f5f3ff}
+.qtype-count{font-size:11px;font-weight:700;background:var(--gray-light);color:var(--text-sec);border-radius:999px;padding:1px 7px}
+.q-progress-wrap{display:flex;align-items:center;gap:10px;margin-bottom:14px;font-size:12px;color:var(--text-sec)}
+.q-progress-bar{flex:1;height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden}
+.q-progress-fill{height:100%;border-radius:4px;transition:width .3s}
+.q-card{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;box-shadow:var(--shadow)}
+.q-card.answered-correct{border-color:#86efac}
+.q-card.answered-wrong{border-color:#fda4af}
+.q-meta{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.q-num{font-size:12px;font-weight:900;color:var(--text-sec)}
+.q-difficulty{font-size:10.5px;font-weight:700;border-radius:999px;padding:1px 8px}
+.diff-basic{background:#eff6ff;color:#2563eb}
+.diff-mid{background:#f0fdf4;color:#16a34a}
+.diff-hard{background:#f5f3ff;color:#7c3aed}
+.q-text{font-weight:500;font-size:14px;margin-bottom:10px}
+.q-box{border:1px solid #cbd5e1;border-radius:8px;padding:8px 12px;margin:0 0 10px;background:#f8fafc;font-size:13.5px;position:relative}
+.q-box::before{content:'보기';position:absolute;top:-9px;left:12px;background:#f8fafc;padding:0 6px;font-size:11px;font-weight:700;color:var(--text-sec)}
+.q-box div{margin:3px 0}
+.ox-row{display:flex;gap:10px}
+.ox-btn{flex:1;max-width:160px;border:2px solid var(--border);background:#fff;border-radius:10px;padding:8px 0;font-size:20px;cursor:pointer;font-family:inherit}
+.ox-btn:hover:not(:disabled){border-color:#94a3b8}
+.ox-btn:disabled{cursor:default}
+.ox-btn.correct-picked{border-color:var(--green);background:var(--green-light)}
+.ox-btn.wrong-picked{border-color:var(--rose);background:var(--rose-light)}
+.ox-btn.correct-reveal{border-color:var(--green);border-style:dashed}
+.mc-options{display:flex;flex-direction:column;gap:6px}
+.mc-opt{display:flex;align-items:flex-start;gap:10px;text-align:left;border:1.5px solid var(--border);background:#fff;border-radius:8px;padding:8px 12px;font-family:inherit;font-size:13.5px;cursor:pointer;color:var(--text)}
+.mc-opt:hover:not(:disabled){border-color:#94a3b8;background:#f8fafc}
+.mc-opt:disabled{cursor:default}
+.mc-opt.correct{border-color:var(--green);background:var(--green-light)}
+.mc-opt.wrong{border-color:var(--rose);background:var(--rose-light)}
+.mc-opt-letter{flex:none;width:22px;height:22px;border-radius:50%;background:var(--gray-light);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--text-sec)}
+.mc-opt.correct .mc-opt-letter{background:var(--green);color:#fff}
+.mc-opt.wrong .mc-opt-letter{background:var(--rose);color:#fff}
+.q-feedback{margin-top:10px;border-radius:8px;padding:8px 12px;font-size:13px}
+.q-feedback.correct{background:var(--green-light);border:1px solid #bbf7d0}
+.q-feedback.wrong{background:var(--rose-light);border:1px solid #fecdd3}
+.quiz-result{background:var(--surface);border:2px solid var(--border);border-radius:14px;padding:18px;text-align:center;box-shadow:var(--shadow)}
+.quiz-result .big{font-size:30px;font-weight:900}
+.quiz-result .msg{color:var(--text-sec);margin:4px 0 12px}
+.mini-bar-wrap{max-width:420px;margin:0 auto 12px;text-align:left}
+.mini-bar-row{display:flex;align-items:center;gap:8px;font-size:12px;margin:5px 0}
+.mini-bar-label{width:60px;font-weight:700}
+.mini-bar-track{flex:1;height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden}
+.mini-bar-fill{height:100%;border-radius:4px}
+.mini-bar-val{width:52px;text-align:right;color:var(--text-sec)}
+.reset-btn{border:none;background:var(--primary);color:#fff;font-family:inherit;font-weight:700;font-size:13px;border-radius:8px;padding:8px 18px;cursor:pointer}
+.reset-btn.sm{background:#fff;color:var(--text-sec);border:1px solid var(--border);padding:4px 12px;font-size:12px}
+.q-fig{margin:4px 0 12px;overflow-x:auto}.q-fig svg{width:100%;max-width:640px;height:auto;display:block;margin:0 auto;border-radius:8px}
+[id^="a-"],[id^="quiz-"]{scroll-margin-top:130px}
+</style>
+</head>
+<body>
+<header class="page-header">
+ <div class="header-inner">
+  <div class="subject-label">통합과학2 · 지구과학</div>
+  <div class="page-title">통합과학2 지구과학 파트
+   <span class="badge-unit">Ⅰ. 변화와 다양성</span>
+   <span class="badge-unit teal">Ⅱ. 환경과 에너지</span>
+  </div>
+  <nav class="tab-bar">
+   <span class="tab-group-label">지질 시대</span>
+   <button class="tab-btn active" onclick="switchTab(0)"><span class="tab-num">1</span>화석과 지질 시대 구분</button>
+   <button class="tab-btn" onclick="switchTab(1)"><span class="tab-num">2</span>시대별 환경과 생물</button>
+   <button class="tab-btn" onclick="switchTab(2)"><span class="tab-num">3</span>대멸종</button>
+   <span class="tab-group-label">기후 변화</span>
+   <button class="tab-btn" onclick="switchTab(3)"><span class="tab-num">4</span>복사 평형과 온실 효과</button>
+   <button class="tab-btn" onclick="switchTab(4)"><span class="tab-num">5</span>대기 대순환과 사막화</button>
+   <button class="tab-btn" onclick="switchTab(5)"><span class="tab-num">6</span>엘니뇨</button>
+   <button class="tab-btn" onclick="switchTab(6)"><span class="tab-num">7</span>기후 변화 대응</button>
+   <span class="tab-group-label">지도</span>
+   <button class="tab-btn" onclick="switchTab(7)"><span class="tab-num">8</span>개념 한눈에 보기</button>
+  </nav>
+ </div>
+</header>
+
+<main class="content-wrap">
+
+<!-- ===================== TAB 0 ===================== -->
+<section class="tab-panel active" id="panel-0">
+ <div class="unit-banner">📌 01. 지질 시대의 환경과 생물의 변화</div>
+ <div class="lead">🧭 <b>흐름</b> — 화석이란? → 화석으로 과거 환경 추론 → 지질 시대의 뜻 → 구분 기준 → 네 시대와 상대적 길이</div>
+
+ <h2 class="section-title" id="a-fossil">🦴 화석</h2>
+ <div class="def-box">
+  <div class="box-label">화석</div>
+  <b>과거에 살았던 생물</b>의 뼈나 이빨, 표피 등의 <b>유해</b>나 기어다닌 <b>흔적</b>, 이빨 자국 등이 <b>지층에 남아 있는 것</b>
+ </div>
+ <div class="factor-grid">
+  <div class="factor-card blue"><h4>유해</h4>뼈, 이빨, 표피 등 생물의 몸</div>
+  <div class="factor-card blue"><h4>흔적</h4>기어다닌 흔적, 이빨 자국 등</div>
+ </div>
+ <div class="warning">⚠️ 화석은 '뼈가 남은 것'만이 아니다. 化石 = 돌(石)이 된(化) 것 — 흔적도 화석이다.</div>
+ <div class="note">💡 코리아케라톱스 화성엔시스, 코리아노사우루스 보성엔시스 — 우리나라 화성과 보성에서 최초로 화석이 발견되어 그곳의 지명을 따 이름이 붙은 공룡</div>
+
+ <h2 class="section-title" id="a-taebaek">🔍 해 보기: 화석으로 과거 환경 추론하기</h2>
+ <p>태백 구문소 지역에서는 <b>삼엽충</b> 화석을 비롯하여 현재의 조개와 비슷한 다양한 바다 생물의 화석이 발견된다.</p>
+ <div class="flow-row">
+  <span class="flow-item">삼엽충 화석 발견<small>바다 밑바닥을 기어다닌 해양 생물</small></span><span class="flow-arrow">→</span>
+  <span class="flow-item">그 지층은 <b>바다 밑바닥</b>에서 퇴적<small>과거 태백 = 바다</small></span><span class="flow-arrow">→</span>
+  <span class="flow-item">현재 태백 = <b>산악 지대</b><small>바다 → 산악으로 환경 변화</small></span>
+ </div>
+ <div class="tip">✅ 화석 속 생물이 살던 환경을 알면, 그 지층이 쌓일 당시의 환경을 추론할 수 있다. 삼엽충은 멸종하였다(이 종만 멸종, 바다 생물 전체가 사라진 것은 아님).</div>
+
+ <h2 class="section-title" id="a-era">🕰️ 지질 시대와 구분 기준</h2>
+ <div class="def-box">
+  <div class="box-label">지질 시대</div>
+  <b>약 46억 년 전</b> 지구가 생긴 뒤 현재까지 지구의 역사
+ </div>
+ <div class="flow-row">
+  <span class="flow-item">지각 변동, 대규모 화산 분출, 소행성 충돌 등 <b>환경 변화</b></span><span class="flow-arrow">→</span>
+  <span class="flow-item">살아가는 <b>생물종도 달라짐</b></span><span class="flow-arrow">→</span>
+  <span class="flow-item">화석의 종류와 수가 특정 시기에 <b>급격히 변함</b></span><span class="flow-arrow">→</span>
+  <span class="flow-item">이 <b>환경의 변화</b>를 기준으로 시대 구분</span>
+ </div>
+ <div class="key-q"><span class="kq-tag">기준</span><div>지질 시대는 화석에 드러난 지구 <b>환경의 변화(생물의 급격한 변화)</b>를 기준으로 구분한다.</div></div>
+
+ <h3 class="subsection-title" id="a-length">네 시대와 상대적 길이</h3>
+ <div class="era-bar">
+  <div class="eb pc" style="flex:88.3">선캄브리아시대<b>88.3 %</b></div>
+  <div class="eb pa" style="flex:6.3"><span>고</span></div>
+  <div class="eb me" style="flex:4.0"><span>중</span></div>
+  <div class="eb ce" style="flex:1.4"><span></span></div>
+ </div>
+ <div class="era-axis"><span>46억 년 전 (지구 탄생)</span><span>현재 →</span></div>
+ <div class="tbl-wrap"><table class="cmp-table">
+  <thead><tr><th>시대</th><th>시작</th><th>비율</th><th>화석</th><th>대표 화석</th></tr></thead>
+  <tbody>
+   <tr><td>선캄브리아시대</td><td>46억 년 전</td><td>88.3 %</td><td>거의 발견되지 않음</td><td>스트로마톨라이트, 에디아카라 생물군</td></tr>
+   <tr><td>고생대</td><td>5억 4천만 년 전</td><td>6.3 %</td><td rowspan="3">많이 발견됨<br><span style="font-size:12px;color:var(--text-sec)">생물의 급격한 변화를 기준으로 구분</span></td><td>삼엽충, 완족류(두 장의 껍데기를 가진 바다 생물)</td></tr>
+   <tr><td>중생대</td><td>2억 5천만 년 전</td><td>4.0 %</td><td>암모나이트, 공룡</td></tr>
+   <tr><td>신생대</td><td>6천 6백만 년 전</td><td>1.4 %</td><td>화폐석, 매머드, 원시 포유류</td></tr>
+  </tbody>
+ </table></div>
+ <div class="note">💡 현재 인류는 신생대에 있으며, 신생대는 전체 지질 시대의 약 1.4 %로 상대적으로 짧다. 선캄브리아시대가 지질 시대의 대부분을 차지한다.</div>
+
+ <div class="quiz-section" id="quiz-0"></div>
+</section>
+
+<!-- ===================== TAB 1 ===================== -->
+<section class="tab-panel" id="panel-1">
+ <div class="unit-banner">📌 01. 지질 시대의 환경과 생물의 변화</div>
+ <div class="lead">🧭 <b>흐름</b> — 네 시대를 같은 기준(환경 · 바다 생물 · 육지 생물 · 식물 · 말기)으로 비교 → 시대별 핵심 사건</div>
+
+ <h2 class="section-title" id="a-compare">📊 네 시대 한눈에 비교</h2>
+ <div class="tbl-wrap"><table class="cmp-table era-t">
+  <thead><tr><th>구분</th><th>선캄브리아시대</th><th>고생대</th><th>중생대</th><th>신생대</th></tr></thead>
+  <tbody>
+   <tr><td>환경</td><td>원시 바다 형성, 산소 희박, <b>오존층 없음</b></td><td>산소 증가 → <b>오존층 형성</b></td><td><b>전 기간 온난</b></td><td>대체로 온난, 말기에 <b>빙하기·간빙기 반복</b></td></tr>
+   <tr><td>대륙</td><td>—</td><td>말기에 대륙이 합쳐짐 → <b>판게아</b></td><td>판게아 분리 시작</td><td><b>현재와 같은 대륙 분포</b></td></tr>
+   <tr><td>바다 생물</td><td>최초의 단세포생물, 남세균, 에디아카라 생물군</td><td><b>삼엽충, 어류</b></td><td><b>암모나이트</b></td><td><b>화폐석</b></td></tr>
+   <tr><td>육지 동물</td><td>없음 (자외선)</td><td><b>양서류, 곤충</b></td><td><b>파충류(공룡)</b></td><td><b>포유류</b>, 조류, 인류의 조상</td></tr>
+   <tr><td>식물</td><td>—</td><td><b>양치식물</b></td><td><b>겉씨식물</b></td><td><b>속씨식물</b></td></tr>
+   <tr><td>말기</td><td>—</td><td>생물종 수 크게 감소 (대멸종)</td><td>공룡·암모나이트 멸종 (대멸종)</td><td>—</td></tr>
+  </tbody>
+ </table></div>
+ <div class="tip">✅ <b>식물 번성 시기</b> ★ — <b>양</b>치(고) → <b>겉</b>씨(중) → <b>속</b>씨(신) : "양·겉·속 / 고·중·신"</div>
+
+ <h2 class="section-title" id="a-precam">🌋 선캄브리아시대 <span class="page-ref">약 88.3 %</span></h2>
+ <div class="era-card pc">
+  <div class="tiles">
+   <div class="tile"><div class="tl-h">🌍 환경</div>원시 지구가 식으며 응결된 수증기가 비가 되어 <b>바다</b> 형성<br>대기에 산소 매우 희박, <b>오존층 없음</b></div>
+   <div class="tile"><div class="tl-h">🌊 생물</div><b>최초의 단세포생물</b> (바다에서 출현)<br><b>남세균</b> (광합성)<br>후기: <b>에디아카라 생물군</b> (복잡한 다세포 생물)</div>
+   <div class="tile"><div class="tl-h">🪨 화석</div>거의 발견되지 않음<br><b>스트로마톨라이트</b>, 에디아카라 생물군 화석 정도</div>
+  </div>
+  <div class="chains">
+   <div class="chain"><span class="ck">왜 바다에만?</span><span class="cs">오존층 없음</span>→<span class="cs">강한 자외선</span>→<span class="cs">자외선을 피해 <b>바다에 서식</b></span></div>
+   <div class="chain"><span class="ck">산소의 시작</span><span class="cs">남세균의 광합성</span>→<span class="cs">대기에 <b>산소가 쌓이기 시작</b></span></div>
+   <div class="chain"><span class="ck">화석이 드문 까닭</span><span class="cs">단단한 껍데기 없음<small>해파리처럼 떠다니거나 밑바닥에 붙어 삶</small></span>→<span class="cs">화석으로 남기 어려움</span></div>
+   <div class="chain"><span class="ck">스트로마톨라이트</span><span class="cs">남세균이 분비한 끈끈한 물질</span>→<span class="cs">퇴적물이 겹겹이 쌓임</span></div>
+  </div>
+ </div>
+
+ <h2 class="section-title" id="a-paleo">🐟 고생대 <span class="page-ref">5억 4천만 년 전 ~ · 6.3 %</span></h2>
+ <div class="era-card pa">
+  <div class="tiles">
+   <div class="tile"><div class="tl-h">🌊 바다</div><b>삼엽충, 어류</b> 번성</div>
+   <div class="tile"><div class="tl-h">🦎 육지 동물</div><b>양서류</b> (물·육지 양쪽에 서식), <b>곤충</b></div>
+   <div class="tile"><div class="tl-h">🌿 식물</div><b>양치식물</b> 거대 군락 (수십 m, 습지 숲)</div>
+   <div class="tile"><div class="tl-h">🌍 대륙</div>말기: 대륙이 합쳐져 <b>판게아</b></div>
+  </div>
+  <div class="chains">
+   <div class="chain"><span class="ck">시작</span><span class="cs">껍데기·뼈 같은 단단한 부분 출현</span>→<span class="cs">포식자로부터 보호</span>→<span class="cs">생물의 종류와 수 <b>폭발적 증가</b></span></div>
+   <div class="chain"><span class="ck">육지 진출</span><span class="cs">산소 증가</span>→<span class="cs"><b>오존층</b> 생성</span>→<span class="cs">자외선 차단</span>→<span class="cs">생물의 <b>육지 진출</b></span></div>
+   <div class="chain"><span class="ck">거대 생물</span><span class="cs">후기 산소 농도 약 35 %<small>현재 약 21 %</small></span>→<span class="cs">몸집이 큰 곤충과 양서류 번성</span></div>
+   <div class="chain"><span class="ck">석탄층</span><span class="cs">양치식물의 거대한 숲</span>→<span class="cs">현재의 <b>석탄층</b></span></div>
+   <div class="chain end"><span class="ck">말기</span><span class="cs"><b>판게아</b> 형성</span>→<span class="cs">얕은 바다 면적 감소, 기후 급변</span>→<span class="cs">생물종 수 <b>크게 감소</b></span></div>
+  </div>
+ </div>
+ <div class="rule-card" id="a-ozone" style="border-color:var(--green)">
+  <h4>오존층은 어떻게 생길까?</h4>
+  <div class="ozone">
+   <span class="oz">O<sub>2</sub></span><span class="ar">자외선 →</span><span class="oz">O</span>+<span class="oz">O</span>
+   <span class="ar">각각 O<sub>2</sub>와 결합 →</span><span class="oz o3">O<sub>3</sub></span><span class="oz o3">O<sub>3</sub></span>
+  </div>
+  <p>산소 분자(O<sub>2</sub>)가 자외선을 받아 산소 원자(O) 2개로 나뉘고, 각 산소 원자가 다른 산소 분자와 결합하여 오존(O<sub>3</sub>)이 된다. → 광합성으로 산소가 쌓여야 오존층이 생길 수 있다.</p>
+ </div>
+
+ <h2 class="section-title" id="a-meso">🦖 중생대 <span class="page-ref">2억 5천만 년 전 ~ · 4.0 %</span></h2>
+ <div class="era-card me">
+  <div class="tiles">
+   <div class="tile"><div class="tl-h">🌊 바다</div><b>암모나이트</b></div>
+   <div class="tile"><div class="tl-h">🦖 육지 동물</div>대형 <b>파충류인 공룡</b><br><small>파충류는 육지·바다 등 다양한 환경에서 번성</small></div>
+   <div class="tile"><div class="tl-h">🌲 식물</div>은행류, 소철류 같은 <b>겉씨식물</b></div>
+   <div class="tile"><div class="tl-h">🌍 대륙</div>초부터 <b>판게아 분리</b> 시작</div>
+  </div>
+  <div class="chains">
+   <div class="chain"><span class="ck">기후</span><span class="cs">활발한 화산 활동</span>→<span class="cs">대기 중 CO<sub>2</sub> 증가</span>→<span class="cs">온실 효과 <small>4탭</small></span>→<span class="cs"><b>전 기간 온난</b></span></div>
+   <div class="chain"><span class="ck">번성</span><span class="cs">고생대 말 대멸종에서 살아남은 생물</span>→<span class="cs">새로운 환경에 적응해 번성, 새로운 생물종 출현</span></div>
+   <div class="chain end"><span class="ck">말기</span><span class="cs">급격한 지구 환경 변화</span>→<span class="cs"><b>공룡, 암모나이트</b> 등 많은 생물종 멸종</span></div>
+  </div>
+ </div>
+
+ <h2 class="section-title" id="a-ceno">🦣 신생대 <span class="page-ref">6천 6백만 년 전 ~ · 1.4 %</span></h2>
+ <div class="era-card ce">
+  <div class="tiles">
+   <div class="tile"><div class="tl-h">🌊 바다</div><b>화폐석</b> ★</div>
+   <div class="tile"><div class="tl-h">🦣 육지 동물</div><b>포유류</b> (매머드 등), <b>조류</b><br>후기: <b>인류의 조상</b></div>
+   <div class="tile"><div class="tl-h">🌸 식물</div>꽃을 피우는 <b>속씨식물</b></div>
+   <div class="tile"><div class="tl-h">🌍 대륙·기후</div><b>현재와 같은 대륙 분포</b><br>대체로 온난, 말기 <b>빙하기·간빙기 반복</b></div>
+  </div>
+  <div class="chains">
+   <div class="chain"><span class="ck">포유류</span><span class="cs">공룡 멸종 → 빈자리</span>→<span class="cs">체온 유지, 급격한 기후 변화에도 생존</span>→<span class="cs"><b>포유류 번성</b><small>중생대 중기에 출현</small></span></div>
+   <div class="chain"><span class="ck">속씨식물</span><span class="cs">씨앗·열매로 식량을 얻는 조류·포유류 증가</span>→<span class="cs"><b>속씨식물</b>이 지배적</span></div>
+   <div class="chain"><span class="ck">대륙</span><span class="cs">대륙 이동</span>→<span class="cs">대서양 확장, 인도-유라시아 충돌 → <b>히말라야산맥</b></span></div>
+   <div class="chain"><span class="ck">남극</span><span class="cs">호주 대륙이 남극에서 멀어짐</span>→<span class="cs">남극 주변 차가운 해류 형성</span>→<span class="cs">남극 기후에 영향</span></div>
+   <div class="chain"><span class="ck">빙하기</span><span class="cs">해수면 낮아짐</span>→<span class="cs">대륙 사이가 육지로 연결</span>→<span class="cs">생물이 다른 대륙으로 퍼짐</span></div>
+   <div class="chain"><span class="ck">간빙기</span><span class="cs">빙하가 녹음</span>→<span class="cs">해수면 높아짐</span></div>
+  </div>
+ </div>
+
+ <div class="quiz-section" id="quiz-1"></div>
+</section>
+
+<!-- ===================== TAB 2 ===================== -->
+<section class="tab-panel" id="panel-2">
+ <div class="unit-banner">📌 01. 지질 시대의 환경과 생물의 변화</div>
+ <div class="lead">🧭 <b>흐름</b> — 대멸종의 정의 → 두 번의 대멸종 비교 → 원인(급격한 환경 변화) → 생물다양성에 준 영향 → 가설 평가</div>
+
+ <h2 class="section-title" id="a-extinction">☄️ 대멸종</h2>
+ <div class="def-box">
+  <div class="box-label">대멸종</div>
+  대량의 생물종이 <b>한꺼번에</b> 멸종하는 사건
+ </div>
+ <p>지질 시대를 통틀어 지구 환경은 다양하게 변화해 왔고, 변화에 적응하지 못하거나 경쟁에서 도태된 생물은 멸종하였다.</p>
+ <div class="ext-graph">
+  <svg viewBox="0 0 560 230">
+   <line x1="50" y1="200" x2="540" y2="200" stroke="#94a3b8"/><line x1="50" y1="10" x2="50" y2="200" stroke="#94a3b8"/>
+   <text x="18" y="205" font-size="10" fill="#64748b">0</text><text x="12" y="158" font-size="10" fill="#64748b">200</text><text x="12" y="110" font-size="10" fill="#64748b">400</text><text x="12" y="62" font-size="10" fill="#64748b">600</text><text x="12" y="16" font-size="10" fill="#64748b">800</text>
+   <line x1="330" y1="10" x2="330" y2="200" stroke="#cbd5e1" stroke-dasharray="4 3"/><line x1="480" y1="10" x2="480" y2="200" stroke="#cbd5e1" stroke-dasharray="4 3"/>
+   <text x="170" y="218" font-size="12" fill="#475569" text-anchor="middle">고생대</text><text x="405" y="218" font-size="12" fill="#475569" text-anchor="middle">중생대</text><text x="512" y="218" font-size="12" fill="#475569" text-anchor="middle">신생대</text>
+   <polyline fill="none" stroke="#ea580c" stroke-width="3" points="55,200 80,195 110,150 140,120 170,100 200,110 230,95 260,100 290,120 315,130 330,150 335,190 345,175 360,160 380,140 410,120 440,100 470,70 480,90 490,75 510,40 540,15"/>
+   <circle cx="335" cy="190" r="12" fill="none" stroke="#e11d48" stroke-width="2" stroke-dasharray="3 2"/>
+   <circle cx="480" cy="90" r="12" fill="none" stroke="#e11d48" stroke-width="2" stroke-dasharray="3 2"/>
+   <text x="345" y="210" font-size="11" fill="#e11d48" font-weight="700">고생대 말</text>
+   <text x="420" y="70" font-size="11" fill="#e11d48" font-weight="700">중생대 말</text>
+   <text x="60" y="30" font-size="11" fill="#475569">생물 과의 수</text>
+  </svg>
+  <div class="gnote">(교과서 그래프의 개형을 옮긴 것)</div>
+ </div>
+ <div class="tbl-wrap"><table class="cmp-table rose-th">
+  <thead><tr><th>구분</th><th>고생대 말 대멸종</th><th>중생대 말 대멸종</th></tr></thead>
+  <tbody>
+   <tr><td>규모</td><td>지구에 있던 생물종의 <b>90 % 이상</b> 멸종</td><td><b>50 % 이상</b>의 해양 생물, 육상 동물과 공룡 멸종</td></tr>
+   <tr><td>특징</td><td>대부분 <b>해양 생물</b> (판게아 형성으로 얕은 바다 감소)</td><td>공룡, 암모나이트 멸종</td></tr>
+   <tr><td>이후</td><td>살아남은 생물이 중생대에 번성</td><td>포유류가 빈자리를 차지하며 번성</td></tr>
+  </tbody>
+ </table></div>
+
+ <h2 class="section-title" id="a-cause">🌡️ 원인과 영향</h2>
+ <div class="factor-grid">
+  <div class="factor-card rose"><h4>원인 (추정)</h4>대규모 화산 분화, 운석 충돌, 기후의 변화 등 <b>비교적 급격한 환경 변화</b></div>
+  <div class="factor-card green"><h4>영향</h4>많은 생물종이 사라졌지만, 살아남은 생물종에게는 <b>새로운 기회</b> → 새로운 환경에 적응하며 다양한 종으로 진화 (<b>적자생존</b>)</div>
+ </div>
+ <div class="tip">✅ 지구는 46억 년 동안 여러 번의 대멸종과 새로운 생물종의 등장을 겪으며 오늘날의 생물다양성을 이루었다. 예) 공룡 멸종 → 먹이에 쉽게 접근하게 된 포유류 번성</div>
+ <div class="note">💡 스스로 확인 정리 — 지질 시대 구분: <b>급격한 변화 기준</b> (화석 → 생물종 변화 추정 → 급격한 환경 변화 시기 추정) / 환경 변화가 생물권에 주는 영향: <b>적자생존</b></div>
+
+ <h2 class="section-title" id="a-hypo">🔬 탐구: 공룡 멸종 가설의 타당성 평가</h2>
+ <p>중생대 말 대멸종 전후: (필기) 빙하기가 찾아와 모든 공룡을 비롯한 여러 생물들이 멸종하였다.</p>
+ <div class="tbl-wrap"><table class="cmp-table orange-th">
+  <thead><tr><th>구분</th><th>소행성 충돌설</th><th>화산 폭발설</th></tr></thead>
+  <tbody>
+   <tr><td>가설 내용</td><td>지름 약 10 km의 소행성 충돌로 생긴 두꺼운 먼지 구름이 성층권을 뒤덮어 햇빛 차단</td><td>인도 데칸 지역의 화산 폭발로 먼지와 유독 가스가 대기를 뒤덮어 기후 변화</td></tr>
+   <tr><td>멸종을 초래한 환경 변화</td><td>대규모 해일, 식물의 광합성량 감소, 기온 하강</td><td>기온 하강, 산성비로 토양 산성화, 화산재로 식물이 자라지 못함</td></tr>
+  </tbody>
+ </table></div>
+ <div class="sub2-title">가설 평가 기준</div>
+ <ul class="check-list">
+  <li><span class="mk o">✓</span>과학적인 증거(지층, 화석 등)가 있는가?</li>
+  <li><span class="mk o">✓</span>생물의 생존에 위협이 되는 사건인가?</li>
+  <li><span class="mk o">✓</span>일부 지역에 국한된 것이 아닌 전 지구적으로 영향을 주었는가?</li>
+  <li><span class="mk o">✓</span>대멸종 전후의 환경 변화를 설명할 수 있는가?</li>
+ </ul>
+
+ <div class="quiz-section" id="quiz-2"></div>
+</section>
+
+<!-- ===================== TAB 3 ===================== -->
+<section class="tab-panel" id="panel-3">
+ <div class="unit-banner" style="background:var(--orange-light);color:var(--orange)">📌 03. 온실 효과와 지구 온난화</div>
+ <div class="lead">🧭 <b>흐름</b> — 태양 복사와 지구 복사 → 열수지와 복사 평형 → 온실 효과(달 vs 지구) → 강화된 온실 효과 = 지구 온난화 → 지표·대기·지구 전체의 복사 평형 → 열수지 계산</div>
+
+ <h2 class="section-title" id="a-radiation" style="border-color:var(--orange)">☀️ 태양 복사 에너지와 지구 복사 에너지</h2>
+ <div class="factor-grid">
+  <div class="factor-card orange"><h4>태양 복사 에너지</h4>태양이 방출하는 복사 에너지 — 가시광선, 적외선, 자외선 등<p class="sub">지구에 들어오는 쪽 (자외선 등 파장이 짧은 빛 포함)</p></div>
+  <div class="factor-card rose"><h4>지구 복사 에너지</h4>태양 복사 에너지를 흡수한 지구가 우주로 방출하는 에너지<p class="sub">주로 <b>적외선</b> (파장이 긴 빛)</p></div>
+ </div>
+ <div class="rad-fig">
+  <div class="rf-col"><div class="rf-n in">100</div>태양 복사 에너지</div>
+  <div class="rf-arrow">→</div>
+  <div class="rf-col"><div class="rf-n ref">30</div>반사되어 우주로</div>
+  <div class="rf-col"><div class="rf-n abs">70</div>지표와 대기에 흡수</div>
+  <div class="rf-arrow">→</div>
+  <div class="rf-col"><div class="rf-n out">70</div>지구 복사 에너지 방출</div>
+ </div>
+ <div class="def-box" style="border-color:var(--orange);background:var(--orange-light)">
+  <div class="box-label">열수지</div>
+  지권, 대기, 우주 간에 에너지를 <b>얻고 잃는 것의 차이</b>
+ </div>
+ <div class="def-box" style="border-color:var(--orange);background:var(--orange-light)">
+  <div class="box-label">복사 평형</div>
+  열수지가 0인 상태 = 흡수한 복사 에너지양 = 방출한 복사 에너지양 → 지구는 오랜 기간 복사 평형 상태였기 때문에 평균 기온이 일정하게 유지되었다.
+ </div>
+
+ <h2 class="section-title" id="a-greenhouse" style="border-color:var(--orange)">🌍 온실 효과</h2>
+ <div class="vs-grid">
+  <div class="vs-col"><h4 style="background:#64748b">달 (대기 없음)</h4><ol><li>태양 복사 → 표면 흡수</li><li>표면이 방출한 복사 에너지가 그대로 우주로</li><li>평균 기온 <b>낮음</b></li></ol></div>
+  <div class="vs-col"><h4 style="background:var(--orange)">지구 (대기 있음)</h4><ol><li>태양 복사 → 지표 흡수</li><li>지표가 방출한 지구 복사를 <b>대기가 흡수</b></li><li>일부를 <b>지표로 다시 방출(재복사)</b></li><li>평균 기온 <b>높음</b></li></ol></div>
+ </div>
+ <div class="orange-box">
+  <div class="box-label">온실 효과</div>
+  대기의 역할로 대기가 없을 때보다 지구의 평균 기온이 높게 유지되는 현상
+ </div>
+ <div class="factor-grid">
+  <div class="factor-card orange"><h4>온실 기체</h4><b>수증기, 이산화 탄소, 메테인</b> 등 (필기: 오존 포함)<p class="sub">파장이 긴 지구 복사 에너지를 잘 흡수하여 일부를 지표로 방출</p></div>
+  <div class="factor-card green"><h4>온실 효과의 의미</h4>더 높은 온도에서 복사 평형 → <b>액체 상태의 물</b>이 존재할 수 있는 환경 → 생명이 살아가는 데 중요</div>
+ </div>
+
+ <h2 class="section-title" id="a-warming" style="border-color:var(--orange)">🔥 지구 온난화 — 강화된 온실 효과</h2>
+ <div class="flow-row">
+  <span class="flow-item orange">산업혁명 이후 화석 연료 사용량 증가</span><span class="flow-arrow">→</span>
+  <span class="flow-item orange">CO<sub>2</sub> 등 온실 기체 증가</span><span class="flow-arrow">→</span>
+  <span class="flow-item orange">지구 복사를 흡수 후 지표로 방출하는 양 증가</span><span class="flow-arrow">→</span>
+  <span class="flow-item orange">평균 기온 상승 = <b>지구 온난화</b></span>
+ </div>
+ <div class="vs-grid">
+  <div class="vs-col"><h4 style="background:#16a34a">자연적인 온실 효과</h4><ol><li>온실 기체 일정</li><li>우주로 빠져나가는 지구 복사 에너지 많음</li><li>복사 평형 유지</li></ol></div>
+  <div class="vs-col"><h4 style="background:var(--rose)">인간 활동으로 강화된 온실 효과</h4><ol><li>증가된 온실 기체</li><li>우주로 빠져나가는 지구 복사 에너지 <b>감소</b> (21세기 초)</li><li>기온 상승</li></ol></div>
+ </div>
+ <div class="factor-grid">
+  <div class="factor-card rose"><h4>열수지를 복잡하게 하는 요소</h4><ul><li>온도가 높아지면 지표가 방출하는 지구 복사 에너지양 증가</li><li>빙하의 융해 → 지표에서 반사되는 태양 복사 에너지양 감소</li></ul></div>
+  <div class="factor-card rose"><h4>결과</h4>시간이 지나면 평균 기온이 높아진 상태에서 복사 평형 → 그사이 해수면 상승, 기상 이변 등으로 많은 생물이 생존에 위협</div>
+ </div>
+ <div class="note">💡 대기 중 탄소량(ppm)과 기온은 상관관계가 있다 — 탄소량이 증가할수록 기온도 상승한다.</div>
+
+ <h2 class="section-title" id="a-balance3" style="border-color:var(--orange)">⚖️ 지구의 복사 평형 — 지표 · 대기 · 지구 전체</h2>
+ <p>대기 중의 온실 기체가 지구 복사 에너지를 흡수하였다가 지표로 <b>재복사</b>하여 온실 효과를 일으킨다. 태양 복사 에너지를 100으로 할 때 각 영역에서 <b>들어온 양 = 나간 양</b>이다.</p>
+ <div class="layer-fig"><svg viewBox="0 0 840 450" class="layer-svg"><rect x="0" y="0" width="840" height="36" fill="#0f172a"/><rect x="0" y="36" width="840" height="114" fill="#1e293b"/><rect x="0" y="150" width="840" height="150" fill="#e0f2fe"/><rect x="0" y="300" width="840" height="150" fill="#dcfce7"/><rect x="0" y="300" width="840" height="5" fill="#65a30d"/><g font-size="15" font-weight="900"><text x="12" y="60" fill="#fff">우주</text><text x="12" y="174" fill="#0369a1">대기</text><text x="12" y="326" fill="#166534">지표</text></g><text x="230" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#fde047">☀️ 태양 복사 에너지 100</text><text x="680" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#fca5a5">지구 복사 에너지 70 = 12 + 58 (적외선)</text><path d="M100 40 L100 170.0 A15.0 15.0 0 0 0 130 170.0 L130 52" fill="none" stroke="#eab308" stroke-width="4.6"/><polygon points="122,53 138,53 130,40" fill="#eab308"/><text x="142" y="92" text-anchor="start" font-size="17" font-weight="900" fill="#eab308">23</text><text x="142" y="106" text-anchor="start" font-size="10.5" fill="#e2e8f0">대기 반사</text><line x1="200" y1="40" x2="200" y2="228" stroke="#eab308" stroke-width="4.6"/><circle cx="200" cy="232" r="8" fill="#eab308"/><text x="188" y="238" text-anchor="end" font-size="17" font-weight="900" fill="#eab308">23</text><text x="188" y="252" text-anchor="end" font-size="10.5" fill="#334155">대기·구름 흡수</text><path d="M270 40 L270 303.0 A15.0 15.0 0 0 0 300 303.0 L300 52" fill="none" stroke="#eab308" stroke-width="3.0"/><polygon points="292,53 308,53 300,40" fill="#eab308"/><text x="312" y="92" text-anchor="start" font-size="17" font-weight="900" fill="#eab308">7</text><text x="312" y="106" text-anchor="start" font-size="10.5" fill="#e2e8f0">지표 반사</text><line x1="375" y1="40" x2="375" y2="288" stroke="#eab308" stroke-width="7.2"/><polygon points="365.6111111111111,287 384.3888888888889,287 375,300" fill="#eab308"/><text x="360" y="340" text-anchor="middle" font-size="17" font-weight="900" fill="#eab308">47</text><text x="360" y="354" text-anchor="middle" font-size="10.5" fill="#334155">지표면 흡수</text><text x="12" y="284" font-size="11" font-weight="700" fill="#a16207">반사 30 = 23 + 7</text><line x1="460" y1="302" x2="460" y2="212" stroke="#f97316" stroke-width="4.7"/><polygon points="452,213 468,213 460,200" fill="#f97316"/><text x="460" y="340" text-anchor="middle" font-size="17" font-weight="900" fill="#f97316">24</text><text x="460" y="354" text-anchor="middle" font-size="10.5" fill="#334155">물의 증발</text><line x1="515" y1="302" x2="515" y2="227" stroke="#f97316" stroke-width="3.0"/><polygon points="507,228 523,228 515,215" fill="#f97316"/><text x="515" y="378" text-anchor="middle" font-size="17" font-weight="900" fill="#f97316">5</text><text x="515" y="392" text-anchor="middle" font-size="10.5" fill="#334155">대류·전도</text><line x1="575" y1="302" x2="575" y2="202" stroke="#dc2626" stroke-width="13.0"/><polygon points="558.1,203 591.9,203 575,190" fill="#dc2626"/><text x="575" y="340" text-anchor="middle" font-size="17" font-weight="900" fill="#dc2626">104</text><text x="575" y="354" text-anchor="middle" font-size="10.5" fill="#334155">지표→대기</text><line x1="635" y1="302" x2="635" y2="62" stroke="#dc2626" stroke-width="3.3"/><polygon points="627,63 643,63 635,50" fill="#dc2626"/><text x="645" y="110" text-anchor="start" font-size="17" font-weight="900" fill="#dc2626">12</text><text x="645" y="124" text-anchor="start" font-size="10.5" fill="#e2e8f0">지표→우주</text><text x="605" y="430" text-anchor="middle" font-size="12" font-weight="700" fill="#991b1b">지표면 복사 116 = 104 + 12</text><line x1="715" y1="185" x2="715" y2="288" stroke="#dc2626" stroke-width="12.9"/><polygon points="698.2444444444444,287 731.7555555555556,287 715,300" fill="#dc2626"/><text x="715" y="340" text-anchor="middle" font-size="17" font-weight="900" fill="#dc2626">98</text><text x="715" y="354" text-anchor="middle" font-size="10.5" fill="#334155">대기의 재복사</text><line x1="795" y1="240" x2="795" y2="62" stroke="#dc2626" stroke-width="8.4"/><polygon points="784.0222222222222,63 805.9777777777778,63 795,50" fill="#dc2626"/><text x="795" y="262" text-anchor="middle" font-size="17" font-weight="900" fill="#dc2626">58</text><text x="795" y="276" text-anchor="middle" font-size="10.5" fill="#334155">대기·구름 방출</text><text x="470" y="172" font-size="11.5" fill="#0369a1">☁️ 온실 기체가 흡수 → 지표로 재복사</text></svg><div class="gnote">노란 화살표 = 태양 복사(짧은 파장), 주황·빨간 화살표 = 지구 복사·열 이동. 화살표 굵기는 대략적인 양을 나타낸다.</div></div>
+
+ <div class="bal-grid">
+  <div class="bal">
+   <div class="bal-h sfc">🌏 지표의 복사 평형</div>
+   <div class="bal-eq"><div class="side in"><div class="lab">흡수</div><span class="term">47<small>태양</small></span>+<span class="term">98<small>대기 재복사</small></span><div class="tot">= 145</div></div>
+   <div class="eqs">=</div>
+   <div class="side out"><div class="lab">방출</div><span class="term">24<small>물의 증발</small></span>+<span class="term">5<small>대류·전도</small></span>+<span class="term">116<small>지표면 복사<br>(대기 104 + 우주 12)</small></span><div class="tot">= 145</div></div></div>
+  </div>
+  <div class="bal">
+   <div class="bal-h atm">☁️ 대기의 복사 평형</div>
+   <div class="bal-eq"><div class="side in"><div class="lab">흡수</div><span class="term">23<small>태양 복사</small></span>+<span class="term">24<small>물의 증발</small></span>+<span class="term">5<small>대류·전도</small></span>+<span class="term">104<small>지표</small></span><div class="tot">= 156</div></div>
+   <div class="eqs">=</div>
+   <div class="side out"><div class="lab">방출</div><span class="term">58<small>우주로</small></span>+<span class="term">98<small>대기 재복사</small></span><div class="tot">= 156</div></div></div>
+  </div>
+  <div class="bal">
+   <div class="bal-h all">🌐 지구 전체의 복사 평형</div>
+   <div class="bal-eq"><div class="side in"><div class="lab">흡수</div><span class="term">47<small>지표로</small></span>+<span class="term">23<small>대기로</small></span><div class="tot">= 70</div></div>
+   <div class="eqs">=</div>
+   <div class="side out"><div class="lab">방출 (적외선)</div><span class="term">12<small>지표에서 옴</small></span>+<span class="term">58<small>대기에서 옴</small></span><div class="tot">= 70</div></div></div>
+  </div>
+ </div>
+ <div class="tip">✅ 푸는 요령: 한 영역을 정하고 <b>그 영역으로 들어오는 화살표</b>와 <b>나가는 화살표</b>만 모아 더한다. 지구 전체로 보면 지표·대기 사이를 오가는 에너지(24, 5, 104, 98)는 서로 상쇄되어 빠지고, <b>태양에서 흡수한 70 = 우주로 방출한 70</b>만 남는다.</div>
+
+ <h2 class="section-title" id="a-budget" style="border-color:var(--orange)">🧮 탐구: 지구 열수지 계산 <span class="badge badge-rose">수행평가</span></h2>
+ <p>IPCC 6차 보고서(2021)의 최근 지구 열수지 (태양 복사 에너지 = 100)</p>
+ <div class="tbl-wrap"><table class="ex-table">
+  <thead><tr><th>구분</th><th>항목</th><th class="c">값</th></tr></thead>
+  <tbody>
+   <tr><td rowspan="4">태양 복사 100의 행방</td><td>대기와 지표에 의한 반사</td><td class="c">22.6 + 6.7</td></tr>
+   <tr><td>대기에 흡수</td><td class="c">22.7</td></tr>
+   <tr><td>지표에 흡수</td><td class="c">48.0</td></tr>
+   <tr><td colspan="2" style="font-size:12px;color:var(--text-sec)">22.6 + 6.7 + 22.7 + 48.0 = 100</td></tr>
+   <tr><td rowspan="3">지표 ↔ 대기</td><td>지표면 복사 / 대기의 재복사</td><td class="c">117 / 100</td></tr>
+   <tr><td>대류와 전도</td><td class="c">5.4</td></tr>
+   <tr><td>물의 증발</td><td class="c">25.4</td></tr>
+   <tr><td>우주로</td><td>지구 복사 에너지</td><td class="c">70.5</td></tr>
+  </tbody>
+ </table></div>
+ <div class="calc-box">
+  <div>입사: <b>100</b></div>
+  <div>방출: 70.5 + 22.6 + 6.7 = <b>99.8</b></div>
+  <div class="res">열수지: 100 − 99.8 = <b>+0.2</b> → 지구가 에너지를 얻고 있음 → <b>복사 평형이 아님</b></div>
+ </div>
+ <div class="tip">✅ 이 상태가 지속되면 지구의 평균 기온은 <b>상승</b>한다. 온실 기체가 증가하면 대기에서 지표로 방출되는 에너지양(재복사)도 <b>증가</b>한다.<br>대기의 온실 효과 과정: 지표면 복사(117)를 대기가 흡수 → 대기의 재복사(100)로 지표에 다시 방출</div>
+
+ <div class="quiz-section" id="quiz-3"></div>
+</section>
+
+<!-- ===================== TAB 4 ===================== -->
+<section class="tab-panel" id="panel-4">
+ <div class="unit-banner" style="background:var(--teal-light);color:var(--teal)">📌 04. 지구 환경 변화와 우리 생활</div>
+ <div class="lead">🧭 <b>흐름</b> — 위도별 에너지 차이 → <b>대기 대순환의 세 순환(선생님 추가 설명)</b> → 기압대·바람·해류 → 사막이 생기는 곳 → 사막화의 원인과 영향</div>
+
+ <h2 class="section-title" id="a-cause-circ" style="border-color:var(--teal)">🌐 대기 대순환은 왜 생길까?</h2>
+ <div class="flow-row">
+  <span class="flow-item teal">지구는 구형</span><span class="flow-arrow">→</span>
+  <span class="flow-item teal">위도에 따라 흡수하는 태양 복사 에너지양이 다름<small>저위도 &gt; 고위도 (단위 면적당)</small></span><span class="flow-arrow">→</span>
+  <span class="flow-item teal">지구 전체 규모의 <b>대기 대순환</b></span>
+ </div>
+
+ <h2 class="section-title" id="a-cells" style="border-color:var(--teal)">🔄 세 개의 순환 — 선생님 추가 설명</h2>
+ <div class="circ-fig">
+  <svg viewBox="0 0 640 330">
+   <defs>
+    <marker id="ca" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0f172a"/></marker>
+    <marker id="cr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#e11d48"/></marker>
+    <marker id="cb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#2563eb"/></marker>
+    <marker id="cg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#16a34a"/></marker>
+   </defs>
+   <rect x="40" y="20" width="570" height="30" fill="#f1f5f9"/>
+   <text x="325" y="40" font-size="12" fill="#64748b" text-anchor="middle">성층권</text>
+   <line x1="40" y1="50" x2="610" y2="50" stroke="#94a3b8" stroke-dasharray="5 3"/>
+   <text x="325" y="64" font-size="10" fill="#94a3b8" text-anchor="middle">대류권 (대기 대순환이 일어나는 곳)</text>
+   <rect x="40" y="200" width="570" height="14" fill="#a3e635" opacity=".5"/>
+   <!-- latitude ticks -->
+   <g font-size="13" font-weight="700" fill="#0f172a" text-anchor="middle">
+    <text x="610" y="232">0°</text><text x="420" y="232">30°</text><text x="230" y="232">60°</text><text x="40" y="232">90°</text>
+   </g>
+   <!-- Hadley 30-0 : rise at 0 (x610) sink at 30 (x420) -->
+   <g stroke="#e11d48" stroke-width="3" fill="none">
+    <line x1="600" y1="195" x2="600" y2="85" marker-end="url(#cr)"/>
+    <line x1="595" y1="80" x2="430" y2="80" marker-end="url(#cr)"/>
+    <line x1="425" y1="85" x2="425" y2="190" marker-end="url(#cr)"/>
+    <line x1="435" y1="195" x2="590" y2="195" marker-end="url(#cr)"/>
+   </g>
+   <text x="512" y="140" font-size="14" font-weight="900" fill="#e11d48" text-anchor="middle">해들리 순환</text>
+   <text x="512" y="158" font-size="11" fill="#e11d48" text-anchor="middle">직접 순환</text>
+   <!-- Ferrel 60-30 : rise at 60 (x230) sink at 30 (x420) ; surface poleward (x420->x230) -->
+   <g stroke="#2563eb" stroke-width="3" fill="none">
+    <line x1="415" y1="195" x2="245" y2="195" marker-end="url(#cb)"/>
+    <line x1="240" y1="190" x2="240" y2="90" marker-end="url(#cb)"/>
+    <line x1="245" y1="85" x2="405" y2="85" marker-end="url(#cb)"/>
+   </g>
+   <text x="328" y="140" font-size="14" font-weight="900" fill="#2563eb" text-anchor="middle">페렐 순환</text>
+   <text x="328" y="158" font-size="11" fill="#2563eb" text-anchor="middle">간접 순환</text>
+   <!-- Polar 90-60 : sink at 90 (x50), surface equatorward, rise at 60 (x220) -->
+   <g stroke="#16a34a" stroke-width="3" fill="none">
+    <line x1="220" y1="190" x2="220" y2="90" marker-end="url(#cg)"/>
+    <line x1="215" y1="85" x2="60" y2="85" marker-end="url(#cg)"/>
+    <line x1="55" y1="90" x2="55" y2="190" marker-end="url(#cg)"/>
+    <line x1="65" y1="195" x2="210" y2="195" marker-end="url(#cg)"/>
+   </g>
+   <text x="137" y="140" font-size="14" font-weight="900" fill="#16a34a" text-anchor="middle">극순환</text>
+   <text x="137" y="158" font-size="11" fill="#16a34a" text-anchor="middle">직접 순환</text>
+   <!-- surface winds -->
+   <g font-size="12" font-weight="700" text-anchor="middle">
+    <text x="512" y="252" fill="#e11d48">북동 무역풍</text>
+    <text x="328" y="252" fill="#2563eb">편서풍</text>
+    <text x="137" y="252" fill="#16a34a">편동풍(극동풍)</text>
+   </g>
+   <!-- pressure belts -->
+   <g font-size="11.5" text-anchor="middle">
+    <text x="600" y="280" fill="#0f172a" font-weight="700">적도 저압대</text><text x="600" y="296" fill="#475569">상승 → 비 ☔</text>
+    <text x="425" y="280" fill="#0f172a" font-weight="700">아열대 고압대</text><text x="425" y="296" fill="#475569">하강 → 건조 🏜️</text>
+    <text x="235" y="280" fill="#0f172a" font-weight="700">한대 전선대</text><text x="235" y="296" fill="#475569">상승</text>
+    <text x="60" y="280" fill="#0f172a" font-weight="700">극</text><text x="60" y="296" fill="#475569">하강</text>
+   </g>
+   <text x="600" y="322" font-size="11" fill="#0891b2" text-anchor="middle">🌊 북적도 해류</text>
+  </svg>
+  <div class="gnote">북반구 단면 (왼쪽이 극, 오른쪽이 적도). 지표 부근의 화살표가 지표에서 부는 바람이다.</div>
+ </div>
+
+ <div class="tbl-wrap"><table class="cmp-table teal-th">
+  <thead><tr><th>순환</th><th>위도</th><th>종류</th><th>지표의 바람</th><th>상승 / 하강</th></tr></thead>
+  <tbody>
+   <tr><td>해들리 순환</td><td>0° ~ 30°</td><td><b>직접 순환</b> (열 대류)</td><td><b>북동 무역풍</b></td><td>적도에서 상승, 30°에서 하강</td></tr>
+   <tr><td>페렐 순환</td><td>30° ~ 60°</td><td><b>간접 순환</b></td><td><b>편서풍</b></td><td>60°에서 상승, 30°에서 하강</td></tr>
+   <tr><td>극순환</td><td>60° ~ 90°</td><td><b>직접 순환</b> (열 대류)</td><td><b>편동풍</b></td><td>60°에서 상승, 극에서 하강</td></tr>
+  </tbody>
+ </table></div>
+
+ <div class="factor-grid">
+  <div class="rule-card teal" style="margin:0">
+   <h4>직접 순환 = 열 대류</h4>
+   <p>따뜻한 곳에서 공기가 <b>상승</b>하고, 차가운 곳에서 <b>하강</b>하는, 온도 차이로 직접 생기는 순환 → <b>해들리 순환, 극순환</b></p>
+  </div>
+  <div class="rule-card teal" style="margin:0">
+   <h4>간접 순환</h4>
+   <p>열 대류로 직접 생긴 것이 아니라, 양옆의 두 직접 순환 사이에서 <b>간접적으로</b> 생기는 순환 → <b>페렐 순환</b></p>
+  </div>
+ </div>
+
+ <h3 class="subsection-title" id="a-belts" style="border-color:var(--teal)">기압대와 날씨 — 공기가 올라가면 비, 내려오면 건조</h3>
+ <div class="factor-grid">
+  <div class="factor-card blue"><h4>적도 저압대 (0°)</h4>상승 기류 → 구름 발달 → <b>비가 많음</b></div>
+  <div class="factor-card orange"><h4>아열대 고압대 (30°)</h4><b>하강 기류</b> → 구름이 잘 생기지 않음 → <b>건조, 대규모 사막</b> (위도 20°~30° 부근)</div>
+  <div class="factor-card teal"><h4>한대 전선대 (60°)</h4>페렐 순환과 극순환의 공기가 만나 상승</div>
+ </div>
+ <div class="tip">✅ <b>바람 → 해류</b>: 연중 일정하게 부는 바람이 표층 해수를 움직인다. 예) 무역풍 → <b>북적도 해류</b> (6탭 엘니뇨로 연결)</div>
+
+ <h2 class="section-title" id="a-desert" style="border-color:var(--teal)">🏜️ 사막화</h2>
+ <div class="def-box" style="border-color:var(--teal);background:var(--teal-light)">
+  <div class="box-label">사막화</div>
+  건조한 지역에서 여러 가지 이유로 토양이 <b>황폐해지는</b> 현상
+ </div>
+ <div class="tbl-wrap"><table class="cmp-table teal-th">
+  <thead><tr><th>원인</th><th>내용</th></tr></thead>
+  <tbody>
+   <tr><td>자연적 원인</td><td>• 지구 기후 변화 등으로 <b>대기 대순환이 변하면</b> 강수량이 줄어든 지역에서 사막화<br>• 기온 상승 → 증발량 증가 → 토양 수분 감소</td></tr>
+   <tr><td>인위적 원인 (주요 원인)</td><td>건조한 초원 지대에서의 <b>과잉 방목</b>, 인구 증가로 인한 무분별한 <b>농경지 확장</b>, <b>산림 벌채</b></td></tr>
+  </tbody>
+ </table></div>
+ <div class="flow-row">
+  <span class="flow-item teal">산림 벌채</span><span class="flow-arrow">→</span>
+  <span class="flow-item teal">농경지 확장</span><span class="flow-arrow">→</span>
+  <span class="flow-item teal">과잉 방목</span><span class="flow-arrow">→</span>
+  <span class="flow-item teal">사막화</span>
+ </div>
+ <div class="factor-grid">
+  <div class="factor-card rose"><h4>사막화의 영향</h4><ul><li>생물다양성, 농업 생산성 감소</li><li>거주지 감소</li><li>모래 폭풍 → 호흡기 질환 등 건강 문제, 산업 시설·태양 전지판 고장 및 발전 효율 감소</li><li>토양 침식 증가, 물의 순환에 영향</li></ul></div>
+  <div class="factor-card gray"><h4>현황</h4><ul><li>최근 수십 년간 사막화 지역 계속 증가</li><li>현재 23억 명 이상이 사막화로 인한 물 부족 국가에 거주</li><li>2050년에는 세계 인구의 절반이 심각한 물 부족 예상</li></ul></div>
+ </div>
+
+ <div class="quiz-section" id="quiz-4"></div>
+</section>
+
+<!-- ===================== TAB 5 ===================== -->
+<section class="tab-panel" id="panel-5">
+ <div class="unit-banner" style="background:var(--primary-light);color:var(--primary)">📌 04. 지구 환경 변화와 우리 생활</div>
+ <div class="lead">🧭 <b>흐름</b> — 대기와 해양의 상호작용 → 평상시 vs 엘니뇨 (무역풍 세기) → 지역별 영향</div>
+
+ <h2 class="section-title" id="a-interact">🌊 대기와 해양의 상호작용</h2>
+ <div class="flow-row">
+  <span class="flow-item">태양 복사 에너지의 위도별 차이</span><span class="flow-arrow">→</span>
+  <span class="flow-item">대기 대순환 → 연중 일정한 바람</span><span class="flow-arrow">→</span>
+  <span class="flow-item">바람이 표층 해수를 움직임 → 표층 해수의 순환</span><span class="flow-arrow">→</span>
+  <span class="flow-item">주변 지역의 날씨·기후에 영향</span>
+ </div>
+
+ <h2 class="section-title" id="a-elnino">🌡️ 평상시 vs 엘니뇨</h2>
+ <div class="pac">
+  <div class="pac-card">
+   <div class="pac-h normal">평상시 — 무역풍 정상</div>
+   <div class="pac-row">
+    <div class="land w"><b>서태평양</b><br>인도네시아<div class="wx">☁️☔ 상승 기류<br>비가 많이 오고 무덥다</div></div>
+    <div class="sea">
+     <div class="wind strong">← ← 무역풍 (강) ← ←</div>
+     <div class="water"><span class="warm big">따뜻한 물 ⬅</span></div>
+     <div class="up">⬆ 찬물 상승 (동쪽)</div>
+    </div>
+    <div class="land e"><b>동태평양</b><br>페루<div class="wx">☀️ 비가 적음<br>서늘, <b>어장 형성</b></div></div>
+   </div>
+   <div class="pac-sum">표층 수온: 서태평양 <b>높음</b> / 동태평양 <b>낮음</b></div>
+  </div>
+  <div class="pac-card">
+   <div class="pac-h nino">엘니뇨 — 무역풍 약화 (수년에 한 번)</div>
+   <div class="pac-row">
+    <div class="land w"><b>서태평양</b><br>인도네시아<div class="wx">☀️ 강수량 감소<br><b>가뭄, 대규모 산불</b></div></div>
+    <div class="sea">
+     <div class="wind weak">← 무역풍 (약) ←</div>
+     <div class="water"><span class="warm">따뜻한 물 ➡ 동쪽으로</span></div>
+     <div class="up faint">찬물 상승 감소</div>
+    </div>
+    <div class="land e"><b>동태평양</b><br>페루<div class="wx">☁️☔ 상승 기류 중심 이동<br><b>홍수·폭우, 어장 붕괴</b></div></div>
+   </div>
+   <div class="pac-sum">동태평양 표층 수온이 평년보다 <b>높아짐</b></div>
+  </div>
+ </div>
+ <div class="def-box">
+  <div class="box-label">엘니뇨</div>
+  <b>무역풍이 약해져</b> 서태평양으로 이동하는 표층 해수의 흐름이 약해지고, 동태평양에서 심층의 차가운 해수 상승이 줄어들어 <b>동태평양의 표층 수온이 평년에 비해 높아지는</b> 현상
+ </div>
+
+ <div class="tbl-wrap"><table class="cmp-table">
+  <thead><tr><th>구분</th><th>평상시</th><th>엘니뇨</th></tr></thead>
+  <tbody>
+   <tr><td>무역풍</td><td>강함 (페루 연안의 따뜻한 표층 해수를 동 → 서로 이동)</td><td><b>약함</b></td></tr>
+   <tr><td>동태평양</td><td>차가운 심층수 상승, 표층 수온 낮음, 비 적음, 어장 형성</td><td>찬물 상승 감소, 수온 상승, 상승 기류 → <b>홍수·폭우</b>, 해양 생태계 영향</td></tr>
+   <tr><td>서태평양</td><td>표층 수온 높음, 상승 기류 → 비 많음</td><td>강수량 감소 → <b>가뭄, 대규모 산불</b></td></tr>
+   <tr><td>상승 기류 중심</td><td>서태평양 적도 부근</td><td><b>동쪽으로 이동</b></td></tr>
+  </tbody>
+ </table></div>
+
+ <h2 class="section-title" id="a-impact">🌎 엘니뇨의 영향</h2>
+ <ul class="list">
+  <li>인도네시아: 엘니뇨 시기 1997~1998년 대규모 산불 — 제주도 면적의 40배가 넘는 토지가 불타고, 연기가 동남아시아 대부분을 뒤덮음</li>
+  <li>규모가 큰 엘니뇨는 지구 전체에 영향 — 미국 북부와 캐나다는 평상시보다 따뜻해지고, 우리나라는 강수량이 변화하는 등 기상 이변</li>
+  <li>사례(2016): 아프리카 말라위 가뭄, 미국 텍사스 폭우, 호주 산호초 백화</li>
+ </ul>
+
+ <div class="quiz-section" id="quiz-5"></div>
+</section>
+
+<!-- ===================== TAB 6 ===================== -->
+<section class="tab-panel" id="panel-6">
+ <div class="unit-banner" style="background:var(--green-light);color:var(--green)">📌 04. 지구 환경 변화와 우리 생활</div>
+ <div class="lead">🧭 <b>흐름</b> — 기온 상승 시나리오(1.5 ℃ vs 2.0 ℃) → 대응(감시·예측, 사막화, 지구 온난화) → 개인적·국가적 차원</div>
+
+ <h2 class="section-title" id="a-scenario" style="border-color:var(--green)">🔮 탐구: 기후 변화로 인한 미래 시나리오</h2>
+ <p>IPCC 6차 보고서: 2100년까지 지구 평균 기온은 약 <b>2.7 ℃</b> 상승할 수도 있다 (1850~1900년 평균 대비).</p>
+ <div class="tbl-wrap"><table class="cmp-table green-th">
+  <thead><tr><th>항목</th><th>1.5 ℃ 상승</th><th>2.0 ℃ 상승</th></tr></thead>
+  <tbody>
+   <tr><td>여름에 얼지 않는 북극해</td><td>100년에 한 번</td><td><b>10년에 한 번</b></td></tr>
+   <tr><td>산호 소멸</td><td>70~90 %</td><td><b>99 %</b></td></tr>
+   <tr><td>해수면 상승</td><td>0.4 m</td><td><b>0.46 m</b></td></tr>
+   <tr><td>홍수 위험 증가</td><td>100 %</td><td><b>170 %</b></td></tr>
+   <tr><td>폭염 피해 인구</td><td>10억 명</td><td><b>27억 명</b></td></tr>
+  </tbody>
+ </table></div>
+ <div class="note">💡 0.5 ℃ 차이로도 피해가 크게 달라진다. (자료: IPCC 특별 보고서 「지구 온난화 1.5 ℃」, 2018)</div>
+
+ <h2 class="section-title" id="a-response" style="border-color:var(--green)">🛡️ 대응 방안</h2>
+ <div class="tbl-wrap"><table class="cmp-table green-th">
+  <thead><tr><th>대상</th><th>대응</th></tr></thead>
+  <tbody>
+   <tr><td>사막화·엘니뇨 공통</td><td>인공위성 등을 활용한 <b>지속적인 감시</b>와 정확한 <b>예측</b></td></tr>
+   <tr><td>사막화</td><td>산림 훼손 방지, 사막화를 겪는 지역에 <b>인공 조림</b></td></tr>
+   <tr><td>지구 온난화</td><td>일상에서 에너지를 절약하는 노력 + 국가적인 기술 개발</td></tr>
+  </tbody>
+ </table></div>
+
+ <h3 class="subsection-title" id="a-levels" style="border-color:var(--green)">지구 온난화 대책 — 차원별</h3>
+ <div class="factor-grid">
+  <div class="factor-card green"><h4>개인적 차원</h4><ol class="ol"><li>대기 전력 차단</li><li>LED 조명 교체 (백열등 → 형광등 → LED)</li><li>적절한 냉난방 (적절한 난방 온도 준수)</li></ol></div>
+  <div class="factor-card blue"><h4>국가적 차원</h4><ol class="ol"><li>신재생 에너지 개발·활용 (CO<sub>2</sub>를 배출하지 않음)</li><li>이산화 탄소 포집 기술 (CCS)</li><li>에너지 효율을 높이는 기술 개발</li></ol><p class="sub">우리나라: <b>2050년까지 탄소 중립</b> 목표</p></div>
+ </div>
+ <div class="rule-card green" id="a-paris">
+  <h4>🌐 파리 협정 (2015)</h4>
+  <p>파리에서 열린 제21차 유엔 기후 변화 협약 당사국 총회에서 <b>195개국</b>이 채택. 지구의 평균 기온 상승을 <b>2 ℃보다 훨씬 낮게</b>, 바람직하게는 <b>1.5 ℃ 이내</b>로 제한하고, 이를 위해 온실 기체 배출량을 줄이기로 했다.</p>
+ </div>
+
+ <div class="quiz-section" id="quiz-6"></div>
+</section>
+
+<!-- ===================== TAB 7 ===================== -->
+<section class="tab-panel" id="panel-7">
+ <div class="unit-banner">📌 개념 한눈에 보기</div>
+ <div class="tip">🧭 클릭하면 해당 탭과 섹션으로 이동합니다 — 색깔 있는 큰 헤더는 탭 전체로, 작은 칸은 세부 설명 위치로 스크롤됩니다.</div>
+ <div class="map-root purple">
+  <button class="map-root-head" onclick="goTo(0)">① 화석과 지질 시대 구분</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(0,'a-fossil')">🦴 화석</button>
+   <button class="map-node" onclick="goTo(0,'a-taebaek')">🔍 태백 삼엽충</button>
+   <button class="map-node" onclick="goTo(0,'a-era')">🕰️ 구분 기준</button>
+   <button class="map-node" onclick="goTo(0,'a-length')">상대적 길이</button>
+  </div>
+ </div>
+ <div class="map-root purple">
+  <button class="map-root-head" onclick="goTo(1)">② 시대별 환경과 생물</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(1,'a-compare')">📊 한눈에 비교</button>
+   <button class="map-node" onclick="goTo(1,'a-precam')">🌋 선캄브리아</button>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(1,'a-paleo')">🐟 고생대</button>
+    <div class="map-subrow"><button class="map-subchip" onclick="goTo(1,'a-ozone')">오존층 생성</button></div>
+   </div>
+   <button class="map-node" onclick="goTo(1,'a-meso')">🦖 중생대</button>
+   <button class="map-node" onclick="goTo(1,'a-ceno')">🦣 신생대</button>
+  </div>
+ </div>
+ <div class="map-root rose">
+  <button class="map-root-head" onclick="goTo(2)">③ 대멸종</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(2,'a-extinction')">☄️ 두 번의 대멸종</button>
+   <button class="map-node" onclick="goTo(2,'a-cause')">🌡️ 원인과 영향</button>
+   <button class="map-node" onclick="goTo(2,'a-hypo')">🔬 가설 평가</button>
+  </div>
+ </div>
+ <div class="map-root orange">
+  <button class="map-root-head" onclick="goTo(3)">④ 복사 평형과 온실 효과</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(3,'a-radiation')">☀️ 복사와 열수지</button>
+   <button class="map-node" onclick="goTo(3,'a-greenhouse')">🌍 온실 효과</button>
+   <button class="map-node" onclick="goTo(3,'a-warming')">🔥 지구 온난화</button>
+   <button class="map-node" onclick="goTo(3,'a-balance3')">⚖️ 지표·대기·전체 평형</button>
+   <button class="map-node" onclick="goTo(3,'a-budget')">🧮 열수지 계산</button>
+  </div>
+ </div>
+ <div class="map-root teal">
+  <button class="map-root-head" onclick="goTo(4)">⑤ 대기 대순환과 사막화</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(4,'a-cause-circ')">🌐 대순환의 원인</button>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(4,'a-cells')">🔄 세 개의 순환</button>
+    <div class="map-subrow">
+     <button class="map-subchip" onclick="goTo(4,'a-cells')">해들리</button>
+     <button class="map-subchip" onclick="goTo(4,'a-cells')">페렐</button>
+     <button class="map-subchip" onclick="goTo(4,'a-cells')">극순환</button>
+    </div>
+   </div>
+   <button class="map-node" onclick="goTo(4,'a-belts')">기압대와 날씨</button>
+   <button class="map-node" onclick="goTo(4,'a-desert')">🏜️ 사막화</button>
+  </div>
+ </div>
+ <div class="map-root">
+  <button class="map-root-head" onclick="goTo(5)">⑥ 엘니뇨</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(5,'a-interact')">🌊 대기-해양 상호작용</button>
+   <button class="map-node" onclick="goTo(5,'a-elnino')">🌡️ 평상시 vs 엘니뇨</button>
+   <button class="map-node" onclick="goTo(5,'a-impact')">🌎 영향</button>
+  </div>
+ </div>
+ <div class="map-root green">
+  <button class="map-root-head" onclick="goTo(6)">⑦ 기후 변화 대응</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(6,'a-scenario')">🔮 1.5 ℃ vs 2.0 ℃</button>
+   <button class="map-node" onclick="goTo(6,'a-response')">🛡️ 대응 방안</button>
+   <button class="map-node" onclick="goTo(6,'a-levels')">개인·국가</button>
+   <button class="map-node" onclick="goTo(6,'a-paris')">🌐 파리 협정</button>
+  </div>
+ </div>
+</section>
+
+</main>
+
+<button class="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="맨 위로">↑</button>
+
+<script>
+function switchTab(idx){
+ document.querySelectorAll('.tab-btn').forEach(function(b,i){b.classList.toggle('active',i===idx);});
+ document.querySelectorAll('.tab-panel').forEach(function(p,i){p.classList.toggle('active',i===idx);});
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function goTo(tabIdx,anchorId){
+ switchTab(tabIdx);
+ if(anchorId){
+  setTimeout(function(){
+   var el=document.getElementById(anchorId);
+   if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+  },120);
+ }
+}
+</script>
+
+<script>
+const QUIZ_DATA = {"0": {"ox": [{"q": "화석은 과거에 살았던 생물의 뼈나 이빨 등 유해만을 말한다.", "a": false, "exp": "기어다닌 흔적, 이빨 자국 등 흔적도 화석이다."}, {"q": "화석은 과거 생물의 유해나 흔적이 지층에 남아 있는 것이다.", "a": true, "exp": "유해 + 흔적 → 지층에 남은 것"}, {"q": "태백 지역에서 삼엽충 화석이 발견되는 것으로 보아 이 지층은 바다에서 퇴적되었다.", "a": true, "exp": "삼엽충은 해양 생물이다."}, {"q": "지질 시대는 약 46억 년 전 지구가 생긴 뒤 현재까지의 지구의 역사이다.", "a": true, "exp": "지질 시대의 정의"}, {"q": "지질 시대는 화석에 드러난 환경의 변화를 기준으로 구분한다.", "a": true, "exp": "생물의 급격한 변화 = 환경의 급격한 변화"}, {"q": "선캄브리아시대는 화석이 많이 발견되는 시기이다.", "a": false, "exp": "선캄브리아시대는 화석이 거의 발견되지 않는 시기이다."}, {"q": "지질 시대 중 가장 긴 시기는 선캄브리아시대이다.", "a": true, "exp": "약 88.3 %를 차지한다."}, {"q": "신생대는 고생대보다 길다.", "a": false, "exp": "고생대 6.3 %, 중생대 4.0 %, 신생대 1.4 %"}, {"q": "중생대는 약 2억 5천만 년 전에 시작되었다.", "a": true, "exp": "고생대 5억 4천만, 중생대 2억 5천만, 신생대 6천 6백만 년 전"}, {"q": "현재 인류는 중생대에 살고 있다.", "a": false, "exp": "현재는 신생대이다."}], "mc": [{"q": "화석에 해당하지 않는 것은?", "opts": ["현재 살아 있는 조개의 껍데기", "지층 속 생물이 기어다닌 흔적", "지층 속 공룡의 뼈", "지층 속 이빨 자국"], "a": 0, "exp": "화석은 과거 생물의 유해나 흔적이 지층에 남아 있는 것이다."}, {"q": "지질 시대를 구분하는 기준으로 가장 적절한 것은?", "opts": ["암석의 색깔", "화석에 드러난 지구 환경(생물)의 급격한 변화", "지층의 두께", "지층이 발견된 지역의 위도"], "a": 1, "exp": "특정 시기 화석의 종류와 수가 급격히 변한 것은 서식 환경이 크게 변했다는 뜻이다."}, {"q": "지질 시대를 오래된 것부터 옳게 나열한 것은?", "opts": ["고생대 → 선캄브리아시대 → 중생대 → 신생대", "신생대 → 중생대 → 고생대 → 선캄브리아시대", "선캄브리아시대 → 고생대 → 중생대 → 신생대", "선캄브리아시대 → 중생대 → 고생대 → 신생대"], "a": 2, "exp": "화석이 많은 시기는 오래된 것부터 고생대, 중생대, 신생대"}, {"q": "지질 시대의 상대적 길이를 긴 것부터 옳게 나열한 것은?", "opts": ["선캄브리아시대 > 중생대 > 고생대 > 신생대", "고생대 > 선캄브리아시대 > 중생대 > 신생대", "신생대 > 중생대 > 고생대 > 선캄브리아시대", "선캄브리아시대 > 고생대 > 중생대 > 신생대"], "a": 3, "exp": "88.3 % > 6.3 % > 4.0 % > 1.4 %"}, {"q": "고생대가 시작된 시기는?", "opts": ["약 5억 4천만 년 전", "약 46억 년 전", "약 2억 5천만 년 전", "약 6천 6백만 년 전"], "a": 0, "exp": "고생대 5억 4천만 년 전"}, {"q": "태백 구문소 지역의 과거와 현재 환경을 옳게 짝지은 것은?", "opts": ["과거 사막 – 현재 바다", "과거 바다 – 현재 산악 지대", "과거 빙하 – 현재 사막", "과거 산악 지대 – 현재 바다"], "a": 1, "exp": "삼엽충 화석 → 과거 바다 밑바닥, 현재 태백은 산악 지대"}, {"q": "선캄브리아시대에 화석이 거의 발견되지 않는 까닭으로 옳은 것은?", "opts": ["생물이 전혀 없었기 때문", "지층이 생기지 않았기 때문", "생물이 단단한 껍데기가 없어 화석으로 남기 어려웠기 때문", "모든 생물이 육지에 살았기 때문"], "a": 2, "exp": "해파리처럼 떠다니거나 바다 밑바닥에 붙어 살아 단단한 부분이 없었다."}, {"q": "지질 시대 중 화석이 많이 발견되는 시기를 구분하는 기준은?", "opts": ["대기의 색 변화", "지구의 크기 변화", "태양의 밝기 변화", "생물의 급격한 변화"], "a": 3, "exp": "화석이 많이 발견되는 시기는 생물의 급격한 변화를 기준으로 고생대, 중생대, 신생대로 구분한다."}], "hard": [{"q": "화석에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 생물의 흔적이 지층에 남은 것도 화석이다.", "ㄴ. 화석을 통해 과거의 환경을 추론할 수 있다.", "ㄷ. 화석은 반드시 생물의 뼈가 돌로 변한 것이다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 흔적(기어다닌 자국, 이빨 자국)도 화석이다. / 옳은 것: ㄱ, ㄴ"}, {"q": "지질 시대에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 고생대, 중생대, 신생대는 화석이 많이 발견되는 시기이다.", "ㄴ. 신생대는 전체 지질 시대에서 가장 긴 시기이다.", "ㄷ. 선캄브리아시대는 지질 시대의 대부분을 차지한다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 신생대는 약 1.4 %로 가장 짧다. / 옳은 것: ㄱ, ㄷ"}, {"q": "삼엽충 화석이 발견된 태백 지역에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 삼엽충은 육지에서 살았던 생물이다.", "ㄴ. 이 지층은 바다에서 퇴적되었다.", "ㄷ. 과거에서 현재로 오면서 환경이 크게 변하였다."], "opts": ["ㄷ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄱ. (X) 삼엽충은 바다 밑바닥을 기어다닌 해양 생물이다. / 옳은 것: ㄴ, ㄷ"}, {"q": "지질 시대의 구분에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 화석의 종류와 수가 급격히 변한 시기를 경계로 삼는다.", "ㄴ. 지구의 환경이 변하면 살아가는 생물종도 달라진다.", "ㄷ. 지질 시대는 같은 길이의 네 시기로 나뉜다."], "opts": ["ㄱ", "ㄴ", "ㄷ", "ㄱ, ㄴ"], "a": 3, "exp": "ㄷ. (X) 88.3 %, 6.3 %, 4.0 %, 1.4 %로 길이가 다르다. / 옳은 것: ㄱ, ㄴ"}, {"q": "각 시대의 시작 시기에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 중생대는 약 2억 5천만 년 전에 시작되었다.", "ㄴ. 신생대는 약 6천 6백만 년 전에 시작되었다.", "ㄷ. 고생대는 약 5억 4천만 년 전에 시작되었다."], "opts": ["ㄱ", "ㄴ", "ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 3, "exp": "옳은 것: ㄱ, ㄴ, ㄷ"}]}, "1": {"ox": [{"q": "선캄브리아시대의 생물은 강한 자외선을 피해 바다에 서식하였다.", "a": true, "exp": "오존층이 없었다."}, {"q": "남세균은 광합성을 하여 대기에 산소가 쌓이기 시작하게 하였다.", "a": true, "exp": "선캄브리아시대"}, {"q": "고생대에는 오존층이 생겨 생물이 육지로 진출할 수 있게 되었다.", "a": true, "exp": "산소 증가 → 오존층 → 자외선 차단"}, {"q": "고생대 바다에서는 암모나이트가 번성하였다.", "a": false, "exp": "고생대: 삼엽충·어류 / 중생대: 암모나이트"}, {"q": "고생대 육지에서는 양서류와 곤충이 번성하였다.", "a": true, "exp": "양치식물의 거대 군락과 함께"}, {"q": "중생대에는 판게아가 형성되었다.", "a": false, "exp": "판게아는 고생대 말에 형성, 중생대 초부터 분리"}, {"q": "중생대는 전 기간 내내 온난한 기후가 지속되었다.", "a": true, "exp": "화산 활동 → CO₂ → 기온 상승"}, {"q": "중생대에는 속씨식물이 번성하였다.", "a": false, "exp": "양치(고) → 겉씨(중) → 속씨(신)"}, {"q": "신생대 말기에는 빙하기와 간빙기가 반복되었다.", "a": true, "exp": "대체로 온난했지만 말기에 기후 급변"}, {"q": "신생대에는 화폐석이 바다에서 번성하였다.", "a": true, "exp": "신생대 바다 = 화폐석"}], "mc": [{"q": "시대와 번성한 식물의 연결로 옳은 것은?", "opts": ["중생대 – 속씨식물", "고생대 – 양치식물", "신생대 – 겉씨식물", "고생대 – 겉씨식물"], "a": 1, "exp": "양치(고) · 겉씨(중) · 속씨(신)"}, {"q": "시대와 바다 생물의 연결로 옳은 것은?", "opts": ["선캄브리아시대 – 암모나이트", "신생대 – 삼엽충", "중생대 – 암모나이트", "고생대 – 화폐석"], "a": 2, "exp": "고생대 삼엽충·어류, 중생대 암모나이트, 신생대 화폐석"}, {"q": "생물이 육지로 진출할 수 있게 된 직접적인 까닭은?", "opts": ["화산 활동이 멈추었기 때문", "빙하기가 반복되었기 때문", "판게아가 분리되었기 때문", "오존층이 자외선을 차단하였기 때문"], "a": 3, "exp": "산소 증가 → 오존층 생성 → 자외선 차단 → 육지 진출"}, {"q": "오존(O₃)이 만들어지는 과정으로 옳은 것은?", "opts": ["O₂가 자외선에 의해 O 2개로 나뉘고, O가 다른 O₂와 결합한다.", "O 3개가 한꺼번에 결합한다.", "O₃가 자외선을 받아 O₂가 된다.", "CO₂가 분해되어 O₃가 된다."], "a": 0, "exp": "O₂ →(자외선) O + O, O + O₂ → O₃"}, {"q": "중생대의 기후가 온난했던 까닭으로 옳은 것은?", "opts": ["오존층이 사라졌기 때문", "활발한 화산 활동으로 대기에 이산화 탄소가 쌓였기 때문", "대륙이 하나로 합쳐졌기 때문", "빙하가 확장되었기 때문"], "a": 1, "exp": "화산 활동 → CO₂ 증가 → 온실 효과 → 기온 상승"}, {"q": "고생대 말 생물종 수가 크게 감소한 까닭으로 옳은 것은?", "opts": ["포유류가 번성하였기 때문", "오존층이 형성되었기 때문", "대륙이 합쳐져 얕은 바다가 줄고 기후가 급변하였기 때문", "속씨식물이 번성하였기 때문"], "a": 2, "exp": "판게아 형성 → 얕은 바다 면적 감소, 기후 급변"}, {"q": "신생대에 포유류가 번성한 까닭으로 옳지 않은 것은?", "opts": ["급격한 기후 변화에도 생존할 수 있었기 때문", "공룡이 멸종한 빈자리를 차지하였기 때문", "체온을 일정하게 유지할 수 있었기 때문", "아가미로 호흡하여 바다에서 살 수 있었기 때문"], "a": 3, "exp": "포유류는 체온 유지, 기후 변화에도 생존, 공룡 멸종 후 번성"}, {"q": "신생대 빙하기에 생물이 다른 대륙으로 퍼져 나갈 수 있었던 까닭은?", "opts": ["해수면이 낮아져 대륙 사이가 육지로 연결되었기 때문", "판게아가 다시 합쳐졌기 때문", "해수면이 높아졌기 때문", "오존층이 사라졌기 때문"], "a": 0, "exp": "빙하기 → 해수면 하강 → 육지로 연결"}], "hard": [{"q": "선캄브리아시대에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 오존층이 있어 생물이 육지에서 번성하였다.", "ㄴ. 최초의 단세포생물이 바다에서 출현하였다.", "ㄷ. 후기에 에디아카라 생물군 같은 다세포 생물이 출현하였다."], "opts": ["ㄱ", "ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄱ. (X) 오존층이 없어 생물은 바다에 서식하였다. / 옳은 것: ㄴ, ㄷ"}, {"q": "고생대에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 단단한 껍데기나 뼈를 가진 생물이 출현하였다.", "ㄴ. 양치식물의 숲이 현재의 석탄층으로 남아 있다.", "ㄷ. 후기에는 산소 농도가 현재보다 낮았다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 후기 산소 농도 약 35 %로 현재(약 21 %)보다 높았다. / 옳은 것: ㄱ, ㄴ"}, {"q": "중생대에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 육지에서는 공룡이 크게 번성하였다.", "ㄴ. 말기에 급격한 환경 변화로 암모나이트가 멸종하였다.", "ㄷ. 판게아가 분리되기 시작하였다."], "opts": ["ㄱ", "ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 3, "exp": "옳은 것: ㄱ, ㄴ, ㄷ"}, {"q": "신생대에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 겉씨식물이 지배적인 식물이 되었다.", "ㄴ. 인도 대륙과 유라시아 대륙이 충돌해 히말라야산맥이 만들어졌다.", "ㄷ. 후기에 인류의 조상이 출현하였다."], "opts": ["ㄱ", "ㄱ, ㄴ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄱ. (X) 꽃을 피우는 속씨식물이 지배적이 되었다. / 옳은 것: ㄴ, ㄷ"}, {"q": "지질 시대의 환경 변화에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 대기의 산소는 광합성 생물에 의해 쌓이기 시작하였다.", "ㄴ. 오존층은 산소가 충분히 쌓인 뒤 형성되었다.", "ㄷ. 판게아는 신생대에 형성되었다."], "opts": ["ㄴ", "ㄱ, ㄴ", "ㄱ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄷ. (X) 판게아는 고생대 말에 형성되었다. / 옳은 것: ㄱ, ㄴ"}]}, "2": {"ox": [{"q": "대량의 생물종이 한꺼번에 멸종하는 사건을 대멸종이라고 한다.", "a": true, "exp": "대멸종의 정의"}, {"q": "고생대 말 대멸종에서는 지구에 있던 생물종의 90 % 이상이 멸종하였다.", "a": true, "exp": "대부분 해양 생물"}, {"q": "중생대 말 대멸종으로 공룡과 삼엽충이 멸종하였다.", "a": false, "exp": "중생대 말: 공룡, 암모나이트 / 삼엽충은 고생대 생물"}, {"q": "대멸종의 원인으로 대규모 화산 분화, 운석 충돌, 기후 변화 등이 추정된다.", "a": true, "exp": "급격한 환경 변화"}, {"q": "대멸종은 살아남은 생물종에게 새로운 기회가 되기도 하였다.", "a": true, "exp": "예) 공룡 멸종 후 포유류 번성"}, {"q": "지구의 생물다양성은 대멸종 없이 꾸준히 증가만 해 왔다.", "a": false, "exp": "여러 번의 대멸종과 새로운 종의 등장을 겪었다."}, {"q": "소행성 충돌설은 두꺼운 먼지 구름이 햇빛을 차단했다고 설명한다.", "a": true, "exp": "광합성량 감소, 기온 하강"}, {"q": "화산 폭발설은 인도 데칸 지역의 화산 폭발을 근거로 든다.", "a": true, "exp": "먼지와 유독 가스, 산성비"}, {"q": "가설의 타당성을 평가할 때 일부 지역에만 영향을 준 사건인지도 따져 본다.", "a": true, "exp": "전 지구적 영향인지가 평가 기준"}, {"q": "대멸종 이후 살아남은 생물은 새로운 환경에 적응하며 다양한 종으로 진화하였다.", "a": true, "exp": "적자생존"}], "mc": [{"q": "고생대 말 대멸종에 대한 설명으로 옳은 것은?", "opts": ["공룡이 멸종하였다.", "50 % 이상의 해양 생물과 공룡이 멸종하였다.", "생물종의 90 % 이상이 멸종하였고 대부분 해양 생물이었다.", "포유류가 대부분 멸종하였다."], "a": 2, "exp": "고생대 말: 90 % 이상, 판게아 때문에 해양 생물 큰 피해"}, {"q": "중생대 말 대멸종으로 멸종한 생물끼리 짝지은 것은?", "opts": ["삼엽충, 어류", "양서류, 곤충", "매머드, 화폐석", "공룡, 암모나이트"], "a": 3, "exp": "중생대 말: 공룡과 암모나이트를 포함한 많은 생물종"}, {"q": "공룡이 멸종한 뒤 번성한 생물은?", "opts": ["포유류", "삼엽충", "양치식물", "암모나이트"], "a": 0, "exp": "먹이에 쉽게 접근하게 된 포유류가 번성하였다."}, {"q": "대멸종의 원인으로 추정되는 것이 아닌 것은?", "opts": ["대규모 화산 분화", "포유류의 번성", "급격한 기후 변화", "운석 충돌"], "a": 1, "exp": "포유류 번성은 대멸종의 결과이다."}, {"q": "소행성 충돌설에서 멸종을 초래한 환경 변화로 옳은 것은?", "opts": ["오존층 형성", "해수면 하강으로 대륙 연결", "햇빛 차단 → 광합성량 감소, 기온 하강", "산소 농도 급증"], "a": 2, "exp": "먼지 구름이 성층권을 뒤덮어 햇빛 차단"}, {"q": "화산 폭발설에서 제시하는 환경 변화가 아닌 것은?", "opts": ["기온 하강", "화산재로 식물이 자라지 못함", "산성비로 토양 산성화", "대규모 해일 발생"], "a": 3, "exp": "대규모 해일은 소행성 충돌설의 내용이다."}, {"q": "가설의 타당성을 평가하는 기준으로 적절하지 않은 것은?", "opts": ["가설을 주장한 사람이 유명한가?", "과학적인 증거(지층, 화석 등)가 있는가?", "전 지구적으로 영향을 주었는가?", "생물의 생존에 위협이 되는 사건인가?"], "a": 0, "exp": "과학적 증거와 영향 범위, 환경 변화 설명 가능성으로 평가한다."}, {"q": "환경 변화가 생물권에 미치는 영향을 가장 잘 나타낸 말은?", "opts": ["복사 평형", "적자생존", "전자기 유도", "질량 보존"], "a": 1, "exp": "환경에 적응한 생물이 살아남아 번성한다."}], "hard": [{"q": "대멸종에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 비교적 급격한 환경 변화가 원인으로 추정된다.", "ㄴ. 대멸종 이후에는 새로운 생물종이 나타나지 않았다.", "ㄷ. 지구 역사에서 여러 번 일어났다."], "opts": ["ㄱ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 살아남은 생물이 다양한 종으로 진화하였다. / 옳은 것: ㄱ, ㄷ"}, {"q": "두 대멸종의 비교로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 고생대 말 대멸종으로 포유류가 멸종하였다.", "ㄴ. 고생대 말 대멸종이 중생대 말 대멸종보다 멸종 비율이 높았다.", "ㄷ. 중생대 말 대멸종으로 공룡이 멸종하였다."], "opts": ["ㄴ", "ㄱ, ㄴ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄱ. (X) 포유류는 공룡 멸종 후 번성하였다. / 옳은 것: ㄴ, ㄷ"}, {"q": "공룡 멸종 가설에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 소행성 충돌설과 화산 폭발설 모두 기온 하강을 설명한다.", "ㄴ. 소행성 충돌설은 식물의 광합성량 감소를 설명한다.", "ㄷ. 화산 폭발설은 지름 약 10 km의 소행성을 근거로 든다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 그것은 소행성 충돌설이다. / 옳은 것: ㄱ, ㄴ"}, {"q": "대멸종과 생물다양성에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 살아남은 생물종에게는 새로운 기회가 되었다.", "ㄴ. 오늘날의 생물다양성은 대멸종과 새로운 종의 등장을 거쳐 이루어졌다.", "ㄷ. 대멸종은 많은 생물종을 사라지게 하였다."], "opts": ["ㄷ", "ㄱ, ㄴ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 3, "exp": "옳은 것: ㄱ, ㄴ, ㄷ"}, {"q": "가설의 타당성 평가 기준으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 많은 사람이 믿고 있는가?", "ㄴ. 대멸종 전후의 환경 변화를 설명할 수 있는가?", "ㄷ. 과학적인 증거가 있는가?"], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄱ. (X) 다수의 믿음은 과학적 평가 기준이 아니다. / 옳은 것: ㄴ, ㄷ"}]}, "3": {"ox": [{"q": "복사 평형 상태에서는 흡수한 복사 에너지양과 방출한 복사 에너지양이 같다.", "a": true, "exp": "열수지 = 0"}, {"q": "지구 복사 에너지는 주로 파장이 짧은 자외선으로 방출된다.", "a": false, "exp": "지구 복사 에너지는 주로 파장이 긴 적외선이다."}, {"q": "달은 대기가 없어 지구보다 평균 기온이 낮다.", "a": true, "exp": "대기가 지구 복사를 흡수·재복사하지 못한다."}, {"q": "온실 기체는 파장이 긴 지구 복사 에너지를 잘 흡수한다.", "a": true, "exp": "흡수 후 일부를 지표로 방출"}, {"q": "온실 효과가 없었다면 지구에 액체 상태의 물이 존재하기 어려웠을 것이다.", "a": true, "exp": "온실 효과 덕분에 더 높은 온도에서 복사 평형"}, {"q": "온실 기체가 증가하면 대기에서 지표로 재복사되는 에너지양이 감소한다.", "a": false, "exp": "재복사량이 증가하여 기온이 상승한다."}, {"q": "지구 전체를 하나로 보면 지표와 대기 사이를 오가는 에너지는 서로 상쇄된다.", "a": true, "exp": "흡수(태양 복사) = 방출(우주로 나가는 지구 복사)만 남는다."}, {"q": "지구 온난화로 빙하가 녹으면 지표에서 반사되는 태양 복사 에너지양이 감소한다.", "a": true, "exp": "반사가 줄어 흡수가 늘어난다."}, {"q": "열수지가 (+)인 상태가 지속되면 지구의 평균 기온은 하강한다.", "a": false, "exp": "얻는 에너지가 더 많으므로 상승한다."}, {"q": "수증기, 이산화 탄소, 메테인은 온실 기체이다.", "a": true, "exp": "온실 효과를 일으키는 기체"}], "mc": [{"q": "그림은 지구의 복사 평형을 나타낸 것이다(태양 복사 에너지 = 100). ㉠에 해당하는 값은?", "opts": ["58", "116", "104", "98"], "a": 3, "exp": "지표: 47 + ㉠ = 24 + 5 + 104 + ㉡, 지구 전체: 47 + 23 = ㉡ + 58 → ㉡ = 12 → ㉠ = 145 − 47 = 98", "fig": "<svg viewBox=\"0 0 840 450\" class=\"layer-svg\"><rect x=\"0\" y=\"0\" width=\"840\" height=\"36\" fill=\"#0f172a\"/><rect x=\"0\" y=\"36\" width=\"840\" height=\"114\" fill=\"#1e293b\"/><rect x=\"0\" y=\"150\" width=\"840\" height=\"150\" fill=\"#e0f2fe\"/><rect x=\"0\" y=\"300\" width=\"840\" height=\"150\" fill=\"#dcfce7\"/><rect x=\"0\" y=\"300\" width=\"840\" height=\"5\" fill=\"#65a30d\"/><g font-size=\"15\" font-weight=\"900\"><text x=\"12\" y=\"60\" fill=\"#fff\">우주</text><text x=\"12\" y=\"174\" fill=\"#0369a1\">대기</text><text x=\"12\" y=\"326\" fill=\"#166534\">지표</text></g><text x=\"230\" y=\"24\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\" fill=\"#fde047\">☀️ 태양 복사 에너지 100</text><text x=\"680\" y=\"24\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\" fill=\"#fca5a5\">지구 복사 에너지 (적외선)</text><path d=\"M100 40 L100 170.0 A15.0 15.0 0 0 0 130 170.0 L130 52\" fill=\"none\" stroke=\"#eab308\" stroke-width=\"4.6\"/><polygon points=\"122,53 138,53 130,40\" fill=\"#eab308\"/><text x=\"142\" y=\"92\" text-anchor=\"start\" font-size=\"17\" font-weight=\"900\" fill=\"#eab308\">23</text><text x=\"142\" y=\"106\" text-anchor=\"start\" font-size=\"10.5\" fill=\"#e2e8f0\">대기 반사</text><line x1=\"200\" y1=\"40\" x2=\"200\" y2=\"228\" stroke=\"#eab308\" stroke-width=\"4.6\"/><circle cx=\"200\" cy=\"232\" r=\"8\" fill=\"#eab308\"/><text x=\"188\" y=\"238\" text-anchor=\"end\" font-size=\"17\" font-weight=\"900\" fill=\"#eab308\">23</text><text x=\"188\" y=\"252\" text-anchor=\"end\" font-size=\"10.5\" fill=\"#334155\">대기·구름 흡수</text><path d=\"M270 40 L270 303.0 A15.0 15.0 0 0 0 300 303.0 L300 52\" fill=\"none\" stroke=\"#eab308\" stroke-width=\"3.0\"/><polygon points=\"292,53 308,53 300,40\" fill=\"#eab308\"/><text x=\"312\" y=\"92\" text-anchor=\"start\" font-size=\"17\" font-weight=\"900\" fill=\"#eab308\">7</text><text x=\"312\" y=\"106\" text-anchor=\"start\" font-size=\"10.5\" fill=\"#e2e8f0\">지표 반사</text><line x1=\"375\" y1=\"40\" x2=\"375\" y2=\"288\" stroke=\"#eab308\" stroke-width=\"7.2\"/><polygon points=\"365.6111111111111,287 384.3888888888889,287 375,300\" fill=\"#eab308\"/><text x=\"360\" y=\"340\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#eab308\">47</text><text x=\"360\" y=\"354\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">지표면 흡수</text><line x1=\"460\" y1=\"302\" x2=\"460\" y2=\"212\" stroke=\"#f97316\" stroke-width=\"4.7\"/><polygon points=\"452,213 468,213 460,200\" fill=\"#f97316\"/><text x=\"460\" y=\"340\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#f97316\">24</text><text x=\"460\" y=\"354\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">물의 증발</text><line x1=\"515\" y1=\"302\" x2=\"515\" y2=\"227\" stroke=\"#f97316\" stroke-width=\"3.0\"/><polygon points=\"507,228 523,228 515,215\" fill=\"#f97316\"/><text x=\"515\" y=\"378\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#f97316\">5</text><text x=\"515\" y=\"392\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">대류·전도</text><line x1=\"575\" y1=\"302\" x2=\"575\" y2=\"202\" stroke=\"#dc2626\" stroke-width=\"13.0\"/><polygon points=\"558.1,203 591.9,203 575,190\" fill=\"#dc2626\"/><text x=\"575\" y=\"340\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#dc2626\">104</text><text x=\"575\" y=\"354\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">지표→대기</text><line x1=\"635\" y1=\"302\" x2=\"635\" y2=\"62\" stroke=\"#dc2626\" stroke-width=\"3.3\"/><polygon points=\"627,63 643,63 635,50\" fill=\"#dc2626\"/><text x=\"645\" y=\"110\" text-anchor=\"start\" font-size=\"17\" font-weight=\"900\" fill=\"#dc2626\">㉡</text><text x=\"645\" y=\"124\" text-anchor=\"start\" font-size=\"10.5\" fill=\"#e2e8f0\">지표→우주</text><line x1=\"715\" y1=\"185\" x2=\"715\" y2=\"288\" stroke=\"#dc2626\" stroke-width=\"12.9\"/><polygon points=\"698.2444444444444,287 731.7555555555556,287 715,300\" fill=\"#dc2626\"/><text x=\"715\" y=\"340\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#dc2626\">㉠</text><text x=\"715\" y=\"354\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">대기의 재복사</text><line x1=\"795\" y1=\"240\" x2=\"795\" y2=\"62\" stroke=\"#dc2626\" stroke-width=\"8.4\"/><polygon points=\"784.0222222222222,63 805.9777777777778,63 795,50\" fill=\"#dc2626\"/><text x=\"795\" y=\"262\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#dc2626\">58</text><text x=\"795\" y=\"276\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">대기·구름 방출</text><text x=\"470\" y=\"172\" font-size=\"11.5\" fill=\"#0369a1\">☁️ 온실 기체가 흡수 → 지표로 재복사</text></svg>"}, {"q": "그림은 지구의 복사 평형을 나타낸 것이다. ㉠ + ㉡의 값은?", "opts": ["162", "70", "156", "145"], "a": 0, "exp": "지구 전체: 47 + 23 = 12 + ㉠ → ㉠ = 58 / 지표: 47 + 98 = 24 + 5 + ㉡ + 12 → ㉡ = 104 → 58 + 104 = 162", "fig": "<svg viewBox=\"0 0 840 450\" class=\"layer-svg\"><rect x=\"0\" y=\"0\" width=\"840\" height=\"36\" fill=\"#0f172a\"/><rect x=\"0\" y=\"36\" width=\"840\" height=\"114\" fill=\"#1e293b\"/><rect x=\"0\" y=\"150\" width=\"840\" height=\"150\" fill=\"#e0f2fe\"/><rect x=\"0\" y=\"300\" width=\"840\" height=\"150\" fill=\"#dcfce7\"/><rect x=\"0\" y=\"300\" width=\"840\" height=\"5\" fill=\"#65a30d\"/><g font-size=\"15\" font-weight=\"900\"><text x=\"12\" y=\"60\" fill=\"#fff\">우주</text><text x=\"12\" y=\"174\" fill=\"#0369a1\">대기</text><text x=\"12\" y=\"326\" fill=\"#166534\">지표</text></g><text x=\"230\" y=\"24\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\" fill=\"#fde047\">☀️ 태양 복사 에너지 100</text><text x=\"680\" y=\"24\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\" fill=\"#fca5a5\">지구 복사 에너지 (적외선)</text><path d=\"M100 40 L100 170.0 A15.0 15.0 0 0 0 130 170.0 L130 52\" fill=\"none\" stroke=\"#eab308\" stroke-width=\"4.6\"/><polygon points=\"122,53 138,53 130,40\" fill=\"#eab308\"/><text x=\"142\" y=\"92\" text-anchor=\"start\" font-size=\"17\" font-weight=\"900\" fill=\"#eab308\">23</text><text x=\"142\" y=\"106\" text-anchor=\"start\" font-size=\"10.5\" fill=\"#e2e8f0\">대기 반사</text><line x1=\"200\" y1=\"40\" x2=\"200\" y2=\"228\" stroke=\"#eab308\" stroke-width=\"4.6\"/><circle cx=\"200\" cy=\"232\" r=\"8\" fill=\"#eab308\"/><text x=\"188\" y=\"238\" text-anchor=\"end\" font-size=\"17\" font-weight=\"900\" fill=\"#eab308\">23</text><text x=\"188\" y=\"252\" text-anchor=\"end\" font-size=\"10.5\" fill=\"#334155\">대기·구름 흡수</text><path d=\"M270 40 L270 303.0 A15.0 15.0 0 0 0 300 303.0 L300 52\" fill=\"none\" stroke=\"#eab308\" stroke-width=\"3.0\"/><polygon points=\"292,53 308,53 300,40\" fill=\"#eab308\"/><text x=\"312\" y=\"92\" text-anchor=\"start\" font-size=\"17\" font-weight=\"900\" fill=\"#eab308\">7</text><text x=\"312\" y=\"106\" text-anchor=\"start\" font-size=\"10.5\" fill=\"#e2e8f0\">지표 반사</text><line x1=\"375\" y1=\"40\" x2=\"375\" y2=\"288\" stroke=\"#eab308\" stroke-width=\"7.2\"/><polygon points=\"365.6111111111111,287 384.3888888888889,287 375,300\" fill=\"#eab308\"/><text x=\"360\" y=\"340\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#eab308\">47</text><text x=\"360\" y=\"354\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">지표면 흡수</text><line x1=\"460\" y1=\"302\" x2=\"460\" y2=\"212\" stroke=\"#f97316\" stroke-width=\"4.7\"/><polygon points=\"452,213 468,213 460,200\" fill=\"#f97316\"/><text x=\"460\" y=\"340\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#f97316\">24</text><text x=\"460\" y=\"354\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">물의 증발</text><line x1=\"515\" y1=\"302\" x2=\"515\" y2=\"227\" stroke=\"#f97316\" stroke-width=\"3.0\"/><polygon points=\"507,228 523,228 515,215\" fill=\"#f97316\"/><text x=\"515\" y=\"378\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#f97316\">5</text><text x=\"515\" y=\"392\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">대류·전도</text><line x1=\"575\" y1=\"302\" x2=\"575\" y2=\"202\" stroke=\"#dc2626\" stroke-width=\"13.0\"/><polygon points=\"558.1,203 591.9,203 575,190\" fill=\"#dc2626\"/><text x=\"575\" y=\"340\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#dc2626\">㉡</text><text x=\"575\" y=\"354\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">지표→대기</text><line x1=\"635\" y1=\"302\" x2=\"635\" y2=\"62\" stroke=\"#dc2626\" stroke-width=\"3.3\"/><polygon points=\"627,63 643,63 635,50\" fill=\"#dc2626\"/><text x=\"645\" y=\"110\" text-anchor=\"start\" font-size=\"17\" font-weight=\"900\" fill=\"#dc2626\">12</text><text x=\"645\" y=\"124\" text-anchor=\"start\" font-size=\"10.5\" fill=\"#e2e8f0\">지표→우주</text><line x1=\"715\" y1=\"185\" x2=\"715\" y2=\"288\" stroke=\"#dc2626\" stroke-width=\"12.9\"/><polygon points=\"698.2444444444444,287 731.7555555555556,287 715,300\" fill=\"#dc2626\"/><text x=\"715\" y=\"340\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#dc2626\">98</text><text x=\"715\" y=\"354\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">대기의 재복사</text><line x1=\"795\" y1=\"240\" x2=\"795\" y2=\"62\" stroke=\"#dc2626\" stroke-width=\"8.4\"/><polygon points=\"784.0222222222222,63 805.9777777777778,63 795,50\" fill=\"#dc2626\"/><text x=\"795\" y=\"262\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#dc2626\">㉠</text><text x=\"795\" y=\"276\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">대기·구름 방출</text><text x=\"470\" y=\"172\" font-size=\"11.5\" fill=\"#0369a1\">☁️ 온실 기체가 흡수 → 지표로 재복사</text></svg>"}, {"q": "그림에서 ㉠과 ㉡이 나타내는 에너지로 옳게 짝지은 것은?", "opts": ["㉠ 지구 복사, ㉡ 대기의 재복사", "㉠ 지표면이 흡수한 태양 복사, ㉡ 물의 증발로 대기에 전달된 에너지", "㉠ 대기의 재복사, ㉡ 우주로 나간 지구 복사", "㉠ 대기의 반사, ㉡ 지표면 복사"], "a": 1, "exp": "노란 화살표로 지표에 도달한 것은 태양 복사 흡수, 지표에서 대기로 올라가는 것 중 하나가 물의 증발이다.", "fig": "<svg viewBox=\"0 0 840 450\" class=\"layer-svg\"><rect x=\"0\" y=\"0\" width=\"840\" height=\"36\" fill=\"#0f172a\"/><rect x=\"0\" y=\"36\" width=\"840\" height=\"114\" fill=\"#1e293b\"/><rect x=\"0\" y=\"150\" width=\"840\" height=\"150\" fill=\"#e0f2fe\"/><rect x=\"0\" y=\"300\" width=\"840\" height=\"150\" fill=\"#dcfce7\"/><rect x=\"0\" y=\"300\" width=\"840\" height=\"5\" fill=\"#65a30d\"/><g font-size=\"15\" font-weight=\"900\"><text x=\"12\" y=\"60\" fill=\"#fff\">우주</text><text x=\"12\" y=\"174\" fill=\"#0369a1\">대기</text><text x=\"12\" y=\"326\" fill=\"#166534\">지표</text></g><text x=\"230\" y=\"24\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\" fill=\"#fde047\">☀️ 태양 복사 에너지 100</text><text x=\"680\" y=\"24\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\" fill=\"#fca5a5\">지구 복사 에너지 (적외선)</text><path d=\"M100 40 L100 170.0 A15.0 15.0 0 0 0 130 170.0 L130 52\" fill=\"none\" stroke=\"#eab308\" stroke-width=\"4.6\"/><polygon points=\"122,53 138,53 130,40\" fill=\"#eab308\"/><text x=\"142\" y=\"92\" text-anchor=\"start\" font-size=\"17\" font-weight=\"900\" fill=\"#eab308\">23</text><text x=\"142\" y=\"106\" text-anchor=\"start\" font-size=\"10.5\" fill=\"#e2e8f0\">대기 반사</text><line x1=\"200\" y1=\"40\" x2=\"200\" y2=\"228\" stroke=\"#eab308\" stroke-width=\"4.6\"/><circle cx=\"200\" cy=\"232\" r=\"8\" fill=\"#eab308\"/><text x=\"188\" y=\"238\" text-anchor=\"end\" font-size=\"17\" font-weight=\"900\" fill=\"#eab308\">23</text><text x=\"188\" y=\"252\" text-anchor=\"end\" font-size=\"10.5\" fill=\"#334155\">대기·구름 흡수</text><path d=\"M270 40 L270 303.0 A15.0 15.0 0 0 0 300 303.0 L300 52\" fill=\"none\" stroke=\"#eab308\" stroke-width=\"3.0\"/><polygon points=\"292,53 308,53 300,40\" fill=\"#eab308\"/><text x=\"312\" y=\"92\" text-anchor=\"start\" font-size=\"17\" font-weight=\"900\" fill=\"#eab308\">7</text><text x=\"312\" y=\"106\" text-anchor=\"start\" font-size=\"10.5\" fill=\"#e2e8f0\">지표 반사</text><line x1=\"375\" y1=\"40\" x2=\"375\" y2=\"288\" stroke=\"#eab308\" stroke-width=\"7.2\"/><polygon points=\"365.6111111111111,287 384.3888888888889,287 375,300\" fill=\"#eab308\"/><text x=\"360\" y=\"340\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#eab308\">㉠</text><text x=\"360\" y=\"354\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">지표면 흡수</text><line x1=\"460\" y1=\"302\" x2=\"460\" y2=\"212\" stroke=\"#f97316\" stroke-width=\"4.7\"/><polygon points=\"452,213 468,213 460,200\" fill=\"#f97316\"/><text x=\"460\" y=\"340\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#f97316\">㉡</text><text x=\"460\" y=\"354\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">물의 증발</text><line x1=\"515\" y1=\"302\" x2=\"515\" y2=\"227\" stroke=\"#f97316\" stroke-width=\"3.0\"/><polygon points=\"507,228 523,228 515,215\" fill=\"#f97316\"/><text x=\"515\" y=\"378\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#f97316\">5</text><text x=\"515\" y=\"392\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">대류·전도</text><line x1=\"575\" y1=\"302\" x2=\"575\" y2=\"202\" stroke=\"#dc2626\" stroke-width=\"13.0\"/><polygon points=\"558.1,203 591.9,203 575,190\" fill=\"#dc2626\"/><text x=\"575\" y=\"340\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#dc2626\">104</text><text x=\"575\" y=\"354\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">지표→대기</text><line x1=\"635\" y1=\"302\" x2=\"635\" y2=\"62\" stroke=\"#dc2626\" stroke-width=\"3.3\"/><polygon points=\"627,63 643,63 635,50\" fill=\"#dc2626\"/><text x=\"645\" y=\"110\" text-anchor=\"start\" font-size=\"17\" font-weight=\"900\" fill=\"#dc2626\">12</text><text x=\"645\" y=\"124\" text-anchor=\"start\" font-size=\"10.5\" fill=\"#e2e8f0\">지표→우주</text><line x1=\"715\" y1=\"185\" x2=\"715\" y2=\"288\" stroke=\"#dc2626\" stroke-width=\"12.9\"/><polygon points=\"698.2444444444444,287 731.7555555555556,287 715,300\" fill=\"#dc2626\"/><text x=\"715\" y=\"340\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#dc2626\">98</text><text x=\"715\" y=\"354\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">대기의 재복사</text><line x1=\"795\" y1=\"240\" x2=\"795\" y2=\"62\" stroke=\"#dc2626\" stroke-width=\"8.4\"/><polygon points=\"784.0222222222222,63 805.9777777777778,63 795,50\" fill=\"#dc2626\"/><text x=\"795\" y=\"262\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#dc2626\">58</text><text x=\"795\" y=\"276\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">대기·구름 방출</text><text x=\"470\" y=\"172\" font-size=\"11.5\" fill=\"#0369a1\">☁️ 온실 기체가 흡수 → 지표로 재복사</text></svg>"}, {"q": "표는 IPCC 6차 보고서의 지구 열수지 자료이다. ㉠의 값과 이 상태가 지속될 때의 변화로 옳은 것은?", "opts": ["70.9, 평균 기온 일정", "70.9, 평균 기온 하강", "70.5, 평균 기온 상승", "70.5, 평균 기온 하강"], "a": 2, "exp": "방출 = 22.6 + 6.7 + ㉠, 열수지 = 100 − 방출 = 0.2 → ㉠ = 70.5. 흡수 > 방출이므로 평균 기온 상승", "fig": "<table class=\"ex-table\" style=\"max-width:420px;margin:0 auto\"><thead><tr><th>구분 (태양 복사 = 100)</th><th class=\"c\">값</th></tr></thead><tbody><tr><td>대기와 지표에 의한 반사</td><td class=\"c\">22.6 + 6.7</td></tr><tr><td>우주로 나가는 지구 복사 에너지</td><td class=\"c\">㉠</td></tr><tr><td>지구의 열수지 (흡수 − 방출)</td><td class=\"c\">+0.2</td></tr></tbody></table>"}, {"q": "달과 지구의 평균 기온이 다른 까닭으로 가장 적절한 것은?", "opts": ["달은 태양 복사 에너지를 전혀 받지 않기 때문", "달이 지구보다 크기 때문", "지구가 태양에 훨씬 가깝기 때문", "지구는 대기가 지구 복사 에너지를 흡수했다가 일부를 지표로 다시 방출하기 때문"], "a": 3, "exp": "태양과의 거리는 거의 같지만 대기의 유무가 다르다."}, {"q": "온실 효과가 강화되어 지구 온난화가 일어나는 과정으로 옳은 것은?", "opts": ["온실 기체 증가 → 지표로 재복사되는 에너지 증가 → 평균 기온 상승", "온실 기체 감소 → 태양 복사 반사 증가 → 평균 기온 상승", "오존층 파괴 → 적외선 증가 → 평균 기온 하강", "빙하 증가 → 반사 증가 → 평균 기온 상승"], "a": 0, "exp": "산업혁명 이후 화석 연료 사용 → CO₂ 증가 → 강화된 온실 효과"}, {"q": "21세기 초 지구의 열수지 변화로 옳은 것은?", "opts": ["우주로 빠져나가는 지구 복사 에너지가 증가하였다.", "도달하는 태양 복사 에너지에 비해 우주로 빠져나가는 지구 복사 에너지가 감소하였다.", "태양 복사 에너지가 크게 줄었다.", "열수지가 0으로 유지되었다."], "a": 1, "exp": "온실 기체 증가로 우주로 나가는 지구 복사 에너지 감소"}, {"q": "지표의 복사 평형을 옳게 나타낸 것은? (그림의 기호 사용: 지표 흡수 47, 재복사 B, 증발 24, 대류·전도 5, 지표면 복사 116)", "opts": ["47 = 24 + 5 + 116 + B", "47 + 24 = B + 5 + 116", "47 + B = 24 + 5 + 116", "47 + B + 24 = 5 + 116"], "a": 2, "exp": "지표로 들어오는 것(태양 흡수, 대기 재복사) = 지표에서 나가는 것(증발, 대류·전도, 지표면 복사)"}], "hard": [{"q": "그림은 지구의 복사 평형을 나타낸 것이다. 이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. A + 47 = 12 + C 이다.", "ㄴ. 온실 기체가 증가하면 B는 증가한다.", "ㄷ. B는 태양 복사 에너지이다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) B는 대기가 지표로 방출하는 재복사(지구 복사)이다. / 옳은 것: ㄱ, ㄴ", "fig": "<svg viewBox=\"0 0 840 450\" class=\"layer-svg\"><rect x=\"0\" y=\"0\" width=\"840\" height=\"36\" fill=\"#0f172a\"/><rect x=\"0\" y=\"36\" width=\"840\" height=\"114\" fill=\"#1e293b\"/><rect x=\"0\" y=\"150\" width=\"840\" height=\"150\" fill=\"#e0f2fe\"/><rect x=\"0\" y=\"300\" width=\"840\" height=\"150\" fill=\"#dcfce7\"/><rect x=\"0\" y=\"300\" width=\"840\" height=\"5\" fill=\"#65a30d\"/><g font-size=\"15\" font-weight=\"900\"><text x=\"12\" y=\"60\" fill=\"#fff\">우주</text><text x=\"12\" y=\"174\" fill=\"#0369a1\">대기</text><text x=\"12\" y=\"326\" fill=\"#166534\">지표</text></g><text x=\"230\" y=\"24\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\" fill=\"#fde047\">☀️ 태양 복사 에너지 100</text><text x=\"680\" y=\"24\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\" fill=\"#fca5a5\">지구 복사 에너지 (적외선)</text><path d=\"M100 40 L100 170.0 A15.0 15.0 0 0 0 130 170.0 L130 52\" fill=\"none\" stroke=\"#eab308\" stroke-width=\"4.6\"/><polygon points=\"122,53 138,53 130,40\" fill=\"#eab308\"/><text x=\"142\" y=\"92\" text-anchor=\"start\" font-size=\"17\" font-weight=\"900\" fill=\"#eab308\">23</text><text x=\"142\" y=\"106\" text-anchor=\"start\" font-size=\"10.5\" fill=\"#e2e8f0\">대기 반사</text><line x1=\"200\" y1=\"40\" x2=\"200\" y2=\"228\" stroke=\"#eab308\" stroke-width=\"4.6\"/><circle cx=\"200\" cy=\"232\" r=\"8\" fill=\"#eab308\"/><text x=\"188\" y=\"238\" text-anchor=\"end\" font-size=\"17\" font-weight=\"900\" fill=\"#eab308\">A</text><text x=\"188\" y=\"252\" text-anchor=\"end\" font-size=\"10.5\" fill=\"#334155\">대기·구름 흡수</text><path d=\"M270 40 L270 303.0 A15.0 15.0 0 0 0 300 303.0 L300 52\" fill=\"none\" stroke=\"#eab308\" stroke-width=\"3.0\"/><polygon points=\"292,53 308,53 300,40\" fill=\"#eab308\"/><text x=\"312\" y=\"92\" text-anchor=\"start\" font-size=\"17\" font-weight=\"900\" fill=\"#eab308\">7</text><text x=\"312\" y=\"106\" text-anchor=\"start\" font-size=\"10.5\" fill=\"#e2e8f0\">지표 반사</text><line x1=\"375\" y1=\"40\" x2=\"375\" y2=\"288\" stroke=\"#eab308\" stroke-width=\"7.2\"/><polygon points=\"365.6111111111111,287 384.3888888888889,287 375,300\" fill=\"#eab308\"/><text x=\"360\" y=\"340\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#eab308\">47</text><text x=\"360\" y=\"354\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">지표면 흡수</text><line x1=\"460\" y1=\"302\" x2=\"460\" y2=\"212\" stroke=\"#f97316\" stroke-width=\"4.7\"/><polygon points=\"452,213 468,213 460,200\" fill=\"#f97316\"/><text x=\"460\" y=\"340\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#f97316\">24</text><text x=\"460\" y=\"354\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">물의 증발</text><line x1=\"515\" y1=\"302\" x2=\"515\" y2=\"227\" stroke=\"#f97316\" stroke-width=\"3.0\"/><polygon points=\"507,228 523,228 515,215\" fill=\"#f97316\"/><text x=\"515\" y=\"378\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#f97316\">5</text><text x=\"515\" y=\"392\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">대류·전도</text><line x1=\"575\" y1=\"302\" x2=\"575\" y2=\"202\" stroke=\"#dc2626\" stroke-width=\"13.0\"/><polygon points=\"558.1,203 591.9,203 575,190\" fill=\"#dc2626\"/><text x=\"575\" y=\"340\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#dc2626\">104</text><text x=\"575\" y=\"354\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">지표→대기</text><line x1=\"635\" y1=\"302\" x2=\"635\" y2=\"62\" stroke=\"#dc2626\" stroke-width=\"3.3\"/><polygon points=\"627,63 643,63 635,50\" fill=\"#dc2626\"/><text x=\"645\" y=\"110\" text-anchor=\"start\" font-size=\"17\" font-weight=\"900\" fill=\"#dc2626\">12</text><text x=\"645\" y=\"124\" text-anchor=\"start\" font-size=\"10.5\" fill=\"#e2e8f0\">지표→우주</text><line x1=\"715\" y1=\"185\" x2=\"715\" y2=\"288\" stroke=\"#dc2626\" stroke-width=\"12.9\"/><polygon points=\"698.2444444444444,287 731.7555555555556,287 715,300\" fill=\"#dc2626\"/><text x=\"715\" y=\"340\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#dc2626\">B</text><text x=\"715\" y=\"354\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">대기의 재복사</text><line x1=\"795\" y1=\"240\" x2=\"795\" y2=\"62\" stroke=\"#dc2626\" stroke-width=\"8.4\"/><polygon points=\"784.0222222222222,63 805.9777777777778,63 795,50\" fill=\"#dc2626\"/><text x=\"795\" y=\"262\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#dc2626\">C</text><text x=\"795\" y=\"276\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">대기·구름 방출</text><text x=\"470\" y=\"172\" font-size=\"11.5\" fill=\"#0369a1\">☁️ 온실 기체가 흡수 → 지표로 재복사</text></svg>"}, {"q": "그림에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 우주로 나가는 지구 복사 에너지는 적외선이다.", "ㄴ. 지표에서 방출되는 에너지는 모두 대기에 흡수된다.", "ㄷ. 대기가 흡수하는 에너지의 합(23 + 24 + 5 + 104)은 대기가 방출하는 에너지의 합(58 + ㉠)과 같다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) ㉡은 대기를 통과해 바로 우주로 나간다. / 옳은 것: ㄱ, ㄷ", "fig": "<svg viewBox=\"0 0 840 450\" class=\"layer-svg\"><rect x=\"0\" y=\"0\" width=\"840\" height=\"36\" fill=\"#0f172a\"/><rect x=\"0\" y=\"36\" width=\"840\" height=\"114\" fill=\"#1e293b\"/><rect x=\"0\" y=\"150\" width=\"840\" height=\"150\" fill=\"#e0f2fe\"/><rect x=\"0\" y=\"300\" width=\"840\" height=\"150\" fill=\"#dcfce7\"/><rect x=\"0\" y=\"300\" width=\"840\" height=\"5\" fill=\"#65a30d\"/><g font-size=\"15\" font-weight=\"900\"><text x=\"12\" y=\"60\" fill=\"#fff\">우주</text><text x=\"12\" y=\"174\" fill=\"#0369a1\">대기</text><text x=\"12\" y=\"326\" fill=\"#166534\">지표</text></g><text x=\"230\" y=\"24\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\" fill=\"#fde047\">☀️ 태양 복사 에너지 100</text><text x=\"680\" y=\"24\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"700\" fill=\"#fca5a5\">지구 복사 에너지 (적외선)</text><path d=\"M100 40 L100 170.0 A15.0 15.0 0 0 0 130 170.0 L130 52\" fill=\"none\" stroke=\"#eab308\" stroke-width=\"4.6\"/><polygon points=\"122,53 138,53 130,40\" fill=\"#eab308\"/><text x=\"142\" y=\"92\" text-anchor=\"start\" font-size=\"17\" font-weight=\"900\" fill=\"#eab308\">23</text><text x=\"142\" y=\"106\" text-anchor=\"start\" font-size=\"10.5\" fill=\"#e2e8f0\">대기 반사</text><line x1=\"200\" y1=\"40\" x2=\"200\" y2=\"228\" stroke=\"#eab308\" stroke-width=\"4.6\"/><circle cx=\"200\" cy=\"232\" r=\"8\" fill=\"#eab308\"/><text x=\"188\" y=\"238\" text-anchor=\"end\" font-size=\"17\" font-weight=\"900\" fill=\"#eab308\">23</text><text x=\"188\" y=\"252\" text-anchor=\"end\" font-size=\"10.5\" fill=\"#334155\">대기·구름 흡수</text><path d=\"M270 40 L270 303.0 A15.0 15.0 0 0 0 300 303.0 L300 52\" fill=\"none\" stroke=\"#eab308\" stroke-width=\"3.0\"/><polygon points=\"292,53 308,53 300,40\" fill=\"#eab308\"/><text x=\"312\" y=\"92\" text-anchor=\"start\" font-size=\"17\" font-weight=\"900\" fill=\"#eab308\">7</text><text x=\"312\" y=\"106\" text-anchor=\"start\" font-size=\"10.5\" fill=\"#e2e8f0\">지표 반사</text><line x1=\"375\" y1=\"40\" x2=\"375\" y2=\"288\" stroke=\"#eab308\" stroke-width=\"7.2\"/><polygon points=\"365.6111111111111,287 384.3888888888889,287 375,300\" fill=\"#eab308\"/><text x=\"360\" y=\"340\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#eab308\">47</text><text x=\"360\" y=\"354\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">지표면 흡수</text><line x1=\"460\" y1=\"302\" x2=\"460\" y2=\"212\" stroke=\"#f97316\" stroke-width=\"4.7\"/><polygon points=\"452,213 468,213 460,200\" fill=\"#f97316\"/><text x=\"460\" y=\"340\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#f97316\">24</text><text x=\"460\" y=\"354\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">물의 증발</text><line x1=\"515\" y1=\"302\" x2=\"515\" y2=\"227\" stroke=\"#f97316\" stroke-width=\"3.0\"/><polygon points=\"507,228 523,228 515,215\" fill=\"#f97316\"/><text x=\"515\" y=\"378\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#f97316\">5</text><text x=\"515\" y=\"392\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">대류·전도</text><line x1=\"575\" y1=\"302\" x2=\"575\" y2=\"202\" stroke=\"#dc2626\" stroke-width=\"13.0\"/><polygon points=\"558.1,203 591.9,203 575,190\" fill=\"#dc2626\"/><text x=\"575\" y=\"340\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#dc2626\">104</text><text x=\"575\" y=\"354\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">지표→대기</text><line x1=\"635\" y1=\"302\" x2=\"635\" y2=\"62\" stroke=\"#dc2626\" stroke-width=\"3.3\"/><polygon points=\"627,63 643,63 635,50\" fill=\"#dc2626\"/><text x=\"645\" y=\"110\" text-anchor=\"start\" font-size=\"17\" font-weight=\"900\" fill=\"#dc2626\">㉡</text><text x=\"645\" y=\"124\" text-anchor=\"start\" font-size=\"10.5\" fill=\"#e2e8f0\">지표→우주</text><line x1=\"715\" y1=\"185\" x2=\"715\" y2=\"288\" stroke=\"#dc2626\" stroke-width=\"12.9\"/><polygon points=\"698.2444444444444,287 731.7555555555556,287 715,300\" fill=\"#dc2626\"/><text x=\"715\" y=\"340\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#dc2626\">㉠</text><text x=\"715\" y=\"354\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">대기의 재복사</text><line x1=\"795\" y1=\"240\" x2=\"795\" y2=\"62\" stroke=\"#dc2626\" stroke-width=\"8.4\"/><polygon points=\"784.0222222222222,63 805.9777777777778,63 795,50\" fill=\"#dc2626\"/><text x=\"795\" y=\"262\" text-anchor=\"middle\" font-size=\"17\" font-weight=\"900\" fill=\"#dc2626\">58</text><text x=\"795\" y=\"276\" text-anchor=\"middle\" font-size=\"10.5\" fill=\"#334155\">대기·구름 방출</text><text x=\"470\" y=\"172\" font-size=\"11.5\" fill=\"#0369a1\">☁️ 온실 기체가 흡수 → 지표로 재복사</text></svg>"}, {"q": "온실 효과에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 온실 효과는 생명체에게 해롭기만 하다.", "ㄴ. 대기가 없다면 지구의 평균 기온은 지금보다 낮을 것이다.", "ㄷ. 온실 기체는 지구 복사 에너지를 흡수하여 일부를 지표로 방출한다."], "opts": ["ㄱ", "ㄷ", "ㄱ, ㄷ", "ㄴ, ㄷ"], "a": 3, "exp": "ㄱ. (X) 액체 상태의 물이 존재할 수 있게 해 생명에 중요하다. / 옳은 것: ㄴ, ㄷ"}, {"q": "IPCC 열수지 자료(흡수 100, 방출 99.8)에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 지구는 현재 복사 평형 상태가 아니다.", "ㄴ. 이 상태가 지속되면 지구의 평균 기온은 상승한다.", "ㄷ. 지구가 잃는 에너지가 얻는 에너지보다 많다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 얻는 에너지(100)가 잃는 에너지(99.8)보다 많다. / 옳은 것: ㄱ, ㄴ"}, {"q": "지구 온난화와 열수지에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 시간이 지나면 평균 기온이 높아진 상태에서 복사 평형을 이룰 것이다.", "ㄴ. 빙하가 녹으면 지표에서 반사되는 태양 복사 에너지양이 증가한다.", "ㄷ. 온도가 높아지면 지표가 방출하는 지구 복사 에너지양이 증가한다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 반사량이 감소한다. / 옳은 것: ㄱ, ㄷ"}]}, "4": {"ox": [{"q": "저위도 지역은 고위도 지역보다 단위 면적당 더 많은 태양 복사 에너지를 흡수한다.", "a": true, "exp": "지구가 구형이기 때문"}, {"q": "대기 대순환은 위도에 따라 세 개의 순환으로 나타난다.", "a": true, "exp": "해들리, 페렐, 극순환"}, {"q": "해들리 순환은 간접 순환이다.", "a": false, "exp": "해들리 순환과 극순환은 직접 순환, 페렐 순환은 간접 순환"}, {"q": "직접 순환은 따뜻한 곳에서 상승하고 차가운 곳에서 하강하는 열 대류이다.", "a": true, "exp": "해들리 순환, 극순환"}, {"q": "위도 30° 부근은 하강 기류가 형성되어 건조하다.", "a": true, "exp": "아열대 고압대 → 대규모 사막"}, {"q": "적도 부근은 하강 기류가 발달하여 비가 적다.", "a": false, "exp": "적도 저압대는 상승 기류 → 비가 많다."}, {"q": "위도 30°~60°의 지표에서는 편서풍이 분다.", "a": true, "exp": "페렐 순환"}, {"q": "무역풍은 북적도 해류를 일으킨다.", "a": true, "exp": "바람이 표층 해수를 움직인다."}, {"q": "과잉 방목, 무분별한 농경지 확장, 산림 벌채는 사막화의 원인이다.", "a": true, "exp": "인간 활동이 사막화의 주요 원인"}, {"q": "사막화된 지역에서는 토양 침식이 감소한다.", "a": false, "exp": "식물이 자라지 않아 토양 침식이 늘어난다."}], "mc": [{"q": "대기 대순환이 일어나는 근본적인 까닭은?", "opts": ["위도에 따라 흡수하는 태양 복사 에너지양이 다르기 때문", "바다의 염분이 다르기 때문", "지구의 자전 속도가 변하기 때문", "대륙이 이동하기 때문"], "a": 0, "exp": "지구가 구형 → 저위도 > 고위도"}, {"q": "순환과 종류의 연결로 옳은 것은?", "opts": ["극순환 – 간접 순환", "페렐 순환 – 간접 순환", "해들리 순환 – 간접 순환", "페렐 순환 – 직접 순환"], "a": 1, "exp": "해들리·극순환 = 직접(열 대류), 페렐 = 간접"}, {"q": "위도와 지표 바람의 연결로 옳은 것은?", "opts": ["60°~90° – 편서풍", "0°~30° – 편서풍", "0°~30° – 북동 무역풍", "30°~60° – 편동풍"], "a": 2, "exp": "무역풍(0~30), 편서풍(30~60), 편동풍(60~90)"}, {"q": "대규모 사막이 위도 20°~30° 부근에 많은 까닭은?", "opts": ["편서풍이 강하게 불기 때문", "한대 전선대가 있기 때문", "상승 기류로 비가 많이 오기 때문", "하강 기류로 구름이 잘 생기지 않기 때문"], "a": 3, "exp": "아열대 고압대의 하강 기류 → 건조"}, {"q": "적도 저압대의 특징으로 옳은 것은?", "opts": ["상승 기류가 발달하여 비가 많다.", "편서풍이 분다.", "한대 전선대가 형성된다.", "하강 기류로 건조하다."], "a": 0, "exp": "공기가 올라가면 비, 내려오면 건조"}, {"q": "사막화의 자연적 원인으로 옳은 것은?", "opts": ["과잉 방목", "대기 대순환 변화로 강수량이 줄어듦", "산림 벌채", "무분별한 농경지 확장"], "a": 1, "exp": "나머지는 인위적 원인"}, {"q": "사막화의 영향이 아닌 것은?", "opts": ["생물다양성 감소", "모래 폭풍으로 인한 건강 문제", "농업 생산성 증가", "물의 순환에 영향"], "a": 2, "exp": "사막화되면 농업 생산성이 낮아진다."}, {"q": "대기 대순환은 대기의 어느 층에서 일어나는가?", "opts": ["중간권", "열권", "성층권", "대류권"], "a": 3, "exp": "대류권에서 일어나며, 그 위는 성층권이다."}], "hard": [{"q": "대기 대순환의 세 순환에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 페렐 순환은 열 대류로 직접 생기는 순환이다.", "ㄴ. 해들리 순환에서 공기는 적도에서 상승하고 30°에서 하강한다.", "ㄷ. 극순환은 직접 순환이다."], "opts": ["ㄱ", "ㄱ, ㄴ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄱ. (X) 페렐 순환은 간접 순환이다. / 옳은 것: ㄴ, ㄷ"}, {"q": "기압대와 날씨에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 적도 저압대에서는 상승 기류로 구름이 발달한다.", "ㄴ. 아열대 고압대에서는 하강 기류로 건조하다.", "ㄷ. 한대 전선대는 위도 30° 부근에 있다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 한대 전선대는 위도 60° 부근이다. / 옳은 것: ㄱ, ㄴ"}, {"q": "지표의 바람에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 북반구 저위도에서는 북동 무역풍이 분다.", "ㄴ. 극 지방에서는 편서풍이 분다.", "ㄷ. 우리나라가 속한 위도 30°~60°에서는 편서풍이 분다."], "opts": ["ㄱ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 극 지방(60°~90°)에서는 편동풍이 분다. / 옳은 것: ㄱ, ㄷ"}, {"q": "사막화에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 사막화 지역은 최근 수십 년간 감소해 왔다.", "ㄴ. 인간의 활동도 사막화의 주요 원인이다.", "ㄷ. 기온이 상승하면 증발량이 증가하여 사막화에 영향을 준다."], "opts": ["ㄱ", "ㄴ", "ㄷ", "ㄴ, ㄷ"], "a": 3, "exp": "ㄱ. (X) 계속 증가해 왔다. / 옳은 것: ㄴ, ㄷ"}, {"q": "사막화의 영향에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 모래 폭풍은 태양 전지판의 발전 효율을 감소시킨다.", "ㄴ. 거주지가 감소한다.", "ㄷ. 물의 순환에는 영향을 주지 않는다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 토양 침식이 늘고 물의 순환에도 영향을 준다. / 옳은 것: ㄱ, ㄴ"}]}, "5": {"ox": [{"q": "엘니뇨는 대기와 해양의 상호작용으로 생기는 대표적인 현상이다.", "a": true, "exp": "무역풍과 표층 해수의 관계"}, {"q": "평상시 태평양 적도 부근에는 무역풍이 불어 따뜻한 표층 해수가 서쪽으로 이동한다.", "a": true, "exp": "페루 연안 → 서태평양"}, {"q": "평상시 동태평양은 서태평양보다 표층 수온이 높다.", "a": false, "exp": "동태평양은 찬물이 올라와 수온이 낮다."}, {"q": "엘니뇨는 무역풍이 강해질 때 발생한다.", "a": false, "exp": "무역풍이 약해질 때 발생한다."}, {"q": "엘니뇨가 발생하면 동태평양의 표층 수온이 평년보다 높아진다.", "a": true, "exp": "찬물 상승 감소"}, {"q": "엘니뇨가 발생하면 상승 기류의 중심이 동쪽으로 이동한다.", "a": true, "exp": "동태평양에 홍수·폭우"}, {"q": "엘니뇨 시기에 인도네시아에서는 홍수가 자주 발생한다.", "a": false, "exp": "서태평양(인도네시아)은 강수량 감소 → 가뭄, 산불"}, {"q": "엘니뇨가 발생하면 페루 연안의 어장이 붕괴될 수 있다.", "a": true, "exp": "차가운 물의 상승이 줄어 해양 생태계에 영향"}, {"q": "규모가 큰 엘니뇨는 태평양 적도 부근에만 영향을 준다.", "a": false, "exp": "지구 전체에 영향을 준다."}, {"q": "평상시 서태평양 적도 부근은 상승 기류로 비가 많이 온다.", "a": true, "exp": "무덥고 비가 많다."}], "mc": [{"q": "엘니뇨가 발생하는 직접적인 원인은?", "opts": ["편서풍의 강화", "무역풍의 약화", "해수면 하강", "무역풍의 강화"], "a": 1, "exp": "무역풍 약화 → 서쪽으로 가는 해수 흐름 약화 → 찬물 상승 감소"}, {"q": "평상시 동태평양의 표층 수온이 낮은 까닭은?", "opts": ["태양 복사 에너지를 받지 못하기 때문", "비가 많이 오기 때문", "심층의 차가운 물이 상승하기 때문", "따뜻한 물이 동쪽으로 몰려오기 때문"], "a": 2, "exp": "무역풍으로 빠져나간 표층 해수의 빈자리를 심층의 찬물이 채운다."}, {"q": "엘니뇨 발생 시 동태평양(페루)에서 나타나는 현상은?", "opts": ["가뭄과 대규모 산불", "표층 수온 하강", "찬물 상승 증가", "홍수와 폭우, 어장 붕괴"], "a": 3, "exp": "수온 상승 → 상승 기류 → 홍수·폭우, 찬물 감소 → 어장 붕괴"}, {"q": "엘니뇨 발생 시 서태평양(인도네시아)에서 나타나는 현상은?", "opts": ["강수량 감소로 가뭄, 대규모 산불", "어장 형성", "홍수와 폭우", "표층 수온 상승"], "a": 0, "exp": "예) 1997~1998년 인도네시아 대규모 산불"}, {"q": "평상시와 비교한 엘니뇨 시기의 변화로 옳은 것은?", "opts": ["무역풍이 강해진다.", "상승 기류 중심이 동쪽으로 이동한다.", "동태평양 표층 수온이 낮아진다.", "서태평양의 비가 늘어난다."], "a": 1, "exp": "동태평양 수온 상승 → 상승 기류 중심 동쪽 이동"}, {"q": "대기와 해양의 상호작용을 옳게 나타낸 것은?", "opts": ["심층 해수가 바람을 일으킨다.", "대기와 해양은 서로 영향을 주지 않는다.", "대기 대순환의 바람이 표층 해수를 움직여 해수 순환을 일으킨다.", "해류가 태양 복사 에너지를 만든다."], "a": 2, "exp": "위도별 에너지 차이 → 대기 대순환 → 바람 → 표층 해수 순환"}, {"q": "엘니뇨가 지구 전체에 미친 영향의 예로 옳지 않은 것은?", "opts": ["아프리카 말라위 가뭄", "호주 산호초 백화", "미국 텍사스 폭우", "북극해가 1년 내내 얼음으로 덮임"], "a": 3, "exp": "교과서 사례: 말라위 가뭄, 텍사스 폭우, 호주 산호초 백화(2016)"}, {"q": "엘니뇨 시기 미국 북부와 캐나다의 변화로 옳은 것은?", "opts": ["평상시에 비해 따뜻해진다.", "평상시에 비해 추워진다.", "변화가 없다.", "사막으로 변한다."], "a": 0, "exp": "대기의 순환이 변하여 기상 이변이 생긴다."}], "hard": [{"q": "평상시 태평양 적도 부근에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 동태평양에서는 심층의 차가운 물이 상승한다.", "ㄴ. 동태평양은 서태평양보다 비가 많이 온다.", "ㄷ. 무역풍이 따뜻한 표층 해수를 서쪽으로 이동시킨다."], "opts": ["ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 서태평양이 상승 기류로 비가 많고 동태평양은 비가 적다. / 옳은 것: ㄱ, ㄷ"}, {"q": "엘니뇨에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 동태평양에서 차가운 물의 상승이 증가한다.", "ㄴ. 무역풍이 약해지면 발생한다.", "ㄷ. 동태평양의 표층 수온이 평년보다 높아진다."], "opts": ["ㄴ", "ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄱ. (X) 차가운 물의 상승이 감소한다. / 옳은 것: ㄴ, ㄷ"}, {"q": "엘니뇨 시기의 기상 현상에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 동태평양에서는 홍수와 폭우가 나타난다.", "ㄴ. 서태평양에서는 가뭄과 산불이 발생하기도 한다.", "ㄷ. 상승 기류의 중심이 서쪽으로 이동한다."], "opts": ["ㄱ", "ㄴ", "ㄷ", "ㄱ, ㄴ"], "a": 3, "exp": "ㄷ. (X) 동쪽으로 이동한다. / 옳은 것: ㄱ, ㄴ"}, {"q": "평상시와 엘니뇨 시기를 비교한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 동태평양 표층 수온은 엘니뇨 시기가 평상시보다 높다.", "ㄴ. 페루 연안의 어장은 엘니뇨 시기에 더 풍부해진다.", "ㄷ. 무역풍의 세기는 평상시가 엘니뇨 시기보다 강하다."], "opts": ["ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 찬물 상승이 줄어 어장이 붕괴될 수 있다. / 옳은 것: ㄱ, ㄷ"}, {"q": "엘니뇨의 영향에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 엘니뇨는 해양 생태계에 영향을 주지 않는다.", "ㄴ. 규모가 큰 엘니뇨는 지구 전체에 영향을 준다.", "ㄷ. 우리나라는 강수량이 변화하는 등 기상 이변이 생기기도 한다."], "opts": ["ㄷ", "ㄱ, ㄴ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄱ. (X) 찬물 상승 감소로 해양 생태계에 영향을 준다. / 옳은 것: ㄴ, ㄷ"}]}, "6": {"ox": [{"q": "IPCC는 기후 변화에 관한 과학적 근거와 위험을 정리한 평가 보고서를 제출한다.", "a": true, "exp": "국제 연합에서 설립한 조직"}, {"q": "지구 평균 기온이 1.5 ℃ 상승할 때가 2.0 ℃ 상승할 때보다 산호 소멸 비율이 높다.", "a": false, "exp": "2.0 ℃ 상승 시 피해가 더 크다."}, {"q": "기온 상승 폭이 0.5 ℃만 달라도 피해 규모가 크게 달라진다.", "a": true, "exp": "1.5 ℃와 2.0 ℃ 비교"}, {"q": "사막화를 막기 위해 사막화를 겪는 지역에 인공 조림을 시행한다.", "a": true, "exp": "산림 훼손 방지 + 인공 조림"}, {"q": "대기 전력 차단은 국가적 차원의 대응이다.", "a": false, "exp": "개인적 차원의 노력이다."}, {"q": "이산화 탄소 포집 기술(CCS) 개발은 국가적 차원의 대응이다.", "a": true, "exp": "신재생 에너지, CCS, 에너지 효율 기술"}, {"q": "우리나라는 2050년까지 탄소 중립을 이루는 것을 목표로 하고 있다.", "a": true, "exp": "탄소 중립"}, {"q": "파리 협정은 지구 평균 기온 상승을 3 ℃ 이내로 제한하기로 했다.", "a": false, "exp": "2 ℃보다 훨씬 낮게, 바람직하게는 1.5 ℃ 이내"}, {"q": "사막화와 엘니뇨에 대비하려면 인공위성 등을 활용한 지속적인 감시와 예측이 필요하다.", "a": true, "exp": "감시와 정확한 예측"}, {"q": "신재생 에너지는 이산화 탄소를 많이 배출한다.", "a": false, "exp": "이산화 탄소를 배출하지 않는다."}], "mc": [{"q": "개인적 차원의 지구 온난화 대책이 아닌 것은?", "opts": ["LED 조명으로 교체", "적절한 난방 온도 준수", "이산화 탄소 포집 기술 개발", "대기 전력 차단"], "a": 2, "exp": "CCS는 국가적 차원의 대책이다."}, {"q": "국가적 차원의 지구 온난화 대책이 아닌 것은?", "opts": ["이산화 탄소 포집 기술 개발", "에너지 효율을 높이는 기술 개발", "신재생 에너지 개발·활용", "대기 전력 차단"], "a": 3, "exp": "대기 전력 차단은 개인적 차원"}, {"q": "파리 협정에 대한 설명으로 옳은 것은?", "opts": ["2015년 195개국이 채택하였고, 기온 상승을 1.5 ℃ 이내로 제한하는 것이 바람직하다고 하였다.", "기온 상승을 3 ℃까지 허용하였다.", "온실 기체 배출량을 늘리기로 하였다.", "2021년 IPCC가 발표한 보고서이다."], "a": 0, "exp": "제21차 유엔 기후 변화 협약 당사국 총회"}, {"q": "지구 평균 기온이 2.0 ℃ 상승할 때가 1.5 ℃ 상승할 때보다 작아지는 것은?", "opts": ["해수면 상승", "여름에 얼지 않는 북극해가 나타나는 주기(년)", "폭염 피해 인구", "산호 소멸 비율"], "a": 1, "exp": "100년에 한 번 → 10년에 한 번으로 더 자주 나타난다(주기가 짧아짐)."}, {"q": "사막화에 대한 대응으로 가장 적절한 것은?", "opts": ["과잉 방목을 늘린다.", "농경지를 확장한다.", "산림 훼손을 막고 인공 조림을 시행한다.", "산림을 벌채한다."], "a": 2, "exp": "사막화는 인간 활동의 영향이 크다."}, {"q": "탄소 중립을 위한 노력으로 옳은 것은?", "opts": ["산림 벌채", "백열등 사용", "화석 연료 사용 확대", "이산화 탄소를 배출하지 않는 신재생 에너지의 적극적 활용"], "a": 3, "exp": "2050 탄소 중립"}, {"q": "조명의 에너지 효율이 높아지는 순서로 옳은 것은?", "opts": ["백열등 → 형광등 → LED", "형광등 → 백열등 → LED", "LED → 형광등 → 백열등", "백열등 → LED → 형광등"], "a": 0, "exp": "필기: 백열등 → 형광등 → LED"}, {"q": "IPCC 6차 보고서에 따르면 2100년까지 지구 평균 기온은 약 몇 ℃ 상승할 수 있는가?", "opts": ["약 0.5 ℃", "약 2.7 ℃", "변화 없음", "약 10 ℃"], "a": 1, "exp": "1850~1900년 평균 대비"}], "hard": [{"q": "1.5 ℃와 2.0 ℃ 상승 시나리오에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 2.0 ℃ 상승 시 폭염 피해 인구가 더 많다.", "ㄴ. 2.0 ℃ 상승 시 홍수 위험이 더 크다.", "ㄷ. 1.5 ℃ 상승 시 여름에 얼지 않는 북극해가 더 자주 나타난다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 2.0 ℃에서 더 자주(10년에 한 번) 나타난다. / 옳은 것: ㄱ, ㄴ"}, {"q": "지구 온난화 대책에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 이산화 탄소 포집 기술 개발은 국가적 차원의 노력이다.", "ㄴ. 적절한 난방 온도 준수는 국가적 차원의 노력이다.", "ㄷ. LED 조명으로 교체하는 것은 개인적 차원의 노력이다."], "opts": ["ㄱ", "ㄷ", "ㄱ, ㄴ", "ㄱ, ㄷ"], "a": 3, "exp": "ㄴ. (X) 개인적 차원의 노력이다. / 옳은 것: ㄱ, ㄷ"}, {"q": "파리 협정에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 195개국이 채택하였다.", "ㄴ. 2015년 파리에서 채택되었다.", "ㄷ. 온실 기체 배출량을 줄이기로 하였다."], "opts": ["ㄴ", "ㄷ", "ㄱ, ㄴ", "ㄱ, ㄴ, ㄷ"], "a": 3, "exp": "옳은 것: ㄱ, ㄴ, ㄷ"}, {"q": "기후 변화 대응에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 인공위성을 활용한 감시와 예측이 필요하다.", "ㄴ. 사막화 지역에 인공 조림을 시행한다.", "ㄷ. 에너지 절약은 기후 변화와 관련이 없다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 일상의 에너지 절약도 지구 온난화 대책이다. / 옳은 것: ㄱ, ㄴ"}, {"q": "우리나라의 탄소 중립 노력에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 에너지 효율을 높이는 기술을 개발한다.", "ㄴ. 화석 연료 사용을 늘려 경제를 발전시킨다.", "ㄷ. 2050년까지 탄소 중립을 목표로 한다."], "opts": ["ㄱ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 신재생 에너지를 적극 활용한다. / 옳은 것: ㄱ, ㄷ"}]}};
+
+const TYPE_CONFIG = [
+ { key:'ox',   label:'OX 퀴즈', icon:'⭕', cls:'ox',   diff:'기초',   diffCls:'diff-basic', color:'#2563eb' },
+ { key:'mc',   label:'객관식',  icon:'📋', cls:'mc',   diff:'중급',   diffCls:'diff-mid',   color:'#16a34a' },
+ { key:'hard', label:'고난도',  icon:'🔥', cls:'hard', diff:'고난도', diffCls:'diff-hard',  color:'#7c3aed' }
+];
+const QUIZ_UNITS = Object.keys(QUIZ_DATA).map(Number);
+const state = {};
+QUIZ_UNITS.forEach(function(u){
+ state[u] = { activeType:0, answered:{ ox:[], mc:[], hard:[] } };
+});
+
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function typeStats(u, key){
+ var qs = QUIZ_DATA[u][key], ans = state[u].answered[key], done = 0, correct = 0;
+ for (var i = 0; i < qs.length; i++){
+  if (ans[i] !== undefined){ done++; if (ans[i] === qs[i].a) correct++; }
+ }
+ return { total: qs.length, done: done, correct: correct };
+}
+
+function buildQuiz(u){
+ var box = document.getElementById('quiz-' + u);
+ if (!box) return;
+ var st = state[u], cfg = TYPE_CONFIG[st.activeType], key = cfg.key;
+ var qs = QUIZ_DATA[u][key], s = typeStats(u, key);
+ var h = '';
+ h += '<div class="quiz-header"><div class="quiz-title">📝 확인 문제</div><div class="scoreboard">';
+ TYPE_CONFIG.forEach(function(c){
+  var t = typeStats(u, c.key);
+  h += '<span class="score-chip ' + c.cls + '">' + c.icon + ' ' + c.label + ' ' + t.correct + '/' + t.total + '</span>';
+ });
+ h += '</div></div>';
+ h += '<div class="quiz-type-bar">';
+ TYPE_CONFIG.forEach(function(c, i){
+  var t = typeStats(u, c.key);
+  h += '<button class="qtype-btn ' + c.cls + (i === st.activeType ? ' active' : '') + '" onclick="setType(' + u + ',' + i + ')">' +
+       c.icon + ' ' + c.label + ' <span class="qtype-count">' + t.done + '/' + t.total + '</span></button>';
+ });
+ h += '</div>';
+ var pct = s.total ? Math.round(s.done / s.total * 100) : 0;
+ h += '<div class="q-progress-wrap"><span>진행</span><div class="q-progress-bar"><div class="q-progress-fill" style="width:' + pct + '%;background:' + cfg.color + '"></div></div><span>' + s.done + ' / ' + s.total + '</span></div>';
+
+ if (s.done === s.total){
+  h += buildResult(u, key, s);
+ }
+ qs.forEach(function(q, qi){ h += buildQCard(u, key, qi, q); });
+ if (s.done > 0 && s.done < s.total){
+  h += '<div style="text-align:right"><button class="reset-btn sm" onclick="resetType(' + u + ',\'' + key + '\')">↺ 이 유형 다시 풀기</button></div>';
+ }
+ box.innerHTML = h;
+}
+
+function buildResult(u, key, s){
+ var p = Math.round(s.correct / s.total * 100);
+ var msg = p === 100 ? '완벽해요! 🎉' : p >= 80 ? '아주 잘했어요! 틀린 문제의 해설만 다시 확인해 보세요.' : p >= 60 ? '좋아요. 해설을 읽고 본문을 한 번 더 확인해 보세요.' : '본문을 다시 읽고 도전해 보세요. 💪';
+ var h = '<div class="quiz-result"><div class="big">' + s.correct + ' / ' + s.total + ' <span style="font-size:18px;color:var(--text-sec)">(' + p + '%)</span></div><div class="msg">' + msg + '</div><div class="mini-bar-wrap">';
+ TYPE_CONFIG.forEach(function(c){
+  var t = typeStats(u, c.key), w = t.total ? Math.round(t.correct / t.total * 100) : 0;
+  h += '<div class="mini-bar-row"><span class="mini-bar-label" style="color:' + c.color + '">' + c.label + '</span><div class="mini-bar-track"><div class="mini-bar-fill" style="width:' + w + '%;background:' + c.color + '"></div></div><span class="mini-bar-val">' + t.correct + '/' + t.total + '</span></div>';
+ });
+ h += '</div><button class="reset-btn" onclick="resetType(' + u + ',\'' + key + '\')">↺ 다시 풀기</button></div><div style="height:14px"></div>';
+ return h;
+}
+
+function buildQCard(u, key, qi, q){
+ var cfg = TYPE_CONFIG.filter(function(c){ return c.key === key; })[0];
+ var ans = state[u].answered[key][qi], done = ans !== undefined, ok = done && ans === q.a;
+ var h = '<div class="q-card' + (done ? (ok ? ' answered-correct' : ' answered-wrong') : '') + '" id="qc-' + u + '-' + key + '-' + qi + '">';
+ h += '<div class="q-meta"><span class="q-num">Q' + (qi + 1) + '</span><span class="q-difficulty ' + cfg.diffCls + '">' + cfg.diff + '</span></div>';
+ h += '<div class="q-text">' + esc(q.q) + '</div>';
+ if (q.fig){ h += '<div class="q-fig">' + q.fig + '</div>'; }
+ if (q.box){
+  h += '<div class="q-box">' + q.box.map(function(b){ return '<div>' + esc(b) + '</div>'; }).join('') + '</div>';
+ }
+ if (key === 'ox'){
+  h += '<div class="ox-row">';
+  [true, false].forEach(function(v){
+   var cls = '';
+   if (done){
+    if (ans === v) cls = (v === q.a) ? ' correct-picked' : ' wrong-picked';
+    else if (v === q.a) cls = ' correct-reveal';
+   }
+   h += '<button class="ox-btn' + cls + '"' + (done ? ' disabled' : '') + ' onclick="submitOX(' + u + ',' + qi + ',' + v + ')">' + (v ? '⭕' : '❌') + '</button>';
+  });
+  h += '</div>';
+ } else {
+  h += '<div class="mc-options">';
+  q.opts.forEach(function(o, oi){
+   var cls = '';
+   if (done){
+    if (oi === q.a) cls = ' correct';
+    else if (oi === ans) cls = ' wrong';
+   }
+   h += '<button class="mc-opt' + cls + '"' + (done ? ' disabled' : '') + ' onclick="submitMC(' + u + ',\'' + key + '\',' + qi + ',' + oi + ')"><span class="mc-opt-letter">' + 'ABCD'.charAt(oi) + '</span><span>' + esc(o) + '</span></button>';
+  });
+  h += '</div>';
+ }
+ if (done){
+  h += '<div class="q-feedback ' + (ok ? 'correct' : 'wrong') + '">' + (ok ? '✅ 정답! ' : '❌ 오답. ') +
+       (key === 'ox' ? '(정답: ' + (q.a ? 'O' : 'X') + ') ' : (ok ? '' : '(정답: ' + 'ABCD'.charAt(q.a) + ') ')) + esc(q.exp) + '</div>';
+ }
+ h += '</div>';
+ return h;
+}
+
+function submitOX(u, qi, v){
+ if (state[u].answered.ox[qi] !== undefined) return;
+ state[u].answered.ox[qi] = v;
+ afterSubmit(u, 'ox');
+}
+function submitMC(u, key, qi, oi){
+ if (state[u].answered[key][qi] !== undefined) return;
+ state[u].answered[key][qi] = oi;
+ afterSubmit(u, key);
+}
+function afterSubmit(u, key){
+ buildQuiz(u);
+ var qs = QUIZ_DATA[u][key], ans = state[u].answered[key];
+ for (var i = 0; i < qs.length; i++){
+  if (ans[i] === undefined){
+   (function(id){
+    setTimeout(function(){ var el = document.getElementById(id); if (el) el.scrollIntoView({behavior:'smooth', block:'center'}); }, 250);
+   })('qc-' + u + '-' + key + '-' + i);
+   return;
+  }
+ }
+ setTimeout(function(){ var el = document.getElementById('quiz-' + u); if (el) el.scrollIntoView({behavior:'smooth', block:'start'}); }, 250);
+}
+function setType(u, i){ state[u].activeType = i; buildQuiz(u); }
+function resetType(u, key){ state[u].answered[key] = []; buildQuiz(u); }
+
+QUIZ_UNITS.forEach(buildQuiz);
+
+</script>
+</body>
+</html>

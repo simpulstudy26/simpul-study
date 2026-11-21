@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>/* 저장된 화면 모드를 먼저 적용해 깜빡임을 막는다 (기본 다크) */try{if(localStorage.getItem('simpul.theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
+  <script>/* 듀오링고 모드 색을 먼저 적용 (2학기 기말 버전에서 켰을 때만) */try{var h=document.documentElement,d=JSON.parse(localStorage.getItem('simpul.duo.v1')||'{}'),v=new URLSearchParams(location.search).get('v')||localStorage.getItem('simpul.version')||'s2-final';if(d.on===true&&v==='s2-final')h.setAttribute('data-duo','')}catch(e){}</script>
+  <title>내 문제 만들기 · 심풀스터디</title>
+  <meta name="description" content="2학기 기말고사 범위에서 AI로 나만의 연습 문제를 만들고 풀어요">
+  <meta name="theme-color" content="#09090b">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="./styles/site.css">
+  <link rel="stylesheet" href="./styles/duo.css">
+  <script src="./scripts/catalog.js" defer></script>
+  <script src="./scripts/common.js" defer></script>
+  <script src="./scripts/duo.js" defer></script>
+  <script src="./scripts/mine.js" defer></script>
+  <script src="./scripts/studytime.js" defer></script>
+  <script src="./scripts/timerbar.js" defer></script>
+  <script src="./scripts/make.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="site-logo" href="./index.html"><img src="./assets/simpul-logo-white.png" alt="심풀스터디 홈" width="695" height="257"></a>
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="./index.html#subjects">과목</a>
+        <a href="./exams.html">시험범위</a>
+        <a href="./cloud.html">무한 문제</a>
+        <a href="./make.html" aria-current="page">문제 만들기</a>
+        <a href="./timer.html">공부 타이머</a>
+        <a href="./dict.html">사전</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap practice-wrap">
+    <div class="page-head">
+      <nav class="crumbs" aria-label="현재 위치"><a href="./index.html">홈</a> › 문제 만들기</nav>
+      <h1>내 문제 만들기</h1>
+      <p>2학기 기말고사 범위에서 AI가 나만의 연습 문제를 만들어요. 만든 문제는 이 기기에만 저장돼서 나만 볼 수 있어요.</p>
+    </div>
+
+    <p class="notice" id="make-notice" role="status">문제 만들기 서버를 확인하고 있어요.</p>
+
+    <form class="section panel" id="make-form" novalidate>
+      <div class="form-grid">
+        <label class="field"><span>과목</span><select class="select" id="make-subject"></select></label>
+        <label class="field"><span>단원 (시험 범위)</span><select class="select" id="make-unit"></select></label>
+        <label class="field"><span>난이도</span>
+          <select class="select" id="make-difficulty"><option value="mixed">섞어서</option><option value="easy">쉬움</option><option value="medium">보통</option><option value="hard">어려움</option></select></label>
+        <label class="field"><span>문제 수</span>
+          <select class="select" id="make-count"><option>3</option><option selected>5</option><option>1</option></select></label>
+        <label class="field span-all"><span>원하는 문제 (선택)</span>
+          <input class="input" id="make-request" maxlength="300" placeholder="예: 서술형 위주로, 계산 과정이 긴 문제" aria-describedby="make-privacy"></label>
+        <p class="tip span-all" id="make-privacy" style="margin:-8px 0 0">고른 과목·단원과 이 칸에 쓴 내용은 문제를 만들기 위해 Google AI(무료 등급)로 보내지고, Google이 서비스 개선에 쓸 수 있어요. 이름·학교·연락처 같은 개인정보는 쓰지 마세요.</p>
+      </div>
+      <details class="concept-peek" id="make-concepts" hidden>
+        <summary>이 단원의 시험 범위 개념 보기</summary>
+        <div id="make-concepts-body"></div>
+      </details>
+      <div class="toolbar" style="margin-top:16px">
+        <button class="btn btn-primary" id="make-btn" type="submit">문제 만들기</button>
+        <span class="status-line" id="make-remaining" style="margin:0"></span>
+      </div>
+      <p class="status-line" id="make-status" role="status"></p>
+    </form>
+
+    <section class="section" aria-labelledby="mine-title">
+      <h2 class="section-title" id="mine-title">내가 만든 문제 <small id="mine-count"></small></h2>
+      <div class="toolbar" id="mine-tools"></div>
+      <div class="question-list" id="mine-list"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>만든 문제는 서버에 저장되지 않고 이 기기의 브라우저에만 있어요. 브라우저 기록을 지우면 함께 지워져요. AI가 만든 문제라 틀린 부분이 있을 수 있어요.</span>
+      <a href="./cloud.html">무한 문제 풀기</a>
+    </div>
+  </footer>
+</body>
+</html>

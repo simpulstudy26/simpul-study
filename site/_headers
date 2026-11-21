@@ -1,0 +1,29 @@
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+/teacher.html
+  X-Robots-Tag: noindex
+
+/sw.js
+  Cache-Control: no-cache
+
+/automation.html
+  X-Robots-Tag: noindex
+
+/cloud/*
+  Cache-Control: no-cache
+
+/admin.html
+  X-Robots-Tag: noindex, nofollow
+  X-Frame-Options: DENY
+
+/admin
+  X-Robots-Tag: noindex, nofollow
+  X-Frame-Options: DENY
+
+/automation
+  X-Robots-Tag: noindex
+
+/teacher
+  X-Robots-Tag: noindex

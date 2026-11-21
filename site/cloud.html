@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>/* 저장된 화면 모드를 먼저 적용해 깜빡임을 막는다 (기본 다크) */try{if(localStorage.getItem('simpul.theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
+  <script>/* 듀오링고 모드 색을 먼저 적용 (2학기 기말 버전에서 켰을 때만) + 켜고 끈 직후 전환 애니메이션 표시 */try{var h=document.documentElement,d=JSON.parse(localStorage.getItem('simpul.duo.v1')||'{}'),v=new URLSearchParams(location.search).get('v')||localStorage.getItem('simpul.version')||'s2-final';if(d.on===true&&v==='s2-final')h.setAttribute('data-duo','');var a=sessionStorage.getItem('simpul.duo.anim');if(a){sessionStorage.removeItem('simpul.duo.anim');h.setAttribute('data-duo-anim',a)}}catch(e){}</script>
+  <title>무한 문제 클라우드 · 심풀스터디</title>
+  <meta name="description" content="과목과 단원을 고르면 문제가 끝없이 나오는 심풀스터디 문제 클라우드">
+  <meta name="theme-color" content="#09090b">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="./styles/site.css">
+  <link rel="stylesheet" href="./styles/duo.css">
+  <script src="./scripts/catalog.js" defer></script>
+  <script src="./scripts/common.js" defer></script>
+  <script src="./scripts/generators.js" defer></script>
+  <script src="./scripts/mine.js" defer></script>
+  <script src="./scripts/duo.js" defer></script>
+  <script src="./scripts/studytime.js" defer></script>
+  <script src="./scripts/timerbar.js" defer></script>
+  <script src="./scripts/cloud.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="site-logo" href="./index.html"><img src="./assets/simpul-logo-white.png" alt="심풀스터디 홈" width="695" height="257"></a>
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="./index.html#subjects">과목</a>
+        <a href="./exams.html">시험범위</a>
+        <a href="./cloud.html" aria-current="page">무한 문제</a>
+        <a href="./make.html">문제 만들기</a>
+        <a href="./timer.html">공부 타이머</a>
+        <a href="./dict.html">사전</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap practice-wrap">
+    <div class="page-head">
+      <nav class="crumbs" aria-label="현재 위치"><a href="./index.html">홈</a> › 무한 문제 클라우드</nav>
+      <h1>무한 문제 클라우드</h1>
+      <p>2학기 기말고사 대비 문제가 끝없이 나와요. 아직 안 푼 문제부터 나오고, 틀린 문제는 잠시 뒤에 다시 나와요. <a href="./make.html">내 문제 만들기</a>로 만든 문제도 여기서 풀 수 있어요.</p>
+    </div>
+
+    <ul class="subject-tabs" id="cloud-subjects" aria-label="과목"></ul>
+
+    <div class="cloud-filters">
+      <label class="field">
+        <span>문제</span>
+        <select class="select" id="cloud-source">
+          <option value="">전체</option>
+          <option value="shared">공용 문제</option>
+          <option value="mine">내가 만든 문제</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>단원</span>
+        <select class="select" id="cloud-unit"></select>
+      </label>
+      <label class="field">
+        <span>난이도</span>
+        <select class="select" id="cloud-level">
+          <option value="">전체</option>
+          <option value="easy">쉬움</option>
+          <option value="medium">보통</option>
+          <option value="hard">어려움</option>
+        </select>
+      </label>
+    </div>
+
+    <dl class="cloud-stats" aria-label="학습 기록">
+      <div><dt>푼 문제</dt><dd id="stat-solved">0</dd></div>
+      <div><dt>정답률</dt><dd id="stat-rate">–</dd></div>
+      <div><dt>연속 정답</dt><dd id="stat-streak">0</dd></div>
+      <div><dt>남은 새 문제</dt><dd id="stat-left">–</dd></div>
+    </dl>
+
+    <p class="status-line" id="cloud-status" role="status">문제를 불러오고 있어요.</p>
+    <div id="cloud-card"></div>
+
+    <p class="status-line cloud-foot">
+      <button class="linkish" type="button" id="cloud-reset">이 과목 기록 지우기</button>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>푼 기록은 이 기기에만 저장돼요. AI가 만든 문제는 자동 검증을 거쳤지만 틀린 부분이 있을 수 있어요.</span>
+      <a href="./index.html">홈으로</a>
+    </div>
+  </footer>
+</body>
+</html>

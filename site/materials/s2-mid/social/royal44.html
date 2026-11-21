@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>통합사회2 민O훈 선생님 파트</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#2563eb; --primary-light:#eff6ff;
+  --green:#16a34a;   --green-light:#f0fdf4;
+  --purple:#7c3aed;  --purple-light:#f5f3ff;
+  --orange:#ea580c;  --orange-light:#fff7ed;
+  --teal:#0d9488;    --teal-light:#f0fdfa;
+  --rose:#e11d48;    --rose-light:#fff1f2;
+  --bg:#f8fafc; --surface:#fff; --border:#e2e8f0; --text:#0f172a; --text-sec:#475569;
+  --shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;font-size:14.5px;line-height:1.8;color:var(--text);background:var(--bg);word-break:keep-all}
+[id^="a-"]{scroll-margin-top:130px}
+
+/* header */
+.page-header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--border);box-shadow:var(--shadow)}
+.header-inner{max-width:980px;margin:0 auto;padding:14px 20px 0}
+.subject-label{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--text-sec);text-transform:uppercase}
+.page-title{font-size:19px;font-weight:700;margin:2px 0 10px}
+.tab-bar{display:flex;align-items:center;gap:2px;overflow-x:auto;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab-group-label{font-size:10.5px;font-weight:700;color:var(--text-sec);opacity:.55;padding:0 6px 0 12px;white-space:nowrap}
+.tab-group-label:first-child{padding-left:0}
+.tab-btn{display:flex;align-items:center;gap:6px;border:none;background:none;font-family:inherit;font-size:13px;color:var(--text-sec);padding:9px 10px 10px;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+.tab-btn:hover{color:var(--text)}
+.tab-num{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:#e2e8f0;font-size:10.5px;font-weight:700;color:var(--text-sec)}
+.tab-btn.active{color:var(--primary);font-weight:700;border-bottom-color:var(--primary)}
+.tab-btn.active .tab-num{background:var(--primary);color:#fff}
+
+/* layout */
+.content-wrap{max-width:980px;margin:0 auto;padding:28px 20px 100px}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.unit-banner{display:inline-block;background:var(--primary-light);color:var(--primary);font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;margin-bottom:14px}
+.topic-head{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:24px;box-shadow:var(--shadow)}
+.topic-head h2{font-size:17px;margin-bottom:6px}
+.topic-head p{font-size:13px;color:var(--text-sec)}
+.topic-head b{color:var(--text)}
+.section-title{font-size:17.5px;font-weight:700;padding-bottom:6px;border-bottom:2px solid var(--primary);margin:30px 0 14px}
+.section-title:first-of-type{margin-top:6px}
+.subsection-title{font-size:14.5px;font-weight:700;border-left:3px solid var(--primary);padding-left:9px;margin:22px 0 10px}
+.sub2-title{display:inline-block;font-size:13px;font-weight:700;background:#f1f5f9;border-radius:6px;padding:2px 10px;margin:12px 0 8px}
+p{margin-bottom:8px}
+ul.dot{padding-left:18px;margin:4px 0}
+ul.dot li{margin:2px 0}
+
+/* boxes */
+.def-box,.green-box,.purple-box,.teal-box,.orange-box,.rose-box{border-left:4px solid var(--primary);background:var(--primary-light);border-radius:0 8px 8px 0;padding:12px 16px;margin:10px 0}
+.green-box{border-color:var(--green);background:var(--green-light)}
+.purple-box{border-color:var(--purple);background:var(--purple-light)}
+.teal-box{border-color:var(--teal);background:var(--teal-light)}
+.orange-box{border-color:var(--orange);background:var(--orange-light)}
+.rose-box{border-color:var(--rose);background:var(--rose-light)}
+.tip{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:10px 14px;margin:10px 0;font-size:13.5px}
+.note{background:#fefce8;border:1px solid #fde68a;border-radius:8px;padding:10px 14px;margin:10px 0;font-size:13.5px}
+
+/* fill-in answers & handwritten memos */
+.fill{font-weight:700;color:inherit;background:none;padding:0}
+.memo{display:inline-block;font-size:11.5px;font-weight:500;color:#9a3412;background:#fff7ed;border:1px dashed #fdba74;border-radius:5px;padding:0 6px;margin-left:4px;line-height:1.6;white-space:nowrap}
+.memo::before{content:"✎ "}
+
+/* grids & cards */
+.factor-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:12px 0}
+.factor-grid.three{grid-template-columns:repeat(3,1fr)}
+.factor-grid.four{grid-template-columns:repeat(4,1fr)}
+.factor-card{background:#fff;border:1px solid var(--border);border-top:4px solid var(--primary);border-radius:8px;padding:12px 14px;box-shadow:var(--shadow);font-size:13.5px}
+.factor-card h4{font-size:14px;margin-bottom:6px}
+.factor-card.blue{border-top-color:var(--primary)} .factor-card.blue h4{color:var(--primary)}
+.factor-card.green{border-top-color:var(--green)} .factor-card.green h4{color:var(--green)}
+.factor-card.purple{border-top-color:var(--purple)} .factor-card.purple h4{color:var(--purple)}
+.factor-card.rose{border-top-color:var(--rose)} .factor-card.rose h4{color:var(--rose)}
+.factor-card.teal{border-top-color:var(--teal)} .factor-card.teal h4{color:var(--teal)}
+.factor-card ul{padding-left:16px}
+
+.rule-card{border:2px solid var(--teal);border-radius:10px;background:#fff;margin:16px 0;overflow:hidden}
+.rule-card>.rc-head{background:var(--teal-light);color:var(--teal);font-weight:700;font-size:15px;padding:8px 14px;border-bottom:1px solid #99f6e4}
+.rule-card>.rc-body{padding:4px 0}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;margin:10px 0}
+.cmp-table{width:100%;border-collapse:collapse;background:#fff;font-size:13.3px;box-shadow:var(--shadow);border-radius:8px;overflow:hidden}
+.cmp-table th,.cmp-table td{border:1px solid var(--border);padding:8px 11px;vertical-align:top;text-align:left}
+.cmp-table thead th{background:var(--primary);color:#fff;font-weight:700}
+.cmp-table.rose-th thead th{background:var(--rose)}
+.cmp-table.green-th thead th{background:var(--green)}
+.cmp-table.purple-th thead th{background:var(--purple)}
+.cmp-table.teal-th thead th{background:var(--teal)}
+.cmp-table td.k{font-weight:700;color:var(--primary);background:#f8fafc;white-space:nowrap;vertical-align:middle;text-align:center}
+.cmp-table.rose-th td.k{color:var(--rose)}
+.cmp-table.green-th td.k{color:var(--green)}
+.cmp-table.purple-th td.k{color:var(--purple)}
+.cmp-table.teal-th td.k{color:var(--teal)}
+.cmp-table td.k2{font-weight:700;background:#fcfcfd;white-space:nowrap;vertical-align:middle;text-align:center;color:var(--text)}
+.hist-table{min-width:620px}
+.inner-table{width:100%;border-collapse:collapse;margin-top:8px;font-size:12.8px}
+.inner-table td{border:1px solid #cbd5e1;padding:5px 9px}
+.inner-table td:first-child{font-weight:700;white-space:nowrap;background:#f1f5f9;text-align:center}
+.rc-body .cmp-table{box-shadow:none;border-radius:0}
+.rc-body .cmp-table td.k2{width:92px}
+
+/* badges */
+.badge{display:inline-block;font-size:11.5px;font-weight:700;padding:1px 8px;border-radius:999px;background:#f1f5f9;color:var(--text-sec);margin:1px 2px}
+.badge-blue{background:var(--primary-light);color:var(--primary)}
+.badge-green{background:var(--green-light);color:var(--green)}
+.badge-purple{background:var(--purple-light);color:var(--purple)}
+.badge-teal{background:var(--teal-light);color:var(--teal)}
+.badge-rose{background:var(--rose-light);color:var(--rose)}
+.badge-orange{background:var(--orange-light);color:var(--orange)}
+
+/* flow */
+.flow-row{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin:12px 0}
+.flow-item{background:#fff;border:1px solid var(--border);border-radius:8px;padding:7px 10px;font-size:12.5px;text-align:center;box-shadow:var(--shadow);line-height:1.5}
+.flow-item b{display:block;font-size:12px;color:var(--primary)}
+.flow-arrow{display:flex;align-items:center;color:#94a3b8;font-weight:700}
+
+/* source (자료) fold */
+details.src{background:#fff;border:1px solid #cbd5e1;border-radius:10px;margin:14px 0;box-shadow:var(--shadow)}
+details.src>summary{cursor:pointer;list-style:none;padding:10px 14px;font-weight:700;font-size:14px;display:flex;align-items:center;gap:8px}
+details.src>summary::-webkit-details-marker{display:none}
+details.src>summary::after{content:"펼치기 ▾";margin-left:auto;font-size:11.5px;color:var(--text-sec);font-weight:500}
+details.src[open]>summary::after{content:"접기 ▴"}
+details.src[open]>summary{border-bottom:1px solid var(--border)}
+.src-tag{white-space:nowrap;font-size:11px;background:#334155;color:#fff;padding:1px 8px;border-radius:999px;font-weight:700}
+.src-body{padding:12px 16px;font-size:13.5px}
+.src-doc{border:1px solid var(--border);border-radius:8px;padding:10px 14px;margin:8px 0;background:#fcfcfd}
+.src-doc h5{font-size:13.5px;margin-bottom:6px}
+.art{display:grid;grid-template-columns:62px 1fr;gap:8px;margin:5px 0}
+.art .no{font-weight:700;color:#334155}
+.fold-ctrl{display:flex;justify-content:flex-end;gap:6px;margin-bottom:6px}
+.fold-ctrl button{font-family:inherit;font-size:12px;border:1px solid var(--border);background:#fff;border-radius:6px;padding:3px 10px;cursor:pointer;color:var(--text-sec)}
+
+/* concept map */
+.map-root{background:#fff;border:1px solid var(--border);border-radius:12px;margin:14px 0;overflow:hidden;box-shadow:var(--shadow)}
+.map-root-head{display:block;width:100%;text-align:left;border:none;font-family:inherit;font-size:15px;font-weight:700;padding:10px 16px;cursor:pointer;color:#fff;background:var(--primary)}
+.map-root.rose .map-root-head{background:var(--rose)}
+.map-root.green .map-root-head{background:var(--green)}
+.map-root.purple .map-root-head{background:var(--purple)}
+.map-root.teal .map-root-head{background:var(--teal)}
+.map-children{display:flex;flex-wrap:wrap;gap:8px;padding:12px 14px}
+.map-node{font-family:inherit;font-size:13px;border:1px solid var(--border);background:#f8fafc;border-radius:8px;padding:6px 11px;cursor:pointer;text-align:left;color:var(--text)}
+.map-node:hover{border-color:var(--primary);background:var(--primary-light)}
+.map-group{display:flex;flex-direction:column;gap:4px;border:1px solid var(--border);border-radius:8px;padding:6px 10px;background:#fcfcfd}
+.map-group>.map-node{border:none;background:none;padding:0;font-weight:700}
+.map-subrow{display:flex;flex-wrap:wrap;gap:5px;border-left:2px solid #cbd5e1;padding-left:8px;margin-left:2px}
+.map-subchip{font-family:inherit;font-size:11.5px;border:1px solid var(--border);background:#fff;border-radius:999px;padding:1px 9px;cursor:pointer;color:var(--text-sec)}
+.map-subchip:hover{border-color:var(--primary);color:var(--primary)}
+
+.totop{position:fixed;right:18px;bottom:18px;width:42px;height:42px;border-radius:50%;border:none;background:var(--primary);color:#fff;font-size:18px;box-shadow:0 4px 12px rgba(37,99,235,.35);cursor:pointer;z-index:60}
+
+@media (max-width:680px){
+  .factor-grid,.factor-grid.three,.factor-grid.four{grid-template-columns:1fr}
+  .content-wrap{padding:20px 14px 100px}
+  .cmp-table{font-size:12.5px}
+  .art{grid-template-columns:54px 1fr}
+  .flow-arrow{display:none}
+}
+
+/* era timeline (1세대 인권 탭) */
+.era{position:relative;border-left:3px solid var(--c,#94a3b8);padding:0 0 6px 22px;margin:0 0 26px 8px}
+.era::before{content:"";position:absolute;left:-9px;top:4px;width:15px;height:15px;border-radius:50%;background:#fff;border:3px solid var(--c,#94a3b8)}
+.era-gray{--c:#64748b;--cl:#f1f5f9}.era-orange{--c:var(--orange);--cl:var(--orange-light)}
+.era-blue{--c:var(--primary);--cl:var(--primary-light)}.era-purple{--c:var(--purple);--cl:var(--purple-light)}
+.era-head{font-size:16.5px;font-weight:700;color:var(--c);margin-bottom:10px;display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.era-step{font-size:10.5px;letter-spacing:.06em;background:var(--c);color:#fff;border-radius:999px;padding:1px 9px}
+.era-sub{font-size:12.5px;font-weight:500;color:var(--text-sec)}
+.plain-box{background:#fff;border:1px solid var(--border);border-radius:8px;padding:10px 14px;margin:8px 0;box-shadow:var(--shadow)}
+.arrow-line{margin-top:4px;font-weight:700;color:var(--c,var(--primary))}
+.mini-title{font-size:14px;font-weight:700;margin:16px 0 6px;color:var(--text)}
+.idea-card{background:var(--cl);border-radius:8px;padding:10px 12px;font-size:13px}
+.idea-card h5{font-size:13.5px;color:var(--c);margin-bottom:3px}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:8px 0 14px}
+.rev-card{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);font-size:13px;display:flex;flex-direction:column}
+.rev-head{background:var(--primary);color:#fff;font-weight:700;font-size:14.5px;padding:9px 12px;line-height:1.5}
+
+.rev-flag{margin-right:5px}
+.rev-doc{display:block;font-size:11.5px;font-weight:500;opacity:.9}
+.rev-row{display:grid;grid-template-columns:38px 1fr;gap:6px;padding:8px 12px;border-top:1px solid var(--border)}
+.rev-row:first-of-type{border-top:none}
+.rev-lab{font-size:11.5px;font-weight:700;color:var(--primary);background:var(--primary-light);border-radius:5px;text-align:center;height:fit-content;padding:1px 0}
+.rev-sig{background:#fefce8;margin-top:auto}
+.rev-sig .rev-lab{background:#fde68a;color:#854d0e}
+.bridge{text-align:center;font-size:12.5px;font-weight:700;color:var(--text-sec);margin:14px 0 0}
+.result-box{display:flex;align-items:center;gap:10px;background:var(--purple-light);border:2px solid var(--purple);border-radius:8px;padding:10px 14px;margin:12px 0 0;font-weight:500}
+.res-tag{background:var(--purple);color:#fff;font-size:12px;font-weight:700;border-radius:999px;padding:1px 10px;white-space:nowrap}
+@media (max-width:680px){.rev-grid{grid-template-columns:1fr}.era{margin-left:4px;padding-left:16px}}
+#panel-1 .fill{background:none;padding:0;border-radius:0;color:inherit;font-weight:700}
+
+/* 주제3 */
+.rule-card{border-color:var(--rc,var(--teal))}
+.rule-card>.rc-head{background:var(--rcl,var(--teal-light));color:var(--rc,var(--teal));border-bottom-color:var(--border)}
+.factor-card.orange{border-top-color:var(--orange)} .factor-card.orange h4{color:var(--orange)}
+.map-root.orange .map-root-head{background:var(--orange)}
+.inst-list{display:flex;flex-direction:column;gap:10px;margin:10px 0 16px}
+.inst{display:grid;grid-template-columns:150px 1fr;background:#fff;border:1px solid var(--border);border-left:4px solid var(--orange);border-radius:8px;box-shadow:var(--shadow);overflow:hidden}
+.inst-name{background:var(--orange-light);color:var(--orange);font-weight:700;padding:10px 12px;font-size:14px;display:flex;flex-direction:column;justify-content:center}
+.inst-body{padding:9px 14px;font-size:13.5px}
+.inst-body .inner-table{margin-top:4px}
+.sep-wrap{max-width:900px;margin:0 auto 8px}
+.memo-note{background:#fff7ed;border:1px dashed #fdba74;color:#9a3412}
+.memo-note b{color:#9a3412}
+.sep-scroll-hint{display:none;font-size:11.5px;color:var(--text-sec);text-align:right;margin-bottom:4px}
+@media (max-width:680px){.sep-wrap{overflow-x:auto}.sep-svg{min-width:720px}.sep-scroll-hint{display:block}}
+.sep-svg{width:100%;height:auto;display:block}
+.deep-tag{white-space:nowrap;display:inline-block;font-size:11px;font-weight:700;background:#334155;color:#fff;border-radius:999px;padding:1px 9px;margin-right:8px;vertical-align:middle}
+.dir-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:10px 0}
+.dir-card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:13.3px;box-shadow:var(--shadow)}
+.dir-head{font-weight:700;margin-bottom:4px;color:var(--text-sec)}
+.d-as,.d-gov,.d-ct{display:inline-block;border-radius:999px;padding:0 9px;font-size:12.5px}
+.d-as{background:var(--primary-light);color:var(--primary)}
+.d-gov{background:var(--green-light);color:var(--green)}
+.d-ct{background:var(--purple-light);color:var(--purple)}
+.fc-legend{font-size:12.5px;color:var(--text-sec);margin:6px 0 8px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.lg{display:inline-block;width:14px;height:14px;border-radius:4px;margin-left:6px}
+.lg-a{background:var(--primary-light);border:2px solid var(--primary)}
+.lg-b{background:var(--purple-light);border:2px solid var(--purple)}
+.fc{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px 10px;align-items:stretch;margin:6px 0 20px}
+.fc-box{background:#fff;border:1.5px solid #cbd5e1;border-radius:8px;padding:9px 12px;text-align:center;font-size:13px;line-height:1.65}
+.fc-top{background:#f8fafc}
+.fc-a{background:var(--primary-light);border-color:var(--primary)}
+.fc-b{background:var(--purple-light);border-color:var(--purple)}
+.fc-arr{text-align:center;color:#94a3b8;font-weight:700;line-height:1.2}
+.fc-mini{color:#94a3b8;font-weight:700;margin:2px 0}
+.fc-steps{display:flex;flex-direction:column;justify-content:center}
+@media (max-width:680px){
+  .inst{grid-template-columns:1fr}
+  .dir-grid{grid-template-columns:1fr}
+  .fc{grid-template-columns:1fr}
+  .fc>*{grid-column:1/-1 !important}
+  .fc-spacer{display:none}
+}
+
+/* 주제4·5 */
+.inst-list.rose .inst{border-left-color:var(--rose)} .inst-list.rose .inst-name{background:var(--rose-light);color:var(--rose)}
+.inst-list.green .inst{border-left-color:var(--green)} .inst-list.green .inst-name{background:var(--green-light);color:var(--green)}
+.inst-list.green .inst-name{font-size:13px}
+.thinker-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:10px 0 16px}
+.thinker{background:#fff;border:1px solid var(--border);border-top:4px solid var(--rose);border-radius:8px;padding:12px 14px;box-shadow:var(--shadow);font-size:13.3px;display:flex;flex-direction:column}
+.th-name{font-size:15px;font-weight:700;color:var(--rose);margin-bottom:4px}
+.th-quote{margin:10px 0 0;padding:10px 12px;background:#f8fafc;border:1px solid var(--border);border-radius:14px;font-size:12.8px;color:#334155;line-height:1.75}
+.th-quote::before{content:"“";font-size:20px;font-weight:700;color:var(--rose);line-height:0;margin-right:2px}
+.memo-rows{margin-top:6px}
+.memo-row{display:grid;grid-template-columns:62px 1fr;gap:8px;padding:5px 0;border-top:1px dashed #fdba74}
+.memo-row:first-child{border-top:none}
+.memo-no{font-weight:700}
+.sum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}
+.sum-card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:10px 12px;box-shadow:var(--shadow);font-size:13.3px}
+.sum-card h4{font-size:14px;color:var(--green);margin-bottom:4px}
+.sum-memo{background:#fff7ed;border:1px dashed #fdba74}
+.sum-memo h4{color:#9a3412}
+.sum-memo small{font-size:10.5px;font-weight:500;border:1px dashed #fdba74;border-radius:4px;padding:0 4px;margin-left:4px}
+@media (max-width:900px){.thinker-grid,.sum-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:680px){.thinker-grid,.sum-grid{grid-template-columns:1fr}}
+
+/* ===== v2 재구성 ===== */
+.gen-table th.g1{background:var(--primary)} .gen-table th.g2{background:var(--green)} .gen-table th.g3{background:var(--purple)}
+.gen-table{min-width:640px}
+.concept{display:inline-block;background:var(--primary-light);color:var(--primary);font-weight:700;border-radius:999px;padding:0 9px;font-size:12px;white-space:nowrap}
+.doc-table{min-width:620px}
+.doc-table td.k{font-size:12.8px;line-height:1.5}
+.law-box{position:relative;background:#fff;border:1px solid #fdba74;border-left:4px solid var(--orange);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;font-size:13.8px}
+.law-no{display:inline-block;background:var(--orange);color:#fff;font-size:11.5px;font-weight:700;border-radius:999px;padding:1px 10px;margin-right:8px}
+.law-point{margin-top:6px;font-weight:700;color:var(--orange)}
+.law-line{color:#334155;font-size:12.8px}
+li.law-line{list-style:none;margin-left:-18px;background:#f8fafc;border-left:3px solid #cbd5e1;padding:3px 8px;border-radius:0 6px 6px 0;margin-top:4px;margin-bottom:4px}
+td.law-line{background:#f8fafc}
+.tree{background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px;box-shadow:var(--shadow);margin:8px 0 14px}
+.tree-top,.tree-mid{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;border-radius:8px;padding:9px 12px;font-size:13.3px}
+.tree-top{background:var(--orange-light);border:1px solid #fdba74}
+.tree-mid{background:#fffbeb;border:1px solid #fde68a;margin:8px 0 0 22px}
+.tree-top>b,.tree-mid>b{font-size:14.5px;color:var(--orange)}
+.tree-leaves{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0 44px}
+.leaf{font-weight:700;font-size:13px;border-radius:999px;padding:3px 14px}
+.lb{background:var(--primary-light);color:var(--primary)} .lg{background:var(--green-light);color:var(--green)} .lp{background:var(--purple-light);color:var(--purple)} .lr{background:var(--rose-light);color:var(--rose)} .lt{background:var(--teal-light);color:var(--teal)}
+.rc-art{font-size:11.5px;font-weight:500;color:var(--text-sec);margin-left:6px}
+.vs{display:inline-block;font-size:12px;color:var(--text-sec);background:#f1f5f9;border-radius:6px;padding:0 6px;margin-left:4px}
+.sub-block{margin:-6px 0 18px 18px;border-left:3px solid var(--primary);padding-left:12px}
+.sub-block-head{font-weight:700;color:var(--primary);margin:4px 0 6px}
+.sub-block .cmp-table td.k2{width:150px;text-align:left}
+.hl{border-radius:4px;padding:0 3px;font-weight:700}
+.hl1{background:#dbeafe} .hl2{background:#dcfce7} .hl3{background:#f3e8ff} .hl4{background:#ffe4e6}
+.lim{border-top-width:4px}
+.lim1{border-top-color:#60a5fa;background:#f8fbff} .lim2{border-top-color:#4ade80;background:#f8fff9} .lim3{border-top-color:#c084fc;background:#fcf8ff} .lim4{border-top-color:#fb7185;background:#fff8f9}
+.lim h4{color:var(--text)}
+.step-flow .flow-item{flex:1;min-width:150px;text-align:left}
+.step-flow .flow-item b{color:var(--orange);margin-bottom:2px}
+.fl-wide{flex:1;min-width:220px;text-align:left}
+.split2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.split2>div{background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:8px 10px}
+.quote-cell{font-size:12.6px;color:#334155;background:#fffafa}
+.case-box{margin-top:8px;background:#f8fafc;border:1px dashed #cbd5e1;border-radius:8px;padding:7px 10px;font-size:12.8px}
+.chip-row{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 12px}
+.chip{background:var(--rose-light);color:var(--rose);font-weight:700;font-size:12.5px;border-radius:999px;padding:3px 12px}
+ol.charter{padding-left:20px;margin:0}
+ol.charter li{margin:2px 0}
+.tag-mini{display:inline-block;font-size:10.5px;font-weight:700;color:var(--purple);background:var(--purple-light);border-radius:4px;padding:0 5px;margin-left:4px}
+.memo-tr td{background:#fff7ed !important}
+.memo-tr td.k{color:#9a3412 !important}
+.art-table td.k{width:74px}
+@media (max-width:680px){
+  .tree-top,.tree-mid{grid-template-columns:1fr;gap:2px}
+  .tree-mid{margin-left:10px}.tree-leaves{margin-left:10px}
+  .split2{grid-template-columns:1fr}
+  .sub-block{margin-left:4px}
+}
+
+/* ===== QUIZ ===== */
+.quiz-section{margin:40px 0 10px;padding:18px 18px 8px;background:#fff;border:2px solid #e0e7ff;border-radius:14px;box-shadow:var(--shadow)}
+.quiz-header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
+.quiz-header h3{font-size:17px}
+.scoreboard{display:flex;flex-wrap:wrap;gap:6px}
+.score-chip{font-size:12px;font-weight:500;border-radius:999px;padding:3px 10px;border:1px solid var(--border);background:#f8fafc}
+.score-chip b{font-size:13px}
+.chip-ox{color:#2563eb;border-color:#bfdbfe;background:#eff6ff}
+.chip-mc{color:#16a34a;border-color:#bbf7d0;background:#f0fdf4}
+.chip-hard{color:#7c3aed;border-color:#ddd6fe;background:#f5f3ff}
+.quiz-type-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.qtype-btn{font-family:inherit;font-size:13.5px;font-weight:700;border:2px solid var(--border);background:#fff;border-radius:10px;padding:7px 14px;cursor:pointer;color:var(--text-sec);display:flex;align-items:center;gap:6px}
+.qtype-btn:hover{border-color:#94a3b8}
+.qtype-btn.active.qtype-ox{border-color:#2563eb;background:#eff6ff;color:#2563eb}
+.qtype-btn.active.qtype-mc{border-color:#16a34a;background:#f0fdf4;color:#16a34a}
+.qtype-btn.active.qtype-hard{border-color:#7c3aed;background:#f5f3ff;color:#7c3aed}
+.qtype-count{font-size:11px;font-weight:700;background:#f1f5f9;color:var(--text-sec);border-radius:999px;padding:0 7px}
+.q-progress-wrap{display:flex;align-items:center;gap:10px;margin:4px 0 14px}
+.q-progress-bar{flex:1;height:8px;background:#e2e8f0;border-radius:999px;overflow:hidden}
+.q-progress-fill{height:100%;border-radius:999px;transition:width .3s}
+.q-progress-text{font-size:12px;color:var(--text-sec);white-space:nowrap}
+.q-card{border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:12px;background:#fff;transition:border-color .2s}
+.q-card.answered-correct{border-color:#86efac;background:#fbfffc}
+.q-card.answered-wrong{border-color:#fda4af;background:#fffbfb}
+.q-meta{display:flex;gap:8px;align-items:center;margin-bottom:6px}
+.q-num{font-weight:700;font-size:13px;color:var(--text)}
+.q-difficulty{font-size:11px;font-weight:700;border-radius:999px;padding:1px 8px}
+.diff-basic{background:#eff6ff;color:#2563eb}
+.diff-mid{background:#f0fdf4;color:#16a34a}
+.diff-hard{background:#f5f3ff;color:#7c3aed}
+.q-text{font-size:14.2px;font-weight:500;margin-bottom:10px;line-height:1.8}
+.ox-row{display:flex;gap:10px}
+.ox-btn{flex:1;font-family:inherit;font-size:15px;font-weight:700;padding:10px;border:2px solid var(--border);border-radius:10px;background:#fff;cursor:pointer;color:var(--text)}
+.ox-btn:hover:not([disabled]){border-color:#94a3b8;background:#f8fafc}
+.ox-btn[disabled]{cursor:default}
+.ox-btn.correct-picked{border-color:#16a34a;background:#dcfce7;color:#15803d}
+.ox-btn.wrong-picked{border-color:#e11d48;background:#ffe4e6;color:#be123c}
+.ox-btn.correct-reveal{border-color:#16a34a;border-style:dashed;color:#15803d}
+.mc-options{display:flex;flex-direction:column;gap:7px}
+.mc-opt{display:flex;align-items:flex-start;gap:10px;text-align:left;font-family:inherit;font-size:13.6px;line-height:1.6;padding:9px 12px;border:1.5px solid var(--border);border-radius:9px;background:#fff;cursor:pointer;color:var(--text)}
+.mc-opt:hover:not([disabled]){border-color:#94a3b8;background:#f8fafc}
+.mc-opt[disabled]{cursor:default}
+.mc-opt-letter{flex:0 0 24px;height:24px;border-radius:50%;background:#f1f5f9;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;color:var(--text-sec)}
+.mc-opt.correct{border-color:#16a34a;background:#dcfce7}
+.mc-opt.correct .mc-opt-letter{background:#16a34a;color:#fff}
+.mc-opt.wrong{border-color:#e11d48;background:#ffe4e6}
+.mc-opt.wrong .mc-opt-letter{background:#e11d48;color:#fff}
+.q-feedback{margin-top:10px;padding:9px 12px;border-radius:8px;font-size:13.2px;line-height:1.7}
+.q-feedback.correct{background:#f0fdf4;border:1px solid #bbf7d0}
+.q-feedback.wrong{background:#fff1f2;border:1px solid #fecdd3}
+.quiz-result{text-align:center;border:2px dashed #c7d2fe;border-radius:12px;padding:18px;margin:6px 0 14px;background:#f8faff}
+.result-score{font-size:28px;font-weight:700}
+.result-score small{font-size:15px}
+.result-msg{margin:4px 0 12px;font-size:14px}
+.mini-bars{max-width:420px;margin:0 auto 12px;text-align:left}
+.mini-bar-row{display:grid;grid-template-columns:90px 1fr 92px;gap:8px;align-items:center;font-size:12.5px;margin:5px 0}
+.mini-bar-track{height:8px;background:#e2e8f0;border-radius:999px;overflow:hidden}
+.mini-bar-fill{height:100%;border-radius:999px}
+.mini-bar-val{color:var(--text-sec)}
+.reset-btn{font-family:inherit;font-size:13.5px;font-weight:700;border:none;border-radius:999px;padding:8px 20px;background:#334155;color:#fff;cursor:pointer}
+@media (max-width:680px){.quiz-section{padding:14px 12px 4px}.mini-bar-row{grid-template-columns:78px 1fr 80px}}
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="header-inner">
+    <div class="subject-label">경희고등학교 1학년 · 통합사회2</div>
+    <div class="page-title">민O훈 선생님 파트</div>
+    <nav class="tab-bar">
+      <span class="tab-group-label">주제1</span>
+      <button class="tab-btn active" onclick="switchTab(0)"><span class="tab-num">1</span>인권의 의미와 특징</button>
+      <button class="tab-btn" onclick="switchTab(1)"><span class="tab-num">2</span>1세대 인권의 확장</button>
+      <button class="tab-btn" onclick="switchTab(2)"><span class="tab-num">3</span>2·3세대 인권의 확장</button>
+      <span class="tab-group-label">주제2</span>
+      <button class="tab-btn" onclick="switchTab(3)"><span class="tab-num">4</span>현대 사회의 인권</button>
+      <span class="tab-group-label">주제3</span>
+      <button class="tab-btn" onclick="switchTab(4)"><span class="tab-num">5</span>헌법과 기본권</button>
+      <button class="tab-btn" onclick="switchTab(5)"><span class="tab-num">6</span>기본권 보장과 제한</button>
+      <button class="tab-btn" onclick="switchTab(6)"><span class="tab-num">7</span>인권 보장 제도적 장치</button>
+      <span class="tab-group-label">주제4</span>
+      <button class="tab-btn" onclick="switchTab(7)"><span class="tab-num">8</span>시민 참여</button>
+      <span class="tab-group-label">주제5</span>
+      <button class="tab-btn" onclick="switchTab(8)"><span class="tab-num">9</span>사회적 소수자 차별</button>
+      <button class="tab-btn" onclick="switchTab(9)"><span class="tab-num">10</span>청소년 노동권</button>
+      <span class="tab-group-label">지도</span>
+      <button class="tab-btn" onclick="switchTab(10)"><span class="tab-num">11</span>개념 한눈에 보기</button>
+    </nav>
+  </div>
+</header>
+
+<main class="content-wrap">
+
+<!-- ============ PANEL 0 : 인권의 의미와 특징 ============ -->
+<section class="tab-panel active" id="panel-0">
+  <div class="unit-banner">📌 주제1 인권의 의미와 변화 양상 › 1. 인권의 의미와 특징</div>
+  <div class="topic-head">
+    <h2>주제1 인권의 의미와 변화 양상</h2>
+    <p><b>핵심 아이디어:</b> 인권, 자유권, 평등권, 참정권, 사회권, 연대권</p>
+    <p><b>학습 목표:</b> 근대 시민 혁명 등을 통해 확립되어 온 인권의 의미와 변화 양상을 설명할 수 있다.</p>
+  </div>
+
+  <h3 class="section-title" id="a-meaning">📘 인권의 의미</h3>
+  <div class="def-box">사람은 누구나 절대적 가치를 지닌 존재 → 모든 인간이 <b>인간이라는 이유만으로</b> <span class="fill">자신의 존엄성</span>을 보장받으며 인간답고 행복한 삶을 살아갈 권리</div>
+
+  <h3 class="section-title" id="a-feature">🔑 인권의 특징 4가지</h3>
+  <div class="factor-grid four">
+    <div class="factor-card rose"><h4>보편성</h4>인종·성별·종교·사회적 신분과 관계없이 <b>인류 구성원 모두</b>가 가짐</div>
+    <div class="factor-card rose"><h4>천부성</h4><b>태어나면서부터</b> 가지는 당연한 권리</div>
+    <div class="factor-card rose"><h4>불가침성</h4>국가·타인이 부당하게 <b>침해할 수 없고</b>, 남에게 <b>양도할 수 없음</b></div>
+    <div class="factor-card rose"><h4>항구성</h4>일정 기간에 한정되지 않고 <b>영구히</b> 보장됨</div>
+  </div>
+
+  <h3 class="section-title" id="a-gen">🔄 인권의 의미 변화 — 1·2·3세대 인권</h3>
+  <div class="tbl-wrap">
+  <table class="cmp-table gen-table">
+    <thead><tr><th style="width:92px">구분</th><th class="g1">1세대 인권</th><th class="g2">2세대 인권</th><th class="g3">3세대 인권</th></tr></thead>
+    <tbody>
+      <tr><td class="k2">성격</td><td>시민·정치적 권리</td><td>경제·사회·문화적 권리</td><td><span class="fill">연대권</span></td></tr>
+      <tr><td class="k2">핵심</td>
+        <td>개인의 자유와 인권 보호를 위해 <b>국가의 개입을 경계</b>하고, 국가 운영에 <b>참여</b>할 수 있는 권리</td>
+        <td><span class="fill">사회적 약자</span>의 인간다운 삶을 보장하기 위한 <b>국가의 적극적인 개입</b>을 요구하는 권리</td>
+        <td>개인과 집단의 인권 보호에 주목, 문제 해결을 위해 <b>공동체의 연대</b>를 강조하는 <b>전 지구적 차원</b>의 권리</td></tr>
+      <tr><td class="k2">기본권</td><td><span class="badge badge-blue">자유권</span><span class="badge badge-blue">평등권</span><span class="badge badge-blue">참정권</span></td><td><span class="badge badge-green">사회권</span></td><td><span class="badge badge-purple">연대권</span></td></tr>
+      <tr><td class="k2">구체적<br>권리</td>
+        <td>신체의 자유, 표현의 자유, 집회 및 결사의 자유, 생명과 안전의 권리, 정치에 참여할 권리, 공정한 재판을 받을 권리</td>
+        <td>근로의 권리, 교육에 관한 권리, 문화에 관한 권리, 사회 보장을 받을 권리, 인간다운 생활을 할 권리, 쾌적한 환경에서 생활할 권리</td>
+        <td>자결권, 발전의 권리, 평화에 관한 권리, 재난 구제를 받을 권리, 지속가능한 환경에 관한 권리</td></tr>
+      <tr><td class="k2">확장 계기</td><td>근대 시민 혁명 → 참정권 확대 운동</td><td>산업 혁명 이후 사회적 불평등 심화</td><td>두 차례의 세계 대전</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="tip">💡 확장 계기별 자세한 흐름은 2·3번 탭에서 이어집니다.</div>
+
+  <div class="quiz-section" id="quiz-0"></div>
+</section>
+
+<!-- ============ PANEL 1 : 1세대 인권의 확장 ============ -->
+<section class="tab-panel" id="panel-1">
+  <div class="unit-banner">📌 주제1 › 2. 인권 확장의 역사 › ① 1세대 인권의 확장(자유권, 평등권, 참정권)</div>
+
+  <h3 class="section-title" id="a-timeline1">🗓️ 한눈에 보는 흐름</h3>
+  <div class="flow-row">
+    <div class="flow-item"><b>1215</b>영국 대헌장</div><div class="flow-arrow">→</div>
+    <div class="flow-item"><b>1689</b>권리 장전<br>(명예혁명)</div><div class="flow-arrow">→</div>
+    <div class="flow-item"><b>1776</b>독립 선언문<br>(미국)</div><div class="flow-arrow">→</div>
+    <div class="flow-item"><b>1789</b>인간과 시민의<br>권리 선언(프랑스)</div><div class="flow-arrow">→</div>
+    <div class="flow-item"><b>1838</b>인민헌장<br>(차티스트 운동)</div><div class="flow-arrow">→</div>
+    <div class="flow-item"><b>1893</b>뉴질랜드<br>여성 참정권</div>
+  </div>
+
+  <div class="era era-gray" id="a-pre">
+    <div class="era-head"><span class="era-step">STEP 1</span>근대 이전</div>
+    <div class="era-body"><div class="plain-box">왕과 소수 귀족을 제외한 대다수가 부당한 억압과 차별을 받음<div class="arrow-line">→ 인권 확장을 위한 저항과 투쟁 전개</div></div></div>
+  </div>
+
+  <div class="era era-orange" id="a-magna">
+    <div class="era-head"><span class="era-step">STEP 2</span>영국 <span class="fill">대헌장</span> <span class="era-sub">마그나 카르타, 1215년</span></div>
+    <div class="era-body"><div class="plain-box">국왕이 ① 의회의 승인 없이 <b>세금을 부과할 수 없고</b> ② 법에 따르지 않고는 <b>체포할 수 없음</b>을 문서로 명시</div></div>
+  </div>
+
+  <div class="era era-blue" id="a-revbg">
+    <div class="era-head"><span class="era-step">STEP 3</span>근대<span class="era-sub" style="font-size:15px;font-weight:700;color:inherit">(시민 혁명)</span></div>
+    <div class="era-body">
+      <div class="mini-title">🌱 배경</div>
+      <div class="plain-box">사상의 확산 + 상업 발달로 시민의 부 축적<div class="arrow-line">→ 불평등한 제도의 폐지와 권리 보장 요구 확산</div></div>
+      <div class="factor-grid three">
+        <div class="idea-card"><h5>천부 인권 사상</h5>모든 사람은 태어나면서부터 하늘이 부여한 기본 권리를 가짐</div>
+        <div class="idea-card"><h5>계몽사상</h5>인간의 합리적 이성으로 사회 모순과 부조리를 개선할 수 있음</div>
+        <div class="idea-card"><h5><span class="fill">사회 계약</span>설</h5>사회와 국가는 자유롭고 평등한 개인들의 합의·계약으로 만들어짐</div>
+      </div>
+
+      <div class="mini-title">⚔️ 세 시민 혁명 비교</div>
+      <div class="rev-grid">
+        <div class="rev-card" id="a-glorious">
+          <div class="rev-head">🇬🇧 영국 명예혁명<span class="rev-doc">권리 장전 · 1689</span></div>
+          <div class="rev-row"><span class="rev-lab">전개</span><span>왕의 독재에 의회가 맞서 싸워 왕에게 <span class="fill">권리 장전</span>을 승인받음</span></div>
+          <div class="rev-row"><span class="rev-lab">내용</span><span>법을 통한 왕권 제한, 의회 권한 강조, <span class="fill">의회</span>의 동의 없는 과세 금지 → 의회가 왕권을 견제해 시민의 권리·자유 보장</span></div>
+          <div class="rev-row rev-sig"><span class="rev-lab">의의</span><span>입헌 군주제 확립, 의회 정치 발달</span></div>
+        </div>
+        <div class="rev-card" id="a-usa">
+          <div class="rev-head">🇺🇸 미국 <span class="fill">독립 선언</span><span class="rev-doc">독립 선언문 · 1776</span></div>
+          <div class="rev-row"><span class="rev-lab">배경</span><span>영국의 부당한 식민 지배와 중상주의 정책에 반발</span></div>
+          <div class="rev-row"><span class="rev-lab">명시</span><span>천부 인권, 국민 주권의 원리, 행복 추구권, 저항권, 자유권</span></div>
+          <div class="rev-row rev-sig"><span class="rev-lab">의의</span><span>민주 공화정 수립, 대통령 중심제 정부 형태 발달</span></div>
+        </div>
+        <div class="rev-card" id="a-france">
+          <div class="rev-head">🇫🇷 <span class="fill">프랑스</span> 혁명<span class="rev-doc">인간과 시민의 권리 선언 · 1789</span></div>
+          <div class="rev-row"><span class="rev-lab">배경</span><span>신분제를 근간으로 한 구제도의 모순에 분노한 시민(부르주아)이 일으킴</span></div>
+          <div class="rev-row"><span class="rev-lab">명시</span><span>천부 인권, 신체·의견·종교의 자유, 재산 소유권, 평등권</span></div>
+          <div class="rev-row rev-sig"><span class="rev-lab">의의</span><span>자유와 평등의 이념 확립, 시민 계급의 정치적 주도권 확립</span></div>
+        </div>
+      </div>
+
+      <div class="mini-title" id="a-docs">📜 문서 속 핵심 조항 → 개념</div>
+      <div class="tbl-wrap">
+      <table class="cmp-table doc-table">
+        <thead><tr><th style="width:120px">문서</th><th>핵심 내용</th><th style="width:150px">개념</th></tr></thead>
+        <tbody>
+          <tr><td class="k" rowspan="3">권리 장전<br><small>1689</small></td><td>국왕이 의회 동의 없이 법의 효력·집행을 정지할 수 있다는 주장은 위법 (1조)</td><td><span class="concept">의회 우위·왕권 제한</span></td></tr>
+          <tr><td>의회 승인 없이 국왕이 쓰기 위해 세금을 징수하는 것은 위법 (4조)</td><td><span class="concept">과세 동의</span></td></tr>
+          <tr><td>국왕에게 청원은 국민의 권리, 청원했다고 구금·박해하는 것은 위법 (5조)</td><td><span class="concept">청원권</span></td></tr>
+          <tr><td class="k" rowspan="4">미국 독립<br>선언서<br><small>1776</small></td><td>모든 인간은 <b>평등</b>하게 창조되었다</td><td><span class="concept">평등</span></td></tr>
+          <tr><td>창조주로부터 <b>양도할 수 없는</b> 권리(생명·자유·행복 추구)를 부여받음</td><td><span class="concept">천부 인권</span></td></tr>
+          <tr><td>정부의 정당한 권력은 <b>인민의 동의</b>에서 발생</td><td><span class="concept">국민 주권(사회계약론)</span></td></tr>
+          <tr><td>정부가 목적을 파괴하면 인민은 그 정부를 <b>바꾸거나 없애고</b> 새 정부를 조직할 권리가 있음</td><td><span class="concept">저항권</span></td></tr>
+          <tr><td class="k" rowspan="6">인간과 시민의<br>권리 선언<br><small>1789</small></td><td>인간은 자유롭고 <b>평등한 권리</b>를 지니고 태어남 — 사회적 차별은 공공의 이익에 근거할 때만 허용 (1조)</td><td><span class="concept">천부 인권</span></td></tr>
+          <tr><td>정치적 결사의 목적 = 침해할 수 없는 자연권 보전 → 자유권, 소유권, 신체 안전, 억압에 대한 <b>저항권</b> (2조)</td><td><span class="concept">자연권·저항권</span></td></tr>
+          <tr><td><b>주권은 국민에게</b> 있음, 국민에게서 유래하지 않은 권리는 행사 불가 (3조)</td><td><span class="concept">국민 주권</span></td></tr>
+          <tr><td>행위 이전에 제정·공포되고 합법적으로 적용된 법률에 의하지 않고는 처벌 불가 (8조)</td><td><span class="concept">죄형 법정주의</span></td></tr>
+          <tr><td>범죄자로 선고되기까지 무죄로 추정, 불필요한 강제 조치는 법으로 제압 (9조)</td><td><span class="concept">무죄 추정의 원칙</span></td></tr>
+          <tr><td>사상·의사의 자유로운 통교 → 자유로이 발언·기술·인쇄 가능, 단 법이 정한 남용엔 책임 (11조)</td><td><span class="concept">언론·종교의 자유</span></td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="factor-grid">
+        <div class="green-box" id="a-revfeat" style="margin:0"><b>✅ 시민 혁명의 특징</b>
+          <ul class="dot">
+            <li>부르주아에게 정치 참여 허용 → 국가 의사 결정에 직접 영향력 발휘</li>
+            <li>절대 왕정의 전제 정치 타파 → <b>국민 주권, 법치주의</b> 확립</li>
+            <li>입헌주의에 기초한 근대 민주주의 확립, 인간의 존엄성·자유·평등의 이념 확립</li>
+          </ul></div>
+        <div class="rose-box" id="a-revlimit" style="margin:0"><b>⚠️ 시민 혁명의 한계</b>
+          <p style="margin:4px 0 0">정치적 시민권을 가진 계층은 <b>부르주아로 한정</b> → 노동자·농민·도시 하층민·여성은 참정권에 많은 제한</p></div>
+      </div>
+      <div class="bridge">⬇ 한계 극복을 위한 움직임</div>
+    </div>
+  </div>
+
+  <div class="era era-purple" id="a-suffrage">
+    <div class="era-head"><span class="era-step">STEP 4</span><span class="fill">참정권</span> 확대 운동</div>
+    <div class="era-body">
+      <div class="plain-box"><b>배경</b> 시민 혁명 이후에도 재산·직업·성별 등에 따라 선거권 제한 → 노동자·농민·여성 등은 참정권을 보장받지 못함</div>
+      <div class="factor-grid">
+        <div class="factor-card purple" id="a-chartist"><h4><span class="fill">차티스트</span> 운동 <small style="font-weight:500;color:var(--text-sec)">19세기 영국 노동자 중심</small></h4>
+          <p style="margin-bottom:6px"><span class="fill">인민헌장</span>(1838)의 요구 6개</p>
+          <ol class="charter">
+            <li>21세 이상 모든 남성에게 선거권 <span class="tag-mini">보통 선거</span></li>
+            <li>비밀 투표 원칙 <span class="tag-mini">비밀 선거</span></li>
+            <li>하원 의원 출마자의 재산 자격 폐지 <span class="tag-mini">피선거권 재산 자격 폐지</span></li>
+            <li>하원 의원에게 봉급 지급</li>
+            <li>선거구를 동등하게 <span class="tag-mini">선거구 평등화</span> <span class="memo">인원수</span><span class="memo">게리맨더링</span></li>
+            <li>선거를 매년 시행</li>
+          </ol></div>
+        <div class="factor-card rose" id="a-women"><h4>여성 참정권 운동</h4>
+          <p>참정권을 받지 못했던 <span class="fill">여성</span>이 남성과 동등한 참정권을 얻기 위해 전개</p>
+          <div class="arrow-line" style="--c:var(--rose)">→ 1893년 뉴질랜드를 시작으로 여성 참정권 보장</div></div>
+      </div>
+      <div class="result-box" id="a-suffrage-result"><span class="res-tag">결과</span>20세기 이후 일정 연령 이상의 사람에게 참정권 보장</div>
+    </div>
+  </div>
+
+  <div class="quiz-section" id="quiz-1"></div>
+</section>
+
+<!-- ============ PANEL 2 : 2·3세대 인권의 확장 ============ -->
+<section class="tab-panel" id="panel-2">
+  <div class="unit-banner">📌 주제1 › 2. 인권 확장의 역사 › ② 2세대 · ③ 3세대 인권의 확장</div>
+
+  <h3 class="section-title" id="a-gen2" style="border-color:var(--green)">🏭 ② 2세대 인권의 확장(사회권)</h3>
+  <div class="flow-row">
+    <div class="flow-item fl-wide"><b style="color:var(--green)">배경</b><span class="fill">산업 혁명</span> 이후 열악한 노동 환경, 빈부 격차 → 사회적 불평등 심화</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item fl-wide"><b style="color:var(--green)">요구</b>시민의 <b>실질적</b> 권리 보장을 위한 <b>국가 개입</b>의 필요성 확산</div>
+  </div>
+
+  <div class="rule-card" id="a-weimar" style="--rc:var(--green);--rcl:var(--green-light)">
+    <div class="rc-head">🇩🇪 독일 <span class="fill">바이마르</span> 헌법 (1919년)</div>
+    <div class="rc-body"><table class="cmp-table"><tbody>
+      <tr><td class="k2">핵심</td><td><ul class="dot">
+        <li><b>최초로</b> <span class="fill">사회권</span>(국민의 인간다운 삶 보장)을 명시</li>
+        <li>개인의 <span class="fill">재산권</span> 행사가 공공복리에 적합하도록 요구 → <b>소유권의 사회적 의무성</b>: 자신의 소유권이라도 무제한 남용할 수 없음</li></ul></td></tr>
+      <tr><td class="k2">영향</td><td>세계 각국의 복지 정책, 현대 민주주의 국가의 헌법에 영향</td></tr>
+      <tr><td class="k2">주요 조항</td><td><ul class="dot">
+        <li>151조 ① 경제생활의 질서 = 모든 사람에게 <b>인간다운 생활</b>을 보장하는 정의의 원칙에 기초, 경제상 자유는 이 한계 내에서 보장</li>
+        <li>157조 노동력은 국가의 특별한 보호를 받음, 국가는 표준적인 노동법을 정함</li>
+        <li>163조 ② 모든 국민에게 노동할 기회, 일자리를 얻지 못하면 필요한 생계비 지원</li></ul></td></tr>
+    </tbody></table></div>
+  </div>
+
+  <h3 class="section-title" id="a-gen3" style="border-color:var(--purple)">🌍 ③ 3세대 인권의 확장(연대권)</h3>
+  <div class="plain-box"><b>배경</b> 두 차례의 <span class="fill">세계 대전</span> → 인권 문제 해결을 위해 <b>인류 공동의 노력</b>이 필요하다는 공감대 형성</div>
+  <div class="flow-row">
+    <div class="flow-item"><b>1948</b>세계 인권 선언</div><div class="flow-arrow">→</div>
+    <div class="flow-item"><b>1965</b>인종 차별 철폐 협약</div><div class="flow-arrow">→</div>
+    <div class="flow-item"><b>1966</b>국제 인권 규약</div><div class="flow-arrow">→</div>
+    <div class="flow-item"><b>1979</b>여성 차별 철폐 협약</div><div class="flow-arrow">→</div>
+    <div class="flow-item"><b>1989</b>아동 권리 협약</div>
+  </div>
+
+  <div class="rule-card" id="a-udhr" style="--rc:var(--purple);--rcl:var(--purple-light)">
+    <div class="rc-head">🕊️ <span class="fill">세계 인권 선언</span> (1948년)</div>
+    <div class="rc-body"><table class="cmp-table"><tbody>
+      <tr><td class="k2">채택</td><td><span class="fill">국제 연합</span>(UN) 총회에서 인권 보장의 <b>국제적 기준</b>으로 채택</td></tr>
+      <tr><td class="k2">의의</td><td><span class="fill">인권</span>이 인류가 보편적으로 추구해야 할 가치임을 선포, 인권 보호를 위한 <b>국제 사회의 협력</b> 강조</td></tr>
+      <tr><td class="k2">범위</td><td>인간의 존엄성, 자유와 평등, 정치 참여 <b>+</b> 근로·여가에 관한 권리, 사회 보장을 누릴 권리 등 <b>경제적·사회적·문화적 권리까지</b> 포함</td></tr>
+      <tr><td class="k2">주요 조항</td><td><ul class="dot">
+        <li>1조 태어날 때부터 자유, 존엄과 권리에 있어 동등, 이성과 양심을 부여받음 → <span class="concept">천부 인권</span></li>
+        <li>2조 인종·피부색·성·언어·종교·견해·출신·재산·출생 등 <b>어떤 차별도 없이</b> 권리 향유 / 국가·영토의 정치적·법적·국제적 지위에 따른 차별도 금지</li>
+        <li>22조 사회의 일원으로서 <b>사회보장</b>을 받을 권리, 존엄과 인격 발전에 불가결한 경제적·사회적·문화적 권리 실현</li>
+        <li>26조 ① <b>교육받을 권리</b> — 초등·기초 단계 무상, 초등 의무, 기술·직업 교육은 접근 가능, 고등 교육은 실력에 따라 동등하게 접근</li>
+        <li>28조 권리와 자유가 완전히 실현될 수 있는 사회적·국제적 질서에 대한 권리</li></ul></td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="rule-card" id="a-covenant" style="--rc:var(--purple);--rcl:var(--purple-light)">
+    <div class="rc-head">📑 국제 인권 규약 (1966년)</div>
+    <div class="rc-body"><table class="cmp-table"><tbody>
+      <tr><td class="k2">의미</td><td>세계 인권 선언의 권리를 국제법상 <span class="fill">조약</span>의 형태로 구체화</td></tr>
+      <tr><td class="k2">구성</td><td><span class="badge badge-blue">1세대</span> ‘시민적 및 정치적 권리에 관한 국제 규약’ + <span class="badge badge-green">2세대</span> ‘경제적, 사회적 및 문화적 권리에 관한 국제 규약’ 등</td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="mini-title" id="a-other">그 외 노력</div>
+  <div class="factor-grid three">
+    <div class="factor-card purple"><h4><span class="fill">인종</span> 차별 철폐 협약 <small>1965</small></h4>모든 형태의 인종 차별 철폐</div>
+    <div class="factor-card purple"><h4>여성 차별 철폐 협약 <small>1979</small></h4>여성에 대한 모든 형태의 차별 철폐 + <b>가정의 책임은 남녀 모두</b>에게 있음을 국제적으로 규정</div>
+    <div class="factor-card purple"><h4>아동 권리 협약 <small>1989</small></h4>아동 = 단순한 보호 대상이 아닌 <b>권리를 가진 인간 주체</b> <span class="memo">생존, 보호, 발달, 참여</span></div>
+  </div>
+
+  <div class="quiz-section" id="quiz-2"></div>
+</section>
+
+<!-- ============ PANEL 3 : 현대 사회의 인권 ============ -->
+<section class="tab-panel" id="panel-3">
+  <div class="unit-banner" style="background:var(--teal-light);color:var(--teal)">📌 주제2 현대 사회의 인권 › 2. 현대 사회와 인권의 확장</div>
+  <div class="topic-head">
+    <h2>주제2 현대 사회의 인권</h2>
+    <p><b>핵심 아이디어:</b> 주거권, 안전권, 환경권, 문화권</p>
+    <p><b>학습 목표:</b> 현대 사회에서 다양한 영역으로 인권이 확장되고 있는 사례를 조사하여 설명할 수 있다.</p>
+  </div>
+
+  <h3 class="section-title" id="a-modern-bg" style="border-color:var(--teal)">📈 (1) 인권 확장의 배경</h3>
+  <div class="factor-grid">
+    <div class="factor-card teal"><h4>인권 의식의 성장</h4><ul class="dot">
+      <li>두 차례 세계 대전 이후 연대권, 평화권 등으로 인권 범위 확대</li>
+      <li>시민들의 <span class="fill">인권 의식</span>이 높아지며 인권이 여러 영역으로 확장</li></ul></div>
+    <div class="factor-card teal"><h4>현대 사회의 급변화</h4><ul class="dot">
+      <li>도시화·세계화·정보화 → 기존 인권 관념으로 해결하기 어려운 새로운 문제 등장</li>
+      <li>인권 논의가 건강, 환경, 복지, 행복, 삶의 질 등 다양한 가치로 확대</li></ul></div>
+  </div>
+
+  <h3 class="section-title" id="a-new-rights" style="border-color:var(--teal)">🆕 (2) 현대 사회에서 새롭게 나타난 인권</h3>
+  <div class="tip">💡 각 권리는 <b>의미 → 등장 배경 → 보장 방법</b> 순서로 정리했습니다.</div>
+
+  <div class="rule-card" id="a-housing" style="--rc:var(--orange);--rcl:var(--orange-light)">
+    <div class="rc-head">🏠 <span class="fill">주거권</span></div>
+    <div class="rc-body"><table class="cmp-table"><tbody>
+      <tr><td class="k2">의미</td><td>쾌적하고 안정적인 환경에서 인간다운 주거 생활을 할 권리 (개인·가정의 건강하고 안정적인 생활의 기본 요소)</td></tr>
+      <tr><td class="k2">배경</td><td>급격한 <span class="fill">도시화</span> → 인구 집중 → 주택 공급 부족·주거비 급증 / 불안정한 주거 생활, 일조권 문제, 빈곤층의 열악한 주거 환경</td></tr>
+      <tr><td class="k2">보장</td><td><ul class="dot">
+        <li>〈헌법〉에 주거 권리 보호 명시 → 국가가 <span class="fill">주거비</span>를 일정 수준으로 조정, 주거 환경 개선, 사회적 취약 계층에 임대 주택 우선 공급</li>
+        <li class="law-line">헌법 제35조 ③ 국가는 주택 개발 정책 등을 통해 모든 주민이 쾌적한 주거 생활을 할 수 있도록 노력</li>
+        <li>주거 기본법, 주택 임대차 보호법, 최저 주거 기준 설정 <span class="memo">전입신고 + 확정일자</span></li></ul></td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="rule-card" id="a-safety" style="--rc:var(--rose);--rcl:var(--rose-light)">
+    <div class="rc-head">🛡️ <span class="fill">안전권</span></div>
+    <div class="rc-body"><table class="cmp-table"><tbody>
+      <tr><td class="k2">의미</td><td>생명과 안녕을 위협하는 각종 위험으로부터 <span class="fill">안전</span>을 보장받을 권리</td></tr>
+      <tr><td class="k2">배경</td><td><span class="fill">기후 위기</span> → 자연재해 빈번 / 사회 복잡화·과학기술 발전 → 안전사고, 감염병 대유행 등 <b>인위적 위험</b> 증가</td></tr>
+      <tr><td class="k2">보장</td><td><ul class="dot">
+        <li>〈헌법〉에 국가의 재해 예방 의무 명시 → 전염병·재해 예방·관리, 산업 현장 안전 관리 강화</li>
+        <li class="law-line">헌법 제34조 ⑤ 국가는 <span class="fill">재해</span>를 예방하고 그 위험으로부터 국민을 보호하기 위해 노력</li>
+        <li>재난 및 안전 관리 기본법, 재난 문자 제도, <b>안전 신문고</b> 제도</li>
+        <li>기업: 사업장 안전 관리 강화 / 개인: 안전 생활 수칙 준수</li></ul>
+        <div class="case-box"><b>사례 · <span class="fill">안전 신문고</span></b> 국민이 일상에서 안전 위협 요소를 발견해 누리집·앱으로 신고 → 행정 안전부가 처리 기관을 지정해 해결</div></td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="rule-card" id="a-env" style="--rc:var(--green);--rcl:var(--green-light)">
+    <div class="rc-head">🌿 <span class="fill">환경권</span></div>
+    <div class="rc-body"><table class="cmp-table"><tbody>
+      <tr><td class="k2">의미</td><td>건강하고 쾌적한 환경에서 살 권리</td></tr>
+      <tr><td class="k2">배경</td><td><span class="fill">산업화</span>·<span class="fill">도시화</span> 이후 심각해진 환경 오염과 자연 파괴(미세 먼지·황사로 인한 대기 오염, 수질 오염, 소음 공해) / 기후변화에 따른 기상 이변</td></tr>
+      <tr><td class="k2">보장</td><td><ul class="dot">
+        <li>〈헌법〉에 환경권을 국민의 <b>권리이자 의무</b>로 규정, 환경 보호 법률 제정·정책 시행, 국제 사회와 협력</li>
+        <li class="law-line">헌법 제35조 ① 모든 국민은 건강하고 쾌적한 환경에서 생활할 권리, 국가와 국민은 환경 보전을 위해 노력</li>
+        <li>환경 정책 기본법, 국제 연합(UN) 기후변화 협약</li></ul></td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="rule-card" id="a-culture" style="--rc:var(--purple);--rcl:var(--purple-light)">
+    <div class="rc-head">🎭 <span class="fill">문화권</span></div>
+    <div class="rc-body"><table class="cmp-table"><tbody>
+      <tr><td class="k2">의미</td><td><ul class="dot"><li>계층·민족·문화적 배경과 상관없이 누구나 문화생활에 참여하고 누릴 권리</li><li>문화적 삶의 주체로서 자신의 <b>문화적 정체성</b>을 유지할 권리</li></ul></td></tr>
+      <tr><td class="k2">배경</td><td>생활 수준 향상·여가 시간 증가 → 문화 향유 요구 증대 / 소수 집단의 문화적 정체성 존중 요구 대두</td></tr>
+      <tr><td class="k2">보장</td><td><ul class="dot">
+        <li>〈헌법〉에 문화 영역의 자유 보장과 문화 발전에 대한 국가의 의무 명시, 〈<span class="fill">문화 기본법</span>〉 제정, 문화권을 누리지 못하는 사람 지원</li>
+        <li class="law-line">문화 기본법 제4조 성별·종교·인종·세대·지역·정치적 견해·사회적 신분·경제적 지위·신체적 조건 등에 관계없이 차별 없이 문화를 창조·참여·향유할 권리</li>
+        <li>문화다양성법(문화 다양성의 보호와 증진에 관한 법률), 문화 예술 진흥법, 문화 누리 카드</li></ul>
+        <div class="case-box"><b>사례 · <span class="fill">배리어 프리</span></b> ‘장벽이 없다’는 뜻 — 국내 공연계에서 청각 장애인을 위한 수어 통역·자막, 시각 장애인을 위한 화면 해설 제공</div></td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="rule-card" id="a-info" style="--rc:var(--primary);--rcl:var(--primary-light)">
+    <div class="rc-head">💻 <span class="fill">정보 인권</span></div>
+    <div class="rc-body"><table class="cmp-table"><tbody>
+      <tr><td class="k2">의미</td><td>온라인을 통한 정보의 접근 및 통제와 관련한 권리</td></tr>
+      <tr><td class="k2">배경</td><td>정보 사회로 이행, 인공 지능의 발전</td></tr>
+      <tr><td class="k2">보장</td><td>〈개인 정보 보호법〉, 〈공공 기관의 정보 공개에 관한 법률〉 제정</td></tr>
+      <tr id="a-forget"><td class="k2">잊힐 권리</td><td>
+        <div class="def-box" style="margin:0 0 6px"><span class="fill">잊힐 권리</span> = 개인정보 주체가 온라인상 자신에 관한 정보의 <b>삭제 및 확산 방지</b>를 요구할 수 있는 권리</div>
+        <ul class="dot">
+          <li>등장: 개인·민감 정보가 포털 등에 공개되고, 과거 정보가 모르는 사이 퍼져 고통받는 사람 증가 → 정보 통제권 보장 의식 확산</li>
+          <li>사례: 개인 정보 보호 위원회의 <b>‘지우개’ 서비스</b>(아동·청소년 디지털 잊힐 권리 시범 사업) — 아동·청소년 시기 게시물 중 개인정보가 담긴 것을 <b>삭제</b>하거나 <b>검색되지 않게</b> 도움 <small>(지우개 = 지켜야 할 우리들의 개인정보)</small></li></ul></td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="quiz-section" id="quiz-3"></div>
+</section>
+
+<!-- ============ PANEL 4 : 헌법과 기본권 ============ -->
+<section class="tab-panel" id="panel-4">
+  <div class="unit-banner" style="background:var(--orange-light);color:var(--orange)">📌 주제3 인권 보장을 위한 헌법의 역할 › (1) 인권과 헌법의 관계 · (2) 헌법에서 보장하는 기본권</div>
+  <div class="topic-head">
+    <h2>주제3 인권 보장을 위한 헌법의 역할</h2>
+    <p><b>핵심 아이디어:</b> 기본권, 자유권, 평등권, 참정권, 사회권, 청구권, 권력 분립 제도, 민주적 선거 제도, 복수 정당 제도, 기본권 구제 제도</p>
+    <p><b>학습 목표:</b> 인권 보장을 위한 헌법의 역할을 파악하고, 인권 보호를 위해 헌법에 규정된 제도적 장치를 설명할 수 있다.</p>
+  </div>
+
+  <h3 class="section-title" id="a-const" style="border-color:var(--orange)">📜 (1) 인권과 헌법의 관계</h3>
+  <div class="factor-grid">
+    <div class="factor-card orange"><h4>헌법의 의미</h4>국가의 통치 조직·운영 원리 + 국민의 기본적 인권을 규정한 <span class="fill">최고</span> 규범 → 국민의 인권 보호를 위한 <b>토대</b></div>
+    <div class="factor-card orange"><h4>헌법의 역할</h4>인권을 <span class="fill">기본권</span>으로 규정 + 권리 보호를 위한 국가 조직의 운영 원리를 구체적으로 명시 → 기본권 보장을 위한 각종 <b>법과 제도적 장치</b> 마련</div>
+  </div>
+  <div class="law-box" id="a-art10"><span class="law-no">헌법 제10조</span>모든 국민은 인간으로서의 <b>존엄과 가치</b>를 가지며, <b>행복을 추구할 권리</b>를 가진다. 국가는 개인이 가지는 불가침의 기본적 인권을 확인하고 이를 <b>보장할 의무</b>를 진다.
+    <div class="law-point">→ 인간의 존엄과 가치, 행복 추구권 = <span class="fill">불가침</span>의 권리 / 국가의 기본권 보장 의무</div></div>
+
+  <h3 class="section-title" id="a-basic" style="border-color:var(--orange)">⚖️ (2) 헌법에서 보장하는 기본권</h3>
+
+  <div class="mini-title" id="a-dignity">기본권의 구조</div>
+  <div class="tree">
+    <div class="tree-top"><b>인간의 존엄과 가치</b><span>헌법이 추구하는 <b>궁극의 가치</b> — <span class="fill">인간</span>이라는 이유만으로 존중받아야 할 고유한 가치 · 모든 기본권의 근거이자 국가 권력 행사의 기준 (헌법 제10조)</span></div>
+    <div class="tree-mid" id="a-happy"><b><span class="fill">행복 추구권</span></b><span>인간의 존엄과 가치를 보장하는 핵심적 기본권 · 인간으로서 누려야 할 행복을 충족시킬 모든 자유와 권리를 포함하는 <b>포괄적 권리</b></span></div>
+    <div class="tree-leaves">
+      <span class="leaf lb">자유권</span><span class="leaf lg">평등권</span><span class="leaf lp">참정권</span><span class="leaf lr">사회권</span><span class="leaf lt">청구권</span>
+    </div>
+  </div>
+
+  <div class="mini-title" id="a-jellinek">옐리네크의 지위이론 — 국가에 대한 관계로 나눈 기본권 <span class="memo">+ 수동적 권리: 의무</span></div>
+  <div class="tbl-wrap">
+  <table class="cmp-table" style="min-width:600px">
+    <thead><tr><th style="width:96px;background:var(--orange)">구분</th><th style="background:var(--orange)">국가에 대한 요구</th><th style="width:170px;background:var(--orange)">별칭</th><th style="width:96px;background:var(--orange)">기본권</th></tr></thead>
+    <tbody>
+      <tr><td class="k2">소극적 권리</td><td>일정한 행위를 <b>하지 말 것(부작위)</b> — 국가가 개입·간섭하지 않을 때 실현</td><td>‘국가로부터의 자유’<br>방어적 권리</td><td><span class="badge badge-blue">자유권</span></td></tr>
+      <tr><td class="k2">적극적 권리</td><td>일정한 행위를 <b>해줄 것(작위)</b> — 국가가 재정을 투입하고 제도를 만들어 급부를 제공해야 실현</td><td>‘국가에 의한 자유’<br>급부청구적 권리</td><td><span class="badge badge-rose">사회권</span><span class="badge badge-teal">청구권</span></td></tr>
+      <tr><td class="k2">능동적 권리</td><td>국가 의사 형성 과정에 <b>직접 참여</b> — 국민 스스로 국가 권력을 행사하는 주체가 됨 (요구하는 권리와 다름)</td><td>‘국가에의 자유’ <span class="memo">국가로의 자유</span></td><td><span class="badge badge-purple">참정권</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="factor-grid">
+    <div class="note" style="margin:0"><b>열거적 권리</b> <span class="memo">필기</span><br>사회권·청구권·참정권 = 국가의 존재를 전제로 인정 → <b>헌법에 열거되어야</b> 보장, <b>법률로 구체화해야</b> 행사 가능</div>
+    <div class="note" style="margin:0"><b>포괄적 권리</b> <span class="memo">필기</span><br>① 자유권 ② 행복 추구권</div>
+  </div>
+
+  <div class="mini-title">5가지 기본권</div>
+
+  <div class="rule-card" id="a-liberty" style="--rc:var(--primary);--rcl:var(--primary-light)">
+    <div class="rc-head">🕊️ 자유권 <span class="rc-art">헌법 제12~23조</span></div>
+    <div class="rc-body"><table class="cmp-table"><tbody>
+      <tr><td class="k2">의미</td><td>국가 권력의 간섭 없이 자유롭게 생활할 수 있는 권리</td></tr>
+      <tr><td class="k2">성격</td><td><ul class="dot"><li><b>역사상 가장 오래된</b> 기본권, <span class="fill">소극적</span>·방어적 권리</li><li>헌법에 열거되지 않은 권리를 도출할 수 있는 <b>포괄적</b> 권리</li></ul></td></tr>
+      <tr><td class="k2">내용</td><td>신체의 자유, 거주·이전의 자유, 직업 선택의 자유, 사생활의 비밀과 자유, 양심의 자유, 종교의 자유, 언론·출판·집회·결사의 자유, 학문과 예술의 자유</td></tr>
+      <tr><td class="k2">대표 조항</td><td class="law-line">제12조 ① 모든 국민은 신체의 자유를 가진다. 법률에 의하지 않고는 체포·구속·압수·수색·심문을 받지 않으며, 법률과 적법한 절차에 의하지 않고는 처벌·보안처분·강제노역을 받지 않는다.</td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="sub-block" id="a-body-free">
+    <div class="sub-block-head">🔒 신체의 자유를 지키는 헌법 원칙 10가지</div>
+    <div class="tbl-wrap">
+    <table class="cmp-table">
+      <tbody>
+        <tr><td class="k2">죄형 법정주의</td><td>법률에 의하지 않고는 처벌받지 않음 → 파생 원리: 관습 형법 배제, 형벌 법규의 불소급, 유추 해석 금지, 절대적 부정기형의 금지</td></tr>
+        <tr><td class="k2">형벌 불소급의 원칙</td><td>형벌은 현행법에 명기되어 있어야 함 — 새 법률로 과거의 범죄를 처벌할 수 없음</td></tr>
+        <tr><td class="k2">일사부재리의 원칙</td><td>판결이 확정되면 동일 사건을 거듭 심판할 수 없음 <span class="memo">예외) 재심</span></td></tr>
+        <tr><td class="k2">연좌제 금지</td><td>자기 책임의 원칙 — 친족의 행위를 이유로 형사 처벌 등 불리한 처우를 받지 않음</td></tr>
+        <tr><td class="k2">영장 제도</td><td>불법 체포·구속 방지를 위해 반드시 영장 제시 — <b>검사의 신청 → 법관이 발부</b></td></tr>
+        <tr><td class="k2">체포·구속 적부 심사</td><td>구속된 사람이 구속의 적부를 <b>법원</b>이 심사하도록 청구 — 수사권 남용에 의한 불법 체포·구속으로부터 인신의 자유 확보</td></tr>
+        <tr><td class="k2">무죄 추정의 원리</td><td>형사 피고인은 유죄 판결이 확정될 때까지 무죄로 추정</td></tr>
+        <tr><td class="k2">자백의 증명력 제한</td><td>자백이 불리한 <b>유일한 증거</b>일 때는 유죄의 증거로 삼거나 처벌할 수 없음</td></tr>
+        <tr><td class="k2">고문 금지 및<br>불리한 진술 거부권</td><td>고문받지 않음, “형사상 자기에게 불리한 진술을 강요당하지 아니한다.” — 강요된 자백·증언에 의한 인권 침해 방지</td></tr>
+        <tr><td class="k2">변호인의 조력을<br>받을 권리</td><td>체포·구속 시 <b>즉시</b> 변호인의 도움 — 피의자의 권리 존중, 조사 기관과 대등한 지위 보장</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div class="rule-card" id="a-equality" style="--rc:var(--green);--rcl:var(--green-light)">
+    <div class="rc-head">🟰 <span class="fill">평등권</span> <span class="rc-art">헌법 제11조</span></div>
+    <div class="rc-body"><table class="cmp-table"><tbody>
+      <tr><td class="k2">의미</td><td>성별, 종교, 사회적 신분 등을 이유로 불합리한 차별을 받지 않고 동등하게 대우받을 권리</td></tr>
+      <tr><td class="k2">성격</td><td><ul class="dot"><li>민주 국가의 기본 가치, 다른 기본권 보장의 <b>전제 조건</b></li>
+        <li><span class="fill">상대적</span>·비례적 평등(실질적 평등) — ‘같은 것은 같게, 다른 것은 다르게’, 처한 상황·여건에 따라 대우 <span class="vs">↔ 절대적·형식적 평등</span></li></ul></td></tr>
+      <tr><td class="k2">내용</td><td>법 앞에서의 평등, 사회적 특수계급의 금지, 교육의 기회균등, 근로관계의 양성평등, 혼인과 가족생활에서의 양성평등, 불합리한 기준에 의한 차별 금지</td></tr>
+      <tr><td class="k2">대표 조항</td><td class="law-line">제11조 ① 모든 국민은 법 앞에 평등하다. 성별·종교·사회적 신분에 의하여 정치적·경제적·사회적·문화적 생활의 모든 영역에서 차별받지 않는다.</td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="rule-card" id="a-partic" style="--rc:var(--purple);--rcl:var(--purple-light)">
+    <div class="rc-head">🗳️ <span class="fill">참정권</span> <span class="rc-art">헌법 제24~25조, 72조, 130조</span></div>
+    <div class="rc-body"><table class="cmp-table"><tbody>
+      <tr><td class="k2">의미</td><td>국민이 국가의 의사 결정 과정에 참여할 수 있는 권리</td></tr>
+      <tr><td class="k2">성격</td><td><b>능동적</b> 권리 — <span class="fill">국민 주권</span>의 원리(국민 주권주의)를 실현하기 위한 필수적 권리 <span class="memo">열거적 권리</span></td></tr>
+      <tr><td class="k2">내용</td><td><ul class="dot">
+        <li><b>선거권</b>: 국민의 대표를 선출할 수 있는 권리</li>
+        <li><span class="fill">공무 담임권</span>: 일체의 국가 기관 및 공공 단체의 직무를 맡을 수 있는 권리</li>
+        <li><b>국민 투표권</b>: 국가 의사 형성이나 정책 결정에 직접 참여할 수 있는 권리 <span class="memo">ex) 개헌</span></li></ul></td></tr>
+      <tr><td class="k2">대표 조항</td><td class="law-line">제24조 모든 국민은 법률이 정하는 바에 의하여 선거권을 가진다.</td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="rule-card" id="a-social" style="--rc:var(--rose);--rcl:var(--rose-light)">
+    <div class="rc-head">🤝 사회권 <span class="rc-art">헌법 제31~35조</span></div>
+    <div class="rc-body"><table class="cmp-table"><tbody>
+      <tr><td class="k2">의미</td><td>인간다운 생활의 보장과 실질적 평등의 실현을 <span class="fill">국가</span>에 요구할 수 있는 권리</td></tr>
+      <tr><td class="k2">성격</td><td><ul class="dot"><li><b>적극적</b> 권리 (국가에 인간다운 생활 보장을 요구)</li>
+        <li>= 생존권, <span class="fill">복지 국가</span>를 추구하는 현대 사회에서 강조하는 <b>현대적 권리</b>(복지 국가의 필수 요소)</li>
+        <li>자본주의의 문제점(사회 불평등) 해결 과정에서 등장, 현대 복지 국가 헌법부터 보장 <span class="memo">가장 최근</span></li></ul></td></tr>
+      <tr><td class="k2">내용</td><td>교육을 받을 권리, 근로의 권리(근로 3권: 단결권·단체 교섭권·단체 행동권), 사회 보장을 받을 권리, 쾌적한 환경에서 생활할 권리</td></tr>
+      <tr><td class="k2">대표 조항</td><td class="law-line">제34조 ① 모든 국민은 인간다운 생활을 할 권리를 가진다.</td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="rule-card" id="a-claim" style="--rc:var(--teal);--rcl:var(--teal-light)">
+    <div class="rc-head">📨 청구권</div>
+    <div class="rc-body"><table class="cmp-table"><tbody>
+      <tr><td class="k2">의미</td><td>다른 기본권이 침해되었을 때 침해된 권리의 <span class="fill">구제</span>를 요구할 수 있는 권리</td></tr>
+      <tr><td class="k2">성격</td><td><b>적극적</b> 권리 · 다른 기본권을 보장하기 위한 <span class="fill">수단적</span> 권리(기본권 보장을 위한 기본권) · 실체적 기본권을 실현하기 위한 <b>절차적</b> 권리</td></tr>
+      <tr><td class="k2">내용</td><td><ul class="dot">
+        <li><span class="fill">청원권</span>: 국가 기관에 문서로 의견이나 희망을 표시</li>
+        <li>재판 청구권: 헌법과 법률이 정한 법관에 의해 법률에 따라 재판을 받음</li>
+        <li>국가 배상 청구권: 공무원의 직무상 불법 행위로 손해 → 국가·공공 단체에 정당한 배상 청구</li>
+        <li>범죄 피해자 구조 청구권, 형사 보상 청구권</li></ul></td></tr>
+      <tr><td class="k2">대표 조항</td><td class="law-line">제29조 ① 공무원의 직무상 불법 행위로 손해를 받은 국민은 국가 또는 공공단체에 정당한 배상을 청구할 수 있다. 이 경우 <b>공무원 자신의 책임은 면제되지 않는다.</b></td></tr>
+    </tbody></table></div>
+  </div>
+  <div class="tip">💡 헌법 제11조(<span class="fill">평등권</span>)·제12조(<span class="fill">자유권</span>)·제24조(참정권)·제29조(청구권)·제34조(<span class="fill">사회권</span>) → <span class="fill">헌법</span>이 인권 보장의 토대이자 기본권을 보장하는 장치임을 보여 줌</div>
+
+  <div class="quiz-section" id="quiz-4"></div>
+</section>
+
+<!-- ============ PANEL 5 : 기본권 보장과 제한 ============ -->
+<section class="tab-panel" id="panel-5">
+  <div class="unit-banner" style="background:var(--orange-light);color:var(--orange)">📌 주제3 › (3) 헌법에 열거되지 않은 권리 보장 · (4) 기본권 제한과 한계</div>
+
+  <h3 class="section-title" id="a-unlisted" style="border-color:var(--orange)">📂 (3) 헌법에 열거되지 않은 권리 보장</h3>
+  <div class="flow-row">
+    <div class="flow-item fl-wide"><b style="color:var(--orange)">배경</b>모든 권리를 헌법에 구체적으로 열거하기 어려움 + 사회 변화로 다양한 권리가 새롭게 대두</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item fl-wide"><b style="color:var(--orange)">보장</b>인간의 존엄과 가치 실현에 필요한 권리는 <span class="fill">헌법</span>에 직접 명시되지 않아도 보장</div>
+  </div>
+  <div class="law-box" id="a-art37-1"><span class="law-no">헌법 제37조 ①</span>국민의 자유와 권리는 헌법에 열거되지 아니한 이유로 경시되지 아니한다.
+    <div class="law-point">→ 사회 변화에 따라 새롭게 대두하는 권리도 광범위하게 보장 &nbsp;예) 소비자의 권리, 휴식권, 수면권, 일조권</div></div>
+
+  <h3 class="section-title" id="a-limit" style="border-color:var(--orange)">🚧 (4) 기본권 제한과 한계</h3>
+  <div class="plain-box"><b>왜 제한하나?</b> 기본권 행사 과정에서 다른 사람의 기본권을 침해하거나 <span class="fill">공동체</span>의 이익에 해를 끼칠 수 있음</div>
+
+  <div class="law-box" id="a-art37-2"><span class="law-no">헌법 제37조 ②</span>국민의 모든 자유와 권리는 <span class="hl hl1">국가 안전 보장·질서 유지 또는 공공복리를 위하여</span> <span class="hl hl2">필요한 경우에 한하여</span> <span class="hl hl3">법률로써</span> 제한할 수 있으며, 제한하는 경우에도 <span class="hl hl4">자유와 권리의 본질적인 내용을 침해할 수 없다.</span></div>
+
+  <div class="mini-title" id="a-limit-bound">제37조 ②에서 읽는 기본권 제한의 4가지 한계 <small style="font-weight:500;color:var(--text-sec)">→ 국회가 정한 법률에 의해서만 제한 가능</small></div>
+  <div class="factor-grid four">
+    <div class="factor-card lim lim1"><h4>① <span class="fill">목적상</span>의 한계</h4>국가 안전 보장, <span class="fill">질서</span> 유지, 공공복리 — 세 목적 중 하나를 충족해야 함</div>
+    <div class="factor-card lim lim2"><h4>② 방법상의 한계</h4>필요한 때에 한해서만 제한해야 함</div>
+    <div class="factor-card lim lim3"><h4>③ <span class="fill">형식상</span>의 한계</h4>국민의 대표 기관인 <b>국회</b>에서 제정된 <b>법률</b>에 근거가 있어야 함</div>
+    <div class="factor-card lim lim4"><h4>④ 내용상의 한계</h4>제한하더라도 자유와 권리의 <span class="fill">본질적인</span> 내용은 침해할 수 없음</div>
+  </div>
+
+  <div class="mini-title" id="a-excess">과잉 금지의 원칙(비례의 원칙) — 기본권 제한 입법의 4단계 심사</div>
+  <div class="flow-row step-flow">
+    <div class="flow-item"><b>1 목적의 정당성</b>국가 안전 보장·질서 유지·공공복리를 위한 정당한 목적이 있어야 함</div><div class="flow-arrow">→</div>
+    <div class="flow-item"><b>2 수단의 적합성</b>제한 수단이 그 목적을 달성하는 데 적합해야 함</div><div class="flow-arrow">→</div>
+    <div class="flow-item"><b>3 피해의 최소성</b>피해가 가장 적은 방법이어야 함</div><div class="flow-arrow">→</div>
+    <div class="flow-item"><b>4 법익의 균형성</b>보호하려는 공익 &gt; 침해되는 사익</div>
+  </div>
+
+  <div class="quiz-section" id="quiz-5"></div>
+</section>
+
+<!-- ============ PANEL 6 : 제도적 장치 ============ -->
+<section class="tab-panel" id="panel-6">
+  <div class="unit-banner" style="background:var(--orange-light);color:var(--orange)">📌 주제3 › (5) 인권 보장을 위해 헌법에 규정된 제도적 장치</div>
+
+  <h3 class="section-title" id="a-inst" style="border-color:var(--orange)">🏛️ (5) 인권 보장을 위한 제도적 장치</h3>
+  <div class="inst-list">
+    <div class="inst" id="a-sovereignty"><div class="inst-name"><span class="fill">국민 주권</span>의 원리</div><div class="inst-body"><ul class="dot">
+      <li>최고 권력인 주권이 국민에게 있다는 원리 → 정치권력의 행사가 국민 동의를 바탕으로 이루어짐</li>
+      <li>구현: 국회 의원·대통령을 뽑는 선거 제도, <span class="fill">국민 투표</span>를 통한 헌법 개정</li></ul></div></div>
+    <div class="inst" id="a-rule-of-law"><div class="inst-name">법치주의</div><div class="inst-body"><ul class="dot">
+      <li>국민 대표인 국회가 <span class="fill">법률</span>을 제정하고 이에 근거해 국가 운영 → 자의적·부당한 지배로부터 국민의 권리 보호</li>
+      <li>국민의 권리·의무를 법률로 정하고, 법률의 목적과 내용도 인권 보장에 적법하도록 규정</li></ul></div></div>
+    <div class="inst" id="a-separation"><div class="inst-name"><span class="fill">권력 분립 제도</span></div><div class="inst-body"><ul class="dot">
+      <li>입법권(국회)·행정권(정부)·사법권(법원) 분리 → 상호 <span class="fill">독립성</span> 유지 + 견제와 균형</li>
+      <li>국가 권력의 <span class="fill">남용</span>을 막고 국민의 인권 보장 <small>(아래 도식 참고)</small></li></ul></div></div>
+    <div class="inst" id="a-election"><div class="inst-name">민주적 선거 제도</div><div class="inst-body"><ul class="dot">
+      <li>주권자인 <span class="fill">국민</span>이 대표를 뽑아 국민의 의사·이익 반영</li>
+      <li>일정 나이 이상에게 선거권 + 국정에 직접 참여하는 공무 담임권 → 국민의 <span class="fill">주권</span> 행사 보장</li></ul></div></div>
+    <div class="inst" id="a-party"><div class="inst-name"><span class="fill">정당 설립의 자유·복수 정당 제도</span></div><div class="inst-body">정당 설립의 자유 보장, 두 개 이상의 정당 인정 → 다양한 정치적 견해가 정책 결정에 반영</div></div>
+    <div class="inst" id="a-court"><div class="inst-name">헌법재판소</div><div class="inst-body">헌법 해석 관련 분쟁 해결 기관 → 헌법 수호, 국민의 기본권 보장 <small>(심판 종류는 아래 표)</small></div></div>
+    <div class="inst" id="a-hr-org"><div class="inst-name">인권 보호 기관<span class="memo" style="display:block;margin:4px 0 0;width:fit-content">기본권 구제 제도</span></div><div class="inst-body"><ul class="dot">
+      <li><span class="fill">국가 인권 위원회</span>: 인권 정책 권고, 차별 행위 조사·구제</li>
+      <li>국민 권익 위원회: 다양한 소통 창구 운영, 제도 개선으로 인권 보장</li></ul></div></div>
+  </div>
+
+  <h3 class="section-title" id="a-sep-src" style="border-color:var(--orange)">🔺 우리나라의 권력 분립 제도 <span class="deep-tag" style="margin-left:6px">심화 통합</span></h3>
+  <div class="sep-scroll-hint">← 좌우로 밀어서 보기 →</div>
+  <div class="sep-wrap">
+    <svg class="sep-svg" viewBox="0 0 960 616" role="img" aria-label="국회·정부·법원 사이의 견제 관계 도식">
+          <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker></defs>
+          <g stroke="#475569" stroke-width="1.8" fill="none" marker-end="url(#ah)">
+            <line x1="443" y1="106" x2="216" y2="471"/>
+            <line x1="237" y1="484" x2="464" y2="119"/>
+            <line x1="517" y1="106" x2="744" y2="471"/>
+            <line x1="723" y1="484" x2="496" y2="119"/>
+            <line x1="250" y1="507" x2="710" y2="507"/>
+            <line x1="710" y1="535" x2="250" y2="535"/>
+          </g>
+          <g font-family="Noto Sans KR, sans-serif" font-size="13.5" fill="#0f172a"><rect x="14" y="138" width="332" height="114" rx="7" fill="#fff" stroke="#cbd5e1"/><text x="26" y="160" font-weight="700" font-size="12.5" fill="#2563eb">국회 → 정부</text><text x="26" y="180">국정 감사 및 조사권,</text><text x="26" y="200">대통령·국무총리·국무위원 등 탄핵 소추권,</text><text x="26" y="220">국무총리·국무 위원 해임 건의권,</text><text x="26" y="240">주요 조약의 체결·비준에 대한 동의권 등</text><rect x="615" y="150" width="280" height="94" rx="7" fill="#fff" stroke="#cbd5e1"/><text x="627" y="172" font-weight="700" font-size="12.5" fill="#2563eb">국회 → 법원</text><text x="627" y="192">대법원장·대법관 임명 동의권,</text><text x="627" y="212">법관 탄핵 소추권,</text><text x="627" y="232">국정 감사 및 조사권(재판 제외) 등</text><rect x="372" y="282" width="205" height="74" rx="7" fill="#fff" stroke="#cbd5e1"/><text x="384" y="304" font-weight="700" font-size="12.5" fill="#16a34a">정부 → 국회</text><text x="384" y="324">법률안 거부권(재의 요구권),</text><text x="384" y="344">국회 임시회 소집 요구권 등</text><rect x="452" y="372" width="185" height="54" rx="7" fill="#fff" stroke="#cbd5e1"/><text x="464" y="394" font-weight="700" font-size="12.5" fill="#7c3aed">법원 → 국회</text><text x="464" y="414">위헌 법률 심판 제청권 등</text><rect x="330" y="428" width="300" height="54" rx="7" fill="#fff" stroke="#cbd5e1"/><text x="342" y="450" font-weight="700" font-size="12.5" fill="#16a34a">정부 → 법원</text><text x="342" y="470">사면권, 대법원장·대법관 임명권 등</text><rect x="285" y="550" width="390" height="54" rx="7" fill="#fff" stroke="#cbd5e1"/><text x="297" y="572" font-weight="700" font-size="12.5" fill="#7c3aed">법원 → 정부</text><text x="297" y="592">명령·규칙 또는 처분의 위헌성 및 위법성 심사권 등</text></g>
+          <g font-family="Noto Sans KR, sans-serif" font-weight="700" font-size="16" text-anchor="middle">
+            <circle cx="480" cy="66" r="42" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="480" y="72" fill="#2563eb">국회</text>
+            <circle cx="200" cy="522" r="42" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/><text x="200" y="522" fill="#16a34a">정부</text><text x="200" y="540" fill="#16a34a" font-size="11" font-weight="500">(대통령)</text>
+            <circle cx="760" cy="522" r="42" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/><text x="760" y="528" fill="#7c3aed">법원</text>
+          </g>
+        </svg>
+  </div>
+  <div class="note memo-note"><b>✎ 필기</b>
+    <ul class="dot">
+      <li>국회 → 정부 ‘국정 감사권’ 옆: <b>조사권</b></li>
+      <li>법률안 거부권: <b>= 재의 요구권</b></li>
+      <li>법률안 거부권: <b>재적 ½ → ⅔, 1회성, 그 이후에는 발표 거부해도 입법됨</b></li>
+    </ul></div>
+  <div class="mini-title">도식 읽기 포인트</div>
+  <ul class="dot">
+    <li><span class="fill">대통령</span> → 국회: <b>법률안 거부권</b> — 국회가 의결한 법률안에 재의 요구</li>
+    <li>국회 → 정부: <span class="fill">국정 감사권</span>(매년 정기적으로 국정 전반 감사) vs <b>국정 조사권</b>(특정 사안이 생기면 조사)</li>
+    <li>대법원장·대법관: <b>대통령이 임명</b>하되 <span class="fill">국회</span>의 동의 필요</li>
+    <li>대통령의 <span class="fill">사면권</span>: 법원이 선고한 형벌을 소멸시키거나 감형·복권</li>
+  </ul>
+
+  <h3 class="section-title" id="a-court-types" style="border-color:var(--orange)"><span class="deep-tag">심화</span>헌법재판소의 심판 종류</h3>
+  <div class="tbl-wrap">
+  <table class="cmp-table" style="min-width:560px">
+    <tbody>
+      <tr><td class="k2"><span class="fill">위헌 법률 심판</span></td><td>법원이 재판 중 적용할 법률의 위헌 여부가 문제될 때 <b>법원의 제청</b>에 따라 헌법재판소가 위헌 여부를 판단</td></tr>
+      <tr><td class="k2">헌법 소원 심판</td><td>
+        <div class="split2">
+          <div><b>위헌 심사형</b><br>재판 당사자가 법원에 <span class="fill">위헌 법률 심판</span> 제청을 신청했으나 <b>기각</b>된 경우 → 헌법재판소에 직접 청구</div>
+          <div><b><span class="fill">권리 구제</span>형</b><br>국가 권력의 행사·불행사로 기본권을 침해받은 국민이 청구<br><small>청구 요건: 공권력의 행사·불행사 / 헌법상 기본권을 침해받은 자 / 다른 법률의 구제 절차를 모두 거친 후(보충성) / 권리 보호 이익</small></div>
+        </div></td></tr>
+      <tr><td class="k2">탄핵 심판</td><td>
+        <ul class="dot">
+          <li>대상(헌법 제65조): 대통령·국무총리·국무위원·행정 각부의 장·헌법재판소 재판관·법관·중앙선거관리위원회 위원·감사원장·감사위원 등 법률이 정한 공무원이 직무 집행에서 헌법·법률을 위배한 때 → 국회가 탄핵 소추 의결</li>
+          <li>이 의결을 받은 자는 탄핵 심판이 있을 때까지 <b>권한 행사 정지</b></li></ul>
+        <table class="inner-table">
+          <tr><td></td><td style="font-weight:700;background:#f1f5f9;text-align:center">발의</td><td style="font-weight:700;background:#f1f5f9;text-align:center">의결</td></tr>
+          <tr><td>일반 공무원</td><td>국회 재적 의원 1/3 이상</td><td>재적 의원 과반수 찬성</td></tr>
+          <tr><td>대통령</td><td>국회 재적 의원 과반수</td><td>재적 의원 2/3 이상 찬성</td></tr>
+        </table></td></tr>
+      <tr><td class="k2">위헌 정당<br>해산 심판</td><td>정당의 목적·활동이 민주적 기본질서에 위배 → <b>정부</b>가 헌법재판소에 해산 제소 → 헌법재판소 심판으로 해산 (헌법 제8조)</td></tr>
+      <tr><td class="k2">권한 쟁의 심판</td><td>국가기관 상호 간, 국가기관과 지방자치단체 간, 지방자치단체 상호 간에 권한의 유무·범위를 두고 다툼 → 청구<br><small>피청구인의 처분·부작위가 청구인의 권한을 침해했거나 침해할 현저한 위험이 있을 때만 가능</small></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3 class="section-title" id="a-court-flow" style="border-color:var(--orange)"><span class="deep-tag">심화</span>위헌 법률 심판 vs 위헌 심사형 헌법소원 심판</h3>
+  <div class="note" style="font-size:12.5px">✎ 학습지 인쇄본의 ‘권리구제형’을 필기로 ‘위헌심사형’으로 고쳐 두었음.</div>
+  <div class="fc-legend"><span class="lg lg-a"></span>위헌 법률 심판으로 가는 경로 <span class="lg lg-b"></span>위헌 심사형 헌법 소원으로 가는 경로</div>
+  <div class="fc">
+    <div class="fc-box fc-top" style="grid-column:1/4"><b>법률의 위헌 여부가 재판의 전제가 된 경우</b><br><small>재판에 적용되는 법률이 위헌이냐에 따라 재판 내용이 달라지는 경우</small></div>
+    <div class="fc-arr" style="grid-column:1/4">↓</div>
+    <div class="fc-box fc-a" style="grid-column:1/2">법원이 <b>직권으로</b><br>위헌 법률 심판 제청</div>
+    <div class="fc-box fc-top" style="grid-column:2/4">당사자가 법원에 <b>위헌 법률 심판 제청을 신청</b></div>
+    <div class="fc-arr" style="grid-column:1/2">↓</div>
+    <div class="fc-arr" style="grid-column:2/3">↓</div>
+    <div class="fc-arr" style="grid-column:3/4">↓</div>
+    <div class="fc-spacer" style="grid-column:1/2"></div>
+    <div class="fc-box fc-a" style="grid-column:2/3">법원이 신청을 <b>받아들여</b><br>위헌 법률 심판 제청</div>
+    <div class="fc-box fc-b" style="grid-column:3/4">법원이 신청을 <b>기각</b></div>
+    <div class="fc-arr" style="grid-column:1/3">↓</div>
+    <div class="fc-arr" style="grid-column:3/4">↓</div>
+    <div class="fc-box fc-a fc-steps" style="grid-column:1/3">
+      <div>대법원 외의 법원은 <b>대법원을 경유</b>해 제청<br>해당 재판은 결정이 있을 때까지 <b>정지 O</b></div>
+      <div class="fc-mini">↓</div><div>헌법재판소의 위헌 여부 결정</div>
+      <div class="fc-mini">↓</div><div>법원은 그 결정을 참고해 재판 진행</div>
+    </div>
+    <div class="fc-box fc-b fc-steps" style="grid-column:3/4">
+      <div>당사자는 <b>항고 X</b><br><b>위헌 심사형 헌법 소원</b> 청구</div>
+      <div class="fc-mini">↓</div><div>재판 <b>정지 X</b><br>헌법재판소의 위헌 여부 결정</div>
+      <div class="fc-mini">↓</div><div>법원은 그 결정을 참고해 재판 진행</div>
+    </div>
+  </div>
+
+  <div class="quiz-section" id="quiz-6"></div>
+</section>
+
+<!-- ============ PANEL 7 : 시민 참여 ============ -->
+<section class="tab-panel" id="panel-7">
+  <div class="unit-banner" style="background:var(--rose-light);color:var(--rose)">📌 주제4 시민의 권익을 보호하기 위한 시민 참여</div>
+  <div class="topic-head">
+    <h2>주제4 시민의 권익을 보호하기 위한 시민 참여</h2>
+    <p><b>핵심 아이디어:</b> 시민 권익 보호, 시민 참여 방법, 시민불복종</p>
+    <p><b>학습 목표:</b> 시민의 권익을 보호하기 위한 다양한 시민 참여의 방안을 탐구하고 이를 실천할 수 있다.</p>
+  </div>
+
+  <h3 class="section-title" id="a-cp-need" style="border-color:var(--rose)">🙋 (1) 시민 참여의 의미와 필요성</h3>
+  <div class="rose-box"><b>의미</b> ① <span class="fill">참여 의식</span>을 가지고 정치 과정·공공 문제 해결에 적극적으로 참여하는 행위 ② 정책 결정 과정을 <span class="fill">감시</span>하고 부당한 정책·제도의 개선을 요구하는 행위</div>
+  <div class="factor-grid three">
+    <div class="factor-card rose"><h4><span class="fill">대의 민주주의</span>의 한계 보완</h4>대표자를 통한 간접적 주권 행사 → 국민 의사가 잘 반영되지 않을 수 있음<div class="arrow-line" style="--c:var(--rose)">→ 사회문제 직접 해결, 국가 권력 견제·감시로 권력의 <span class="fill">남용</span> 방지</div></div>
+    <div class="factor-card rose"><h4>공동체 이익 증진</h4>현실의 문제점 지적·사회 변화 → 모든 구성원의 <span class="fill">권익</span> 보호, 인간 존엄성이 보장되는 정의로운 사회</div>
+    <div class="factor-card rose"><h4>민주 시민의 능력 함양</h4>공동체 문제에 능동적으로 관심을 갖고 문제를 해결하는 역량을 기름</div>
+  </div>
+
+  <h3 class="section-title" id="a-cp-way" style="border-color:var(--rose)">🗳️ (2) 시민 참여의 방안</h3>
+  <div class="inst-list rose">
+    <div class="inst"><div class="inst-name">선거와 <span class="fill">투표</span></div><div class="inst-body">직접 출마하거나 투표로 대표자 선출 → 정책에 <span class="fill">정당성</span> 부여, 더 나은 정책 요구</div></div>
+    <div class="inst"><div class="inst-name">단체 활동</div><div class="inst-body">
+      <table class="inner-table">
+        <tr><td>정당</td><td>지지 정당 후원·당원 활동 → <span class="fill">정책</span> 제안을 위한 여론 형성, 입법·정책 수립 과정에서 정부에 영향력 행사</td></tr>
+        <tr><td><span class="fill">이익집단</span></td><td>공통의 이해관계를 지닌 사람들이 <b>자신들의 이익</b>을 실현하려고 결성</td></tr>
+        <tr><td>시민단체</td><td><span class="fill">공익</span> 추구를 위해 자발적으로 결성 → 여론 형성, 공공 문제 해결 참여</td></tr>
+      </table></div></div>
+    <div class="inst"><div class="inst-name">공청회·주민 간담회</div><div class="inst-body">중요 정책 결정 <b>이전</b>에 참여 → 의견 제시, 전문가·이해관계자와 의견 교환</div></div>
+    <div class="inst"><div class="inst-name"><span class="fill">입법</span> 과정 참여</div><div class="inst-body">입법 청원, 주민 조례 청구 → 특정 문제에 관한 법률 마련 요구</div></div>
+    <div class="inst"><div class="inst-name">기타</div><div class="inst-body">민원 제기, 자원 봉사, 서명 운동, 집회·시위 참가, 인터넷 의견 표출</div></div>
+  </div>
+
+  <h3 class="section-title" id="a-cd" style="border-color:var(--rose)">✊ (3) 시민불복종</h3>
+  <div class="rose-box"><b>의미</b> 부정의한 법·정책이 합법적 방법으로 개선되지 않을 때, <span class="fill">공익</span>을 수호하려는 목적에서 <b>양심적으로 행하는 의도적인 위법 행위</b> — 제재와 불이익을 감수하면서 잘못된 제도에 <span class="fill">저항</span></div>
+
+  <div class="mini-title" id="a-cd-cond">정당화 조건 4가지</div>
+  <div class="factor-grid four">
+    <div class="factor-card rose"><h4>① 목적의 <span class="fill">정당성</span></h4>공공의 이익과 정의 실현이라는 정당한 목적</div>
+    <div class="factor-card rose"><h4>② <span class="fill">비폭력성</span></h4>폭력적 행동을 선동하면 정당화될 수 없음</div>
+    <div class="factor-card rose"><h4>③ <span class="fill">최후의 수단</span></h4>모든 합법적 방법을 동원해도 해결되지 않았을 때</div>
+    <div class="factor-card rose"><h4>④ 처벌의 감수</h4>처벌을 감수 → 법을 존중하며 정당한 <span class="fill">법 체계</span>를 세우려는 운동임을 밝힘</div>
+  </div>
+
+  <div class="mini-title" id="a-cd-thinker">사상가의 견해 비교</div>
+  <div class="tbl-wrap">
+  <table class="cmp-table" style="min-width:640px">
+    <thead><tr><th style="width:70px;background:var(--rose)">사상가</th><th style="width:150px;background:var(--rose)">판단 기준</th><th style="background:var(--rose)">핵심 주장</th><th style="width:250px;background:var(--rose)">대표 문장</th></tr></thead>
+    <tbody>
+      <tr><td class="k2">롤스</td><td><span class="fill">사회적 다수</span>가 공유하는 정의관</td><td><b>거의 정의로운 사회</b>에서 법·정책이 평등한 자유의 원칙이나 공정한 기회균등의 원칙을 심각하게 위반 → 변화를 위한 시민 불복종 정당화</td><td class="quote-cell">법에 대한 <b>충실성의 한계 내</b>에서의 불복종 — 법을 어기지만, 행위의 공공적·비폭력적 성격과 <b>법적 결과를 받아들이겠다는 의지</b>가 곧 법에 대한 충실성</td></tr>
+      <tr><td class="k2">싱어</td><td><span class="fill">공리주의</span> — 산출할 이익과 손해, 성공 가능성</td><td>다수가 결정한 내용도 항상 옳지는 않음 → 이에 대한 시민불복종도 정당화 가능</td><td class="quote-cell">합법적 수단이 실패했을 때 목적을 달성하는 <b>적합한 수단</b> — 법의 힘에 저항하지 않고, 비폭력적으로, 법적 처벌을 받아들이며</td></tr>
+      <tr><td class="k2">소로</td><td><span class="fill">양심</span></td><td>양심에 어긋나는 법·정책엔 <b>적극적으로</b> 불복종, 법보다 정의에 대한 존경심 중시 → 부정의한 법에 대한 불복종은 <b>도덕적으로 정당</b></td><td class="quote-cell">“우리는 먼저 인간이어야 하고, 그 다음에 국민이어야 한다.” — 나의 유일한 책무는 옳다고 생각하는 일을 행하는 것 / 노예 제도 폐지론자는 매사추세츠주 정부 지원을 당장 중지해야</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="mini-title" id="a-cd-case">사례</div>
+  <div class="factor-grid">
+    <div class="factor-card rose"><h4>간디의 소금법 폐지 운동 <small>1930</small></h4><ul class="dot">
+      <li>영국의 소금법: 인도인의 소금 제조·판매 금지, 영국 소금만 구매 → 비싼 세금이 농민에게 큰 부담</li>
+      <li>폐지 요구 거부 → 군중과 <b>평화적 행진</b>, 바다에서 직접 소금 제조</li>
+      <li>간디는 체포, 군중은 경찰 곤봉에 쓰러져도 시위를 멈추지 않음</li></ul></div>
+    <div class="factor-card rose"><h4>흑인의 버스 탑승 거부 운동 <small>1955~1956</small></h4><ul class="dot">
+      <li>미국 앨라배마주 몽고메리시 버스: 백인석·유색 인종석 구분</li>
+      <li>로자 파크스가 백인에게 자리 양보를 거부 → 현장 체포</li>
+      <li>마틴 루서 킹 목사 등이 약 1년간 버스 탑승 거부(걷기·자전거·마차)</li>
+      <li>1956년 연방 지방 법원·대법원: 버스의 인종 분리 <b>위헌</b> 판결</li></ul></div>
+  </div>
+
+  <div class="quiz-section" id="quiz-7"></div>
+</section>
+
+<!-- ============ PANEL 8 : 사회적 소수자 차별 ============ -->
+<section class="tab-panel" id="panel-8">
+  <div class="unit-banner" style="background:var(--green-light);color:var(--green)">📌 주제5 국내 인권 문제의 양상과 해결 방안 › (1) 사회적 소수자 차별</div>
+  <div class="topic-head">
+    <h2>주제5 국내 인권 문제의 양상과 해결 방안</h2>
+    <p><b>핵심 아이디어:</b> 사회적 소수자, 차별, 청소년 노동권</p>
+    <p><b>학습 목표:</b> 사회적 소수자 차별, 청소년 노동권 등 국내 인권 문제의 양상을 파악하고 해결 방안을 제시할 수 있다.</p>
+  </div>
+
+  <h3 class="section-title" id="a-minor" style="border-color:var(--green)">👥 ① <span class="fill">사회적 소수자</span>의 의미 및 특징</h3>
+  <div class="green-box"><b>의미</b> 신체적·문화적 특징 때문에 다른 집단과 구별되고 차별받으며, 자신이 차별받는 집단에 속한다는 <span class="fill">의식</span>을 가진 사람<div style="margin-top:4px;font-weight:700;color:var(--green)">→ 사회적 상황과 여건에 따라 해당 구성원이 달라질 수 있음</div></div>
+  <div class="factor-grid">
+    <div class="factor-card green"><h4>특징 ①</h4>성별·연령·인종·종교·장애 등을 이유로 소외와 <span class="fill">차별</span>을 받음</div>
+    <div class="factor-card green"><h4>특징 ②</h4>주류 집단보다 <b>권력의 열세</b> — 반드시 수적으로 <span class="fill">소수</span>라는 뜻은 아님</div>
+  </div>
+
+  <h3 class="section-title" id="a-minor-prob" style="border-color:var(--green)">⚠️ ② 차별의 문제와 해결</h3>
+  <div class="flow-row">
+    <div class="flow-item fl-wide"><b style="color:var(--green)">원인</b>불합리한 사회 관행, 법과 제도의 결함, 다른 구성원의 편견</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item fl-wide"><b style="color:var(--green)">문제점</b>소수자의 인권 침해, 사회적 갈등 유발 → <span class="fill">사회 통합</span> 저해</div>
+  </div>
+  <div class="tbl-wrap">
+  <table class="cmp-table green-th" style="min-width:560px">
+    <thead><tr><th style="width:100px">대상</th><th>차별 양상</th><th>보호 법률</th></tr></thead>
+    <tbody>
+      <tr><td class="k"><span class="fill">여성</span></td><td>성별 임금 격차, 직장 승진의 어려움</td><td>양성평등 기본법 · 남녀 고용 평등과 일·가정 양립 지원에 관한 법률</td></tr>
+      <tr><td class="k">노인</td><td>채용·해고 등에서 연령을 이유로 차별</td><td>고용상 연령 차별 금지 및 고령자 고용 촉진에 관한 법률</td></tr>
+      <tr><td class="k">이주 외국인</td><td>낮은 임금, 열악한 노동 환경에 노출</td><td>외국인 근로자의 고용 등에 관한 법률 · 다문화 가족 지원법</td></tr>
+      <tr><td class="k">장애인</td><td>이동·대중교통 이용의 어려움, 교육·채용 차별</td><td>장애인 차별 금지 및 권리 구제 등에 관한 법률</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="mini-title" id="a-minor-sol">해결 방안</div>
+  <div class="factor-grid">
+    <div class="factor-card green"><h4>사회적 차원</h4><ul class="dot">
+      <li>지속적인 인권 교육, 의식 개선 활동</li>
+      <li>차별 금지를 규정한 법률 제정</li>
+      <li>다양한 지원 제도·정책 → 법적·제도적 장치 확대</li></ul></div>
+    <div class="factor-card green"><h4>개인적 차원</h4><ul class="dot">
+      <li>소수자의 입장을 이해하고 <span class="fill">다양성</span> 존중의 태도</li>
+      <li>편견을 버리고 고통에 공감·배려하는 <span class="fill">인권 감수성</span> 함양</li></ul>
+      <div class="def-box" style="margin:8px 0 0;font-size:12.8px"><b>인권 감수성</b> 일상에서 인권 문제를 인식하고, 관련 행동이 미칠 영향을 성찰하며, 인권 문제를 해결하려는 의식</div></div>
+  </div>
+
+  <h3 class="section-title" id="a-minor-law" style="border-color:var(--green)">⚖️ 사회적 소수자를 보호하는 법률</h3>
+  <div class="tbl-wrap">
+  <table class="cmp-table green-th" style="min-width:560px">
+    <thead><tr><th style="width:230px">법률</th><th>핵심 목적</th></tr></thead>
+    <tbody>
+      <tr><td class="k2"><span class="fill">양성평등</span> 기본법</td><td>국가·지방자치단체의 책무 등 기본 사항 규정 → 정치·경제·사회·문화 <b>모든 영역</b>에서 양성평등 실현</td></tr>
+      <tr><td class="k2">남녀 고용 평등과 일·가정 양립 지원에 관한 법률</td><td>고용에서 남녀의 평등한 <span class="fill">기회</span>와 대우 보장, 모성 보호·여성 고용 촉진, 일·가정 양립 지원 → 삶의 질 향상</td></tr>
+      <tr><td class="k2">고용상 연령 차별 금지 및 고령자 고용 촉진에 관한 법률</td><td>합리적 이유 없는 <span class="fill">연령</span> 이유 고용 차별 금지, 고령자가 능력에 맞는 직업을 갖도록 지원 → 고용 안정, 국민경제 발전</td></tr>
+      <tr><td class="k2">기간제 및 단시간 근로자 보호 등에 관한 법률</td><td>기간제·단시간 근로자에 대한 불합리한 <span class="fill">차별</span> 시정, 근로 조건 보호 → 노동 시장의 건전한 발전</td></tr>
+      <tr><td class="k2"><span class="fill">다문화</span> 가족 지원법</td><td>다문화 가족의 안정적 가족생활, 사회 구성원으로서 역할·책임 수행 → 삶의 질 향상, 사회 통합</td></tr>
+      <tr><td class="k2">외국인 근로자의 고용 등에 관한 법률</td><td>외국인 근로자의 체계적 도입·관리 → 원활한 인력 수급, 국민 경제의 균형 발전</td></tr>
+      <tr><td class="k2"><span class="fill">장애인 차별</span> 금지 및 권리 구제 등에 관한 법률</td><td>모든 생활 영역에서 <span class="fill">장애</span>를 이유로 한 차별 금지, 차별 피해의 효과적 구제 → 완전한 사회 참여·평등권 실현, 인간으로서의 존엄과 가치 구현</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="quiz-section" id="quiz-8"></div>
+</section>
+
+<!-- ============ PANEL 9 : 청소년 노동권 ============ -->
+<section class="tab-panel" id="panel-9">
+  <div class="unit-banner" style="background:var(--green-light);color:var(--green)">📌 주제5 › (2) 청소년 노동권 침해</div>
+
+  <h3 class="section-title" id="a-youth" style="border-color:var(--green)">🧑‍🔧 ①② 청소년 노동권의 의미와 보호</h3>
+  <div class="green-box"><b>의미</b> 청소년이 노동의 기회, 근로 조건 등에서 정당한 대우를 받을 권리</div>
+  <div class="factor-grid three">
+    <div class="factor-card green"><h4>보호 ① 성인과 동일</h4><span class="fill">성인</span>이 보장받는 노동 조건에 대한 권리를 똑같이 보장</div>
+    <div class="factor-card green"><h4>보호 ② 성인보다 강하게</h4>위험·유해한 일 금지, 노동 시간 제한</div>
+    <div class="factor-card green"><h4>보장받으려면</h4>《<span class="fill">근로 기준법</span>》에 따라 <span class="fill">근로 계약서</span>를 쓰고 일해야 함</div>
+  </div>
+  <div class="plain-box">〈근로 기준법〉은 18세 미만 청소년을 <span class="fill">연소 근로자</span>로 보고, 임금·휴게 시간·근로 시간 등 근로 조건을 특별히 규정함</div>
+
+  <h3 class="section-title" id="a-labor-law" style="border-color:var(--green)">📘 〈근로 기준법〉 조항별 핵심 <small style="font-size:12px;font-weight:500;color:var(--text-sec)">✎ 표시는 필기로 추가된 조항</small></h3>
+  <div class="tbl-wrap">
+  <table class="cmp-table green-th art-table" style="min-width:560px">
+    <thead><tr><th style="width:74px">조항</th><th style="width:110px">주제</th><th>핵심</th></tr></thead>
+    <tbody>
+      <tr><td class="k">43조 ①</td><td class="k2">임금 지급</td><td>임금은 <b>통화</b>로, <b>직접</b> 근로자에게, <b>전액</b> 지급</td></tr>
+      <tr><td class="k">54조 ①</td><td class="k2">휴게 시간</td><td>근로 4시간 → <span class="fill">30분</span> 이상, 8시간 → <span class="fill">1시간</span> 이상을 근로 시간 <b>도중에</b> 부여 (4시간 근로자가 쓰지 않겠다고 명시적으로 요청하면 예외)</td></tr>
+      <tr class="memo-tr"><td class="k">✎ 55조</td><td class="k2">유급휴일</td><td>4주 평균 1주 15시간 이상 업무 + 1주 개근 ⇒ <b>유급휴일(주휴수당)</b></td></tr>
+      <tr class="memo-tr"><td class="k">✎ 56조</td><td class="k2">가산 임금</td><td>휴일근로 · 야간근로(오후 10시~다음날 오전 6시) · 연장된 시간 ⇒ <b>×1.5</b> <small>(휴일·야간근로 옆 필기: 고용노동부장관 인가 필요)</small></td></tr>
+      <tr class="memo-tr"><td class="k">✎ 60조</td><td class="k2">연차 유급휴가</td><td>1년 80% 이상 출근 ⇒ <b>15일</b> / 1년 미만 또는 80% 미만 ⇒ <b>1개월 개근 시 1일</b></td></tr>
+      <tr><td class="k">64조 ①</td><td class="k2">최저 연령</td><td><b>15세 미만</b>은 근로자로 사용 불가 — 단, 고용노동부 장관이 발급한 <b>취직 인허증</b>이 있으면 가능</td></tr>
+      <tr><td class="k">65조 ①</td><td class="k2">사용 금지 업종</td><td>18세 미만은 도덕상·보건상 유해·위험한 사업에 사용 불가</td></tr>
+      <tr><td class="k">66조</td><td class="k2">비치 서류</td><td>18세 미만 → 연령 증명 <b>가족 관계 기록 증명서</b> + 친권자·후견인의 <span class="fill">동의서</span>를 사업장에 비치</td></tr>
+      <tr><td class="k">67조 ①</td><td class="k2">근로 계약</td><td>친권자·후견인은 미성년자의 근로계약을 <span class="fill">대리</span>할 수 없음</td></tr>
+      <tr><td class="k">68조</td><td class="k2">임금 청구</td><td>미성년자는 <b>독자적으로</b> 임금 청구 가능</td></tr>
+      <tr><td class="k">69조</td><td class="k2">근로 시간</td><td>15세 이상 18세 미만: 1일 <b>7시간</b>, 1주 <span class="fill">35시간</span> 초과 불가 — 합의 시 1일 <span class="fill">1시간</span>, 1주 5시간 한도 연장</td></tr>
+      <tr><td class="k">70조 ②</td><td class="k2">야간·휴일</td><td>18세 미만은 오후 10시~오전 6시 및 휴일 근로 금지 — 단, <b>본인 동의 + 고용노동부장관 인가</b> 시 가능</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="rule-card" id="a-contract" style="--rc:var(--green);--rcl:var(--green-light)">
+    <div class="rc-head">📝 연소 근로자의 표준 근로 계약서</div>
+    <div class="rc-body"><table class="cmp-table"><tbody>
+      <tr><td class="k2">목적</td><td>근로자는 근로 제공 ↔ 사용자는 <span class="fill">임금</span> 지급</td></tr>
+      <tr><td class="k2">명시 사항</td><td>〈근로 기준법〉에 따라 임금, 근로 시간, 근로 조건 등</td></tr>
+    </tbody></table></div>
+  </div>
+
+  <h3 class="section-title" id="a-youth-violate" style="border-color:var(--green)">🚨 ③ 침해 양상 · ④ 해결 방안</h3>
+  <div class="chip-row"><span class="chip">근로 계약서 미작성</span><span class="chip">최저 임금 미적용</span><span class="chip">임금 체불</span><span class="chip">과도한 근로 시간</span><span class="chip">인격 모독</span><span class="chip">부당해고</span></div>
+  <div class="factor-grid three" id="a-youth-sol">
+    <div class="factor-card green"><h4>사회적 차원</h4><ul class="dot">
+      <li>청소년 노동 기준·구제 절차 보완, 제도적 지원</li>
+      <li>노동 인권 교육 → 사회적 인식 개선</li></ul></div>
+    <div class="factor-card green"><h4>개인적 차원 · 청소년</h4><ul class="dot">
+      <li>자신의 <span class="fill">노동권</span>을 정확히 알고 근로 계약서 작성 등 노동법 숙지</li>
+      <li>침해 시 <span class="fill">고용노동부</span>, 중앙 노동 위원회, 대한 법률 구조 공단 등에 문의해 적극 대응</li></ul></div>
+    <div class="factor-card green"><h4>개인적 차원 · 사용자</h4><span class="fill">노동자</span>의 권리를 인식하고 관련 규정 준수</div>
+  </div>
+  <div class="tip"><b>중앙 노동 위원회</b> 노동관계에서 발생하는 노사 간 이익·권리 분쟁을 판정하고 조정하는 행정 기관</div>
+
+  <h3 class="section-title" id="a-labor-sum" style="border-color:var(--green)">📋 한눈에 정리 · 청소년 근로 기준 (조항 번호 제외)</h3>
+  <div class="sum-grid">
+    <div class="sum-card"><h4>💰 임금</h4><ul class="dot">
+      <li>통화로 직접 근로자에게 전액 지급</li>
+      <li>미성년자는 독자적으로 임금 청구 가능</li></ul></div>
+    <div class="sum-card"><h4>☕ 휴게 시간</h4><ul class="dot">
+      <li>근로 4시간 → 30분 이상, 8시간 → 1시간 이상, 근로 시간 도중에 부여</li>
+      <li>4시간 근로자가 명시적으로 요청하면 예외</li></ul></div>
+    <div class="sum-card"><h4>🚫 고용 연령·업종</h4><ul class="dot">
+      <li>15세 미만 → 사용 불가 (취직 인허증이 있으면 가능)</li>
+      <li>18세 미만 → 도덕상·보건상 유해·위험한 사업 불가</li></ul></div>
+    <div class="sum-card"><h4>📄 서류·계약</h4><ul class="dot">
+      <li>18세 미만 → 가족 관계 기록 증명서 + 친권자·후견인 동의서 비치</li>
+      <li>친권자·후견인의 근로계약 대리 불가</li>
+      <li>근로 계약서에 임금, 근로 시간, 근로 조건 명시</li></ul></div>
+    <div class="sum-card"><h4>⏱️ 근로 시간 (15세 이상 18세 미만)</h4><ul class="dot">
+      <li>1일 7시간, 1주 35시간 초과 불가</li>
+      <li>합의 시 1일 1시간, 1주 5시간 한도 연장</li></ul></div>
+    <div class="sum-card"><h4>🌙 야간·휴일 근로 (18세 미만)</h4><ul class="dot">
+      <li>오후 10시~오전 6시, 휴일 근로 금지</li>
+      <li>본인 동의 + 고용노동부장관 인가 → 가능</li></ul></div>
+    <div class="sum-card sum-memo"><h4>✎ 유급휴일(주휴수당) <small>필기</small></h4><ul class="dot">
+      <li>4주 평균 1주 15시간 이상 업무 + 1주 개근 시</li></ul></div>
+    <div class="sum-card sum-memo"><h4>✎ 연차 유급휴가 <small>필기</small></h4><ul class="dot">
+      <li>1년 80% 이상 출근 → 15일</li>
+      <li>1년 미만 또는 80% 미만 → 1개월 개근 시 1일</li></ul></div>
+    <div class="sum-card sum-memo"><h4>✎ 가산 임금 ×1.5 <small>필기</small></h4><ul class="dot">
+      <li>휴일근로, 야간근로(오후 10시~다음날 오전 6시), 연장된 시간</li></ul></div>
+  </div>
+
+  <div class="quiz-section" id="quiz-9"></div>
+</section>
+
+<!-- ============ PANEL 10 : CONCEPT MAP ============ -->
+<section class="tab-panel" id="panel-10">
+  <div class="unit-banner">📌 개념 한눈에 보기</div>
+  <div class="tip">💡 클릭하면 해당 탭+섹션으로 이동합니다 — 큰 헤더는 탭 전체로, 작은 칸은 세부 설명 위치로 스크롤됩니다.</div>
+
+  <div class="map-root rose">
+    <button class="map-root-head" onclick="goTo(0)">📘 주제1 · 인권의 의미와 특징</button>
+    <div class="map-children">
+      <button class="map-node" onclick="goTo(0,'a-meaning')">인권의 의미</button>
+      <div class="map-group">
+        <button class="map-node" onclick="goTo(0,'a-feature')">인권의 특징</button>
+        <div class="map-subrow">
+          <button class="map-subchip" onclick="goTo(0,'a-feature')">보편성</button>
+          <button class="map-subchip" onclick="goTo(0,'a-feature')">천부성</button>
+          <button class="map-subchip" onclick="goTo(0,'a-feature')">불가침성</button>
+          <button class="map-subchip" onclick="goTo(0,'a-feature')">항구성</button>
+        </div>
+      </div>
+      <div class="map-group">
+        <button class="map-node" onclick="goTo(0,'a-gen')">인권의 의미 변화</button>
+        <div class="map-subrow">
+          <button class="map-subchip" onclick="goTo(0,'a-gen')">1세대 · 시민·정치적 권리</button>
+          <button class="map-subchip" onclick="goTo(0,'a-gen')">2세대 · 경제·사회·문화적 권리</button>
+          <button class="map-subchip" onclick="goTo(0,'a-gen')">3세대 · 연대권</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="map-root">
+    <button class="map-root-head" onclick="goTo(1)">🗽 주제1 · 1세대 인권의 확장</button>
+    <div class="map-children">
+      <button class="map-node" onclick="goTo(1,'a-timeline1')">한눈에 보는 흐름</button>
+      <button class="map-node" onclick="goTo(1,'a-pre')">근대 이전</button>
+      <button class="map-node" onclick="goTo(1,'a-magna')">대헌장(1215)</button>
+      <div class="map-group">
+        <button class="map-node" onclick="goTo(1,'a-revbg')">근대(시민 혁명)</button>
+        <div class="map-subrow">
+          <button class="map-subchip" onclick="goTo(1,'a-revbg')">배경 사상</button>
+          <button class="map-subchip" onclick="goTo(1,'a-glorious')">영국 명예혁명</button>
+          <button class="map-subchip" onclick="goTo(1,'a-usa')">미국 독립 선언</button>
+          <button class="map-subchip" onclick="goTo(1,'a-france')">프랑스 혁명</button>
+          <button class="map-subchip" onclick="goTo(1,'a-docs')">문서 속 조항 → 개념</button>
+          <button class="map-subchip" onclick="goTo(1,'a-revfeat')">특징</button>
+          <button class="map-subchip" onclick="goTo(1,'a-revlimit')">한계</button>
+        </div>
+      </div>
+      <div class="map-group">
+        <button class="map-node" onclick="goTo(1,'a-suffrage')">참정권 확대 운동</button>
+        <div class="map-subrow">
+          <button class="map-subchip" onclick="goTo(1,'a-chartist')">차티스트 운동·인민헌장</button>
+          <button class="map-subchip" onclick="goTo(1,'a-women')">여성 참정권 운동</button>
+          <button class="map-subchip" onclick="goTo(1,'a-suffrage-result')">결과</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="map-root purple">
+    <button class="map-root-head" onclick="goTo(2)">🌍 주제1 · 2·3세대 인권의 확장</button>
+    <div class="map-children">
+      <div class="map-group">
+        <button class="map-node" onclick="goTo(2,'a-gen2')">2세대(사회권)</button>
+        <div class="map-subrow">
+          <button class="map-subchip" onclick="goTo(2,'a-gen2')">배경</button>
+          <button class="map-subchip" onclick="goTo(2,'a-weimar')">바이마르 헌법</button>
+        </div>
+      </div>
+      <div class="map-group">
+        <button class="map-node" onclick="goTo(2,'a-gen3')">3세대(연대권)</button>
+        <div class="map-subrow">
+          <button class="map-subchip" onclick="goTo(2,'a-udhr')">세계 인권 선언</button>
+          <button class="map-subchip" onclick="goTo(2,'a-covenant')">국제 인권 규약</button>
+          <button class="map-subchip" onclick="goTo(2,'a-other')">인종·여성·아동 협약</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="map-root teal">
+    <button class="map-root-head" onclick="goTo(3)">🆕 주제2 · 현대 사회의 인권</button>
+    <div class="map-children">
+      <button class="map-node" onclick="goTo(3,'a-modern-bg')">인권 확장의 배경</button>
+      <div class="map-group">
+        <button class="map-node" onclick="goTo(3,'a-new-rights')">새롭게 나타난 인권</button>
+        <div class="map-subrow">
+          <button class="map-subchip" onclick="goTo(3,'a-housing')">주거권</button>
+          <button class="map-subchip" onclick="goTo(3,'a-safety')">안전권 · 안전 신문고</button>
+          <button class="map-subchip" onclick="goTo(3,'a-env')">환경권</button>
+          <button class="map-subchip" onclick="goTo(3,'a-culture')">문화권 · 배리어 프리</button>
+          <button class="map-subchip" onclick="goTo(3,'a-info')">정보 인권</button>
+          <button class="map-subchip" onclick="goTo(3,'a-forget')">잊힐 권리</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="map-root orange">
+    <button class="map-root-head" onclick="goTo(4)">⚖️ 주제3 · 헌법과 기본권</button>
+    <div class="map-children">
+      <div class="map-group">
+        <button class="map-node" onclick="goTo(4,'a-const')">인권과 헌법의 관계</button>
+        <div class="map-subrow">
+          <button class="map-subchip" onclick="goTo(4,'a-const')">헌법의 의미·역할</button>
+          <button class="map-subchip" onclick="goTo(4,'a-art10')">헌법 제10조</button>
+        </div>
+      </div>
+      <div class="map-group">
+        <button class="map-node" onclick="goTo(4,'a-basic')">헌법에서 보장하는 기본권</button>
+        <div class="map-subrow">
+          <button class="map-subchip" onclick="goTo(4,'a-dignity')">인간의 존엄과 가치</button>
+          <button class="map-subchip" onclick="goTo(4,'a-happy')">행복 추구권</button>
+          <button class="map-subchip" onclick="goTo(4,'a-jellinek')">옐리네크 지위이론</button>
+          <button class="map-subchip" onclick="goTo(4,'a-liberty')">자유권</button>
+          <button class="map-subchip" onclick="goTo(4,'a-body-free')">신체의 자유 원칙 10가지</button>
+          <button class="map-subchip" onclick="goTo(4,'a-equality')">평등권</button>
+          <button class="map-subchip" onclick="goTo(4,'a-partic')">참정권</button>
+          <button class="map-subchip" onclick="goTo(4,'a-social')">사회권</button>
+          <button class="map-subchip" onclick="goTo(4,'a-claim')">청구권</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="map-root orange">
+    <button class="map-root-head" onclick="goTo(5)">🚧 주제3 · 기본권 보장과 제한</button>
+    <div class="map-children">
+      <div class="map-group">
+        <button class="map-node" onclick="goTo(5,'a-unlisted')">열거되지 않은 권리 보장</button>
+        <div class="map-subrow">
+          <button class="map-subchip" onclick="goTo(5,'a-art37-1')">제37조 ①</button>
+        </div>
+      </div>
+      <div class="map-group">
+        <button class="map-node" onclick="goTo(5,'a-limit')">기본권 제한과 한계</button>
+        <div class="map-subrow">
+          <button class="map-subchip" onclick="goTo(5,'a-art37-2')">제37조 ②</button>
+          <button class="map-subchip" onclick="goTo(5,'a-limit-bound')">목적상·방법상·형식상·내용상 한계</button>
+          <button class="map-subchip" onclick="goTo(5,'a-excess')">과잉 금지의 원칙</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="map-root orange">
+    <button class="map-root-head" onclick="goTo(6)">🏛️ 주제3 · 인권 보장을 위한 제도적 장치</button>
+    <div class="map-children">
+      <div class="map-group">
+        <button class="map-node" onclick="goTo(6,'a-inst')">제도적 장치</button>
+        <div class="map-subrow">
+          <button class="map-subchip" onclick="goTo(6,'a-sovereignty')">국민 주권의 원리</button>
+          <button class="map-subchip" onclick="goTo(6,'a-rule-of-law')">법치주의</button>
+          <button class="map-subchip" onclick="goTo(6,'a-separation')">권력 분립 제도</button>
+          <button class="map-subchip" onclick="goTo(6,'a-election')">민주적 선거 제도</button>
+          <button class="map-subchip" onclick="goTo(6,'a-party')">복수 정당 제도</button>
+          <button class="map-subchip" onclick="goTo(6,'a-court')">헌법재판소</button>
+          <button class="map-subchip" onclick="goTo(6,'a-hr-org')">인권 보호 기관</button>
+        </div>
+      </div>
+      <button class="map-node" onclick="goTo(6,'a-sep-src')">권력 분립 도식(심화 통합)</button>
+      <div class="map-group">
+        <button class="map-node" onclick="goTo(6,'a-court-types')">심화</button>
+        <div class="map-subrow">
+          <button class="map-subchip" onclick="goTo(6,'a-court-types')">헌법재판소 심판 종류</button>
+          <button class="map-subchip" onclick="goTo(6,'a-court-flow')">위헌 법률 심판 vs 위헌 심사형 헌법소원</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="map-root rose">
+    <button class="map-root-head" onclick="goTo(7)">✊ 주제4 · 시민 참여</button>
+    <div class="map-children">
+      <button class="map-node" onclick="goTo(7,'a-cp-need')">의미와 필요성</button>
+      <button class="map-node" onclick="goTo(7,'a-cp-way')">시민 참여의 방안</button>
+      <div class="map-group">
+        <button class="map-node" onclick="goTo(7,'a-cd')">시민불복종</button>
+        <div class="map-subrow">
+          <button class="map-subchip" onclick="goTo(7,'a-cd-cond')">정당화 조건</button>
+          <button class="map-subchip" onclick="goTo(7,'a-cd-thinker')">롤스 · 싱어 · 소로</button>
+          <button class="map-subchip" onclick="goTo(7,'a-cd-case')">사례</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="map-root green">
+    <button class="map-root-head" onclick="goTo(8)">👥 주제5 · 사회적 소수자 차별</button>
+    <div class="map-children">
+      <button class="map-node" onclick="goTo(8,'a-minor')">의미 및 특징</button>
+      <div class="map-group">
+        <button class="map-node" onclick="goTo(8,'a-minor-prob')">차별의 문제와 해결</button>
+        <div class="map-subrow">
+          <button class="map-subchip" onclick="goTo(8,'a-minor-prob')">원인·문제점·양상</button>
+          <button class="map-subchip" onclick="goTo(8,'a-minor-sol')">해결 방안·인권 감수성</button>
+        </div>
+      </div>
+      <button class="map-node" onclick="goTo(8,'a-minor-law')">보호 법률</button>
+    </div>
+  </div>
+
+  <div class="map-root green">
+    <button class="map-root-head" onclick="goTo(9)">🧑‍🔧 주제5 · 청소년 노동권</button>
+    <div class="map-children">
+      <button class="map-node" onclick="goTo(9,'a-youth')">의미와 보호</button>
+      <button class="map-node" onclick="goTo(9,'a-labor-law')">근로 기준법 조항별 핵심</button>
+      <button class="map-node" onclick="goTo(9,'a-contract')">표준 근로 계약서</button>
+      <div class="map-group">
+        <button class="map-node" onclick="goTo(9,'a-youth-violate')">침해 양상·해결 방안</button>
+        <div class="map-subrow">
+          <button class="map-subchip" onclick="goTo(9,'a-youth-violate')">침해 양상</button>
+          <button class="map-subchip" onclick="goTo(9,'a-youth-sol')">해결 방안</button>
+        </div>
+      </div>
+      <button class="map-node" onclick="goTo(9,'a-labor-sum')">한눈에 정리(조항 번호 제외)</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<button class="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="맨 위로">↑</button>
+
+<script>
+function switchTab(idx){
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',i===idx));
+  document.querySelectorAll('.tab-panel').forEach((p,i)=>p.classList.toggle('active',i===idx));
+  const btn=document.querySelectorAll('.tab-btn')[idx];
+  if(btn) btn.scrollIntoView({block:'nearest',inline:'center'});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function goTo(tabIdx,anchorId){
+  switchTab(tabIdx);
+  if(anchorId){
+    setTimeout(()=>{
+      const el=document.getElementById(anchorId);
+      if(!el) return;
+      if(el.tagName==='DETAILS') el.open=true;
+      const d=el.closest('details'); if(d) d.open=true;
+      el.scrollIntoView({behavior:'smooth',block:'start'});
+    },120);
+  }
+}
+function foldAll(panelIdx,open){
+  document.querySelectorAll('#panel-'+panelIdx+' details.src').forEach(d=>d.open=open);
+}
+</script>
+<script>
+const QUIZ_DATA = {"0": {"ox": [{"q": "인권은 모든 인간이 인간이라는 이유만으로 자신의 존엄성을 보장받으며 인간답고 행복한 삶을 살아갈 권리이다.", "a": true, "exp": "인권의 의미 그대로입니다."}, {"q": "인권은 국가가 법률로 부여했을 때부터 가지게 되는 권리이다.", "a": false, "exp": "인권은 태어나면서부터 가지는 권리입니다(천부성)."}, {"q": "인종·성별·종교·사회적 신분과 관계없이 인류 구성원 모두가 가지는 권리라는 특징은 보편성이다.", "a": true, "exp": "보편성의 설명입니다."}, {"q": "인권의 항구성이란 국가나 타인이 부당하게 침해할 수 없고 양도할 수 없다는 뜻이다.", "a": false, "exp": "이는 불가침성입니다. 항구성은 일정 기간에 한정되지 않고 영구히 보장된다는 뜻입니다."}, {"q": "인권은 남에게 양도할 수 없다.", "a": true, "exp": "불가침성에 따라 인권은 양도할 수 없습니다."}, {"q": "1세대 인권은 사회적 약자를 위한 국가의 적극적인 개입을 요구하는 권리이다.", "a": false, "exp": "국가의 적극적 개입을 요구하는 것은 2세대 인권입니다. 1세대 인권은 국가의 개입을 경계합니다."}, {"q": "1세대 인권은 개인의 자유를 보호하기 위해 국가의 개입을 경계하고, 국가 운영에 참여할 수 있는 권리이다.", "a": true, "exp": "1세대 인권(시민·정치적 권리)의 설명입니다."}, {"q": "교육에 관한 권리와 근로의 권리는 1세대 인권에 해당한다.", "a": false, "exp": "둘 다 2세대 인권(경제·사회·문화적 권리)입니다."}, {"q": "자결권, 발전의 권리, 평화에 관한 권리는 3세대 인권에 해당한다.", "a": true, "exp": "3세대 인권(연대권)의 구체적 권리입니다."}, {"q": "3세대 인권은 공동체의 연대보다 개인의 자유를 강조하는 국가 단위의 권리이다.", "a": false, "exp": "3세대 인권은 공동체의 연대를 강조하는 전 지구적 차원의 권리입니다."}], "mc": [{"q": "인권의 특징과 그 설명의 연결이 옳은 것은?", "opts": ["항구성 – 일정 기간에 한정되지 않고 영구히 보장됨", "천부성 – 인류 구성원 모두가 가짐", "보편성 – 태어나면서부터 가지는 당연한 권리", "불가침성 – 영구히 보장되는 권리"], "exp": "천부성은 태어나면서부터, 보편성은 인류 모두, 불가침성은 침해·양도 불가입니다.", "a": 0}, {"q": "다음 중 2세대 인권에 해당하는 것은?", "opts": ["집회 및 결사의 자유", "사회 보장을 받을 권리", "공정한 재판을 받을 권리", "재난 구제를 받을 권리"], "exp": "공정한 재판·집회 및 결사의 자유는 1세대, 재난 구제는 3세대입니다.", "a": 1}, {"q": "‘개인과 집단의 인권 보호에 주목하며, 문제 해결을 위해 공동체의 연대를 강조하는 전 지구적 차원의 권리’에 해당하는 것은?", "opts": ["2세대 인권(경제·사회·문화적 권리)", "참정권", "3세대 인권(연대권)", "1세대 인권(시민·정치적 권리)"], "exp": "3세대 인권(연대권)의 정의입니다.", "a": 2}, {"q": "1세대 인권에 포함되는 기본권으로만 묶인 것은?", "opts": ["자유권, 사회권, 연대권", "평등권, 사회권, 참정권", "사회권, 연대권, 참정권", "자유권, 평등권, 참정권"], "exp": "1세대 = 자유권·평등권·참정권, 2세대 = 사회권, 3세대 = 연대권입니다.", "a": 3}, {"q": "2세대 인권이 확장된 계기로 가장 적절한 것은?", "opts": ["산업 혁명 이후 사회적 불평등 심화", "근대 시민 혁명", "두 차례의 세계 대전", "정보 사회로의 이행"], "exp": "시민 혁명은 1세대, 세계 대전은 3세대 인권 확장의 계기입니다.", "a": 0}, {"q": "‘국가나 다른 사람이 부당하게 침해할 수 없으며, 남에게 양도할 수 없다’는 인권의 특징은?", "opts": ["항구성", "불가침성", "보편성", "천부성"], "exp": "불가침성의 설명입니다.", "a": 1}], "hard": [{"q": "인권의 의미 변화에 대한 설명으로 옳은 것만을 고른 것은?^ㄱ. 1세대 인권은 국가 운영에 참여할 수 있는 권리를 포함한다.^ㄴ. 2세대 인권은 국가의 개입을 경계하는 권리이다.^ㄷ. 쾌적한 환경에서 생활할 권리는 2세대 인권에 해당한다.^ㄹ. 지속가능한 환경에 관한 권리는 1세대 인권에 해당한다.", "opts": ["ㄱ, ㄷ", "ㄱ, ㄴ", "ㄴ, ㄹ", "ㄷ, ㄹ"], "exp": "ㄴ: 국가 개입을 경계하는 것은 1세대입니다. ㄹ: 지속가능한 환경에 관한 권리는 3세대입니다.", "a": 0}, {"q": "인권의 특징에 대한 설명으로 옳은 것만을 고른 것은?^ㄱ. 보편성: 사회적 신분과 관계없이 모두가 가진다.^ㄴ. 천부성: 태어나면서부터 가지는 당연한 권리이다.^ㄷ. 불가침성: 일정 기간에만 한정되는 권리이다.^ㄹ. 항구성: 남에게 양도할 수 없는 권리이다.", "opts": ["ㄷ, ㄹ", "ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄹ"], "exp": "ㄷ: 불가침성은 침해·양도 불가입니다. ㄹ: 항구성은 영구히 보장된다는 뜻입니다.", "a": 1}, {"q": "(가)~(다)는 1~3세대 인권 중 하나이다.^(가) 사회적 약자의 인간다운 삶을 위해 국가의 적극적인 개입을 요구함^(나) 공동체의 연대를 강조하는 전 지구적 차원의 권리^(다) 국가의 개입을 경계하고 국가 운영에 참여함^옳은 것만을 고른 것은?^ㄱ. (가)에는 인간다운 생활을 할 권리가 포함된다.^ㄴ. (나)는 두 차례의 세계 대전을 계기로 확장되었다.^ㄷ. (다)에는 재난 구제를 받을 권리가 포함된다.^ㄹ. 역사적으로 (가)는 (다)보다 먼저 확장되었다.", "opts": ["ㄴ, ㄹ", "ㄱ, ㄷ, ㄹ", "ㄱ, ㄴ", "ㄱ, ㄷ"], "exp": "(가)=2세대, (나)=3세대, (다)=1세대. ㄷ: 재난 구제는 3세대. ㄹ: 1세대(시민 혁명)가 2세대(산업 혁명 이후)보다 먼저입니다.", "a": 2}, {"q": "다음 권리를 세대별로 바르게 분류한 것은?", "opts": ["1세대: 근로의 권리 / 2세대: 공정한 재판을 받을 권리 / 3세대: 평화에 관한 권리", "1세대: 생명과 안전의 권리 / 2세대: 발전의 권리 / 3세대: 교육에 관한 권리", "1세대: 정치에 참여할 권리 / 2세대: 재난 구제를 받을 권리 / 3세대: 사회 보장을 받을 권리", "1세대: 표현의 자유 / 2세대: 문화에 관한 권리 / 3세대: 자결권"], "exp": "근로·교육·사회 보장은 2세대, 공정한 재판·생명과 안전은 1세대, 발전·재난 구제는 3세대입니다.", "a": 3}]}, "1": {"ox": [{"q": "대헌장(마그나 카르타, 1215)은 국왕이 의회의 승인 없이 세금을 부과할 수 없음을 문서로 명시하였다.", "a": true, "exp": "대헌장은 과세 제한과 법에 따르지 않은 체포 금지를 명시했습니다."}, {"q": "사회 계약설은 인간의 합리적 이성으로 사회 모순과 부조리를 개선할 수 있다는 사상이다.", "a": false, "exp": "이는 계몽사상입니다. 사회 계약설은 사회와 국가가 개인들의 합의·계약으로 만들어진다는 사상입니다."}, {"q": "영국 명예혁명의 결과 입헌 군주제가 확립되고 의회 정치가 발달하였다.", "a": true, "exp": "명예혁명의 의의입니다."}, {"q": "권리 장전은 미국 독립 혁명 과정에서 발표되었다.", "a": false, "exp": "권리 장전(1689)은 영국 명예혁명 때 왕이 승인한 문서입니다."}, {"q": "미국 독립 선언문에는 천부 인권, 국민 주권의 원리, 행복 추구권, 저항권 등이 명시되어 있다.", "a": true, "exp": "독립 선언문(1776)의 내용입니다."}, {"q": "미국 독립 혁명의 의의는 입헌 군주제의 확립이다.", "a": false, "exp": "미국 독립 혁명의 의의는 민주 공화정 수립, 대통령 중심제 발달입니다. 입헌 군주제는 명예혁명입니다."}, {"q": "프랑스 혁명은 신분제를 근간으로 한 구제도의 모순에 분노한 시민(부르주아)이 일으켰다.", "a": true, "exp": "프랑스 혁명의 배경입니다."}, {"q": "인간과 시민의 권리 선언은 1776년에 발표되었다.", "a": false, "exp": "인간과 시민의 권리 선언은 1789년입니다. 1776년은 미국 독립 선언문입니다."}, {"q": "시민 혁명으로 절대 왕정의 전제 정치가 타파되고 국민 주권과 법치주의가 확립되었다.", "a": true, "exp": "시민 혁명의 특징입니다."}, {"q": "시민 혁명 직후 노동자, 농민, 여성에게도 참정권이 폭넓게 보장되었다.", "a": false, "exp": "정치적 시민권은 부르주아로 한정되었습니다(시민 혁명의 한계)."}, {"q": "차티스트 운동은 19세기 영국 노동자를 중심으로 전개된 참정권 확대 운동이다.", "a": true, "exp": "차티스트 운동은 인민헌장(1838)을 통해 참정권 확대를 요구했습니다."}, {"q": "여성 참정권은 1893년 영국에서 처음으로 보장되었다.", "a": false, "exp": "1893년 뉴질랜드를 시작으로 여성 참정권이 보장되었습니다."}], "mc": [{"q": "인민헌장(1838)의 요구로 옳지 않은 것은?", "opts": ["선거를 매년 시행하라.", "여성에게도 선거권을 부여하라.", "비밀 투표를 원칙으로 하라.", "하원 의원 출마자의 재산 자격을 없애라."], "exp": "인민헌장 제1조는 ‘21세 이상의 모든 남성’에게 선거권을 요구했습니다.", "a": 1}, {"q": "미국 독립 선언서의 ‘정부의 정당한 권력은 인민의 동의에서 발생한다’와 관련된 개념은?", "opts": ["죄형 법정주의", "무죄 추정의 원칙", "국민 주권(사회계약론)", "저항권"], "exp": "정부의 권력이 인민의 동의에서 나온다는 것은 국민 주권(사회계약론)입니다.", "a": 2}, {"q": "인간과 시민의 권리 선언 중 ‘행위 이전에 제정·공포되고 합법적으로 적용된 법률에 의하지 않고는 처벌될 수 없다’는 조항이 나타내는 원칙은?", "opts": ["무죄 추정의 원칙", "국민 주권", "저항권", "죄형 법정주의"], "exp": "제8조는 죄형 법정주의를 나타냅니다.", "a": 3}, {"q": "권리 장전(1689)의 내용으로 옳은 것은?", "opts": ["국왕에게 청원하는 것은 국민의 권리이다.", "주권은 국민에게 있다.", "모든 인간은 평등하게 창조되었다.", "21세 이상의 모든 남성에게 선거권을 부여하라."], "exp": "‘주권은 국민에게’는 프랑스 인권 선언, ‘평등하게 창조’는 미국 독립 선언서, 선거권 요구는 인민헌장입니다.", "a": 0}, {"q": "시민 혁명과 그 의의의 연결이 옳은 것은?", "opts": ["프랑스 혁명 – 대통령 중심제 정부 형태 발달", "프랑스 혁명 – 시민 계급의 정치적 주도권 확립", "영국 명예혁명 – 민주 공화정 수립", "미국 독립 혁명 – 입헌 군주제 확립"], "exp": "명예혁명 = 입헌 군주제·의회 정치, 미국 = 민주 공화정·대통령 중심제, 프랑스 = 자유·평등 이념, 시민 계급의 정치적 주도권입니다.", "a": 1}, {"q": "미국 독립 혁명의 배경으로 옳은 것은?", "opts": ["왕의 독재에 대한 의회의 저항", "산업 혁명 이후의 빈부 격차", "영국의 부당한 식민 지배와 중상주의 정책", "신분제를 근간으로 한 구제도의 모순"], "exp": "구제도의 모순은 프랑스 혁명, 왕의 독재에 대한 의회의 저항은 명예혁명의 배경입니다.", "a": 2}, {"q": "시민 혁명의 한계로 가장 적절한 것은?", "opts": ["절대 왕정의 전제 정치가 강화되었다.", "사회권이 지나치게 강조되었다.", "국민 주권의 원리가 부정되었다.", "정치적 시민권을 가진 계층이 부르주아로 한정되었다."], "exp": "노동자·농민·도시 하층민·여성의 참정권이 제한되었습니다.", "a": 3}, {"q": "1세대 인권 확장 과정을 시간 순서대로 바르게 나열한 것은?", "opts": ["대헌장 → 권리 장전 → 독립 선언문 → 인민헌장", "권리 장전 → 대헌장 → 인민헌장 → 독립 선언문", "대헌장 → 독립 선언문 → 권리 장전 → 인민헌장", "독립 선언문 → 권리 장전 → 인간과 시민의 권리 선언 → 대헌장"], "exp": "1215 대헌장 → 1689 권리 장전 → 1776 독립 선언문 → 1789 인권 선언 → 1838 인민헌장 순입니다.", "a": 0}], "hard": [{"q": "(가), (나)는 시민 혁명기의 문서이다.^(가) 모든 인간은 평등하게 창조되었으며 양도할 수 없는 권리를 부여받았다. 정부가 이 목적을 파괴하면 인민은 그 정부를 바꾸거나 없앨 수 있다.^(나) 주권은 국민에게 있다. 누구도 행위 이전에 제정·공포된 법률에 의하지 않고는 처벌될 수 없다.^옳은 것만을 고른 것은?^ㄱ. (가)는 영국의 식민 지배에 반발하여 발표되었다.^ㄴ. (가)에는 저항권이 나타나 있다.^ㄷ. (나)는 명예혁명의 결과 왕이 승인한 문서이다.^ㄹ. (나)에는 죄형 법정주의가 나타나 있다.", "opts": ["ㄴ, ㄷ, ㄹ", "ㄱ, ㄴ, ㄹ", "ㄱ, ㄷ", "ㄴ, ㄷ"], "exp": "(가)는 미국 독립 선언서, (나)는 프랑스 인간과 시민의 권리 선언입니다. 명예혁명 때 승인된 것은 권리 장전입니다.", "a": 1}, {"q": "시민 혁명의 배경에 대한 설명으로 옳은 것만을 고른 것은?^ㄱ. 천부 인권 사상: 모든 사람은 태어나면서부터 하늘이 부여한 기본 권리를 가진다.^ㄴ. 계몽사상: 사회와 국가는 자유롭고 평등한 개인들의 합의로 만들어진다.^ㄷ. 사회 계약설: 사회와 국가는 자유롭고 평등한 개인들의 계약으로 만들어진다.^ㄹ. 상업 발달로 시민의 부가 축적된 것도 배경이 되었다.", "opts": ["ㄴ, ㄷ", "ㄱ, ㄴ, ㄹ", "ㄱ, ㄷ, ㄹ", "ㄱ, ㄴ"], "exp": "ㄴ: 계몽사상은 인간의 합리적 이성으로 사회 모순과 부조리를 개선할 수 있다는 사상입니다.", "a": 2}, {"q": "다음은 인민헌장의 일부이다.^제1조 21세 이상의 모든 남성에게 선거권을 부여하라.^제3조 하원 의원 출마자의 재산 자격을 없애라.^제5조 선거구를 동등하게 하라.^이에 대한 설명으로 옳은 것만을 고른 것은?^ㄱ. 19세기 영국 노동자 중심의 운동에서 제시되었다.^ㄴ. 제1조는 보통 선거를 요구한 것이다.^ㄷ. 제3조는 재산에 따른 피선거권 자격 폐지를 요구한 것이다.^ㄹ. 이 운동의 결과 곧바로 여성 참정권이 보장되었다.", "opts": ["ㄱ, ㄹ", "ㄴ, ㄹ", "ㄱ, ㄷ, ㄹ", "ㄱ, ㄴ, ㄷ"], "exp": "여성 참정권은 별도의 여성 참정권 운동을 거쳐 1893년 뉴질랜드부터 보장되었습니다.", "a": 3}, {"q": "다음은 어느 문서의 일부이다.^제1조 국왕이 의회의 동의 없이 왕권으로 법의 효력을 정지하는 것은 위법이다.^제4조 국왕이 의회의 승인 없이 국왕이 쓰기 위해 세금을 징수하는 것은 위법이다.^옳은 것만을 고른 것은?^ㄱ. 의회가 왕권을 견제하는 원리가 나타난다.^ㄴ. 이 문서를 계기로 입헌 군주제가 확립되었다.^ㄷ. 대통령 중심제 정부 형태의 발달로 이어졌다.^ㄹ. 신분제의 모순에 분노한 부르주아가 일으킨 혁명에서 발표되었다.", "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄹ", "ㄷ, ㄹ"], "exp": "권리 장전(명예혁명)입니다. ㄷ은 미국, ㄹ은 프랑스 혁명에 해당합니다.", "a": 0}, {"q": "시민 혁명의 특징과 한계에 대한 설명으로 옳은 것만을 고른 것은?^ㄱ. 부르주아에게 정치 참여가 허용되었다.^ㄴ. 입헌주의에 기초한 근대 민주주의가 확립되었다.^ㄷ. 도시 하층민과 여성에게도 참정권이 폭넓게 보장되었다.^ㄹ. 이후 재산·직업·성별에 따른 선거권 제한을 없애려는 참정권 확대 운동이 전개되었다.", "opts": ["ㄱ, ㄴ, ㄷ", "ㄱ, ㄴ, ㄹ", "ㄱ, ㄷ", "ㄴ, ㄷ"], "exp": "ㄷ: 노동자·농민·도시 하층민·여성은 참정권에 많은 제한을 받았습니다(한계).", "a": 1}, {"q": "인간과 시민의 권리 선언의 조항과 관련 개념의 연결로 옳은 것만을 고른 것은?^ㄱ. 제1조 인간은 자유롭고 평등한 권리를 지니고 태어난다. – 천부 인권^ㄴ. 제3조 주권은 국민에게 있다. – 국민 주권^ㄷ. 제9조 범죄자로 선고되기까지 무죄로 추정된다. – 죄형 법정주의^ㄹ. 제11조 모든 시민은 자유로이 발언하고 기술하고 인쇄할 수 있다. – 저항권", "opts": ["ㄴ, ㄹ", "ㄷ, ㄹ", "ㄱ, ㄴ", "ㄱ, ㄷ"], "exp": "제9조는 무죄 추정의 원칙, 제11조는 언론(사상·의사 표현)의 자유입니다.", "a": 2}]}, "2": {"ox": [{"q": "2세대 인권은 산업 혁명 이후 열악한 노동 환경과 빈부 격차로 사회적 불평등이 심화되면서 확장되었다.", "a": true, "exp": "2세대 인권 확장의 배경입니다."}, {"q": "바이마르 헌법(1919)은 최초로 사회권을 명시하였다.", "a": true, "exp": "최초로 사회권을 규정한 헌법입니다."}, {"q": "바이마르 헌법은 소유권을 절대적인 권리로 보아 어떠한 제한도 인정하지 않았다.", "a": false, "exp": "자신의 소유권이라도 무제한 남용할 수 없다는 ‘소유권의 사회적 의무성’을 규정했습니다."}, {"q": "바이마르 헌법은 각자의 경제상 자유가 인간다운 생활 보장이라는 정의의 원칙의 한계 내에서 보장된다고 규정하였다.", "a": true, "exp": "제151조 ①의 내용입니다."}, {"q": "세계 인권 선언은 1966년 국제 연합 총회에서 채택되었다.", "a": false, "exp": "세계 인권 선언은 1948년입니다. 1966년은 국제 인권 규약입니다."}, {"q": "세계 인권 선언은 시민적·정치적 권리만을 규정하였다.", "a": false, "exp": "근로·여가, 사회 보장 등 경제적·사회적·문화적 권리까지 포함합니다."}, {"q": "국제 인권 규약은 세계 인권 선언에 명시된 권리를 국제법상 조약의 형태로 구체화한 것이다.", "a": true, "exp": "국제 인권 규약(1966)의 의미입니다."}, {"q": "‘시민적 및 정치적 권리에 관한 국제 규약’은 2세대 인권으로 구성되었다.", "a": false, "exp": "1세대 인권으로 구성된 규약입니다."}, {"q": "여성 차별 철폐 협약은 가정의 책임이 남녀 모두에게 있음을 국제적으로 규정하였다.", "a": true, "exp": "여성 차별 철폐 협약(1979)의 내용입니다."}, {"q": "아동 권리 협약은 아동을 권리의 주체가 아닌 보호의 대상으로 규정하였다.", "a": false, "exp": "아동을 단순한 보호 대상이 아닌 권리를 가진 인간 주체로 규정했습니다."}], "mc": [{"q": "최초로 사회권을 명시한 헌법은?", "opts": ["미국 독립 선언문(1776)", "프랑스 인간과 시민의 권리 선언(1789)", "독일 바이마르 헌법(1919)", "영국 권리 장전(1689)"], "exp": "바이마르 헌법이 최초로 사회권을 명시했습니다.", "a": 2}, {"q": "3세대 인권 확장의 배경으로 옳은 것은?", "opts": ["산업 혁명 이후 빈부 격차 심화", "절대 왕정의 전제 정치", "정보 사회로의 이행", "두 차례의 세계 대전 이후 인류 공동 노력이 필요하다는 공감대 형성"], "exp": "세계 대전 이후 인권 문제 해결을 위한 인류 공동의 노력이 필요하다는 공감대가 형성되었습니다.", "a": 3}, {"q": "국제 협약과 체결 연도의 연결이 옳은 것은?", "opts": ["인종 차별 철폐 협약 – 1965년", "여성 차별 철폐 협약 – 1989년", "아동 권리 협약 – 1979년", "국제 인권 규약 – 1948년"], "exp": "여성 차별 철폐 협약 1979, 아동 권리 협약 1989, 국제 인권 규약 1966입니다.", "a": 0}, {"q": "세계 인권 선언 제26조(교육받을 권리)의 내용으로 옳은 것은?", "opts": ["교육은 최소한 고등 단계까지 무상이어야 한다.", "초등 교육은 의무적이어야 한다.", "고등 교육은 모든 사람에게 무상이어야 한다.", "기술 및 직업 교육은 의무적이어야 한다."], "exp": "초등·기초 단계는 무상, 초등 교육은 의무, 기술·직업 교육은 접근 가능, 고등 교육은 실력에 따라 동등하게 접근 가능해야 합니다.", "a": 1}, {"q": "바이마르 헌법의 내용으로 옳지 않은 것은?", "opts": ["적절한 일자리를 얻지 못한 국민은 필요한 생계비를 지원받을 수 있다.", "경제생활의 질서는 모든 사람에게 인간다운 생활을 보장할 것을 목적으로 한다.", "노동력은 개인이 스스로 보호해야 하며 국가는 관여하지 않는다.", "국가는 표준적인 노동법을 정한다."], "exp": "제157조 ① 노동력은 국가의 특별한 보호를 받습니다.", "a": 2}, {"q": "세계 인권 선언에 대한 설명으로 옳지 않은 것은?", "opts": ["국제 연합 총회에서 채택되었다.", "인권 보호를 위한 국제 사회의 협력을 강조하였다.", "사회 보장을 누릴 권리를 포함하였다.", "세계 인권 선언 자체가 국제법상 조약의 형태로 채택되었다."], "exp": "세계 인권 선언의 권리를 조약 형태로 구체화한 것은 국제 인권 규약(1966)입니다.", "a": 3}], "hard": [{"q": "(가), (나)는 인권 관련 문서의 일부이다.^(가) 경제생활의 질서는 모든 사람에게 인간다운 생활을 보장할 것을 목적으로 하는 정의의 원칙에 기초해야 한다.^(나) 모든 사람은 인종, 피부색, 성, 언어, 종교 등 어떠한 종류의 차별이 없이 이 선언에 규정된 모든 권리와 자유를 향유할 자격이 있다.^옳은 것만을 고른 것은?^ㄱ. (가)는 최초로 사회권을 명시한 헌법의 조항이다.^ㄴ. (가)는 2세대 인권의 확장과 관련 있다.^ㄷ. (나)는 국제 연합 총회에서 채택된 선언의 조항이다.^ㄹ. (나)는 1966년에 처음 채택되었다.", "opts": ["ㄴ, ㄹ", "ㄱ, ㄷ, ㄹ", "ㄱ, ㄴ, ㄷ", "ㄱ, ㄹ"], "exp": "(가) 바이마르 헌법 제151조, (나) 세계 인권 선언(1948) 제2조입니다.", "a": 2}, {"q": "국제 인권 규약에 대한 설명으로 옳은 것만을 고른 것은?^ㄱ. 세계 인권 선언에 명시된 권리를 조약의 형태로 구체화하였다.^ㄴ. 1세대 인권으로 구성된 규약을 포함한다.^ㄷ. 2세대 인권으로 구성된 규약을 포함한다.^ㄹ. 세계 인권 선언보다 먼저 채택되었다.", "opts": ["ㄱ, ㄹ", "ㄴ, ㄹ", "ㄴ, ㄷ, ㄹ", "ㄱ, ㄴ, ㄷ"], "exp": "국제 인권 규약은 1966년으로, 세계 인권 선언(1948)보다 나중입니다.", "a": 3}, {"q": "인권 관련 국제 협약에 대한 설명으로 옳은 것만을 고른 것은?^ㄱ. 인종 차별 철폐 협약은 국제 인권 규약보다 먼저 체결되었다.^ㄴ. 여성 차별 철폐 협약은 여성에 대한 모든 형태의 차별 철폐를 규정한다.^ㄷ. 아동 권리 협약은 1979년에 체결되었다.^ㄹ. 아동 권리 협약은 아동을 권리를 가진 인간 주체로 규정한다.", "opts": ["ㄱ, ㄴ, ㄹ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄴ, ㄷ, ㄹ"], "exp": "인종 차별 철폐 협약 1965 → 국제 인권 규약 1966. 아동 권리 협약은 1989년입니다.", "a": 0}, {"q": "‘소유권의 사회적 의무성’에 대한 설명으로 옳은 것만을 고른 것은?^ㄱ. 자신의 소유권이라도 무제한 남용할 수 없다는 뜻이다.^ㄴ. 재산권 행사가 공공복리에 적합하도록 요구한 바이마르 헌법과 관련된다.^ㄷ. 1세대 인권의 확장 과정에서 처음 등장하였다.^ㄹ. 현대 민주주의 국가의 헌법에 영향을 주었다.", "opts": ["ㄱ, ㄴ, ㄷ", "ㄱ, ㄴ, ㄹ", "ㄱ, ㄷ", "ㄴ, ㄷ"], "exp": "바이마르 헌법(2세대 인권 확장)에서 규정되었습니다.", "a": 1}]}, "3": {"ox": [{"q": "도시화·세계화·정보화로 기존의 인권 관념으로는 쉽게 해결되지 않는 새로운 문제가 등장하였다.", "a": true, "exp": "현대 사회 인권 확장의 배경입니다."}, {"q": "주거권 등장의 배경에는 급격한 도시화에 따른 주택 공급 부족과 주거비 급증이 있다.", "a": true, "exp": "주거권의 등장 배경입니다."}, {"q": "주거 기본법과 주택 임대차 보호법은 안전권을 보장하기 위한 법률이다.", "a": false, "exp": "주거권 보장을 위한 법률입니다."}, {"q": "안전권의 등장 배경에는 기후 위기로 인한 자연재해와 감염병 대유행 같은 인위적 위험의 증가가 있다.", "a": true, "exp": "안전권의 등장 배경입니다."}, {"q": "안전 신문고는 국민이 위험 요소를 신고하면 환경부가 처리 기관을 지정하여 해결하는 제도이다.", "a": false, "exp": "행정 안전부가 처리 기관을 지정합니다."}, {"q": "헌법은 환경권을 국민의 권리이자 의무로 규정한다.", "a": true, "exp": "헌법 제35조 ①: 국가와 국민은 환경 보전을 위해 노력해야 합니다."}, {"q": "문화권에는 자신의 문화적 정체성을 유지할 권리가 포함되지 않는다.", "a": false, "exp": "문화적 삶의 주체로서 자신의 문화적 정체성을 유지할 권리도 문화권입니다."}, {"q": "배리어 프리는 ‘장벽이 없다’는 뜻으로, 공연계의 수어 통역·자막·화면 해설이 그 예이다.", "a": true, "exp": "배리어 프리의 사례입니다."}, {"q": "잊힐 권리는 공공 기관이 보유한 정보를 공개하도록 요구하는 권리이다.", "a": false, "exp": "잊힐 권리는 온라인상 자신에 관한 정보의 삭제 및 확산 방지를 요구하는 권리입니다."}, {"q": "‘지우개’ 서비스는 아동·청소년 시기에 작성한 게시물 중 개인정보가 담긴 게시물의 삭제나 검색 차단을 돕는다.", "a": true, "exp": "개인 정보 보호 위원회의 아동·청소년 디지털 잊힐 권리 시범 사업입니다."}], "mc": [{"q": "현대 사회의 인권과 보장 방법의 연결이 옳은 것은?", "opts": ["주거권 – 재난 문자 제도", "환경권 – 주택 임대차 보호법", "정보 인권 – 문화 예술 진흥법", "문화권 – 문화 누리 카드"], "exp": "재난 문자는 안전권, 주택 임대차 보호법은 주거권, 문화 예술 진흥법은 문화권입니다.", "a": 3}, {"q": "‘생명과 안녕을 위협하는 각종 위험으로부터 안전을 보장받을 권리’는?", "opts": ["안전권", "주거권", "환경권", "정보 인권"], "exp": "안전권의 의미입니다.", "a": 0}, {"q": "‘모든 국민은 건강하고 쾌적한 환경에서 생활할 권리를 가지며, 국가와 국민은 환경 보전을 위하여 노력하여야 한다.’와 관련된 권리는?", "opts": ["문화권", "환경권", "주거권", "안전권"], "exp": "헌법 제35조 ① 환경권 조항입니다.", "a": 1}, {"q": "정보 인권의 등장 배경으로 옳은 것은?", "opts": ["여가 시간의 증가", "기후 위기", "정보 사회로의 이행과 인공 지능의 발전", "급격한 도시화"], "exp": "도시화는 주거권, 여가 증가는 문화권, 기후 위기는 안전권의 배경입니다.", "a": 2}, {"q": "문화권의 등장 배경으로 옳은 것은?", "opts": ["산업화 이후 심각해진 환경 오염", "주택 공급 부족과 주거비 급증", "인공 지능의 발전", "소수 집단의 문화적 정체성 존중 요구 대두"], "exp": "문화권은 생활 수준 향상·여가 증가, 소수 집단의 문화적 정체성 존중 요구로 등장했습니다.", "a": 3}, {"q": "주거권 보장을 위한 노력으로 옳지 않은 것은?", "opts": ["재난 및 안전 관리 기본법 제정", "사회적 취약 계층에 임대 주택 우선 공급", "최저 주거 기준 설정", "국가가 주거비를 일정 수준으로 조정"], "exp": "재난 및 안전 관리 기본법은 안전권 보장 방법입니다.", "a": 0}], "hard": [{"q": "제도·법률과 관련된 권리를 바르게 연결한 것만을 고른 것은?^ㄱ. 안전 신문고 – 안전권^ㄴ. 배리어 프리 공연 – 문화권^ㄷ. 공공 기관의 정보 공개에 관한 법률 – 정보 인권^ㄹ. 국제 연합(UN) 기후변화 협약 – 주거권", "opts": ["ㄱ, ㄹ", "ㄴ, ㄹ", "ㄱ, ㄷ, ㄹ", "ㄱ, ㄴ, ㄷ"], "exp": "UN 기후변화 협약은 환경권 보장 방법입니다.", "a": 3}, {"q": "현대 사회에서 인권이 확장된 배경으로 옳은 것만을 고른 것은?^ㄱ. 세계 대전 이후 연대권, 평화권 등으로 인권의 범위가 확대되었다.^ㄴ. 시민들의 인권 의식이 높아졌다.^ㄷ. 인권 논의가 건강, 복지, 삶의 질 등 다양한 가치로 확대되었다.^ㄹ. 사회 변화가 줄어 기존의 인권 관념으로 대부분의 문제를 해결할 수 있게 되었다.", "opts": ["ㄱ, ㄴ, ㄷ", "ㄱ, ㄹ", "ㄴ, ㄹ", "ㄴ, ㄷ, ㄹ"], "exp": "사회가 급변하면서 기존 인권 관념으로 해결하기 어려운 새로운 문제가 등장했습니다.", "a": 0}, {"q": "잊힐 권리에 대한 설명으로 옳은 것만을 고른 것은?^ㄱ. 개인정보 주체가 온라인상 자신에 관한 정보의 삭제를 요구할 수 있다.^ㄴ. 정보의 확산 방지를 요구하는 것도 포함된다.^ㄷ. 개인 정보 보호 위원회는 성인만을 대상으로 시범 사업을 시작하였다.^ㄹ. 과거에 올린 정보가 모르는 사이 퍼져 고통받는 사람이 늘면서 논의되었다.", "opts": ["ㄱ, ㄷ, ㄹ", "ㄱ, ㄴ, ㄹ", "ㄱ, ㄷ", "ㄴ, ㄷ"], "exp": "시범 사업은 아동 및 청소년 대상(지우개 서비스)입니다.", "a": 1}, {"q": "조항과 관련 권리의 연결로 옳은 것만을 고른 것은?^ㄱ. 헌법 제35조 ③ 국가는 주택 개발 정책 등을 통해 쾌적한 주거 생활을 할 수 있도록 노력 – 주거권^ㄴ. 헌법 제34조 ⑤ 국가는 재해를 예방하고 그 위험으로부터 국민을 보호 – 안전권^ㄷ. 헌법 제35조 ① 건강하고 쾌적한 환경에서 생활할 권리 – 문화권^ㄹ. 문화 기본법 제4조 차별 없이 문화를 창조·참여·향유할 권리 – 문화권", "opts": ["ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ", "ㄱ, ㄴ, ㄹ", "ㄱ, ㄷ"], "exp": "헌법 제35조 ①은 환경권 조항입니다.", "a": 2}]}, "4": {"ox": [{"q": "헌법은 국가의 통치 조직과 운영 원리, 국민의 기본적 인권을 규정한 최고 규범이다.", "a": true, "exp": "헌법의 의미입니다."}, {"q": "헌법 제10조는 국가가 개인의 불가침의 기본적 인권을 확인하고 보장할 의무를 진다고 규정한다.", "a": true, "exp": "국가의 기본권 보장 의무입니다."}, {"q": "행복 추구권은 특정한 한 가지 권리만을 보장하는 개별적 권리이다.", "a": false, "exp": "행복 추구권은 모든 자유와 권리를 포함하는 포괄적 권리입니다."}, {"q": "인간의 존엄과 가치는 모든 기본권의 근거이자 국가 권력 행사의 기준이다.", "a": true, "exp": "헌법이 추구하는 궁극의 가치입니다."}, {"q": "소극적 권리는 국가에 대해 일정한 행위를 해 줄 것(작위)을 요구하는 권리이다.", "a": false, "exp": "소극적 권리는 하지 말 것(부작위)을 요구합니다. 작위 요구는 적극적 권리입니다."}, {"q": "자유권은 ‘국가로부터의 자유’라 불리는 방어적 권리이다.", "a": true, "exp": "소극적 권리 = 국가로부터의 자유 = 방어적 권리입니다."}, {"q": "사회권과 청구권은 ‘국가에의 자유’라 불리는 능동적 권리이다.", "a": false, "exp": "사회권·청구권은 ‘국가에 의한 자유’인 적극적 권리입니다. ‘국가에의 자유’는 참정권입니다."}, {"q": "참정권은 국민 스스로가 국가 권력을 행사하는 주체가 된다는 점에서 능동적 권리이다.", "a": true, "exp": "능동적 권리의 설명입니다."}, {"q": "사회권·청구권·참정권은 헌법에 열거되지 않아도 보장되는 포괄적 권리이다.", "a": false, "exp": "세 권리는 국가의 존재를 전제로 하므로 헌법에 열거되어야 보장되는 열거적 권리입니다."}, {"q": "자유권은 역사상 가장 오래된 기본권이다.", "a": true, "exp": "자유권의 성격입니다."}, {"q": "평등권은 처한 상황과 관계없이 모든 사람을 똑같이 대우하는 절대적 평등을 의미한다.", "a": false, "exp": "평등권은 상대적·비례적 평등(실질적 평등)을 의미합니다."}, {"q": "공무 담임권은 참정권에 해당한다.", "a": true, "exp": "참정권 = 선거권, 공무 담임권, 국민 투표권입니다."}, {"q": "사회권은 역사상 가장 먼저 보장된 기본권이다.", "a": false, "exp": "사회권은 현대 복지 국가 헌법에서부터 보장된 현대적 권리입니다(가장 최근)."}, {"q": "근로 3권은 단결권, 단체 교섭권, 단체 행동권이다.", "a": true, "exp": "사회권 중 근로의 권리에 포함됩니다."}, {"q": "청구권은 그 자체가 목적인 실체적 권리이다.", "a": false, "exp": "청구권은 기본권 보장을 위한 수단적·절차적 권리입니다."}, {"q": "일사부재리의 원칙에는 재심이라는 예외가 있다.", "a": true, "exp": "판결이 확정되면 거듭 심판할 수 없지만 재심은 예외입니다(필기)."}, {"q": "영장은 검사의 신청에 의하여 법관이 발부한다.", "a": true, "exp": "영장 제도의 내용입니다."}, {"q": "체포·구속 적부 심사는 구속된 사람이 검사에게 구속의 적부를 심사해 달라고 청구하는 제도이다.", "a": false, "exp": "법원이 심사하도록 청구하는 제도입니다."}, {"q": "자백이 피고인에게 불리한 유일한 증거라도 그것만으로 유죄를 선고할 수 있다.", "a": false, "exp": "자백의 증명력 제한: 유일한 증거인 자백만으로는 유죄 증거로 삼거나 처벌할 수 없습니다."}, {"q": "연좌제 금지는 자기 책임의 원칙에 따른 것이다.", "a": true, "exp": "친족의 행위를 이유로 불리한 처우를 받지 않습니다."}], "mc": [{"q": "옐리네크의 지위이론에서 ‘국가에 의한 자유’에 해당하는 기본권은?", "opts": ["사회권, 청구권", "자유권", "참정권", "평등권"], "exp": "적극적 권리(급부청구적 권리) = 국가에 의한 자유 = 사회권, 청구권입니다.", "a": 0}, {"q": "국가에 대해 일정한 행위를 하지 말 것(부작위)을 요구하는 권리는?", "opts": ["수동적 권리", "소극적 권리", "적극적 권리", "능동적 권리"], "exp": "소극적 권리이며 자유권이 해당합니다.", "a": 1}, {"q": "참정권의 내용이 아닌 것은?", "opts": ["공무 담임권", "국민 투표권", "청원권", "선거권"], "exp": "청원권은 청구권입니다.", "a": 2}, {"q": "청구권에 해당하지 않는 것은?", "opts": ["재판 청구권", "국가 배상 청구권", "형사 보상 청구권", "공무 담임권"], "exp": "공무 담임권은 참정권입니다.", "a": 3}, {"q": "평등권의 내용으로 옳지 않은 것은?", "opts": ["사생활의 비밀과 자유", "교육의 기회균등", "사회적 특수계급의 금지", "혼인과 가족생활에서의 양성평등"], "exp": "사생활의 비밀과 자유는 자유권입니다.", "a": 0}, {"q": "헌법 조항과 관련 기본권의 연결이 옳은 것은?", "opts": ["제34조 – 평등권", "제29조 – 청구권", "제11조 – 자유권", "제12조 – 사회권"], "exp": "제11조 평등권, 제12조 자유권, 제24조 참정권, 제29조 청구권, 제34조 사회권입니다.", "a": 1}, {"q": "‘새로운 법률을 만들어 과거의 범죄를 처벌할 수 없다’는 원칙은?", "opts": ["무죄 추정의 원리", "연좌제 금지", "형벌 불소급의 원칙", "일사부재리의 원칙"], "exp": "형벌 불소급의 원칙입니다.", "a": 2}, {"q": "죄형 법정주의에서 파생된 원리가 아닌 것은?", "opts": ["관습 형법 배제", "유추 해석 금지", "절대적 부정기형의 금지", "자백의 증명력 제한"], "exp": "파생 원리: 관습 형법 배제, 형벌 법규의 불소급, 유추 해석 금지, 절대적 부정기형의 금지입니다.", "a": 3}, {"q": "사회권에 대한 설명으로 옳은 것은?", "opts": ["복지 국가의 필수적 요소로 강조되는 현대적 권리이다.", "국가 권력의 간섭을 배제하는 소극적 권리이다.", "헌법에 열거되지 않아도 보장되는 포괄적 권리이다.", "역사상 가장 오래된 기본권이다."], "exp": "나머지는 자유권의 성격입니다.", "a": 0}, {"q": "‘형사상 자기에게 불리한 진술을 강요당하지 아니한다’와 관련된 원칙은?", "opts": ["자백의 증명력 제한", "고문 금지 및 불리한 진술 거부권", "변호인의 조력을 받을 권리", "영장 제도"], "exp": "고문 금지 및 불리한 진술 거부권입니다.", "a": 1}, {"q": "헌법 제29조 ①(국가 배상 청구)에 대한 설명으로 옳은 것은?", "opts": ["공무원 개인에게만 배상을 청구할 수 있다.", "참정권에 관한 조항이다.", "국가에 배상을 청구하더라도 공무원 자신의 책임은 면제되지 않는다.", "국가에 배상을 청구하면 공무원 자신의 책임은 면제된다."], "exp": "‘이 경우 공무원 자신의 책임은 면제되지 아니한다.’ 청구권 조항입니다.", "a": 2}, {"q": "열거적 권리에 해당하지 않는 것은?", "opts": ["사회권", "청구권", "참정권", "자유권"], "exp": "자유권은 포괄적 권리입니다(필기: 포괄적 권리 = 자유권, 행복 추구권).", "a": 3}], "hard": [{"q": "(가)~(다)는 옐리네크의 지위이론에 따른 권리이다.^(가) 국가에 대해 일정한 행위를 하지 말 것을 요구함^(나) 국가에 대해 일정한 행위를 해 줄 것을 요구함^(다) 국가 의사 형성 과정에 직접 참여함^옳은 것만을 고른 것은?^ㄱ. (가)는 ‘국가로부터의 자유’라 불린다.^ㄴ. (나)에는 청구권이 포함된다.^ㄷ. (다)는 급부청구적 권리이다.^ㄹ. (가)는 헌법에 열거되어야만 보장된다.", "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄹ", "ㄷ, ㄹ"], "exp": "(다) 능동적 권리는 ‘국가에의 자유’. 급부청구적 권리는 (나). (가) 자유권은 포괄적 권리입니다.", "a": 0}, {"q": "(가) 국가 권력의 간섭 없이 자유롭게 생활할 수 있는 권리^(나) 인간다운 생활의 보장과 실질적 평등의 실현을 국가에 요구할 수 있는 권리^옳은 것만을 고른 것은?^ㄱ. (가)는 헌법에 열거되지 않은 권리를 도출할 수 있는 포괄적 권리이다.^ㄴ. (나)는 법률로 구체화해야 행사할 수 있다.^ㄷ. (가)는 (나)보다 역사적으로 늦게 등장하였다.^ㄹ. (나)에는 근로 3권이 포함된다.", "opts": ["ㄱ, ㄷ, ㄹ", "ㄱ, ㄴ, ㄹ", "ㄱ, ㄷ", "ㄴ, ㄷ"], "exp": "(가) 자유권은 가장 오래된 기본권, (나) 사회권은 가장 최근의 현대적 권리입니다.", "a": 1}, {"q": "청구권에 대한 설명으로 옳은 것만을 고른 것은?^ㄱ. 기본권 보장을 위한 기본권이다.^ㄴ. 역사상 가장 오래된 기본권이다.^ㄷ. 국가에 대해 부작위를 요구하는 소극적 권리이다.^ㄹ. 청원권은 국가 기관에 문서로 의견이나 희망을 표시할 수 있는 권리이다.", "opts": ["ㄴ, ㄷ", "ㄷ, ㄹ", "ㄱ, ㄹ", "ㄱ, ㄴ"], "exp": "청구권은 적극적 권리이며, 가장 오래된 기본권은 자유권입니다.", "a": 2}, {"q": "평등권에 대한 설명으로 옳은 것만을 고른 것은?^ㄱ. 형식적·절대적 평등을 원칙으로 한다.^ㄴ. 다른 기본권 보장을 위한 전제 조건이다.^ㄷ. ‘같은 것은 같게, 다른 것은 다르게’ 대우하는 상대적 평등을 의미한다.^ㄹ. 헌법 제11조와 관련 있다.", "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄱ, ㄴ, ㄹ", "ㄴ, ㄷ, ㄹ"], "exp": "평등권은 상대적·비례적(실질적) 평등을 의미합니다.", "a": 3}, {"q": "다음 사례에서 침해된 원칙을 바르게 연결한 것은?^갑: A 사건으로 무죄 판결이 확정되었는데, 같은 사건으로 다시 기소되어 심판을 받았다.^을: 아버지의 범죄를 이유로 공무원 임용에서 불이익을 받았다.^병: 행위 당시에는 처벌 규정이 없었으나 이후 새로 만들어진 법률로 처벌받았다.", "opts": ["갑: 일사부재리 / 을: 연좌제 금지 / 병: 형벌 불소급", "갑: 형벌 불소급 / 을: 연좌제 금지 / 병: 일사부재리", "갑: 일사부재리 / 을: 자백의 증명력 제한 / 병: 영장 제도", "갑: 무죄 추정 / 을: 연좌제 금지 / 병: 일사부재리"], "exp": "확정 판결 후 거듭 심판 = 일사부재리, 친족 행위로 불이익 = 연좌제, 새 법으로 과거 처벌 = 형벌 불소급입니다.", "a": 0}, {"q": "신체의 자유 보장에 대한 설명으로 옳은 것만을 고른 것은?^ㄱ. 형사 피고인은 유죄 판결이 확정될 때까지 무죄로 추정된다.^ㄴ. 체포·구속을 당한 때에는 즉시 변호인의 조력을 받을 수 있다.^ㄷ. 영장은 검사가 직접 발부한다.^ㄹ. 체포·구속 적부 심사는 수사권 남용으로부터 인신의 자유를 확보하기 위한 것이다.", "opts": ["ㄴ, ㄷ, ㄹ", "ㄱ, ㄴ, ㄹ", "ㄱ, ㄷ", "ㄴ, ㄷ"], "exp": "영장은 검사의 신청에 의하여 법관이 발부합니다.", "a": 1}, {"q": "(가) 제11조 ① 모든 국민은 법 앞에 평등하다.^(나) 제24조 모든 국민은 법률이 정하는 바에 의하여 선거권을 가진다.^(다) 제34조 ① 모든 국민은 인간다운 생활을 할 권리를 가진다.^옳은 것만을 고른 것은?^ㄱ. (가)의 권리는 민주 국가의 기본 가치이다.^ㄴ. (나)의 권리는 국민 주권의 원리를 실현하는 능동적 권리이다.^ㄷ. (다)의 권리는 ‘국가로부터의 자유’이다.^ㄹ. (나)와 (다)의 권리는 모두 열거적 권리이다.", "opts": ["ㄴ, ㄷ", "ㄱ, ㄷ, ㄹ", "ㄱ, ㄴ, ㄹ", "ㄱ, ㄷ"], "exp": "(다) 사회권은 ‘국가에 의한 자유’입니다. 참정권·사회권은 열거적 권리입니다.", "a": 2}, {"q": "기본권의 구조에 대한 설명으로 옳은 것만을 고른 것은?^ㄱ. 인간의 존엄과 가치는 헌법이 추구하는 궁극의 가치이다.^ㄴ. 행복 추구권은 인간의 존엄과 가치를 보장하기 위한 핵심적 기본권이다.^ㄷ. 자유권과 행복 추구권은 모두 포괄적 권리이다.^ㄹ. 인간의 존엄과 가치는 국가 권력 행사의 기준이 되지 않는다.", "opts": ["ㄱ, ㄹ", "ㄴ, ㄹ", "ㄴ, ㄷ, ㄹ", "ㄱ, ㄴ, ㄷ"], "exp": "인간의 존엄과 가치는 모든 기본권의 근거이자 국가 권력 행사의 기준입니다.", "a": 3}]}, "5": {"ox": [{"q": "헌법 제37조 ①은 국민의 자유와 권리가 헌법에 열거되지 않은 이유로 경시되지 않는다고 규정한다.", "a": true, "exp": "열거되지 않은 권리 보장 조항입니다."}, {"q": "소비자의 권리, 휴식권, 수면권, 일조권은 헌법에 열거되지 않은 권리의 예이다.", "a": true, "exp": "헌법에 직접 명시되지 않아도 보장되는 권리의 예입니다."}, {"q": "헌법에 직접 명시되지 않은 권리는 보장받을 수 없다.", "a": false, "exp": "인간의 존엄과 가치 실현에 필요한 권리는 명시되지 않아도 보장됩니다."}, {"q": "기본권은 국가 안전 보장, 질서 유지, 공공복리를 위해 필요한 경우 제한될 수 있다.", "a": true, "exp": "헌법 제37조 ②의 내용입니다."}, {"q": "기본권은 대통령령만으로도 제한할 수 있다.", "a": false, "exp": "국회가 제정한 법률로써만 제한할 수 있습니다(형식상 한계)."}, {"q": "기본권을 제한할 때에는 필요하다면 본질적인 내용까지 제한할 수 있다.", "a": false, "exp": "제한하더라도 본질적인 내용은 침해할 수 없습니다(내용상 한계)."}, {"q": "기본권 제한의 형식상 한계는 국회에서 제정된 법률에 근거가 있어야 한다는 것이다.", "a": true, "exp": "형식상 한계입니다."}, {"q": "방법상의 한계는 세 가지 목적 중 하나를 충족해야 한다는 것이다.", "a": false, "exp": "이는 목적상 한계입니다. 방법상 한계는 필요한 때에 한해서만 제한해야 한다는 것입니다."}, {"q": "과잉 금지의 원칙은 비례의 원칙이라고도 한다.", "a": true, "exp": "과잉 금지의 원칙(비례의 원칙)입니다."}, {"q": "피해의 최소성은 보호하려는 공익이 침해되는 사익보다 커야 한다는 원칙이다.", "a": false, "exp": "이는 법익의 균형성입니다. 피해의 최소성은 피해가 가장 적은 방법이어야 한다는 것입니다."}, {"q": "수단의 적합성은 기본권 제한 수단이 그 목적을 달성하는 데 적합해야 한다는 것이다.", "a": true, "exp": "수단의 적합성입니다."}, {"q": "기본권 행사가 다른 사람의 기본권을 침해하거나 공동체의 이익에 해를 끼칠 수 있어 기본권 제한이 필요하다.", "a": true, "exp": "기본권 제한의 이유입니다."}], "mc": [{"q": "헌법 제37조 ②에서 기본권 제한의 목적으로 제시된 것이 아닌 것은?", "opts": ["공공복리", "경제 성장", "국가 안전 보장", "질서 유지"], "exp": "제한 목적은 국가 안전 보장·질서 유지·공공복리 세 가지입니다.", "a": 1}, {"q": "‘제한하는 경우에도 자유와 권리의 본질적인 내용을 침해할 수 없다’는 기본권 제한의 한계는?", "opts": ["방법상의 한계", "형식상의 한계", "내용상의 한계", "목적상의 한계"], "exp": "내용상의 한계입니다.", "a": 2}, {"q": "헌법 제37조 ②의 ‘필요한 경우에 한하여’와 관련된 기본권 제한의 한계는?", "opts": ["목적상의 한계", "형식상의 한계", "내용상의 한계", "방법상의 한계"], "exp": "필요한 때에 한해서만 제한 = 방법상의 한계입니다.", "a": 3}, {"q": "과잉 금지의 원칙 중 ‘기본권 제한 수단은 피해가 가장 적은 방법이어야 한다’는 것은?", "opts": ["피해의 최소성", "목적의 정당성", "수단의 적합성", "법익의 균형성"], "exp": "피해의 최소성입니다.", "a": 0}, {"q": "헌법에 열거되지 않은 권리까지 보장하는 이유로 옳은 것은?", "opts": ["헌법 개정을 어렵게 하기 위해", "사회 변화에 따라 새롭게 대두하는 권리를 광범위하게 보장하기 위해", "기본권을 쉽게 제한하기 위해", "국가 권력을 강화하기 위해"], "exp": "모든 권리를 열거하기 어렵고, 사회 변화로 새로운 권리가 대두하기 때문입니다.", "a": 1}, {"q": "기본권을 제한할 수 있는 형식으로 옳은 것은?", "opts": ["행정 기관의 내부 지침", "지방자치단체장의 결정", "국회가 제정한 법률", "대통령의 명령"], "exp": "국민의 대표 기관인 국회에서 제정된 법률에 근거해야 합니다(형식상 한계).", "a": 2}, {"q": "헌법에 열거되지 않은 권리의 예로 제시된 것이 아닌 것은?", "opts": ["소비자의 권리", "수면권", "일조권", "선거권"], "exp": "선거권은 헌법 제24조에 명시된 참정권입니다.", "a": 3}, {"q": "과잉 금지의 원칙의 네 요소를 바르게 나열한 것은?", "opts": ["목적의 정당성 → 수단의 적합성 → 피해의 최소성 → 법익의 균형성", "수단의 적합성 → 목적의 정당성 → 법익의 균형성 → 피해의 최소성", "피해의 최소성 → 목적의 정당성 → 수단의 적합성 → 법익의 균형성", "법익의 균형성 → 피해의 최소성 → 수단의 적합성 → 목적의 정당성"], "exp": "목적 → 수단 → 피해 → 법익 순서로 정리합니다.", "a": 0}], "hard": [{"q": "헌법 제37조 ②에 대한 설명으로 옳은 것만을 고른 것은?^ㄱ. 목적상 한계로 국가 안전 보장, 질서 유지, 공공복리를 제시한다.^ㄴ. ‘법률로써’는 형식상 한계에 해당한다.^ㄷ. ‘필요한 경우에 한하여’는 내용상 한계에 해당한다.^ㄹ. ‘본질적인 내용을 침해할 수 없다’는 내용상 한계에 해당한다.", "opts": ["ㄴ, ㄷ, ㄹ", "ㄱ, ㄴ, ㄹ", "ㄱ, ㄷ", "ㄴ, ㄷ"], "exp": "‘필요한 경우에 한하여’는 방법상 한계입니다.", "a": 1}, {"q": "다음 사례에 대한 판단으로 옳은 것만을 고른 것은?^A법은 공공복리를 위해 특정 영업을 제한하면서, 피해가 더 적은 방법이 있음에도 해당 영업을 전면 금지하였다.^ㄱ. 목적의 정당성은 인정될 수 있다.^ㄴ. 피해의 최소성에 어긋날 수 있다.^ㄷ. 과잉 금지의 원칙과는 관련이 없다.^ㄹ. 법률의 형식만 갖추면 기본권 제한은 항상 정당하다.", "opts": ["ㄴ, ㄹ", "ㄷ, ㄹ", "ㄱ, ㄴ", "ㄱ, ㄷ"], "exp": "공공복리는 정당한 목적이지만, 더 적은 피해의 방법이 있으면 피해의 최소성 위반입니다. 법률 형식을 갖춰도 과잉 금지 원칙 등 한계를 지켜야 합니다.", "a": 2}, {"q": "헌법에 열거되지 않은 권리 보장에 대한 설명으로 옳은 것만을 고른 것은?^ㄱ. 인간의 모든 권리를 헌법에 열거하기 어렵다는 점이 배경이다.^ㄴ. 인간의 존엄과 가치 실현에 필요한 권리는 헌법에 명시되지 않아도 보장된다.^ㄷ. 헌법 제37조 ②에 근거한다.^ㄹ. 일조권은 이에 해당하는 예이다.", "opts": ["ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄷ, ㄹ", "ㄱ, ㄴ, ㄹ"], "exp": "근거 조항은 제37조 ①입니다. ②는 기본권 제한 조항입니다.", "a": 3}, {"q": "과잉 금지의 원칙의 요소와 설명의 연결로 옳은 것만을 고른 것은?^ㄱ. 목적의 정당성: 국가 안전 보장·질서 유지·공공복리를 위한 정당한 목적이 있어야 함^ㄴ. 수단의 적합성: 피해가 가장 적은 방법이어야 함^ㄷ. 피해의 최소성: 제한 수단이 목적 달성에 적합해야 함^ㄹ. 법익의 균형성: 보호하려는 공익이 침해되는 사익보다 커야 함", "opts": ["ㄱ, ㄹ", "ㄱ, ㄴ", "ㄴ, ㄷ", "ㄷ, ㄹ"], "exp": "ㄴ과 ㄷ의 설명이 서로 바뀌었습니다.", "a": 0}, {"q": "기본권 제한의 한계를 바르게 연결한 것은?", "opts": ["목적상 – 본질적 내용 침해 금지 / 방법상 – 국가 안전 보장 / 형식상 – 필요한 때에 한함", "목적상 – 공공복리 / 형식상 – 국회가 제정한 법률 / 내용상 – 본질적 내용 침해 금지", "목적상 – 필요한 때에 한함 / 형식상 – 공공복리 / 내용상 – 국회가 제정한 법률", "방법상 – 국회가 제정한 법률 / 형식상 – 본질적 내용 침해 금지 / 내용상 – 질서 유지"], "exp": "목적상(세 가지 목적), 방법상(필요한 때만), 형식상(국회 법률), 내용상(본질적 내용 침해 금지)입니다.", "a": 1}, {"q": "기본권 제한에 대한 설명으로 옳은 것만을 고른 것은?^ㄱ. 다른 사람의 기본권을 침해할 수 있다는 점이 제한의 이유이다.^ㄴ. 질서 유지를 위해 필요한 경우 법률로써 제한할 수 있다.^ㄷ. 기본권 제한의 한계는 헌법에 명시되어 있지 않다.^ㄹ. 공동체의 이익을 위해서라면 본질적 내용까지 제한할 수 있다.", "opts": ["ㄴ, ㄹ", "ㄷ, ㄹ", "ㄱ, ㄴ", "ㄱ, ㄷ"], "exp": "헌법은 제한의 목적·방법·형식·내용상 한계를 명시하며, 본질적 내용은 침해할 수 없습니다.", "a": 2}]}, "6": {"ox": [{"q": "국민 주권의 원리는 선거 제도와 국민 투표를 통한 헌법 개정 등으로 구현된다.", "a": true, "exp": "국민 주권의 원리의 구현 방식입니다."}, {"q": "법치주의는 대통령이 제정한 명령에 근거하여 국가를 운영하는 원리이다.", "a": false, "exp": "국민의 대표인 국회가 제정한 법률에 근거하여 국가를 운영하는 원리입니다."}, {"q": "권력 분립 제도는 국가 권력의 남용을 막아 국민의 인권을 보장한다.", "a": true, "exp": "권력 분립 제도의 목적입니다."}, {"q": "권력 분립 제도에서 사법권은 정부가 담당한다.", "a": false, "exp": "입법권은 국회, 행정권은 정부, 사법권은 법원입니다."}, {"q": "복수 정당 제도는 국민의 다양한 정치적 견해가 정책 결정에 반영되도록 한다.", "a": true, "exp": "정당 설립의 자유·복수 정당 제도입니다."}, {"q": "국가 인권 위원회는 인권 분야 정책 권고와 차별 행위에 대한 조사·구제를 담당한다.", "a": true, "exp": "인권 보호 기관(기본권 구제 제도)입니다."}, {"q": "대통령은 법률안 거부권을 통해 법원의 판결에 재의를 요구할 수 있다.", "a": false, "exp": "법률안 거부권은 국회가 의결한 법률안에 재의를 요구하는 권한입니다."}, {"q": "대법원장과 대법관은 대통령이 임명하되 국회의 동의를 얻어야 한다.", "a": true, "exp": "정부 → 법원(임명권), 국회 → 법원(임명 동의권)입니다."}, {"q": "국정 감사권은 국정에 특정한 사안이 생겼을 때만 행사하는 권한이다.", "a": false, "exp": "국정 감사권은 매년 정기적으로 국정 전반을 감사하는 권한이고, 특정 사안 조사는 국정 조사권입니다."}, {"q": "대통령은 사면권을 통해 형벌을 소멸시키거나 감형, 복권을 명할 수 있다.", "a": true, "exp": "정부가 법원을 견제하는 권한입니다."}, {"q": "법원은 국회에 대해 위헌 법률 심판 제청권을 가진다.", "a": true, "exp": "법원 → 국회 견제 권한입니다."}, {"q": "법원은 정부의 명령·규칙에 대한 심사권을 가지지 않는다.", "a": false, "exp": "법원은 명령·규칙 또는 처분의 위헌성 및 위법성 심사권을 가집니다."}, {"q": "국회는 국무총리·국무위원 해임 건의권을 가진다.", "a": true, "exp": "국회 → 정부 견제 권한입니다."}, {"q": "대통령에 대한 탄핵 소추는 국회 재적 의원 1/3 이상의 발의와 재적 의원 과반수의 찬성으로 의결한다.", "a": false, "exp": "대통령은 재적 과반수 발의 + 재적 2/3 이상 찬성이 필요합니다."}, {"q": "탄핵 소추의 의결을 받은 자는 탄핵 심판이 있을 때까지 권한 행사가 정지된다.", "a": true, "exp": "탄핵 심판의 내용입니다."}, {"q": "위헌 정당 해산 심판은 국회가 헌법재판소에 제소하여 시작된다.", "a": false, "exp": "정부가 헌법재판소에 해산을 제소합니다(헌법 제8조)."}, {"q": "권한 쟁의 심판은 지방자치단체 상호 간의 권한 다툼에서도 청구할 수 있다.", "a": true, "exp": "국가기관 상호 간, 국가기관과 지자체 간, 지자체 상호 간 모두 가능합니다."}, {"q": "위헌 심사형 헌법 소원을 청구하면 해당 재판은 헌법재판소의 결정이 있을 때까지 정지된다.", "a": false, "exp": "위헌 심사형 헌법 소원은 재판 정지 X입니다."}, {"q": "대법원 외의 법원이 위헌 법률 심판을 제청할 때에는 대법원을 경유한다.", "a": true, "exp": "위헌 법률 심판 제청 절차입니다."}, {"q": "권리 구제형 헌법 소원은 다른 법률의 구제 절차를 거치지 않고도 바로 청구할 수 있다.", "a": false, "exp": "다른 법률의 구제 절차를 모두 거친 후 청구해야 합니다(보충성)."}], "mc": [{"q": "국회가 정부를 견제하는 권한이 아닌 것은?", "opts": ["탄핵 소추권", "국무총리·국무 위원 해임 건의권", "법률안 거부권", "국정 감사 및 조사권"], "exp": "법률안 거부권은 정부(대통령)가 국회를 견제하는 권한입니다.", "a": 2}, {"q": "정부가 법원을 견제하는 권한은?", "opts": ["명령·규칙 심사권", "위헌 법률 심판 제청권", "법관 탄핵 소추권", "사면권"], "exp": "명령·규칙 심사권은 법원 → 정부, 위헌 법률 심판 제청권은 법원 → 국회, 법관 탄핵 소추권은 국회 → 법원입니다.", "a": 3}, {"q": "법원이 정부를 견제하는 권한은?", "opts": ["명령·규칙 또는 처분의 위헌성 및 위법성 심사권", "사면권", "법률안 거부권", "대법원장·대법관 임명 동의권"], "exp": "명령·규칙·처분 심사권입니다.", "a": 0}, {"q": "국회가 법원을 견제하는 권한으로 옳은 것은?", "opts": ["명령·규칙 심사권", "법관 탄핵 소추권", "국회 임시회 소집 요구권", "사면권"], "exp": "국회 → 법원: 대법원장·대법관 임명 동의권, 법관 탄핵 소추권, 국정 감사 및 조사권(재판 제외)입니다.", "a": 1}, {"q": "정당의 목적이나 활동이 민주적 기본질서에 위배될 때 이루어지는 헌법재판소의 심판은?", "opts": ["권한 쟁의 심판", "헌법 소원 심판", "위헌 정당 해산 심판", "탄핵 심판"], "exp": "정부의 제소로 시작되는 위헌 정당 해산 심판입니다.", "a": 2}, {"q": "‘국가 권력의 행사 또는 불행사 때문에 기본권을 침해받은 국민이 청구하는 심판’은?", "opts": ["위헌 심사형 헌법 소원 심판", "위헌 법률 심판", "권한 쟁의 심판", "권리 구제형 헌법 소원 심판"], "exp": "권리 구제형 헌법 소원 심판입니다.", "a": 3}, {"q": "위헌 법률 심판을 헌법재판소에 제청하는 주체는?", "opts": ["법원", "재판 당사자", "국회", "대통령"], "exp": "재판 당사자는 법원에 제청을 ‘신청’할 수 있고, 제청은 법원이 합니다.", "a": 0}, {"q": "권리 구제형 헌법 소원의 청구 요건이 아닌 것은?", "opts": ["권리 보호 이익이 있을 것", "법원이 위헌 법률 심판 제청 신청을 기각했을 것", "공권력의 행사 또는 불행사가 있을 것", "다른 법률의 구제 절차를 모두 거쳤을 것(보충성)"], "exp": "제청 신청 기각은 위헌 심사형 헌법 소원의 요건입니다.", "a": 1}, {"q": "국민 주권의 원리를 구현하는 방식으로 옳은 것은?", "opts": ["법원의 명령·규칙 심사", "헌법재판소의 권한 쟁의 심판", "국민 투표를 통한 헌법 개정", "대통령의 사면권 행사"], "exp": "국회 의원·대통령 선거와 국민 투표를 통한 헌법 개정으로 구현됩니다.", "a": 2}, {"q": "민주적 선거 제도에 대한 설명으로 옳은 것은?", "opts": ["연령과 관계없이 모든 국민에게 선거권을 부여한다.", "단일 정당만을 인정하여 정치를 안정시킨다.", "법원이 국민의 대표를 선출한다.", "공무 담임권을 규정하여 국민의 주권 행사를 보장한다."], "exp": "일정 나이 이상의 국민에게 선거권 + 공무 담임권 규정입니다.", "a": 3}, {"q": "인권 보호 기관에 대한 설명으로 옳은 것은?", "opts": ["국민 권익 위원회는 소통 창구 운영과 제도 개선을 통해 인권 보장에 노력한다.", "국가 인권 위원회는 법률을 제정한다.", "국가 인권 위원회는 위헌 법률 심판을 담당한다.", "국민 권익 위원회는 탄핵을 소추한다."], "exp": "국가 인권 위원회는 정책 권고와 차별 조사·구제를 담당합니다.", "a": 0}, {"q": "법률안 거부권에 대한 설명으로 옳은 것은?", "opts": ["국회가 의결한 법률안을 대법원이 거부하는 권한이다.", "‘재의 요구권’이라고도 한다.", "국회가 정부를 견제하는 권한이다.", "법원이 국회를 견제하는 권한이다."], "exp": "대통령이 국회가 의결한 법률안에 재의를 요구하는 권한입니다(필기: = 재의 요구권).", "a": 1}], "hard": [{"q": "권력 분립 도식의 (가)~(라)에 해당하는 권한으로 옳은 것만을 고른 것은?^(가) 정부 → 국회  (나) 국회 → 정부  (다) 법원 → 국회  (라) 정부 → 법원^ㄱ. (가): 국회 임시회 소집 요구권^ㄴ. (나): 주요 조약의 체결·비준에 대한 동의권^ㄷ. (다): 명령·규칙 심사권^ㄹ. (라): 대법원장·대법관 임명 동의권", "opts": ["ㄴ, ㄹ", "ㄷ, ㄹ", "ㄱ, ㄴ", "ㄱ, ㄷ"], "exp": "명령·규칙 심사권은 법원 → 정부, 임명 ‘동의권’은 국회 → 법원입니다(정부는 임명권).", "a": 2}, {"q": "헌법재판소의 심판에 대한 설명으로 옳은 것만을 고른 것은?^ㄱ. 위헌 법률 심판은 법원의 제청에 따라 이루어진다.^ㄴ. 위헌 심사형 헌법 소원은 위헌 심판 제청 신청이 기각된 경우에 청구할 수 있다.^ㄷ. 권한 쟁의 심판은 권한이 실제로 침해된 경우에만 청구할 수 있다.^ㄹ. 위헌 정당 해산 심판은 정부의 제소로 시작된다.", "opts": ["ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄷ, ㄹ", "ㄱ, ㄴ, ㄹ"], "exp": "권한 쟁의 심판은 침해하였거나 침해할 현저한 위험이 있는 경우에도 가능합니다.", "a": 3}, {"q": "재판 중 당사자 갑이 적용 법률 X가 위헌이라며 법원에 위헌 법률 심판 제청을 신청하였다.^(가) 법원이 신청을 받아들인 경우  (나) 법원이 신청을 기각한 경우^옳은 것만을 고른 것은?^ㄱ. (가)에서 법원은 헌법재판소에 위헌 법률 심판을 제청한다.^ㄴ. (가)에서 해당 재판은 헌법재판소의 결정이 있을 때까지 정지된다.^ㄷ. (나)에서 갑은 항고를 통해 다투어야 한다.^ㄹ. (나)에서 갑이 헌법 소원을 청구해도 해당 재판은 정지되지 않는다.", "opts": ["ㄱ, ㄴ, ㄹ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄴ, ㄷ, ㄹ"], "exp": "기각 시 항고 X, 위헌 심사형 헌법 소원을 청구하며 재판은 정지되지 않습니다.", "a": 0}, {"q": "탄핵에 대한 설명으로 옳은 것만을 고른 것은?^ㄱ. 국무위원에 대한 탄핵 소추는 국회 재적 의원 1/3 이상의 발의로 할 수 있다.^ㄴ. 대통령에 대한 탄핵 소추 의결에는 국회 재적 의원 2/3 이상의 찬성이 필요하다.^ㄷ. 탄핵 소추의 의결은 헌법재판소가 한다.^ㄹ. 탄핵 소추 의결을 받은 자도 탄핵 심판 때까지 권한을 행사할 수 있다.", "opts": ["ㄷ, ㄹ", "ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄹ"], "exp": "소추 의결은 국회, 심판은 헌법재판소입니다. 소추 의결을 받으면 권한 행사가 정지됩니다.", "a": 1}, {"q": "인권 보장을 위한 제도적 장치에 대한 설명으로 옳은 것만을 고른 것은?^ㄱ. 법치주의는 정부가 법률을 제정하고 이에 근거하여 국가를 운영하는 것이다.^ㄴ. 권력 분립은 입법·행정·사법권의 상호 독립성과 견제·균형을 추구한다.^ㄷ. 복수 정당 제도는 하나의 정당만 인정하는 제도이다.^ㄹ. 헌법재판소는 헌법 해석과 관련한 분쟁을 해결하는 기관이다.", "opts": ["ㄱ, ㄷ", "ㄷ, ㄹ", "ㄴ, ㄹ", "ㄱ, ㄴ"], "exp": "법률은 국회가 제정합니다. 복수 정당 제도는 두 개 이상의 정당을 인정합니다.", "a": 2}, {"q": "대통령(정부)의 권한으로 옳은 것만을 고른 것은?^ㄱ. 사면권을 통해 형벌을 소멸시키거나 감형·복권을 명한다.^ㄴ. 대법원장과 대법관을 임명한다.^ㄷ. 명령·규칙 또는 처분의 위헌성 및 위법성을 심사한다.^ㄹ. 매년 정기적으로 국정 전반을 감사한다.", "opts": ["ㄱ, ㄷ", "ㄴ, ㄹ", "ㄷ, ㄹ", "ㄱ, ㄴ"], "exp": "명령·규칙 심사는 법원, 국정 감사는 국회의 권한입니다.", "a": 3}, {"q": "(가) 위헌 심사형 헌법 소원 심판, (나) 권리 구제형 헌법 소원 심판에 대한 설명으로 옳은 것만을 고른 것은?^ㄱ. (가)는 재판 당사자가 헌법재판소에 직접 청구한다.^ㄴ. (나)는 다른 법률의 구제 절차를 모두 거친 후에 청구한다.^ㄷ. (가)는 법원이 제청 신청을 받아들인 경우에 청구한다.^ㄹ. (나)는 공권력의 행사뿐 아니라 불행사도 대상이 된다.", "opts": ["ㄱ, ㄴ, ㄹ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "exp": "(가)는 제청 신청이 기각된 경우에 청구합니다.", "a": 0}, {"q": "국회의 권한으로만 고른 것은?^ㄱ. 국정 감사 및 조사권^ㄴ. 법관 탄핵 소추권^ㄷ. 위헌 법률 심판 제청권^ㄹ. 대법원장·대법관 임명 동의권", "opts": ["ㄴ, ㄷ, ㄹ", "ㄱ, ㄴ, ㄹ", "ㄱ, ㄷ", "ㄴ, ㄷ"], "exp": "위헌 법률 심판 제청권은 법원의 권한입니다.", "a": 1}]}, "7": {"ox": [{"q": "시민 참여는 정책 결정 과정을 감시하고 부당한 정책이나 제도의 개선을 요구하는 행위이다.", "a": true, "exp": "시민 참여의 의미입니다."}, {"q": "시민 참여는 대의 민주주의의 한계를 보완한다.", "a": true, "exp": "국민 의사가 잘 반영되지 못하는 대의 민주주의의 한계를 보완합니다."}, {"q": "이익집단은 공익 추구를 위해 자발적으로 결성된 단체이다.", "a": false, "exp": "공익 추구 단체는 시민단체입니다. 이익집단은 자신들의 이익을 실현하기 위해 결성합니다."}, {"q": "공청회는 중요 정책 결정 이전에 개최된다.", "a": true, "exp": "공청회·주민 간담회 참여의 설명입니다."}, {"q": "주민 조례 청구는 선거와 투표 참여에 해당한다.", "a": false, "exp": "입법 청원, 주민 조례 청구는 입법 과정 참여입니다."}, {"q": "시민불복종은 부정의한 법이나 정책이 합법적 방법으로 개선되지 않을 때 양심적으로 행하는 의도적인 위법 행위이다.", "a": true, "exp": "시민불복종의 의미입니다."}, {"q": "시민불복종은 처벌을 피하기 위해 은밀하게 이루어져야 한다.", "a": false, "exp": "처벌의 감수가 정당화 조건입니다."}, {"q": "롤스는 사회적 다수가 공유하는 정의관을 불복종의 기준으로 보았다.", "a": true, "exp": "롤스의 견해입니다."}, {"q": "싱어는 양심을 시민불복종 판단의 기준으로 보았다.", "a": false, "exp": "양심을 기준으로 본 것은 소로입니다. 싱어는 공리주의 입장입니다."}, {"q": "1956년 연방 지방 법원과 대법원은 버스에서의 인종 분리가 위헌이라고 판결하였다.", "a": true, "exp": "흑인의 버스 탑승 거부 운동의 결과입니다."}], "mc": [{"q": "시민불복종의 정당화 조건으로 옳지 않은 것은?", "opts": ["목적의 정당성", "최후의 수단", "처벌의 감수", "목적 달성을 위해 폭력적 수단을 사용할 수 있음"], "exp": "비폭력성이 정당화 조건입니다.", "a": 3}, {"q": "공리주의 입장에서 시민불복종이 산출할 이익과 손해, 성공 가능성을 기준으로 본 사상가는?", "opts": ["싱어", "롤스", "소로", "간디"], "exp": "싱어입니다.", "a": 0}, {"q": "‘우리는 먼저 인간이어야 하고, 그 다음에 국민이어야 한다.’고 말한 사상가는?", "opts": ["마틴 루서 킹", "소로", "롤스", "싱어"], "exp": "소로는 법보다 정의에 대한 존경심을 중시했습니다.", "a": 1}, {"q": "시민 참여 방안과 설명의 연결이 옳은 것은?", "opts": ["입법 과정 참여 – 중요 정책 결정 이전 간담회 참여", "선거 참여 – 주민 조례 청구", "시민단체 – 공익 추구를 위해 자발적으로 결성", "이익집단 – 공익 추구를 위해 자발적으로 결성"], "exp": "간담회 참여는 공청회·주민 간담회 참여, 주민 조례 청구는 입법 과정 참여입니다.", "a": 2}, {"q": "시민 참여의 필요성으로 옳지 않은 것은?", "opts": ["대의 민주주의의 한계 보완", "공동체 이익 증진", "민주 시민으로서의 능력 함양", "대표자의 권한을 무제한 강화하기 위해"], "exp": "시민 참여는 오히려 국가 권력을 견제·감시하여 권력의 남용을 막습니다.", "a": 3}, {"q": "간디의 소금법 폐지 운동에 대한 설명으로 옳은 것은?", "opts": ["군중과 평화적으로 행진하고 바다에서 직접 소금을 만들었다.", "무장 투쟁으로 소금법을 폐지시켰다.", "1955년 미국 몽고메리에서 시작되었다.", "체포를 피하기 위해 비밀리에 진행되었다."], "exp": "1930년 평화적 행진과 직접 소금 제조, 간디는 체포되었습니다.", "a": 0}], "hard": [{"q": "갑, 을은 시민불복종에 대한 사상가이다.^갑: 거의 정의로운 사회의 법이나 정책이 평등한 자유의 원칙을 심각하게 위반하면 시민불복종이 정당화된다.^을: 양심에 어긋나는 법과 정책에 적극적으로 불복종해야 한다.^옳은 것만을 고른 것은?^ㄱ. 갑은 롤스이다.^ㄴ. 갑은 사회적 다수가 공유하는 정의관을 불복종의 기준으로 삼는다.^ㄷ. 을은 불복종이 산출할 이익과 손해를 기준으로 삼는다.^ㄹ. 을은 법보다 정의에 대한 존경심을 중시한다.", "opts": ["ㄱ, ㄷ", "ㄴ, ㄷ", "ㄴ, ㄷ, ㄹ", "ㄱ, ㄴ, ㄹ"], "exp": "을은 소로입니다. 이익과 손해를 기준으로 삼은 것은 싱어입니다.", "a": 3}, {"q": "시민불복종의 정당화 조건에 대한 설명으로 옳은 것만을 고른 것은?^ㄱ. 공공의 이익과 정의 실현을 목적으로 해야 한다.^ㄴ. 합법적인 방법보다 먼저 시도해야 한다.^ㄷ. 폭력적인 행동을 선동하면 정당화될 수 없다.^ㄹ. 처벌을 감수함으로써 법을 존중함을 밝혀야 한다.", "opts": ["ㄱ, ㄷ, ㄹ", "ㄱ, ㄴ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄹ"], "exp": "모든 합법적 방법을 동원한 후 최후의 수단으로 시도해야 합니다.", "a": 0}, {"q": "시민 참여 방안에 대한 설명으로 옳은 것만을 고른 것은?^ㄱ. 투표 참여는 정책에 정당성을 부여한다.^ㄴ. 이익집단은 공통의 이해관계를 지닌 사람들이 결성한다.^ㄷ. 공청회는 정책이 결정된 이후 결과를 통보하는 자리이다.^ㄹ. 입법 청원은 특정 문제에 관한 법률 마련을 요구하는 것이다.", "opts": ["ㄱ, ㄷ, ㄹ", "ㄱ, ㄴ, ㄹ", "ㄱ, ㄷ", "ㄴ, ㄷ"], "exp": "공청회는 중요 정책 결정 ‘이전’에 개최됩니다.", "a": 1}, {"q": "흑인의 버스 탑승 거부 운동에 대한 설명으로 옳은 것만을 고른 것은?^ㄱ. 로자 파크스가 백인에게 자리 양보를 거부하여 체포된 것이 계기가 되었다.^ㄴ. 버스 탑승 거부 운동은 약 1년간 지속되었다.^ㄷ. 운동 과정에서 흑인들은 무장 시위를 벌였다.^ㄹ. 최종적으로 버스의 인종 분리는 합헌 판결을 받았다.", "opts": ["ㄴ, ㄹ", "ㄷ, ㄹ", "ㄱ, ㄴ", "ㄱ, ㄷ"], "exp": "걷기·자전거·마차 이용으로 운동을 이어갔고, 1956년 위헌 판결이 나왔습니다.", "a": 2}]}, "8": {"ox": [{"q": "사회적 소수자는 자신이 차별받는 집단에 속한다는 의식을 가진다.", "a": true, "exp": "사회적 소수자의 의미입니다."}, {"q": "사회적 소수자는 반드시 수적으로 소수인 집단이다.", "a": false, "exp": "권력의 열세에 있지만 반드시 수적으로 소수를 의미하지는 않습니다."}, {"q": "사회적 상황과 여건에 따라 사회적 소수자에 해당하는 구성원은 달라질 수 있다.", "a": true, "exp": "사회적 소수자의 의미입니다."}, {"q": "사회적 소수자 차별의 원인에는 불합리한 사회 관행, 법과 제도의 결함, 다른 구성원의 편견이 있다.", "a": true, "exp": "차별의 원인입니다."}, {"q": "사회적 소수자 차별은 사회 통합을 촉진한다.", "a": false, "exp": "인권 침해와 사회적 갈등을 유발하여 사회 통합을 저해합니다."}, {"q": "인권 감수성은 일상생활에서 인권 문제를 인식하고 해결하려는 의식이다.", "a": true, "exp": "인권 감수성의 정의입니다."}, {"q": "차별 금지를 규정한 법률 제정은 개인적 차원의 해결 방안이다.", "a": false, "exp": "사회적 차원의 해결 방안입니다."}, {"q": "다양성 존중의 태도를 기르는 것은 개인적 차원의 해결 방안이다.", "a": true, "exp": "개인적 차원의 해결 방안입니다."}, {"q": "외국인 근로자의 고용 등에 관한 법률은 다문화 가족의 안정적인 가족생활을 목적으로 한다.", "a": false, "exp": "다문화 가족 지원법의 목적입니다. 외국인 근로자 고용법은 체계적 도입·관리로 원활한 인력 수급이 목적입니다."}, {"q": "기간제 및 단시간 근로자 보호 등에 관한 법률은 기간제·단시간 근로자에 대한 불합리한 차별 시정을 목적으로 한다.", "a": true, "exp": "해당 법률의 목적입니다."}], "mc": [{"q": "노인이 채용·해고 등에서 연령을 이유로 차별받는 문제와 관련된 법률은?", "opts": ["고용상 연령 차별 금지 및 고령자 고용 촉진에 관한 법률", "양성평등 기본법", "다문화 가족 지원법", "외국인 근로자의 고용 등에 관한 법률"], "exp": "합리적 이유 없는 연령 이유 고용 차별을 금지합니다.", "a": 0}, {"q": "사회적 소수자와 차별 양상의 연결이 옳은 것은?", "opts": ["이주 외국인 – 성별 임금 격차", "여성 – 성별 임금 격차", "노인 – 이동 및 대중교통 이용의 어려움", "장애인 – 직장에서 승진의 어려움"], "exp": "노인 – 채용·해고, 장애인 – 이동·교육·채용, 이주 외국인 – 낮은 임금·열악한 노동 환경입니다.", "a": 1}, {"q": "사회적 차원의 해결 방안이 아닌 것은?", "opts": ["차별 금지를 규정한 법률 제정", "다양한 지원 제도와 정책 시행", "사회적 소수자의 입장을 이해하는 태도 기르기", "지속적인 인권 교육과 의식 개선 활동"], "exp": "입장 이해·다양성 존중은 개인적 차원입니다.", "a": 2}, {"q": "사회적 소수자 차별의 문제점으로 옳은 것은?", "opts": ["주류 집단의 권력을 약화시킨다.", "사회적 소수자의 수를 줄인다.", "법과 제도의 결함을 해소한다.", "사회적 갈등을 유발하여 사회 통합을 저해한다."], "exp": "인권 침해 + 사회적 갈등 → 사회 통합 저해입니다.", "a": 3}, {"q": "‘모든 생활 영역에서 장애를 이유로 한 차별을 금지하고 권익을 효과적으로 구제’하는 것을 목적으로 하는 법률은?", "opts": ["장애인 차별 금지 및 권리 구제 등에 관한 법률", "양성평등 기본법", "기간제 및 단시간 근로자 보호 등에 관한 법률", "다문화 가족 지원법"], "exp": "장애인 차별 금지법입니다.", "a": 0}, {"q": "남녀 고용 평등과 일·가정 양립 지원에 관한 법률의 목적으로 옳지 않은 것은?", "opts": ["고용에서 남녀의 평등한 기회와 대우 보장", "외국인 근로자의 체계적 도입·관리", "모성 보호와 여성 고용 촉진", "근로자의 일과 가정의 양립 지원"], "exp": "외국인 근로자의 체계적 도입·관리는 외국인 근로자 고용법의 목적입니다.", "a": 1}], "hard": [{"q": "사회적 소수자에 대한 설명으로 옳은 것만을 고른 것은?^ㄱ. 신체적·문화적 특징 때문에 다른 집단과 구별된다.^ㄴ. 주류 집단보다 권력의 열세에 있다.^ㄷ. 수적으로 다수라면 사회적 소수자가 될 수 없다.^ㄹ. 어떤 사회에서든 항상 같은 집단이 사회적 소수자에 해당한다.", "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄹ", "ㄷ, ㄹ"], "exp": "수적으로 소수가 아닐 수도 있으며, 사회적 상황과 여건에 따라 달라집니다.", "a": 0}, {"q": "법률과 목적의 연결로 옳은 것만을 고른 것은?^ㄱ. 양성평등 기본법 – 모든 영역에서 양성평등 실현^ㄴ. 다문화 가족 지원법 – 원활한 인력 수급^ㄷ. 고령자 고용 촉진법 – 고령자의 고용 안정^ㄹ. 기간제 근로자 보호법 – 노동 시장의 건전한 발전", "opts": ["ㄱ, ㄴ, ㄹ", "ㄱ, ㄷ, ㄹ", "ㄱ, ㄴ", "ㄴ, ㄷ"], "exp": "원활한 인력 수급은 외국인 근로자 고용법의 목적입니다.", "a": 1}, {"q": "사회적 소수자 차별의 해결 방안에 대한 설명으로 옳은 것만을 고른 것은?^ㄱ. 사회적 차원: 지속적인 인권 교육과 의식 개선 활동^ㄴ. 개인적 차원: 법적·제도적 장치의 확대^ㄷ. 개인적 차원: 편견을 버리고 소수자의 고통에 공감하고 배려^ㄹ. 사회적 차원: 인권 감수성의 함양", "opts": ["ㄴ, ㄹ", "ㄷ, ㄹ", "ㄱ, ㄷ", "ㄱ, ㄴ"], "exp": "법적·제도적 장치 확대는 사회적 차원, 인권 감수성 함양은 개인적 차원입니다.", "a": 2}, {"q": "이주 외국인 근로자 갑은 낮은 임금과 열악한 노동 환경에 놓여 있다. 이에 대한 설명으로 옳은 것만을 고른 것은?^ㄱ. 갑은 사회적 소수자에 해당할 수 있다.^ㄴ. 외국인 근로자의 고용 등에 관한 법률은 외국인 근로자의 체계적 도입·관리를 목적으로 한다.^ㄷ. 갑의 문제 해결에는 개인적 차원의 노력만 필요하다.^ㄹ. 갑이 겪는 차별은 사회적 갈등을 유발할 수 있다.", "opts": ["ㄱ, ㄷ", "ㄴ, ㄷ", "ㄴ, ㄷ, ㄹ", "ㄱ, ㄴ, ㄹ"], "exp": "사회적 차원과 개인적 차원의 노력이 모두 필요합니다.", "a": 3}]}, "9": {"ox": [{"q": "청소년은 성인이 보장받는 노동 조건에 대한 권리를 동일하게 보장받는다.", "a": true, "exp": "청소년 노동 보호의 원칙입니다."}, {"q": "15세 미만인 사람은 어떠한 경우에도 근로자로 사용할 수 없다.", "a": false, "exp": "고용노동부 장관이 발급한 취직 인허증이 있으면 사용할 수 있습니다."}, {"q": "18세 미만인 사람은 도덕상·보건상 유해·위험한 사업에 사용할 수 없다.", "a": true, "exp": "근로 기준법 제65조 ①입니다."}, {"q": "친권자는 미성년자를 대신하여 근로계약을 체결할 수 있다.", "a": false, "exp": "친권자나 후견인은 미성년자의 근로계약을 대리할 수 없습니다."}, {"q": "미성년자는 독자적으로 임금을 청구할 수 있다.", "a": true, "exp": "근로 기준법 제68조입니다."}, {"q": "15세 이상 18세 미만인 사람의 근로 시간은 1일 8시간, 1주 40시간을 초과할 수 없다.", "a": false, "exp": "1일 7시간, 1주 35시간입니다."}, {"q": "근로 시간이 8시간이면 1시간 이상의 휴게 시간을 근로 시간 도중에 주어야 한다.", "a": true, "exp": "근로 기준법 제54조 ①입니다."}, {"q": "18세 미만자는 본인의 동의만 있으면 야간 근로를 할 수 있다.", "a": false, "exp": "본인 동의 + 고용노동부장관의 인가가 모두 필요합니다."}, {"q": "임금은 통화로 직접 근로자에게 그 전액을 지급해야 한다.", "a": true, "exp": "근로 기준법 제43조 ①입니다."}, {"q": "근로 기준법상 연소 근로자는 20세 미만인 사람을 말한다.", "a": false, "exp": "18세 미만 청소년을 연소 근로자로 봅니다."}, {"q": "근로 계약서에는 임금, 근로 시간, 근로 조건 등을 명시해야 한다.", "a": true, "exp": "표준 근로 계약서의 내용입니다."}, {"q": "중앙 노동 위원회는 노사 간의 이익 및 권리 분쟁을 판정하고 조정하는 행정 기관이다.", "a": true, "exp": "중앙 노동 위원회의 정의입니다."}, {"q": "휴일근로, 야간근로, 연장된 시간에는 통상 임금의 2배를 지급한다.", "a": false, "exp": "필기: ×1.5입니다."}], "mc": [{"q": "15세 이상 18세 미만인 사람의 근로 시간 기준으로 옳은 것은?", "opts": ["1일 6시간, 1주 30시간 (합의 시 1일 2시간 연장 가능)", "1일 7시간, 1주 35시간 (합의 시 1일 1시간, 1주 5시간 연장 가능)", "1일 8시간, 1주 40시간 (합의 시 1주 12시간 연장 가능)", "1일 7시간, 1주 40시간 (연장 불가)"], "exp": "근로 기준법 제69조입니다.", "a": 1}, {"q": "근로 시간이 4시간인 경우 주어야 하는 휴게 시간은?", "opts": ["1시간 이상", "휴게 시간을 주지 않아도 됨", "30분 이상", "15분 이상"], "exp": "4시간 → 30분, 8시간 → 1시간 이상입니다.", "a": 2}, {"q": "사용자가 18세 미만인 사람에 대하여 사업장에 갖추어 두어야 하는 서류는?", "opts": ["주민등록등본과 학교장 추천서", "근로자 본인의 각서", "고용노동부장관의 인가서", "가족 관계 기록 사항에 관한 증명서와 친권자 또는 후견인의 동의서"], "exp": "근로 기준법 제66조입니다.", "a": 3}, {"q": "청소년 노동권 침해 양상에 해당하지 않는 것은?", "opts": ["근로 계약서를 작성하고 교부함", "임금 체불", "인격 모독", "부당해고"], "exp": "근로 계약서 ‘미작성’이 침해 양상입니다.", "a": 0}, {"q": "청소년 개인적 차원의 해결 방안으로 옳은 것은?", "opts": ["부당한 대우를 받아도 참고 견딘다.", "노동권 침해 시 고용노동부 등의 기관에 문의하여 적극적으로 대응한다.", "근로 계약서 없이 구두로만 계약한다.", "노동법은 사용자만 알면 되므로 숙지하지 않아도 된다."], "exp": "자신의 노동권을 알고 노동법을 숙지하며, 침해 시 적극적으로 대응해야 합니다.", "a": 1}, {"q": "필기에 정리된 유급휴일(주휴수당)의 조건으로 옳은 것은?", "opts": ["1년간 80% 이상 출근", "1개월 개근", "4주 평균 1주 15시간 이상 업무 + 1주 개근", "4주 평균 1주 40시간 이상 업무"], "exp": "필기: 제55조 4주 평균 1주 15시간 이상 업무, 1주 개근 ⇒ 유급휴일(주휴수당)입니다.", "a": 2}, {"q": "필기에 따르면 1년간 80% 이상 출근한 근로자의 연차 유급휴가는?", "opts": ["1일", "5일", "30일", "15일"], "exp": "1년 미만 또는 80% 미만이면 1개월 개근 시 1일입니다.", "a": 3}, {"q": "근로 계약서의 목적으로 옳은 것은?", "opts": ["근로자의 근로 제공과 사용자의 임금 지급", "사용자의 근로자 해고 절차 규정", "친권자의 근로계약 대리", "고용노동부의 인가 신청"], "exp": "근로 제공 ↔ 임금 지급을 목적으로 체결합니다.", "a": 0}], "hard": [{"q": "17세 갑은 편의점에서 휴게 시간 없이 1일 9시간씩 주 5일 근무하고 있으며, 아버지가 갑을 대신하여 근로계약을 체결하였다. 근로 기준법상 판단으로 옳은 것만을 고른 것은?^ㄱ. 합의가 있더라도 1일 근로 시간 한도를 초과하였다.^ㄴ. 휴게 시간을 주지 않은 것은 위반이다.^ㄷ. 아버지가 근로계약을 대리한 것은 위반이다.^ㄹ. 1주 근로 시간은 당사자 합의만 있으면 허용된다.", "opts": ["ㄴ, ㄷ, ㄹ", "ㄱ, ㄴ, ㄷ", "ㄱ, ㄹ", "ㄴ, ㄹ"], "exp": "1일 7시간 + 합의 시 1시간 = 최대 8시간, 1주 최대 35 + 5 = 40시간인데 갑은 45시간입니다.", "a": 1}, {"q": "16세 을이 오후 11시에 편의점에서 일하려고 한다. 옳은 것만을 고른 것은?^ㄱ. 원칙적으로 18세 미만은 오후 10시부터 오전 6시까지 근로할 수 없다.^ㄴ. 을이 동의하고 고용노동부장관의 인가를 받으면 가능하다.^ㄷ. 친권자의 동의만 있으면 가능하다.^ㄹ. 을은 연소 근로자에 해당하지 않는다.", "opts": ["ㄴ, ㄹ", "ㄷ, ㄹ", "ㄱ, ㄴ", "ㄱ, ㄷ"], "exp": "18세 미만자 본인의 동의 + 고용노동부장관 인가가 필요합니다. 을은 연소 근로자입니다.", "a": 2}, {"q": "14세 병의 근로에 대한 설명으로 옳은 것만을 고른 것은?^ㄱ. 원칙적으로 근로자로 사용할 수 없다.^ㄴ. 고용노동부 장관이 발급한 취직 인허증이 있으면 근로자로 사용할 수 있다.^ㄷ. 취직 인허증이 있으면 보건상 유해·위험한 사업에도 사용할 수 있다.^ㄹ. 병은 독자적으로 임금을 청구할 수 없다.", "opts": ["ㄱ, ㄷ", "ㄴ, ㄹ", "ㄷ, ㄹ", "ㄱ, ㄴ"], "exp": "18세 미만은 유해·위험한 사업에 사용할 수 없고, 미성년자는 독자적으로 임금을 청구할 수 있습니다.", "a": 3}, {"q": "필기에 정리된 근로 기준법 내용으로 옳은 것만을 고른 것은?^ㄱ. 휴일근로에는 1.5배의 가산 임금을 지급한다.^ㄴ. 오후 10시부터 다음날 오전 6시까지의 근로는 야간근로이다.^ㄷ. 연장된 근로 시간에는 가산 임금이 없다.^ㄹ. 1년 미만 근로자는 1개월 개근 시 1일의 연차 유급휴가를 받는다.", "opts": ["ㄱ, ㄴ, ㄹ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "exp": "휴일근로·야간근로·연장된 시간 모두 ×1.5입니다.", "a": 0}, {"q": "근로 기준법의 내용으로 옳은 것만을 고른 것은?^ㄱ. 임금은 통화로 직접 근로자에게 전액을 지급해야 한다.^ㄴ. 근로 시간이 4시간인 근로자가 명시적으로 요청하면 휴게 시간을 이용하지 않을 수 있다.^ㄷ. 8시간 근로 시 휴게 시간은 근로 시작 전에 몰아서 준다.^ㄹ. 미성년자의 임금은 친권자가 대신 청구해야 한다.", "opts": ["ㄷ, ㄹ", "ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄹ"], "exp": "휴게 시간은 근로 시간 ‘도중에’ 주어야 하며, 미성년자는 독자적으로 임금을 청구합니다.", "a": 1}, {"q": "청소년 노동권 침해의 해결 방안으로 옳은 것만을 고른 것은?^ㄱ. 사회적 차원: 노동 인권 교육으로 사회적 인식 개선^ㄴ. 청소년: 근로 계약서 작성 등 관련 노동법 숙지^ㄷ. 사용자: 노동자의 권리를 인식하고 관련 규정 준수^ㄹ. 사회적 차원: 청소년 개인이 대한 법률 구조 공단에 문의", "opts": ["ㄴ, ㄹ", "ㄴ, ㄷ, ㄹ", "ㄱ, ㄴ, ㄷ", "ㄱ, ㄹ"], "exp": "기관에 문의해 대응하는 것은 청소년 개인적 차원의 방안입니다.", "a": 2}]}};
+
+const TYPE_CONFIG = [
+  { key:'ox',   label:'OX 퀴즈', icon:'⭕', cls:'ox',   diff:'기초',   diffCls:'diff-basic', color:'#2563eb' },
+  { key:'mc',   label:'객관식',  icon:'📋', cls:'mc',   diff:'중급',   diffCls:'diff-mid',   color:'#16a34a' },
+  { key:'hard', label:'고난도',  icon:'🔥', cls:'hard', diff:'고난도', diffCls:'diff-hard',  color:'#7c3aed' }
+];
+const LETTERS = ['A','B','C','D'];
+const quizState = {};
+
+function qs(u){
+  if(!quizState[u]) quizState[u] = { activeType:0, answered:{ ox:[], mc:[], hard:[] } };
+  return quizState[u];
+}
+function isAnswered(v){ return v !== undefined && v !== null; }
+function typeScore(u,k){
+  const st = qs(u), data = QUIZ_DATA[u][k];
+  let c = 0, n = 0;
+  st.answered[k].forEach((v,i)=>{ if(isAnswered(v)){ n++; if(v === data[i].a) c++; } });
+  return [c,n];
+}
+function escHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function fmtQ(s){ return escHtml(s).split('^').join('<br>'); }
+
+function buildQCard(u,k,i,q){
+  const st = qs(u), v = st.answered[k][i], done = isAnswered(v);
+  const cfg = TYPE_CONFIG.find(t=>t.key===k);
+  const correct = done && v === q.a;
+  let h = `<div class="q-card${done ? (correct ? ' answered answered-correct' : ' answered answered-wrong') : ''}" data-q="${i}">`;
+  h += `<div class="q-meta"><span class="q-num">Q${i+1}</span><span class="q-difficulty ${cfg.diffCls}">${cfg.diff}</span></div>`;
+  h += `<div class="q-text">${fmtQ(q.q)}</div>`;
+  if(k === 'ox'){
+    h += '<div class="ox-row">';
+    [[true,'⭕','O'],[false,'❌','X']].forEach(([val,ic,lb])=>{
+      let c = 'ox-btn';
+      if(done){
+        if(val === v) c += (val === q.a) ? ' correct-picked' : ' wrong-picked';
+        else if(val === q.a) c += ' correct-reveal';
+      }
+      h += `<button class="${c}" ${done?'disabled':''} onclick="submitOX(${u},${i},${val})">${ic} ${lb}</button>`;
+    });
+    h += '</div>';
+  } else {
+    h += '<div class="mc-options">';
+    q.opts.forEach((o,j)=>{
+      let c = 'mc-opt';
+      if(done){
+        if(j === q.a) c += ' correct';
+        else if(j === v) c += ' wrong';
+      }
+      h += `<button class="${c}" ${done?'disabled':''} onclick="submitMC(${u},'${k}',${i},${j})"><span class="mc-opt-letter">${LETTERS[j]}</span><span>${escHtml(o)}</span></button>`;
+    });
+    h += '</div>';
+  }
+  if(done){
+    h += `<div class="q-feedback ${correct?'correct':'wrong'}"><b>${correct?'✅ 정답입니다!':'❌ 오답입니다.'}</b> `;
+    if(k === 'ox') h += `정답: ${q.a ? 'O' : 'X'} · `;
+    else if(!correct) h += `정답: ${LETTERS[q.a]} · `;
+    h += `${escHtml(q.exp)}</div>`;
+  }
+  return h + '</div>';
+}
+
+function buildQuiz(u){
+  const box = document.getElementById('quiz-'+u);
+  if(!box || !QUIZ_DATA[u]) return;
+  const st = qs(u), cfg = TYPE_CONFIG[st.activeType], k = cfg.key, data = QUIZ_DATA[u][k];
+  let h = '<div class="quiz-header"><h3>✏️ 개념 확인 문제</h3><div class="scoreboard">';
+  TYPE_CONFIG.forEach(t=>{
+    const [c,n] = typeScore(u,t.key);
+    h += `<span class="score-chip chip-${t.cls}">${t.icon} ${t.label} <b>${c}</b>/${QUIZ_DATA[u][t.key].length}</span>`;
+  });
+  h += '</div></div><div class="quiz-type-bar">';
+  TYPE_CONFIG.forEach((t,ti)=>{
+    const n = typeScore(u,t.key)[1];
+    h += `<button class="qtype-btn qtype-${t.cls}${ti===st.activeType?' active':''}" onclick="switchQuizType(${u},${ti})">${t.icon} ${t.label}<span class="qtype-count">${n}/${QUIZ_DATA[u][t.key].length}</span></button>`;
+  });
+  h += '</div>';
+  const [c,n] = typeScore(u,k);
+  const pct = Math.round(n / data.length * 100);
+  h += `<div class="q-progress-wrap"><div class="q-progress-bar"><div class="q-progress-fill" style="width:${pct}%;background:${cfg.color}"></div></div><span class="q-progress-text">${n} / ${data.length} 풀이</span></div>`;
+  data.forEach((q,i)=>{ h += buildQCard(u,k,i,q); });
+  if(n === data.length){
+    const p = Math.round(c / data.length * 100);
+    const msg = p >= 90 ? '완벽해요! 이 유형은 마스터했습니다 🎉' : p >= 70 ? '잘했어요! 틀린 문제의 해설만 다시 확인해 보세요 👍' : p >= 50 ? '조금만 더! 개념 정리를 한 번 더 읽어 보세요 💪' : '개념 정리를 다시 보고 도전해 보세요 📖';
+    h += `<div class="quiz-result"><div class="result-score" style="color:${cfg.color}">${c} / ${data.length} <small>(${p}%)</small></div><div class="result-msg">${msg}</div><div class="mini-bars">`;
+    TYPE_CONFIG.forEach(t=>{
+      const [cc,nn] = typeScore(u,t.key), tot = QUIZ_DATA[u][t.key].length;
+      const w = Math.round(cc / tot * 100);
+      h += `<div class="mini-bar-row"><span class="mini-bar-label">${t.icon} ${t.label}</span><div class="mini-bar-track"><div class="mini-bar-fill" style="width:${w}%;background:${t.color}"></div></div><span class="mini-bar-val">${cc}/${tot}${nn<tot?' (진행 중)':''}</span></div>`;
+    });
+    h += `</div><button class="reset-btn" onclick="resetType(${u},'${k}')">🔄 다시 풀기</button></div>`;
+  }
+  box.innerHTML = h;
+}
+
+function afterSubmit(u){
+  buildQuiz(u);
+  setTimeout(()=>{
+    const box = document.getElementById('quiz-'+u);
+    const next = box.querySelector('.q-card:not(.answered)');
+    const target = next || box.querySelector('.quiz-result');
+    if(target) target.scrollIntoView({ behavior:'smooth', block:'center' });
+  }, 80);
+}
+function submitOX(u,i,val){
+  const st = qs(u);
+  if(isAnswered(st.answered.ox[i])) return;
+  st.answered.ox[i] = val;
+  afterSubmit(u);
+}
+function submitMC(u,k,i,j){
+  const st = qs(u);
+  if(isAnswered(st.answered[k][i])) return;
+  st.answered[k][i] = j;
+  afterSubmit(u);
+}
+function switchQuizType(u,ti){
+  qs(u).activeType = ti;
+  buildQuiz(u);
+}
+function resetType(u,k){
+  qs(u).answered[k] = [];
+  buildQuiz(u);
+  const box = document.getElementById('quiz-'+u);
+  if(box) box.scrollIntoView({ behavior:'smooth', block:'start' });
+}
+function initQuizzes(){ Object.keys(QUIZ_DATA).forEach(u => buildQuiz(Number(u))); }
+if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initQuizzes);
+else initQuizzes();
+</script>
+</body>
+</html>

@@ -1,0 +1,2112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>히라가나 50음도 학습</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --primary:#2563eb; --primary-light:#eff6ff;
+  --green:#16a34a;   --green-light:#f0fdf4;
+  --purple:#7c3aed;  --purple-light:#f5f3ff;
+  --orange:#ea580c;  --orange-light:#fff7ed;
+  --teal:#0d9488;    --teal-light:#f0fdfa;
+  --rose:#e11d48;    --rose-light:#fff1f2;
+  --bg:#f8fafc; --surface:#fff;
+  --border:#e2e8f0; --text:#0f172a; --text-sec:#475569;
+  --shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);
+  color-scheme:light;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans KR',-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:14.5px;line-height:1.78;background:var(--bg);color:var(--text);}
+.jp{font-family:'Noto Sans JP','Hiragino Kaku Gothic ProN','Yu Gothic',sans-serif;}
+
+.page-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:#fff;border-bottom:1px solid var(--border);padding:14px 20px 0;}
+.subject-label{font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--primary);}
+.page-title{font-size:19px;font-weight:900;margin:4px 0 12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.badge-unit{font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--primary-light);color:var(--primary);}
+.tab-bar{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;}
+.tab-bar::-webkit-scrollbar{display:none;}
+.tab-btn{display:flex;align-items:center;gap:6px;padding:10px 14px;font-size:13.5px;font-weight:700;color:var(--text-sec);white-space:nowrap;border:none;background:none;cursor:pointer;border-bottom:3px solid transparent;font-family:inherit;}
+.tab-btn.active{color:var(--primary);border-bottom-color:var(--primary);}
+.tab-num{width:18px;height:18px;border-radius:50%;background:#cbd5e1;color:#fff;font-size:10.5px;display:flex;align-items:center;justify-content:center;font-weight:700;}
+.tab-btn.active .tab-num{background:var(--primary);}
+
+.content-wrap{max-width:980px;margin:0 auto;padding:24px 16px 100px;}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+.unit-banner{display:inline-block;font-size:12px;font-weight:700;color:var(--primary);background:var(--primary-light);padding:5px 12px;border-radius:999px;margin-bottom:16px;}
+.section-title{font-size:17.5px;font-weight:700;padding-bottom:8px;border-bottom:2px solid var(--primary);margin:30px 0 14px;display:flex;align-items:center;gap:8px;}
+.tip{background:var(--green-light);border:1px solid #bbf7d0;border-radius:10px;padding:14px 16px;font-size:13.5px;color:#166534;margin-bottom:16px;}
+.tip b{color:#15803d;}
+.note{background:#fefce8;border:1px solid #fde68a;border-radius:10px;padding:14px 16px;font-size:13.5px;color:#854d0e;margin-top:18px;}
+
+/* 영상 */
+.video-card{display:flex;align-items:center;gap:16px;background:#0f172a;color:#fff;border-radius:14px;padding:18px 20px;text-decoration:none;box-shadow:var(--shadow);}
+.video-card:hover{background:#1e293b;}
+.play-icon{flex:none;width:58px;height:58px;border-radius:14px;background:#ef4444;display:flex;align-items:center;justify-content:center;}
+.play-icon svg{width:26px;height:26px;fill:#fff;margin-left:3px;}
+.video-text .vt-title{font-size:15.5px;font-weight:700;}
+.video-text .vt-sub{font-size:12.5px;opacity:.75;}
+
+/* 툴바 */
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+.toolbar-desc{font-size:12.5px;color:var(--text-sec);}
+.reveal-btn{font-family:inherit;background:var(--primary);color:#fff;border:none;padding:9px 16px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);}
+.reveal-btn.on{background:var(--rose);}
+
+/* 50음도 그리드 */
+.gj{display:grid;grid-template-columns:64px repeat(5,minmax(0,1fr));gap:6px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:12px;box-shadow:var(--shadow);}
+.gj-corner{display:flex;align-items:flex-end;justify-content:center;font-size:10.5px;color:var(--text-sec);font-weight:700;line-height:1.2;text-align:center;padding-bottom:4px;}
+.gj-colhead{background:var(--primary);color:#fff;border-radius:8px;text-align:center;padding:8px 2px;line-height:1.1;}
+.gj-colhead b{display:block;font-size:20px;font-weight:900;}
+.gj-colhead span{font-size:10.5px;opacity:.85;}
+.gj-rowhead{background:var(--primary-light);color:var(--primary);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;}
+.gj-rowhead b{font-size:20px;font-weight:900;}
+.gj-rowhead span{font-size:10.5px;font-weight:700;opacity:.8;margin-top:3px;}
+.gj-cell{aspect-ratio:1/1;border:1.5px dashed #cbd5e1;border-radius:10px;background:#fff;position:relative;}
+.gj-cell .ans{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;}
+.gj-cell .ans .k{font-size:clamp(20px,5vw,32px);font-weight:700;color:var(--primary);line-height:1;}
+.gj-cell .ans .r{font-size:11px;color:var(--text-sec);margin-top:4px;}
+.gj-cell.none{border:1.5px solid var(--border);background:repeating-linear-gradient(45deg,#f1f5f9,#f1f5f9 6px,#e9eef4 6px,#e9eef4 12px);}
+.gj.reveal .gj-cell:not(.none){background:var(--primary-light);border-style:solid;border-color:#bfdbfe;}
+.gj.reveal .gj-cell .ans{opacity:1;}
+.gj-cell.n-cell{grid-column:span 1;}
+.gj-rowhead.n-head{background:var(--purple-light);color:var(--purple);}
+.gj.reveal .gj-cell.n-cell{background:var(--purple-light);border-color:#ddd6fe;}
+.gj-cell.n-cell .ans .k{color:var(--purple);}
+.gj-spacer{grid-column:span 4;display:flex;align-items:center;padding-left:6px;font-size:12px;color:var(--text-sec);}
+
+.legend-row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px;font-size:12px;color:var(--text-sec);}
+.legend-item{display:flex;align-items:center;gap:6px;}
+.sw{width:16px;height:16px;border-radius:4px;border:1.5px dashed #cbd5e1;background:#fff;}
+.sw.none{border:1.5px solid var(--border);background:repeating-linear-gradient(45deg,#f1f5f9,#f1f5f9 3px,#e2e8f0 3px,#e2e8f0 6px);}
+
+/* 따라 쓰기 */
+.trace-group{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:12px 14px;margin-bottom:10px;box-shadow:var(--shadow);}
+.trace-group-head{display:flex;align-items:center;gap:9px;margin-bottom:10px;}
+.tg-jamo{width:32px;height:32px;border-radius:8px;background:var(--primary-light);color:var(--primary);font-weight:900;font-size:15px;display:flex;align-items:center;justify-content:center;flex:none;}
+.trace-group.n-group .tg-jamo{background:var(--purple-light);color:var(--purple);}
+.tg-name{font-size:13.5px;font-weight:700;color:var(--text);}
+.trace-row{display:flex;gap:16px;flex-wrap:wrap;}
+.trace-item{display:flex;flex-direction:column;align-items:center;gap:6px;}
+.trace-label{display:flex;align-items:center;gap:5px;}
+.trace-label .dan{font-size:10px;color:var(--primary);font-weight:700;background:var(--primary-light);padding:1px 6px;border-radius:999px;}
+.trace-group.n-group .trace-label .dan{color:var(--purple);background:var(--purple-light);}
+.trace-label .read{font-size:11px;color:var(--text-sec);}
+.trace-boxes{display:flex;gap:6px;}
+.trace-box{width:62px;height:62px;position:relative;border:1.5px solid #cbd5e1;border-radius:8px;background:#fff;flex:none;}
+.trace-box::before{content:'';position:absolute;left:50%;top:2px;bottom:2px;border-left:1px dashed #dbe2ea;}
+.trace-box::after{content:'';position:absolute;top:50%;left:2px;right:2px;border-top:1px dashed #dbe2ea;}
+.trace-box .guide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:32px;color:#c7d0dc;font-weight:500;white-space:nowrap;}
+.trace-box.wide{width:92px;}
+.trace-box.wide .guide{font-size:24px;letter-spacing:-1px;}
+.trace-group.n-group .trace-box .guide{color:#d6cffb;}
+
+/* 문법 탭 공용 */
+.def-box{background:var(--primary-light);border-left:4px solid var(--primary);border-radius:0 10px 10px 0;padding:13px 16px;font-size:13.5px;color:#1e3a8a;margin:0 0 14px;}
+.def-box b{color:var(--primary);}
+.def-box ul{margin:6px 0 0 18px;}
+.sub-title{font-size:13.5px;font-weight:700;color:var(--text);margin:18px 0 8px;padding-left:10px;border-left:3px solid var(--primary);}
+.sub-title.first{margin-top:0;}
+
+/* 실제 단어로 보기 - 비교쌍 카드 */
+.cmp-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);border-left:5px solid var(--primary);border-radius:4px 14px 14px 4px;padding:13px 16px;margin-bottom:10px;box-shadow:var(--shadow);}
+.cmp-row.c-orange{border-left-color:var(--orange);}
+.cmp-row.c-purple{border-left-color:var(--purple);}
+.cmp-row.c-teal{border-left-color:var(--teal);}
+.cmp-row.c-rose{border-left-color:var(--rose);}
+.cmp-row.c-green{border-left-color:var(--green);}
+.cmp-word{display:flex;flex-direction:column;align-items:center;min-width:78px;}
+.cmp-word .w{font-size:22px;font-weight:700;color:var(--text);}
+.cmp-word .m{font-size:10.5px;color:#fff;background:#64748b;border-radius:999px;padding:2px 10px;margin-top:6px;font-weight:700;white-space:nowrap;}
+.cmp-vs{font-size:10.5px;font-weight:900;color:var(--text-sec);flex:none;}
+.cmp-note{font-size:11.5px;color:var(--text-sec);margin-left:2px;}
+.cho{color:var(--rose);font-weight:900;}
+
+/* 실제 단어로 보기 - 단어 칩 */
+.vocab-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:6px;}
+.vocab-chip{display:flex;flex-direction:column;align-items:center;background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--primary);border-radius:6px 6px 12px 12px;padding:13px 15px 11px;min-width:84px;box-shadow:var(--shadow);}
+.vocab-chip.c-orange{border-top-color:var(--orange);}
+.vocab-chip.c-purple{border-top-color:var(--purple);}
+.vocab-chip.c-teal{border-top-color:var(--teal);}
+.vocab-chip.c-rose{border-top-color:var(--rose);}
+.vocab-chip.c-green{border-top-color:var(--green);}
+.vocab-chip .vw{font-size:18.5px;font-weight:700;}
+.vocab-chip .vm{font-size:10.5px;color:#fff;background:#64748b;border-radius:999px;padding:2px 9px;margin-top:7px;font-weight:700;white-space:nowrap;}
+
+/* 장음 규칙 */
+.rule-list{display:flex;flex-direction:column;gap:7px;margin-bottom:14px;}
+.rule-item{display:flex;align-items:center;gap:10px;background:var(--rose-light);border:1.5px solid #fecdd3;border-radius:10px;padding:9px 13px;flex-wrap:wrap;}
+.rule-num{width:24px;height:24px;border-radius:50%;background:var(--rose);color:#fff;font-weight:900;font-size:12px;display:flex;align-items:center;justify-content:center;flex:none;}
+.rule-text{font-size:13px;color:var(--text);}
+.rule-ex{font-size:12px;color:var(--rose);font-weight:700;margin-left:auto;white-space:nowrap;}
+
+/* 동사 시제 따라쓰기 */
+.verb-block{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:10px;box-shadow:var(--shadow);}
+.verb-head{display:flex;align-items:center;gap:8px;margin-bottom:9px;flex-wrap:wrap;}
+.verb-head .vform{font-size:16px;font-weight:700;color:var(--text);}
+.verb-head .vmeta{font-size:11px;color:var(--text-sec);}
+.verb-head .varrow{color:var(--orange);font-weight:900;}
+.verb-head .vtarget{font-size:16px;font-weight:700;color:var(--orange);}
+.trace-lines{display:flex;gap:8px;flex-wrap:wrap;}
+.trace-line{flex:1;min-width:130px;height:44px;border:1.5px dashed #fdba74;border-radius:8px;background:var(--orange-light);display:flex;align-items:center;padding:0 14px;}
+.trace-line .guide{font-size:17px;color:#f0b27a;font-weight:600;}
+
+.sentence-box{background:var(--teal-light);border:1px solid #99f6e4;border-radius:10px;padding:12px 14px;font-size:13.5px;color:#115e59;margin-bottom:14px;}
+.sentence-box .jp-s{font-weight:700;font-size:14.5px;}
+
+/* 회화 탭 */
+.greet-scene{font-size:11px;font-weight:700;color:var(--text-sec);background:#f1f5f9;border-radius:999px;padding:2px 10px;margin-right:8px;flex:none;}
+.dlg-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:6px 16px;margin-bottom:14px;box-shadow:var(--shadow);}
+.dlg-line{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px dashed var(--border);}
+.dlg-line:last-child{border-bottom:none;}
+.dlg-name{flex:none;font-size:11px;font-weight:900;color:#fff;background:var(--teal);border-radius:999px;padding:4px 10px;margin-top:1px;white-space:nowrap;}
+.dlg-name.b{background:var(--purple);}
+.dlg-name.c{background:var(--orange);}
+.dlg-name.d{background:var(--rose);}
+.dlg-name.e{background:var(--primary);}
+.dlg-text{flex:1;}
+.dlg-jp{font-size:14.5px;font-weight:700;color:var(--text);}
+.dlg-kr{font-size:11.5px;color:var(--text-sec);margin-top:3px;}
+.greet-pair{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);border-left:5px solid var(--teal);border-radius:4px 14px 14px 4px;padding:12px 16px;margin-bottom:10px;box-shadow:var(--shadow);}
+.greet-pair.c-orange{border-left-color:var(--orange);}
+.greet-pair.c-purple{border-left-color:var(--purple);}
+.greet-pair.c-rose{border-left-color:var(--rose);}
+.greet-pair .gside{display:flex;flex-direction:column;gap:2px;}
+.greet-pair .gjp{font-size:15.5px;font-weight:700;color:var(--text);}
+.greet-pair .gkr{font-size:11px;color:var(--text-sec);}
+.greet-pair .garrow{font-size:13px;color:var(--text-sec);flex:none;}
+.mini-tag{display:inline-block;font-size:10.5px;font-weight:700;color:#fff;background:#94a3b8;border-radius:999px;padding:2px 9px;margin-left:6px;}
+.mini-tag.f{background:var(--primary);}
+
+/* 단어 탭 */
+.progress-wrap{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 16px;margin-bottom:18px;box-shadow:var(--shadow);}
+.progress-text{font-size:12.5px;font-weight:700;color:var(--text-sec);white-space:nowrap;}
+.progress-track{flex:1;height:10px;background:#e2e8f0;border-radius:999px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--green);border-radius:999px;transition:width .3s;width:0%;}
+.reset-vocab-btn{font-family:inherit;font-size:11.5px;font-weight:700;color:var(--text-sec);background:none;border:1px solid var(--border);border-radius:8px;padding:6px 11px;cursor:pointer;flex:none;}
+
+.cat-block{margin-bottom:22px;}
+.cat-title{font-size:13px;font-weight:700;color:var(--text);margin:0 0 9px;display:flex;align-items:center;gap:7px;}
+.cat-dot{width:9px;height:9px;border-radius:50%;background:var(--primary);flex:none;}
+.word-grid{display:flex;flex-wrap:wrap;gap:9px;}
+.word-card{position:relative;display:flex;flex-direction:column;align-items:center;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:11px 15px 9px;min-width:84px;cursor:pointer;-webkit-tap-highlight-color:transparent;box-shadow:var(--shadow);transition:border-color .15s, background .15s;}
+.word-card .ww{font-size:18px;font-weight:700;color:var(--text);}
+.word-card .wm{font-size:10.5px;color:var(--text-sec);margin-top:5px;text-align:center;}
+.word-card .wcheck{position:absolute;top:-6px;right:-6px;width:19px;height:19px;border-radius:50%;border:1.5px solid #cbd5e1;background:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;color:transparent;font-weight:900;}
+.word-card.done{border-color:var(--green);background:var(--green-light);}
+.word-card.done .ww{color:#15803d;}
+.word-card.done .wm{color:#15803d;}
+.word-card.done .wcheck{background:var(--green);border-color:var(--green);color:#fff;}
+
+/* ===== 4. 짝 맞추기 (매치 매드니스) ===== */
+.mm-stage{max-width:620px;margin:0 auto;position:relative;}
+.mm-card{position:relative;border-radius:22px;background:linear-gradient(160deg,#fff7ed 0%,#fff 38%,#fff 70%,#fff1f2 100%);border:1px solid #fed7aa;box-shadow:0 10px 30px -12px rgba(234,88,12,.35),var(--shadow);padding:18px 18px 22px;overflow:hidden;transition:box-shadow .3s,border-color .3s;}
+.mm-card.fire{border-color:#fb923c;box-shadow:0 0 0 3px rgba(251,146,60,.35),0 14px 40px -10px rgba(225,29,72,.45);}
+.mm-card.fire::before{content:'';position:absolute;inset:-40% -10% auto -10%;height:70%;background:radial-gradient(ellipse at 50% 100%,rgba(251,146,60,.28),transparent 70%);animation:mmGlow 1.6s ease-in-out infinite alternate;pointer-events:none;}
+@keyframes mmGlow{from{opacity:.55;transform:translateY(6px)}to{opacity:1;transform:translateY(-4px)}}
+
+.mm-hud{position:relative;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;margin-bottom:12px;}
+.mm-lv{font-size:12px;font-weight:900;color:#fff;background:linear-gradient(135deg,var(--orange),var(--rose));padding:6px 12px;border-radius:999px;letter-spacing:.02em;box-shadow:0 3px 0 #be123c;}
+.mm-score{justify-self:center;font-size:22px;font-weight:900;color:var(--text);font-variant-numeric:tabular-nums;letter-spacing:-.01em;}
+.mm-score small{font-size:11px;font-weight:700;color:var(--text-sec);margin-left:3px;}
+.mm-time{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:900;color:var(--text);font-variant-numeric:tabular-nums;background:#fff;border:1.5px solid var(--border);padding:5px 11px;border-radius:999px;}
+.mm-time.low{color:var(--rose);border-color:#fda4af;animation:mmPulse .8s ease-in-out infinite;}
+@keyframes mmPulse{50%{transform:scale(1.07)}}
+
+.mm-bars{position:relative;display:flex;flex-direction:column;gap:7px;margin-bottom:16px;}
+.mm-bar-label{display:flex;justify-content:space-between;font-size:11px;font-weight:700;color:var(--text-sec);}
+.mm-bar{height:12px;background:#f1f5f9;border-radius:999px;overflow:hidden;box-shadow:inset 0 1px 2px rgba(0,0,0,.06);}
+.mm-bar-fill{height:100%;border-radius:999px;transition:width .35s cubic-bezier(.2,.8,.2,1);}
+.mm-bar-fill.goal{background:linear-gradient(90deg,#34d399,var(--green));}
+.mm-bar-fill.time{background:linear-gradient(90deg,#fbbf24,var(--orange));transition:width 1s linear;}
+.mm-bar-fill.time.low{background:linear-gradient(90deg,#fb7185,var(--rose));}
+
+.mm-combo{position:relative;height:34px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;}
+.mm-combo-inner{display:flex;align-items:center;gap:6px;font-weight:900;font-size:17px;color:var(--orange);opacity:0;transform:scale(.7);transition:opacity .2s,transform .2s;}
+.mm-combo-inner.show{opacity:1;transform:scale(1);}
+.mm-combo-inner.bump{animation:mmBump .32s ease;}
+@keyframes mmBump{40%{transform:scale(1.28)}}
+.mm-combo-inner .mult{font-size:11px;color:#fff;background:var(--rose);padding:2px 8px;border-radius:999px;}
+.mm-flame{display:inline-block;animation:mmFlame .5s ease-in-out infinite alternate;transform-origin:50% 90%;}
+@keyframes mmFlame{from{transform:rotate(-6deg) scale(1)}to{transform:rotate(6deg) scale(1.15)}}
+
+.mm-board{position:relative;display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(28px,9vw,64px);}
+.mm-board::before{content:'';position:absolute;left:50%;top:6px;bottom:6px;border-left:2px dashed #fed7aa;transform:translateX(-1px);}
+.mm-col{display:flex;flex-direction:column;gap:10px;}
+.mm-col-title{text-align:center;font-size:11px;font-weight:900;color:var(--text-sec);letter-spacing:.08em;margin-bottom:2px;}
+.mm-tile{position:relative;font-family:inherit;height:60px;border-radius:14px;border:2px solid #e2e8f0;border-bottom-width:5px;background:#fff;color:var(--text);font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0 10px;text-align:center;line-height:1.2;-webkit-tap-highlight-color:transparent;user-select:none;transition:transform .12s, border-color .15s, background .15s, opacity .28s;}
+.mm-tile:active{transform:translateY(2px);border-bottom-width:3px;}
+.mm-tile.jp{font-family:'Noto Sans JP','Hiragino Kaku Gothic ProN','Yu Gothic',sans-serif;font-size:20px;font-weight:700;}
+.mm-tile.sel{border-color:#60a5fa;background:#eff6ff;color:#1d4ed8;transform:translateY(-2px);}
+.mm-card.fire .mm-tile.sel{border-color:#fb923c;background:#fff7ed;color:#c2410c;}
+.mm-tile.ok{border-color:#4ade80;background:#dcfce7;color:#15803d;animation:mmOk .3s ease;}
+@keyframes mmOk{50%{transform:scale(1.06)}}
+.mm-tile.bad{border-color:#fb7185;background:#ffe4e6;color:#be123c;animation:mmShake .38s ease;}
+@keyframes mmShake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.mm-tile.out{opacity:0;transform:scale(.88);pointer-events:none;}
+.mm-tile.done{color:#cbd5e1;border-color:#eef2f6;background:#f8fafc;cursor:default;pointer-events:none;transform:none;}
+.mm-tile.in{animation:mmIn .34s cubic-bezier(.2,.9,.3,1.2) both;}
+@keyframes mmIn{from{opacity:0;transform:translateY(8px) scale(.92)}to{opacity:1;transform:none}}
+.mm-pop{position:absolute;font-weight:900;font-size:15px;color:var(--green);pointer-events:none;animation:mmPop .8s ease-out forwards;z-index:3;}
+@keyframes mmPop{from{opacity:1;transform:translate(-50%,0)}to{opacity:0;transform:translate(-50%,-34px)}}
+
+.mm-quit-btn{display:block;font-family:inherit;margin:16px auto 0;background:none;border:none;font-size:12px;font-weight:700;color:var(--text-sec);cursor:pointer;padding:6px 10px;border-radius:8px;}
+.mm-quit-btn:hover{background:#f1f5f9;color:var(--rose);}
+.mm-confirm{position:absolute;inset:0;background:rgba(15,23,42,.55);border-radius:22px;display:flex;align-items:center;justify-content:center;z-index:40;padding:20px;animation:mmFade .18s ease;}
+.mm-confirm[hidden]{display:none;}
+.mm-confirm-box{background:#fff;border-radius:16px;padding:22px 20px;max-width:280px;width:100%;text-align:center;box-shadow:0 14px 34px rgba(0,0,0,.28);}
+.mm-confirm-box p{font-size:13.5px;color:var(--text);margin-bottom:16px;line-height:1.55;}
+.mm-confirm-actions{display:flex;gap:8px;justify-content:center;}
+.mm-confirm-actions .mm-btn{margin-top:0;padding:9px 18px;font-size:12.5px;border-radius:12px;box-shadow:0 3px 0 #be123c;}
+.mm-confirm-actions .mm-btn.ghost{box-shadow:0 3px 0 #e2e8f0;}
+
+.mm-screen{display:flex;flex-direction:column;align-items:center;text-align:center;padding:14px 4px 6px;animation:mmFade .3s ease;}
+@keyframes mmFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.mm-screen[hidden]{display:none;}
+.mm-card.screen .mm-play{display:none;}
+.mm-card:not(.screen) .mm-screen{display:none;}
+.mm-hero{margin-bottom:20px;}
+.mm-hero-flame{width:88px;height:88px;margin:0 auto 12px;border-radius:26px;background:linear-gradient(135deg,#fdba74,#fb7185);display:flex;align-items:center;justify-content:center;font-size:48px;box-shadow:0 8px 0 #be123c,0 16px 30px -10px rgba(225,29,72,.5);}
+.mm-hero-title{font-size:25px;font-weight:900;color:var(--text);letter-spacing:-.02em;}
+.mm-hero-sub{font-size:13px;color:var(--text-sec);margin-top:4px;}
+.mm-hero-sub b{color:var(--orange);}
+.mm-mode-label{font-size:11px;font-weight:900;color:var(--text-sec);letter-spacing:.04em;margin-bottom:8px;}
+.mm-mode-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:20px;max-width:440px;}
+.mm-mode-btn{font-family:inherit;display:flex;align-items:center;gap:6px;background:#fff;border:1.5px solid var(--border);border-radius:999px;padding:8px 14px;font-size:12.5px;font-weight:700;color:var(--text-sec);cursor:pointer;transition:background .15s,color .15s,border-color .15s;}
+.mm-mode-btn .mmi{font-size:14px;line-height:1;}
+.mm-mode-btn.active{background:linear-gradient(135deg,var(--orange),var(--rose));border-color:transparent;color:#fff;box-shadow:0 3px 0 #be123c;}
+.mm-howto{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;width:100%;max-width:440px;margin-bottom:22px;}
+.mm-how{display:flex;flex-direction:column;align-items:center;gap:3px;background:#fff;border:1.5px solid var(--border);border-bottom-width:4px;border-radius:16px;padding:14px 10px;}
+.mm-how .ic{font-size:24px;line-height:1;margin-bottom:4px;}
+.mm-how b{font-size:13.5px;color:var(--text);}
+.mm-how span:last-child{font-size:11.5px;color:var(--text-sec);line-height:1.45;}
+.mm-big-emoji{font-size:54px;line-height:1;margin-bottom:10px;}
+.mm-ov-title{font-size:23px;font-weight:900;color:var(--text);margin-bottom:6px;}
+.mm-ov-sub{font-size:13px;color:var(--text-sec);margin-bottom:18px;max-width:360px;}
+.mm-btn{font-family:inherit;border:none;cursor:pointer;font-size:15.5px;font-weight:900;color:#fff;padding:14px 34px;border-radius:16px;background:linear-gradient(135deg,var(--orange),var(--rose));box-shadow:0 5px 0 #be123c;transition:transform .1s,box-shadow .1s;}
+.mm-btn:active{transform:translateY(3px);box-shadow:0 2px 0 #be123c;}
+.mm-btn.ghost{background:#fff;color:var(--text-sec);border:2px solid var(--border);box-shadow:0 4px 0 #e2e8f0;margin-top:10px;padding:10px 24px;font-size:13px;}
+.mm-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;width:100%;max-width:340px;margin-bottom:18px;}
+.mm-stat{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:10px 6px;}
+.mm-stat b{display:block;font-size:21px;font-weight:900;color:var(--text);font-variant-numeric:tabular-nums;}
+.mm-stat span{font-size:11px;font-weight:700;color:var(--text-sec);}
+.mm-stat.hl{border-color:#fdba74;background:#fff7ed;}
+.mm-stat.hl b{color:var(--orange);}
+.mm-rules{display:flex;flex-direction:column;gap:6px;font-size:12.5px;color:var(--text-sec);margin-bottom:20px;text-align:left;}
+.mm-rules div{display:flex;gap:8px;align-items:flex-start;}
+.mm-best{font-size:12px;font-weight:700;color:var(--orange);margin-top:12px;}
+.mm-newbest{display:inline-block;font-size:11px;font-weight:900;color:#fff;background:var(--rose);padding:3px 10px;border-radius:999px;margin-bottom:10px;animation:mmBump .5s ease 2;}
+
+@media(max-width:640px){
+  .mm-card{padding:14px 12px 18px;border-radius:18px;}
+  .mm-tile{height:54px;font-size:13.5px;}
+  .mm-tile.jp{font-size:17.5px;}
+  .mm-score{font-size:19px;}
+}
+
+@media(max-width:640px){
+  .gj{grid-template-columns:46px repeat(5,minmax(0,1fr));gap:4px;padding:8px;}
+  .gj-colhead b,.gj-rowhead b{font-size:17px;}
+  .gj-rowhead span{font-size:9.5px;}
+  .gj-cell .ans .r{font-size:9.5px;}
+  .page-title{font-size:17px;}
+  .trace-box{width:52px;height:52px;}
+  .trace-box.wide{width:78px;}
+  .trace-box.wide .guide{font-size:20px;}
+  .trace-box .guide{font-size:27px;}
+}
+
+/* ===== 6. 문화 탭 ===== */
+.hand{display:inline-block;font-size:11px;font-weight:700;color:#b45309;background:#fef3c7;border:1px dashed #f59e0b;border-radius:6px;padding:0 7px;margin:0 2px;white-space:nowrap;line-height:1.7;vertical-align:1px;}
+.hand::before{content:'✏️ ';}
+.cul-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:14px;}
+.cul-grid.three{grid-template-columns:repeat(3,minmax(0,1fr));}
+.cul-card{background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--primary);border-radius:6px 6px 12px 12px;padding:12px 14px;box-shadow:var(--shadow);}
+.cul-card.c-orange{border-top-color:var(--orange);}
+.cul-card.c-purple{border-top-color:var(--purple);}
+.cul-card.c-teal{border-top-color:var(--teal);}
+.cul-card.c-rose{border-top-color:var(--rose);}
+.cul-card.c-green{border-top-color:var(--green);}
+.cul-card .ct{font-weight:900;font-size:14.5px;color:var(--text);margin-bottom:5px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;line-height:1.4;}
+.cul-card .cj{font-size:15px;font-weight:700;color:var(--primary);}
+.cul-card.c-orange .cj{color:var(--orange);}
+.cul-card.c-purple .cj{color:var(--purple);}
+.cul-card.c-teal .cj{color:var(--teal);}
+.cul-card.c-rose .cj{color:var(--rose);}
+.cul-card.c-green .cj{color:var(--green);}
+.cul-card p{font-size:12.5px;color:var(--text-sec);line-height:1.7;}
+.cul-card p + p{margin-top:5px;}
+.flow-row{display:flex;align-items:stretch;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
+.flow-item{flex:1;min-width:118px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 12px;font-size:12.5px;text-align:center;box-shadow:var(--shadow);color:var(--text);}
+.flow-item b{display:block;font-size:11px;color:var(--primary);margin-bottom:3px;}
+.flow-arrow{display:flex;align-items:center;color:var(--rose);font-weight:900;}
+.cul-table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:14px;}
+.cul-table th{background:#334155;color:#fff;padding:8px 10px;font-size:12.5px;font-weight:700;}
+.cul-table th.r{background:var(--rose);}
+.cul-table th.b{background:var(--primary);}
+.cul-table td{border-top:1px solid var(--border);padding:8px 10px;text-align:center;color:var(--text);}
+.cul-table td:first-child{font-weight:700;color:var(--text-sec);}
+.bubble{display:inline-block;background:#fff;border:1.5px solid var(--border);border-radius:14px 14px 14px 4px;padding:4px 12px;font-size:14px;font-weight:700;color:var(--rose);margin-bottom:6px;}
+.goro-box{background:var(--surface);border:1px solid var(--border);border-left:5px solid var(--rose);border-radius:4px 14px 14px 4px;padding:13px 16px;margin-bottom:10px;box-shadow:var(--shadow);}
+.goro-box.c-teal{border-left-color:var(--teal);}
+.goro-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12.5px;color:var(--text-sec);}
+.goro-head .num{font-size:17px;font-weight:900;color:var(--text);letter-spacing:.02em;}
+.goro-row{display:flex;gap:4px;flex-wrap:wrap;align-items:stretch;margin:10px 0 8px;}
+.goro-cell{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:36px;background:#fff;border:1.5px solid var(--border);border-radius:8px;padding:5px 6px;}
+.goro-cell .d{font-size:18px;font-weight:900;color:var(--text);line-height:1.2;}
+.goro-cell .k{font-size:13px;font-weight:700;color:var(--rose);}
+.goro-cell .s{font-size:10px;color:var(--text-sec);}
+.goro-cell.hit{background:var(--rose-light);border-color:#fda4af;}
+.goro-box.c-teal .goro-cell.hit{background:var(--teal-light);border-color:#5eead4;}
+.goro-box.c-teal .goro-cell .k{color:var(--teal);}
+.goro-cell.dim{opacity:.45;}
+.goro-dash{align-self:center;font-weight:900;color:var(--text-sec);padding:0 2px;}
+.goro-mean{font-size:13px;color:var(--text);}
+.goro-mean b{color:var(--rose);}
+.goro-box.c-teal .goro-mean b{color:var(--teal);}
+@media(max-width:640px){
+  .cul-grid,.cul-grid.three{grid-template-columns:1fr;}
+  .flow-arrow{display:none;}
+  .flow-item{min-width:calc(50% - 4px);}
+}
+
+/* ===== 6. 문화 확인 문제 ===== */
+.quiz-section{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:16px;box-shadow:var(--shadow);}
+.quiz-header{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+.quiz-title{font-size:15.5px;font-weight:900;color:var(--text);}
+.scoreboard{display:flex;gap:6px;flex-wrap:wrap;}
+.score-chip{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:#f1f5f9;color:var(--text-sec);}
+.score-chip.ox{background:var(--primary-light);color:var(--primary);}
+.score-chip.mc{background:var(--green-light);color:var(--green);}
+.score-chip.hard{background:var(--purple-light);color:var(--purple);}
+.quiz-type-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+.qtype-btn{font-family:inherit;display:flex;align-items:center;gap:6px;background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:8px 12px;font-size:13px;font-weight:700;color:var(--text-sec);cursor:pointer;}
+.qtype-btn.active{border-color:var(--qc);color:var(--qc);background:#fff;box-shadow:inset 0 -3px 0 var(--qc);}
+.qtype-count{font-size:10.5px;background:#f1f5f9;color:var(--text-sec);border-radius:999px;padding:1px 7px;}
+.q-progress-wrap{display:flex;align-items:center;gap:10px;font-size:11.5px;font-weight:700;color:var(--text-sec);margin-bottom:14px;}
+.q-progress-bar{flex:1;height:8px;background:#f1f5f9;border-radius:999px;overflow:hidden;}
+.q-progress-fill{height:100%;border-radius:999px;transition:width .3s;}
+.q-card{border:1.5px solid var(--border);border-radius:12px;padding:13px 14px;margin-bottom:10px;background:#fff;scroll-margin-top:120px;}
+.q-card.answered-correct{border-color:#86efac;background:#f7fef9;}
+.q-card.answered-wrong{border-color:#fda4af;background:#fffafb;}
+.q-meta{display:flex;align-items:center;gap:6px;margin-bottom:6px;}
+.q-num{font-size:11px;font-weight:900;color:#fff;background:#334155;border-radius:6px;padding:1px 7px;}
+.q-difficulty{font-size:10.5px;font-weight:700;border-radius:999px;padding:1px 8px;}
+.diff-basic{background:var(--primary-light);color:var(--primary);}
+.diff-mid{background:var(--green-light);color:var(--green);}
+.diff-hard{background:var(--purple-light);color:var(--purple);}
+.q-text{font-size:14px;font-weight:700;color:var(--text);line-height:1.6;margin-bottom:10px;}
+.q-quote{display:block;margin-top:6px;font-weight:500;font-size:13px;color:var(--text-sec);background:#f8fafc;border-left:3px solid var(--border);padding:6px 10px;border-radius:0 8px 8px 0;}
+.q-items{background:#f8fafc;border:1px solid var(--border);border-radius:10px;padding:9px 12px;margin-bottom:10px;font-size:13px;color:var(--text);display:flex;flex-direction:column;gap:4px;}
+.ox-row{display:flex;gap:8px;}
+.ox-btn{font-family:inherit;flex:1;max-width:120px;height:46px;border-radius:10px;border:1.5px solid var(--border);background:#fff;font-size:20px;cursor:pointer;}
+.ox-btn:disabled{cursor:default;}
+.ox-btn.correct-picked,.ox-btn.correct-reveal{border-color:var(--green);background:var(--green-light);}
+.ox-btn.wrong-picked{border-color:var(--rose);background:var(--rose-light);}
+.mc-options{display:flex;flex-direction:column;gap:6px;}
+.mc-opt{font-family:inherit;display:flex;align-items:center;gap:10px;text-align:left;width:100%;background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:9px 12px;font-size:13.5px;color:var(--text);cursor:pointer;line-height:1.5;}
+.mc-opt:not(:disabled):hover{border-color:#93c5fd;background:#f8fbff;}
+.mc-opt:disabled{cursor:default;}
+.mc-opt-letter{flex:none;width:24px;height:24px;border-radius:50%;background:#f1f5f9;color:var(--text-sec);font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center;}
+.mc-opt.correct{border-color:var(--green);background:var(--green-light);}
+.mc-opt.correct .mc-opt-letter{background:var(--green);color:#fff;}
+.mc-opt.wrong{border-color:var(--rose);background:var(--rose-light);}
+.mc-opt.wrong .mc-opt-letter{background:var(--rose);color:#fff;}
+.q-feedback{margin-top:10px;font-size:12.5px;line-height:1.6;border-radius:8px;padding:8px 11px;}
+.q-feedback.correct{background:var(--green-light);color:#166534;}
+.q-feedback.wrong{background:var(--rose-light);color:#9f1239;}
+.quiz-result{text-align:center;background:#f8fafc;border:1px solid var(--border);border-radius:14px;padding:18px 14px;margin-bottom:14px;}
+.qr-score{font-size:30px;font-weight:900;line-height:1.2;}
+.qr-pct{font-size:13px;color:var(--text-sec);margin:4px 0 12px;font-weight:700;}
+.mini-bars{display:flex;flex-direction:column;gap:6px;max-width:320px;margin:0 auto 14px;}
+.mini-bar-row{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--text-sec);font-weight:700;}
+.mini-bar-label{width:52px;text-align:right;}
+.mini-bar-track{flex:1;height:8px;background:#e2e8f0;border-radius:999px;overflow:hidden;}
+.mini-bar-fill{height:100%;border-radius:999px;}
+.mini-bar-num{width:36px;text-align:left;}
+.reset-btn{font-family:inherit;border:none;background:#334155;color:#fff;font-size:12.5px;font-weight:700;border-radius:10px;padding:9px 16px;cursor:pointer;}
+.reset-btn.subtle{display:block;margin:6px auto 0;background:none;color:var(--text-sec);border:1px solid var(--border);}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="subject-label">일본어 기초</div>
+  <div class="page-title">일본어 기초 학습</div>
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab(0)"><span class="tab-num">1</span>문자</button>
+    <button class="tab-btn" onclick="switchTab(1)"><span class="tab-num">2</span>문법</button>
+    <button class="tab-btn" onclick="switchTab(2)"><span class="tab-num">3</span>단어</button>
+    <button class="tab-btn" onclick="switchTab(3)"><span class="tab-num">4</span>🔥 짝 맞추기</button>
+    <button class="tab-btn" onclick="switchTab(4)"><span class="tab-num">5</span>회화</button>
+    <button class="tab-btn" onclick="switchTab(5)"><span class="tab-num">6</span>문화</button>
+  </div>
+</div>
+
+<div class="content-wrap">
+<div class="tab-panel active" id="panel-0">
+  <div class="unit-banner">📌 1. 문자 › 히라가나 50음도</div>
+
+  <div class="tip">
+    <b>사용법</b> — 영상을 보며 각 글자를 따라 적어 보세요. 가로줄은 <b>행</b>(자음), 세로줄은 <b>단</b>(모음)입니다.
+    예를 들어 <b>ㅋ행 × ㅏ단</b> 칸에는 '카'에 해당하는 글자를 적으면 됩니다. 다 채운 뒤 <b>정답 비교하기</b>를 눌러 실제 50음도와 맞춰보세요.
+  </div>
+
+  <div class="section-title">🎬 영상으로 배우기</div>
+  <a class="video-card" href="https://www.youtube.com/watch?v=oBsKRSooNTI" target="_blank" rel="noopener">
+    <div class="play-icon"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+    <div class="video-text">
+      <div class="vt-title">히라가나 50음도 강의 영상</div>
+      <div class="vt-sub">누르면 유튜브에서 영상이 열립니다 · youtu.be/oBsKRSooNTI</div>
+    </div>
+  </a>
+
+  <div class="section-title">📝 50음도 빈칸 채우기</div>
+  <div class="toolbar">
+    <div class="toolbar-desc"><b>영상을 보며</b> 빈칸에 해당하는 히라가나를 적어보세요.</div>
+    <button class="reveal-btn" id="revealBtn" onclick="toggleReveal()">👀 정답 비교하기</button>
+  </div>
+  <div class="legend-row">
+    <div class="legend-item"><span class="sw"></span> 채워 넣을 칸</div>
+    <div class="legend-item"><span class="sw none"></span> 글자가 없는 칸</div>
+  </div>
+
+  <div class="gj" id="gj"></div>
+
+  <div class="section-title">✍️ 따라 쓰기 연습</div>
+  <div class="toolbar">
+    <div class="toolbar-desc"><b>영상을 보며</b> 각 글자를 2번씩 따라 써보세요. 점선은 글자의 균형(중심)을 잡는 기준선입니다.</div>
+  </div>
+  <div id="traceWrap"></div>
+</div>
+
+<div class="tab-panel" id="panel-1">
+  <div class="unit-banner">📌 2. 문법 › 문자 체계와 발음 규칙</div>
+
+  <!-- 2-1 문자 체계 -->
+  <div class="section-title">🔤 문자 체계</div>
+  <div class="def-box">
+    문자는 나타내는 방식에 따라 크게 두 가지로 나뉩니다.
+    <ul>
+      <li><b>표음 문자</b> (소리를 나타내는 문자) — 한글, 가나(히라가나·가타카나)</li>
+      <li><b>표의 문자</b> (뜻을 나타내는 문자) — 한자</li>
+    </ul>
+    이 교육과정에서는 히라가나·가타카나만 배우고, 한자는 학습하지 않습니다.
+  </div>
+  <div class="sub-title first">실제 단어로 보기</div>
+  <div class="vocab-row">
+    <div class="vocab-chip"><span class="vw jp">がっこう</span><span class="vm">학교 · 히라가나</span></div>
+    <div class="vocab-chip c-orange"><span class="vw jp">パン</span><span class="vm">빵 · 가타카나(외래어)</span></div>
+    <div class="vocab-chip c-purple"><span class="vw jp">学校</span><span class="vm">학교 · 한자(참고용)</span></div>
+  </div>
+
+  <!-- 2-2 박자 -->
+  <div class="section-title">🥁 박자</div>
+  <div class="def-box">
+    일본어는 <b>박</b>을 기준으로 리듬을 셉니다.
+    <ul>
+      <li>① 글자 1개 = 1박</li>
+      <li>② 요음(작은 ゃゅょ)은 앞 글자와 합쳐서 1박으로 센다 — 예외</li>
+    </ul>
+  </div>
+  <div class="sub-title first">실제 단어로 보기</div>
+  <div class="vocab-row">
+    <div class="vocab-chip c-teal"><span class="vw jp">あし</span><span class="vm">발,다리 · 2박</span></div>
+    <div class="vocab-chip c-teal"><span class="vw jp">ここ</span><span class="vm">여기 · 2박</span></div>
+    <div class="vocab-chip c-teal"><span class="vw jp">ひゃく</span><span class="vm">100,백 · 2박(예외)</span></div>
+  </div>
+
+  <!-- 2-3 탁음 -->
+  <div class="section-title">〝 탁음</div>
+  <div class="def-box">
+    청음(맑은 소리) 글자의 오른쪽 위에 탁점(゛)을 붙이면 탁음(흐린 소리)이 됩니다.
+    <b>か행→が행, さ행→ざ행, た행→だ행, は행→ば행</b>
+  </div>
+  <div class="sub-title first">직접 따라 쓰기</div>
+  <div class="toolbar-desc" style="margin-bottom:8px"><b>영상을 보며</b> 탁음을 2번씩 따라 써보세요.</div>
+  <div id="traceDak"></div>
+  <div class="sub-title">실제 단어로 보기</div>
+  <div class="cmp-row c-purple"><div class="cmp-word"><span class="w jp">ここ</span><span class="m">여기</span></div><span class="cmp-vs">VS</span><div class="cmp-word"><span class="w jp">ごご</span><span class="m">오후</span></div><span class="cmp-note">こ(청음) ↔ ご(탁음)</span></div>
+  <div class="cmp-row c-purple"><div class="cmp-word"><span class="w jp">あし</span><span class="m">발,다리</span></div><span class="cmp-vs">VS</span><div class="cmp-word"><span class="w jp">あじ</span><span class="m">맛,감성</span></div><span class="cmp-note">し(청음) ↔ じ(탁음)</span></div>
+  <div class="cmp-row c-purple"><div class="cmp-word"><span class="w jp">はん</span><span class="m">반</span></div><span class="cmp-vs">VS</span><div class="cmp-word"><span class="w jp">ばん</span><span class="m">밤</span></div><span class="cmp-note">は(청음) ↔ ば(탁음)</span></div>
+
+  <!-- 2-4 반탁음 -->
+  <div class="section-title">〬 반탁음</div>
+  <div class="def-box">
+    は행 글자의 오른쪽 위에 반탁점(゜)을 붙이면 반탁음이 됩니다. <b>は행→ぱ행</b> 하나뿐입니다.
+  </div>
+  <div class="sub-title first">직접 따라 쓰기</div>
+  <div class="toolbar-desc" style="margin-bottom:8px"><b>영상을 보며</b> 반탁음을 2번씩 따라 써보세요.</div>
+  <div id="traceHandak"></div>
+  <div class="sub-title">실제 단어로 보기</div>
+  <div class="cmp-row c-orange">
+    <div class="cmp-word"><span class="w jp">はん</span><span class="m">반</span></div><span class="cmp-vs">VS</span>
+    <div class="cmp-word"><span class="w jp">ばん</span><span class="m">밤</span></div><span class="cmp-vs">VS</span>
+    <div class="cmp-word"><span class="w jp">ぱん</span><span class="m">빵</span></div>
+  </div>
+  <div class="cmp-note" style="margin:-4px 0 10px 4px;">は(청음) ↔ ば(탁음) ↔ ぱ(반탁음) · 빵은 원래 가타카나 「パン」으로 표기</div>
+
+  <!-- 2-5 요음 -->
+  <div class="section-title">ゃ 요음</div>
+  <div class="def-box">
+    <b>い</b>를 제외한 <b>い단</b> 글자의 오른쪽 아래에 작은 <b>や・ゆ・よ</b>를 붙여서 만듭니다.
+  </div>
+  <div class="sub-title first">직접 따라 쓰기</div>
+  <div class="toolbar-desc" style="margin-bottom:8px"><b>영상을 보며</b> 요음을 2번씩 따라 써보세요.</div>
+  <div id="traceYoon"></div>
+  <div class="sub-title">실제 단어로 보기</div>
+  <div class="vocab-row">
+    <div class="vocab-chip c-rose"><span class="vw jp">ひゃく</span><span class="vm">100, 백</span></div>
+    <div class="vocab-chip c-rose"><span class="vw jp">かしゅ</span><span class="vm">가수</span></div>
+    <div class="vocab-chip c-rose"><span class="vw jp">しょくじ</span><span class="vm">식사</span></div>
+  </div>
+
+  <!-- 2-6 촉음 -->
+  <div class="section-title">っ 촉음</div>
+  <div class="def-box">촉음(っ)은 1박으로 발음하며 <b>받침</b>의 역할을 합니다. (일본어 마침표는 「。」로 표시)</div>
+  <div class="sub-title first">직접 따라 쓰기</div>
+  <div class="toolbar-desc" style="margin-bottom:8px"><b>영상을 보며</b> 작은 っ을 2번씩 따라 써보세요.</div>
+  <div class="trace-group"><div class="trace-group-head"><span class="tg-jamo">っ</span><span class="tg-name">촉음</span></div>
+    <div class="trace-row"><div class="trace-item"><div class="trace-boxes">
+      <div class="trace-box"><span class="guide jp">っ</span></div><div class="trace-box"><span class="guide jp">っ</span></div>
+    </div></div></div>
+  </div>
+  <div class="sub-title">실제 단어로 보기</div>
+  <div class="cmp-row c-green"><div class="cmp-word"><span class="w jp">きて</span><span class="m">와 주세요</span></div><span class="cmp-vs">VS</span><div class="cmp-word"><span class="w jp">きって</span><span class="m">잘라 주세요</span></div></div>
+  <div class="vocab-row">
+    <div class="vocab-chip c-green"><span class="vw jp">がっこう</span><span class="vm">학교</span></div>
+    <div class="vocab-chip c-green"><span class="vw jp">ざっし</span><span class="vm">잡지</span></div>
+    <div class="vocab-chip c-green"><span class="vw jp">みっつ</span><span class="vm">3개</span></div>
+    <div class="vocab-chip c-green"><span class="vw jp">きっぷ</span><span class="vm">표, 티켓</span></div>
+  </div>
+
+  <!-- 2-7 발음 -->
+  <div class="section-title">ん 발음</div>
+  <div class="def-box">발음(ん)은 1박으로 발음하며 <b>받침</b>의 역할을 합니다.</div>
+  <div class="sub-title first">실제 단어로 보기</div>
+  <div class="cmp-row"><div class="cmp-word"><span class="w jp">かじ</span><span class="m">화재</span></div><span class="cmp-vs">VS</span><div class="cmp-word"><span class="w jp">かんじ</span><span class="m">한자</span></div></div>
+  <div class="vocab-row">
+    <div class="vocab-chip"><span class="vw jp">てんぷら</span><span class="vm">튀김</span></div>
+    <div class="vocab-chip"><span class="vw jp">まんなか</span><span class="vm">한가운데</span></div>
+    <div class="vocab-chip"><span class="vw jp">かんこく</span><span class="vm">한국</span></div>
+    <div class="vocab-chip"><span class="vw jp">うどん</span><span class="vm">우동</span></div>
+  </div>
+
+  <!-- 2-8 장음 -->
+  <div class="section-title">ー 장음</div>
+  <div class="def-box">장음은 앞 글자의 모음을 1박 늘여서 길게 발음합니다. (강조된 글자가 늘어나는 모음)</div>
+  <div class="rule-list">
+    <div class="rule-item"><span class="rule-num">1</span><span class="rule-text">あ단 + あ</span><span class="rule-ex jp">おば<span class="cho">あ</span>さん</span></div>
+    <div class="rule-item"><span class="rule-num">2</span><span class="rule-text">い단 + い</span><span class="rule-ex jp">おじ<span class="cho">い</span>さん</span></div>
+    <div class="rule-item"><span class="rule-num">3</span><span class="rule-text">う단 + う</span><span class="rule-ex jp">す<span class="cho">う</span>がく</span></div>
+    <div class="rule-item"><span class="rule-num">4</span><span class="rule-text">え단 + え / い</span><span class="rule-ex jp">おね<span class="cho">え</span>さん / え<span class="cho">い</span>が</span></div>
+    <div class="rule-item"><span class="rule-num">5</span><span class="rule-text">お단 + お / う</span><span class="rule-ex jp">お<span class="cho">お</span>い / おと<span class="cho">う</span>さん</span></div>
+  </div>
+  <div class="sub-title">실제 단어로 보기</div>
+  <div class="cmp-row c-rose"><div class="cmp-word"><span class="w jp">おばさん</span><span class="m">아주머니</span></div><span class="cmp-vs">VS</span><div class="cmp-word"><span class="w jp">おば<span class="cho">あ</span>さん</span><span class="m">할머니</span></div></div>
+  <div class="cmp-row c-rose"><div class="cmp-word"><span class="w jp">おじさん</span><span class="m">아저씨</span></div><span class="cmp-vs">VS</span><div class="cmp-word"><span class="w jp">おじ<span class="cho">い</span>さん</span><span class="m">할아버지</span></div></div>
+  <div class="cmp-row c-rose"><div class="cmp-word"><span class="w jp">ここ</span><span class="m">여기</span></div><span class="cmp-vs">VS</span><div class="cmp-word"><span class="w jp">こ<span class="cho">う</span>こう</span><span class="m">고등학교</span></div></div>
+  <div class="vocab-row">
+    <div class="vocab-chip c-rose"><span class="vw jp">おか<span class="cho">あ</span>さん</span><span class="vm">어머니</span></div>
+    <div class="vocab-chip c-rose"><span class="vw jp">おに<span class="cho">い</span>さん</span><span class="vm">형, 오빠</span></div>
+    <div class="vocab-chip c-rose"><span class="vw jp">す<span class="cho">う</span>がく</span><span class="vm">수학</span></div>
+    <div class="vocab-chip c-rose"><span class="vw jp">おね<span class="cho">え</span>さん</span><span class="vm">언니, 누나</span></div>
+    <div class="vocab-chip c-rose"><span class="vw jp">え<span class="cho">い</span>が</span><span class="vm">영화</span></div>
+    <div class="vocab-chip c-rose"><span class="vw jp">お<span class="cho">お</span>い</span><span class="vm">많다</span></div>
+    <div class="vocab-chip c-rose"><span class="vw jp">おと<span class="cho">う</span>さん</span><span class="vm">아버지</span></div>
+  </div>
+
+  <!-- 2-9 연탁 현상 -->
+  <div class="section-title">🔗 연탁 현상</div>
+  <div class="def-box">두 단어가 합쳐져 하나의 복합어가 될 때, 뒤 단어의 첫소리가 탁음으로 바뀌는 현상입니다.</div>
+  <div class="sub-title first">실제 단어로 보기</div>
+  <div class="cmp-row c-purple"><div class="cmp-word"><span class="w jp">ちゅう + こく</span><span class="m">중 + 국</span></div><span class="cmp-vs">→</span><div class="cmp-word"><span class="w jp">ちゅうごく</span><span class="m">중국</span></div><span class="cmp-note">こ → ご</span></div>
+  <div class="cmp-row c-purple"><div class="cmp-word"><span class="w jp">はな + ひ</span><span class="m">꽃 + 불</span></div><span class="cmp-vs">→</span><div class="cmp-word"><span class="w jp">はなび</span><span class="m">불꽃놀이</span></div><span class="cmp-note">ひ → び</span></div>
+
+  <!-- 2-10 동사의 시제 -->
+  <div class="section-title">🕐 동사의 시제</div>
+  <div class="def-box">
+    정중형 <b>〜ます</b>는 <b>현재</b>와 <b>미래</b>를 모두 나타낼 수 있습니다.
+    <b>과거</b>는 <b>〜ました</b>를 사용합니다.
+  </div>
+  <div class="sub-title first">직접 따라 쓰기</div>
+  <div class="toolbar-desc" style="margin-bottom:8px"><b>영상을 보며</b> 과거형(ました)을 2번씩 따라 써보세요.</div>
+  <div id="verbTraceWrap"></div>
+  <div class="sub-title">실제 단어로 보기</div>
+  <div class="sentence-box">
+    <div class="jp-s">がっこうに いきます。</div>학교에 갑니다. (현재/미래)<br>
+    <div class="jp-s" style="margin-top:6px">がっこうに いきました。</div>학교에 갔습니다. (과거)
+  </div>
+
+  <!-- 2-11 조사 -->
+  <div class="section-title">🔡 조사의 쓰임</div>
+  <div class="def-box">
+    조사는 단어 뒤에 붙어 문법적인 역할(주제·목적어·나열 등)을 나타냅니다.
+    <b>は</b>는 조사로 쓰일 때 글자와 다르게 <b>[wa]</b>로 발음하는 것에 주의하세요.
+  </div>
+
+  <div class="sub-title first">は — ~은/는 (주제를 나타냄)</div>
+  <div class="sentence-box">
+    <div class="jp-s">わたし<b>は</b> がくせいです。</div>저는 학생입니다.
+  </div>
+
+  <div class="sub-title">を — ~을/를 (목적어를 나타냄)</div>
+  <div class="sentence-box">
+    <div class="jp-s">パン<b>を</b> たべます。</div>빵을 먹습니다.
+  </div>
+
+  <div class="sub-title">も — ~도 (は・を 자리를 대신함)</div>
+  <div class="sentence-box">
+    <div class="jp-s">わたし<b>も</b> がくせいです。</div>저도 학생입니다.
+  </div>
+  <div class="cmp-row c-teal"><div class="cmp-word"><span class="w jp">パンを</span><span class="m">을/를</span></div><span class="cmp-vs">→</span><div class="cmp-word"><span class="w jp">パンも</span><span class="m">~도</span></div><span class="cmp-note">も 앞에서는 は・を가 사라지고 も로 바뀜</span></div>
+
+  <div class="sub-title">と — ~와/과, ~와 함께</div>
+  <div class="sentence-box">
+    <div class="jp-s">パン<b>と</b> ぎゅうにゅう</div>빵과 우유<br>
+    <div class="jp-s" style="margin-top:6px">ともだち<b>と</b> いきます。</div>친구와(함께) 갑니다.
+  </div>
+
+  <div class="sub-title">か — ~까? (의문문을 만듦)</div>
+  <div class="sentence-box">
+    <div class="jp-s">がくせいです<b>か</b>。</div>학생입니까?
+  </div>
+  <div class="note">문장 끝에 か를 붙이면 물음표(？) 없이도 의문문이 됩니다. 억양은 끝을 살짝 올려서 읽어요.</div>
+
+  <div class="sub-title">の — ~의 (소유·소속을 나타냄)</div>
+  <div class="sentence-box">
+    <div class="jp-s">わたし<b>の</b> ほん</div>제 책 (저의 책)<br>
+    <div class="jp-s" style="margin-top:6px">かんこく<b>の</b> がっこう</div>한국의 학교
+  </div>
+  <div class="tip"><b>Tip.</b> 한국어에서는 '저의 책'을 '제 책'처럼 '의'를 자주 생략하지만, 일본어 の는 생략하지 않고 꼭 넣어야 합니다.</div>
+
+  <div class="sub-title">한눈에 정리</div>
+  <div class="vocab-row">
+    <div class="vocab-chip"><span class="vw jp">は</span><span class="vm">~은/는</span></div>
+    <div class="vocab-chip c-orange"><span class="vw jp">を</span><span class="vm">~을/를</span></div>
+    <div class="vocab-chip c-purple"><span class="vw jp">も</span><span class="vm">~도</span></div>
+    <div class="vocab-chip c-teal"><span class="vw jp">と</span><span class="vm">~와/과</span></div>
+    <div class="vocab-chip c-rose"><span class="vw jp">か</span><span class="vm">~까?(의문)</span></div>
+    <div class="vocab-chip c-green"><span class="vw jp">の</span><span class="vm">~의</span></div>
+  </div>
+</div>
+
+<div class="tab-panel" id="panel-2">
+  <div class="unit-banner">📌 3. 단어 › 기초 어휘 암기 체크리스트</div>
+
+  <div class="tip">
+    단어를 클릭하면 <b>암기 완료</b>로 표시됩니다. 다시 누르면 취소돼요. 기록은 이 기기(브라우저)에만 저장됩니다.
+  </div>
+
+  <div class="progress-wrap">
+    <span class="progress-text" id="vocabCount">0 / 0</span>
+    <div class="progress-track"><div class="progress-fill" id="vocabFill"></div></div>
+    <button class="reset-vocab-btn" onclick="resetVocab()">초기화</button>
+  </div>
+
+  <div id="vocabWrap"></div>
+
+  <!-- 숫자 말하기 (체크리스트 아님, 별도 설명) -->
+  <div class="section-title">🔢 숫자 말하기</div>
+  <div class="def-box">
+    일본어 숫자는 기본 읽는 법이 있지만, 상황에 따라 다르게 읽는 경우가 있습니다.
+  </div>
+  <div class="sub-title first">기본 수 (0~9, 10, 100)</div>
+  <div class="vocab-row" id="numBaseWrap"></div>
+
+  <div class="sub-title">여러 가지로 읽는 숫자</div>
+  <div class="rule-list">
+    <div class="rule-item"><span class="rule-num">4</span><span class="rule-text">し · よん · よ (상황에 따라)</span></div>
+    <div class="rule-item"><span class="rule-num">7</span><span class="rule-text">しち · なな (상황에 따라)</span></div>
+    <div class="rule-item"><span class="rule-num">9</span><span class="rule-text">きゅう · く (상황에 따라)</span></div>
+    <div class="rule-item"><span class="rule-num">0</span><span class="rule-text">ゼロ(제로) · れい · まる</span></div>
+  </div>
+
+  <div class="sub-title">전화번호 읽기</div>
+  <div class="def-box">전화번호의 <b>「-」</b>는 <b>「の」</b>라고 읽습니다.</div>
+
+  <div class="sub-title">몇 시? (시계)</div>
+  <div class="def-box">숫자 뒤에 <b>「〜じ」</b>를 붙여 "〜시"를 나타냅니다. 아래 세 가지는 예외적으로 읽습니다.</div>
+  <div class="rule-list">
+    <div class="rule-item"><span class="rule-text">4시</span><span class="rule-ex jp">よじ</span><span class="cmp-note">(よんじ ×)</span></div>
+    <div class="rule-item"><span class="rule-text">7시</span><span class="rule-ex jp">しちじ / ななじ</span><span class="cmp-note">(방송·전화 등에서는 ななじ를 선호)</span></div>
+    <div class="rule-item"><span class="rule-text">9시</span><span class="rule-ex jp">くじ</span><span class="cmp-note">(きゅうじ ×)</span></div>
+  </div>
+
+
+</div>
+
+<div class="tab-panel" id="panel-3">
+  <div class="unit-banner">📌 4. 짝 맞추기 › 매치 게임</div>
+
+  <div class="mm-stage">
+    <div class="mm-card screen" id="mmCard">
+      <div class="mm-play">
+        <div class="mm-hud">
+          <span class="mm-lv" id="mmLv">LEVEL 1</span>
+          <span class="mm-score"><span id="mmScore">0</span><small>점</small></span>
+          <span class="mm-time" id="mmTime">⏱ 1:45</span>
+        </div>
+        <div class="mm-bars">
+          <div class="mm-bar-label"><span>목표</span><span id="mmGoalText">0 / 10</span></div>
+          <div class="mm-bar"><div class="mm-bar-fill goal" id="mmGoalFill" style="width:0%"></div></div>
+          <div class="mm-bar"><div class="mm-bar-fill time" id="mmTimeFill" style="width:100%"></div></div>
+        </div>
+        <div class="mm-combo"><div class="mm-combo-inner" id="mmCombo"></div></div>
+        <div class="mm-board" id="mmBoard">
+          <div class="mm-col" id="mmLeft"><div class="mm-col-title">일본어</div></div>
+          <div class="mm-col" id="mmRight"><div class="mm-col-title">뜻</div></div>
+        </div>
+        <button type="button" class="mm-quit-btn" onclick="mmQuit()">✕ 그만하기</button>
+        <div class="mm-confirm" id="mmConfirmOv" hidden>
+          <div class="mm-confirm-box">
+            <p>정말 그만하시겠어요?<br>지금까지의 점수는 기록에 남아요.</p>
+            <div class="mm-confirm-actions">
+              <button type="button" class="mm-btn ghost" onclick="mmQuitCancel()">계속하기</button>
+              <button type="button" class="mm-btn" onclick="mmQuitConfirm()">그만하기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mm-screen" id="mmStartOv">
+        <div class="mm-hero">
+          <div class="mm-hero-flame"><span class="mm-flame">🔥</span></div>
+          <div class="mm-hero-title">불붙은 짝 맞추기</div>
+          <div class="mm-hero-sub">선택한 모드 기준 <b id="mmWordCount">0</b>개로 출제됩니다</div>
+        </div>
+        <div class="mm-mode-label">모드 선택</div>
+        <div class="mm-mode-row" id="mmModeRow"></div>
+        <div class="mm-howto">
+          <div class="mm-how"><span class="ic">👆</span><b>짝 찾기</b><span>왼쪽 일본어와 오른쪽 뜻을 하나씩 눌러요</span></div>
+          <div class="mm-how"><span class="ic">✨</span><b>새 단어 등장</b><span>맞힌 짝은 회색으로 바뀌고, 5쌍을 모두 맞히면 새 단어가 나와요</span></div>
+          <div class="mm-how"><span class="ic">⏱</span><b>1분 45초</b><span>목표 개수를 채우면 다음 레벨!</span></div>
+          <div class="mm-how"><span class="ic">🔥</span><b>콤보 보너스</b><span>5콤보 ×2 · 10콤보 ×3</span></div>
+        </div>
+        <button class="mm-btn" onclick="mmStart()">시작하기</button>
+        <div class="mm-best" id="mmBestStart"></div>
+      </div>
+
+      <div class="mm-screen" id="mmClearOv" hidden></div>
+      <div class="mm-screen" id="mmEndOv" hidden></div>
+    </div>
+  </div>
+</div>
+
+<div class="tab-panel" id="panel-4">
+  <div class="unit-banner">📌 5. 회화 › 인사말과 자기소개</div>
+
+  <div class="section-title">👋 만날 때의 인사말</div>
+  <div class="tip">こんにちは・こんばんは에 쓰인 'は'는 [ha]가 아니라 <b>[wa]</b>라고 읽어요.</div>
+  <div class="greet-pair">
+    <span class="greet-scene">아침 (07:50)</span>
+    <div class="gside"><span class="gjp jp">おはよう。</span><span class="gkr">안녕. (반말)</span></div>
+    <span class="garrow">↔</span>
+    <div class="gside"><span class="gjp jp">おはようございます。</span><span class="gkr">안녕하세요. (존댓말)</span></div>
+  </div>
+  <div class="greet-pair c-orange">
+    <span class="greet-scene">점심 (13:00)</span>
+    <div class="gside"><span class="gjp jp">こんにちは。</span><span class="gkr">안녕하세요. (점심 인사)</span></div>
+  </div>
+  <div class="greet-pair c-purple">
+    <span class="greet-scene">저녁 (20:00)</span>
+    <div class="gside"><span class="gjp jp">こんばんは。</span><span class="gkr">안녕하세요. (저녁 인사)</span></div>
+  </div>
+
+  <div class="section-title">🙋 헤어질 때의 인사말</div>
+  <div class="greet-pair c-rose">
+    <div class="gside"><span class="gjp jp">せんせい、さようなら。</span><span class="gkr">선생님, 안녕히 계세요.</span></div>
+    <span class="garrow">↔</span>
+    <div class="gside"><span class="gjp jp">さようなら。</span><span class="gkr">안녕히 가세요.<span class="mini-tag f">존댓말</span></span></div>
+  </div>
+  <div class="greet-pair">
+    <div class="gside"><span class="gjp jp">じゃあね。バイバイ。</span><span class="gkr">그럼 안녕. 잘 가.</span></div>
+    <span class="garrow">↔</span>
+    <div class="gside"><span class="gjp jp">またね。</span><span class="gkr">또 만나.<span class="mini-tag">반말</span></span></div>
+  </div>
+  <div class="vocab-row">
+    <div class="vocab-chip"><span class="vw jp">おはよう(ございます)</span><span class="vm">안녕(아침)</span></div>
+    <div class="vocab-chip c-orange"><span class="vw jp">こんにちは</span><span class="vm">안녕(점심)</span></div>
+    <div class="vocab-chip c-purple"><span class="vw jp">こんばんは</span><span class="vm">안녕(저녁)</span></div>
+    <div class="vocab-chip c-rose"><span class="vw jp">さようなら</span><span class="vm">잘 가/안녕히 계세요</span></div>
+    <div class="vocab-chip"><span class="vw jp">バイバイ</span><span class="vm">잘 가</span></div>
+    <div class="vocab-chip c-teal"><span class="vw jp">じゃあね</span><span class="vm">그럼, 안녕</span></div>
+    <div class="vocab-chip c-teal"><span class="vw jp">またね</span><span class="vm">또 만나</span></div>
+    <div class="vocab-chip c-green"><span class="vw jp">せんせい</span><span class="vm">선생님</span></div>
+  </div>
+
+  <div class="section-title">🚪 외출과 귀가의 인사말</div>
+  <div class="greet-pair">
+    <div class="gside"><span class="gjp jp">いってきます。</span><span class="gkr">다녀올게(요)/다녀오겠습니다.</span></div>
+    <span class="garrow">↔</span>
+    <div class="gside"><span class="gjp jp">いってらっしゃい。</span><span class="gkr">다녀와(요)/다녀오세요.</span></div>
+  </div>
+  <div class="greet-pair c-orange">
+    <div class="gside"><span class="gjp jp">ただいま。</span><span class="gkr">다녀왔습니다.</span></div>
+    <span class="garrow">↔</span>
+    <div class="gside"><span class="gjp jp">おかえり(なさい)。</span><span class="gkr">어서 와(요)/어서 오세요.</span></div>
+  </div>
+
+  <div class="section-title">🙏 감사·사과의 인사말</div>
+  <div class="dlg-box">
+    <div class="dlg-line"><span class="dlg-name">할머니 댁</span><div class="dlg-text"><div class="dlg-jp jp">ありがとう。</div><div class="dlg-kr">고마워. (반말)</div></div></div>
+    <div class="dlg-line"><span class="dlg-name b">택배</span><div class="dlg-text"><div class="dlg-jp jp">ありがとうございます。</div><div class="dlg-kr">고맙습니다. (존댓말)</div></div></div>
+    <div class="dlg-line"><span class="dlg-name c">교실 밖</span><div class="dlg-text"><div class="dlg-jp jp">ごめんなさい。</div><div class="dlg-kr">미안합니다.</div></div></div>
+    <div class="dlg-line"><span class="dlg-name d">지각</span><div class="dlg-text"><div class="dlg-jp jp">すみません。</div><div class="dlg-kr">죄송합니다.</div></div></div>
+  </div>
+
+  <div class="section-title">🌏 나라 이름 (くに)</div>
+  <div class="vocab-row">
+    <div class="vocab-chip"><span class="vw jp">くに</span><span class="vm">나라</span></div>
+    <div class="vocab-chip c-orange"><span class="vw jp">かんこく</span><span class="vm">한국</span></div>
+    <div class="vocab-chip c-purple"><span class="vw jp">にほん(にっぽん)</span><span class="vm">일본</span></div>
+    <div class="vocab-chip c-rose"><span class="vw jp">ちゅうごく</span><span class="vm">중국</span></div>
+    <div class="vocab-chip c-teal"><span class="vw jp">アメリカ(米国)</span><span class="vm">미국</span></div>
+  </div>
+
+  <div class="section-title">😊 자기소개하기 (はじめまして)</div>
+  <div class="def-box">
+    <b>자기소개 패턴</b>
+    <div class="rule-list" style="margin-top:8px;">
+      <div class="rule-item"><span class="rule-num">1</span><span class="rule-text jp">はじめまして。</span><span class="rule-ex">처음 뵙겠습니다.</span></div>
+      <div class="rule-item"><span class="rule-num">2</span><span class="rule-text jp">(이름)です。</span><span class="rule-ex">(이름)입니다.</span></div>
+      <div class="rule-item"><span class="rule-num">3</span><span class="rule-text jp">(나라)から きました。</span><span class="rule-ex">(나라)에서 왔습니다.</span></div>
+      <div class="rule-item"><span class="rule-num">4</span><span class="rule-text jp">どうぞ よろしく おねがいします。</span><span class="rule-ex">잘 부탁드립니다.</span></div>
+    </div>
+  </div>
+  <div class="sentence-box">
+    <div class="jp-s">はじめまして。イ・ハナです。かんこくから きました。どうぞ よろしく おねがいします。</div>
+    <div style="margin-top:6px;">처음 뵙겠습니다. 이하나입니다. 한국에서 왔습니다. 잘 부탁드립니다.</div>
+  </div>
+  <div class="vocab-row">
+    <div class="vocab-chip"><span class="vw jp">はじめまして</span><span class="vm">처음 뵙겠습니다</span></div>
+    <div class="vocab-chip c-orange"><span class="vw">~から きました</span><span class="vm">~에서 왔습니다</span></div>
+  </div>
+
+  <div class="section-title">🎨 취미 묻고 답하기</div>
+  <div class="dlg-box">
+    <div class="dlg-line"><span class="dlg-name">A</span><div class="dlg-text"><div class="dlg-jp jp">しゅみは なんですか。</div><div class="dlg-kr">취미가 무엇입니까?</div></div></div>
+    <div class="dlg-line"><span class="dlg-name b">B</span><div class="dlg-text"><div class="dlg-jp jp">わたしの しゅみは <u>りょこう</u>です。</div><div class="dlg-kr">제 취미는 여행입니다.</div></div></div>
+  </div>
+  <div class="vocab-row">
+    <div class="vocab-chip"><span class="vw jp">しゅみ</span><span class="vm">취미</span></div>
+    <div class="vocab-chip c-orange"><span class="vw jp">りょこう</span><span class="vm">여행</span></div>
+    <div class="vocab-chip c-purple"><span class="vw jp">ゲーム</span><span class="vm">게임</span></div>
+    <div class="vocab-chip c-rose"><span class="vw jp">やきゅう</span><span class="vm">야구</span></div>
+    <div class="vocab-chip c-teal"><span class="vw jp">ダンス</span><span class="vm">댄스</span></div>
+    <div class="vocab-chip c-teal"><span class="vw jp">ピアノ</span><span class="vm">피아노</span></div>
+    <div class="vocab-chip c-green"><span class="vw jp">サッカー</span><span class="vm">축구</span></div>
+    <div class="vocab-chip c-green"><span class="vw jp">りょうり</span><span class="vm">요리</span></div>
+    <div class="vocab-chip"><span class="vw jp">しゃしん</span><span class="vm">사진</span></div>
+  </div>
+
+  <div class="section-title">🤝 여러 사람에게 소개하기</div>
+  <div class="def-box">
+    <b>こちらは~です</b> 다른 사람을 소개할 때 쓰는 표현 (이쪽은 ~입니다) / <b>こちらこそ</b> 소개를 받은 사람이 인사에 답할 때 쓰는 표현 (저야말로)
+  </div>
+  <div class="dlg-box">
+    <div class="dlg-line"><span class="dlg-name">ひなた</span><div class="dlg-text"><div class="dlg-jp jp">ひなたくん、こちらは イ・ハナさんです。</div><div class="dlg-kr">히나타 군, 이쪽은 이하나 씨입니다.</div></div></div>
+    <div class="dlg-line"><span class="dlg-name b">이하나</span><div class="dlg-text"><div class="dlg-jp jp">はじめまして。イ・ハナです。どうぞ よろしく おねがいします。</div><div class="dlg-kr">처음 뵙겠습니다. 이하나입니다. 잘 부탁드립니다.</div></div></div>
+    <div class="dlg-line"><span class="dlg-name c">히나타</span><div class="dlg-text"><div class="dlg-jp jp">こちらこそ よろしく おねがいします。イさんの しゅみは なんですか。</div><div class="dlg-kr">저야말로 잘 부탁드립니다. 이 씨의 취미는 무엇입니까?</div></div></div>
+    <div class="dlg-line"><span class="dlg-name b">이하나</span><div class="dlg-text"><div class="dlg-jp jp">わたしの しゅみは りょうりです。</div><div class="dlg-kr">제 취미는 요리입니다.</div></div></div>
+  </div>
+  <div class="note">교재의 짝 활동 예시: <span class="jp">チャン・ミン(りょこう)</span>, <span class="jp">たなか・りえ(サッカー)</span>, <span class="jp">トム・スミス(しゃしん)</span> 등 이름과 취미를 바꿔가며 3명이 짝을 이루어 연습해 봅시다.</div>
+
+  <div class="section-title">💻 대화 예시 — 온라인 교류</div>
+  <div class="tip">히나가 일본의 국제 고등학교 학생들과 온라인으로 교류하는 장면이에요. 여러 나라 친구들이 돌아가며 이름·출신·취미를 소개해요.</div>
+  <div class="dlg-box">
+    <div class="dlg-line"><span class="dlg-name">이하나</span><div class="dlg-text"><div class="dlg-jp jp">はじめまして。イ・ハナです。どうぞ よろしく おねがいします。</div><div class="dlg-kr">처음 뵙겠습니다. 이하나입니다. 잘 부탁드립니다.</div></div></div>
+    <div class="dlg-line"><span class="dlg-name c">ワン・リー</span><div class="dlg-text"><div class="dlg-jp jp">はじめまして。ワン・リーです。ちゅうごくから きました。</div><div class="dlg-kr">처음 뵙겠습니다. 왕리입니다. 중국에서 왔습니다.</div></div></div>
+    <div class="dlg-line"><span class="dlg-name d">참가자</span><div class="dlg-text"><div class="dlg-jp jp">しゅみは すいえいです。</div><div class="dlg-kr">취미는 수영입니다.</div></div></div>
+    <div class="dlg-line"><span class="dlg-name">참가자</span><div class="dlg-text"><div class="dlg-jp jp">ハナさんの しゅみは なんですか。</div><div class="dlg-kr">하나 씨의 취미는 무엇입니까?</div></div></div>
+    <div class="dlg-line"><span class="dlg-name b">이하나</span><div class="dlg-text"><div class="dlg-jp jp">わたしは りょこうです。</div><div class="dlg-kr">저는 여행입니다.</div></div></div>
+  </div>
+
+  <div class="section-title">🎉 대화 예시 — 친구 소개하기</div>
+  <div class="tip">하나와 나미가 청소년 문화 교류 축제에 참가해 서로의 친구를 <span class="jp">こちらは</span>로 소개하는 장면이에요.</div>
+  <div class="dlg-box">
+    <div class="dlg-line"><span class="dlg-name">나미</span><div class="dlg-text"><div class="dlg-jp jp">はなさん、こちらは ともだちの (이름)くんです。</div><div class="dlg-kr">하나 씨, 이쪽은 친구인 ○○군입니다.</div></div></div>
+    <div class="dlg-line"><span class="dlg-name b">하나</span><div class="dlg-text"><div class="dlg-jp jp">あっ、(이름)くん!</div><div class="dlg-kr">아, ○○군!</div></div></div>
+    <div class="dlg-line"><span class="dlg-name">친구</span><div class="dlg-text"><div class="dlg-jp jp">はじめまして。(이름)です。どうぞ よろしく。</div><div class="dlg-kr">처음 뵙겠습니다. ○○입니다. 잘 부탁해.</div></div></div>
+    <div class="dlg-line"><span class="dlg-name b">하나</span><div class="dlg-text"><div class="dlg-jp jp">こちらこそ どうぞ よろしく。</div><div class="dlg-kr">저야말로 잘 부탁해.</div></div></div>
+  </div>
+</div>
+
+<div class="tab-panel" id="panel-5">
+  <div class="unit-banner">📌 6. 문화 › 일본에 대해 알아보자</div>
+
+  <div class="tip"><span class="hand">필기</span> 표시는 수업 시간 필기 내용이에요. 교과서에 없는 설명이니 함께 챙겨 두세요.</div>
+
+  <!-- 6-1 지리 -->
+  <div class="section-title">🗾 일본의 지리</div>
+  <div class="def-box">
+    일본은 <b>4개의 큰 섬</b>과 약 <b>14,000여 개</b>의 크고 작은 섬으로 이루어져 있습니다.<br>
+    행정 구역은 <b>도쿄도, 홋카이도, 교토부, 오사카부, 43개의 현</b>으로 구성되어 있으며 수도는 <b>도쿄</b>입니다.
+  </div>
+  <div class="sub-title first">4개의 큰 섬</div>
+  <div class="cul-grid">
+    <div class="cul-card"><div class="ct">홋카이도</div></div>
+    <div class="cul-card c-rose"><div class="ct">혼슈</div><p>도쿄·교토·오사카·나고야가 있는 섬</p></div>
+    <div class="cul-card c-green"><div class="ct">시코쿠</div></div>
+    <div class="cul-card c-purple"><div class="ct">규슈</div></div>
+  </div>
+  <div class="sub-title">주요 도시</div>
+  <div class="cul-grid">
+    <div class="cul-card"><div class="ct">도쿄</div><p>일본의 정치, 경제, 문화, 교육, 금융, 교통의 중심지이다.</p></div>
+    <div class="cul-card c-purple"><div class="ct">교토</div><p>과거 약 1,070여 년간 일본의 수도였던 도시로 역사와 전통, 과거와 현대가 공존하는 공간이다.</p></div>
+    <div class="cul-card c-orange"><div class="ct">오사카</div><p>일본 제2의 도시로 일찍이 일본 상업의 중심지로 발전했다.</p></div>
+    <div class="cul-card c-teal"><div class="ct">나고야</div><p>일본 최대 공업 지대 중 하나로 중부 지방의 중추를 담당한다.</p></div>
+  </div>
+
+  <!-- 6-2 의복 -->
+  <div class="section-title">👘 일본의 의복</div>
+  <div class="cul-grid three">
+    <div class="cul-card c-purple"><div class="ct">기모노</div><p>일본의 대표적인 전통 의복으로 주로 <b>격식을 차릴 때</b> 입는다.</p><p><span class="hand">결혼식, 성인식</span></p></div>
+    <div class="cul-card c-rose"><div class="ct">유카타</div><p><b>마쓰리(축제)</b>나 <b>불꽃놀이</b>를 보러 갈 때 입는다.</p></div>
+    <div class="cul-card c-orange"><div class="ct">핫피 <span class="hand">필기</span></div><p>축제에서 상인이 입는 옷</p></div>
+  </div>
+
+  <!-- 6-3 음식 -->
+  <div class="section-title">🍣 일본의 음식</div>
+  <div class="def-box">
+    일본인의 식생활에서 <b>주식은 쌀</b>이며, <b>생선 요리</b>가 발달했습니다. 또한 미각과 시각을 모두 고려해 <b>음식과 음식을 담는 그릇의 조화</b>를 중요하게 생각합니다.
+    초밥과 우동, 다코야키 등 우리에게도 친숙한 음식들이 많습니다.
+  </div>
+  <div class="tip">일본 고유의 요리를 <b class="jp">わしょく</b>라고 해요.</div>
+
+  <div class="sub-title first">면류</div>
+  <div class="cul-grid">
+    <div class="cul-card"><div class="ct"><span class="cj jp">そば</span>소바</div><p>메밀국수로 이사할 때 먹는 힛코시소바 <span class="hand">이사</span>, 연말에 먹는 도시코시소바 <span class="hand">해넘이</span> 등이 있다.</p></div>
+    <div class="cul-card"><div class="ct"><span class="cj jp">そうめん</span>소멘</div><p>우리나라의 소면과 같고, 여름에 먹는 나가시소멘(<span class="jp">ながしそうめん</span>) <span class="hand">흐르는</span>이 유명하다.</p></div>
+    <div class="cul-card"><div class="ct"><span class="cj jp">きつねうどん</span>기쓰네우동</div><p>유부를 얹은 우동을 말한다.</p><p><span class="hand">きつね = 여우 · 속설로 여우가 유부를 좋아한대서</span></p></div>
+    <div class="cul-card"><div class="ct"><span class="cj jp">たぬきうどん</span>다누키우동</div><p>튀김 부스러기를 얹은 우동을 말한다.</p><p><span class="hand">たぬき = 너구리 · 하지만 너구리와는 관련 없음</span></p></div>
+  </div>
+
+  <div class="sub-title">생선·고기류</div>
+  <div class="cul-grid">
+    <div class="cul-card c-teal"><div class="ct"><span class="cj jp">どんぶり</span>돈부리</div><p>덮밥을 말하며 오야코돈, 규돈, 가쓰돈 등 밥 위에 올리는 재료에 따라 이름이 달라진다.</p><p><span class="hand">오야코돈 = 치킨+계란 → 부모와 자식</span></p></div>
+    <div class="cul-card c-teal"><div class="ct"><span class="cj jp">さしみ</span>사시미</div><p>신선한 어패류를 날것 그대로 간장과 고추냉이, 생강 등의 양념을 곁들여 먹는 요리, 즉 생선회를 말한다.</p></div>
+    <div class="cul-card c-teal"><div class="ct"><span class="cj jp">しゃぶしゃぶ</span>샤부샤부</div><p>끓는 국물에 얇게 썬 고기, 채소, 해물, 버섯, 두부 등을 데쳐 양념장과 함께 먹는 일본의 전골 요리이다.</p></div>
+    <div class="cul-card c-teal"><div class="ct"><span class="cj jp">すし</span>스시</div><p>식초로 조미한 밥에 제철 어패류 등을 얹어 만든다.</p></div>
+    <div class="cul-card c-teal"><div class="ct"><span class="cj jp">すきやき</span>스키야키</div><p>간장과 설탕으로 만든 소스에 쇠고기와 채소, 실곤약, 두부 등을 함께 넣어 조린 뒤 날달걀에 찍어 먹는다.</p></div>
+  </div>
+
+  <div class="sub-title">야키류</div>
+  <div class="cul-grid">
+    <div class="cul-card c-orange"><div class="ct"><span class="cj jp">おこのみやき</span>오코노미야키</div><p>한국의 부침개와 비슷한 음식으로 양배추, 달걀, 밀가루 등으로 반죽하고 가쓰오부시와 소스, 마요네즈 등을 위에 뿌려서 먹는다.</p><p><span class="hand">おこのみ = 좋아하는 것</span></p></div>
+    <div class="cul-card c-orange"><div class="ct"><span class="cj jp">たこやき</span>다코야키</div><p>밀가루 반죽에 잘게 썬 문어와 파, 양배추 등을 넣어 동그랗게 구워 내 가쓰오부시와 소스를 뿌려 먹는다.</p></div>
+    <div class="cul-card c-orange"><div class="ct"><span class="cj jp">たいやき</span>다이야키</div><p>한국의 붕어빵과 비슷하고 도미 모양의 틀에 굽는다.</p></div>
+    <div class="cul-card c-orange"><div class="ct"><span class="cj jp">やきそば</span>야키소바</div><p>고기와 양배추 등을 넣은 일본식 볶음면이다.</p></div>
+  </div>
+
+  <!-- 6-5 성씨와 호칭 -->
+  <div class="section-title">👤 일본인의 성씨와 호칭 방법</div>
+  <div class="def-box">
+    일본의 성씨는 약 <b>30만여 개</b>입니다. <span class="hand">우리나라: 약 5,000개</span><br>
+    이중 상위 10%의 성씨가 인구의 10%를 차지하고 있습니다.
+  </div>
+  <div class="sub-title first">대표 성씨 비교</div>
+  <table class="cul-table">
+    <thead><tr><th class="r">일본의 대표 성씨</th><th class="b">한국의 대표 성씨</th></tr></thead>
+    <tbody>
+      <tr><td>사토 (<span class="jp">さとう</span>)</td><td>김 (<span class="jp">キム</span>)</td></tr>
+      <tr><td>스즈키 (<span class="jp">すずき</span>)</td><td>이 (<span class="jp">イ</span>)</td></tr>
+      <tr><td>다카하시 (<span class="jp">たかはし</span>)</td><td>박 (<span class="jp">パク</span>)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">일본인의 호칭 방법</div>
+  <div class="def-box">
+    일본인의 이름은 한국과 같이 <b>'성+이름'</b>으로 구성되어 있습니다.<br>
+    <b class="jp">さん</b>은 다른 사람을 부를 때 성이나 이름에 붙여서 사용하고, <b>자기 자신에게는 사용하지 않습니다.</b>
+  </div>
+  <div class="cul-grid">
+    <div class="cul-card"><div class="bubble jp">すずきです。</div><p>처음 만나거나 공식적인 관계라면 <b>'성'</b>으로 말하는 것이 일반적입니다.</p></div>
+    <div class="cul-card c-teal"><div class="bubble jp">たかはしさん!</div><p>학급에서 동급생을 호칭할 때 일반적으로는 <b>'○○さん'</b>, <b>'○○くん'</b>은 남자 친구를 부를 때, <b>'○○ちゃん'</b>은 주로 여자 친구를 부를 때 사용합니다.</p></div>
+    <div class="cul-card c-rose"><div class="bubble jp">まりちゃん。</div><p><b>'○○ちゃん'</b>은 주로 여성들이 친한 사람에게 붙이는 호칭입니다. 가족을 부를 때 친근한 의미로 사용하기도 합니다.</p></div>
+    <div class="cul-card c-orange"><div class="bubble jp">やまだくん!</div><p>선생님이 학생을 부를 때는 <b>'○○くん'</b>을 사용하기도 하는데 특히 남학생에게 사용하는 경우가 많습니다.</p></div>
+  </div>
+
+  <div class="sub-title">한일 호칭 비교 (가족)</div>
+  <table class="cul-table">
+    <thead><tr><th>관계</th><th class="b">한국</th><th class="r">일본</th></tr></thead>
+    <tbody>
+      <tr><td>나 (남자)</td><td>나</td><td class="jp">ぼく / わたし</td></tr>
+      <tr><td>나 (여자)</td><td>나</td><td class="jp">わたし</td></tr>
+      <tr><td>손위 형제</td><td>형 · 누나 · 오빠 · 언니</td><td class="jp">〜さん</td></tr>
+      <tr><td>남동생</td><td>(이름)아/야</td><td class="jp">(이름)くん</td></tr>
+      <tr><td>여동생</td><td>(이름)아/야</td><td class="jp">(이름)ちゃん</td></tr>
+    </tbody>
+  </table>
+  <div class="note" style="margin-top:0;margin-bottom:14px;">일본에서는 가족이 아니면 언니, 오빠라는 호칭을 사용하지 않아요.</div>
+
+  <div class="sub-title">일본인의 손짓 — 자기 자신을 가리킬 때</div>
+  <div class="cul-grid three">
+    <div class="cul-card"><div class="ct">🇰🇷 한국</div><p>손바닥을 가슴에 얹는다.</p></div>
+    <div class="cul-card c-rose"><div class="ct">🇯🇵 일본</div><p><b>검지로 자신의 코</b>를 가리킨다.</p></div>
+    <div class="cul-card c-teal"><div class="ct">🇺🇸 미국</div><p>엄지를 세워서 자신의 몸을 가리키기도 한다.</p></div>
+  </div>
+
+  <!-- 6-6 명함 -->
+  <div class="section-title">💼 일본인의 명함 교환 예절</div>
+  <div class="def-box">일본 사회에서 명함 교환은 매우 중요한 예절입니다.</div>
+  <div class="flow-row">
+    <div class="flow-item"><b>1</b>명함을 준비합니다.</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item"><b>2</b>명함을 서로 건넵니다.</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item"><b>3</b>명함을 확인합니다.</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item"><b>4</b>받은 명함은 테이블 위에 둡니다.</div>
+  </div>
+  <div class="tip">일본인의 이름은 같은 한자라도 읽는 법이 여러 가지이므로 명함의 한자에 읽는 법이 없는 경우에는 <b>읽는 법을 물어보는 것</b>이 좋아요!</div>
+
+  <!-- 6-7 さようなら -->
+  <div class="section-title">👋 <span class="jp">さようなら</span>는 언제 쓸까?</div>
+  <div class="cul-grid">
+    <div class="cul-card c-orange"><div class="ct">🏫 학교에서</div><p>종례 시간이 끝나고 집으로 갈 때 사용합니다. 때로는 <b class="jp">さよなら</b>라고 줄여서 말하기도 합니다.</p></div>
+    <div class="cul-card c-purple"><div class="ct">✈️ 오래 헤어질 때</div><p><b>한동안 못 볼 것 같은 상황</b>에서 하는 이별의 인사말입니다. 평소 헤어질 때 하는 인사말로는 어울리지 않습니다.</p></div>
+  </div>
+
+  <!-- 6-8 전화번호 -->
+  <div class="section-title">☎️ 숫자에 의미를 담은 전화번호</div>
+  <div class="def-box">
+    일본에서는 숫자를 읽는 소리를 이용해 <b>전화번호에 의미를 담기도</b> 합니다. 숫자 읽기의 앞소리를 따서 단어처럼 읽히게 만들면, 가게의 성격도 드러나고 번호도 쉽게 외울 수 있어요.
+    (전화번호의 <b>「-」</b>는 <b class="jp">「の」</b>라고 읽어요.)
+  </div>
+
+  <div class="goro-box">
+    <div class="goro-head">① 치과 광고 <span class="num">048-711-8239</span></div>
+    <div class="goro-row">
+      <div class="goro-cell dim"><span class="d">048</span><span class="s">지역 번호</span></div>
+      <span class="goro-dash">-</span>
+      <div class="goro-cell dim"><span class="d">711</span></div>
+      <span class="goro-dash">-</span>
+      <div class="goro-cell hit"><span class="d">8</span><span class="k jp">は</span><span class="s">はち</span></div>
+      <div class="goro-cell hit"><span class="d">2</span><span class="k jp">に</span><span class="s">に</span></div>
+      <div class="goro-cell hit"><span class="d">3</span><span class="k jp">サン</span><span class="s">さん</span></div>
+      <div class="goro-cell hit"><span class="d">9</span><span class="k jp">キュー</span><span class="s">きゅう</span></div>
+    </div>
+    <div class="goro-mean">8239 → <b class="jp">はにサンキュー</b> (하니 산큐) = <b>이(は)에게 땡큐!</b> — 이(치아)를 돌보는 치과다운 번호</div>
+  </div>
+
+  <div class="goro-box c-teal">
+    <div class="goro-head">② 티켓 가게 <span class="num">3350-4649</span></div>
+    <div class="goro-row">
+      <div class="goro-cell dim"><span class="d">3350</span></div>
+      <span class="goro-dash">-</span>
+      <div class="goro-cell hit"><span class="d">4</span><span class="k jp">ヨ</span><span class="s">よん</span></div>
+      <div class="goro-cell hit"><span class="d">6</span><span class="k jp">ロ</span><span class="s">ろく</span></div>
+      <div class="goro-cell hit"><span class="d">4</span><span class="k jp">シ</span><span class="s">し</span></div>
+      <div class="goro-cell hit"><span class="d">9</span><span class="k jp">ク</span><span class="s">く</span></div>
+    </div>
+    <div class="goro-mean">4649 → <b class="jp">ヨロシク</b> (요로시쿠) = <b>잘 부탁해요!</b> — 손님에게 인사를 건네는 번호</div>
+  </div>
+  <div class="note" style="margin-top:4px;margin-bottom:14px;">숫자 4는 <b class="jp">し・よん・よ</b>, 9는 <b class="jp">きゅう・く</b>처럼 여러 가지로 읽을 수 있어서 이런 말놀이가 가능해요. (단어 탭 「숫자 말하기」 참고)</div>
+
+  <!-- 6-9 학교생활 -->
+  <div class="section-title">🏫 일본 고등학생의 학교생활</div>
+  <div class="sub-title first">하루 일과</div>
+  <div class="flow-row">
+    <div class="flow-item"><b>등교</b>자전거를 타고 통학하는 학생들이 많습니다.</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item"><b>점심</b>도시락이나 급식을 먹습니다.</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item"><b>청소 시간</b>교실과 계단을 청소하는 시간</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item"><b>방과 후</b>주로 동아리 활동(<span class="jp">ぶかつ</span>)을 합니다.</div>
+  </div>
+  <div class="note" style="margin-top:0;margin-bottom:14px;">
+    <span class="hand"><span class="jp">ぶかつ</span> = <span class="jp">ぶかつどう</span> (부 활동)</span><br>
+    동아리 활동에 참가하지 않는 학생들을 <b>'귀가부'</b>라고도 합니다.
+  </div>
+
+  <div class="sub-title">연간 행사</div>
+  <div class="def-box">일본에서는 <b>입학식은 4월</b>, <b>졸업식은 주로 3월</b>에 합니다. 체육 대회와 우리나라의 학교 축제와 같은 문화제를 실시합니다.</div>
+  <div class="cul-grid">
+    <div class="cul-card c-green"><div class="ct">🌸 입학식 <span class="mini-tag f">4월</span></div><p class="jp" style="font-weight:700;color:var(--text)">にゅうがくしき</p></div>
+    <div class="cul-card c-orange"><div class="ct">🏃 체육 대회</div><p class="jp" style="font-weight:700;color:var(--text)">たいいくさい</p></div>
+    <div class="cul-card c-purple"><div class="ct">🎪 학교 축제 (문화제)</div><p class="jp" style="font-weight:700;color:var(--text)">ぶんかさい</p></div>
+    <div class="cul-card c-rose"><div class="ct">🎓 졸업식 <span class="mini-tag f">3월</span></div><p class="jp" style="font-weight:700;color:var(--text)">そつぎょうしき</p></div>
+  </div>
+
+  <div class="sub-title">일본 고등학생의 신발과 가방</div>
+  <div class="def-box">
+    일본에서는 학교에 따라 <b>지정된 종류의 실내화, 가방</b> 등의 물품을 사용해야 하는 경우가 있습니다.
+    실내화와 <b>체육관 전용 운동화</b>는 별도로 준비하며, 운동화와 백팩을 주로 사용하는 한국 학생들과 달리 <b>로퍼(구두류)</b> 등을 신거나 <b>한쪽으로 매는 가방</b>을 사용하는 학생들도 있습니다.
+  </div>
+
+  <!-- 6-10 확인 문제 -->
+  <div class="section-title">✅ 확인 문제</div>
+  <div class="tip">OX 퀴즈 → 객관식 → 고난도 순서로 풀어 보세요. 답을 고르면 바로 해설이 나와요. (교과서 Quiz 문항도 OX에 포함)</div>
+  <div id="cultQuiz"></div>
+</div>
+</div>
+
+<script>
+function switchTab(idx){
+  if(typeof mmOnTabChange==='function') mmOnTabChange(idx);
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',i===idx));
+  document.querySelectorAll('.tab-panel').forEach((p,i)=>p.classList.toggle('active',i===idx));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+const COLS=['ㅏ','ㅣ','ㅜ','ㅔ','ㅗ'];
+const ROWS=[
+  {j:'ㅇ', n:'아행', c:[['あ','아'],['い','이'],['う','우'],['え','에'],['お','오']]},
+  {j:'ㅋ', n:'카행', c:[['か','카'],['き','키'],['く','쿠'],['け','케'],['こ','코']]},
+  {j:'ㅅ', n:'사행', c:[['さ','사'],['し','시'],['す','스'],['せ','세'],['そ','소']]},
+  {j:'ㅌ', n:'타행', c:[['た','타'],['ち','치'],['つ','츠'],['て','테'],['と','토']]},
+  {j:'ㄴ', n:'나행', c:[['な','나'],['に','니'],['ぬ','누'],['ね','네'],['の','노']]},
+  {j:'ㅎ', n:'하행', c:[['は','하'],['ひ','히'],['ふ','후'],['へ','헤'],['ほ','호']]},
+  {j:'ㅁ', n:'마행', c:[['ま','마'],['み','미'],['む','무'],['め','메'],['も','모']]},
+  {j:'ㅇ', n:'야행', c:[['や','야'],null,['ゆ','유'],null,['よ','요']]},
+  {j:'ㄹ', n:'라행', c:[['ら','라'],['り','리'],['る','루'],['れ','레'],['ろ','로']]},
+  {j:'ㅇ', n:'와행', c:[['わ','와'],null,null,null,['を','오']]},
+];
+
+(function build(){
+  const g=document.getElementById('gj');
+  let h='<div class="gj-corner">행 ＼ 단</div>';
+  COLS.forEach(c=>h+=`<div class="gj-colhead"><b>${c}</b><span>${c}단</span></div>`);
+  ROWS.forEach(r=>{
+    h+=`<div class="gj-rowhead"><b>${r.j}</b><span>${r.n}</span></div>`;
+    r.c.forEach(x=>{
+      h+= x ? `<div class="gj-cell"><div class="ans"><span class="k jp">${x[0]}</span><span class="r">${x[1]}</span></div></div>`
+            : `<div class="gj-cell none"></div>`;
+    });
+  });
+  h+=`<div class="gj-rowhead n-head"><b>ㄴ</b><span>받침</span></div>`;
+  h+=`<div class="gj-cell n-cell"><div class="ans"><span class="k jp">ん</span><span class="r">ㄴ/ㅇ/ㅁ 받침</span></div></div>`;
+  h+=`<div class="gj-spacer">어느 행·단에도 속하지 않는 단독 글자</div>`;
+  g.innerHTML=h;
+})();
+
+(function buildTrace(){
+  const wrap=document.getElementById('traceWrap');
+  const box=(ch)=>`<div class="trace-box"><span class="guide jp">${ch}</span></div><div class="trace-box"><span class="guide jp">${ch}</span></div>`;
+  let h='';
+  ROWS.forEach(r=>{
+    h+=`<div class="trace-group"><div class="trace-group-head"><span class="tg-jamo">${r.j}</span><span class="tg-name">${r.n}</span></div><div class="trace-row">`;
+    r.c.forEach((x,i)=>{
+      if(!x) return;
+      h+=`<div class="trace-item"><div class="trace-label"><span class="dan">${COLS[i]}단</span><span class="read">${x[1]}</span></div><div class="trace-boxes">${box(x[0])}</div></div>`;
+    });
+    h+='</div></div>';
+  });
+  h+=`<div class="trace-group n-group"><div class="trace-group-head"><span class="tg-jamo">ㄴ</span><span class="tg-name">받침 (ん)</span></div><div class="trace-row">
+    <div class="trace-item"><div class="trace-label"><span class="dan">단독</span><span class="read">ㄴ/ㅇ/ㅁ 받침</span></div><div class="trace-boxes">${box('ん')}</div></div>
+  </div></div>`;
+  wrap.innerHTML=h;
+})();
+
+function toggleReveal(){
+  const on=document.getElementById('gj').classList.toggle('reveal');
+  const b=document.getElementById('revealBtn');
+  b.classList.toggle('on',on);
+  b.textContent=on?'🙈 정답 숨기기':'👀 정답 비교하기';
+}
+
+/* ===== 2. 문법 탭 ===== */
+function buildTraceGroups(wrapId, rows){
+  const wrap=document.getElementById(wrapId);
+  const box=(ch)=>{
+    const wideCls = ch.length>1 ? ' wide' : '';
+    return `<div class="trace-box${wideCls}"><span class="guide jp">${ch}</span></div><div class="trace-box${wideCls}"><span class="guide jp">${ch}</span></div>`;
+  };
+  let h='';
+  rows.forEach(r=>{
+    h+=`<div class="trace-group"><div class="trace-group-head"><span class="tg-jamo">${r.j}</span><span class="tg-name">${r.n}</span></div><div class="trace-row">`;
+    r.c.forEach(x=>{
+      if(!x) return;
+      h+=`<div class="trace-item"><div class="trace-label"><span class="read">${x[1]}</span></div><div class="trace-boxes">${box(x[0])}</div></div>`;
+    });
+    h+='</div></div>';
+  });
+  wrap.innerHTML=h;
+}
+
+const DAKUON=[
+  {j:'ㄱ', n:'가행', c:[['が','가'],['ぎ','기'],['ぐ','구'],['げ','게'],['ご','고']]},
+  {j:'ㅈ', n:'자행', c:[['ざ','자'],['じ','지'],['ず','즈'],['ぜ','제'],['ぞ','조']]},
+  {j:'ㄷ', n:'다행', c:[['だ','다'],['ぢ','지'],['づ','즈'],['で','데'],['ど','도']]},
+  {j:'ㅂ', n:'바행', c:[['ば','바'],['び','비'],['ぶ','부'],['べ','베'],['ぼ','보']]},
+];
+const HANDAKUON=[
+  {j:'ㅍ', n:'파행', c:[['ぱ','파'],['ぴ','피'],['ぷ','푸'],['ぺ','페'],['ぽ','포']]},
+];
+const YOON=[
+  {j:'ㅋ', n:'캬행', c:[['きゃ','캬'],['きゅ','큐'],['きょ','쿄']]},
+  {j:'ㅅ', n:'샤행', c:[['しゃ','샤'],['しゅ','슈'],['しょ','쇼']]},
+  {j:'ㅌ', n:'챠행', c:[['ちゃ','챠'],['ちゅ','츄'],['ちょ','쵸']]},
+  {j:'ㄴ', n:'냐행', c:[['にゃ','냐'],['にゅ','뉴'],['にょ','뇨']]},
+  {j:'ㅎ', n:'햐행', c:[['ひゃ','햐'],['ひゅ','휴'],['ひょ','효']]},
+  {j:'ㅁ', n:'먀행', c:[['みゃ','먀'],['みゅ','뮤'],['みょ','묘']]},
+  {j:'ㄹ', n:'랴행', c:[['りゃ','랴'],['りゅ','류'],['りょ','료']]},
+  {j:'ㄱ', n:'갸행', c:[['ぎゃ','갸'],['ぎゅ','규'],['ぎょ','교']]},
+  {j:'ㅈ', n:'쟈행', c:[['じゃ','자'],['じゅ','주'],['じょ','조']]},
+  {j:'ㅂ', n:'뱌행', c:[['びゃ','뱌'],['びゅ','뷰'],['びょ','뵤']]},
+  {j:'ㅍ', n:'퍄행', c:[['ぴゃ','퍄'],['ぴゅ','퓨'],['ぴょ','표']]},
+];
+
+buildTraceGroups('traceDak', DAKUON);
+buildTraceGroups('traceHandak', HANDAKUON);
+buildTraceGroups('traceYoon', YOON);
+
+const VERBS=[
+  {f:'たべます', m:'먹습니다(현재/미래)', a:'たべました'},
+  {f:'みます', m:'봅니다(현재/미래)', a:'みました'},
+  {f:'いきます', m:'갑니다(현재/미래)', a:'いきました'},
+];
+(function buildVerbTrace(){
+  const wrap=document.getElementById('verbTraceWrap');
+  let h='';
+  VERBS.forEach(v=>{
+    h+=`<div class="verb-block">
+      <div class="verb-head"><span class="vform jp">${v.f}</span><span class="vmeta">${v.m}</span><span class="varrow">→</span><span class="vtarget jp">${v.a}</span></div>
+      <div class="trace-lines">
+        <div class="trace-line"><span class="guide jp">${v.a}</span></div>
+        <div class="trace-line"><span class="guide jp">${v.a}</span></div>
+      </div>
+    </div>`;
+  });
+  wrap.innerHTML=h;
+})();
+
+/* ===== 3. 단어 탭 ===== */
+const VOCAB_CATS=[
+  {key:'people', label:'사람 · 가족'},
+  {key:'body',   label:'신체 · 감각'},
+  {key:'animal', label:'동물'},
+  {key:'nature', label:'자연 · 날씨'},
+  {key:'food',   label:'음식'},
+  {key:'thing',  label:'사물'},
+  {key:'place',  label:'장소 · 위치'},
+  {key:'time',   label:'시간 · 수'},
+  {key:'etc',    label:'활동 · 기타'},
+  {key:'country',label:'나라'},
+];
+const VOCAB=[
+  {w:'わたし',m:'나, 저',cat:'people'},
+  {w:'かぞく',m:'가족',cat:'people'},
+  {w:'おばさん',m:'아주머니',cat:'people'},
+  {w:'おばあさん',m:'할머니',cat:'people'},
+  {w:'おじさん',m:'아저씨',cat:'people'},
+  {w:'おじいさん',m:'할아버지',cat:'people'},
+  {w:'おかあさん',m:'어머니',cat:'people'},
+  {w:'おとうさん',m:'아버지',cat:'people'},
+  {w:'おにいさん',m:'형, 오빠',cat:'people'},
+  {w:'おねえさん',m:'언니, 누나',cat:'people'},
+  {w:'かしゅ',m:'가수',cat:'people'},
+
+  {w:'あし',m:'발, 다리',cat:'body'},
+  {w:'て',m:'손',cat:'body'},
+  {w:'かお',m:'얼굴',cat:'body'},
+  {w:'みみ',m:'귀',cat:'body'},
+  {w:'あじ',m:'맛, 감성',cat:'body'},
+
+  {w:'いぬ',m:'개',cat:'animal'},
+  {w:'ねこ',m:'고양이',cat:'animal'},
+  {w:'とり',m:'새',cat:'animal'},
+  {w:'むし',m:'벌레',cat:'animal'},
+
+  {w:'はな',m:'꽃',cat:'nature'},
+  {w:'さくら',m:'벚꽃',cat:'nature'},
+  {w:'き',m:'나무',cat:'nature'},
+  {w:'やま',m:'산',cat:'nature'},
+  {w:'そら',m:'하늘',cat:'nature'},
+  {w:'ゆき',m:'눈',cat:'nature'},
+  {w:'ふゆ',m:'겨울',cat:'nature'},
+  {w:'ひ',m:'불',cat:'nature'},
+  {w:'はなび',m:'불꽃놀이',cat:'nature'},
+
+  {w:'すし',m:'초밥',cat:'food'},
+  {w:'さかな',m:'생선',cat:'food'},
+  {w:'くだもの',m:'과일',cat:'food'},
+  {w:'りんご',m:'사과',cat:'food'},
+  {w:'にく',m:'고기',cat:'food'},
+  {w:'たこやき',m:'다코야키',cat:'food'},
+  {w:'うどん',m:'우동',cat:'food'},
+  {w:'てんぷら',m:'튀김',cat:'food'},
+  {w:'ぱん',m:'빵',cat:'food'},
+  {w:'しょくじ',m:'식사',cat:'food'},
+
+  {w:'めがね',m:'안경',cat:'thing'},
+  {w:'えんぴつ',m:'연필',cat:'thing'},
+  {w:'ちず',m:'지도',cat:'thing'},
+  {w:'ほん',m:'책',cat:'thing'},
+  {w:'ざっし',m:'잡지',cat:'thing'},
+  {w:'つくえ',m:'책상',cat:'thing'},
+  {w:'まど',m:'창문',cat:'thing'},
+  {w:'のり',m:'풀',cat:'thing'},
+  {w:'けんだま',m:'겐다마',cat:'thing'},
+  {w:'こたつ',m:'고타쓰',cat:'thing'},
+  {w:'くるま',m:'자동차',cat:'thing'},
+  {w:'ふね',m:'배',cat:'thing'},
+  {w:'れいぞうこ',m:'냉장고',cat:'thing'},
+  {w:'きもの',m:'기모노',cat:'thing'},
+  {w:'きっぷ',m:'표, 티켓',cat:'thing'},
+  {w:'しんごう',m:'신호',cat:'thing'},
+  {w:'かんじ',m:'한자',cat:'thing'},
+
+  {w:'いえ',m:'집',cat:'place'},
+  {w:'へや',m:'방',cat:'place'},
+  {w:'がっこう',m:'학교',cat:'place'},
+  {w:'こうこう',m:'고등학교',cat:'place'},
+  {w:'みせ',m:'가게',cat:'place'},
+  {w:'えき',m:'역',cat:'place'},
+  {w:'おんせん',m:'온천',cat:'place'},
+  {w:'せき',m:'자리',cat:'place'},
+  {w:'ここ',m:'여기',cat:'place'},
+  {w:'まんなか',m:'한가운데',cat:'place'},
+  {w:'うしろ',m:'뒤',cat:'place'},
+
+  {w:'ごご',m:'오후',cat:'time'},
+  {w:'よる',m:'밤',cat:'time'},
+  {w:'ばん',m:'밤',cat:'time'},
+  {w:'はん',m:'반',cat:'time'},
+  {w:'ひとつ',m:'1개',cat:'time'},
+  {w:'みっつ',m:'3개',cat:'time'},
+  {w:'ひゃく',m:'100, 백',cat:'time'},
+
+  {w:'うた',m:'노래',cat:'etc'},
+  {w:'すいえい',m:'수영',cat:'etc'},
+  {w:'すうがく',m:'수학',cat:'etc'},
+  {w:'えいが',m:'영화',cat:'etc'},
+  {w:'おに',m:'도깨비',cat:'etc'},
+  {w:'かじ',m:'화재',cat:'etc'},
+  {w:'おおい',m:'많다',cat:'etc'},
+  {w:'ふくをきる',m:'옷을 입다',cat:'etc'},
+  {w:'ぺこぺこ',m:'배가 몹시 고픈 모양',cat:'etc'},
+
+  {w:'くに',m:'나라',cat:'country'},
+  {w:'かんこく',m:'한국',cat:'country'},
+  {w:'にほん',m:'일본',cat:'country'},
+  {w:'ちゅうごく',m:'중국',cat:'country'},
+  {w:'アメリカ',m:'미국',cat:'country'},
+];
+
+function vocabKey(w){ return 'jp-vocab-'+w; }
+function isDone(w){ try{ return localStorage.getItem(vocabKey(w))==='1'; }catch(e){ return false; } }
+function setDone(w,v){ try{ if(v) localStorage.setItem(vocabKey(w),'1'); else localStorage.removeItem(vocabKey(w)); }catch(e){} }
+
+function renderVocab(){
+  const wrap=document.getElementById('vocabWrap');
+  let h='';
+  VOCAB_CATS.forEach(c=>{
+    const items=VOCAB.filter(v=>v.cat===c.key);
+    if(!items.length) return;
+    h+=`<div class="cat-block"><div class="cat-title"><span class="cat-dot"></span>${c.label}</div><div class="word-grid">`;
+    items.forEach(v=>{
+      const done=isDone(v.w);
+      h+=`<div class="word-card${done?' done':''}" data-w="${v.w}" onclick="toggleVocab(this)">
+        <span class="wcheck">✓</span>
+        <span class="ww jp">${v.w}</span>
+        <span class="wm">${v.m}</span>
+      </div>`;
+    });
+    h+='</div></div>';
+  });
+  wrap.innerHTML=h;
+  updateVocabProgress();
+}
+
+function toggleVocab(el){
+  const w=el.getAttribute('data-w');
+  const nowDone=!el.classList.contains('done');
+  el.classList.toggle('done',nowDone);
+  setDone(w,nowDone);
+  updateVocabProgress();
+}
+
+function updateVocabProgress(){
+  const total=VOCAB.length;
+  const done=VOCAB.filter(v=>isDone(v.w)).length;
+  document.getElementById('vocabCount').textContent=`${done} / ${total}`;
+  document.getElementById('vocabFill').style.width=(total?Math.round(done/total*100):0)+'%';
+}
+
+function resetVocab(){
+  VOCAB.forEach(v=>setDone(v.w,false));
+  renderVocab();
+}
+
+renderVocab();
+
+const NUM_BASE=[
+  {w:'ゼロ',m:'0'},{w:'いち',m:'1'},{w:'に',m:'2'},{w:'さん',m:'3'},{w:'よん',m:'4'},
+  {w:'ご',m:'5'},{w:'ろく',m:'6'},{w:'なな',m:'7'},{w:'はち',m:'8'},{w:'きゅう',m:'9'},
+  {w:'じゅう',m:'10'},{w:'ひゃく',m:'100'},
+];
+(function buildNumBase(){
+  const wrap=document.getElementById('numBaseWrap');
+  wrap.innerHTML=NUM_BASE.map(n=>`<div class="vocab-chip"><span class="vw jp">${n.w}</span><span class="vm">${n.m}</span></div>`).join('');
+})();
+
+
+/* ===== 4. 짝 맞추기 (매치 매드니스) ===== */
+const MM_ROWS=5, MM_TIME=105;
+const mmGoal=lv=>10+(lv-1)*4;
+let mm=null;
+let mmPendingMode='vocab';
+
+const MM_MODES=[
+  {key:'vocab',    label:'단어',        icon:'📚', title:['일본어','뜻']},
+  {key:'hiragana', label:'히라가나',     icon:'🔤', title:['히라가나','한글 발음']},
+  {key:'dakuon',   label:'탁음·반탁음', icon:'〝', title:['탁음·반탁음','한글 발음']},
+  {key:'yoon',     label:'요음',        icon:'ゃ', title:['요음','한글 발음']},
+];
+
+function mmPoolFor(key){
+  if(key==='hiragana'){
+    const arr=[];
+    ROWS.forEach(r=>r.c.forEach(x=>{if(x) arr.push({w:x[0],m:x[1]});}));
+    arr.push({w:'ん',m:'ㄴ/ㅇ/ㅁ받침'});
+    return arr;
+  }
+  if(key==='dakuon'){
+    const arr=[];
+    DAKUON.concat(HANDAKUON).forEach(r=>r.c.forEach(x=>arr.push({w:x[0],m:x[1]})));
+    return arr;
+  }
+  if(key==='yoon'){
+    const arr=[];
+    YOON.forEach(r=>r.c.forEach(x=>arr.push({w:x[0],m:x[1]})));
+    return arr;
+  }
+  return VOCAB;
+}
+
+function mmShuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function mmBestKey(mode){return 'jp-mm-best-'+mode;}
+function mmBest(mode){try{return parseInt(localStorage.getItem(mmBestKey(mode))||'0',10)||0;}catch(e){return 0;}}
+function mmSetBest(mode,v){try{localStorage.setItem(mmBestKey(mode),String(v));}catch(e){}}
+function mmShowBest(){const b=mmBest(mmPendingMode);document.getElementById('mmBestStart').textContent=b?`🏆 최고 기록 ${b}점`:'';}
+
+function mmBuildModeRow(){
+  const wrap=document.getElementById('mmModeRow');
+  wrap.innerHTML=MM_MODES.map(m=>`<button type="button" class="mm-mode-btn${m.key===mmPendingMode?' active':''}" onclick="mmSelectMode('${m.key}')"><span class="mmi">${m.icon}</span>${m.label}</button>`).join('');
+  document.getElementById('mmWordCount').textContent=mmPoolFor(mmPendingMode).length;
+}
+function mmSelectMode(key){
+  mmPendingMode=key;
+  mmBuildModeRow();
+  mmShowBest();
+}
+function mmSetColTitles(mode){
+  const cfg=MM_MODES.find(m=>m.key===mode)||MM_MODES[0];
+  document.querySelector('#mmLeft .mm-col-title').textContent=cfg.title[0];
+  document.querySelector('#mmRight .mm-col-title').textContent=cfg.title[1];
+}
+
+function mmNextWord(){
+  const visW=new Set(), visM=new Set();
+  mm.left.forEach(x=>{if(x)visW.add(x.w);});
+  mm.right.forEach(x=>{if(x)visM.add(x.m);});
+  for(let tries=0;tries<mm.pool.length*2;tries++){
+    if(!mm.queue.length) mm.queue=mmShuffle(mm.pool);
+    const c=mm.queue.shift();
+    if(!visW.has(c.w)&&!visM.has(c.m)) return c;
+    mm.queue.push(c);
+  }
+  return mm.queue.shift();
+}
+
+function mmBuildBoard(){
+  const L=document.getElementById('mmLeft'), R=document.getElementById('mmRight');
+  L.querySelectorAll('.mm-tile').forEach(e=>e.remove());
+  R.querySelectorAll('.mm-tile').forEach(e=>e.remove());
+  mm.left=new Array(MM_ROWS).fill(null); mm.right=new Array(MM_ROWS).fill(null);
+  mm.lock=new Set(); mm.selL=null; mm.selR=null; mm.roundMatched=0;
+  const picks=[];
+  for(let i=0;i<MM_ROWS;i++){const w=mmNextWord();picks.push(w);mm.left[i]=w;mm.right[i]=w;}
+  mm.left=mmShuffle(picks); mm.right=mmShuffle(picks);
+  for(let i=0;i<MM_ROWS;i++){
+    L.appendChild(mmTileEl('L',i)); R.appendChild(mmTileEl('R',i));
+  }
+}
+function mmTileEl(side,i){
+  const b=document.createElement('button');
+  b.type='button';
+  b.className='mm-tile in'+(side==='L'?' jp':'');
+  b.dataset.side=side; b.dataset.i=i;
+  b.textContent=side==='L'?mm.left[i].w:mm.right[i].m;
+  b.addEventListener('click',()=>mmTap(side,i,b));
+  return b;
+}
+function mmTileAt(side,i){return document.querySelector(`#${side==='L'?'mmLeft':'mmRight'} .mm-tile[data-i="${i}"]`);}
+
+function mmTap(side,i,el){
+  if(!mm||!mm.running||mm.lock.has(side+i)) return;
+  const key=side==='L'?'selL':'selR';
+  if(mm[key]===i){mm[key]=null;el.classList.remove('sel');return;}
+  if(mm[key]!==null){const prev=mmTileAt(side,mm[key]);if(prev)prev.classList.remove('sel');}
+  mm[key]=i; el.classList.add('sel');
+  if(mm.selL!==null&&mm.selR!==null) mmCheck();
+}
+
+function mmCheck(){
+  const li=mm.selL, ri=mm.selR;
+  const le=mmTileAt('L',li), re=mmTileAt('R',ri);
+  mm.selL=null; mm.selR=null;
+  le.classList.remove('sel'); re.classList.remove('sel');
+  mm.attempts++;
+  if(mm.left[li].w===mm.right[ri].w){
+    mm.combo++; mm.maxCombo=Math.max(mm.maxCombo,mm.combo);
+    mm.correct++; mm.levelMatched++; mm.totalMatched++;
+    const mult=mm.combo>=10?3:mm.combo>=5?2:1;
+    const pts=10*mult; mm.score+=pts;
+    mmPop(re,'+'+pts);
+    le.classList.add('ok'); re.classList.add('ok');
+    mm.lock.add('L'+li); mm.lock.add('R'+ri);
+    mm.roundMatched++;
+    setTimeout(()=>{le.classList.remove('ok');re.classList.remove('ok');le.classList.add('done');re.classList.add('done');},300);
+    mmHud(true);
+    if(mm.levelMatched>=mmGoal(mm.level)) setTimeout(mmLevelClear,560);
+    else if(mm.roundMatched>=MM_ROWS) setTimeout(mmNewRound,520);
+  } else {
+    mm.combo=0;
+    le.classList.add('bad'); re.classList.add('bad');
+    mm.lock.add('L'+li); mm.lock.add('R'+ri);
+    setTimeout(()=>{le.classList.remove('bad');re.classList.remove('bad');mm.lock.delete('L'+li);mm.lock.delete('R'+ri);},420);
+    mmHud(false);
+  }
+}
+
+function mmNewRound(){
+  if(!mm||!mm.running) return;
+  mmBuildBoard();
+}
+
+function mmPop(anchor,txt){
+  const card=document.getElementById('mmCard');
+  const cr=card.getBoundingClientRect(), ar=anchor.getBoundingClientRect();
+  const p=document.createElement('div');
+  p.className='mm-pop'; p.textContent=txt;
+  p.style.left=(ar.left-cr.left+ar.width/2)+'px';
+  p.style.top=(ar.top-cr.top-6)+'px';
+  if(mm.combo>=5) p.style.color='var(--orange)';
+  card.appendChild(p);
+  setTimeout(()=>p.remove(),820);
+}
+
+function mmHud(bump){
+  document.getElementById('mmLv').textContent='LEVEL '+mm.level;
+  document.getElementById('mmScore').textContent=mm.score;
+  const g=mmGoal(mm.level);
+  document.getElementById('mmGoalText').textContent=`${Math.min(mm.levelMatched,g)} / ${g}`;
+  document.getElementById('mmGoalFill').style.width=Math.min(100,mm.levelMatched/g*100)+'%';
+  const m=Math.floor(mm.time/60), s=mm.time%60;
+  const low=mm.time<=15;
+  const t=document.getElementById('mmTime');
+  t.textContent=`⏱ ${m}:${String(s).padStart(2,'0')}`; t.classList.toggle('low',low);
+  const tf=document.getElementById('mmTimeFill');
+  tf.style.width=(mm.time/MM_TIME*100)+'%'; tf.classList.toggle('low',low);
+  const c=document.getElementById('mmCombo');
+  if(mm.combo>=2){
+    const mult=mm.combo>=10?3:mm.combo>=5?2:1;
+    c.innerHTML=`<span class="mm-flame">🔥</span>${mm.combo} 콤보`+(mult>1?` <span class="mult">×${mult}</span>`:'');
+    c.classList.add('show');
+    if(bump){c.classList.remove('bump');void c.offsetWidth;c.classList.add('bump');}
+  } else c.classList.remove('show');
+  document.getElementById('mmCard').classList.toggle('fire',mm.combo>=5);
+}
+
+function mmTick(){
+  if(!mm||!mm.running) return;
+  mm.time--;
+  if(mm.time<=0){mm.time=0;mmHud(false);mmEnd();return;}
+  mmHud(false);
+}
+
+function mmStart(){
+  if(mm&&mm.timer) clearInterval(mm.timer);
+  document.getElementById('mmConfirmOv').hidden=true;
+  const mode=mmPendingMode, pool=mmPoolFor(mode);
+  mm={mode,pool,level:1,score:0,combo:0,maxCombo:0,correct:0,attempts:0,totalMatched:0,levelMatched:0,
+      time:MM_TIME,queue:mmShuffle(pool),left:[],right:[],selL:null,selR:null,lock:new Set(),running:true,timer:null};
+  mmSetColTitles(mode);
+  mmShowScreen(null);
+  mmBuildBoard(); mmHud(false);
+  mm.timer=setInterval(mmTick,1000);
+}
+
+function mmLevelClear(){
+  if(!mm||!mm.running) return;
+  mm.running=false; clearInterval(mm.timer);
+  const bonus=mm.time*2; mm.score+=bonus;
+  mmHud(false);
+  const ov=document.getElementById('mmClearOv');
+  ov.innerHTML=`<div class="mm-big-emoji">🎉</div>
+    <div class="mm-ov-title">LEVEL ${mm.level} 클리어!</div>
+    <div class="mm-ov-sub">남은 시간 보너스 <b>+${bonus}점</b><br>다음 레벨 목표는 <b>${mmGoal(mm.level+1)}쌍</b>이에요.</div>
+    <button class="mm-btn" onclick="mmNextLevel()">다음 레벨 ▶</button>`;
+  mmShowScreen('mmClearOv');
+}
+
+function mmNextLevel(){
+  mm.level++; mm.levelMatched=0; mm.time=MM_TIME; mm.selL=null; mm.selR=null; mm.lock=new Set(); mm.running=true;
+  mmShowScreen(null);
+  mmBuildBoard(); mmHud(false);
+  mm.timer=setInterval(mmTick,1000);
+}
+
+function mmQuit(){
+  if(!mm||!mm.running) return;
+  if(mm.timer){clearInterval(mm.timer); mm.timer=null;}
+  document.getElementById('mmConfirmOv').hidden=false;
+}
+
+function mmQuitCancel(){
+  document.getElementById('mmConfirmOv').hidden=true;
+  if(mm&&mm.running&&!mm.timer) mm.timer=setInterval(mmTick,1000);
+}
+
+function mmQuitConfirm(){
+  document.getElementById('mmConfirmOv').hidden=true;
+  mmEnd('quit');
+}
+
+function mmEnd(reason){
+  mm.running=false; clearInterval(mm.timer);
+  const acc=mm.attempts?Math.round(mm.correct/mm.attempts*100):0;
+  const prev=mmBest(mm.mode), isNew=mm.score>prev;
+  if(isNew) mmSetBest(mm.mode,mm.score);
+  const quit=reason==='quit';
+  const ov=document.getElementById('mmEndOv');
+  ov.innerHTML=`<div class="mm-big-emoji">${quit?'🚪':'⏰'}</div>
+    ${isNew?'<div class="mm-newbest">NEW BEST!</div>':''}
+    <div class="mm-ov-title">${quit?'여기까지 도전!':'시간 종료!'}</div>
+    <div class="mm-ov-sub">LEVEL ${mm.level}에서 ${mm.levelMatched} / ${mmGoal(mm.level)}쌍까지 맞췄어요.</div>
+    <div class="mm-stats">
+      <div class="mm-stat hl"><b>${mm.score}</b><span>점수</span></div>
+      <div class="mm-stat hl"><b>${mm.maxCombo}</b><span>최대 콤보</span></div>
+      <div class="mm-stat"><b>${mm.totalMatched}</b><span>맞춘 쌍</span></div>
+      <div class="mm-stat"><b>${acc}%</b><span>정확도</span></div>
+    </div>
+    <button class="mm-btn" onclick="mmStart()">다시 도전</button>
+    <div class="mm-best">🏆 최고 기록 ${Math.max(prev,mm.score)}점</div>
+    <button class="mm-btn ghost" onclick="mmShowScreen('mmStartOv')">처음 화면으로</button>`;
+  mmShowScreen('mmEndOv');
+  document.getElementById('mmCard').classList.remove('fire');
+}
+
+function mmOnTabChange(idx){
+  if(!mm) return;
+  if(idx!==3 && mm.running){clearInterval(mm.timer);mm.timer=null;mm.paused=true;}
+  else if(idx===3 && mm.paused && mm.running){mm.paused=false;mm.timer=setInterval(mmTick,1000);}
+}
+
+function mmShowScreen(id){
+  ['mmStartOv','mmClearOv','mmEndOv'].forEach(x=>document.getElementById(x).hidden=(x!==id));
+  document.getElementById('mmCard').classList.toggle('screen',!!id);
+  if(id==='mmStartOv'){
+    if(mm) mmPendingMode=mm.mode;
+    mmBuildModeRow();
+    mmShowBest();
+  }
+}
+mmBuildModeRow();
+mmShowBest();
+
+
+const CQ={
+ "ox": [
+  {
+   "q": "일본은 4개의 큰 섬과 약 14,000여 개의 크고 작은 섬으로 이루어져 있다.",
+   "a": true,
+   "exp": "일본은 홋카이도·혼슈·시코쿠·규슈의 4개의 큰 섬과 약 14,000여 개의 크고 작은 섬으로 이루어져 있어요."
+  },
+  {
+   "q": "일본의 수도는 교토이다.",
+   "a": false,
+   "exp": "수도는 도쿄예요. 교토는 과거 약 1,070여 년간 일본의 수도였던 도시예요."
+  },
+  {
+   "q": "유카타는 주로 격식을 차릴 때 입는 일본의 대표적인 전통 의복이다.",
+   "a": false,
+   "exp": "격식을 차릴 때 입는 옷은 기모노예요. 유카타는 마쓰리(축제)나 불꽃놀이를 보러 갈 때 입어요."
+  },
+  {
+   "q": "일본 고유의 요리를 わしょく라고 한다.",
+   "a": true,
+   "exp": "일본 고유의 요리를 わしょく라고 해요."
+  },
+  {
+   "q": "일본에서는 상대방을 부를 때 성만 불러도 된다.",
+   "a": true,
+   "exp": "처음 만나거나 공식적인 관계라면 '성'으로 말하는 것이 일반적이에요. (교과서 Quiz)"
+  },
+  {
+   "q": "자기 이름에 'さん'을 붙여서 말해도 된다.",
+   "a": false,
+   "exp": "さん은 다른 사람을 부를 때 쓰고, 자기 자신에게는 사용하지 않아요. (교과서 Quiz)"
+  },
+  {
+   "q": "일본에서는 가족이 아닌 사람에게도 언니, 오빠라는 호칭을 사용한다.",
+   "a": false,
+   "exp": "일본에서는 가족이 아니면 언니, 오빠라는 호칭을 사용하지 않아요."
+  },
+  {
+   "q": "일본인은 자기 자신을 가리킬 때 검지로 자신의 코를 가리킨다.",
+   "a": true,
+   "exp": "한국인은 손바닥을 가슴에 얹고, 일본인은 검지로 코를, 미국인은 엄지를 세워 몸을 가리키기도 해요."
+  },
+  {
+   "q": "일본의 고등학교에서는 체육 대회와 우리나라의 학교 축제와 같은 문화제를 실시한다.",
+   "a": true,
+   "exp": "체육 대회(たいいくさい)와 학교 축제인 문화제(ぶんかさい)를 실시해요."
+  },
+  {
+   "q": "さようなら는 평소 친구와 헤어질 때 하는 인사말로 잘 어울린다.",
+   "a": false,
+   "exp": "さようなら는 한동안 못 볼 것 같은 상황에서 하는 이별의 인사말이라 평소 헤어질 때는 어울리지 않아요. (학교에서 종례 후 집에 갈 때는 사용)"
+  },
+  {
+   "q": "일본 고등학교의 입학식은 주로 4월에 한다.",
+   "a": true,
+   "exp": "일본에서는 입학식은 4월, 졸업식은 주로 3월에 해요. (교과서 Quiz)"
+  },
+  {
+   "q": "일본의 고등학교에서는 동아리 활동에 반드시 참가해야 한다.",
+   "a": false,
+   "exp": "동아리 활동에 참가하지 않는 학생들을 '귀가부'라고도 해요. (교과서 Quiz)"
+  }
+ ],
+ "mc": [
+  {
+   "q": "일본의 행정 구역에 해당하지 <b>않는</b> 것은?",
+   "opts": [
+    "나고야부",
+    "도쿄도",
+    "홋카이도",
+    "교토부"
+   ],
+   "a": 0,
+   "exp": "행정 구역은 도쿄도, 홋카이도, 교토부, 오사카부, 43개의 현이에요. 나고야는 중부 지방의 공업 도시예요."
+  },
+  {
+   "q": "다음 설명에 해당하는 도시는?<br><span class='q-quote'>과거 약 1,070여 년간 일본의 수도였던 도시로 역사와 전통, 과거와 현대가 공존하는 공간이다.</span>",
+   "opts": [
+    "도쿄",
+    "교토",
+    "오사카",
+    "나고야"
+   ],
+   "a": 1,
+   "exp": "교토에 대한 설명이에요."
+  },
+  {
+   "q": "'일본 제2의 도시로 일찍이 일본 상업의 중심지로 발전'한 도시는?",
+   "opts": [
+    "교토",
+    "나고야",
+    "오사카",
+    "도쿄"
+   ],
+   "a": 2,
+   "exp": "오사카에 대한 설명이에요. 나고야는 일본 최대 공업 지대 중 하나예요."
+  },
+  {
+   "q": "유부를 얹은 우동은?",
+   "opts": [
+    "そうめん",
+    "やきそば",
+    "たぬきうどん",
+    "きつねうどん"
+   ],
+   "a": 3,
+   "exp": "きつねうどん(기쓰네우동)은 유부를, たぬきうどん(다누키우동)은 튀김 부스러기를 얹은 우동이에요."
+  },
+  {
+   "q": "한국의 붕어빵과 비슷하고 도미 모양의 틀에 굽는 음식은?",
+   "opts": [
+    "おこのみやき",
+    "たいやき",
+    "すきやき",
+    "たこやき"
+   ],
+   "a": 1,
+   "exp": "たいやき(다이야키)예요. たこやき는 문어를 넣어 동그랗게 굽고, おこのみやき는 부침개와 비슷해요."
+  },
+  {
+   "q": "덮밥을 말하며, 밥 위에 올리는 재료에 따라 오야코돈·규돈·가쓰돈처럼 이름이 달라지는 음식은?",
+   "opts": [
+    "どんぶり",
+    "さしみ",
+    "しゃぶしゃぶ",
+    "すし"
+   ],
+   "a": 0,
+   "exp": "どんぶり(돈부리)에 대한 설명이에요."
+  },
+  {
+   "q": "한일 호칭 비교에서, 일본 가족 안에서 형·누나·오빠·언니에 해당하는 손위 형제를 부르는 말은?",
+   "opts": [
+    "(이름)くん",
+    "(이름)ちゃん",
+    "ぼく",
+    "〜さん"
+   ],
+   "a": 3,
+   "exp": "손위 형제는 〜さん으로 부르고, 남동생은 (이름)くん, 여동생은 (이름)ちゃん으로 불러요."
+  },
+  {
+   "q": "おこのみやき(오코노미야키)에 대한 설명으로 옳은 것은?",
+   "opts": [
+    "고기와 양배추 등을 넣은 일본식 볶음면이다.",
+    "밀가루 반죽에 잘게 썬 문어와 파, 양배추 등을 넣어 동그랗게 구워 낸다.",
+    "한국의 부침개와 비슷한 음식으로 양배추, 달걀, 밀가루 등으로 반죽하고 가쓰오부시와 소스, 마요네즈 등을 뿌려 먹는다.",
+    "한국의 붕어빵과 비슷하고 도미 모양의 틀에 굽는다."
+   ],
+   "a": 2,
+   "exp": "문어를 넣어 동그랗게 굽는 것은 たこやき, 도미 모양 틀에 굽는 것은 たいやき, 일본식 볶음면은 やきそば예요."
+  },
+  {
+   "q": "선생님이 학생을 부를 때 사용하기도 하는데, 특히 남학생에게 사용하는 경우가 많은 호칭은?",
+   "opts": [
+    "○○さん",
+    "○○くん",
+    "○○ちゃん",
+    "(이름)아/야"
+   ],
+   "a": 1,
+   "exp": "선생님이 학생을 부를 때는 '○○くん'을 사용하기도 하는데 특히 남학생에게 사용하는 경우가 많아요."
+  },
+  {
+   "q": "일본 고등학교의 연간 행사와 일본어의 연결이 옳은 것은?",
+   "opts": [
+    "졸업식 – にゅうがくしき",
+    "입학식 – そつぎょうしき",
+    "체육 대회 – ぶんかさい",
+    "학교 축제 – ぶんかさい"
+   ],
+   "a": 3,
+   "exp": "입학식 にゅうがくしき · 체육 대회 たいいくさい · 학교 축제(문화제) ぶんかさい · 졸업식 そつぎょうしき"
+  }
+ ],
+ "hard": [
+  {
+   "q": "일본의 지리와 도시에 대한 설명으로 옳은 것만을 있는 대로 고른 것은?",
+   "items": [
+    "ㄱ. 일본의 행정 구역에는 43개의 현이 있다.",
+    "ㄴ. 교토는 현재 일본의 수도이다.",
+    "ㄷ. 오사카는 일본 제2의 도시로 상업의 중심지로 발전했다.",
+    "ㄹ. 도쿄는 정치, 경제, 문화, 교육, 금융, 교통의 중심지이다."
+   ],
+   "opts": [
+    "ㄱ, ㄷ, ㄹ",
+    "ㄴ, ㄷ",
+    "ㄴ, ㄷ, ㄹ",
+    "ㄱ, ㄴ"
+   ],
+   "a": 0,
+   "exp": "ㄴ. 수도는 도쿄예요. 교토는 과거 약 1,070여 년간 수도였던 도시예요."
+  },
+  {
+   "q": "일본의 의복에 대한 설명으로 옳은 것만을 있는 대로 고른 것은?",
+   "items": [
+    "ㄱ. 기모노는 주로 격식을 차릴 때 입는다.",
+    "ㄴ. 유카타는 마쓰리(축제)나 불꽃놀이를 보러 갈 때 입는다.",
+    "ㄷ. 기모노는 축제에서 상인이 입는 옷이다."
+   ],
+   "opts": [
+    "ㄱ",
+    "ㄱ, ㄴ",
+    "ㄴ, ㄷ",
+    "ㄱ, ㄴ, ㄷ"
+   ],
+   "a": 1,
+   "exp": "ㄷ. 축제에서 상인이 입는 옷은 핫피예요(필기)."
+  },
+  {
+   "q": "일본의 음식에 대한 설명으로 옳은 것만을 있는 대로 고른 것은?",
+   "items": [
+    "ㄱ. そうめん은 우리나라의 소면과 같고, 여름에 먹는 나가시소멘이 유명하다.",
+    "ㄴ. たぬきうどん은 유부를 얹은 우동이다.",
+    "ㄷ. すきやき는 간장과 설탕 소스에 재료를 조린 뒤 날달걀에 찍어 먹는다.",
+    "ㄹ. さしみ는 식초로 조미한 밥에 제철 어패류를 얹어 만든다."
+   ],
+   "opts": [
+    "ㄷ, ㄹ",
+    "ㄱ, ㄴ",
+    "ㄱ, ㄷ",
+    "ㄴ, ㄹ"
+   ],
+   "a": 2,
+   "exp": "ㄴ. 유부를 얹은 우동은 きつねうどん이에요. ㄹ. すし에 대한 설명이에요. さしみ는 생선회예요."
+  },
+  {
+   "q": "일본인의 호칭 방법에 대한 설명으로 옳은 것만을 있는 대로 고른 것은?",
+   "items": [
+    "ㄱ. 일본인의 이름은 한국과 같이 '성+이름'으로 구성되어 있다.",
+    "ㄴ. 처음 만나거나 공식적인 관계라면 '이름'으로 말하는 것이 일반적이다.",
+    "ㄷ. 선생님이 남학생을 부를 때 '○○くん'을 사용하는 경우가 많다.",
+    "ㄹ. '○○ちゃん'은 가족을 부를 때 친근한 의미로 사용하기도 한다."
+   ],
+   "opts": [
+    "ㄱ, ㄴ",
+    "ㄴ, ㄷ",
+    "ㄱ, ㄴ, ㄹ",
+    "ㄱ, ㄷ, ㄹ"
+   ],
+   "a": 3,
+   "exp": "ㄴ. 처음 만나거나 공식적인 관계라면 '성'으로 말하는 것이 일반적이에요."
+  },
+  {
+   "q": "한일 호칭 비교와 일본인의 손짓에 대한 설명으로 옳은 것만을 있는 대로 고른 것은?",
+   "items": [
+    "ㄱ. 일본에서는 남동생을 '(이름)くん'으로 부른다.",
+    "ㄴ. 일본에서는 가족이 아니어도 언니, 오빠라는 호칭을 사용한다.",
+    "ㄷ. 일본인은 자기 자신을 가리킬 때 검지로 자신의 코를 가리킨다.",
+    "ㄹ. 한국인은 엄지를 세워서 자신의 몸을 가리킨다."
+   ],
+   "opts": [
+    "ㄱ, ㄴ",
+    "ㄴ, ㄹ",
+    "ㄱ, ㄷ, ㄹ",
+    "ㄱ, ㄷ"
+   ],
+   "a": 3,
+   "exp": "ㄴ. 일본에서는 가족이 아니면 언니, 오빠라는 호칭을 사용하지 않아요. ㄹ. 엄지를 세워 자신의 몸을 가리키는 것은 미국인이에요. 한국인은 손바닥을 가슴에 얹어요."
+  },
+  {
+   "q": "일본 고등학생의 학교생활에 대한 설명으로 옳은 것만을 있는 대로 고른 것은?",
+   "items": [
+    "ㄱ. 자전거를 타고 통학하는 학생들이 많다.",
+    "ㄴ. 동아리 활동에 참가하지 않는 학생들을 '귀가부'라고도 한다.",
+    "ㄷ. 졸업식은 주로 4월에 한다.",
+    "ㄹ. 실내화와 체육관 전용 운동화는 별도로 준비한다."
+   ],
+   "opts": [
+    "ㄱ, ㄷ",
+    "ㄴ, ㄷ",
+    "ㄱ, ㄴ, ㄹ",
+    "ㄴ, ㄷ, ㄹ"
+   ],
+   "a": 2,
+   "exp": "ㄷ. 입학식이 4월, 졸업식은 주로 3월이에요."
+  },
+  {
+   "q": "일본인의 성씨에 대한 설명으로 옳은 것만을 있는 대로 고른 것은?",
+   "items": [
+    "ㄱ. 일본의 성씨는 약 30만여 개이다.",
+    "ㄴ. 일본의 대표 성씨로 사토, 스즈키, 다카하시가 있다.",
+    "ㄷ. 상위 10%의 성씨가 인구의 90%를 차지한다."
+   ],
+   "opts": [
+    "ㄱ",
+    "ㄱ, ㄴ",
+    "ㄴ, ㄷ",
+    "ㄱ, ㄴ, ㄷ"
+   ],
+   "a": 1,
+   "exp": "ㄷ. 상위 10%의 성씨가 인구의 10%를 차지해요."
+  },
+  {
+   "q": "일본의 음식 문화에 대한 설명으로 옳은 것만을 있는 대로 고른 것은?",
+   "items": [
+    "ㄱ. 일본인의 식생활에서 주식은 쌀이며, 생선 요리가 발달했다.",
+    "ㄴ. 미각과 시각을 모두 고려해 음식과 음식을 담는 그릇의 조화를 중요하게 생각한다.",
+    "ㄷ. しゃぶしゃぶ는 끓는 국물에 얇게 썬 고기, 채소 등을 데쳐 양념장과 함께 먹는 전골 요리이다.",
+    "ㄹ. そば는 밀가루로 만든 국수이며, 연말에 먹는 도시코시소바가 있다."
+   ],
+   "opts": [
+    "ㄱ, ㄴ, ㄷ",
+    "ㄱ, ㄷ, ㄹ",
+    "ㄱ, ㄴ",
+    "ㄴ, ㄹ"
+   ],
+   "a": 0,
+   "exp": "ㄹ. そば는 메밀국수예요."
+  }
+ ]
+};
+
+/* ===== 6. 문화 탭 확인 문제 ===== */
+const CQ_TYPES=[
+  {key:'ox',  label:'OX 퀴즈', icon:'⭕', diff:'기초',  diffCls:'diff-basic', color:'#2563eb'},
+  {key:'mc',  label:'객관식',  icon:'📋', diff:'중급',  diffCls:'diff-mid',   color:'#16a34a'},
+  {key:'hard',label:'고난도',  icon:'🔥', diff:'고난도', diffCls:'diff-hard',  color:'#7c3aed'},
+];
+const cqState={active:0, answered:{ox:[],mc:[],hard:[]}};
+const CQ_LETTERS=['A','B','C','D'];
+
+function cqScore(key){
+  const ans=cqState.answered[key]; let c=0,n=0;
+  ans.forEach((v,i)=>{ if(v===undefined) return; n++; if(cqIsRight(key,i,v)) c++; });
+  return [c,n];
+}
+function cqIsRight(key,i,v){ return CQ[key][i].a===v; }
+
+function cqCard(key,i){
+  const q=CQ[key][i], t=CQ_TYPES.find(x=>x.key===key), v=cqState.answered[key][i], done=v!==undefined;
+  const right=done&&cqIsRight(key,i,v);
+  let body='';
+  if(key==='ox'){
+    body='<div class="ox-row">'+[true,false].map(b=>{
+      let c='ox-btn';
+      if(done){ if(b===v) c+=right?' correct-picked':' wrong-picked'; else if(b===q.a) c+=' correct-reveal'; }
+      return `<button type="button" class="${c}" ${done?'disabled':''} onclick="cqAnswer('${key}',${i},${b})">${b?'⭕':'❌'}</button>`;
+    }).join('')+'</div>';
+  } else {
+    if(q.items) body+='<div class="q-items">'+q.items.map(s=>`<div>${s}</div>`).join('')+'</div>';
+    body+='<div class="mc-options">'+q.opts.map((o,k)=>{
+      let c='mc-opt';
+      if(done){ if(k===q.a) c+=' correct'; else if(k===v) c+=' wrong'; }
+      return `<button type="button" class="${c}" ${done?'disabled':''} onclick="cqAnswer('${key}',${i},${k})"><span class="mc-opt-letter">${CQ_LETTERS[k]}</span><span>${o}</span></button>`;
+    }).join('')+'</div>';
+  }
+  const fb=done?`<div class="q-feedback ${right?'correct':'wrong'}">${right?'✅ 정답!':'❌ 오답'} ${key==='ox'?'(정답 '+(q.a?'⭕':'❌')+')':'(정답 '+CQ_LETTERS[q.a]+')'} — ${q.exp}</div>`:'';
+  return `<div class="q-card${done?(right?' answered-correct':' answered-wrong'):''}" id="cq-${key}-${i}">
+    <div class="q-meta"><span class="q-num">Q${i+1}</span><span class="q-difficulty ${t.diffCls}">${t.diff}</span></div>
+    <div class="q-text">${q.q}</div>${body}${fb}</div>`;
+}
+
+function cqRender(){
+  const w=document.getElementById('cultQuiz'); if(!w) return;
+  const t=CQ_TYPES[cqState.active], key=t.key, total=CQ[key].length;
+  const [c,n]=cqScore(key);
+  let h='<div class="quiz-section"><div class="quiz-header"><div class="quiz-title">📝 문화 확인 문제</div><div class="scoreboard">'+
+    CQ_TYPES.map(x=>{const [cc,nn]=cqScore(x.key);return `<span class="score-chip ${x.key}">${x.icon} ${nn}/${CQ[x.key].length} · ${cc}점</span>`;}).join('')+
+    '</div></div><div class="quiz-type-bar">'+
+    CQ_TYPES.map((x,k)=>`<button type="button" class="qtype-btn${k===cqState.active?' active':''}" style="--qc:${x.color}" onclick="cqSwitch(${k})">${x.icon} ${x.label}<span class="qtype-count">${cqScore(x.key)[1]}/${CQ[x.key].length}</span></button>`).join('')+
+    `</div><div class="q-progress-wrap"><div class="q-progress-bar"><div class="q-progress-fill" style="width:${n/total*100}%;background:${t.color}"></div></div><span>${n} / ${total}</span></div>`;
+  if(n===total){
+    const pct=Math.round(c/total*100);
+    const msg=pct===100?'완벽해요! 🎉':pct>=80?'아주 잘했어요! 👏':pct>=60?'조금만 더 복습해요 💪':'문화 탭을 다시 읽어 보세요 📖';
+    h+=`<div class="quiz-result"><div class="qr-score" style="color:${t.color}">${c} / ${total}</div><div class="qr-pct">${pct}% · ${msg}</div>
+      <div class="mini-bars">`+CQ_TYPES.map(x=>{const [cc,nn]=cqScore(x.key),tt=CQ[x.key].length;
+        return `<div class="mini-bar-row"><span class="mini-bar-label">${x.label}</span><div class="mini-bar-track"><div class="mini-bar-fill" style="width:${cc/tt*100}%;background:${x.color}"></div></div><span class="mini-bar-num">${cc}/${tt}</span></div>`;}).join('')+
+      `</div><button type="button" class="reset-btn" onclick="cqReset('${key}')">↺ ${t.label} 다시 풀기</button></div>`;
+  }
+  h+=CQ[key].map((_,i)=>cqCard(key,i)).join('');
+  if(n>0&&n<total) h+=`<button type="button" class="reset-btn subtle" onclick="cqReset('${key}')">↺ ${t.label} 처음부터 다시 풀기</button>`;
+  w.innerHTML=h+'</div>';
+}
+function cqSwitch(k){cqState.active=k;cqRender();}
+function cqAnswer(key,i,v){
+  if(cqState.answered[key][i]!==undefined) return;
+  cqState.answered[key][i]=v;
+  cqRender();
+  const next=CQ[key].findIndex((_,k)=>cqState.answered[key][k]===undefined);
+  setTimeout(()=>{
+    const el=next<0?document.querySelector('#cultQuiz .quiz-result'):document.getElementById(`cq-${key}-${next}`);
+    if(el) el.scrollIntoView({behavior:'smooth',block:'center'});
+  },60);
+}
+function cqReset(key){cqState.answered[key]=[];cqRender();document.getElementById('cultQuiz').scrollIntoView({behavior:'smooth',block:'start'});}
+cqRender();
+
+</script>
+</body>
+</html>

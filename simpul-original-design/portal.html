@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SIMPUL STUDY — 학습 포털</title>
+  <meta name="simpul-api-base" content="./api">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/portal.css">
+</head>
+<body>
+  <button id="subjectToggle" class="subject-toggle" type="button" aria-expanded="true" aria-controls="subjectSidebar">과목 닫기</button>
+  <aside id="subjectSidebar" class="sidebar">
+    <a class="logo" href="./index.html" aria-label="SIMPUL STUDY 처음으로"><img src="./simpul-logo.png" alt="SIMPUL STUDY"></a>
+    <nav id="subjectNav" class="menu" aria-label="과목 선택"></nav>
+  </aside>
+  <main class="main">
+    <header class="header">
+      <div><h1 id="pageTitle">SIMPUL STUDY</h1><p id="pageDescription">과목을 선택해 학습자료를 확인하세요.</p></div>
+      <a class="home-link" href="./index.html">홈</a>
+    </header>
+    <section class="content" aria-live="polite">
+      <div id="cardPanel" class="card-panel"></div>
+      <div id="viewerPanel" class="viewer-panel" hidden>
+        <div class="viewer-toolbar"><button id="backToCards" type="button">← 자료 목록</button><a id="openOriginal" target="_blank" rel="noopener">새 창으로 열기</a></div>
+        <iframe id="contentFrame" title="학습자료" allow="fullscreen"></iframe>
+      </div>
+    </section>
+  </main>
+  <script src="./scripts/usage.js" defer></script>
+  <script type="module" src="./scripts/portal.js"></script>
+</body>
+</html>

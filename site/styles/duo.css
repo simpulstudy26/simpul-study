@@ -1,0 +1,372 @@
+/* 듀오링고 모드 스타일. 스위치는 항상 보이고, 나머지는 <html data-duo>일 때만 적용된다.
+   색은 duolingo.com 웹 번들에 들어 있는 색상값 그대로 (REA로 확인):
+   초록 #58CC02 / 그림자 #58A700, 빨강 #FF4B4B / #EA2B2B, 노랑 #FFC800, 주황 #FF9600 / #CD7900, 파랑 #1CB0F6,
+   다크 배경 #131F24 · 카드 #202F36 · 테두리 #37464F · 글자 #F1F7FB, 라이트 글자 #4B4B4B · 테두리 #E5E5E5 · 면 #F7F7F7 */
+:root {
+  --duo: 94.46 98.06% 40.39%;  /* #58CC02 */
+  --duo-deep: 88.38 100% 32.75%; /* #58A700 */
+  --duo-soft: 94.46 98.06% 40.39% / 0.14;
+  --duo-amber: 47.06 100% 50%;  /* #FFC800 */
+  --duo-amber-deep: 35.41 100% 40.2%; /* #CD7900 */
+  --duo-orange: 35.29 100% 50%; /* #FF9600 */
+  --duo-blue: 199.27 92.37% 53.73%; /* #1CB0F6 */
+  --duo-bad: 0 100% 64.71%;   /* #FF4B4B */
+  --duo-bad-deep: 0 81.97% 54.31%; /* #EA2B2B */
+  --duo-ink: 0 0% 100%;
+}
+
+/* 듀오링고 모드에서는 사이트 전체 색 토큰을 듀오링고 색으로 바꾼다 (기본 다크) */
+html[data-duo] {
+  --background: 197.65 30.91% 10.78%; /* #131F24 */
+  --foreground: 204 55.56% 96.47%; /* #F1F7FB */
+  --card: 199.09 25.58% 16.86%; /* #202F36 — 카드 안을 듀오링고 면 색으로 */
+  --card-foreground: 204 55.56% 96.47%;
+  --secondary: 199.09 25.58% 16.86%; /* #202F36 */
+  --secondary-foreground: 204 55.56% 96.47%;
+  --muted: 199.09 25.58% 16.86%;
+  --muted-foreground: 0 0% 68.63%; /* #AFAFAF */
+  --accent: 199.09 25.58% 16.86%;
+  --accent-foreground: 204 55.56% 96.47%;
+  --border: 202.5 17.91% 26.27%; /* #37464F */
+  --input: 202.5 17.91% 26.27%;
+  --ring: 199.27 92.37% 53.73%;
+  --success: 94.46 98.06% 40.39%;
+  --destructive: 0 100% 64.71%;
+  --logo-filter: none;
+}
+html[data-duo][data-theme="light"] {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 29.41%; /* #4B4B4B */
+  --card: 0 0% 96.86%;         /* #F7F7F7 */
+  --card-foreground: 0 0% 29.41%;
+  --secondary: 0 0% 96.86%; /* #F7F7F7 */
+  --secondary-foreground: 0 0% 29.41%;
+  --muted: 0 0% 96.86%;
+  --muted-foreground: 0 0% 46.67%; /* #777777 */
+  --accent: 0 0% 96.86%;
+  --accent-foreground: 0 0% 29.41%;
+  --border: 0 0% 89.8%; /* #E5E5E5 */
+  --input: 0 0% 89.8%;
+  --logo-filter: invert(1) brightness(0.15);
+}
+html[data-duo] body { transition: background-color .5s ease, color .5s ease; }
+
+/* ── 켜고 끌 때 전환 애니메이션 ──
+   눌렀을 때: 스위치 자리에서 초록(끌 때는 원래 배경색) 원이 화면을 덮는다 → 새로고침
+   새로고침 뒤: 초록 원이 가운데로 줄어들며 듀오링고 색 화면이 드러나고, 카드가 하나씩 올라온다 */
+.duo-wipe {
+  position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+}
+html[data-duo-anim="in"] body::after {
+  content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+  background: hsl(var(--duo));
+  animation: duo-reveal .75s cubic-bezier(.65, 0, .35, 1) .08s both;
+}
+@keyframes duo-reveal {
+  from { clip-path: circle(150% at 50% 40%); }
+  to { clip-path: circle(0% at 50% 40%); }
+}
+html[data-duo-anim="in"] .duo-home > *, html[data-duo-anim="in"] .duo-toggle {
+  animation: duo-rise .5s cubic-bezier(.2, .8, .2, 1.2) both;
+}
+html[data-duo-anim="in"] .duo-home > :nth-child(1) { animation-delay: .45s; }
+html[data-duo-anim="in"] .duo-home > :nth-child(2) { animation-delay: .55s; }
+html[data-duo-anim="in"] .duo-home > :nth-child(3) { animation-delay: .65s; }
+html[data-duo-anim="in"] .duo-toggle { animation-delay: .4s; }
+@keyframes duo-rise { from { opacity: 0; transform: translateY(18px) scale(.98); } }
+@media (prefers-reduced-motion: reduce) {
+  html[data-duo-anim] body::after { display: none; }
+  html[data-duo-anim] .duo-home > *, html[data-duo-anim] .duo-toggle { animation: none; }
+}
+
+/* ── 켜고 끄기 스위치 ── */
+.duo-toggle { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin: 0 0 18px; }
+.page-head .duo-toggle { margin-top: 14px; }
+.duo-switch { display: inline-flex; align-items: center; gap: 12px; cursor: pointer; position: relative; }
+.duo-switch input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.duo-switch-track {
+  flex: none; width: 44px; height: 24px; border-radius: 999px; background: hsl(var(--input)); position: relative;
+  transition: background-color .2s;
+}
+.duo-switch-track::after {
+  content: ''; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%;
+  background: hsl(var(--background)); box-shadow: var(--shadow-sm); transition: transform .2s;
+}
+.duo-switch input:checked + .duo-switch-track { background: hsl(var(--duo)); }
+.duo-switch input:checked + .duo-switch-track::after { transform: translateX(20px); background: #fff; }
+.duo-switch input:focus-visible + .duo-switch-track { outline: 2px solid hsl(var(--ring)); outline-offset: 2px; }
+.duo-switch-text { display: grid; line-height: 1.35; }
+.duo-switch-text strong { font-size: 14px; font-weight: 600; }
+.duo-switch-text small { font-size: 13px; color: hsl(var(--muted-foreground)); }
+.duo-toggle-tools { display: flex; gap: 8px; flex-wrap: wrap; }
+.duo-mini {
+  height: 30px; padding: 0 10px; font: inherit; font-size: 13px; color: hsl(var(--foreground));
+  background: hsl(var(--background)); border: 1px solid hsl(var(--input)); border-radius: calc(var(--radius) - 2px); cursor: pointer;
+}
+
+/* ── 듀오링고 모드 전체 모양: 두툼한 버튼, 큰 모서리 ── */
+html[data-duo] .btn { border-radius: 14px; font-weight: 700; letter-spacing: 0.01em; transition: transform .06s, box-shadow .06s, background-color .15s; }
+html[data-duo] .btn-primary {
+  background: hsl(var(--duo)); color: hsl(var(--duo-ink)); border: 0;
+  box-shadow: 0 4px 0 hsl(var(--duo-deep));
+}
+html[data-duo] .btn-primary:hover { background: hsl(var(--duo) / 0.92); color: hsl(var(--duo-ink)); }
+html[data-duo] .btn-primary:active { transform: translateY(4px); box-shadow: 0 0 0 hsl(var(--duo-deep)); }
+html[data-duo] .btn-secondary { border-width: 2px; box-shadow: 0 3px 0 hsl(var(--border)); }
+html[data-duo] .btn-secondary:active { transform: translateY(3px); box-shadow: none; }
+html[data-duo] .page-head h1 { font-weight: 800; }
+
+/* ── 홈 ── */
+.duo-home { display: grid; gap: 16px; margin: 0 0 28px; }
+.duo-bar { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.duo-stat, .duo-panel {
+  background: hsl(var(--card)); border: 2px solid hsl(var(--border)); border-radius: 18px; box-shadow: 0 3px 0 hsl(var(--border));
+}
+.duo-stat { display: flex; align-items: center; gap: 12px; padding: 14px 16px; min-width: 0; }
+.duo-stat > span:last-child { display: grid; min-width: 0; line-height: 1.3; }
+.duo-stat b { font-size: 20px; font-weight: 800; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.duo-stat small { font-size: 12.5px; color: hsl(var(--muted-foreground)); }
+.duo-ico { font-size: 28px; line-height: 1; filter: grayscale(1) opacity(.55); }
+.duo-stat.is-lit .duo-ico, .duo-stat:last-child .duo-ico { filter: none; }
+.duo-ring {
+  --p: 0; flex: none; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center;
+  background: conic-gradient(hsl(var(--duo-amber)) calc(var(--p) * 1%), hsl(var(--muted)) 0);
+}
+.duo-ring > span {
+  width: 34px; height: 34px; border-radius: 50%; background: hsl(var(--card)); display: grid; place-items: center;
+  font-size: 10.5px; font-weight: 800; font-variant-numeric: tabular-nums;
+}
+.duo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.duo-panel { padding: 18px 20px; min-width: 0; }
+.duo-h { margin: 0 0 12px; font-size: 17px; font-weight: 800; letter-spacing: -0.02em; }
+.duo-note { margin: 0 0 12px; font-size: 14px; color: hsl(var(--muted-foreground)); }
+.duo-quest { display: grid; grid-template-columns: minmax(0, 1fr) 110px 44px; align-items: center; gap: 10px; padding: 8px 0; }
+.duo-quest + .duo-quest { border-top: 1px solid hsl(var(--border)); }
+.duo-quest-title { font-size: 14.5px; font-weight: 600; }
+.duo-quest.is-done .duo-quest-title { color: hsl(var(--duo)); }
+.duo-quest-num { font-size: 13px; text-align: right; color: hsl(var(--muted-foreground)); font-variant-numeric: tabular-nums; }
+.duo-progress { display: block; height: 12px; border-radius: 999px; background: hsl(var(--muted)); overflow: hidden; }
+.duo-progress > span {
+  display: block; height: 100%; border-radius: inherit; background: hsl(var(--duo-amber)); transition: width .35s ease;
+  box-shadow: inset 0 3px 0 hsl(0 0% 100% / 0.28);
+}
+.duo-quest.is-done .duo-progress > span, .duo-progress-lg > span { background: hsl(var(--duo)); }
+.duo-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.duo-chip { height: 36px; padding: 0 12px; gap: 8px; background: hsl(var(--background)); color: hsl(var(--foreground)); border: 2px solid hsl(var(--border)); box-shadow: 0 3px 0 hsl(var(--border)); }
+.duo-chip .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+
+/* 학습 경로 */
+.duo-path-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 8px; padding-bottom: 4px; }
+.duo-path-tabs::-webkit-scrollbar { display: none; }
+.duo-path-tabs button {
+  flex: none; height: 34px; padding: 0 14px; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer;
+  color: hsl(var(--muted-foreground)); background: transparent; border: 2px solid hsl(var(--border)); border-radius: 12px;
+}
+.duo-path-tabs button[aria-selected="true"] { color: hsl(var(--duo)); border-color: hsl(var(--duo)); background: hsl(var(--duo-soft)); }
+.duo-path-stage { padding: 8px 0 4px; }
+.duo-path { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; justify-items: center; }
+.duo-path li { --x: 0; position: relative; display: grid; justify-items: center; gap: 6px; transform: translateX(calc(var(--x) * 44px)); }
+.duo-node {
+  --p: 0; --c: hsl(var(--duo)); width: 76px; height: 76px; border-radius: 50%; display: grid; place-items: center; text-decoration: none;
+  background: conic-gradient(hsl(var(--duo-amber)) calc(var(--p) * 1%), hsl(var(--muted)) 0);
+}
+.duo-node-face {
+  width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center;
+  font-size: 22px; font-weight: 800; color: hsl(var(--muted-foreground));
+  background: hsl(var(--secondary)); box-shadow: 0 5px 0 hsl(var(--border)); transition: transform .06s, box-shadow .06s;
+}
+.duo-node:active .duo-node-face { transform: translateY(5px); box-shadow: none; }
+.duo-node.is-current .duo-node-face { background: hsl(var(--duo)); color: #fff; box-shadow: 0 5px 0 hsl(var(--duo-deep)); }
+.duo-node.is-done { background: hsl(var(--duo-amber)); }
+.duo-node.is-done .duo-node-face { background: hsl(var(--duo-amber)); color: #fff; box-shadow: 0 5px 0 hsl(var(--duo-amber-deep)); }
+.duo-node-label { max-width: 180px; text-align: center; font-size: 13px; font-weight: 600; line-height: 1.35; color: hsl(var(--muted-foreground)); }
+.duo-node.is-current + .duo-node-label { color: hsl(var(--foreground)); }
+.duo-bubble {
+  position: relative; z-index: 1; padding: 4px 12px; border-radius: 10px; font-size: 13px; font-weight: 800;
+  color: hsl(var(--duo)); background: hsl(var(--card)); border: 2px solid hsl(var(--border));
+  animation: duo-bob 1.6s ease-in-out infinite;
+}
+@keyframes duo-bob { 50% { transform: translateY(-4px); } }
+
+/* ── 무한 문제: 레슨 화면 ── */
+html[data-duo] .cloud-stats { display: none; }
+html[data-duo] .cloud-filters { margin-bottom: 8px; }
+.duo-lesson-bar { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 14px; margin: 18px 0 4px; }
+.duo-quit { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 10px; font-size: 18px; text-decoration: none; color: hsl(var(--muted-foreground)); }
+.duo-quit:hover { background: hsl(var(--accent)); color: hsl(var(--foreground)); }
+.duo-progress-lg { height: 16px; }
+.duo-combo { font-weight: 800; font-variant-numeric: tabular-nums; color: hsl(var(--muted-foreground)); filter: grayscale(1); }
+.duo-combo.is-hot { color: hsl(var(--duo-amber)); filter: none; }
+html[data-duo] .cloud-card { border-radius: 18px; border-width: 2px; }
+html[data-duo] .cloud-q { font-size: 19px; font-weight: 700; }
+html[data-duo] .choice { border-width: 2px; border-radius: 14px; box-shadow: 0 3px 0 hsl(var(--border)); padding-top: 12px; padding-bottom: 12px; transition: transform .06s, box-shadow .06s; }
+html[data-duo] .choice:active:not([disabled]) { transform: translateY(3px); box-shadow: none; }
+html[data-duo] .choice-no { font-size: 17px; }
+html[data-duo] .choice.is-right { border-color: hsl(var(--duo)); background: hsl(var(--duo-soft)); box-shadow: 0 3px 0 hsl(var(--duo)); }
+html[data-duo] .choice.is-wrong { border-color: hsl(var(--duo-bad)); background: hsl(var(--duo-bad) / 0.12); box-shadow: 0 3px 0 hsl(var(--duo-bad)); }
+
+/* 채점 뒤 아래에서 올라오는 결과 카드 */
+.duo-sheet {
+  position: sticky; bottom: 12px; z-index: 5; border: 2px solid transparent; border-radius: 16px !important;
+  animation: duo-up .22s ease-out;
+}
+.duo-sheet { box-shadow: 0 -8px 24px rgb(0 0 0 / 0.25); }
+.duo-sheet.is-ok { background: linear-gradient(hsl(var(--duo) / 0.16), hsl(var(--duo) / 0.16)), hsl(var(--card)) !important; border-color: hsl(var(--duo) / 0.5); }
+.duo-sheet.is-bad { background: linear-gradient(hsl(var(--duo-bad) / 0.14), hsl(var(--duo-bad) / 0.14)), hsl(var(--card)) !important; border-color: hsl(var(--duo-bad) / 0.45); }
+.duo-sheet .result-ok, .duo-sheet .result-bad { font-size: 17px; font-weight: 800; }
+.duo-sheet.is-ok .result-ok { color: hsl(var(--duo)); }
+.duo-sheet.is-bad .result-bad { color: hsl(var(--duo-bad)); }
+.duo-sheet-actions { margin-top: 12px; justify-content: flex-end; }
+.duo-sheet-actions .btn { min-width: 140px; }
+.duo-sheet.is-bad .btn-primary { background: hsl(var(--duo-bad)); box-shadow: 0 4px 0 hsl(var(--duo-bad-deep)); }
+@keyframes duo-up { from { transform: translateY(14px); opacity: 0; } }
+
+/* 레슨 결과 */
+.duo-result { text-align: center; padding: 28px 24px; }
+.duo-result-title { font-size: 24px !important; font-weight: 800; letter-spacing: -0.02em; color: hsl(var(--duo)); margin: 0 0 18px !important; }
+.duo-result-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 0 auto 16px; max-width: 420px; }
+.duo-result-stats div { border: 2px solid hsl(var(--duo-amber)); border-radius: 14px; padding: 10px 6px; display: grid; }
+.duo-result-stats small { font-size: 12px; font-weight: 700; color: hsl(var(--duo-amber)); }
+.duo-result-stats b { font-size: 22px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.duo-result-streak { font-weight: 700; }
+.duo-result .toolbar { justify-content: center; }
+
+/* ── 카드 안을 듀오링고 색으로 채우기 ──
+   채운 색 위 글자는 대비를 위해 듀오링고 다크 배경색(#131F24)으로 쓴다. */
+html[data-duo] {
+  --duo-on: #131F24;
+}
+.duo-fill {
+  --fill: #58CC02; --fill-deep: #58A700;
+  background: var(--fill) !important; border-color: var(--fill-deep) !important;
+  box-shadow: 0 4px 0 var(--fill-deep) !important; color: var(--duo-on);
+}
+.duo-fill .duo-note, .duo-fill small, .duo-fill .duo-quest-num, .duo-fill .duo-node-label { color: var(--duo-on) !important; opacity: .82; }
+.duo-fill .duo-h, .duo-fill b, .duo-fill .duo-quest-title { color: var(--duo-on) !important; }
+.duo-fill .duo-ico { filter: none !important; }
+.duo-fill-orange { --fill: #FF9600; --fill-deep: #CD7900; }
+.duo-fill-blue { --fill: #1CB0F6; --fill-deep: #1899D6; }
+.duo-fill-green { --fill: #58CC02; --fill-deep: #58A700; }
+.duo-fill-gold { --fill: #FFC800; --fill-deep: #CD7900; }
+.duo-fill-red { --fill: #FF4B4B; --fill-deep: #EA2B2B; }
+/* 채운 카드 안의 진행 막대·고리 */
+.duo-fill .duo-progress { background: rgb(19 31 36 / 0.18); }
+.duo-fill .duo-progress > span { background: #fff !important; box-shadow: none; }
+.duo-fill .duo-quest + .duo-quest { border-top-color: rgb(19 31 36 / 0.15); }
+.duo-fill .duo-ring { background: conic-gradient(#FFC800 calc(var(--p) * 1%), rgb(19 31 36 / 0.22) 0); }
+.duo-fill .duo-ring > span { background: var(--fill); color: var(--duo-on); }
+.duo-fill .duo-chip { background: #fff; color: #131F24; border-color: var(--fill-deep); box-shadow: 0 3px 0 var(--fill-deep); }
+/* 초록 학습 경로 카드 안 */
+.duo-fill .duo-path-tabs button { color: var(--duo-on); border-color: rgb(19 31 36 / 0.25); }
+.duo-fill .duo-path-tabs button[aria-selected="true"] { background: #fff; color: #58A700; border-color: #fff; }
+.duo-fill .duo-node { background: conic-gradient(#FFC800 calc(var(--p) * 1%), rgb(19 31 36 / 0.2) 0); }
+.duo-fill .duo-node-face { background: rgb(255 255 255 / 0.35); color: var(--duo-on); box-shadow: 0 5px 0 rgb(19 31 36 / 0.25); }
+.duo-fill .duo-node.is-current .duo-node-face { background: #fff; color: #58A700; box-shadow: 0 5px 0 #58A700; }
+.duo-fill .duo-node.is-done { background: #FFC800; }
+.duo-fill .duo-node.is-done .duo-node-face { background: #FFC800; color: var(--duo-on); box-shadow: 0 5px 0 #CD7900; }
+.duo-fill .duo-node.is-current + .duo-node-label { color: var(--duo-on) !important; opacity: 1; font-weight: 800; }
+.duo-fill .duo-bubble { background: #fff; color: #58A700; border-color: #58A700; }
+.duo-fill .btn-secondary { background: #fff; color: #131F24; border-color: var(--fill-deep); }
+
+@media (max-width: 720px) {
+  .duo-bar { gap: 8px; }
+  .duo-stat { flex-direction: column; text-align: center; gap: 6px; padding: 12px 6px; }
+  .duo-stat b { font-size: 16px; }
+  .duo-stat small { font-size: 11px; }
+  .duo-stat:last-child small { display: none; }
+  .duo-grid { grid-template-columns: 1fr; }
+  .duo-quest { grid-template-columns: minmax(0, 1fr) 80px 40px; }
+  .duo-path li { transform: translateX(calc(var(--x) * 28px)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .duo-bubble, .duo-sheet { animation: none; }
+  .duo-progress > span { transition: none; }
+}
+
+/* ── 학습 경로: 시험범위 구간 머리말 · 공부 단계 카드 · 끝 트로피 (scripts/duo-home.js) ── */
+button.duo-node { border: 0; padding: 0; font: inherit; cursor: pointer; }
+.duo-path li.duo-sec {
+  transform: none; justify-self: stretch; justify-items: start; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 2px 12px;
+  margin-top: 6px; padding: 12px 16px; border-radius: 14px; text-align: left;
+  --sec: #1CB0F6; --sec-deep: #1899D6;
+  background: var(--sec); color: #fff; box-shadow: 0 4px 0 var(--sec-deep);
+}
+.duo-sec .duo-sec-kicker, .duo-sec .duo-sec-title, .duo-sec .duo-sec-count { color: #fff; text-shadow: 0 1px 0 rgb(0 0 0 / 0.12); }
+.duo-path li.duo-sec:first-child { margin-top: 0; }
+.duo-sec-kicker { grid-column: 1; font-size: 11.5px; font-weight: 800; letter-spacing: .06em; opacity: .75; }
+.duo-sec-title { grid-column: 1; font-size: 16px; font-weight: 800; letter-spacing: -0.01em; min-width: 0; }
+.duo-sec-count { grid-column: 2; grid-row: 1 / span 2; font-size: 13px; font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.duo-path li.duo-sec.is-done { --sec: #FFC800; --sec-deep: #CD7900; }
+.duo-sec.is-done .duo-sec-kicker, .duo-sec.is-done .duo-sec-title, .duo-sec.is-done .duo-sec-count { color: #131F24; text-shadow: none; }
+.duo-sec.is-done .duo-sec-count::before { content: '✓ '; }
+.duo-path li.duo-sec.is-extra { --sec: #fff; --sec-deep: #58A700; }
+.duo-sec.is-extra .duo-sec-kicker, .duo-sec.is-extra .duo-sec-title, .duo-sec.is-extra .duo-sec-count { color: #58A700; text-shadow: none; }
+.duo-step {
+  position: relative; z-index: 2; width: min(340px, 100%); margin-top: 4px; padding: 14px 16px; border-radius: 16px; text-align: left;
+  background: #fff; color: #131F24; box-shadow: 0 4px 0 #58A700; display: grid; gap: 6px;
+}
+.duo-step strong { font-size: 15.5px; font-weight: 800; }
+.duo-step p { margin: 0; font-size: 13.5px; line-height: 1.5; color: #3c4a52; }
+.duo-step-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.duo-step-actions .btn { height: 40px; }
+.duo-step .btn-primary { background: #58CC02; color: #fff; box-shadow: 0 4px 0 #58A700; border: 0; }
+.duo-step .btn-primary:hover { background: #61d80a; color: #fff; }
+.duo-step .btn-secondary { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.duo-node-quiz .duo-node-face, .duo-node-material .duo-node-face { font-size: 26px; }
+.duo-path li.duo-goal { transform: none; margin-top: 8px; }
+.duo-path li.duo-step-row { transform: none; justify-self: stretch; margin-top: -8px; }
+.duo-goal-cup { width: 76px; height: 76px; border-radius: 50%; display: grid; place-items: center; font-size: 36px; background: rgb(19 31 36 / 0.14); filter: grayscale(1) opacity(.6); }
+.duo-goal.is-done .duo-goal-cup { background: #FFC800; filter: none; box-shadow: 0 5px 0 #CD7900; }
+.duo-goal .duo-node-label { max-width: 240px; }
+@media (max-width: 720px) {
+}
+
+/* ── 듀오링고 모드: 폼·패널·문제 카드 (문제 만들기, 무한 문제 필터 등) ── */
+html[data-duo] .panel { border-width: 2px; border-radius: 18px; box-shadow: 0 3px 0 hsl(var(--border)); }
+html[data-duo] .field > span { font-weight: 800; }
+html[data-duo] .input, html[data-duo] .select { height: 46px; border-width: 2px; border-radius: 14px; background-color: hsl(var(--background)); }
+html[data-duo] .textarea { border-width: 2px; border-radius: 14px; }
+html[data-duo] .input:focus, html[data-duo] .select:focus, html[data-duo] .textarea:focus { border-color: #1CB0F6; box-shadow: 0 0 0 3px rgb(28 176 246 / 0.2); outline: none; }
+html[data-duo] .notice { border-width: 2px; border-radius: 16px; border-color: #1CB0F6; background: rgb(28 176 246 / 0.1); font-weight: 600; }
+html[data-duo] .notice::before { color: #1CB0F6; }
+html[data-duo] .section-title { font-weight: 800; }
+html[data-duo] .question-card { border-width: 2px; border-radius: 18px; box-shadow: 0 3px 0 hsl(var(--border)); }
+html[data-duo] .question-card h3 { font-weight: 800; color: #1CB0F6; letter-spacing: .02em; }
+html[data-duo] .question-card summary { color: #1CB0F6; font-weight: 800; }
+html[data-duo] .concept-peek summary { color: #1CB0F6; font-weight: 800; }
+html[data-duo] .mine-choices { padding: 0; list-style: none; display: grid; gap: 6px; counter-reset: c; }
+html[data-duo] .mine-choices li { counter-increment: c; padding: 9px 12px; border: 2px solid hsl(var(--border)); border-radius: 12px; }
+html[data-duo] .mine-choices li::before { content: counter(c) '  '; font-weight: 800; color: hsl(var(--muted-foreground)); }
+html[data-duo] #mine-list .linkish, html[data-duo] #ex-reset { color: #FF4B4B; font-weight: 700; }
+html[data-duo] #make-btn { min-width: 160px; height: 48px; font-size: 15px; }
+
+/* ── 사전: 듀오링고 모드 모양 ── */
+/* 사전 */
+html[data-duo] .dict-tabs button[aria-selected="true"] { background: hsl(var(--duo)); color: #fff; box-shadow: 0 3px 0 hsl(var(--duo-deep)); }
+html[data-duo] .dict-word {
+  padding: 18px 20px; margin-bottom: 14px; border: 2px solid hsl(var(--border)); border-radius: 18px;
+  background: hsl(var(--card)); box-shadow: 0 4px 0 hsl(var(--border));
+}
+html[data-duo] .dict-word:first-child { padding-top: 18px; }
+html[data-duo] .dict-entry { font-weight: 800; }
+html[data-duo] .dict-pos { background: hsl(var(--duo-blue)); color: #fff; }
+html[data-duo] .dict-play {
+  width: 32px; height: 32px; font-size: 11px; color: #fff; border: 0;
+  background: hsl(var(--duo-blue)); box-shadow: 0 3px 0 #1899D6; transition: transform .06s, box-shadow .06s;
+}
+html[data-duo] .dict-play:active, html[data-duo] .dict-play.playing { transform: translateY(3px); box-shadow: none; background: hsl(var(--duo-blue)); }
+html[data-duo] .dict-save {
+  height: 32px; border-width: 2px; border-radius: 12px; font-weight: 700; box-shadow: 0 3px 0 hsl(var(--border));
+  transition: transform .06s, box-shadow .06s;
+}
+html[data-duo] .dict-save:active { transform: translateY(3px); box-shadow: none; }
+html[data-duo] .dict-save[aria-pressed="true"] { color: #131F24; background: hsl(var(--duo-amber)); border-color: hsl(var(--duo-amber-deep)); box-shadow: 0 3px 0 hsl(var(--duo-amber-deep)); }
+html[data-duo] .dict-save.pop { animation: duo-pop .35s cubic-bezier(.2, .8, .2, 1.4); }
+@keyframes duo-pop { 40% { transform: scale(1.15); } }
+html[data-duo] .dict-chip, html[data-duo] .dict-related-word { border-width: 2px; font-weight: 600; box-shadow: 0 2px 0 hsl(var(--border)); }
+html[data-duo] .dict-ex { border-left: 3px solid hsl(var(--duo)); }
+html[data-duo] .dict-ac { border-width: 2px; border-radius: 14px; }
+html[data-duo] .dict-ac li[aria-selected="true"] { background: hsl(var(--duo-blue) / 0.15); }
+html[data-duo] .wb-word { font-weight: 800; }
+html[data-duo] .hide-mean .wb-mean { background: hsl(var(--border)); border-radius: 8px; }
+@media (prefers-reduced-motion: reduce) { html[data-duo] .dict-save.pop { animation: none; } }

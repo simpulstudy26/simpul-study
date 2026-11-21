@@ -1,0 +1,43 @@
+/* 원본 portal.css는 그대로 유지하고 3.0 문제 풀이 영역에만 적용한다. */
+[hidden] { display: none !important; }
+.practice { min-width: 0; padding: 24px; }
+.practice h2 { margin: 8px 0 16px; }
+.practice p { line-height: 1.75; }
+.eyebrow, .hint, #generation-status { color: var(--sub); font-size: .9rem; }
+.primary-button { border: 0; border-radius: 8px; padding: 12px 18px; background: var(--primary); color: #fff; font: inherit; font-weight: 700; cursor: pointer; }
+.questions { display: grid; gap: 12px; margin-top: 24px; min-width: 0; }
+.question-card { min-width: 0; padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); overflow-wrap: anywhere; }
+.question-card h3 { margin-top: 0; }
+.conditions { padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); font-size: 1.15rem; overflow-wrap: anywhere; }
+.question-card label { display: block; margin: 20px 0 8px; }
+.question-card textarea { width: 100%; resize: vertical; padding: 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: inherit; font: inherit; line-height: 1.6; }
+.question-card details { margin-top: 20px; border-top: 1px solid var(--line); padding-top: 16px; }
+.question-card summary { width: fit-content; cursor: pointer; color: var(--primary); padding: 6px 0; }
+button:focus-visible, textarea:focus-visible, summary:focus-visible, a:focus-visible { outline: 3px solid #60a5fa; outline-offset: 3px; }
+@media (max-width: 520px) { .practice { padding: 16px; } .question-card { padding: 16px; } }
+
+.menu .question-bank-menu { margin-top: 12px; border-top: 1px solid rgba(255,255,255,.1); }
+.question-bank .primary-button { margin-top: 16px; }
+.primary-button:disabled { opacity: .5; cursor: not-allowed; }
+@media (max-width: 900px) { .menu .question-bank-menu { margin-top: 0; } }
+.bank-form { max-width: 800px; margin-top: 24px; }
+.bank-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.bank-field { min-width: 0; margin-bottom: 20px; }
+.bank-field > label { display: block; margin-bottom: 8px; font-size: .92rem; font-weight: 700; }
+.bank-field select, .bank-field textarea { width: 100%; min-width: 0; padding: 11px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: var(--text); font: inherit; }
+.bank-field select:disabled { color: var(--sub); background: var(--bg); }
+.bank-field textarea { resize: vertical; line-height: 1.6; }
+.bank-field .hint { margin: 6px 0; font-size: .82rem; font-weight: 400; }
+.bank-difficulty { padding: 0; margin: 0 0 24px; border: 0; }
+.bank-difficulty legend { margin-bottom: 10px; font-size: .92rem; font-weight: 700; }
+.bank-difficulty label { display: inline-flex; align-items: center; gap: 6px; margin: 0 20px 8px 0; cursor: pointer; }
+.bank-difficulty input { accent-color: var(--primary); }
+.bank-reference { padding-block: 18px; border-block: 1px solid var(--line); }
+.bank-reference input[type="file"] { display: block; max-width: 100%; margin: 12px 0; font: inherit; font-size: .86rem; }
+.bank-file-list { list-style: none; padding: 0; margin: 8px 0 0; }
+.bank-file-list li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 0; font-size: .86rem; }
+.bank-file-list span { min-width: 0; overflow-wrap: anywhere; }
+.bank-file-list button { flex-shrink: 0; border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; background: var(--panel); color: var(--sub); font: inherit; cursor: pointer; }
+.bank-field select:focus-visible { outline: 3px solid #60a5fa; outline-offset: 3px; }
+@media (max-width: 600px) { .bank-fields { grid-template-columns: 1fr; gap: 0; } }
+.bank-question-text { white-space: pre-wrap; }

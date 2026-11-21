@@ -1,0 +1,172 @@
+/* 첫 화면 인트로 (심풀 1.0 인트로 → 3.0 디자인). 일반 모드 + 듀오링고 모드를 합친 느낌:
+   바탕·격자·배지·건너뛰기는 지금 모드의 색 토큰을 따르고(차분한 틀),
+   글자 등장·강조색·버튼·장식은 어느 모드에서든 듀오링고 색으로 통통 튀게(경쾌한 포인트).
+   듀오링고 색 (duolingo.com 웹 번들에서 확인): 초록 #58CC02/#58A700, 파랑 #1CB0F6/#1899D6, 노랑 #FFC800, 주황 #FF9600, 빨강 #FF4B4B */
+.intro { --i-green: #58CC02; --i-green-deep: #58A700; --i-blue: #1CB0F6; --i-blue-deep: #1899D6; --i-gold: #FFC800; --i-orange: #FF9600; --i-red: #FF4B4B; }
+html.intro-open, html.intro-open body { overflow: hidden; }
+/* 인트로 스크립트가 붙기 전까지 홈을 가린다. 스크립트가 실패해도 2.5초 뒤엔 보인다 */
+html.intro-pending body > :not(.intro) { opacity: 0; animation: intro-failsafe 0s linear 2.5s forwards; }
+@keyframes intro-failsafe { to { opacity: 1; } }
+
+.intro {
+  position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: 24px 16px;
+  background: hsl(var(--background)); color: hsl(var(--foreground));
+  transition: opacity .55s ease, transform .65s cubic-bezier(.7, 0, .3, 1);
+}
+.intro.is-leaving { opacity: 0; transform: translateY(-4%); pointer-events: none; }
+
+/* 배경: 가운데로 갈수록 보이는 격자 + 은은한 빛 */
+.intro-bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.intro-bg::before {
+  content: ''; position: absolute; inset: -1px;
+  background-image:
+    linear-gradient(hsl(var(--foreground) / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--foreground) / 0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 20%, transparent 75%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 20%, transparent 75%);
+  animation: intro-grid 1.4s ease both;
+}
+.intro-bg::after {
+  content: ''; position: absolute; left: 50%; top: 42%; width: min(720px, 120vw); aspect-ratio: 1; transform: translate(-50%, -50%);
+  background: radial-gradient(circle, hsl(var(--foreground) / 0.08), transparent 62%);
+  animation: intro-breathe 5s ease-in-out infinite;
+}
+
+.intro-inner { position: relative; width: min(100%, 880px); display: grid; justify-items: center; text-align: center; }
+
+.intro-badge {
+  display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 13px; margin: 0 0 28px;
+  border: 1px solid hsl(var(--border)); border-bottom-width: 3px; border-radius: 999px; background: hsl(var(--card));
+  font-size: 12px; font-weight: 600; letter-spacing: 0.12em; color: hsl(var(--muted-foreground));
+  box-shadow: var(--shadow-xs); animation: intro-drop .6s ease both .1s;
+}
+.intro-badge i { width: 7px; height: 7px; border-radius: 50%; background: var(--i-green); box-shadow: 0 0 0 0 rgb(88 204 2 / 0.6); animation: intro-ping 1.6s ease-out infinite; }
+
+/* 글자 무대 */
+.intro-stage { display: grid; justify-items: center; gap: 4px; min-height: 2.6em; font-size: clamp(30px, 6.4vw, 64px); font-weight: 800; letter-spacing: -0.045em; line-height: 1.15; }
+.intro-line { display: flex; align-items: baseline; white-space: nowrap; position: relative; }
+.intro-line.is-typing::after { /* 깜빡이는 커서 */
+  content: ''; align-self: stretch; width: 4px; margin-left: 5px; border-radius: 3px; background: var(--i-green);
+  animation: intro-caret .8s step-end infinite;
+}
+.intro-piece { display: inline-flex; position: relative; }
+.intro-ch { display: inline-block; opacity: 0; transform: translateY(.25em) scale(.4); transition: color .45s ease; }
+.intro-ch.is-on { opacity: 1; transform: none; animation: intro-hop .42s cubic-bezier(.2, .9, .3, 1.5) both; }
+/* 아직 안 쳐진 글자는 자리를 차지하지 않게 (커서가 글자 바로 뒤에 붙도록) */
+.intro-line.is-typing .intro-ch:not(.is-on), .intro-line:not(.is-typing) .intro-ch:not(.is-on) { width: 0; overflow: hidden; }
+
+/* 남을 글자만 밝게, 나머지는 흐리게 */
+.intro-stage.is-focus .is-drop .intro-ch { color: hsl(var(--muted-foreground) / 0.5); }
+.intro-stage.is-focus .is-keep .intro-ch { animation: intro-hop .45s cubic-bezier(.2, .9, .3, 1.5) both; }
+.intro-stage.is-focus .is-shim .intro-ch { color: var(--i-green); }
+.intro-stage.is-focus .is-pul .intro-ch { color: var(--i-blue); }
+.intro-stage.is-dropping .is-drop {
+  overflow: hidden; max-width: 0 !important; opacity: 0; filter: blur(8px);
+  transition: max-width .7s cubic-bezier(.65, 0, .35, 1), opacity .45s ease, filter .45s ease;
+}
+
+/* 합쳐진 뒤: 더 크게, 심·풀 밑에 강조선 */
+.intro-stage.is-merged { font-size: clamp(44px, 10vw, 104px); letter-spacing: -0.055em; min-height: 0; }
+.intro-stage.is-merged .intro-line { gap: 0; }
+.intro-stage.is-merged .is-shim::after, .intro-stage.is-merged .is-pul::after {
+  content: ''; position: absolute; left: 4%; right: 4%; bottom: -.04em; height: .11em; border-radius: 999px;
+  background: var(--bar); box-shadow: 0 .035em 0 var(--bar-deep); transform: scaleX(0); transform-origin: left center;
+  transition: transform .5s cubic-bezier(.2, .9, .3, 1.3);
+}
+.is-shim { --bar: var(--i-green); --bar-deep: var(--i-green-deep); }
+.is-pul { --bar: var(--i-blue); --bar-deep: var(--i-blue-deep); }
+.intro-stage.is-done .is-shim::after, .intro-stage.is-done .is-pul::after { transform: scaleX(1); }
+.intro-stage.is-done .is-pul::after { transition-delay: .12s; }
+.intro-stage.is-done .intro-line { animation: intro-squash .55s cubic-bezier(.2, .9, .3, 1.4); }
+
+.intro-sub {
+  margin: 22px 0 0; font-size: clamp(15px, 2vw, 17px); color: hsl(var(--muted-foreground));
+  opacity: 0; transform: translateY(8px); transition: opacity .5s ease .15s, transform .5s ease .15s;
+}
+.intro-actions { margin-top: 28px; opacity: 0; transform: translateY(10px); transition: opacity .5s ease .35s, transform .5s ease .35s; pointer-events: none; }
+.intro.is-final .intro-sub, .intro.is-final .intro-actions { opacity: 1; transform: none; pointer-events: auto; }
+.intro-start {
+  height: 50px; min-width: 200px; padding: 0 30px; border: 0; border-radius: 16px; cursor: pointer;
+  font: inherit; font-size: 16px; font-weight: 800; letter-spacing: 0.04em; color: #fff;
+  background: var(--i-green); box-shadow: 0 4px 0 var(--i-green-deep); transition: transform .06s, box-shadow .06s, filter .15s;
+}
+.intro-start:hover { filter: brightness(1.06); }
+.intro-start:active { transform: translateY(4px); box-shadow: 0 0 0 var(--i-green-deep); }
+.intro-start:focus-visible { outline: 3px solid var(--i-blue); outline-offset: 3px; }
+
+.intro-skip {
+  position: absolute; right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom));
+  height: 32px; padding: 0 12px; border: 1px solid hsl(var(--border)); border-radius: calc(var(--radius) - 2px);
+  background: hsl(var(--background)); color: hsl(var(--muted-foreground)); font: inherit; font-size: 13px; cursor: pointer;
+  transition: color .15s, background-color .15s, opacity .3s;
+}
+.intro-skip:hover { color: hsl(var(--foreground)); background: hsl(var(--accent)); }
+.intro.is-final .intro-skip { opacity: 0; pointer-events: none; }
+
+/* 완성 순간 퍼지는 듀오링고 색 도형 */
+.intro-stage { position: relative; }
+.intro-burst { position: absolute; left: 50%; top: 50%; width: 0; height: 0; pointer-events: none; z-index: -1; }
+.intro-bit {
+  position: absolute; left: 0; top: 0; width: 16px; height: 16px; margin: -8px 0 0 -8px; background: var(--c); border-radius: 50%;
+  box-shadow: 0 3px 0 rgb(0 0 0 / 0.18);
+  animation: intro-burst .7s cubic-bezier(.2, .9, .3, 1.2) var(--d) both, intro-float var(--f) ease-in-out calc(var(--d) + .7s) infinite alternate;
+}
+.intro-bit.is-pill { width: 26px; height: 11px; margin: -6px 0 0 -13px; border-radius: 999px; }
+.intro-bit.is-square { width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 4px; }
+.intro-bit.is-ring { background: transparent; border: 4px solid var(--c); width: 20px; height: 20px; margin: -10px 0 0 -10px; box-shadow: none; }
+@keyframes intro-burst {
+  from { transform: translate(0, 0) scale(0) rotate(0); opacity: 0; }
+  to { transform: translate(var(--x), var(--y)) scale(1) rotate(var(--r)); opacity: .9; }
+}
+@keyframes intro-float {
+  from { transform: translate(var(--x), var(--y)) scale(1) rotate(var(--r)); }
+  to { transform: translate(var(--x), calc(var(--y) - 10px)) scale(1) rotate(calc(var(--r) + 20deg)); }
+}
+
+/* 인트로를 닫으면 초점을 홈 제목으로 옮기는데, 그때 테두리는 보이지 않게 */
+.page-head h1[tabindex="-1"]:focus { outline: none; }
+
+@keyframes intro-caret { 50% { opacity: 0; } }
+@keyframes intro-hop { 0% { opacity: 0; transform: translateY(.3em) scale(.4); } 60% { opacity: 1; transform: translateY(-.08em) scale(1.12); } 100% { transform: none; } }
+@keyframes intro-squash { 35% { transform: scale(1.06, .94); } 70% { transform: scale(.98, 1.02); } }
+@keyframes intro-drop { from { opacity: 0; transform: translateY(-8px); } }
+@keyframes intro-grid { from { opacity: 0; transform: scale(1.04); } }
+@keyframes intro-breathe { 50% { opacity: .6; transform: translate(-50%, -50%) scale(1.06); } }
+@keyframes intro-ping { 70%, 100% { box-shadow: 0 0 0 7px hsl(var(--success) / 0); } }
+
+@media (max-width: 520px) {
+  .intro-stage { font-size: clamp(26px, 8.4vw, 34px); }
+  .intro-stage.is-merged { font-size: clamp(42px, 15vw, 60px); }
+  .intro-badge { margin-bottom: 22px; font-size: 11px; }
+  .intro-actions, .intro-start { width: 100%; }
+  .intro-actions { max-width: 320px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro, .intro *, .intro-bg::before, .intro-bg::after { animation: none !important; transition: none !important; }
+}
+
+/* 모드 고르기 (2학기 기말 버전): 기본 / 듀오링고 */
+.intro-actions { display: grid; justify-items: center; gap: 10px; }
+.intro-modes-label { margin: 0; font-size: 14px; font-weight: 700; color: hsl(var(--foreground)); }
+.intro-modes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; width: min(460px, 100%); margin-bottom: 4px; }
+.intro-mode {
+  display: grid; justify-items: center; gap: 4px; padding: 14px 12px 12px; cursor: pointer; text-align: center;
+  font: inherit; color: hsl(var(--foreground)); background: hsl(var(--card));
+  border: 2px solid hsl(var(--border)); border-radius: 16px; box-shadow: 0 3px 0 hsl(var(--border));
+  transition: transform .06s, box-shadow .06s, border-color .15s, background-color .15s;
+}
+.intro-mode:active { transform: translateY(3px); box-shadow: none; }
+.intro-mode-icon { font-size: 26px; line-height: 1.1; }
+.intro-mode b { font-size: 15px; font-weight: 800; }
+.intro-mode small { font-size: 12px; line-height: 1.4; color: hsl(var(--muted-foreground)); }
+.intro-mode[aria-checked="true"] { border-color: var(--i-blue); background: rgb(28 176 246 / 0.1); box-shadow: 0 3px 0 var(--i-blue-deep); }
+.intro-mode.is-duo[aria-checked="true"] { border-color: var(--i-green); background: rgb(88 204 2 / 0.12); box-shadow: 0 3px 0 var(--i-green-deep); }
+.intro-mode:focus-visible { outline: 3px solid var(--i-blue); outline-offset: 3px; }
+.intro-modes-note { margin: 0 0 6px; font-size: 12px; color: hsl(var(--muted-foreground)); }
+.intro-start.is-plain { background: var(--i-blue); box-shadow: 0 4px 0 var(--i-blue-deep); }
+.intro-start.is-plain:active { box-shadow: 0 0 0 var(--i-blue-deep); }
+@media (max-width: 520px) {
+  .intro-mode { padding: 12px 8px 10px; }
+  .intro-mode small { font-size: 11.5px; }
+}

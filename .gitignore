@@ -1,0 +1,23 @@
+# macOS
+.DS_Store
+._*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Cloudflare local state
+.wrangler/
+.dev.vars
+.env*
+
+# Local DB (may contain student data)
+data/*.db
+data/*.db-*
+
+# Large local model fine-tuning folder
+simpul-local-finetune*/
+
+# Claude local settings
+.claude/settings.local.json

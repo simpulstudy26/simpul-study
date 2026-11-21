@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>통합과학2 생명 파트</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+ --primary:#2563eb;--primary-light:#eff6ff;
+ --green:#16a34a;--green-light:#f0fdf4;
+ --purple:#7c3aed;--purple-light:#f5f3ff;
+ --orange:#ea580c;--orange-light:#fff7ed;
+ --teal:#0d9488;--teal-light:#f0fdfa;
+ --rose:#e11d48;--rose-light:#fff1f2;
+ --gray:#475569;--gray-light:#f1f5f9;
+ --bg:#f8fafc;--surface:#fff;--border:#e2e8f0;--text:#0f172a;--text-sec:#475569;
+ --shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;font-size:14.5px;line-height:1.8;color:var(--text);background:var(--bg)}
+b,strong{font-weight:700}
+
+/* header */
+.page-header{position:sticky;top:0;z-index:50;background:var(--surface);border-bottom:1px solid var(--border);box-shadow:var(--shadow)}
+.header-inner{max-width:980px;margin:0 auto;padding:14px 20px 0}
+.subject-label{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--text-sec);text-transform:uppercase}
+.page-title{font-size:19px;font-weight:700;display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:2px 0 10px}
+.badge-unit{font-size:11.5px;font-weight:700;padding:2px 10px;border-radius:999px;background:var(--primary-light);color:var(--primary)}
+.badge-unit.teal{background:var(--teal-light);color:var(--teal)}
+.badge-unit.rose{background:var(--rose-light);color:var(--rose)}
+.tab-bar{display:flex;align-items:flex-end;gap:2px;overflow-x:auto;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab-group-label{font-size:10.5px;font-weight:700;color:var(--text-sec);opacity:.55;padding:0 4px 11px 10px;white-space:nowrap;user-select:none}
+.tab-group-label:first-child{padding-left:0}
+.tab-btn{background:none;border:none;border-bottom:3px solid transparent;padding:8px 10px 9px;font-family:inherit;font-size:13px;font-weight:500;color:var(--text-sec);cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{color:var(--primary);border-bottom-color:var(--primary);font-weight:700}
+.tab-num{display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;border-radius:50%;background:var(--border);font-size:10.5px;font-weight:700;color:var(--text-sec)}
+.tab-btn.active .tab-num{background:var(--primary);color:#fff}
+
+/* layout */
+.content-wrap{max-width:980px;margin:0 auto;padding:28px 20px 100px}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.unit-banner{display:inline-block;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;background:var(--primary-light);color:var(--primary);margin-bottom:18px}
+.section-title{font-size:17.5px;font-weight:700;padding-bottom:6px;border-bottom:2px solid var(--primary);margin:34px 0 14px;scroll-margin-top:130px}
+.section-title:first-of-type{margin-top:6px}
+.subsection-title{font-size:14.5px;font-weight:700;border-left:3px solid var(--primary);padding-left:9px;margin:20px 0 10px;scroll-margin-top:130px}
+.sub2-title{display:inline-block;font-size:13px;font-weight:700;background:#f1f5f9;border:1px solid var(--border);border-radius:6px;padding:1px 10px;margin:12px 0 8px}
+p{margin:6px 0}
+ul.list{padding-left:20px;margin:6px 0}
+ul.list li{margin:2px 0}
+.page-ref{font-size:11.5px;font-weight:500;color:var(--text-sec);margin-left:6px}
+
+/* boxes */
+.def-box,.green-box,.purple-box,.teal-box,.orange-box,.rose-box{border-left:4px solid var(--primary);background:var(--primary-light);border-radius:0 8px 8px 0;padding:12px 16px;margin:10px 0}
+.green-box{border-color:var(--green);background:var(--green-light)}
+.purple-box{border-color:var(--purple);background:var(--purple-light)}
+.teal-box{border-color:var(--teal);background:var(--teal-light)}
+.orange-box{border-color:var(--orange);background:var(--orange-light)}
+.rose-box{border-color:var(--rose);background:var(--rose-light)}
+.box-label{font-size:12px;font-weight:700;margin-bottom:2px;color:var(--text-sec)}
+.note,.tip,.warning{border-radius:8px;padding:10px 14px;margin:10px 0;font-size:13.5px}
+.note{background:#fefce8;border:1px solid #fde047}
+.tip{background:var(--green-light);border:1px solid #bbf7d0}
+.warning{background:var(--rose-light);border:1px solid #fecdd3}
+
+/* grids & cards */
+.factor-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:12px 0}
+.factor-grid.three{grid-template-columns:repeat(3,1fr)}
+.factor-grid.four{grid-template-columns:repeat(4,1fr)}
+.factor-card{background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--gray);border-radius:8px;padding:12px 14px;box-shadow:var(--shadow);font-size:13.5px}
+.factor-card h4{font-size:14px;margin-bottom:4px}
+.factor-card.blue{border-top-color:var(--primary)}.factor-card.blue h4{color:var(--primary)}
+.factor-card.green{border-top-color:var(--green)}.factor-card.green h4{color:var(--green)}
+.factor-card.purple{border-top-color:var(--purple)}.factor-card.purple h4{color:var(--purple)}
+.factor-card.orange{border-top-color:var(--orange)}.factor-card.orange h4{color:var(--orange)}
+.factor-card.teal{border-top-color:var(--teal)}.factor-card.teal h4{color:var(--teal)}
+.factor-card.rose{border-top-color:var(--rose)}.factor-card.rose h4{color:var(--rose)}
+.factor-card ul{padding-left:18px}
+.factor-card .sub{font-size:12.5px;color:var(--text-sec)}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;margin:10px 0}
+.cmp-table,.ex-table{width:100%;border-collapse:collapse;background:var(--surface);font-size:13px;box-shadow:var(--shadow);border-radius:8px;overflow:hidden}
+.cmp-table th,.cmp-table td,.ex-table th,.ex-table td{border:1px solid var(--border);padding:8px 10px;vertical-align:top;text-align:left}
+.cmp-table thead th{background:var(--primary);color:#fff;font-weight:700}
+.cmp-table.green-th thead th{background:var(--green)}
+.cmp-table.purple-th thead th{background:var(--purple)}
+.cmp-table.teal-th thead th{background:var(--teal)}
+.cmp-table.orange-th thead th{background:var(--orange)}
+.cmp-table.rose-th thead th{background:var(--rose)}
+.cmp-table tbody td:first-child{font-weight:700;color:var(--primary);white-space:nowrap;background:#fafcff}
+.cmp-table.green-th tbody td:first-child{color:var(--green)}
+.cmp-table.purple-th tbody td:first-child{color:var(--purple)}
+.cmp-table.teal-th tbody td:first-child{color:var(--teal)}
+.cmp-table.orange-th tbody td:first-child{color:var(--orange)}
+.cmp-table.rose-th tbody td:first-child{color:var(--rose)}
+.ex-table thead th{background:#334155;color:#fff}
+.ex-table td.c,.ex-table th.c{text-align:center}
+
+/* badges */
+.badge{display:inline-block;font-size:11.5px;font-weight:700;padding:1px 8px;border-radius:999px;margin:1px 2px;white-space:nowrap}
+.badge-blue{background:var(--primary-light);color:var(--primary)}
+.badge-green{background:var(--green-light);color:var(--green)}
+.badge-purple{background:var(--purple-light);color:var(--purple)}
+.badge-orange{background:var(--orange-light);color:var(--orange)}
+.badge-teal{background:var(--teal-light);color:var(--teal)}
+.badge-rose{background:var(--rose-light);color:var(--rose)}
+.badge-gray{background:var(--gray-light);color:var(--gray)}
+
+/* flow & stage */
+.flow-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:10px 0}
+.flow-item{background:var(--surface);border:1.5px solid var(--primary);color:var(--text);border-radius:8px;padding:6px 12px;font-size:13px;font-weight:700;box-shadow:var(--shadow)}
+.flow-item.green{border-color:var(--green)}.flow-item.purple{border-color:var(--purple)}.flow-item.teal{border-color:var(--teal)}.flow-item.orange{border-color:var(--orange)}.flow-item.rose{border-color:var(--rose)}
+.flow-item small{display:block;font-weight:500;font-size:11.5px;color:var(--text-sec)}
+.flow-arrow{color:var(--text-sec);font-weight:700}
+.stage-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+.stage-row.three{grid-template-columns:repeat(3,1fr)}
+.stage-row.five{grid-template-columns:repeat(5,1fr)}
+.stage-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:13px;position:relative;box-shadow:var(--shadow)}
+.stage-item .st-num{font-size:12px;font-weight:900;color:var(--primary)}
+.stage-item .st-name{font-weight:700;font-size:14px;margin-bottom:3px}
+.stage-item.hi{border:2px solid var(--primary);background:var(--primary-light)}
+.stage-row.green .st-num{color:var(--green)}.stage-row.green .stage-item.hi{border-color:var(--green);background:var(--green-light)}
+.stage-row.purple .st-num{color:var(--purple)}.stage-row.purple .stage-item.hi{border-color:var(--purple);background:var(--purple-light)}
+
+/* rule & pov cards */
+.rule-card{border:2px solid var(--primary);border-radius:10px;padding:12px 16px;margin:12px 0;background:var(--surface)}
+.rule-card.green{border-color:var(--green)}.rule-card.purple{border-color:var(--purple)}.rule-card.teal{border-color:var(--teal)}.rule-card.orange{border-color:var(--orange)}.rule-card.rose{border-color:var(--rose)}
+.rule-card h4{font-size:14.5px;margin-bottom:4px}
+.pov-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
+.pov-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;box-shadow:var(--shadow);font-size:13px}
+.pov-card .pv-num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--purple);color:#fff;font-size:12px;font-weight:700;margin-right:6px}
+.pov-card .pv-title{font-weight:700;font-size:14px}
+.pov-card .pv-who{font-size:12px;color:var(--purple);font-weight:700;margin:2px 0 4px}
+
+/* diagrams */
+.kit{display:flex;align-items:stretch;border:2px solid #94a3b8;border-radius:10px;overflow:hidden;margin:12px 0;background:#fff;font-size:12px;font-weight:700;text-align:center}
+.kit>div{padding:10px 6px;border-right:1px dashed #cbd5e1;display:flex;flex-direction:column;justify-content:center;gap:2px}
+.kit>div:last-child{border-right:none}
+.kit .k-sample{flex:1.2;background:#f1f5f9}
+.kit .k-ab{flex:1.2;background:#fef3c7}
+.kit .k-line{flex:.9;background:#fff}
+.kit .k-line .bar{width:6px;height:34px;background:var(--rose);margin:0 auto;border-radius:2px}
+.kit .k-end{flex:.9;background:#e2e8f0}
+.kit small{font-weight:500;color:var(--text-sec)}
+.kit-dir{font-size:12px;color:var(--green);font-weight:700;margin-top:-6px}
+.chrom{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.chrom .cbox{border:1px solid var(--border);background:#fff;border-radius:8px;padding:10px;text-align:center;font-size:12.5px}
+.chrom .cbox .ph{font-weight:900;color:var(--primary);font-size:13px}
+.chrom .pair{display:flex;justify-content:center;gap:4px;margin:6px 0}
+.chrom .c{width:9px;height:30px;border-radius:5px}
+.chrom .c.a{background:#3b82f6}.chrom .c.b{background:#f43f5e}
+.chrom .c.ab{background:linear-gradient(#3b82f6 0 55%,#f43f5e 55%)}.chrom .c.ba{background:linear-gradient(#f43f5e 0 55%,#3b82f6 55%)}
+.bubble-list{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.bubble{background:var(--purple-light);border:1px solid #ddd6fe;border-radius:18px;padding:6px 14px;font-size:13px}
+.bubble.t{background:var(--teal-light);border-color:#99f6e4}
+
+/* map */
+.map-root{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin:14px 0;overflow:hidden;box-shadow:var(--shadow)}
+.map-root-head{width:100%;border:none;text-align:left;font-family:inherit;font-size:14.5px;font-weight:700;color:#fff;padding:10px 16px;cursor:pointer;background:var(--primary)}
+.map-root.green .map-root-head{background:var(--green)}
+.map-root.purple .map-root-head{background:var(--purple)}
+.map-root.teal .map-root-head{background:var(--teal)}
+.map-root.orange .map-root-head{background:var(--orange)}
+.map-root.rose .map-root-head{background:var(--rose)}
+.map-root.gray .map-root-head{background:var(--gray)}
+.map-root-head:hover{filter:brightness(1.08)}
+.map-children{display:flex;flex-wrap:wrap;gap:8px;padding:12px 14px}
+.map-node{border:1px solid var(--border);background:#f8fafc;border-radius:8px;padding:6px 12px;font-family:inherit;font-size:13px;cursor:pointer;color:var(--text)}
+.map-node:hover{background:var(--primary-light);border-color:var(--primary)}
+.map-group{display:flex;flex-direction:column;gap:4px;border:1px solid var(--border);border-radius:8px;padding:6px 10px;background:#f8fafc}
+.map-group>.map-node{border:none;background:none;padding:0;font-weight:700;text-align:left}
+.map-subrow{display:flex;flex-wrap:wrap;gap:4px;border-left:2px solid #cbd5e1;padding-left:8px;margin-left:4px}
+.map-subchip{border:1px solid var(--border);background:#fff;border-radius:999px;padding:1px 9px;font-family:inherit;font-size:11.5px;cursor:pointer;color:var(--text-sec)}
+.map-subchip:hover{border-color:var(--primary);color:var(--primary)}
+
+.totop{position:fixed;right:18px;bottom:18px;width:42px;height:42px;border-radius:50%;border:none;background:var(--primary);color:#fff;font-size:18px;cursor:pointer;box-shadow:0 4px 10px rgba(37,99,235,.35);z-index:60}
+
+@media (max-width:680px){
+ .factor-grid,.factor-grid.three,.factor-grid.four,.pov-grid,.stage-row,.stage-row.three,.stage-row.five,.chrom{grid-template-columns:1fr}
+ .cmp-table,.ex-table{font-size:12px}
+ .content-wrap{padding:20px 14px 100px}
+ .kit{flex-direction:column}
+ .kit>div{border-right:none;border-bottom:1px dashed #cbd5e1}
+}
+
+/* ---- additions for restructured version ---- */
+.lead{font-size:13.5px;color:var(--text-sec);background:var(--surface);border:1px dashed var(--border);border-radius:8px;padding:8px 14px;margin:0 0 16px}
+.lead b{color:var(--text)}
+.key-q{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin:10px 0;box-shadow:var(--shadow);font-size:13.5px}
+.key-q .kq-tag{flex:none;font-size:11px;font-weight:900;color:#fff;background:var(--primary);border-radius:6px;padding:2px 8px;margin-top:2px}
+.nest{margin:14px 0;font-size:13px}
+.nest .lv{border:2px solid var(--teal);border-radius:12px;padding:10px 14px 12px;background:#fff}
+.nest .lv .lv{margin-top:8px;border-color:#5eead4;background:var(--teal-light)}
+.nest .lv .lv .lv{border-color:#99f6e4;background:#fff}
+.nest .lv-name{font-weight:900;color:var(--teal)}
+.nest .lv-sub{color:var(--text-sec);font-size:12px}
+.cycle{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:6px;align-items:center;margin:12px 0}
+.cycle .cy{background:var(--teal-light);border:1.5px solid var(--teal);border-radius:10px;padding:8px 10px;text-align:center;font-weight:700;font-size:13px}
+.cycle .ar{font-weight:900;color:var(--teal);text-align:center}
+.cycle-desc{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.scale{display:flex;align-items:center;gap:8px;font-size:12px}
+.scale .track{flex:1;height:8px;border-radius:4px;background:#e2e8f0;overflow:hidden;min-width:60px}
+.scale .fill{height:100%;background:var(--rose);border-radius:4px}
+.link-btn{display:inline-flex;align-items:center;gap:6px;background:var(--rose);color:#fff !important;text-decoration:none;font-weight:700;font-size:13px;border-radius:8px;padding:7px 14px;margin:6px 0;box-shadow:0 2px 6px rgba(225,29,72,.25)}
+.link-btn:hover{filter:brightness(1.08)}
+.timeline{position:relative;margin:14px 0 14px 8px;padding-left:18px;border-left:3px solid #fdba74}
+.timeline .tl{position:relative;margin:0 0 10px;font-size:13px}
+.timeline .tl::before{content:'';position:absolute;left:-26px;top:5px;width:13px;height:13px;border-radius:50%;background:#fff;border:3px solid var(--orange)}
+.timeline .tl .yr{font-weight:900;color:var(--orange);margin-right:6px}
+.vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.vs-col{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);font-size:13px}
+.vs-col h4{margin:0;padding:8px 12px;color:#fff;font-size:13.5px}
+.vs-col ol{padding:10px 12px 10px 30px}
+.vs-col ol li{margin:3px 0}
+.check-list{list-style:none;padding:0;margin:8px 0}
+.check-list li{padding:6px 10px 6px 34px;position:relative;border-bottom:1px dashed var(--border);font-size:13.5px}
+.check-list li:last-child{border-bottom:none}
+.check-list li .mk{position:absolute;left:6px;top:6px;width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff}
+.mk.o{background:var(--green)}.mk.x{background:var(--rose)}
+.well-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0;text-align:center;font-size:12.5px}
+.well-grid .wg-h{font-weight:700;border-radius:6px;padding:3px 0}
+.well-grid .wg-h.ctrl{background:#fef3c7;color:#92400e}
+.well-grid .wg-h.exp{background:#fce7f3;color:#9d174d}
+@media (max-width:680px){
+ .cycle{grid-template-columns:1fr}.cycle .ar{transform:rotate(90deg)}
+ .cycle-desc,.vs-grid,.well-grid{grid-template-columns:1fr}
+}
+.sd-case{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:12px 0;box-shadow:var(--shadow)}
+.sd-head{font-weight:700;color:var(--teal);font-size:14px;margin-bottom:8px}
+.sd-sub{font-weight:500;color:var(--text-sec);font-size:12px}
+.sd-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sd-box{flex:1;min-width:200px;border:2px solid var(--border);border-radius:10px;padding:10px;text-align:center}
+.sd-box.win{border-color:var(--teal);background:var(--teal-light)}
+.sd-lab{font-weight:900;margin-bottom:6px}
+.forest{display:grid;grid-template-columns:repeat(6,26px);gap:5px;justify-content:center}
+.forest .tr{width:26px;height:26px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;color:#fff;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+.sd-cnt{font-size:12px;color:var(--text-sec);margin-top:6px}
+.sd-vs{font-size:22px;font-weight:900;color:var(--teal)}
+.sd-res{margin-top:8px;font-size:13.5px}
+
+/* ================= QUIZ ================= */
+.quiz-section{margin-top:44px;border-top:3px dashed var(--border);padding-top:26px}
+.quiz-header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.quiz-title{font-size:17px;font-weight:700}
+.scoreboard{display:flex;flex-wrap:wrap;gap:6px}
+.score-chip{font-size:11.5px;font-weight:700;border-radius:999px;padding:3px 10px;border:1px solid var(--border);background:var(--surface)}
+.score-chip.ox{color:#2563eb;border-color:#bfdbfe;background:#eff6ff}
+.score-chip.mc{color:#16a34a;border-color:#bbf7d0;background:#f0fdf4}
+.score-chip.hard{color:#7c3aed;border-color:#ddd6fe;background:#f5f3ff}
+.quiz-type-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.qtype-btn{display:flex;align-items:center;gap:6px;border:1.5px solid var(--border);background:var(--surface);border-radius:10px;padding:7px 14px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;color:var(--text-sec)}
+.qtype-btn:hover{border-color:#94a3b8}
+.qtype-btn.active.ox{border-color:#2563eb;color:#2563eb;background:#eff6ff}
+.qtype-btn.active.mc{border-color:#16a34a;color:#16a34a;background:#f0fdf4}
+.qtype-btn.active.hard{border-color:#7c3aed;color:#7c3aed;background:#f5f3ff}
+.qtype-count{font-size:11px;font-weight:700;background:var(--gray-light);color:var(--text-sec);border-radius:999px;padding:1px 7px}
+.q-progress-wrap{display:flex;align-items:center;gap:10px;margin-bottom:14px;font-size:12px;color:var(--text-sec)}
+.q-progress-bar{flex:1;height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden}
+.q-progress-fill{height:100%;border-radius:4px;transition:width .3s}
+.q-card{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;box-shadow:var(--shadow)}
+.q-card.answered-correct{border-color:#86efac}
+.q-card.answered-wrong{border-color:#fda4af}
+.q-meta{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.q-num{font-size:12px;font-weight:900;color:var(--text-sec)}
+.q-difficulty{font-size:10.5px;font-weight:700;border-radius:999px;padding:1px 8px}
+.diff-basic{background:#eff6ff;color:#2563eb}
+.diff-mid{background:#f0fdf4;color:#16a34a}
+.diff-hard{background:#f5f3ff;color:#7c3aed}
+.q-text{font-weight:500;font-size:14px;margin-bottom:10px}
+.q-box{border:1px solid #cbd5e1;border-radius:8px;padding:8px 12px;margin:0 0 10px;background:#f8fafc;font-size:13.5px;position:relative}
+.q-box::before{content:'보기';position:absolute;top:-9px;left:12px;background:#f8fafc;padding:0 6px;font-size:11px;font-weight:700;color:var(--text-sec)}
+.q-box div{margin:3px 0}
+.ox-row{display:flex;gap:10px}
+.ox-btn{flex:1;max-width:160px;border:2px solid var(--border);background:#fff;border-radius:10px;padding:8px 0;font-size:20px;cursor:pointer;font-family:inherit}
+.ox-btn:hover:not(:disabled){border-color:#94a3b8}
+.ox-btn:disabled{cursor:default}
+.ox-btn.correct-picked{border-color:var(--green);background:var(--green-light)}
+.ox-btn.wrong-picked{border-color:var(--rose);background:var(--rose-light)}
+.ox-btn.correct-reveal{border-color:var(--green);border-style:dashed}
+.mc-options{display:flex;flex-direction:column;gap:6px}
+.mc-opt{display:flex;align-items:flex-start;gap:10px;text-align:left;border:1.5px solid var(--border);background:#fff;border-radius:8px;padding:8px 12px;font-family:inherit;font-size:13.5px;cursor:pointer;color:var(--text)}
+.mc-opt:hover:not(:disabled){border-color:#94a3b8;background:#f8fafc}
+.mc-opt:disabled{cursor:default}
+.mc-opt.correct{border-color:var(--green);background:var(--green-light)}
+.mc-opt.wrong{border-color:var(--rose);background:var(--rose-light)}
+.mc-opt-letter{flex:none;width:22px;height:22px;border-radius:50%;background:var(--gray-light);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--text-sec)}
+.mc-opt.correct .mc-opt-letter{background:var(--green);color:#fff}
+.mc-opt.wrong .mc-opt-letter{background:var(--rose);color:#fff}
+.q-feedback{margin-top:10px;border-radius:8px;padding:8px 12px;font-size:13px}
+.q-feedback.correct{background:var(--green-light);border:1px solid #bbf7d0}
+.q-feedback.wrong{background:var(--rose-light);border:1px solid #fecdd3}
+.quiz-result{background:var(--surface);border:2px solid var(--border);border-radius:14px;padding:18px;text-align:center;box-shadow:var(--shadow)}
+.quiz-result .big{font-size:30px;font-weight:900}
+.quiz-result .msg{color:var(--text-sec);margin:4px 0 12px}
+.mini-bar-wrap{max-width:420px;margin:0 auto 12px;text-align:left}
+.mini-bar-row{display:flex;align-items:center;gap:8px;font-size:12px;margin:5px 0}
+.mini-bar-label{width:60px;font-weight:700}
+.mini-bar-track{flex:1;height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden}
+.mini-bar-fill{height:100%;border-radius:4px}
+.mini-bar-val{width:52px;text-align:right;color:var(--text-sec)}
+.reset-btn{border:none;background:var(--primary);color:#fff;font-family:inherit;font-weight:700;font-size:13px;border-radius:8px;padding:8px 18px;cursor:pointer}
+.reset-btn.sm{background:#fff;color:var(--text-sec);border:1px solid var(--border);padding:4px 12px;font-size:12px}
+
+[id^="a-"],[id^="quiz-"]{scroll-margin-top:130px}
+</style>
+</head>
+<body>
+<header class="page-header">
+ <div class="header-inner">
+  <div class="subject-label">통합과학2 · 생명</div>
+  <div class="page-title">통합과학2 생명 파트
+   <span class="badge-unit">Ⅰ. 변화와 다양성</span>
+   <span class="badge-unit rose">Ⅲ. 과학과 미래 사회</span>
+  </div>
+  <nav class="tab-bar">
+   <span class="tab-group-label">진화</span>
+   <button class="tab-btn active" onclick="switchTab(0)"><span class="tab-num">1</span>변이</button>
+   <button class="tab-btn" onclick="switchTab(1)"><span class="tab-num">2</span>자연선택</button>
+   <button class="tab-btn" onclick="switchTab(2)"><span class="tab-num">3</span>진화와 자연선택설</button>
+   <span class="tab-group-label">생물다양성</span>
+   <button class="tab-btn" onclick="switchTab(3)"><span class="tab-num">4</span>생물다양성의 세 요소</button>
+   <button class="tab-btn" onclick="switchTab(4)"><span class="tab-num">5</span>감소 원인과 보전</button>
+   <span class="tab-group-label">과학과 미래 사회</span>
+   <button class="tab-btn" onclick="switchTab(5)"><span class="tab-num">6</span>감염병과 진단</button>
+   <button class="tab-btn" onclick="switchTab(6)"><span class="tab-num">7</span>감염 추적과 미래 사회</button>
+   <span class="tab-group-label">지도</span>
+   <button class="tab-btn" onclick="switchTab(7)"><span class="tab-num">8</span>개념 한눈에 보기</button>
+  </nav>
+ </div>
+</header>
+
+<main class="content-wrap">
+
+<!-- ===================== TAB 0 : 변이 ===================== -->
+<section class="tab-panel active" id="panel-0">
+ <div class="unit-banner">📌 Ⅰ. 변화와 다양성 › 02. 자연선택과 생물의 진화</div>
+ <div class="lead">🧭 <b>흐름</b> — 변이란? → 변이는 <b>왜</b> 생기나(유전정보 → 단백질 → 형질) → 변이는 <b>어떻게</b> 생기나(교차 · 무작위적 분리 · 돌연변이)</div>
+
+ <h2 class="section-title" id="a-variation">🔍 STEP 1 · 변이란?</h2>
+ <div class="def-box">
+  <div class="box-label">변이</div>
+  같은 종의 생물 무리 내에서 개체마다 <b>다른 형질이 나타나는 것</b>
+ </div>
+ <div class="tbl-wrap"><table class="cmp-table">
+  <thead><tr><th>생물</th><th>나타나는 변이</th></tr></thead>
+  <tbody>
+   <tr><td>사람</td><td>사람마다 생김새가 모두 다르다.</td></tr>
+   <tr><td>달팽이</td><td>껍데기의 무늬와 색이 개체마다 조금씩 다르다.</td></tr>
+   <tr><td>사랑앵무</td><td>개체마다 만들어지는 <b>색소 단백질</b>이 달라 깃털 색이 모두 다르다.</td></tr>
+   <tr><td>무당벌레</td><td>딱지날개의 무늬와 색이 다양하다.</td></tr>
+  </tbody>
+ </table></div>
+
+ <h2 class="section-title" id="a-variation-why">🧬 STEP 2 · 변이는 왜 생기나? — 원인</h2>
+ <div class="key-q"><span class="kq-tag">핵심</span><div>변이의 원인 = 개체마다 <b>유전정보가 조금씩 다르기 때문</b></div></div>
+ <div class="flow-row">
+  <span class="flow-item">유전정보(유전자)의 차이</span><span class="flow-arrow">→</span>
+  <span class="flow-item">합성되는 <b>단백질</b>의 종류와 양이 다름</span><span class="flow-arrow">→</span>
+  <span class="flow-item">형질의 차이 = <b>변이</b></span>
+ </div>
+ <p>형질은 유전정보로 만들어지는 단백질에 따라 결정된다. 예) 사랑앵무의 깃털 색 차이 = 색소 단백질의 차이</p>
+ <div class="tip">✅ 변이는 자연선택이 일어나게 하는 <b>진화의 원동력</b>이다. (변이가 없으면 자연선택도, 진화도 없다.)</div>
+
+ <h2 class="section-title" id="a-variation-cause">✂️ STEP 3 · 변이는 어떻게 생기나? — 발생 요인</h2>
+ <div class="sub2-title">먼저 알아 둘 것: 세포 분열의 종류</div>
+ <div class="factor-grid">
+  <div class="factor-card gray"><h4>체세포 분열</h4>몸을 구성하는 세포를 만드는 분열</div>
+  <div class="factor-card purple"><h4>생식세포 분열 (감수 분열)</h4>생식세포를 만드는 분열 → <b>변이가 만들어지는 무대</b></div>
+ </div>
+
+ <h3 class="subsection-title">변이를 만드는 세 가지 요인</h3>
+ <div class="tbl-wrap"><table class="cmp-table purple-th">
+  <thead><tr><th>요인</th><th>언제</th><th>무슨 일이 일어나나</th></tr></thead>
+  <tbody>
+   <tr><td>① 상동 염색체 간 교차</td><td>생식세포 <b>1분열 전기</b></td><td>상동 염색체가 접합하여 <b>2가 염색체</b>를 이루고, 상동 염색체 사이에서 일부가 서로 바뀐다.</td></tr>
+   <tr><td>② 상동 염색체의 무작위적 분리</td><td>생식세포 <b>1분열 중기</b></td><td>배열된 상동 염색체가 <b>무작위로</b> 나뉘어 들어간다.</td></tr>
+   <tr><td>③ 돌연변이</td><td>—</td><td><span class="badge badge-rose">유전자 돌연변이</span><span class="badge badge-rose">염색체 돌연변이</span><span class="badge badge-rose">염색체 수 돌연변이</span></td></tr>
+  </tbody>
+ </table></div>
+
+ <div class="sub2-title">① 교차 과정 그림으로 보기</div>
+ <div class="chrom">
+  <div class="cbox"><div class="ph">1분열 전기</div>
+   <div class="pair"><span class="c a"></span><span class="c a"></span><span class="c b"></span><span class="c b"></span></div>
+   상동 염색체 접합 → <b>2가 염색체</b>
+  </div>
+  <div class="cbox"><div class="ph">교차</div>
+   <div class="pair"><span class="c a"></span><span class="c ab"></span><span class="c ba"></span><span class="c b"></span></div>
+   상동 염색체의 일부가 서로 바뀜
+  </div>
+  <div class="cbox"><div class="ph">분열 결과 (×2)</div>
+   <div class="pair"><span class="c a"></span><span class="c ab"></span></div>
+   <div class="pair"><span class="c ba"></span><span class="c b"></span></div>
+   부모와 다른 조합의 염색체
+  </div>
+ </div>
+
+ <h3 class="subsection-title">변이가 자손에게 나타나는 두 경로</h3>
+ <div class="factor-grid">
+  <div class="factor-card rose"><h4>돌연변이</h4>
+   DNA의 유전정보에 변화가 생겨 <b>부모에게 없던 형질</b>이 자손에게 나타남 → 새로운 유전자는 자손에게 유전될 수 있다.
+   <p class="sub">예) 푸른색 깃털의 공작 무리에서 흰색 깃털의 공작이 우연히 태어남</p>
+  </div>
+  <div class="factor-card purple"><h4>유성생식 과정의 생식세포 조합</h4>
+   유전자 조합이 다양한 생식세포가 형성되고, 암수 생식세포가 <b>무작위로 수정</b> → 같은 부모에게서 유전자 구성이 다양한 자손이 태어남
+   <p class="sub">예) 밝은색 비둘기와 어두운색 비둘기 사이에서 얼룩 비둘기가 태어남</p>
+  </div>
+ </div>
+ <div class="note">💡 구분 포인트: <b>돌연변이</b>는 '없던 것이 새로 생김', <b>생식세포 조합</b>은 '있던 것들이 새롭게 섞임'</div>
+
+ <div class="quiz-section" id="quiz-0"></div>
+</section>
+
+<!-- ===================== TAB 1 : 자연선택 ===================== -->
+<section class="tab-panel" id="panel-1">
+ <div class="unit-banner" style="background:var(--green-light);color:var(--green)">📌 Ⅰ. 변화와 다양성 › 02. 자연선택과 생물의 진화</div>
+ <div class="lead">🧭 <b>흐름</b> — 자연선택의 정의 → 4단계 메커니즘 → 모의실험으로 확인 → 실제 사례를 '무엇이 선택했나'로 분류</div>
+
+ <h2 class="section-title" id="a-selection" style="border-color:var(--green)">🌿 자연선택이란?</h2>
+ <div class="green-box">
+  <div class="box-label">자연선택</div>
+  다양한 변이가 있는 개체들 중 <b>환경에 적응하기 유리한 형질</b>(생존과 번식에 유리한 형질)을 가진 개체가 그렇지 않은 개체보다 더 잘 살아남아 <b>자손을 더 많이 남기는 과정</b><br>= 자연적으로 일어나는 형질의 선택
+ </div>
+
+ <h3 class="subsection-title" style="border-color:var(--green)">자연선택의 4단계</h3>
+ <div class="stage-row green">
+  <div class="stage-item"><div class="st-num">①</div><div class="st-name">변이 존재</div>같은 종의 무리에 다양한 형질의 개체들이 있다.</div>
+  <div class="stage-item"><div class="st-num">②</div><div class="st-name">유리한 개체 생존 비율 증가</div>생존에 유리한 변이를 가진 개체가 더 많이 살아남는다.</div>
+  <div class="stage-item"><div class="st-num">③</div><div class="st-name">생존 개체의 자손 생산 번성</div>많이 살아남은 개체가 더 많은 자손을 남긴다.</div>
+  <div class="stage-item hi"><div class="st-num">④</div><div class="st-name">진화</div>세대를 거듭하며 생존에 유리한 변이가 많은 방향으로 무리의 구성이 변한다.</div>
+ </div>
+ <div class="warning">⚠️ 모든 개체가 유전적으로 동일하면 변이가 없으므로 <b>자연선택이 일어나지 않는다</b>. → 변이는 자연선택의 전제 조건</div>
+
+ <h2 class="section-title" id="a-sim" style="border-color:var(--green)">🧪 모형으로 확인하기: 자연선택 모의실험</h2>
+ <div class="sub2-title">실험 요소 ↔ 자연 대응표</div>
+ <div class="tbl-wrap"><table class="cmp-table green-th">
+  <thead><tr><th>실험 요소</th><th>자연에서의 의미</th><th>4단계와 연결</th></tr></thead>
+  <tbody>
+   <tr><td>이쑤시개</td><td><b>나방</b> (피식자 무리)</td><td rowspan="2">나무·녹말 이쑤시개 = 개체의 <b>변이</b> → ①</td></tr>
+   <tr><td>이쑤시개 종류</td><td>개체마다 다른 형질(변이)</td></tr>
+   <tr><td>종이 (황갈색/녹색)</td><td><b>나무 기둥</b> = 서식 환경</td><td>종이 종류 = 서로 다른 <b>환경</b></td></tr>
+   <tr><td>핀셋 (에어 캡 보안경)</td><td><b>새</b> = 포식자</td><td>눈에 띄는 개체 제거 → ②</td></tr>
+   <tr><td>남은 수만큼 더하기</td><td>살아남은 개체의 번식</td><td>→ ③</td></tr>
+   <tr><td>1세대 → 4세대 반복</td><td>여러 세대의 반복</td><td>→ ④ 무리 구성 변화</td></tr>
+  </tbody>
+ </table></div>
+ <div class="sub2-title">실험 절차 요약</div>
+ <div class="flow-row">
+  <span class="flow-item green">나무 20 + 녹말 20 (1세대)</span><span class="flow-arrow">→</span>
+  <span class="flow-item green">핀셋으로 20개 제거</span><span class="flow-arrow">→</span>
+  <span class="flow-item green">남은 종류만큼 보충 (다음 세대)</span><span class="flow-arrow">→</span>
+  <span class="flow-item green">4세대까지 반복, 비율 계산</span><span class="flow-arrow">→</span>
+  <span class="flow-item green">녹색 종이로 반복</span>
+ </div>
+ <div class="tip">✅ 세대가 거듭될수록 <b>종이 색과 비슷해 눈에 덜 띄는 이쑤시개의 비율이 증가</b>한다. 같은 이쑤시개라도 <b>환경(종이 색)이 바뀌면 선택되는 쪽도 바뀐다</b>.</div>
+
+ <h2 class="section-title" id="a-cases" style="border-color:var(--green)">🌸 자연선택의 사례 — 무엇이 선택했나?</h2>
+ <div class="tbl-wrap"><table class="cmp-table green-th">
+  <thead><tr><th>사례</th><th>변이</th><th>선택하는 요인</th><th>살아남는 형질</th><th>결과</th></tr></thead>
+  <tbody>
+   <tr><td>애벌레</td><td>몸 색</td><td>포식자</td><td>포식자 눈에 덜 띄는 형질</td><td>그 형질의 개체수 증가</td></tr>
+   <tr><td>사사패모</td><td>개체마다 다른 색</td><td><b>인간</b>(채집)</td><td>주변 돌과 비슷한 회색·갈색</td><td>사람 접근이 쉬운 곳: 회색·갈색 비율 월등히 높음<br>사람 접근이 어려운 곳: 초록색 비율 높음</td></tr>
+   <tr><td>세균</td><td>항생제 내성 유무</td><td><b>항생제</b> 사용</td><td>항생제 내성</td><td>지속 사용 시 집단의 모든 세균이 내성</td></tr>
+   <tr><td>낫모양적혈구</td><td>적혈구 모양</td><td><b>말라리아</b></td><td>낫모양적혈구 (말라리아 저항성)</td><td>분포 지역 ≈ 말라리아 발생 지역</td></tr>
+   <tr><td>딱정벌레</td><td>몸 색깔</td><td><b>환경 변화</b>(산불로 검게 변한 토양)</td><td>어두운 몸 색깔</td><td>집단 내 비율 점차 증가</td></tr>
+  </tbody>
+ </table></div>
+
+ <div class="factor-grid">
+  <div class="rule-card green" style="margin:0">
+   <h4>🌼 사사패모</h4>
+   <p>백합과 식물, 오랫동안 약초로 사용, 해발 <b>3700 m 이상</b> 고지대에 서식</p>
+   <p>녹색 개체는 눈에 쉽게 띄어 채취됨 → 자손을 남기지 못함 → <b>포식자인 인간의 눈에 잘 띄지 않는 방향</b>으로 자연선택</p>
+  </div>
+  <div class="rule-card green" style="margin:0">
+   <h4>💊 항생제 내성 세균</h4>
+   <div class="flow-row" style="margin:4px 0">
+    <span class="flow-item green">내성 유무 섞인 세균</span><span class="flow-arrow">→</span>
+    <span class="flow-item green">항생제 사용</span><span class="flow-arrow">→</span>
+    <span class="flow-item green">내성 세균만 증식</span>
+   </div>
+   <p class="sub" style="font-size:12.5px;color:var(--text-sec)">내성 세균은 <b>돌연변이</b>로 나타난 항생제 저항성 유전자를 가짐</p>
+  </div>
+  <div class="rule-card green" style="margin:0">
+   <h4>🩸 낫모양적혈구</h4>
+   <p><b>헤모글로빈 유전자의 돌연변이</b>로 나타남. 말라리아원충은 적혈구에 기생하는데, 낫모양적혈구에서는 증식하기 어려워 말라리아에 잘 걸리지 않는다.</p>
+  </div>
+  <div class="rule-card green" style="margin:0">
+   <h4>🪲 딱정벌레</h4>
+   <p>산불로 토양이 검게 변한 환경 → 어두운 몸 색깔 개체가 자연선택</p>
+  </div>
+ </div>
+
+ <div class="sub2-title">사례에서 뽑은 두 가지 결론</div>
+ <div class="factor-grid">
+  <div class="factor-card green"><h4>환경 변화 → 선택의 방향 변화</h4>딱정벌레, 모의실험의 종이 색 변경</div>
+  <div class="factor-card green"><h4>인간의 활동 → 자연선택에 영향</h4>사사패모(채집), 세균(항생제 사용)</div>
+ </div>
+
+ <div class="sub2-title">참고: 병원체와 치료제</div>
+ <div class="factor-grid three">
+  <div class="factor-card gray"><h4>세균</h4>항생제</div>
+  <div class="factor-card gray"><h4>바이러스</h4>항바이러스제</div>
+  <div class="factor-card gray"><h4>곰팡이</h4>항진균제</div>
+ </div>
+
+ <div class="quiz-section" id="quiz-1"></div>
+</section>
+
+<!-- ===================== TAB 2 : 진화와 자연선택설 ===================== -->
+<section class="tab-panel" id="panel-2">
+ <div class="unit-banner" style="background:var(--purple-light);color:var(--purple)">📌 Ⅰ. 변화와 다양성 › 02. 자연선택과 생물의 진화</div>
+ <div class="lead">🧭 <b>흐름</b> — 진화의 정의 → 다윈의 자연선택설 4단계 → 기린에 적용 → 진화의 결과 다양한 생물 출현(핀치 · 다람쥐) → 자연선택설의 한계와 현대 진화설</div>
+
+ <h2 class="section-title" id="a-evolution" style="border-color:var(--purple)">🦕 진화란?</h2>
+ <div class="purple-box">
+  <div class="box-label">진화</div>
+  생물이 <b>여러 세대에 걸쳐</b> 환경에 적응하면서 이전과는 다른 생물로 변화하는 것
+ </div>
+ <div class="flow-row">
+  <span class="flow-item purple">유전적 특성 변화</span><span class="flow-arrow">→</span>
+  <span class="flow-item purple">여러 세대 자연선택 누적</span><span class="flow-arrow">→</span>
+  <span class="flow-item purple">다른 종 출현</span>
+ </div>
+ <p>약 40억 년 전 지구에 최초의 생물이 탄생한 이래, 생물은 여러 환경에 적응하며 다양하게 변화하였다.</p>
+
+ <h2 class="section-title" id="a-darwin" style="border-color:var(--purple)">⛵ 다윈의 자연선택설</h2>
+ <div class="factor-grid">
+  <div class="factor-card purple"><h4>다윈 (Darwin, C. R., 1809~1882)</h4>진화의 원리를 체계적으로 정립한 영국의 과학자</div>
+  <div class="factor-card purple"><h4>비글호 항해 (1831년~, 약 5년)</h4>전 세계의 다양한 생물을 관찰·채집 → 특히 <b>갈라파고스 제도</b>에서 섬 환경에 따라 부리 모양이 다른 핀치 관찰</div>
+ </div>
+ <div class="purple-box">
+  <div class="box-label">자연선택설</div>
+  최초의 조상 생물이 다양한 환경으로 퍼지고 적응하는 과정에서 <b>자연선택이 누적</b>되어 조상 생물과는 다른 새로운 생물종이 나타난다는 이론
+ </div>
+
+ <h3 class="subsection-title" id="a-darwin-4" style="border-color:var(--purple)">자연선택설의 4단계</h3>
+ <div class="stage-row purple">
+  <div class="stage-item"><div class="st-num">①</div><div class="st-name">과잉 생산과 변이</div><b>환경 수용력보다 많은 자손</b>을 생산하고, 개체 사이에 다양한 형질이 나타난다.</div>
+  <div class="stage-item"><div class="st-num">②</div><div class="st-name">생존경쟁</div><b>먹이, 서식지, 배우자 등의 자원</b>을 차지하기 위해 경쟁한다.</div>
+  <div class="stage-item"><div class="st-num">③</div><div class="st-name">자연선택</div>유리한 형질의 개체가 살아남아 자손을 더 많이 남긴다.</div>
+  <div class="stage-item hi"><div class="st-num">④</div><div class="st-name">생물 무리의 진화</div>유리한 형질 개체의 <b>비율 증가</b> → 반복되어 <b>새로운 종 출현</b></div>
+ </div>
+ <div class="note">💡 지구의 환경이 변하면 진화의 방향도 변한다.</div>
+
+ <h3 class="subsection-title" style="border-color:var(--purple)">헷갈리기 쉬운 두 개의 '4단계' 비교</h3>
+ <div class="vs-grid">
+  <div class="vs-col"><h4 style="background:var(--green)">자연선택의 4단계 (한 무리 안의 변화)</h4>
+   <ol><li>변이 존재</li><li>유리한 개체 생존 비율 증가</li><li>생존 개체의 자손 생산 번성</li><li>유리한 변이가 많은 방향으로 진화</li></ol></div>
+  <div class="vs-col"><h4 style="background:var(--purple)">자연선택설의 4단계 (다윈의 진화 이론)</h4>
+   <ol><li>과잉 생산과 변이</li><li>생존경쟁</li><li>자연선택</li><li>생물 무리의 진화 (새로운 종 출현)</li></ol></div>
+ </div>
+ <div class="tip">✅ 자연선택설은 '과잉 생산'과 '생존경쟁'을 더해, 왜 유리한 개체만 살아남는지(자원이 부족하니까)를 설명한다.</div>
+
+ <h2 class="section-title" id="a-apply" style="border-color:var(--purple)">🦒 자연선택설로 설명하기: 기린의 목</h2>
+ <div class="stage-row purple">
+  <div class="stage-item"><div class="st-num">①</div><div class="st-name">과잉 생산과 변이</div>목 길이가 다양한 많은 수의 기린이 있었다.</div>
+  <div class="stage-item"><div class="st-num">②</div><div class="st-name">생존경쟁</div>높은 곳의 잎을 먹기 위해 경쟁한다.</div>
+  <div class="stage-item"><div class="st-num">③</div><div class="st-name">자연선택</div>목이 짧은 기린은 높은 곳의 잎을 먹기 불리하여 죽었고, <b>목이 긴 기린</b>만 살아남아 자손을 많이 남겼다.</div>
+  <div class="stage-item hi"><div class="st-num">④</div><div class="st-name">유전과 진화</div>목이 긴 기린이 형질을 자손에게 전달하였고, 이 과정이 반복되어 목이 긴 기린이 번성하였다.</div>
+ </div>
+
+ <h2 class="section-title" id="a-diverse" style="border-color:var(--purple)">🌏 진화의 결과: 다양한 생물의 출현</h2>
+ <div class="flow-row">
+  <span class="flow-item purple">조상 생물이 다양한 환경으로 퍼짐</span><span class="flow-arrow">→</span>
+  <span class="flow-item purple">환경마다 <b>서로 다른 방향</b>으로 자연선택</span><span class="flow-arrow">→</span>
+  <span class="flow-item purple">오랫동안 반복</span><span class="flow-arrow">→</span>
+  <span class="flow-item purple">조상과 다른 생물종 출현 = 현재의 다양한 생물</span>
+ </div>
+ <p>아래 두 사례는 <b>한 조상 종에서 여러 종이 나타난 진화의 예</b>이다.</p>
+
+ <div class="rule-card purple" id="a-finch">
+  <h4>🐦 갈라파고스 제도의 핀치 — 다윈이 관찰한 사례</h4>
+  <div class="flow-row">
+   <span class="flow-item purple">남아메리카에서 건너온 한 종의 조상 핀치가 여러 섬으로 퍼짐</span><span class="flow-arrow">→</span>
+   <span class="flow-item purple">섬마다 먹이 환경이 달라 알맞은 부리를 가진 개체가 자연선택</span><span class="flow-arrow">→</span>
+   <span class="flow-item purple">여러 세대 반복 → 부리 모양이 다른 여러 종 (현재 <b>14종</b>)</span>
+  </div>
+  <div class="tbl-wrap"><table class="cmp-table purple-th">
+   <thead><tr><th>먹이 · 환경</th><th>핀치</th></tr></thead>
+   <tbody>
+    <tr><td>선인장이 많은 섬 (선인장 꽃과 과육)</td><td>길고 뾰족한 부리</td></tr>
+    <tr><td>크고 단단한 씨가 많은 섬 (단단한 씨앗)</td><td>크고 두꺼운 부리</td></tr>
+    <tr><td>곤충</td><td>나뭇가지를 이용해 곤충을 먹는 핀치</td></tr>
+    <tr><td>식물의 잎</td><td>식물의 잎을 먹는 핀치</td></tr>
+   </tbody>
+  </table></div>
+ </div>
+
+ <div class="rule-card purple" id="a-squirrel">
+  <h4>🐿️ 그랜드캐니언의 다람쥐 — 지금도 관찰되는 사례</h4>
+  <div class="flow-row">
+   <span class="flow-item purple">콜로라도강이 흐르며 협곡 형성</span><span class="flow-arrow">→</span>
+   <span class="flow-item purple">최초의 조상 다람쥐가 <b>남북 두 무리</b>로 나뉨</span><span class="flow-arrow">→</span>
+   <span class="flow-item purple">두 지역에서 <b>독립적으로</b> 자연선택</span><span class="flow-arrow">→</span>
+   <span class="flow-item purple">흰꼬리영양다람쥐 / 해리스영양다람쥐</span>
+  </div>
+  <p>여러 세대가 지나면서 두 지역의 환경에 맞는 형질을 가진 다람쥐가 자연선택되어 두 종이 되었다. → 자연선택에 따른 진화의 결과 종이 둘 이상으로 나뉘는 현상은 <b>현재에도 관찰</b>된다.</p>
+ </div>
+
+ <h2 class="section-title" id="a-modern" style="border-color:var(--purple)">⚠️ 자연선택설의 한계와 현대 진화설</h2>
+ <p>처음에는 변이의 원인을 설명하지 못하는 등의 한계가 있었지만, 많은 증거가 수집되고 부족한 부분이 보완되면서 자연선택설은 진화의 원리로 받아들여지고 있다.</p>
+ <div class="factor-grid three">
+  <div class="factor-card rose"><h4>한계 ①</h4>변이의 원인을 설명하지 못함</div>
+  <div class="factor-card rose"><h4>한계 ②</h4>변이의 축적으로 진화한다고 설명</div>
+  <div class="factor-card rose"><h4>한계 ③</h4>변이와 환경을 진화의 요인으로 설명 = <b>획득 형질의 유전 인정</b></div>
+ </div>
+ <div class="sub2-title">현대 진화설을 이룬 이론들</div>
+ <div class="tbl-wrap"><table class="cmp-table purple-th">
+  <thead><tr><th>이론</th><th>학자</th><th>관련 예 · 키워드</th></tr></thead>
+  <tbody>
+   <tr><td>① 자연선택설</td><td>다윈</td><td>변이, 과잉 생산, 생존경쟁, 자연선택</td></tr>
+   <tr><td>② 생식질 연속설</td><td>바이스만</td><td>쥐꼬리 실험</td></tr>
+   <tr><td>③ 돌연변이설</td><td>드프리스</td><td>왕달맞이꽃</td></tr>
+   <tr><td>④ 지리적 격리설</td><td>바그너</td><td>카이밥 다람쥐, 아버트 다람쥐</td></tr>
+   <tr><td>⑤ 생식적 격리설</td><td>로마네스</td><td>행동, 시기, 기관, 생식세포 불친화</td></tr>
+  </tbody>
+ </table></div>
+
+ <div class="quiz-section" id="quiz-2"></div>
+</section>
+
+<!-- ===================== TAB 3 : 생물다양성 세 요소 ===================== -->
+<section class="tab-panel" id="panel-3">
+ <div class="unit-banner" style="background:var(--teal-light);color:var(--teal)">📌 Ⅰ. 변화와 다양성 › 03. 생물다양성과 보전 방안</div>
+ <div class="lead">🧭 <b>흐름</b> — 생물다양성의 정의 → 세 요소를 <b>범위</b>로 구분 → 같은 기준(의미·높은 조건·예·이점)으로 비교 → 세 요소의 관계 → 중요성</div>
+
+ <h2 class="section-title" id="a-biodiv" style="border-color:var(--teal)">🌍 생물다양성이란?</h2>
+ <p>생물은 변화하는 환경 조건에 적응하면서 점점 다양해지고 복잡해졌다. 현재까지 확인된 생물종 수는 <b>190여만 종</b>, 미확인 종을 합하면 <b>천만 종 이상</b>으로 추정된다.</p>
+ <div class="teal-box">
+  <div class="box-label">생물다양성</div>
+  지구에 서식하는 생물의 다양한 정도 = <b>유전적 다양성 + 종다양성 + 생태계다양성</b>을 모두 포함하는 개념
+ </div>
+
+ <h3 class="subsection-title" style="border-color:var(--teal)">세 요소를 '범위'로 구분하기</h3>
+ <div class="nest">
+  <div class="lv"><span class="lv-name">생태계다양성</span> <span class="lv-sub">— 지구 전체 또는 특정 지역의 <b>서식 환경</b>이 다양한 정도</span>
+   <div class="lv"><span class="lv-name">종다양성</span> <span class="lv-sub">— 한 지역에 사는 <b>생물종</b>이 다양한 정도</span>
+    <div class="lv"><span class="lv-name">유전적 다양성</span> <span class="lv-sub">— 한 생물 무리(<b>개체군</b>) 내에서 <b>유전자</b>가 다양한 정도</span></div>
+   </div>
+  </div>
+ </div>
+
+ <h2 class="section-title" id="a-three" style="border-color:var(--teal)">📊 세 요소 한눈에 비교</h2>
+ <div class="tbl-wrap"><table class="cmp-table teal-th">
+  <thead><tr><th>구분</th><th id="a-genetic">유전적 다양성</th><th id="a-speciesdiv">종다양성</th><th id="a-ecodiv">생태계다양성</th></tr></thead>
+  <tbody>
+   <tr><td>의미</td><td>같은 종의 무리 내에서 개체마다 <b>유전정보가 달라</b> 다양한 변이가 나타나는 정도</td><td>한 지역에서 서식하는 <b>생물종</b>의 다양한 정도</td><td>생물이 서식할 수 있는 <b>환경</b>이 다양한 정도 (생물과 환경 사이의 <b>상호작용</b>의 다양함까지 포함)</td></tr>
+   <tr><td>높은 조건</td><td>변이가 다양할수록, 하나의 형질을 결정하는 유전자가 다양할수록</td><td>① 생물종의 수가 <b>많을수록</b><br>② 각 종의 분포 비율이 <b>균등할수록</b></td><td>사막, 습지, 초원, 열대우림, 삼림, 호수와 강, 갯벌, 바다 등 환경이 다양할수록</td></tr>
+   <tr><td>예</td><td>사람의 생김새, 달팽이 껍데기 무늬, 기린의 크기와 무늬, 바지락 껍데기, 헬리코니우스나비 날개, 별불가사리 무늬</td><td>초원 생태계의 다양한 생물종, 숲의 다람쥐·사슴·무당벌레·참나무·버섯</td><td>우리나라의 숲, 강, 바다, 갯벌 등</td></tr>
+   <tr><td>높을 때 이점</td><td>불리한 환경 변화에도 적응할 수 있는 개체가 살아남아 <b>멸종하지 않을 확률↑</b></td><td>한두 종이 사라져도 대체할 종이 있어 <b>생태계가 안정적으로 유지</b>될 확률↑</td><td>다양한 환경이 존재할 때 다양한 생물이 살아갈 수 있음</td></tr>
+  </tbody>
+ </table></div>
+ <div class="warning">⚠️ 유전적 다양성이 낮아 피해를 입은 사례: <b>감자마름병</b></div>
+ <div class="note">💡 갯벌과 습지는 육상 생태계와 수생태계를 잇는 <b>완충 지역</b>이라 종다양성이 상대적으로 높다. 생태계의 종류에 따라 환경이 다르므로 서식하는 생물종과 개체수도 다르다.</div>
+
+ <h3 class="subsection-title" id="a-sd-compare" style="border-color:var(--teal)">종다양성 비교 — 두 가지 기준을 하나씩</h3>
+ <p>종다양성은 <b>① 종의 수</b>와 <b>② 분포의 균등함</b> 두 가지로 판단한다. 한 번에 하나의 기준만 달라지게 놓고 비교하면 헷갈리지 않는다.</p>
+
+ <div class="sd-case">
+  <div class="sd-head">기준 ① 종의 수 <span class="sd-sub">(개체수 12, 모두 고르게 분포)</span></div>
+  <div class="sd-row">
+   <div class="sd-box"><div class="sd-lab">지역 P</div><div class="forest"><span class="tr" style="background:#16a34a">A</span><span class="tr" style="background:#16a34a">A</span><span class="tr" style="background:#16a34a">A</span><span class="tr" style="background:#16a34a">A</span><span class="tr" style="background:#16a34a">A</span><span class="tr" style="background:#16a34a">A</span><span class="tr" style="background:#2563eb">B</span><span class="tr" style="background:#2563eb">B</span><span class="tr" style="background:#2563eb">B</span><span class="tr" style="background:#2563eb">B</span><span class="tr" style="background:#2563eb">B</span><span class="tr" style="background:#2563eb">B</span></div><div class="sd-cnt">2종 · A 6 · B 6</div></div>
+   <div class="sd-vs">&lt;</div>
+   <div class="sd-box win"><div class="sd-lab">지역 Q</div><div class="forest"><span class="tr" style="background:#16a34a">A</span><span class="tr" style="background:#16a34a">A</span><span class="tr" style="background:#16a34a">A</span><span class="tr" style="background:#2563eb">B</span><span class="tr" style="background:#2563eb">B</span><span class="tr" style="background:#2563eb">B</span><span class="tr" style="background:#ea580c">C</span><span class="tr" style="background:#ea580c">C</span><span class="tr" style="background:#ea580c">C</span><span class="tr" style="background:#7c3aed">D</span><span class="tr" style="background:#7c3aed">D</span><span class="tr" style="background:#7c3aed">D</span></div><div class="sd-cnt">4종 · A 3 · B 3 · C 3 · D 3</div></div>
+  </div>
+  <div class="sd-res">➜ 분포가 똑같이 고르다면 <b>종의 수가 많은 Q</b>의 종다양성이 높다.</div>
+ </div>
+
+ <div class="sd-case">
+  <div class="sd-head">기준 ② 분포의 균등함 <span class="sd-sub">(4종, 개체수 12로 같음)</span></div>
+  <div class="sd-row">
+   <div class="sd-box win"><div class="sd-lab">(가)</div><div class="forest"><span class="tr" style="background:#16a34a">A</span><span class="tr" style="background:#16a34a">A</span><span class="tr" style="background:#16a34a">A</span><span class="tr" style="background:#2563eb">B</span><span class="tr" style="background:#2563eb">B</span><span class="tr" style="background:#2563eb">B</span><span class="tr" style="background:#ea580c">C</span><span class="tr" style="background:#ea580c">C</span><span class="tr" style="background:#ea580c">C</span><span class="tr" style="background:#7c3aed">D</span><span class="tr" style="background:#7c3aed">D</span><span class="tr" style="background:#7c3aed">D</span></div><div class="sd-cnt">A 3 · B 3 · C 3 · D 3</div></div>
+   <div class="sd-vs">&gt;</div>
+   <div class="sd-box"><div class="sd-lab">(나)</div><div class="forest"><span class="tr" style="background:#16a34a">A</span><span class="tr" style="background:#16a34a">A</span><span class="tr" style="background:#16a34a">A</span><span class="tr" style="background:#16a34a">A</span><span class="tr" style="background:#16a34a">A</span><span class="tr" style="background:#16a34a">A</span><span class="tr" style="background:#16a34a">A</span><span class="tr" style="background:#16a34a">A</span><span class="tr" style="background:#16a34a">A</span><span class="tr" style="background:#2563eb">B</span><span class="tr" style="background:#ea580c">C</span><span class="tr" style="background:#7c3aed">D</span></div><div class="sd-cnt">A 9 · B 1 · C 1 · D 1</div></div>
+  </div>
+  <div class="sd-res">➜ 종의 수와 개체수가 같아도 <b>고르게 분포한 (가)</b>의 종다양성이 높다. (나)는 사실상 A만 있는 숲에 가깝다.</div>
+ </div>
+ <div class="note">💡 (나)의 개체수 배분(9·1·1·1)은 이해를 돕기 위한 예시이다.</div>
+
+
+ <h2 class="section-title" id="a-relation" style="border-color:var(--teal)">🔗 세 요소의 관계</h2>
+ <div class="cycle">
+  <div class="cy">유전적 다양성</div><div class="ar">→</div>
+  <div class="cy">종다양성</div><div class="ar">→</div>
+  <div class="cy">생태계다양성</div>
+ </div>
+ <div class="cycle-desc">
+  <div class="factor-card teal"><h4>유전적 → 종</h4>유전적 다양성이 높을수록 다양한 환경에 적응해 새로운 종으로 진화할 가능성↑ → 종다양성↑<br>(유전적 다양성이 높은 종은 멸종 가능성↓ → 종다양성 유지에 중요)</div>
+  <div class="factor-card teal"><h4>종 → 생태계</h4>종다양성이 높을수록 복잡한 먹이 관계 → 생태계 안정 → 종다양성은 생태계다양성 유지의 원천</div>
+  <div class="factor-card teal"><h4>생태계 → 종·유전적</h4>생태계다양성이 높을수록 다양한 환경의 생물종이 분포 → 종다양성과 유전적 다양성도 높음</div>
+ </div>
+
+ <h2 class="section-title" id="a-importance" style="border-color:var(--teal)">⭐ 생물다양성의 중요성</h2>
+ <div class="rule-card teal">
+  <h4>① 생태계 유지</h4>
+  <div class="flow-row">
+   <span class="flow-item teal">유전적 다양성↑</span><span class="flow-arrow">→</span>
+   <span class="flow-item teal">종다양성↑</span><span class="flow-arrow">→</span>
+   <span class="flow-item teal">생태계 보전</span><span class="flow-arrow">→</span>
+   <span class="flow-item teal">생물다양성↑</span><span class="flow-arrow">→</span>
+   <span class="flow-item teal">안정적 유지</span>
+  </div>
+  <p>생물은 다양한 먹이 관계를 형성하여 서로 밀접한 관계를 맺고 살아가므로, 생물다양성이 높을수록 생태계가 안정적으로 유지된다.</p>
+ </div>
+ <div class="rule-card teal">
+  <h4>② 생물자원 — 각종 자원 공급, 사회적·심미적 가치 제공</h4>
+  <div class="tbl-wrap"><table class="cmp-table teal-th">
+   <thead><tr><th>구분</th><th>예</th></tr></thead>
+   <tbody>
+    <tr><td>의식주 재료</td><td>의복: 목화(면섬유), 누에(비단), 양(양모) / 식량: 벼, 밀, 콩, 옥수수, 사과, 바나나 / 주택: 나무, 풀</td></tr>
+    <tr><td>의약품 원료</td><td>버드나무·조팝나무(해열진통제), 디기탈리스(심장병 치료제), 푸른곰팡이(항생제)</td></tr>
+    <tr><td>에너지·산업용 재료</td><td>옥수수·사탕수수로 바이오에탄올 생산, 효모를 여러 산업의 재료로 활용</td></tr>
+    <tr><td>사회적·심미적 가치</td><td>휴식 장소, 여가 활동 장소, 생태 관광 장소</td></tr>
+   </tbody>
+  </table></div>
+ </div>
+ <div class="note">💡 생명 자체의 소중함: 모든 생물은 진화의 산물로, 생명이 있다는 것 자체로 소중하다.</div>
+
+ <div class="quiz-section" id="quiz-3"></div>
+</section>
+
+<!-- ===================== TAB 4 : 감소 원인과 보전 ===================== -->
+<section class="tab-panel" id="panel-4">
+ <div class="unit-banner" style="background:var(--orange-light);color:var(--orange)">📌 Ⅰ. 변화와 다양성 › 03. 생물다양성과 보전 방안</div>
+ <div class="lead">🧭 <b>흐름</b> — 감소 원인 4가지 → 원인별 <b>대응책 짝짓기</b> → 개인·사회·국제 차원 → 국제 협약 정리</div>
+
+ <h2 class="section-title" id="a-decline" style="border-color:var(--orange)">📉 생물다양성의 감소 원인</h2>
+ <p>최근 생물다양성은 빠르게 감소하고 있으며, 대부분 <b>인간의 활동</b>과 관련이 깊다.</p>
+ <div class="tbl-wrap"><table class="cmp-table orange-th">
+  <thead><tr><th>원인</th><th>무슨 일이 일어나나</th><th>결과</th></tr></thead>
+  <tbody>
+   <tr><td>① 서식지 파괴, 단편화</td><td><b>파괴</b>: 삼림 벌채, 습지 매립<br><b>단편화</b>: 도로 건설, 주택 개발로 대규모 서식지가 소규모로 분할</td><td>서식지 면적 감소, 이동 제한, 중심부 생물종 멸종 가능, 로드킬 증가 → <b>상위 영양 단계 생물 멸종</b></td></tr>
+   <tr><td>② 불법 포획, 남획</td><td>보호 동식물 불법 포획, 야생 동식물 남획</td><td>개체수 급감 → 멸종 위험↑ → 먹이 관계에 영향</td></tr>
+   <tr><td>③ 외래종 유입</td><td>천적이 없는 외래생물이 적응하여 대량 번식<br><span class="badge badge-orange">배스</span><span class="badge badge-orange">뉴트리아</span><span class="badge badge-orange">황소개구리</span><span class="badge badge-orange">꽃매미</span><span class="badge badge-orange">큰빗이끼벌레</span><span class="badge badge-orange">가시박</span><span class="badge badge-orange">블루길</span></td><td>토종 생물 생존 위협, 먹이 관계 변화 → 생태계 평형 파괴</td></tr>
+   <tr><td>④ 환경 오염·기후 변화</td><td>산성비(하천·호수·토양 산성화), 화학 물질·중금속 유입, 급격한 기후 변화</td><td>수중 생물 피해, 생태계 파괴, 생물다양성 크게 감소</td></tr>
+  </tbody>
+ </table></div>
+
+ <h2 class="section-title" id="a-match" style="border-color:var(--orange)">🔁 원인 ↔ 대응책 짝짓기</h2>
+ <div class="tbl-wrap"><table class="cmp-table orange-th">
+  <thead><tr><th>원인</th><th>대응책</th></tr></thead>
+  <tbody>
+   <tr><td>서식지 단편화</td><td>단편화된 서식지를 연결하는 <b>생태통로</b> 설치</td></tr>
+   <tr><td>서식지 파괴</td><td>생물다양성이 높은 지역을 국립 공원 등 <b>보호 구역으로 지정</b>, 멸종 위기종 복원 및 관리</td></tr>
+   <tr><td>불법 포획, 남획</td><td><b>불법 포획 및 남획 금지법 제정</b>, 야생 생물 보호 및 관리에 관한 법률 제정</td></tr>
+   <tr><td>외래종 유입</td><td><b>외래종 규제</b>: 검역 강화, 도입 전 생태계에 미칠 영향 검증</td></tr>
+   <tr><td>환경 오염·기후 변화</td><td>환경 오염 방지 대책, 기후 변화 해결 방안 마련 / 개인의 에너지 절약·자원 재활용</td></tr>
+  </tbody>
+ </table></div>
+
+ <h2 class="section-title" id="a-conserve" style="border-color:var(--orange)">🛡️ 차원별 보전 노력</h2>
+ <div class="factor-grid three">
+  <div class="factor-card orange"><h4>개인적</h4><ul><li>에너지 절약</li><li>전자 기기 오래 사용</li><li>쓰레기 배출 줄이기</li><li>플라스틱 재활용</li><li>친환경 제품 사용</li><li>생물다양성 홍보 활동 참여</li></ul></div>
+  <div class="factor-card orange"><h4>사회적·국가적</h4><ul><li>생태통로 설치</li><li>외래종 규제</li><li>보호 구역 지정</li><li>불법 포획 및 남획 금지법 제정</li><li>멸종 위기종 복원·관리</li><li>환경 오염 방지, 기후 변화 대책</li></ul></div>
+  <div class="factor-card orange"><h4>국제적</h4><ul><li>생물다양성에 관한 <b>국제 협약</b> 체결</li></ul><p class="sub">생물다양성 파괴는 한 나라에 국한된 문제가 아닌 <b>인류의 생존과 직결된 문제</b>이기 때문</p></div>
+ </div>
+ <div class="tip">✅ 국제 사회·국가 차원의 노력뿐 아니라 일상생활에서 <b>개인의 노력</b>도 함께 이루어져야 한다.</div>
+
+ <div class="note" style="font-size:14px;border-width:2px">📖 여기부터 나오는 <b>국제 협약</b> 내용은 <b>한 번씩만 읽고 이해하면 됩니다.</b> 하나하나 암기할 필요는 없어요.</div>
+
+ <h2 class="section-title" id="a-treaty" style="border-color:var(--orange)">📜 생물다양성 보전을 위한 국제 협약</h2>
+
+ <h3 class="subsection-title" style="border-color:var(--orange)">협약별 보호 대상 한눈에</h3>
+ <div class="factor-grid three">
+  <div class="factor-card orange"><h4>생물다양성협약 (CBD)</h4>생물다양성 <b>전반</b></div>
+  <div class="factor-card teal"><h4>람사르 협약</h4><b>습지</b> (물새 서식지)</div>
+  <div class="factor-card rose"><h4>CITES</h4>멸종 위기 야생 동식물의 <b>국제 거래</b></div>
+  <div class="factor-card blue"><h4>CMS (본 협약)</h4><b>이동성</b> 야생 동물 (철새·고래 등)</div>
+  <div class="factor-card purple"><h4>국제포경규제협약 (ICRW)</h4><b>고래</b></div>
+  <div class="factor-card green"><h4>세계유산협약 (WHC)</h4>인류의 문화·<b>자연유산</b></div>
+ </div>
+
+ <h3 class="subsection-title" style="border-color:var(--orange)">채택 연도 순서</h3>
+ <div class="timeline">
+  <div class="tl"><span class="yr">1946</span>국제포경규제협약 (워싱턴)</div>
+  <div class="tl"><span class="yr">1971</span>람사르 협약 (람사르)</div>
+  <div class="tl"><span class="yr">1972</span>세계유산협약 (파리)</div>
+  <div class="tl"><span class="yr">1973</span>멸종위기 야생동식물 불법거래 규제 협약, CITES (워싱턴)</div>
+  <div class="tl"><span class="yr">1979</span>이동성 야생동물종 보전 협약, CMS (본)</div>
+  <div class="tl"><span class="yr">1992</span>생물다양성협약, CBD (리우)</div>
+  <div class="tl"><span class="yr">2022</span>쿤밍-몬트리올 글로벌 생물다양성 프레임워크 (196개 국가 채택)</div>
+ </div>
+
+ <div class="rule-card orange" id="a-cbd">
+  <h4>🌐 생물다양성협약 (CBD) — 채택 1992년 · 한국 가입 1994년</h4>
+  <p><b>배경</b>: 산업화·도시화·오염으로 인한 종 멸종 가속화와 생태계 파괴에 대응해 전 지구적 보전 필요</p>
+  <div class="sub2-title">3대 목적</div>
+  <div class="factor-grid three">
+   <div class="factor-card orange"><h4>① 보전</h4>생물다양성을 보전</div>
+   <div class="factor-card orange"><h4>② 지속가능한 이용</h4>그 구성 요소(생물자원)를 지속가능하게 이용</div>
+   <div class="factor-card orange"><h4>③ 이익 공유</h4>생물 유전자원의 이용으로부터 발생되는 이익을 공정·공평하게 공유</div>
+  </div>
+  <p><b>국내 사례</b>: 2014년 제12차 당사국총회(평창) 개최 및 '평창 로드맵' 채택, 나고야 의정서 비준 및 국내 유전자원법 제정</p>
+ </div>
+
+ <div class="tbl-wrap"><table class="cmp-table orange-th">
+  <thead><tr><th>협약</th><th>채택 / 한국</th><th>핵심 내용</th><th>국내 사례</th></tr></thead>
+  <tbody>
+   <tr><td>람사르 협약</td><td>1971 / 1997 가입</td><td>국제적으로 중요한 습지(람사르 습지) 지정·보호, 습지의 '현명한 이용' 유도<br><span class="sub" style="font-size:12px;color:var(--text-sec)">습지의 수질 정화, 홍수 조절, 철새 서식처 가치</span></td><td>대암산 용늪(국내 1호), 우포늪, 순천만·보성갯벌 등록 / 2008년 제10차 총회(창원) 개최</td></tr>
+   <tr><td>CITES<br>(멸종위기 야생동식물 불법거래 규제)</td><td>1973 / 1993 가입</td><td>위협도에 따라 3개 부속서로 분류<br>• 부속서 Ⅰ: 상업적 거래 <b>전면 금지</b><br>• 부속서 Ⅱ·Ⅲ: 정식 수출입 허가증 필수</td><td>외래 희귀 야생동물 반입 시 수입 허가 의무화, 공항·항만 밀반입(사향, 웅담 등) 적발 및 압류</td></tr>
+   <tr><td>CMS (본 협약)<br>(이동성 야생동물종 보전)</td><td>1979 / 정식 비준 대신 EAAFP 파트너십 참여</td><td>이동성 동물 포획 금지, 서식지·이동 경로 복원, 인접국 간 공조<br><span class="sub" style="font-size:12px;color:var(--text-sec)">한 나라만 보전해서는 멸종을 막을 수 없음</span></td><td>인천 송도에 EAAFP 사무국 유치, 저어새 등 철새 중간 기착지인 서해안 갯벌 보전</td></tr>
+   <tr><td>국제포경규제협약<br>(ICRW)</td><td>1946 / 1978 가입</td><td>국제포경위원회(IWC) 중심 포획 쿼터·금지 구역 설정, <b>1986년부터 상업적 고래잡이 전면 유예</b></td><td>1986년부터 국내 상업적 포경 전면 금지, 장생포 생태 관광 전환, 혼획 고래 DNA 등록제</td></tr>
+   <tr><td>세계유산협약<br>(WHC)</td><td>1972 / 1988 가입</td><td>탁월한 보편적 가치 심사를 통해 문화·자연·복합유산 등재, '위험에 처한 유산' 지정</td><td>2007년 '제주 화산섬과 용암동굴', 2021년 '한국의 갯벌' 세계자연유산 등재</td></tr>
+   <tr><td>쿤밍-몬트리올 글로벌<br>생물다양성 프레임워크</td><td>2022 / 196개 국가 채택</td><td>2030년까지 훼손된 육지와 해양 생태계를 <b>최소 30 % 이상 복원</b>하는 등 구체적 목표</td><td>—</td></tr>
+  </tbody>
+ </table></div>
+ <div class="note">💡 그 밖에 기후 변화 협약 등도 생물다양성 보전과 관련된 국제적 노력에 포함된다.</div>
+
+ <div class="quiz-section" id="quiz-4"></div>
+</section>
+
+<!-- ===================== TAB 5 : 감염병과 진단 ===================== -->
+<section class="tab-panel" id="panel-5">
+ <div class="unit-banner" style="background:var(--rose-light);color:var(--rose)">📌 Ⅲ. 과학과 미래 사회 › 01. 미래 사회 문제 해결에서 과학의 역할</div>
+ <div class="lead">🧭 <b>흐름</b> — 과학이 해 온 역할 → 감염병·병원체 → 면역(항원·항체) → 진단 방법을 <b>'무엇을 검출하나'</b>로 비교 → 상황별 선택 → 모의 실험</div>
+
+ <h2 class="section-title" id="a-role" style="border-color:var(--rose)">🌾 과학이 인류에게 해 온 역할</h2>
+ <div class="factor-grid three">
+  <div class="factor-card rose"><h4>보건 및 위생</h4><ul><li>백신과 항생제 개발</li><li>상하수도 정수, 살균</li></ul></div>
+  <div class="factor-card green"><h4>식량 및 농업</h4><ul><li>하버-보슈법</li><li>녹색 혁명</li></ul><p class="sub">볼로그(1970년 노벨 평화상): 수확량이 많고 병충해에 강한 밀 종자 개발 → 굶주림 해결</p></div>
+  <div class="factor-card teal"><h4>환경 및 자원</h4><ul><li>프레온 가스 대체제 개발</li></ul></div>
+ </div>
+
+ <h2 class="section-title" id="a-disease" style="border-color:var(--rose)">🦠 감염병과 병원체</h2>
+ <div class="rose-box">
+  <div class="box-label">감염병</div>
+  <b>병원체</b>(질병을 일으키는 미생물, 바이러스)가 사람의 몸에 침입하여 생기는 질병
+ </div>
+ <div class="flow-row">
+  <span class="flow-item rose">병원체</span><span class="flow-arrow">→</span>
+  <span class="flow-item rose">미생물<small>세균, 원생생물, 곰팡이</small></span>
+  <span class="flow-item rose">바이러스</span>
+ </div>
+
+ <h3 class="subsection-title" style="border-color:var(--rose)">감염병의 특성 4가지</h3>
+ <div class="factor-grid four">
+  <div class="factor-card rose"><h4>① 건강과 생존 위협</h4>수많은 사람이 목숨을 잃고, 국가나 문명이 사라지기도 함</div>
+  <div class="factor-card rose"><h4>② (빠르게) 전파·전염</h4><span class="badge badge-rose">비말</span><span class="badge badge-rose">공기</span><span class="badge badge-rose">매개체</span><span class="badge badge-rose">수직</span></div>
+  <div class="factor-card rose"><h4>③ 잠복기</h4>감염 후 증상이 나타나기까지의 기간</div>
+  <div class="factor-card rose"><h4>④ 면역 반응 유발</h4>항원(질병을 일으키는 것)이 면역 반응을 일으킴</div>
+ </div>
+ <div class="note">💡 <b>아스테카 제국과 천연두</b>: 1519년 스페인에서 온 외지인들에 의해 천연두가 퍼져 전체 인구의 3/4이 사망 → 멸망의 길</div>
+ <div class="key-q"><span class="kq-tag" style="background:var(--rose)">왜?</span><div>교통수단 발달로 감염병은 과거보다 급속히 전파된다. → <b>치료 약이 개발되기 전까지</b> 확산을 늦추려면 빠르게 <b>진단</b>하고 <b>추적</b>하여 감염 경로를 차단해야 한다.</div></div>
+
+ <h2 class="section-title" id="a-immune" style="border-color:var(--rose)">🛡️ 면역계와 항원 · 항체</h2>
+ <div class="tbl-wrap"><table class="cmp-table rose-th">
+  <thead><tr><th>면역계</th><th>구성</th></tr></thead>
+  <tbody>
+   <tr><td>선천성 면역</td><td>피부, 백혈구</td></tr>
+   <tr><td>후천성 면역</td><td>B세포, T세포 → <b>항체 형성</b></td></tr>
+  </tbody>
+ </table></div>
+ <div class="factor-grid">
+  <div class="factor-card rose"><h4>항원 = 적</h4>질병을 일으키는 것, 병원체의 <b>특정 단백질</b></div>
+  <div class="factor-card blue"><h4>항체 = 우리 몸의 무기 (Y자 모양)</h4>병원체에 대항해 우리 몸에서 만들어지는 <b>단백질</b> → <b>특정한 항원에만 반응</b></div>
+ </div>
+
+ <h2 class="section-title" id="a-diagnosis" style="border-color:var(--rose)">🧫 감염병 진단 방법 — 무엇을 검출하나?</h2>
+ <div class="factor-grid three">
+  <div class="factor-card blue"><h4>항체 검사</h4>우리 몸의 <b>반응 결과</b>(항체)를 찾는다<p class="sub">⇒ 면역 반응 결과물 확인</p></div>
+  <div class="factor-card rose"><h4>항원 검사</h4>병원체의 <b>단백질</b>(항원)을 찾는다</div>
+  <div class="factor-card purple"><h4>PCR 검사</h4>병원체의 <b>유전물질</b>(핵산)을 찾는다</div>
+ </div>
+
+ <div class="tbl-wrap"><table class="cmp-table rose-th">
+  <thead><tr><th>비교</th><th>항체 검사</th><th>항원 검사 (신속 항원)</th><th>PCR 검사</th></tr></thead>
+  <tbody>
+   <tr><td>검체</td><td>혈액</td><td>콧속 검체</td><td>콧속 검체</td></tr>
+   <tr><td>알 수 있는 것</td><td>과거·현재·최근 감염 이력</td><td>현재 감염 여부</td><td>현재 감염 여부</td></tr>
+   <tr><td>검사 시간</td><td>항체가 생기기까지 시간 필요 → <b>신속 진단 부적합</b></td><td><div class="scale"><span>짧음</span><div class="track"><div class="fill" style="width:15%"></div></div><span>10분 이내</span></div></td><td><div class="scale"><span>김</span><div class="track"><div class="fill" style="width:85%"></div></div></div></td></tr>
+   <tr><td>정확도</td><td>—</td><td><div class="scale"><span>PCR보다 낮음</span><div class="track"><div class="fill" style="width:65%"></div></div></div></td><td><div class="scale"><span>가장 높음</span><div class="track"><div class="fill" style="width:100%"></div></div></div></td></tr>
+  </tbody>
+ </table></div>
+
+ <h3 class="subsection-title" id="a-choose" style="border-color:var(--rose)">상황별로 어떤 검사를?</h3>
+ <div class="tbl-wrap"><table class="cmp-table rose-th">
+  <thead><tr><th>상황</th><th>적합한 검사</th></tr></thead>
+  <tbody>
+   <tr><td>지금 감염됐는지 <b>빨리</b> 알고 싶다</td><td>항원 검사 (10분 이내)</td></tr>
+   <tr><td>지금 감염됐는지 <b>정확하게</b> 알고 싶다</td><td>PCR 검사</td></tr>
+   <tr><td>예전에 감염된 적이 있는지 알고 싶다</td><td>항체 검사</td></tr>
+   <tr><td>백신 접종 후 면역이 형성됐는지 확인</td><td>항체 검사</td></tr>
+   <tr><td>역학 조사 (집단 면역 형성 비율)</td><td>항체 검사</td></tr>
+  </tbody>
+ </table></div>
+
+ <h3 class="subsection-title" id="a-antigen-test" style="border-color:var(--rose)">신속 항원 검사 키트의 구조와 원리</h3>
+ <div class="kit">
+  <div class="k-sample">검체 접적 부위<small>검체를 넣는 곳</small></div>
+  <div class="k-ab">항체 zone<small>코로나바이러스를 검출할 수 있는 항체</small></div>
+  <div class="k-line"><div class="bar"></div>T<small>실험선</small></div>
+  <div class="k-line"><div class="bar"></div>C<small>대조선</small></div>
+  <div class="k-end">흡수부</div>
+ </div>
+ <div class="kit-dir">→ 진행 방향</div>
+ <div class="factor-grid">
+  <div class="factor-card rose"><h4>T (실험선, Test zone)</h4><b>항원</b>을 인식하는 항체</div>
+  <div class="factor-card gray"><h4>C (대조선)</h4><b>항체</b>를 인식하는 항체</div>
+ </div>
+ <div class="stage-row three">
+  <div class="stage-item"><div class="st-num">1</div>콧속에서 검체를 채취해 용액 통에 넣으면 바이러스가 분리되어 <b>단백질</b>이 용액 속으로 나온다.</div>
+  <div class="stage-item"><div class="st-num">2</div>용액을 키트에 떨어뜨리면 감염된 경우 바이러스의 단백질과 키트 속 <b>항체가 결합</b>한다.</div>
+  <div class="stage-item hi"><div class="st-num">3</div>이 물질이 실험선의 물질과 만나 <b>색을 낸다</b>.</div>
+ </div>
+
+ <h3 class="subsection-title" id="a-pcr" style="border-color:var(--rose)">PCR 검사 (중합 효소 연쇄 반응)</h3>
+ <div class="rose-box">작은 핵산 조각을 <b>증폭</b>해 양을 늘리는 <b>핵산 증폭 기술</b> → 병원체 내부의 핵산을 증폭하여 병원체의 존재 여부를 확인</div>
+ <div class="sub2-title">필요한 재료</div>
+ <p><span class="badge badge-rose">주형 DNA</span><span class="badge badge-rose">프라이머</span><span class="badge badge-rose">DNA 중합 효소</span><span class="badge badge-rose">dNTPs</span><span class="badge badge-rose">완충액</span><span class="badge badge-rose">증류수</span></p>
+ <a class="link-btn" href="https://javalab.org/ko/pcr/" target="_blank" rel="noopener">🧬 PCR 시뮬레이션 해 보기 (javalab)</a>
+
+ <h2 class="section-title" id="a-diag-lab" style="border-color:var(--rose)">🧪 감염병 진단 모의 실험</h2>
+ <div class="well-grid">
+  <div class="wg-h ctrl" style="grid-column:span 2">대조군</div>
+  <div class="wg-h exp" style="grid-column:span 2">실험군</div>
+  <div class="factor-card orange">ⓐ 모의 양성 대조군</div>
+  <div class="factor-card gray">ⓑ 모의 음성 대조군</div>
+  <div class="factor-card rose">ⓒ 모의 환자 1</div>
+  <div class="factor-card rose">ⓓ 모의 환자 2</div>
+ </div>
+ <div class="flow-row">
+  <span class="flow-item rose">8개 구멍에 모의 항체 각 10방울</span><span class="flow-arrow">→</span>
+  <span class="flow-item rose">ⓐ~ⓓ 검체를 각 2개 구멍에 5방울씩</span><span class="flow-arrow">→</span>
+  <span class="flow-item rose">검출 시약 각 2방울</span>
+ </div>
+ <div class="tip">✅ 판정: <b>양성 대조군과 같은 반응</b>을 보이면 감염, 음성 대조군과 같으면 비감염. 대조군과 실험군을 나누고 변인을 통제하여 비교한다.</div>
+ <div class="warning">⚠️ 안전: 실험용 장갑·보안경·실험복 착용, 사용한 약품은 정해진 곳에 버린다.</div>
+
+ <div class="quiz-section" id="quiz-5"></div>
+</section>
+
+<!-- ===================== TAB 6 : 감염 추적과 미래 사회 ===================== -->
+<section class="tab-panel" id="panel-6">
+ <div class="unit-banner" style="background:var(--gray-light);color:var(--gray)">📌 Ⅲ. 과학과 미래 사회 › 01. 미래 사회 문제 해결에서 과학의 역할</div>
+ <div class="lead">🧭 <b>흐름</b> — 역학 조사 → 과거 vs 현재 → 과학기술 3단계(수집→전달→분석) → 미래 사회 문제 3분류 → 과학을 대하는 자세</div>
+
+ <h2 class="section-title" id="a-epi" style="border-color:var(--gray)">🔗 감염병 역학 조사</h2>
+ <div class="def-box" style="border-color:var(--gray);background:var(--gray-light)">
+  <div class="box-label">역학 조사</div>
+  환자의 이동 경로 파악, 접촉자 확인, 어디에서 감염되었는지 확인·분석 → 확산 경로를 추적하여 <b>추가 감염 차단</b>
+ </div>
+ <div class="factor-grid">
+  <div class="factor-card blue"><h4>감염 경로 추적</h4>정보 통신 기술, 인공지능 기술</div>
+  <div class="factor-card blue"><h4>방역 및 관리</h4>추적 결과를 바탕으로 추가 감염 차단</div>
+ </div>
+ <div class="vs-grid">
+  <div class="vs-col"><h4 style="background:#94a3b8">과거</h4><ol><li>대부분 역학 조사관의 <b>직접 조사</b>에 의존</li></ol></div>
+  <div class="vs-col"><h4 style="background:var(--primary)">최근</h4><ol><li>정보 통신 기술·인공지능 기술 활용</li><li>훨씬 많은 데이터를 더 빠르게 얻고 분석</li><li>코로나19 대유행 때도 빠르고 정확한 추적</li></ol></div>
+ </div>
+
+ <h2 class="section-title" id="a-tracking" style="border-color:var(--gray)">📡 과학기술을 활용한 감염 경로 조사 3단계</h2>
+ <div class="stage-row three">
+  <div class="stage-item"><div class="st-num">① 수집</div><div class="st-name">스마트 기기</div>감염자 이동 경로, 인구수, 체온 등 다양한 정보를 빠르게 수집</div>
+  <div class="stage-item"><div class="st-num">② 전달</div><div class="st-name">정보 통신 기술</div>수집한 정보를 실시간으로 전달</div>
+  <div class="stage-item hi"><div class="st-num">③ 분석</div><div class="st-name">인공지능</div>방대한 정보를 빠르게 처리·분석</div>
+ </div>
+ <div class="factor-grid">
+  <div class="factor-card blue"><h4>활용 예: 전국 상황판</h4>코로나19 감염자 수와 분포를 빠르게 취합하여 시민들에게 전달 (통계청)</div>
+  <div class="factor-card blue"><h4>활용 예: 해외 유입 예측</h4>항공편 정보, 해외·국내 감염자 수, 입국자 수 등을 인공지능으로 분석해 해외 유입 여부 예측</div>
+ </div>
+
+ <h2 class="section-title" id="a-future" style="border-color:var(--gray)">🔮 미래 사회 문제와 과학의 역할</h2>
+ <div class="tbl-wrap"><table class="cmp-table">
+  <thead><tr><th>문제 영역</th><th>원인</th><th>발생할 수 있는 문제</th></tr></thead>
+  <tbody>
+   <tr><td>① 기후 변화</td><td>지구의 기온 상승</td><td>자연재해, 환경 변화 가속, 인류의 생존과 건강 위협</td></tr>
+   <tr><td>② 인구 증가</td><td>빠르게 증가하는 세계 인구</td><td>식량 부족, 자원 부족(고갈), 거주 공간 부족</td></tr>
+   <tr><td>③ 새로운 기술 개발</td><td>인공지능 같은 새로운 기술</td><td>기술 격차, 경제적 불평등, 일자리 소멸, 윤리적 딜레마, 통제력 상실, 프라이버시 침해</td></tr>
+  </tbody>
+ </table></div>
+ <div class="orange-box"><div class="box-label">이미 현실이 된 위기: 기후 위기</div>세계 각국은 <b>온실 기체 배출을 줄이고</b>, <b>신재생 에너지를 개발</b>하는 등 다양한 과학기술로 대응하고 있다.</div>
+ <div class="key-q"><span class="kq-tag" style="background:var(--gray)">자세</span><div>감염병의 진단·추적·치료처럼 미래 사회 문제 해결에서 과학기술의 필요성은 높아진다. 그러나 <b>부작용이나 위험성</b>을 항상 점검하면서 <b>사회적 합의</b>를 거쳐 해결해야 한다.</div></div>
+
+ <h3 class="subsection-title" id="a-argue" style="border-color:var(--gray)">미래 사회에 생길 수 있는 문제 예시</h3>
+ <div class="bubble-list">
+  <span class="bubble">노인 인구 증가 → 건강 문제</span>
+  <span class="bubble t">인터넷·컴퓨터 기술 발전 → 사이버 범죄 증가</span>
+  <span class="bubble t">주택 부족 문제와 도시화 문제</span>
+  <span class="bubble">인구 증가와 기후 변화 → 식량 공급 문제</span>
+  <span class="bubble t">자원 고갈과 환경 파괴 문제</span>
+ </div>
+
+ <div class="quiz-section" id="quiz-6"></div>
+</section>
+
+<!-- ===================== TAB 7 : 개념 지도 ===================== -->
+<section class="tab-panel" id="panel-7">
+ <div class="unit-banner">📌 개념 한눈에 보기</div>
+ <div class="tip">🧭 클릭하면 해당 탭과 섹션으로 이동합니다 — 색깔 있는 큰 헤더는 탭 전체로, 작은 칸은 세부 설명 위치로 스크롤됩니다.</div>
+
+ <div class="map-root">
+  <button class="map-root-head" onclick="goTo(0)">① 변이</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(0,'a-variation')">🔍 변이란?</button>
+   <button class="map-node" onclick="goTo(0,'a-variation-why')">🧬 변이의 원인</button>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(0,'a-variation-cause')">✂️ 변이 발생 요인</button>
+    <div class="map-subrow">
+     <button class="map-subchip" onclick="goTo(0,'a-variation-cause')">교차</button>
+     <button class="map-subchip" onclick="goTo(0,'a-variation-cause')">무작위적 분리</button>
+     <button class="map-subchip" onclick="goTo(0,'a-variation-cause')">돌연변이</button>
+    </div>
+   </div>
+  </div>
+ </div>
+
+ <div class="map-root green">
+  <button class="map-root-head" onclick="goTo(1)">② 자연선택</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(1,'a-selection')">🌿 정의 · 4단계</button>
+   <button class="map-node" onclick="goTo(1,'a-sim')">🧪 모의실험 대응표</button>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(1,'a-cases')">🌸 무엇이 선택했나?</button>
+    <div class="map-subrow">
+     <button class="map-subchip" onclick="goTo(1,'a-cases')">사사패모</button>
+     <button class="map-subchip" onclick="goTo(1,'a-cases')">항생제 내성</button>
+     <button class="map-subchip" onclick="goTo(1,'a-cases')">낫모양적혈구</button>
+     <button class="map-subchip" onclick="goTo(1,'a-cases')">딱정벌레</button>
+    </div>
+   </div>
+  </div>
+ </div>
+
+ <div class="map-root purple">
+  <button class="map-root-head" onclick="goTo(2)">③ 진화와 자연선택설</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(2,'a-evolution')">🦕 진화</button>
+   <button class="map-node" onclick="goTo(2,'a-darwin')">⛵ 다윈의 자연선택설</button>
+   <button class="map-node" onclick="goTo(2,'a-darwin-4')">🔢 4단계 · 두 4단계 비교</button>
+   <button class="map-node" onclick="goTo(2,'a-apply')">🦒 기린에 적용</button>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(2,'a-diverse')">🌏 다양한 생물의 출현</button>
+    <div class="map-subrow">
+     <button class="map-subchip" onclick="goTo(2,'a-finch')">핀치</button>
+     <button class="map-subchip" onclick="goTo(2,'a-squirrel')">다람쥐</button>
+    </div>
+   </div>
+   <button class="map-node" onclick="goTo(2,'a-modern')">⚠️ 한계와 현대 진화설</button>
+  </div>
+ </div>
+
+ <div class="map-root teal">
+  <button class="map-root-head" onclick="goTo(3)">④ 생물다양성의 세 요소</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(3,'a-biodiv')">🌍 정의 · 범위</button>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(3,'a-three')">📊 세 요소 비교</button>
+    <div class="map-subrow">
+     <button class="map-subchip" onclick="goTo(3,'a-genetic')">유전적</button>
+     <button class="map-subchip" onclick="goTo(3,'a-speciesdiv')">종</button>
+     <button class="map-subchip" onclick="goTo(3,'a-ecodiv')">생태계</button>
+    </div>
+   </div>
+   <button class="map-node" onclick="goTo(3,'a-sd-compare')">🌳 종다양성 비교</button>
+   <button class="map-node" onclick="goTo(3,'a-relation')">🔗 세 요소의 관계</button>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(3,'a-importance')">⭐ 중요성</button>
+    <div class="map-subrow">
+     <button class="map-subchip" onclick="goTo(3,'a-importance')">생태계 유지</button>
+     <button class="map-subchip" onclick="goTo(3,'a-importance')">생물자원</button>
+    </div>
+   </div>
+  </div>
+ </div>
+
+ <div class="map-root orange">
+  <button class="map-root-head" onclick="goTo(4)">⑤ 감소 원인과 보전</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(4,'a-decline')">📉 감소 원인 4가지</button>
+   <button class="map-node" onclick="goTo(4,'a-match')">🔁 원인 ↔ 대응책</button>
+   <button class="map-node" onclick="goTo(4,'a-conserve')">🛡️ 차원별 보전 노력</button>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(4,'a-treaty')">📜 국제 협약</button>
+    <div class="map-subrow">
+     <button class="map-subchip" onclick="goTo(4,'a-cbd')">생물다양성협약</button>
+     <button class="map-subchip" onclick="goTo(4,'a-treaty')">람사르</button>
+     <button class="map-subchip" onclick="goTo(4,'a-treaty')">CITES</button>
+     <button class="map-subchip" onclick="goTo(4,'a-treaty')">CMS</button>
+     <button class="map-subchip" onclick="goTo(4,'a-treaty')">포경규제</button>
+     <button class="map-subchip" onclick="goTo(4,'a-treaty')">세계유산</button>
+     <button class="map-subchip" onclick="goTo(4,'a-treaty')">쿤밍-몬트리올</button>
+    </div>
+   </div>
+  </div>
+ </div>
+
+ <div class="map-root rose">
+  <button class="map-root-head" onclick="goTo(5)">⑥ 감염병과 진단</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(5,'a-role')">🌾 과학이 해 온 역할</button>
+   <button class="map-node" onclick="goTo(5,'a-disease')">🦠 감염병 · 특성</button>
+   <button class="map-node" onclick="goTo(5,'a-immune')">🛡️ 면역 · 항원 · 항체</button>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(5,'a-diagnosis')">🧫 진단 방법 비교</button>
+    <div class="map-subrow">
+     <button class="map-subchip" onclick="goTo(5,'a-choose')">상황별 선택</button>
+     <button class="map-subchip" onclick="goTo(5,'a-antigen-test')">항원 키트</button>
+     <button class="map-subchip" onclick="goTo(5,'a-pcr')">PCR</button>
+    </div>
+   </div>
+   <button class="map-node" onclick="goTo(5,'a-diag-lab')">🧪 모의 실험</button>
+  </div>
+ </div>
+
+ <div class="map-root gray">
+  <button class="map-root-head" onclick="goTo(6)">⑦ 감염 추적과 미래 사회</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(6,'a-epi')">🔗 역학 조사</button>
+   <button class="map-node" onclick="goTo(6,'a-tracking')">📡 조사 3단계</button>
+   <button class="map-node" onclick="goTo(6,'a-future')">🔮 미래 사회 문제</button>
+   <button class="map-node" onclick="goTo(6,'a-argue')">💬 문제 예시</button>
+  </div>
+ </div>
+</section>
+
+</main>
+
+<button class="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="맨 위로">↑</button>
+
+<script>
+function switchTab(idx){
+ document.querySelectorAll('.tab-btn').forEach(function(b,i){b.classList.toggle('active',i===idx);});
+ document.querySelectorAll('.tab-panel').forEach(function(p,i){p.classList.toggle('active',i===idx);});
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function goTo(tabIdx,anchorId){
+ switchTab(tabIdx);
+ if(anchorId){
+  setTimeout(function(){
+   var el=document.getElementById(anchorId);
+   if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+  },120);
+ }
+}
+</script>
+
+<script>
+const QUIZ_DATA = {"0": {"ox": [{"q": "변이는 서로 다른 종 사이에서 나타나는 형질의 차이이다.", "a": false, "exp": "변이는 같은 종의 생물 무리 내에서 개체마다 다른 형질이 나타나는 것이다."}, {"q": "형질은 유전정보로 만들어지는 단백질에 따라 결정된다.", "a": true, "exp": "유전정보 → 단백질의 종류와 양 → 형질 순으로 이어진다."}, {"q": "사랑앵무의 깃털 색이 다양한 것은 개체마다 만들어지는 색소 단백질이 다르기 때문이다.", "a": true, "exp": "개체마다 유전정보가 달라 만들어지는 색소 단백질이 다르다."}, {"q": "상동 염색체 간 교차는 생식세포 1분열 중기에 일어난다.", "a": false, "exp": "교차는 생식세포 1분열 전기에 2가 염색체를 이룬 상동 염색체 사이에서 일어난다. 1분열 중기에는 무작위적 분리가 일어난다."}, {"q": "체세포 분열 과정에서 유전자 조합이 다양한 생식세포가 만들어진다.", "a": false, "exp": "생식세포는 생식세포 분열(감수 분열)로 만들어진다."}, {"q": "돌연변이로 만들어진 새로운 유전자는 자손에게 유전될 수 있다.", "a": true, "exp": "DNA의 유전정보 변화로 생긴 새로운 유전자는 자손에게 유전될 수 있다."}, {"q": "같은 부모에게서 유전자 구성이 다양한 자손이 태어나는 것은 암수 생식세포가 무작위로 수정하기 때문이다.", "a": true, "exp": "유전자 조합이 다양한 생식세포가 무작위로 수정하여 형질이 다양한 자손이 태어난다."}, {"q": "변이는 자연선택이 일어나게 하는 진화의 원동력이다.", "a": true, "exp": "변이가 있어야 자연선택이 일어나고 진화가 일어난다."}, {"q": "변이는 개체가 살면서 환경에 맞게 스스로 형질을 바꾸는 것이다.", "a": false, "exp": "변이는 개체마다 유전정보가 달라 나타나는 형질의 차이이다."}, {"q": "상동 염색체의 무작위적 분리는 생식세포 2분열에서 일어난다.", "a": false, "exp": "무작위적 분리는 생식세포 1분열 중기에 일어난다."}], "mc": [{"q": "변이가 나타나는 근본적인 원인으로 가장 적절한 것은?", "opts": ["개체마다 유전정보가 조금씩 다르기 때문", "개체마다 먹는 먹이의 양이 다르기 때문", "개체가 살면서 환경에 맞게 몸을 바꾸기 때문", "서로 다른 종끼리 교배하기 때문"], "a": 0, "exp": "변이의 원인은 개체마다 유전정보가 조금씩 다르기 때문이다."}, {"q": "다음 중 변이의 예로 볼 수 없는 것은?", "opts": ["사랑앵무의 깃털 색이 개체마다 다르다.", "사람과 침팬지의 생김새가 다르다.", "달팽이 껍데기의 무늬와 색이 개체마다 다르다.", "무당벌레 딱지날개의 무늬가 다양하다."], "a": 1, "exp": "사람과 침팬지는 서로 다른 종이다. 변이는 같은 종 안에서의 차이이다."}, {"q": "생식세포 분열(감수 분열)에 대한 설명으로 옳은 것은?", "opts": ["상동 염색체 사이에서 교차가 일어나지 않는다.", "부모와 똑같은 유전자 조합의 생식세포만 만든다.", "생식세포를 만드는 분열로, 이 과정에서 유전자 조합이 다양한 생식세포가 만들어진다.", "몸을 구성하는 세포를 만드는 분열이다."], "a": 2, "exp": "생식세포 분열은 변이가 만들어지는 무대이다(교차, 무작위적 분리)."}, {"q": "변이가 나타나는 과정을 순서대로 옳게 나타낸 것은?", "opts": ["유전정보 차이 → 형질 차이 → 단백질 차이", "형질 차이 → 단백질 차이 → 유전정보 차이", "단백질 차이 → 유전정보 차이 → 형질 차이", "유전정보 차이 → 단백질의 종류·양 차이 → 형질 차이"], "a": 3, "exp": "유전정보가 달라 → 만들어지는 단백질이 달라지고 → 형질이 달라진다."}, {"q": "상동 염색체가 접합하여 2가 염색체를 이루고 교차가 일어나는 시기는?", "opts": ["생식세포 1분열 전기", "생식세포 2분열 전기", "생식세포 1분열 중기", "체세포 분열 중기"], "a": 0, "exp": "교차는 생식세포 1분열 전기에 일어난다."}, {"q": "상동 염색체의 무작위적 분리가 일어나는 시기는?", "opts": ["체세포 분열 전기", "생식세포 1분열 중기", "수정이 일어난 직후", "생식세포 1분열 전기"], "a": 1, "exp": "1분열 중기에 배열된 상동 염색체가 무작위로 분리된다."}, {"q": "'푸른색 깃털을 가진 공작 무리에서 흰색 깃털을 가진 공작이 우연히 태어났다.'와 가장 관련 깊은 것은?", "opts": ["생식세포의 다양한 조합", "과잉 생산", "돌연변이", "생존경쟁"], "a": 2, "exp": "부모에게 없던 형질이 새로 나타난 것은 돌연변이이다."}, {"q": "밝은색 깃털 비둘기와 어두운색 깃털 비둘기 사이에서 얼룩 비둘기가 태어난 것과 가장 관련 깊은 것은?", "opts": ["염색체 수 돌연변이", "항생제의 사용", "유전자 돌연변이", "유성생식 과정에서 생식세포의 다양한 조합"], "a": 3, "exp": "부모가 가진 형질이 새롭게 섞여 나타난 것은 생식세포의 다양한 조합에 의한 변이이다."}], "hard": [{"q": "변이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 변이는 같은 종의 개체 사이에서 나타나는 형질의 차이이다.", "ㄴ. 체세포 분열 과정에서 교차가 일어나 변이가 만들어진다.", "ㄷ. 모든 개체가 유전적으로 동일한 무리에서도 변이가 다양하게 나타난다."], "opts": ["ㄱ", "ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ"], "a": 0, "exp": "ㄴ. (X) 교차는 생식세포 1분열 전기에 일어난다. / ㄷ. (X) 유전적으로 동일하면 변이가 없다. / 옳은 것: ㄱ"}, {"q": "변이를 만드는 요인으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 생식세포 1분열 전기에 일어나는 상동 염색체 간 교차", "ㄴ. 생식세포 1분열 중기에 일어나는 상동 염색체의 무작위적 분리", "ㄷ. 유전자 돌연변이, 염색체 돌연변이, 염색체 수 돌연변이"], "opts": ["ㄱ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 3, "exp": "옳은 것: ㄱ, ㄴ, ㄷ"}, {"q": "변이가 자손에게 나타나는 경로에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 돌연변이는 부모에게 없던 형질을 자손에게 나타나게 할 수 있다.", "ㄴ. 생식세포의 조합에 의한 변이는 부모에게 없던 새로운 유전자를 만든다.", "ㄷ. 암수 생식세포의 무작위 수정은 자손의 형질을 다양하게 한다."], "opts": ["ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 생식세포 조합은 있던 유전자들이 새롭게 섞이는 것이다. 새로운 유전자는 돌연변이로 생긴다. / 옳은 것: ㄱ, ㄷ"}, {"q": "사랑앵무의 깃털 색이 개체마다 다른 것에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 깃털 색의 차이는 변이에 해당한다.", "ㄴ. 색소 단백질의 차이는 개체마다 다른 유전정보에서 비롯된다.", "ㄷ. 깃털 색이 다른 사랑앵무는 서로 다른 종이다."], "opts": ["ㄱ", "ㄷ", "ㄱ, ㄴ", "ㄱ, ㄷ"], "a": 2, "exp": "ㄷ. (X) 같은 종 안의 차이(변이)이다. / 옳은 것: ㄱ, ㄴ"}, {"q": "세포 분열과 변이에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 체세포 분열은 몸을 구성하는 세포를 만드는 분열이다.", "ㄴ. 생식세포 분열 과정에서 유전자 조합이 다양한 생식세포가 만들어진다.", "ㄷ. 상동 염색체 간 교차는 생식세포 2분열에서 일어난다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 교차는 생식세포 1분열 전기에 일어난다. / 옳은 것: ㄱ, ㄴ"}]}, "1": {"ox": [{"q": "자연선택은 환경에 적응하기 유리한 형질을 가진 개체가 더 잘 살아남아 자손을 더 많이 남기는 과정이다.", "a": true, "exp": "자연적으로 일어나는 형질의 선택이다."}, {"q": "모든 개체가 유전적으로 동일한 생물 무리에서도 자연선택이 일어난다.", "a": false, "exp": "변이가 없으면 자연선택이 일어나지 않는다."}, {"q": "자연선택 모의실험에서 핀셋은 자연에서 포식자인 새를 의미한다.", "a": true, "exp": "이쑤시개=나방, 종이=나무 기둥, 핀셋=새"}, {"q": "자연선택 모의실험에서 종이는 나방을 의미한다.", "a": false, "exp": "종이는 나무 기둥(서식 환경)을 의미한다. 나방은 이쑤시개이다."}, {"q": "모의실험에서 세대가 거듭될수록 종이 색과 비슷해 눈에 덜 띄는 이쑤시개의 비율이 증가한다.", "a": true, "exp": "눈에 덜 띄는 개체가 더 많이 살아남아 비율이 높아진다."}, {"q": "사사패모는 사람이 접근하기 쉬운 곳에서 회색이나 갈색 개체의 비율이 높다.", "a": true, "exp": "녹색 개체는 눈에 잘 띄어 채취되므로 주변 돌과 비슷한 색의 개체가 많이 살아남았다."}, {"q": "낫모양적혈구는 헤모글로빈 유전자의 돌연변이로 나타난다.", "a": true, "exp": "헤모글로빈 유전자의 돌연변이로 나타난다."}, {"q": "낫모양적혈구에서는 말라리아원충이 증식하기 쉽다.", "a": false, "exp": "낫모양적혈구에서는 말라리아원충이 증식하기 어려워 말라리아에 저항성이 있다."}, {"q": "산불로 토양이 검게 변한 환경에서는 밝은 몸 색깔의 딱정벌레가 자연선택된다.", "a": false, "exp": "어두운 몸 색깔의 딱정벌레가 자연선택된다."}, {"q": "바이러스에 의한 감염병 치료에는 항진균제를 사용한다.", "a": false, "exp": "세균-항생제, 바이러스-항바이러스제, 곰팡이-항진균제"}], "mc": [{"q": "자연선택이 일어나는 4단계를 순서대로 옳게 나열한 것은?", "opts": ["변이 존재 → 유리한 개체 생존 비율 증가 → 생존 개체의 자손 생산 번성 → 진화", "진화 → 변이 존재 → 유리한 개체 생존 비율 증가 → 자손 생산 번성", "유리한 개체 생존 비율 증가 → 변이 존재 → 자손 생산 번성 → 진화", "변이 존재 → 자손 생산 번성 → 유리한 개체 생존 비율 증가 → 진화"], "a": 0, "exp": "변이가 먼저 있어야 유리한 개체가 선택되고, 그 개체가 자손을 많이 남겨 무리가 변한다."}, {"q": "자연선택 모의실험에서 '이쑤시개의 종류를 다르게 하는 것'이 의미하는 것은?", "opts": ["포식자", "개체의 변이", "서식 환경", "세대의 반복"], "a": 1, "exp": "이쑤시개 종류 = 변이, 종이 종류 = 서로 다른 환경"}, {"q": "황갈색 종이 대신 녹색 종이 위에서 모의실험을 반복했을 때 예상되는 결과는?", "opts": ["나무 이쑤시개의 비율이 증가한다.", "두 이쑤시개의 비율이 50 %로 유지된다.", "녹색 종이와 비슷한 녹말 이쑤시개의 비율이 증가한다.", "이쑤시개 전체 개수가 세대마다 줄어든다."], "a": 2, "exp": "종이 색과 비슷해 눈에 덜 띄는 이쑤시개가 많이 남는다. 환경이 바뀌면 선택되는 쪽도 바뀐다."}, {"q": "사사패모 사례에서 자연선택을 일으킨 요인으로 가장 적절한 것은?", "opts": ["초식 동물의 먹이 활동", "고지대의 낮은 기온", "토양의 산성화", "인간의 채집"], "a": 3, "exp": "포식자인 인간의 눈에 잘 띄지 않는 방향으로 자연선택이 일어났다."}, {"q": "낫모양적혈구를 갖는 사람의 분포와 말라리아 발생 지역이 비슷한 까닭은?", "opts": ["낫모양적혈구를 가진 사람이 말라리아에 저항성이 있어 자연선택되었기 때문", "낫모양적혈구가 말라리아를 옮기기 때문", "말라리아 지역 사람들이 치료제를 많이 먹기 때문", "말라리아원충이 낫모양적혈구를 만들기 때문"], "a": 0, "exp": "말라리아원충이 낫모양적혈구에서 증식하기 어려워 낫모양적혈구가 자연선택되었다."}, {"q": "항생제를 지속적으로 사용했을 때 세균 집단에서 나타나는 변화로 옳은 것은?", "opts": ["세균의 변이가 사라져 항생제 효과가 커진다.", "항생제 내성이 있는 세균의 비율이 점차 증가한다.", "모든 세균이 완전히 사라진다.", "항생제 내성이 있는 세균의 비율이 감소한다."], "a": 1, "exp": "내성 세균이 살아남아 자손을 남기므로 결국 집단 전체가 내성을 갖게 된다."}, {"q": "병원체와 치료제의 연결로 옳은 것은?", "opts": ["바이러스 - 항생제", "세균 - 항바이러스제", "곰팡이 - 항진균제", "곰팡이 - 항생제"], "a": 2, "exp": "세균-항생제, 바이러스-항바이러스제, 곰팡이-항진균제"}, {"q": "딱정벌레 사례(산불 뒤 어두운 몸 색 증가)가 보여 주는 것으로 가장 적절한 것은?", "opts": ["항생제가 새로운 유전자를 만든다.", "인간의 채집이 자연선택에 영향을 준다.", "변이가 없어도 자연선택이 일어난다.", "환경 변화가 자연선택의 방향에 영향을 준다."], "a": 3, "exp": "토양 색이라는 환경이 바뀌자 선택되는 몸 색깔도 바뀌었다."}], "hard": [{"q": "자연선택 모의실험에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 이쑤시개는 나방, 종이는 나무 기둥을 의미한다.", "ㄴ. 종이 색과 비슷한 이쑤시개일수록 핀셋에 제거될 확률이 높다.", "ㄷ. 종이 색을 바꾸면 비율이 증가하는 이쑤시개의 종류도 달라진다."], "opts": ["ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 종이 색과 비슷하면 눈에 덜 띄어 덜 제거된다. / 옳은 것: ㄱ, ㄷ"}, {"q": "사사패모에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 개체마다 다른 색을 띠는 변이가 나타난다.", "ㄴ. 사람이 접근하기 어려운 곳에서는 초록색 개체의 비율이 높다.", "ㄷ. 인간의 활동은 사사패모의 자연선택에 영향을 주지 않았다."], "opts": ["ㄴ", "ㄷ", "ㄱ, ㄴ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄷ. (X) 인간의 채집이 자연선택의 요인이었다. / 옳은 것: ㄱ, ㄴ"}, {"q": "항생제 내성 세균에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 항생제 내성이 있는 세균은 항생제 저항성 유전자를 가진다.", "ㄴ. 항생제를 사용하면 항생제 내성이 없는 세균은 대부분 죽는다.", "ㄷ. 항생제를 지속적으로 사용하면 내성 세균의 비율이 감소한다."], "opts": ["ㄱ", "ㄴ", "ㄷ", "ㄱ, ㄴ"], "a": 3, "exp": "ㄷ. (X) 내성 세균의 비율이 점차 증가한다. / 옳은 것: ㄱ, ㄴ"}, {"q": "낫모양적혈구에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 말라리아원충은 적혈구에 기생한다.", "ㄴ. 낫모양적혈구에서는 말라리아원충이 증식하기 쉽다.", "ㄷ. 말라리아 발생 지역에 낫모양적혈구를 가진 사람이 많은 것은 자연선택의 결과이다."], "opts": ["ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 증식하기 어려워 말라리아에 잘 걸리지 않는다. / 옳은 것: ㄱ, ㄷ"}, {"q": "자연선택에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 변이는 자연선택이 일어나기 위한 전제 조건이다.", "ㄴ. 환경이 변해도 자연선택되는 형질은 변하지 않는다.", "ㄷ. 자연선택은 개체가 필요에 따라 스스로 형질을 바꾸는 과정이다."], "opts": ["ㄱ", "ㄴ", "ㄱ, ㄴ", "ㄴ, ㄷ"], "a": 0, "exp": "ㄴ. (X) 환경 변화는 자연선택의 방향에 영향을 준다(딱정벌레). / ㄷ. (X) 이미 있는 변이 중 유리한 형질을 가진 개체가 더 많이 살아남는 과정이다. / 옳은 것: ㄱ"}]}, "2": {"ox": [{"q": "진화는 생물이 여러 세대에 걸쳐 환경에 적응하면서 이전과는 다른 생물로 변화하는 것이다.", "a": true, "exp": "유전적 특성 변화 → 여러 세대 자연선택 누적 → 다른 종 출현"}, {"q": "다윈은 비글호를 타고 약 5년간 세계를 항해하며 다양한 생물을 관찰하였다.", "a": true, "exp": "1831년부터 약 5년간 항해하였다."}, {"q": "자연선택설의 첫 단계에서 생물은 환경 수용력보다 적은 수의 자손을 낳는다.", "a": false, "exp": "환경 수용력보다 많은 자손을 낳는다(과잉 생산)."}, {"q": "생존경쟁은 먹이, 서식지, 배우자 등의 자원을 차지하기 위한 경쟁이다.", "a": true, "exp": "과잉 생산된 개체들이 한정된 자원을 두고 경쟁한다."}, {"q": "기린 사례에서 자연선택된 형질은 목이 짧은 형질이다.", "a": false, "exp": "목이 긴 기린이 살아남아 자손을 많이 남겼다."}, {"q": "다윈의 자연선택설은 처음 제시될 때 변이의 원인을 설명하지 못하였다.", "a": true, "exp": "자연선택설의 한계 ① 변이의 원인 설명 X"}, {"q": "돌연변이설은 바이스만이 주장하였다.", "a": false, "exp": "돌연변이설은 드프리스(왕달맞이꽃), 바이스만은 생식질 연속설(쥐꼬리 실험)이다."}, {"q": "갈라파고스 제도에는 현재 14종의 핀치가 살고 있다.", "a": true, "exp": "한 종의 조상 핀치에서 여러 종으로 진화하였다."}, {"q": "그랜드캐니언의 흰꼬리영양다람쥐와 해리스영양다람쥐는 서로 다른 조상에서 각각 나타났다.", "a": false, "exp": "같은 조상 다람쥐가 협곡으로 두 무리로 나뉜 뒤 두 종이 되었다."}, {"q": "지구의 환경이 변하면 진화의 방향도 변한다.", "a": true, "exp": "환경이 바뀌면 유리한 형질도 바뀐다."}], "mc": [{"q": "다윈의 자연선택설 4단계를 순서대로 옳게 나열한 것은?", "opts": ["과잉 생산과 변이 → 생존경쟁 → 자연선택 → 생물 무리의 진화", "생존경쟁 → 과잉 생산과 변이 → 자연선택 → 생물 무리의 진화", "과잉 생산과 변이 → 자연선택 → 생존경쟁 → 생물 무리의 진화", "자연선택 → 과잉 생산과 변이 → 생존경쟁 → 생물 무리의 진화"], "a": 0, "exp": "많이 낳고(과잉 생산) → 경쟁하고(생존경쟁) → 유리한 개체가 살아남아(자연선택) → 무리가 변한다(진화)."}, {"q": "이론과 학자의 연결로 옳은 것은?", "opts": ["생식질 연속설 - 드프리스", "지리적 격리설 - 바그너", "생식적 격리설 - 바이스만", "돌연변이설 - 로마네스"], "a": 1, "exp": "생식질 연속설-바이스만, 돌연변이설-드프리스, 지리적 격리설-바그너, 생식적 격리설-로마네스"}, {"q": "쥐꼬리 실험과 관련된 이론은?", "opts": ["생식적 격리설", "돌연변이설", "생식질 연속설", "지리적 격리설"], "a": 2, "exp": "바이스만의 생식질 연속설 - 쥐꼬리 실험"}, {"q": "다윈 자연선택설의 한계로 옳지 않은 것은?", "opts": ["변이와 환경을 진화의 요인으로 설명하여 획득 형질의 유전을 인정하였다.", "변이의 축적으로 진화한다고 설명하였다.", "변이의 원인을 설명하지 못하였다.", "생존경쟁의 존재를 설명하지 못하였다."], "a": 3, "exp": "생존경쟁은 자연선택설의 핵심 단계이다. 한계는 ① 변이 원인 설명 X ② 변이 축적으로 진화 ③ 획득 형질 유전 인정."}, {"q": "갈라파고스 제도에서 섬마다 핀치의 부리 모양이 다른 까닭으로 가장 적절한 것은?", "opts": ["섬마다 먹이 환경이 달라 그 먹이에 알맞은 부리를 가진 개체가 자연선택되었기 때문", "부리를 많이 사용할수록 부리가 길어졌기 때문", "섬마다 서로 다른 조상 핀치가 날아왔기 때문", "핀치가 먹이에 맞추어 부리를 스스로 변화시켰기 때문"], "a": 0, "exp": "한 종의 조상 핀치가 퍼진 뒤 섬마다 서로 다른 방향으로 자연선택되었다."}, {"q": "크고 단단한 씨가 많은 섬에서 자연선택된 핀치는?", "opts": ["부리 모양과 관계없이 몸집이 작은 핀치", "크고 두꺼운 부리를 가진 핀치", "부리가 가장 작은 핀치", "길고 뾰족한 부리를 가진 핀치"], "a": 1, "exp": "선인장이 많은 섬 - 길고 뾰족한 부리, 크고 단단한 씨가 많은 섬 - 크고 두꺼운 부리"}, {"q": "그랜드캐니언의 조상 다람쥐가 두 종으로 나뉘게 된 첫 계기는?", "opts": ["한 번의 돌연변이로 새로운 종이 곧바로 태어났다.", "먹이가 부족해 절반이 멸종하였다.", "콜로라도강이 흐르며 협곡이 생겨 두 무리로 나뉘었다.", "인간의 사냥으로 한쪽 무리가 사라졌다."], "a": 2, "exp": "협곡으로 두 무리로 나뉜 뒤 각 지역에서 독립적으로 자연선택이 일어났다."}, {"q": "생식적 격리설과 관련된 키워드가 아닌 것은?", "opts": ["시기", "행동", "생식세포 불친화", "왕달맞이꽃"], "a": 3, "exp": "왕달맞이꽃은 드프리스의 돌연변이설과 관련된다."}], "hard": [{"q": "기린의 목이 길어진 과정을 자연선택설로 설명한 것으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 기린의 다양한 목 길이는 변이에 해당한다.", "ㄴ. 기린은 살아남을 수 있는 것보다 많은 자손을 낳아 생존경쟁이 일어난다.", "ㄷ. 자연선택된 개체는 생존에 유리한 형질만 자손에게 전달한다."], "opts": ["ㄴ", "ㄷ", "ㄱ, ㄴ", "ㄴ, ㄷ"], "a": 2, "exp": "ㄷ. (X) 유리한 형질'만' 전달하는 것은 아니다. / 옳은 것: ㄱ, ㄴ"}, {"q": "다윈의 자연선택설에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 과잉 생산과 생존경쟁을 진화의 과정에 포함한다.", "ㄴ. 변이가 없어도 생존경쟁만으로 진화가 일어난다고 본다.", "ㄷ. 생존경쟁은 자연선택이 일어난 뒤에 시작된다."], "opts": ["ㄱ", "ㄱ, ㄴ", "ㄱ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄴ. (X) 과잉 생산과 '변이'가 첫 단계이다. / ㄷ. (X) 생존경쟁 → 자연선택 순서이다. / 옳은 것: ㄱ"}, {"q": "갈라파고스 제도의 핀치에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 남아메리카에서 건너온 한 종의 조상 핀치에서 출발하였다.", "ㄴ. 섬마다 서로 다른 방향으로 자연선택이 일어났다.", "ㄷ. 다윈이 비글호 항해 중 관찰한 사례이다."], "opts": ["ㄱ", "ㄱ, ㄴ", "ㄱ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 3, "exp": "옳은 것: ㄱ, ㄴ, ㄷ"}, {"q": "자연선택설의 한계와 보완에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 처음에는 변이의 원인을 설명하지 못하였다.", "ㄴ. 획득 형질의 유전을 인정하는 한계가 있었다.", "ㄷ. 현재 자연선택설은 진화의 원리로 받아들여지지 않는다."], "opts": ["ㄱ", "ㄱ, ㄴ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄷ. (X) 증거가 수집되고 보완되면서 진화의 원리로 받아들여지고 있다. / 옳은 것: ㄱ, ㄴ"}, {"q": "다양한 생물의 출현에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 자연선택에 따른 진화의 결과 종이 둘 이상으로 나뉘는 현상은 현재에도 관찰된다.", "ㄴ. 그랜드캐니언의 두 다람쥐 무리는 같은 환경에서 같은 방향으로 자연선택되었다.", "ㄷ. 조상 생물이 다양한 환경으로 퍼지면 서로 다른 방향으로 자연선택되어 다양한 생물이 나타난다."], "opts": ["ㄱ", "ㄱ, ㄴ", "ㄱ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄴ. (X) 두 지역의 서로 다른 환경에 맞는 형질이 각각 선택되었다. / 옳은 것: ㄱ, ㄷ"}]}, "3": {"ox": [{"q": "생물다양성은 한 지역에 사는 생물종의 다양함만을 의미한다.", "a": false, "exp": "유전적 다양성, 종다양성, 생태계다양성을 모두 포함한다."}, {"q": "유전적 다양성은 같은 종의 생물 무리 내에서 유전정보가 다양한 정도이다.", "a": true, "exp": "개체마다 유전정보가 달라 다양한 변이가 나타나는 정도이다."}, {"q": "종의 수와 개체수가 같다면 각 종의 분포가 균등할수록 종다양성이 높다.", "a": true, "exp": "종의 수가 많을수록, 분포가 균등할수록 종다양성이 높다."}, {"q": "생태계다양성은 생물과 환경 사이에 일어나는 상호작용의 다양함까지 포함한다.", "a": true, "exp": "서식 환경의 다양함 + 상호작용의 다양함"}, {"q": "유전적 다양성이 높은 종은 환경이 급격히 변할 때 멸종할 가능성이 높다.", "a": false, "exp": "적응할 수 있는 개체가 살아남을 가능성이 높아 멸종 가능성이 낮다."}, {"q": "종다양성이 높은 생태계일수록 먹이 관계가 단순하다.", "a": false, "exp": "종다양성이 높을수록 먹이 관계가 복잡해 생태계가 안정적이다."}, {"q": "같은 종의 나비에서 날개 무늬가 다양하게 나타나는 것은 종다양성에 해당한다.", "a": false, "exp": "같은 종 안의 차이이므로 유전적 다양성에 해당한다."}, {"q": "갯벌과 습지는 육상 생태계와 수생태계를 잇는 완충 지역으로 종다양성이 상대적으로 높다.", "a": true, "exp": "두 생태계를 잇는 완충 지역이다."}, {"q": "푸른곰팡이는 항생제의 원료로 이용된다.", "a": true, "exp": "의약품 원료: 버드나무·조팝나무(해열진통제), 디기탈리스(심장병 치료제), 푸른곰팡이(항생제)"}, {"q": "현재까지 확인된 생물종 수는 약 천만 종이다.", "a": false, "exp": "확인된 종은 190여만 종이며, 미확인 종을 합하면 천만 종 이상으로 추정된다."}], "mc": [{"q": "다음 중 유전적 다양성의 예로 옳은 것은?", "opts": ["바지락의 껍데기 무늬와 색이 개체마다 다르다.", "숲에 다람쥐, 사슴, 참나무, 버섯 등이 산다.", "우리나라에는 숲, 강, 바다, 갯벌이 있다.", "초원에 다양한 생물종이 함께 산다."], "a": 0, "exp": "같은 종 안의 차이 = 유전적 다양성. 나머지는 종다양성과 생태계다양성의 예이다."}, {"q": "각각 12개체가 사는 네 지역 중 종다양성이 가장 높은 곳은?", "opts": ["4종이 9, 1, 1, 1개체씩 분포", "4종이 3, 3, 3, 3개체씩 분포", "1종이 12개체 분포", "2종이 6, 6개체씩 분포"], "a": 1, "exp": "종의 수가 많고 분포가 균등할수록 종다양성이 높다."}, {"q": "다음 중 생태계다양성의 예로 옳은 것은?", "opts": ["사람마다 생김새가 다르다.", "달팽이 껍데기 무늬가 개체마다 다르다.", "우리나라에 숲, 강, 바다, 갯벌 등 다양한 생태계가 있다.", "숲에 다양한 생물종이 산다."], "a": 2, "exp": "서식 환경이 다양한 정도 = 생태계다양성"}, {"q": "종다양성이 높은 생태계의 특징으로 옳은 것은?", "opts": ["개체수가 반드시 많다.", "한 종이 사라지면 생태계 전체가 곧바로 무너진다.", "먹이 관계가 단순하여 변화가 적다.", "한두 종이 사라져도 대체할 종이 있어 생태계가 안정적으로 유지된다."], "a": 3, "exp": "대체할 다른 생물종이 있어 안정적으로 유지될 확률이 높다."}, {"q": "생물자원과 그 이용의 연결로 옳은 것은?", "opts": ["디기탈리스 - 심장병 치료제", "누에 - 양모", "버드나무 - 항생제", "푸른곰팡이 - 해열진통제"], "a": 0, "exp": "버드나무·조팝나무 - 해열진통제, 푸른곰팡이 - 항생제, 누에 - 비단, 양 - 양모"}, {"q": "유전적 다양성이 낮아 피해를 입은 사례로 제시된 것은?", "opts": ["로드킬", "감자마름병", "천연두", "산성비"], "a": 1, "exp": "감자마름병은 유전적 다양성이 낮을 때의 위험을 보여 주는 사례이다."}, {"q": "생물다양성의 세 요소 사이의 관계로 옳은 것은?", "opts": ["세 요소는 서로 영향을 주지 않는다.", "유전적 다양성이 높을수록 새로운 종으로 진화할 가능성이 낮아진다.", "종다양성은 복잡한 먹이 관계를 만들어 생태계다양성을 유지하는 원천이 된다.", "생태계다양성이 높을수록 종다양성은 낮아진다."], "a": 2, "exp": "유전적 다양성↑ → 종다양성↑ → 생태계 안정, 생태계다양성↑ → 종·유전적 다양성↑"}, {"q": "옥수수나 사탕수수를 이용하여 생산하는 것은?", "opts": ["항생제", "해열진통제", "면섬유", "바이오에탄올"], "a": 3, "exp": "에너지 생산 및 산업용 재료: 옥수수·사탕수수로 바이오에탄올 생산"}], "hard": [{"q": "생물다양성의 요소에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 같은 종의 나비에서 날개 무늬가 다양한 것은 종다양성에 해당한다.", "ㄴ. 일정한 지역에 숲, 강, 바다, 갯벌, 습지 등이 다양하게 나타나는 것은 생태계다양성에 해당한다.", "ㄷ. 생태계다양성이 높은 지역일수록 종다양성이 높게 나타난다."], "opts": ["ㄴ", "ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ"], "a": 3, "exp": "ㄱ. (X) 같은 종 안의 차이이므로 유전적 다양성이다. / 옳은 것: ㄴ, ㄷ"}, {"q": "종다양성을 판단하는 기준으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 서식하는 생물종의 수가 많을수록 높다.", "ㄴ. 종의 수와 개체수가 같다면 분포가 균등한 쪽이 높다.", "ㄷ. 총 개체수가 많으면 종의 수와 관계없이 반드시 높다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 기준은 종의 수와 분포의 균등함이다. / 옳은 것: ㄱ, ㄴ"}, {"q": "생물다양성의 중요성에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 생물다양성이 높을수록 생태계가 안정적으로 유지된다.", "ㄴ. 생태계는 휴식 장소, 여가 활동 장소, 생태 관광 장소 등을 제공한다.", "ㄷ. 생물자원은 의식주 재료로만 활용된다."], "opts": ["ㄱ", "ㄱ, ㄴ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄷ. (X) 의약품 원료, 에너지·산업용 재료, 사회적·심미적 가치도 제공한다. / 옳은 것: ㄱ, ㄴ"}, {"q": "유전적 다양성에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 변이가 다양할수록 유전적 다양성이 높다.", "ㄴ. 유전적 다양성이 높으면 불리한 환경 변화에도 살아남는 개체가 있어 멸종하지 않을 확률이 높다.", "ㄷ. 같은 종에서 유전적 다양성이 높을수록 새로운 종으로 진화할 가능성이 높아진다."], "opts": ["ㄴ", "ㄷ", "ㄱ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 3, "exp": "옳은 것: ㄱ, ㄴ, ㄷ"}, {"q": "생태계다양성에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 생태계다양성이 높을수록 다양한 환경에서 사는 생물종이 분포한다.", "ㄴ. 생태계의 종류가 달라도 서식하는 생물종과 개체수는 같다.", "ㄷ. 종다양성이 높을수록 먹이 관계가 단순해져 생태계가 안정된다."], "opts": ["ㄱ", "ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ"], "a": 0, "exp": "ㄴ. (X) 생태계마다 환경이 달라 생물종과 개체수도 다르다. / ㄷ. (X) 먹이 관계가 복잡해져 안정된다. / 옳은 것: ㄱ"}]}, "4": {"ox": [{"q": "생물다양성 감소의 원인은 대부분 인간의 활동과 관련이 깊다.", "a": true, "exp": "서식지 파괴, 남획, 외래종 유입, 환경 오염 모두 인간 활동과 관련된다."}, {"q": "서식지 단편화는 도로 건설, 주택 개발 등으로 대규모 서식지가 소규모로 분할되는 것이다.", "a": true, "exp": "서식지 면적 감소와 이동 제한을 일으킨다."}, {"q": "서식지가 단편화되면 로드킬이 발생할 확률이 낮아진다.", "a": false, "exp": "도로를 건너는 야생 동물이 늘어 로드킬 확률이 높아진다."}, {"q": "천적이 없는 외래생물이 대량 번식하면 생태계 평형이 깨질 수 있다.", "a": true, "exp": "토종 생물을 위협하고 먹이 관계를 바꾼다."}, {"q": "뉴트리아와 황소개구리는 외래종의 예이다.", "a": true, "exp": "배스, 뉴트리아, 황소개구리, 꽃매미, 큰빗이끼벌레, 가시박, 블루길 등"}, {"q": "생태통로는 외래종의 유입을 막기 위해 설치하는 시설이다.", "a": false, "exp": "생태통로는 단편화된 서식지를 연결하는 시설이다."}, {"q": "생물다양성 보전은 국가와 국제 사회의 역할이므로 개인의 노력은 필요 없다.", "a": false, "exp": "일상생활에서 개인의 노력도 함께 이루어져야 한다."}, {"q": "람사르 협약은 물새 서식지로 중요한 습지를 보호하기 위한 협약이다.", "a": true, "exp": "람사르 협약 = 습지 보호"}, {"q": "멸종 위기 야생 동식물의 국제 거래를 규제하는 협약은 CITES이다.", "a": true, "exp": "CITES = 멸종 위기 야생 동식물의 국제 거래 규제"}, {"q": "생물다양성협약의 목적에는 생물 유전자원 이용으로 생기는 이익의 공정·공평한 공유가 포함된다.", "a": true, "exp": "보전, 지속가능한 이용, 이익의 공정·공평한 공유가 3대 목적이다."}], "mc": [{"q": "서식지 단편화의 영향을 줄이기 위한 대책으로 가장 적절한 것은?", "opts": ["생태통로 설치", "외래생물 검역 강화", "불법 포획 금지법 제정", "친환경 제품 사용"], "a": 0, "exp": "단편화된 서식지를 연결하는 생태통로를 설치한다."}, {"q": "외래종 유입에 대한 대응으로 가장 적절한 것은?", "opts": ["생태통로 설치", "검역 강화 및 도입 전 생태계에 미칠 영향 검증", "습지 매립", "전자 기기 오래 사용"], "a": 1, "exp": "외래생물의 불법 유입을 막기 위해 검역을 강화하고 도입 전 영향을 검증한다."}, {"q": "다음 중 개인적 차원의 노력으로 보기 어려운 것은?", "opts": ["플라스틱 재활용", "쓰레기 배출 줄이기", "불법 포획 및 남획 금지법 제정", "에너지 절약"], "a": 2, "exp": "법 제정은 사회적·국가적 차원의 노력이다."}, {"q": "습지 보호를 취지로 하는 국제 협약은?", "opts": ["국제포경규제협약", "세계유산협약", "CITES", "람사르 협약"], "a": 3, "exp": "람사르 협약 = 국제적으로 중요한 습지 보호"}, {"q": "이동성 야생 동물(철새, 고래 등)의 보전을 취지로 하는 국제 협약은?", "opts": ["이동성 야생동물종 보전 협약(CMS)", "생물다양성협약(CBD)", "세계유산협약", "람사르 협약"], "a": 0, "exp": "한 나라만으로는 보호가 어려운 이동성 동물을 위한 협약이다."}, {"q": "고래를 보호하기 위해 포획을 규제하는 국제 협약은?", "opts": ["람사르 협약", "국제포경규제협약", "CITES", "세계유산협약"], "a": 1, "exp": "국제포경규제협약 = 고래 포획 규제"}, {"q": "쿤밍-몬트리올 글로벌 생물다양성 프레임워크의 내용으로 옳은 것은?", "opts": ["탁월한 보편적 가치를 지닌 유산 등재", "국제적으로 중요한 습지 등록", "2030년까지 훼손된 육지와 해양 생태계를 최소 30 % 이상 복원", "상업적 고래잡이 전면 유예"], "a": 2, "exp": "2022년 196개 국가가 채택한 구체적 복원 목표이다."}, {"q": "보호 동식물을 불법 포획하거나 야생 동식물을 남획했을 때의 결과로 옳은 것은?", "opts": ["토종 생물의 개체수가 늘어난다.", "서식지 면적이 넓어진다.", "하천과 토양이 산성화된다.", "개체수가 급감해 멸종 위험이 높아지고 먹이 관계에도 영향을 준다."], "a": 3, "exp": "특정 종의 멸종은 먹이 관계에 영향을 주어 생물다양성을 감소시킨다."}], "hard": [{"q": "생물다양성의 감소 원인에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 삼림의 벌채, 습지의 매립은 서식지 파괴에 해당한다.", "ㄴ. 외래생물은 천적이 많아 토종 생물의 생존에 영향을 주지 않는다.", "ㄷ. 서식지 단편화는 생물의 이동을 제한한다."], "opts": ["ㄴ", "ㄷ", "ㄱ, ㄷ", "ㄴ, ㄷ"], "a": 2, "exp": "ㄴ. (X) 천적이 없는 외래생물이 대량 번식해 토종 생물을 위협한다. / 옳은 것: ㄱ, ㄷ"}, {"q": "감소 원인과 대응책의 연결로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 서식지 단편화 - 생태통로 설치", "ㄴ. 외래종 유입 - 검역 강화", "ㄷ. 불법 포획, 남획 - 불법 포획 및 남획 금지법 제정"], "opts": ["ㄴ", "ㄷ", "ㄱ, ㄴ", "ㄱ, ㄴ, ㄷ"], "a": 3, "exp": "옳은 것: ㄱ, ㄴ, ㄷ"}, {"q": "국제 협약과 그 취지의 연결로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 람사르 협약 - 습지 보호", "ㄴ. 국제포경규제협약 - 고래 보호", "ㄷ. 세계유산협약 - 멸종 위기 야생 동식물의 국제 거래 규제"], "opts": ["ㄷ", "ㄱ, ㄴ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄷ. (X) 국제 거래 규제는 CITES이다. 세계유산협약은 문화·자연유산 보호이다. / 옳은 것: ㄱ, ㄴ"}, {"q": "생물다양성협약(CBD)의 목적으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 생물다양성의 보전", "ㄴ. 생물다양성 구성 요소의 지속가능한 이용", "ㄷ. 생물 유전자원 이용 이익을 먼저 개발한 나라가 독점"], "opts": ["ㄱ", "ㄷ", "ㄱ, ㄴ", "ㄴ, ㄷ"], "a": 2, "exp": "ㄷ. (X) 이익을 공정·공평하게 공유하는 것이 목적이다. / 옳은 것: ㄱ, ㄴ"}]}, "5": {"ox": [{"q": "감염병은 병원체가 사람의 몸에 침입하여 생기는 질병이다.", "a": true, "exp": "세균이나 바이러스 같은 병원체가 원인이다."}, {"q": "곰팡이는 감염병을 일으키는 병원체가 될 수 없다.", "a": false, "exp": "병원체에는 세균, 원생생물, 곰팡이(미생물)와 바이러스가 있다."}, {"q": "항체는 병원체에 대항하여 우리 몸에서 만들어지는 단백질이다.", "a": true, "exp": "항체는 Y자 모양의 단백질이다."}, {"q": "항체는 모든 종류의 항원에 반응한다.", "a": false, "exp": "항체는 특정한 항원에만 반응한다."}, {"q": "B세포와 T세포는 선천성 면역에 해당한다.", "a": false, "exp": "선천성 면역: 피부, 백혈구 / 후천성 면역: B세포, T세포"}, {"q": "PCR 검사는 병원체의 유전물질(핵산)을 증폭하여 감염 여부를 확인한다.", "a": true, "exp": "작은 핵산 조각을 증폭해 양을 늘린다."}, {"q": "신속 항원 검사는 PCR 검사보다 정확도가 높다.", "a": false, "exp": "신속 항원 검사는 빠르지만 PCR 검사보다 정확도가 낮다."}, {"q": "항체 검사는 신속한 감염병 진단에 적합하다.", "a": false, "exp": "항체가 생기기까지 시간이 걸리므로 신속 진단에 적합하지 않다."}, {"q": "신속 항원 검사 키트의 T(실험선)에는 항원을 인식하는 항체가 있다.", "a": true, "exp": "T: 항원 인식 항체, C: 항체 인식 항체"}, {"q": "볼로그는 수확량이 많고 병충해에 강한 밀 종자를 개발하였다.", "a": true, "exp": "1970년 노벨 평화상을 받았다."}], "mc": [{"q": "병원체에 대한 설명으로 옳은 것은?", "opts": ["세균, 원생생물, 곰팡이는 미생물에 해당하는 병원체이다.", "바이러스는 세균의 한 종류이다.", "항체는 병원체의 한 종류이다.", "곰팡이는 바이러스에 속한다."], "a": 0, "exp": "병원체 = 미생물(세균, 원생생물, 곰팡이) + 바이러스"}, {"q": "감염병의 특성으로 옳지 않은 것은?", "opts": ["빠르게 전파·전염된다.", "감염되는 즉시 모든 사람에게 같은 증상이 나타난다.", "면역 반응을 일으킨다.", "잠복기가 있다."], "a": 1, "exp": "감염병에는 잠복기가 있다. 특성: 건강과 생존 위협, 빠른 전파, 잠복기, 면역 반응 유발"}, {"q": "진단 시간이 10분 이내로 짧아 신속하게 감염 여부를 확인할 수 있는 검사는?", "opts": ["역학 조사", "PCR 검사", "신속 항원 검사", "항체 검사"], "a": 2, "exp": "항원 검사는 빠르지만 정확도는 PCR보다 낮다."}, {"q": "감염 여부를 가장 정확하게 알려 주는 검사는?", "opts": ["신속 항원 검사", "체온 측정", "항체 검사", "PCR 검사"], "a": 3, "exp": "PCR 검사는 시간이 길지만 가장 정확하다."}, {"q": "백신 접종 후 면역이 형성되었는지 확인하는 데 적합한 검사는?", "opts": ["항체 검사", "PCR 검사", "역학 조사", "신속 항원 검사"], "a": 0, "exp": "항체 검사 = 면역 반응 결과물(항체) 확인"}, {"q": "PCR 검사에 필요한 재료가 아닌 것은?", "opts": ["DNA 중합 효소", "항체", "dNTPs", "프라이머"], "a": 1, "exp": "PCR 재료: 주형 DNA, 프라이머, DNA 중합 효소, dNTPs, 완충액, 증류수"}, {"q": "감염병 진단 모의 실험에서 대조군에 해당하는 것은?", "opts": ["검출 시약", "모의 환자 1과 모의 환자 2", "모의 양성 대조군과 모의 음성 대조군", "모의 항체"], "a": 2, "exp": "ⓐⓑ = 대조군, ⓒⓓ = 실험군"}, {"q": "과학이 해 온 역할과 그 분야의 연결로 옳은 것은?", "opts": ["환경 및 자원 - 백신 개발", "식량 및 농업 - 상하수도 정수", "보건 및 위생 - 하버-보슈법", "환경 및 자원 - 프레온 가스 대체제 개발"], "a": 3, "exp": "보건: 백신·항생제, 상하수도 정수·살균 / 식량: 하버-보슈법, 녹색 혁명 / 환경: 프레온 가스 대체제"}], "hard": [{"q": "감염병 진단 방법에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 항체 검사로 과거의 감염 이력을 확인할 수 있다.", "ㄴ. 항원 검사는 병원체의 핵산을 증폭하여 확인한다.", "ㄷ. PCR 검사는 검사 시간이 길지만 가장 정확하다."], "opts": ["ㄱ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 핵산 증폭은 PCR 검사이다. 항원 검사는 병원체의 단백질을 검출한다. / 옳은 것: ㄱ, ㄷ"}, {"q": "신속 항원 검사의 원리에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 콧속 검체를 용액에 넣으면 바이러스를 이루는 단백질이 용액 속으로 나온다.", "ㄴ. 감염된 경우 바이러스의 단백질과 키트 속 항체가 결합한다.", "ㄷ. C(대조선)에는 항원을 인식하는 항체가 있다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) C선은 항체를 인식하는 항체, T선이 항원을 인식하는 항체이다. / 옳은 것: ㄱ, ㄴ"}, {"q": "면역계와 항원·항체에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 피부와 백혈구는 선천성 면역에 해당한다.", "ㄴ. 후천성 면역에서 B세포, T세포에 의해 항체가 형성된다.", "ㄷ. 항원은 우리 몸이 병원체를 막기 위해 만든 단백질이다."], "opts": ["ㄱ", "ㄴ", "ㄱ, ㄴ", "ㄱ, ㄷ"], "a": 2, "exp": "ㄷ. (X) 그것은 항체이다. 항원은 질병을 일으키는 병원체의 특정 단백질이다. / 옳은 것: ㄱ, ㄴ"}, {"q": "감염병 확산과 대응에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 교통수단의 발달로 감염병은 과거보다 급속히 전파된다.", "ㄴ. 치료 약이 개발되기 전까지는 빠른 진단과 추적으로 확산을 늦추는 것이 중요하다.", "ㄷ. 아스테카 제국에서는 천연두로 전체 인구의 3/4이 사망하였다."], "opts": ["ㄴ", "ㄱ, ㄴ", "ㄱ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 3, "exp": "옳은 것: ㄱ, ㄴ, ㄷ"}, {"q": "감염병 진단 모의 실험에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 대조군과 실험군을 나누어 결과를 비교한다.", "ㄴ. 모의 환자 검체가 음성 대조군과 같은 반응을 보이면 감염된 것이다.", "ㄷ. 모의 환자 검체가 양성 대조군과 같은 반응을 보이면 감염된 것이다."], "opts": ["ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 양성 대조군과 같은 반응을 보여야 감염이다. / 옳은 것: ㄱ, ㄷ"}]}, "6": {"ox": [{"q": "역학 조사는 환자의 이동 경로 파악, 접촉자 확인, 감염 장소 확인·분석 과정이다.", "a": true, "exp": "확산 경로를 추적해 추가 감염을 차단한다."}, {"q": "과거의 역학 조사는 대부분 인공지능 기술에 의존하였다.", "a": false, "exp": "과거에는 역학 조사관의 직접 조사에 의존하였다."}, {"q": "스마트 기기로 감염자 이동 경로, 인구수, 체온 등의 정보를 빠르게 수집할 수 있다.", "a": true, "exp": "수집(스마트 기기) → 전달(정보 통신) → 분석(인공지능)"}, {"q": "인공지능은 방대한 정보를 빠르게 처리·분석하는 데 활용된다.", "a": true, "exp": "예: 코로나19 해외 유입 예측"}, {"q": "인구 증가는 식량 부족, 자원 고갈, 거주 공간 부족 문제를 일으킬 수 있다.", "a": true, "exp": "인구 증가에 따른 문제이다."}, {"q": "새로운 기술 개발로 인한 문제에는 프라이버시 침해가 포함된다.", "a": true, "exp": "기술 격차, 경제적 불평등, 일자리 소멸, 윤리적 딜레마, 통제력 상실, 프라이버시 침해"}, {"q": "세계 각국은 기후 위기에 대응하기 위해 온실 기체 배출을 늘리고 있다.", "a": false, "exp": "온실 기체 배출을 줄이고 신재생 에너지를 개발하고 있다."}, {"q": "과학기술로 문제를 해결할 때는 부작용이나 위험성을 따로 점검할 필요가 없다.", "a": false, "exp": "부작용·위험성을 점검하며 사회적 합의를 거쳐야 한다."}, {"q": "인공지능으로 항공편 정보, 입국자 수 등을 분석하여 코로나19의 해외 유입 여부를 예측하였다.", "a": true, "exp": "인공지능 기반 해외 유입 예측"}, {"q": "기술 격차와 일자리 소멸은 인구 증가에 따른 문제이다.", "a": false, "exp": "새로운 기술 개발로 인한 문제이다."}], "mc": [{"q": "과학기술을 활용한 감염 경로 조사 과정을 순서대로 옳게 나타낸 것은?", "opts": ["스마트 기기로 수집 → 정보 통신 기술로 전달 → 인공지능으로 분석", "인공지능으로 수집 → 스마트 기기로 전달 → 정보 통신 기술로 분석", "정보 통신 기술로 분석 → 스마트 기기로 수집 → 인공지능으로 전달", "스마트 기기로 분석 → 인공지능으로 수집 → 정보 통신 기술로 전달"], "a": 0, "exp": "수집 → 전달 → 분석"}, {"q": "인구 증가에 따른 문제로 옳지 않은 것은?", "opts": ["거주 공간 부족", "프라이버시 침해", "식량 부족", "자원 고갈"], "a": 1, "exp": "프라이버시 침해는 새로운 기술 개발로 인한 문제이다."}, {"q": "새로운 기술 개발로 인한 문제로 옳지 않은 것은?", "opts": ["통제력 상실", "일자리 소멸", "거주 공간 부족", "기술 격차"], "a": 2, "exp": "거주 공간 부족은 인구 증가에 따른 문제이다."}, {"q": "기후 위기에 대한 과학기술적 대응으로 옳은 것은?", "opts": ["화석 연료 사용 확대", "삼림 벌채 확대", "온실 기체 배출 증가", "신재생 에너지 개발"], "a": 3, "exp": "온실 기체 배출을 줄이고 신재생 에너지를 개발한다."}, {"q": "역학 조사의 목적으로 가장 적절한 것은?", "opts": ["감염병의 확산 경로를 추적하여 추가 감염을 차단한다.", "감염병 치료제를 개발한다.", "병원체의 핵산을 증폭한다.", "몸속에서 항체를 만든다."], "a": 0, "exp": "이동 경로·접촉자·감염 장소를 확인해 추가 감염을 막는다."}, {"q": "과학기술로 미래 사회 문제를 해결할 때 바람직한 자세는?", "opts": ["전문가만 결정하고 시민은 따르기만 한다.", "부작용과 위험성을 점검하며 사회적 합의를 거쳐 해결한다.", "위험성이 있어도 효과가 크면 무시한다.", "기술 발전 속도를 가장 우선한다."], "a": 1, "exp": "부작용·위험성 점검 + 사회적 합의"}, {"q": "'코로나바이러스감염증-19 전국 상황판'의 역할로 옳은 것은?", "opts": ["PCR 검사를 수행한다.", "백신을 개발한다.", "감염자 수와 분포를 빠르게 취합하여 시민들에게 전달한다.", "해외 유입 여부를 예측한다."], "a": 2, "exp": "감염자 수와 분포를 취합해 전달한다(통계청)."}, {"q": "과거와 비교한 최근 역학 조사의 특징으로 옳은 것은?", "opts": ["역학 조사관의 직접 조사에만 의존한다.", "분석할 수 있는 데이터의 양이 줄었다.", "감염 경로 추적이 더 느려졌다.", "정보 통신·인공지능 기술로 더 많은 데이터를 더 빠르게 분석한다."], "a": 3, "exp": "그 덕분에 코로나19 대유행 때도 빠르고 정확하게 추적할 수 있었다."}], "hard": [{"q": "감염병 역학 조사에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 최근에는 정보 통신 기술과 인공지능 기술이 활용된다.", "ㄴ. 정보 통신 기술은 수집한 정보를 실시간으로 전달한다.", "ㄷ. 인공지능은 감염자의 체온을 직접 측정하는 장비이다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 인공지능은 방대한 정보를 처리·분석한다. 정보 수집은 스마트 기기가 한다. / 옳은 것: ㄱ, ㄴ"}, {"q": "미래 사회 문제와 그 영역의 연결로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 기후 변화 - 자연재해", "ㄴ. 인구 증가 - 일자리 소멸", "ㄷ. 새로운 기술 개발 - 윤리적 딜레마"], "opts": ["ㄴ", "ㄷ", "ㄱ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄴ. (X) 일자리 소멸은 새로운 기술 개발로 인한 문제이다. / 옳은 것: ㄱ, ㄷ"}, {"q": "미래 사회와 과학의 역할에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 전 세계가 연결된 환경에서 예상치 못한 위기는 인류 전체에 영향을 줄 수 있다.", "ㄴ. 미래 사회 문제 해결에서 과학기술의 필요성은 낮아질 것이다.", "ㄷ. 문제 해결 과정에서 사회적 합의를 거쳐야 한다."], "opts": ["ㄱ", "ㄴ", "ㄷ", "ㄱ, ㄷ"], "a": 3, "exp": "ㄴ. (X) 필요성은 높아질 것이다. / 옳은 것: ㄱ, ㄷ"}, {"q": "미래 사회에 생길 수 있는 문제에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 노인 인구 증가로 건강 문제가 중요해질 수 있다.", "ㄴ. 인터넷과 컴퓨터 기술의 발전으로 사이버 범죄가 증가할 수 있다.", "ㄷ. 기후 위기는 먼 미래의 문제로 아직 현실로 다가오지 않았다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 기후 위기는 이미 현실로 다가온 위기이다. / 옳은 것: ㄱ, ㄴ"}]}};
+
+const TYPE_CONFIG = [
+ { key:'ox',   label:'OX 퀴즈', icon:'⭕', cls:'ox',   diff:'기초',   diffCls:'diff-basic', color:'#2563eb' },
+ { key:'mc',   label:'객관식',  icon:'📋', cls:'mc',   diff:'중급',   diffCls:'diff-mid',   color:'#16a34a' },
+ { key:'hard', label:'고난도',  icon:'🔥', cls:'hard', diff:'고난도', diffCls:'diff-hard',  color:'#7c3aed' }
+];
+const QUIZ_UNITS = Object.keys(QUIZ_DATA).map(Number);
+const state = {};
+QUIZ_UNITS.forEach(function(u){
+ state[u] = { activeType:0, answered:{ ox:[], mc:[], hard:[] } };
+});
+
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function typeStats(u, key){
+ var qs = QUIZ_DATA[u][key], ans = state[u].answered[key], done = 0, correct = 0;
+ for (var i = 0; i < qs.length; i++){
+  if (ans[i] !== undefined){ done++; if (ans[i] === qs[i].a) correct++; }
+ }
+ return { total: qs.length, done: done, correct: correct };
+}
+
+function buildQuiz(u){
+ var box = document.getElementById('quiz-' + u);
+ if (!box) return;
+ var st = state[u], cfg = TYPE_CONFIG[st.activeType], key = cfg.key;
+ var qs = QUIZ_DATA[u][key], s = typeStats(u, key);
+ var h = '';
+ h += '<div class="quiz-header"><div class="quiz-title">📝 확인 문제</div><div class="scoreboard">';
+ TYPE_CONFIG.forEach(function(c){
+  var t = typeStats(u, c.key);
+  h += '<span class="score-chip ' + c.cls + '">' + c.icon + ' ' + c.label + ' ' + t.correct + '/' + t.total + '</span>';
+ });
+ h += '</div></div>';
+ h += '<div class="quiz-type-bar">';
+ TYPE_CONFIG.forEach(function(c, i){
+  var t = typeStats(u, c.key);
+  h += '<button class="qtype-btn ' + c.cls + (i === st.activeType ? ' active' : '') + '" onclick="setType(' + u + ',' + i + ')">' +
+       c.icon + ' ' + c.label + ' <span class="qtype-count">' + t.done + '/' + t.total + '</span></button>';
+ });
+ h += '</div>';
+ var pct = s.total ? Math.round(s.done / s.total * 100) : 0;
+ h += '<div class="q-progress-wrap"><span>진행</span><div class="q-progress-bar"><div class="q-progress-fill" style="width:' + pct + '%;background:' + cfg.color + '"></div></div><span>' + s.done + ' / ' + s.total + '</span></div>';
+
+ if (s.done === s.total){
+  h += buildResult(u, key, s);
+ }
+ qs.forEach(function(q, qi){ h += buildQCard(u, key, qi, q); });
+ if (s.done > 0 && s.done < s.total){
+  h += '<div style="text-align:right"><button class="reset-btn sm" onclick="resetType(' + u + ',\'' + key + '\')">↺ 이 유형 다시 풀기</button></div>';
+ }
+ box.innerHTML = h;
+}
+
+function buildResult(u, key, s){
+ var p = Math.round(s.correct / s.total * 100);
+ var msg = p === 100 ? '완벽해요! 🎉' : p >= 80 ? '아주 잘했어요! 틀린 문제의 해설만 다시 확인해 보세요.' : p >= 60 ? '좋아요. 해설을 읽고 본문을 한 번 더 확인해 보세요.' : '본문을 다시 읽고 도전해 보세요. 💪';
+ var h = '<div class="quiz-result"><div class="big">' + s.correct + ' / ' + s.total + ' <span style="font-size:18px;color:var(--text-sec)">(' + p + '%)</span></div><div class="msg">' + msg + '</div><div class="mini-bar-wrap">';
+ TYPE_CONFIG.forEach(function(c){
+  var t = typeStats(u, c.key), w = t.total ? Math.round(t.correct / t.total * 100) : 0;
+  h += '<div class="mini-bar-row"><span class="mini-bar-label" style="color:' + c.color + '">' + c.label + '</span><div class="mini-bar-track"><div class="mini-bar-fill" style="width:' + w + '%;background:' + c.color + '"></div></div><span class="mini-bar-val">' + t.correct + '/' + t.total + '</span></div>';
+ });
+ h += '</div><button class="reset-btn" onclick="resetType(' + u + ',\'' + key + '\')">↺ 다시 풀기</button></div><div style="height:14px"></div>';
+ return h;
+}
+
+function buildQCard(u, key, qi, q){
+ var cfg = TYPE_CONFIG.filter(function(c){ return c.key === key; })[0];
+ var ans = state[u].answered[key][qi], done = ans !== undefined, ok = done && ans === q.a;
+ var h = '<div class="q-card' + (done ? (ok ? ' answered-correct' : ' answered-wrong') : '') + '" id="qc-' + u + '-' + key + '-' + qi + '">';
+ h += '<div class="q-meta"><span class="q-num">Q' + (qi + 1) + '</span><span class="q-difficulty ' + cfg.diffCls + '">' + cfg.diff + '</span></div>';
+ h += '<div class="q-text">' + esc(q.q) + '</div>';
+ if (q.box){
+  h += '<div class="q-box">' + q.box.map(function(b){ return '<div>' + esc(b) + '</div>'; }).join('') + '</div>';
+ }
+ if (key === 'ox'){
+  h += '<div class="ox-row">';
+  [true, false].forEach(function(v){
+   var cls = '';
+   if (done){
+    if (ans === v) cls = (v === q.a) ? ' correct-picked' : ' wrong-picked';
+    else if (v === q.a) cls = ' correct-reveal';
+   }
+   h += '<button class="ox-btn' + cls + '"' + (done ? ' disabled' : '') + ' onclick="submitOX(' + u + ',' + qi + ',' + v + ')">' + (v ? '⭕' : '❌') + '</button>';
+  });
+  h += '</div>';
+ } else {
+  h += '<div class="mc-options">';
+  q.opts.forEach(function(o, oi){
+   var cls = '';
+   if (done){
+    if (oi === q.a) cls = ' correct';
+    else if (oi === ans) cls = ' wrong';
+   }
+   h += '<button class="mc-opt' + cls + '"' + (done ? ' disabled' : '') + ' onclick="submitMC(' + u + ',\'' + key + '\',' + qi + ',' + oi + ')"><span class="mc-opt-letter">' + 'ABCD'.charAt(oi) + '</span><span>' + esc(o) + '</span></button>';
+  });
+  h += '</div>';
+ }
+ if (done){
+  h += '<div class="q-feedback ' + (ok ? 'correct' : 'wrong') + '">' + (ok ? '✅ 정답! ' : '❌ 오답. ') +
+       (key === 'ox' ? '(정답: ' + (q.a ? 'O' : 'X') + ') ' : (ok ? '' : '(정답: ' + 'ABCD'.charAt(q.a) + ') ')) + esc(q.exp) + '</div>';
+ }
+ h += '</div>';
+ return h;
+}
+
+function submitOX(u, qi, v){
+ if (state[u].answered.ox[qi] !== undefined) return;
+ state[u].answered.ox[qi] = v;
+ afterSubmit(u, 'ox');
+}
+function submitMC(u, key, qi, oi){
+ if (state[u].answered[key][qi] !== undefined) return;
+ state[u].answered[key][qi] = oi;
+ afterSubmit(u, key);
+}
+function afterSubmit(u, key){
+ buildQuiz(u);
+ var qs = QUIZ_DATA[u][key], ans = state[u].answered[key];
+ for (var i = 0; i < qs.length; i++){
+  if (ans[i] === undefined){
+   (function(id){
+    setTimeout(function(){ var el = document.getElementById(id); if (el) el.scrollIntoView({behavior:'smooth', block:'center'}); }, 250);
+   })('qc-' + u + '-' + key + '-' + i);
+   return;
+  }
+ }
+ setTimeout(function(){ var el = document.getElementById('quiz-' + u); if (el) el.scrollIntoView({behavior:'smooth', block:'start'}); }, 250);
+}
+function setType(u, i){ state[u].activeType = i; buildQuiz(u); }
+function resetType(u, key){ state[u].answered[key] = []; buildQuiz(u); }
+
+QUIZ_UNITS.forEach(buildQuiz);
+
+</script>
+</body>
+</html>

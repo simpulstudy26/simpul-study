@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>한국사 최O석 선생님 파트 연대기</title>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Serif+KR:wght@400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+ --ink:#0c0b09;
+ --ink-2:#14120e;
+ --ink-3:#1c1914;
+ --ivory:#ece3cf;
+ --ivory-dim:#b9ae97;
+ --muted:#8a8069;
+ --gold:#c9a75d;
+ --gold-hi:#e4c886;
+ --gold-lo:rgba(201,167,93,.28);
+ --line:rgba(201,167,93,.18);
+ --w:#7fa89c;   /* 국제 — 청록 녹 */
+ --r:#c0634a;   /* 통치·침략 — 주홍 */
+ --e:#c49a52;   /* 경제 — 청동 */
+ --d:#8ea7c9;   /* 국내 운동 — 쪽빛 */
+ --a:#ae92c9;   /* 국외 운동 — 자수정 */
+ --g:#93b07c;   /* 임시 정부 — 쑥 */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+ font-family:'Noto Serif KR','Nanum Myeongjo',serif;
+ font-size:15px;line-height:1.8;color:var(--ivory);
+ background-color:var(--ink);
+ background-image:
+  radial-gradient(ellipse at 50% -10%,rgba(201,167,93,.10),transparent 55%),
+  radial-gradient(ellipse at 50% 120%,rgba(120,70,40,.10),transparent 60%),
+  repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);
+ background-attachment:fixed;
+ min-height:100vh;
+}
+::selection{background:rgba(201,167,93,.35)}
+
+/* ── Masthead ── */
+.mast{max-width:900px;margin:0 auto;padding:54px 22px 26px;text-align:center}
+.mast .eyebrow{font-family:'Cormorant Garamond',serif;letter-spacing:.42em;font-size:12px;color:var(--gold);text-transform:uppercase}
+.mast h1{font-family:'Nanum Myeongjo',serif;font-weight:800;font-size:clamp(28px,5.4vw,44px);letter-spacing:.06em;margin:12px 0 6px;color:var(--ivory)}
+.mast .sub{font-size:14px;color:var(--ivory-dim);letter-spacing:.14em}
+.orn{display:flex;align-items:center;justify-content:center;gap:14px;color:var(--gold);margin:18px auto 0;max-width:420px}
+.orn::before,.orn::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold) 40%,var(--gold) 60%,transparent)}
+.orn span{font-size:15px;letter-spacing:.5em;padding-left:.5em}
+
+/* ── Sticky controls ── */
+.bar{position:sticky;top:0;z-index:40;background:rgba(12,11,9,.92);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.bar-in{max-width:900px;margin:0 auto;padding:10px 22px;display:flex;flex-direction:column;gap:8px}
+.row{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.flt{font:inherit;font-size:12.5px;letter-spacing:.04em;background:none;border:1px solid var(--line);color:var(--ivory-dim);padding:2px 12px 3px;border-radius:2px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:.2s}
+.flt i{width:7px;height:7px;transform:rotate(45deg);background:var(--c);display:inline-block}
+.flt:hover{border-color:var(--gold-lo);color:var(--ivory)}
+.flt.off{opacity:.35}
+.flt.off i{background:transparent;outline:1px solid var(--c)}
+.search{flex:1 1 180px;min-width:150px;font:inherit;font-size:14px;color:var(--ivory);background:transparent;border:none;border-bottom:1px solid var(--gold-lo);padding:3px 2px;outline:none}
+.search::placeholder{color:var(--muted)}
+.search:focus{border-bottom-color:var(--gold)}
+.txt{font:inherit;font-size:12.5px;background:none;border:none;color:var(--gold);cursor:pointer;letter-spacing:.06em;padding:2px 6px}
+.txt:hover{color:var(--gold-hi);text-decoration:underline;text-underline-offset:4px}
+.dnav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.dnav::-webkit-scrollbar{display:none}
+.dnav button{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;background:none;border:none;color:var(--ivory-dim);padding:0 10px;cursor:pointer;white-space:nowrap;letter-spacing:.04em}
+.dnav button:hover{color:var(--gold-hi)}
+.dnav button+button{border-left:1px solid var(--line)}
+
+/* ── Body ── */
+main{max-width:900px;margin:0 auto;padding:10px 22px 120px}
+.guide{margin:26px auto 8px;max-width:640px;text-align:center;font-size:13.5px;color:var(--ivory-dim)}
+.guide b{color:var(--ivory);font-weight:600}
+
+.era{margin-top:64px;scroll-margin-top:130px}
+.era-head{text-align:center;margin-bottom:26px}
+.era-yr{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(40px,8vw,64px);line-height:1;color:var(--gold);letter-spacing:.02em}
+.era-name{margin-top:8px;font-family:'Nanum Myeongjo',serif;font-weight:700;font-size:17px;letter-spacing:.3em;padding-left:.3em;color:var(--ivory)}
+.era-desc{font-size:12.5px;color:var(--muted);letter-spacing:.08em;margin-top:2px}
+.era-head .orn{margin-top:12px;max-width:260px}
+
+.yr{display:grid;grid-template-columns:92px 1fr;gap:0 36px;position:relative}
+.yr::before{content:'';position:absolute;left:110px;top:0;bottom:0;width:1px;background:var(--line)}
+.yr-n{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;color:var(--gold-hi);text-align:right;line-height:1;padding-top:14px;letter-spacing:.02em}
+.yr-list{padding:4px 0 14px}
+.ev{position:relative;border-bottom:1px solid rgba(201,167,93,.08)}
+.ev::before{content:'';position:absolute;left:-22px;top:19px;width:8px;height:8px;transform:rotate(45deg);background:var(--ink);border:1px solid var(--c)}
+.ev.open::before{background:var(--c)}
+.ev button{all:unset;box-sizing:border-box;display:flex;align-items:baseline;gap:10px;width:100%;padding:10px 4px 10px 2px;cursor:pointer}
+.ev button:focus-visible{outline:1px solid var(--gold);outline-offset:2px}
+.ev .t{font-family:'Nanum Myeongjo',serif;font-weight:700;font-size:16.5px;color:var(--ivory);transition:color .2s}
+.ev .y{font-size:13.5px;color:var(--ivory-dim);white-space:nowrap}
+.ev .k{margin-left:auto;font-size:11px;letter-spacing:.12em;color:var(--c);white-space:nowrap;opacity:.85}
+.ev:hover .t{color:var(--gold-hi)}
+.ev .d{max-height:0;overflow:hidden;transition:max-height .3s ease,opacity .3s ease,padding .3s ease;opacity:0;font-size:14px;color:var(--ivory-dim);padding:0 4px 0 2px;border-left:2px solid transparent}
+.ev.open .d{max-height:160px;opacity:1;padding:0 8px 12px 12px;border-left-color:var(--c)}
+.ev.open .t{color:var(--gold-hi)}
+mark{background:rgba(201,167,93,.3);color:var(--ivory);padding:0 2px}
+.empty{display:none;text-align:center;color:var(--muted);padding:60px 0;font-style:italic}
+
+.c-w{--c:var(--w)}.c-r{--c:var(--r)}.c-e{--c:var(--e)}.c-d{--c:var(--d)}.c-a{--c:var(--a)}.c-g{--c:var(--g)}
+
+.foot{text-align:center;color:var(--muted);font-size:12px;letter-spacing:.2em;margin-top:70px}
+.totop{position:fixed;right:20px;bottom:20px;width:44px;height:44px;border-radius:50%;border:1px solid var(--gold-lo);background:rgba(12,11,9,.85);color:var(--gold);font-size:16px;cursor:pointer}
+.totop:hover{border-color:var(--gold);color:var(--gold-hi)}
+
+@media (max-width:640px){
+ body{font-size:14.5px}
+ .mast{padding:36px 16px 18px}
+ .bar-in{padding:8px 14px}
+ .row.flts{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+ .row.flts::-webkit-scrollbar{display:none}
+ .flt{flex:none}
+ main{padding:6px 14px 100px}
+ .yr{grid-template-columns:54px 1fr;gap:0 30px}
+ .yr::before{left:69px}
+ .ev::before{left:-19px}
+ .yr-n{font-size:20px}
+ .ev button{flex-wrap:wrap;gap:2px 8px}
+ .ev .t{font-size:15.5px}
+ .ev .k{margin-left:0;width:100%}
+ .era{scroll-margin-top:150px}
+}
+</style>
+</head>
+<body>
+
+<header class="mast">
+ <div class="eyebrow">Chronicle · 1906 — 1945</div>
+ <h1>한국사 최O석 선생님 파트</h1>
+ <div class="sub">일제 식민 통치와 민족 운동 · 연대기</div>
+ <div class="orn"><span>❖</span></div>
+</header>
+
+<div class="bar">
+ <div class="bar-in">
+  <div class="row flts" id="flts"></div>
+  <div class="row">
+   <input class="search" id="q" type="search" placeholder="사건 · 인물 찾기">
+   <button class="txt" onclick="openAll(true)">모두 펼치기</button>
+   <button class="txt" onclick="openAll(false)">모두 접기</button>
+  </div>
+  <nav class="dnav" id="dnav"></nav>
+ </div>
+</div>
+
+<main>
+ <p class="guide">사건을 누르면 <b>한 줄 설명</b>이 펼쳐집니다. 위의 분야를 눌러 원하는 흐름만 볼 수 있습니다.</p>
+ <div id="tl"></div>
+ <div class="empty" id="empty">찾는 사건이 없습니다.</div>
+ <div class="foot">❖ &nbsp; 1945 · 광복 &nbsp; ❖</div>
+</main>
+
+<button class="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="맨 위로">▲</button>
+
+<script>
+const CATS={w:'국제 정세',r:'통치·침략',e:'경제 수탈',d:'국내 민족 운동',a:'국외 민족 운동',g:'임시 정부'};
+
+/* y 연도 · m 월(정렬용) · yl 표시 연도 · c 분야 · t 사건 · d 한 줄 설명 */
+const EV=[
+{y:1906,yl:'1906',c:'a',t:'서전서숙 설립',d:'이상설이 북간도에 세운 민족 교육 기관으로, 국외 독립운동 기지 건설의 출발점이다.'},
+{y:1907,yl:'1907',c:'d',t:'국채 보상 운동',d:'대구에서 시작된 경제적 구국 운동으로, 1920년대 물산 장려 운동과 시기(통감부 ↔ 총독부)를 구별해야 한다.'},
+{y:1908,m:3,yl:'1908',c:'a',t:'장인환·전명운 의거',d:'샌프란시스코에서 친일 외교 고문을 처단한 의거로, 대한인 국민회 결성의 계기가 되었다.'},
+{y:1908,m:4,yl:'1908',c:'a',t:'명동 학교 설립',d:'김약연 등이 북간도에 세운 민족 교육 기관이다.'},
+
+{y:1910,m:2,yl:'1910',c:'a',t:'대한인 국민회 조직',d:'미주 한인 단체들이 연합해 만든 해외 독립운동의 중심 단체이다.'},
+{y:1910,m:8,yl:'1910',c:'r',t:'국권 피탈 · 조선 총독부 설치',d:'총독은 육·해군 대장 중에서 임명되었고 입법·사법·행정·군사권을 모두 쥐었다.'},
+{y:1910,m:8,yl:'1910',c:'r',t:'헌병 경찰제 · 무단 통치',d:'헌병이 경찰 업무까지 맡아 즉결 처분으로 한국인을 다스렸고, 관리·교원까지 제복과 칼을 찼다.'},
+{y:1910,m:9,yl:'1910',c:'e',t:'토지 조사 사업 시작',d:'신고주의로 지주의 소유권만 인정하고 농민의 관습적 경작권은 부정하였다.'},
+{y:1910,m:12,yl:'1910',c:'e',t:'회사령 공포',d:'회사 설립에 총독의 허가를 받게 한 허가제로, 한국인의 기업 활동을 억눌렀다.'},
+{y:1911,m:1,yl:'1911',c:'r',t:'105인 사건',d:'총독 암살 모의를 꾸며 내 신민회 인사들을 대거 체포한 탄압 사건이다.'},
+{y:1911,m:4,yl:'1911',c:'a',t:'경학사 · 신흥 강습소',d:'이회영·이상룡 등이 서간도(남만주)에 세운 자치 단체와 학교로, 신흥 강습소는 신흥 무관 학교로 이어졌다.'},
+{y:1911,m:5,yl:'1911',c:'a',t:'권업회 조직',d:'이상설·이동휘 등이 연해주에서 조직한 한인 자치·독립운동 단체이다.'},
+{y:1911,m:6,yl:'1911',c:'a',t:'중광단 조직',d:'대종교 계열의 북간도 무장 단체로, 이후 북로 군정서로 발전하였다.'},
+{y:1911,m:8,yl:'1911',c:'r',t:'제1차 조선 교육령',d:'보통·실업 교육 위주에 보통학교 4년, 대학 설립 불허로 순응하는 한국인을 길러 내려 하였다.'},
+{y:1912,m:3,yl:'1912',c:'r',t:'조선 태형령',d:'한국인에게만 태형을 가하게 한 법령으로, 민족 차별과 통치 비용 절감이 목적이었다.'},
+{y:1912,m:7,yl:'1912',c:'a',t:'동제사 조직',d:'신규식 등이 상하이에서 조직해 중국 혁명 세력과의 연대를 꾀하였다.'},
+{y:1912,m:8,yl:'1912',c:'e',t:'토지 조사령',d:'기한 안에 직접 신고해야 소유권을 인정받게 하여 토지 조사 사업을 본격화하였다.'},
+{y:1912,m:9,yl:'1912',c:'d',t:'독립 의군부 조직',d:'임병찬이 고종의 밀명을 받아 조직한 비밀 결사로, 왕정 복고(복벽주의)를 내세웠다.'},
+{y:1913,m:1,yl:'1913',c:'a',t:'간민회 조직',d:'북간도 한인들의 자치 단체이다.'},
+{y:1913,m:6,yl:'1913',c:'d',t:'송죽회 조직',d:'평양의 여성들이 주축이 된 국내 비밀 결사이다.'},
+{y:1914,m:1,yl:'1914',c:'e',t:'호남선 · 경원선 개통',d:'X자형 간선 철도망이 완성되어 한반도는 일본의 상품 시장이자 원료 공급지가 되었다.'},
+{y:1914,m:6,yl:'1914',c:'a',t:'대조선 국민 군단 조직',d:'박용만이 하와이에서 조직한 무장 독립군 양성 단체이다.'},
+{y:1914,m:7,yl:'1914',c:'w',t:'제1차 세계 대전 발발',d:'사라예보 사건을 계기로 연합국과 동맹국이 맞섰고, 연합국 편 일본은 국력을 크게 키웠다.'},
+{y:1915,m:7,yl:'1915',c:'d',t:'대한 광복회 조직',d:'박상진이 조직한 비밀 결사로, 공화정을 지향하며 군자금 모집과 친일 부호 처단을 벌였다.'},
+{y:1917,m:3,yl:'1917',c:'w',t:'러시아 혁명',d:'레닌이 세계 최초의 사회주의 정부를 세우고 식민지 민족 해방 운동 지원을 선언하였다.'},
+{y:1917,m:3,yl:'1917',c:'d',t:'조선 국민회 조직',d:'평양의 기독교도들이 중심이 된 국내 비밀 결사이다.'},
+{y:1917,m:7,yl:'1917',c:'a',t:'대동단결 선언',d:'국민 주권을 선언하고 공화정에 바탕을 둔 임시 정부 수립을 처음으로 제안하였다.'},
+{y:1918,m:11,yl:'1918',c:'a',t:'신한청년당 결성',d:'상하이에서 결성되어 김규식을 파리 강화 회의에 대표로 보냈다.'},
+{y:1919,m:1,yl:'1919',c:'w',t:'파리 강화 회의 · 베르사유 체제',d:'윌슨의 민족 자결주의가 제시되었지만 승전국의 식민지에는 적용되지 않았다.'},
+{y:1919,m:2,yl:'1919. 2. 8.',c:'a',t:'2·8 독립 선언',d:'도쿄의 한국인 유학생들이 독립 선언서를 발표해 3·1 운동의 불씨가 되었다.'},
+{y:1919,m:3,yl:'1919. 3. 1.',c:'d',t:'3·1 운동',d:'태화관·탑골 공원에서 시작해 전국·국외로 번진 전 민족적 독립운동으로, 임시 정부 수립과 통치 방식 변화를 이끌었다.'},
+{y:1919,m:4,yl:'1919',c:'r',t:'제암리 학살',d:'일제가 화성 제암리 주민을 교회에 가두고 총격과 방화를 가한 만행이다.'},
+{y:1919,m:8,yl:'1919',c:'r',t:"'문화 정치' 표방",d:'문관 총독·보통 경찰제를 내세웠지만 실상은 친일파를 기르는 민족 분열 통치였다.'},
+{y:1919,m:9,yl:'1919. 9.',c:'g',t:'대한민국 임시 정부 통합',d:'한성 정부의 정통성을 잇고 대한 국민 의회를 합쳐 상하이에 민주 공화제 정부를 세웠다.'},
+{y:1919,m:11,yl:'1919',c:'a',t:'의열단 조직',d:'김원봉이 만주에서 조직해 식민 기관 파괴와 친일파 처단에 나섰다.'},
+
+{y:1920,m:3,yl:'1920',c:'r',t:'『조선일보』·『동아일보』 창간',d:'한글 신문 발행이 허용되었으나 사전 검열로 기사 삭제와 정간이 잇따랐다.'},
+{y:1920,m:4,yl:'1920',c:'e',t:'회사령 폐지',d:'신고제로 바뀌어 불황에 빠진 일본 기업이 조선으로 대거 진출하였다.'},
+{y:1920,m:4,yl:'1920',c:'d',t:'조선 노동 공제회 조직',d:'우리나라 최초의 전국적인 노동 운동 단체이다.'},
+{y:1920,m:5,yl:'1920',c:'e',t:'산미 증식 계획 시작',d:'늘어난 생산량보다 더 많은 쌀이 일본으로 빠져나가 한국인의 쌀 소비는 오히려 줄었다.'},
+{y:1920,m:6,yl:'1920. 6.',c:'a',t:'봉오동 전투',d:'홍범도의 대한 독립군 등이 일본군을 봉오동으로 유인해 크게 이겼다.'},
+{y:1920,m:7,yl:'1920',c:'d',t:'물산 장려 운동',d:'조만식 등이 평양에서 시작한 토산품 애용 운동으로, 민족 자본 육성을 내걸었다.'},
+{y:1920,m:9,yl:'1920',c:'a',t:'박재혁 의거',d:'의열단원 박재혁이 부산 경찰서에 폭탄을 던졌다.'},
+{y:1920,m:10,yl:'1920',c:'r',t:'도 평의회 · 부·면 협의회',d:'지방 자치를 내세웠지만 의결권 없는 자문 기구였고, 재산으로 선거 자격을 제한하였다.'},
+{y:1920,m:10,yl:'1920. 10.',c:'a',t:'청산리 대첩',d:'김좌진의 북로 군정서와 홍범도 부대가 청산리 일대에서 일본군을 대파하였다.'},
+{y:1920,m:10,yl:'1920 – 1921',c:'r',t:'간도 참변',d:'패배에 보복하려는 일본군이 간도의 한국인을 무차별 학살하였다.'},
+{y:1921,m:6,yl:'1921. 6.',c:'a',t:'자유시 참변',d:'자유시로 옮긴 독립군이 주도권 다툼과 러시아군의 무장 해제 과정에서 큰 희생을 치렀다.'},
+{y:1921,m:9,yl:'1921',c:'a',t:'김익상 의거',d:'의열단원 김익상이 조선 총독부에 폭탄을 던졌다.'},
+{y:1921,m:11,yl:'1921',c:'w',t:'워싱턴 회의',d:'일본의 팽창이 견제되고 미국 중심의 동아시아 질서가 짜였다. 임시 정부는 독립 요구서를 냈다.'},
+{y:1922,m:1,yl:'1922',c:'g',t:'극동 인민 대표 대회',d:'임시 정부가 모스크바의 이 대회에 한국 독립 지원을 요청하였다.'},
+{y:1922,m:2,yl:'1922',c:'r',t:'제2차 조선 교육령',d:'보통학교를 6년으로 늘리고 한일 공학을 내세웠지만 한국인 취학률은 여전히 낮았다.'},
+{y:1923,m:1,yl:'1923',c:'a',t:'조선 혁명 선언',d:'신채호가 쓴 의열단의 행동 강령으로, 민중 직접 혁명을 주장하였다.'},
+{y:1923,m:1,yl:'1923',c:'a',t:'김상옥 의거',d:'의열단원 김상옥이 종로 경찰서에 폭탄을 던졌다.'},
+{y:1923,m:1,yl:'1923',c:'g',t:'국민 대표 회의',d:'창조파와 개조파가 맞서 성과 없이 끝나고 임시 정부는 더욱 침체하였다.'},
+{y:1923,m:3,yl:'1923',c:'d',t:'민립 대학 설립 운동',d:'이상재·이승훈 등이 모금을 벌였으나 총독부의 방해로 뜻을 이루지 못하였다.'},
+{y:1923,m:4,yl:'1923',c:'e',t:'관세 폐지',d:'일본 상품이 쏟아져 들어와 한국인 기업이 큰 타격을 받았다.'},
+{y:1923,m:8,yl:'1923 – 1925',c:'a',t:'3부 성립',d:'참의부·정의부·신민부가 만주의 한인 자치와 독립군 지휘를 맡았다.'},
+{y:1923,m:9,yl:'1923',c:'e',t:'관동 대지진 · 한국인 학살',d:'일본 정부가 퍼뜨린 유언비어 속에 자경단과 군경이 수많은 한국인을 학살하였다.'},
+{y:1924,m:1,yl:'1924',c:'a',t:'김지섭 의거',d:'의열단원 김지섭이 일본 왕궁에 폭탄을 던졌다.'},
+{y:1924,m:1,yl:'1924',c:'w',t:'제1차 국공 합작',d:'중국 국민당과 공산당의 연합으로, 민족 유일당 운동에 영향을 주었다.'},
+{y:1924,m:4,yl:'1924',c:'d',t:'조선 노동 총동맹 · 조선 청년 총동맹',d:'사회주의 세력의 지원 아래 노동·농민·청년 운동이 전국 조직을 갖추었다.'},
+{y:1924,m:5,yl:'1924',c:'r',t:'경성 제국 대학 설립',d:'민립 대학 설립 운동을 무마하려고 총독부가 세운 대학이다.'},
+{y:1925,m:3,yl:'1925',c:'g',t:'이승만 탄핵 · 국무령제',d:'임시 정부가 이승만을 탄핵하고 박은식이 국무령 중심의 체제로 고쳤다.'},
+{y:1925,m:4,yl:'1925',c:'d',t:'조선 공산당 결성',d:'비밀리에 결성되었으나 거듭된 탄압으로 붕괴와 재건을 되풀이하였다.'},
+{y:1925,m:5,yl:'1925',c:'r',t:'치안 유지법',d:'국체 변혁과 사유 재산 부인을 금지해 독립운동과 사회주의 운동을 함께 옭아맸다.'},
+{y:1925,m:6,yl:'1925',c:'a',t:'미쓰야 협정',d:'일제와 만주 군벌이 독립군 체포에 협력하기로 하여 만주 독립군이 크게 위축되었다.'},
+{y:1926,m:6,yl:'1926. 6. 10.',c:'d',t:'6·10 만세 운동',d:'순종의 인산일에 학생들이 만세 시위를 벌여 좌우 협력의 경험을 남겼다.'},
+{y:1926,m:7,yl:'1926',c:'a',t:'민족 유일당 운동',d:'이념을 넘어 모든 독립운동 세력을 하나의 당으로 묶으려 했으나 국공 합작 결렬로 무산되었다.'},
+{y:1926,m:8,yl:'1926',c:'a',t:'의열단, 황푸 군관 학교 입교',d:'개인 의거의 한계를 느끼고 조직적 무장 투쟁을 위해 군사 간부를 길렀다.'},
+{y:1926,m:11,yl:'1926',c:'d',t:'정우회 선언',d:'사회주의 단체 정우회가 민족주의 세력과의 협력을 주장하였다.'},
+{y:1926,m:12,yl:'1926',c:'a',t:'나석주 의거',d:'의열단원 나석주가 동양 척식 주식회사에 폭탄을 던졌다.'},
+{y:1927,m:2,yl:'1927',c:'d',t:'신간회 창립',d:'비타협적 민족주의와 사회주의 세력이 손잡은 최대의 민족 협동 전선이다.'},
+{y:1928,m:12,yl:'1928',c:'a',t:'혁신 의회 조직',d:'3부 통합 과정에서 북만주에 세워졌고, 이후 한국 독립당·한국 독립군으로 이어졌다.'},
+{y:1929,m:4,yl:'1929',c:'a',t:'국민부 조직',d:'3부 통합으로 남만주에 세워졌고, 조선 혁명당·조선 혁명군을 거느렸다.'},
+{y:1929,m:7,yl:'1929',c:'d',t:'문자 보급 운동',d:'『조선일보』가 주도한 문맹 퇴치 운동이다.'},
+{y:1929,m:10,yl:'1929',c:'w',t:'대공황',d:'세계 경제가 무너지며 전체주의가 대두하고 일본은 대륙 침략으로 활로를 찾았다.'},
+{y:1929,m:11,yl:'1929. 11.',c:'d',t:'광주 학생 항일 운동',d:'나주역 충돌에서 시작해 전국으로 번진, 3·1 운동 이후 최대의 항일 운동이다.'},
+
+{y:1930,m:7,yl:'1930',c:'a',t:'한국 독립당 결성',d:'혁신 의회를 이어 지청천 등이 결성하고 한국 독립군을 거느렸다.'},
+{y:1930,m:9,yl:'1930년대',c:'d',t:'조선 공산당 재건 운동',d:'사회주의자들이 혁명적 노동·농민 조합을 기반으로 무너진 당을 다시 세우려 하였다.'},
+{y:1931,m:5,yl:'1931',c:'d',t:'신간회 해소',d:'사회주의 세력의 해소론이 통과되어 사실상 해체되었다.'},
+{y:1931,m:7,yl:'1931',c:'d',t:'브나로드 운동',d:"『동아일보』가 벌인 '민중 속으로' 농촌 계몽 운동이다."},
+{y:1931,m:8,yl:'1931',c:'e',t:'공업화 정책 병행',d:'북부 지방을 중심으로 일본 독점 자본이 진출해 대륙 침략의 배후 기지를 닦았다.'},
+{y:1931,m:9,yl:'1931. 9.',c:'r',t:'만주 사변',d:'일본군이 만주를 침략하였고, 만주의 한인은 중국군과 손잡고 맞섰다.'},
+{y:1931,m:10,yl:'1931',c:'g',t:'한인 애국단 조직',d:'침체한 임시 정부가 활로를 찾으려 김구 주도로 만든 의열 투쟁 단체이다.'},
+{y:1932,m:1,yl:'1932',c:'g',t:'이봉창 의거',d:'도쿄에서 일왕의 마차에 폭탄을 던졌다.'},
+{y:1932,m:1,yl:'1932',c:'r',t:'일본군 위안소 설치',d:"일제가 군 위안소를 두기 시작해 식민지 여성을 일본군 '위안부'로 동원하였다."},
+{y:1932,m:3,yl:'1932',c:'r',t:'만주국 수립',d:'일제가 만주에 세운 괴뢰 국가이다.'},
+{y:1932,m:4,yl:'1932',c:'g',t:'윤봉길 의거',d:'상하이 훙커우 공원 의거로 중국 국민당 정부가 임시 정부를 적극 지원하게 되었다.'},
+{y:1932,m:5,yl:'1932',c:'g',t:'임시 정부의 이동',d:'일제의 추격을 피해 상하이를 떠나 항저우·전장·창사·광저우 등을 거쳐 옮겨 다녔다.'},
+{y:1932,m:6,yl:'1932',c:'e',t:'농촌 진흥 운동',d:'농촌 몰락을 농민 탓으로 돌리고 근검만 강요해 실질적 효과가 없었다.'},
+{y:1932,m:7,yl:'1932',c:'a',t:'쌍성보 전투 · 영릉가 전투',d:'한국 독립군(지청천, 북만주)은 쌍성보에서, 조선 혁명군(양세봉, 남만주)은 영릉가에서 이겼다.'},
+{y:1933,m:6,yl:'1933',c:'a',t:'동경성 전투 · 흥경성 전투',d:'한국 독립군은 동경성에서, 조선 혁명군은 흥경성에서 일본군을 물리쳤다.'},
+{y:1934,m:1,yl:'1934',c:'e',t:'산미 증식 계획 중단',d:'일본의 쌀값 폭락으로 중단되었다.'},
+{y:1934,m:4,yl:'1934',c:'e',t:'남면북양 정책',d:'일본 방직업을 위해 남부에는 면화, 북부에는 양을 기르게 하였다.'},
+{y:1934,m:9,yl:'1934',c:'d',t:'조선학 운동',d:'우리 역사와 문화를 연구해 민족의 주체성을 지키려 하였다.'},
+{y:1935,m:7,yl:'1935',c:'a',t:'민족 혁명당 결성',d:'김원봉 등이 좌우 세력을 망라해 만든 중국 관내 통일 전선 정당이다.'},
+{y:1935,m:11,yl:'1935',c:'g',t:'한국 국민당 조직',d:'김구가 임시 정부를 뒷받침하려고 조직하였다.'},
+{y:1936,m:11,yl:'1936',c:'w',t:'방공 협정',d:'독일·이탈리아·일본이 반공을 내세워 손잡고 침략을 본격화하였다.'},
+{y:1936,m:12,yl:'1936',c:'r',t:'조선 사상범 보호 관찰령',d:'독립운동가를 풀어 준 뒤에도 감시하며 사상을 통제하였다.'},
+{y:1937,m:7,yl:'1937. 7.',c:'r',t:'중일 전쟁',d:'루거우차오 사건을 빌미로 중국 본토 침략을 시작하였다.'},
+{y:1937,m:8,yl:'1937',c:'e',t:'병참 기지화 정책',d:'조선을 군수 기지로 삼아 금속·기계·화학 공업을 키우고 소비재 생산은 억눌렀다.'},
+{y:1937,m:9,yl:'1937',c:'e',t:'연해주 한인 강제 이주',d:'소련이 연해주 한인 수십만 명을 중앙아시아로 강제로 옮겼다.'},
+{y:1937,m:10,yl:'1937',c:'r',t:'황국 신민 서사 제정',d:'내선일체를 내세워 황국 신민 서사 암송과 궁성 요배·신사 참배를 강요하였다.'},
+{y:1937,m:11,yl:'1937',c:'a',t:'조선 민족 전선 연맹',d:'조선 민족 혁명당을 중심으로 관내 좌파 세력이 연합하였다.'},
+{y:1937,m:11,yl:'1937',c:'g',t:'한국 광복 운동 단체 연합회',d:'한국 국민당 중심으로 관내 우파 세력이 연합하였다.'},
+{y:1937,m:12,yl:'1937',c:'r',t:'난징 대학살',d:'일본군이 난징의 중국군 포로와 민간인을 잔혹하게 학살하였다.'},
+{y:1938,m:2,yl:'1938',c:'r',t:'육군 특별 지원병령',d:"'지원'의 이름을 빌려 한국인 청년을 전쟁터로 내몰았다."},
+{y:1938,m:3,yl:'1938',c:'r',t:'제3차 조선 교육령',d:'학교 이름을 일본과 같게 하고 한국어를 선택 과목으로 밀어냈다.'},
+{y:1938,m:4,yl:'1938',c:'r',t:'국가 총동원법',d:'전쟁에 필요한 인력과 물자를 마음대로 끌어 쓸 수 있게 한 법이다.'},
+{y:1938,m:6,yl:'1938',c:'e',t:'강제 저축',d:'임금과 농산물 대금에서 먼저 떼어 저축하게 해 전쟁 비용으로 썼다.'},
+{y:1938,m:7,yl:'1938',c:'r',t:'국민정신 총동원 조선 연맹 · 애국반',d:'10호 단위 애국반으로 일상을 감시하고 배급을 통제하였다.'},
+{y:1938,m:10,yl:'1938',c:'a',t:'조선 의용대 창설',d:'김원봉이 이끈 중국 관내 최초의 한인 무장 부대이다.'},
+{y:1939,m:7,yl:'1939',c:'r',t:'국민 징용령',d:'한국인을 광산·군수 공장 등으로 끌고 가 강제 노동을 시켰다.'},
+{y:1939,m:9,yl:'1939',c:'w',t:'제2차 세계 대전 발발',d:'독일이 소련과 불가침 조약을 맺은 뒤 폴란드를 침공하였다.'},
+{y:1940,m:2,yl:'1940',c:'r',t:'창씨개명',d:'성과 이름을 일본식으로 바꾸게 하고, 거부하면 입학·배급에서 불이익을 주었다.'},
+{y:1940,m:3,yl:'1940',c:'e',t:'식량 배급제 · 미곡 공출제',d:'쌀을 자유롭게 사고팔지 못하게 하고, 생산한 쌀을 헐값에 강제로 거두어 갔다.'},
+{y:1940,m:8,yl:'1940',c:'r',t:'『조선일보』·『동아일보』 폐간',d:'한글 신문을 모두 없앴다.'},
+{y:1940,m:9,yl:'1940',c:'g',t:'임시 정부, 충칭 정착',d:'8년에 걸친 이동 끝에 충칭에 자리를 잡았다.'},
+{y:1941,m:2,yl:'1941',c:'r',t:'조선 사상범 예방 구금령',d:'저항할 가능성만 있어도 재판 없이 가둘 수 있게 하였다.'},
+{y:1941,m:3,yl:'1941',c:'r',t:'국민학교 개칭 · 한국어 폐지',d:"소학교를 '황국 신민의 학교'인 국민학교로 바꾸고 한국어 과목을 없앴다."},
+{y:1941,m:8,yl:'1941',c:'e',t:'금속 공출',d:'농기구·교회 종·불상·놋그릇까지 무기 재료로 빼앗아 갔다.'},
+{y:1941,m:12,yl:'1941. 12.',c:'r',t:'아시아·태평양 전쟁',d:'미국·영국의 경제 봉쇄에 맞서 진주만을 기습하며 전쟁을 넓혔다.'},
+{y:1942,m:5,yl:'1942',c:'r',t:'일상생활 일본어 강요',d:'학교를 넘어 생활 속에서도 우리말을 쓰지 못하게 하였다.'},
+{y:1942,m:10,yl:'1942',c:'r',t:'조선어 학회 사건',d:'한글 연구를 독립운동으로 몰아 학회 회원들을 치안 유지법으로 탄압하였다.'},
+{y:1943,m:10,yl:'1943',c:'r',t:'학도 지원병제',d:'병력이 모자라자 학생들까지 전쟁터로 끌고 갔다.'},
+{y:1944,m:4,yl:'1944',c:'r',t:'징병제',d:'지원의 형식마저 버리고 한국인 청년을 강제로 징집하였다.'},
+{y:1944,m:8,yl:'1944',c:'r',t:'여자 정신 근로령',d:'여성들을 군수 공장 등에 강제로 동원하였다.'}
+];
+
+const ERAS=[
+ {k:'pre', from:0,   to:1909, yr:'1906 – 1909', name:'국권 침탈 전야', desc:'국외에서 싹튼 독립운동의 씨앗'},
+ {k:'e10', from:1910,to:1919, yr:'1910s', name:'무 단 통 치', desc:'헌병 경찰 · 토지 조사 · 비밀 결사 · 독립운동 기지'},
+ {k:'e20', from:1920,to:1929, yr:'1920s', name:'문 화 정 치', desc:'민족 분열 · 산미 증식 · 실력 양성 · 무장 투쟁'},
+ {k:'e30', from:1930,to:1939, yr:'1930s', name:'민 족 말 살', desc:'대륙 침략 · 병참 기지화 · 한중 연합 · 한인 애국단'},
+ {k:'e40', from:1940,to:1949, yr:'1940 – 1945', name:'전 시 총 동 원', desc:'창씨개명 · 공출 · 징용 · 징병'}
+];
+
+const on=new Set(Object.keys(CATS));
+EV.forEach((e,i)=>{e.i=i;e.m=e.m||0});
+const SORTED=[...EV].sort((a,b)=>a.y-b.y||a.m-b.m||a.i-b.i);
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function hl(s,q){s=esc(s);if(!q)return s;const i=s.toLowerCase().indexOf(q.toLowerCase());return i<0?s:s.slice(0,i)+'<mark>'+s.slice(i,i+q.length)+'</mark>'+s.slice(i+q.length)}
+
+document.getElementById('flts').innerHTML=Object.entries(CATS).map(([k,v])=>`<button class="flt c-${k}" data-k="${k}" onclick="flt('${k}')"><i></i>${v}</button>`).join('')+`<button class="txt" onclick="fltAll()">전체</button>`;
+function flt(k){on.has(k)?on.delete(k):on.add(k);syncF();render()}
+function fltAll(){Object.keys(CATS).forEach(k=>on.add(k));syncF();render()}
+function syncF(){document.querySelectorAll('.flt').forEach(b=>b.classList.toggle('off',!on.has(b.dataset.k)))}
+
+function render(){
+ const q=document.getElementById('q').value.trim(), ql=q.toLowerCase();
+ const opened=new Set([...document.querySelectorAll('.ev.open')].map(x=>x.dataset.i));
+ let h='',nav='',n=0;
+ for(const E of ERAS){
+  const L=SORTED.filter(e=>e.y>=E.from&&e.y<=E.to&&on.has(e.c)&&(!q||(e.t+' '+e.d+' '+e.yl).toLowerCase().includes(ql)));
+  if(!L.length)continue;
+  n+=L.length;
+  nav+=`<button onclick="go('${E.k}')">${E.yr}</button>`;
+  h+=`<section class="era" id="${E.k}"><div class="era-head"><div class="era-yr">${E.yr}</div><div class="era-name">${E.name}</div><div class="era-desc">${E.desc}</div><div class="orn"><span>◆</span></div></div>`;
+  for(const y of [...new Set(L.map(e=>e.y))]){
+   h+=`<div class="yr"><div class="yr-n">${y}</div><div class="yr-list">`;
+   for(const e of L.filter(x=>x.y===y)){
+    const o=opened.has(String(e.i))||(q&&e.d.toLowerCase().includes(ql));
+    h+=`<div class="ev c-${e.c}${o?' open':''}" data-i="${e.i}"><button aria-expanded="${o}" onclick="tg(this)"><span class="t">${hl(e.t,q)}</span><span class="y">(${esc(e.yl)})</span><span class="k">${CATS[e.c]}</span></button><div class="d">${hl(e.d,q)}</div></div>`;
+   }
+   h+=`</div></div>`;
+  }
+  h+=`</section>`;
+ }
+ document.getElementById('tl').innerHTML=h;
+ document.getElementById('dnav').innerHTML=nav;
+ document.getElementById('empty').style.display=n?'none':'block';
+}
+function tg(b){const ev=b.parentElement;ev.classList.toggle('open');b.setAttribute('aria-expanded',ev.classList.contains('open'))}
+function openAll(o){document.querySelectorAll('.ev').forEach(ev=>{ev.classList.toggle('open',o);ev.firstElementChild.setAttribute('aria-expanded',o)})}
+function go(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'})}
+document.getElementById('q').addEventListener('input',render);
+render();
+</script>
+</body>
+</html>

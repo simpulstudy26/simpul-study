@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <script>/* 저장된 화면 모드를 먼저 적용해 깜빡임을 막는다 (기본 다크) */try{if(localStorage.getItem('simpul.theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
+  <script>/* 레슨 화면은 듀오링고 모드 전용: 색을 먼저 적용 */document.documentElement.setAttribute('data-duo','');</script>
+  <title>레슨 · 심풀스터디</title>
+  <meta name="theme-color" content="#131f24">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="./styles/site.css">
+  <link rel="stylesheet" href="./styles/duo.css">
+  <link rel="stylesheet" href="./styles/lesson.css">
+  <script src="./scripts/catalog.js" defer></script>
+  <script src="./scripts/common.js" defer></script>
+  <script src="./scripts/generators.js" defer></script>
+  <script src="./scripts/mine.js" defer></script>
+  <script src="./scripts/duo.js" defer></script>
+  <script src="./scripts/studytime.js" defer></script>
+  <script src="./scripts/timerbar.js" defer></script>
+  <script src="./scripts/lesson.js" defer></script>
+</head>
+<body class="ls-body">
+  <div class="ls-app" id="ls-app">
+    <header class="ls-top">
+      <button class="ls-x" type="button" id="ls-quit" aria-label="레슨 그만하기">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+      </button>
+      <div class="ls-bar" role="progressbar" aria-label="레슨 진행" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0" id="ls-bar">
+        <span class="ls-bar-fill" id="ls-bar-fill"></span>
+        <span class="ls-combo-tag" id="ls-combo-tag" hidden></span>
+      </div>
+      <span class="ls-streak" id="ls-streak" title="연속 정답">🔥 <b id="ls-combo">0</b></span>
+    </header>
+
+    <main class="ls-main" id="ls-main">
+      <p class="ls-loading" role="status">레슨을 준비하고 있어요…</p>
+    </main>
+
+    <footer class="ls-foot" id="ls-foot"></footer>
+  </div>
+
+  <div class="ls-modal" id="ls-modal" hidden role="dialog" aria-modal="true" aria-labelledby="ls-modal-title">
+    <div class="ls-modal-card">
+      <p class="ls-modal-emoji" aria-hidden="true">🥲</p>
+      <h2 id="ls-modal-title">잠깐, 그만둘 건가요?</h2>
+      <p>지금 나가면 이번 레슨의 진행이 사라져요. (이미 얻은 XP와 틀린 문제 기록은 남아요)</p>
+      <button class="ls-btn ls-btn-green" type="button" id="ls-stay">계속 학습하기</button>
+      <a class="ls-btn ls-btn-ghost ls-btn-danger" href="./index.html" id="ls-leave">그만하기</a>
+    </div>
+  </div>
+</body>
+</html>

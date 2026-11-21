@@ -1,0 +1,10 @@
+# 심풀스터디 Cloudflare Pages 설정 (사이트 + 학생용 API + 관리자 API)
+# 처음 한 번: README의 "Cloudflare 배포" 순서대로 D1을 만들고 database_id를 아래에 넣으세요.
+name = "simpul-study"
+pages_build_output_dir = "site"
+compatibility_date = "2025-06-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "simpul"
+database_id = "66b28def-ecec-4ca6-b172-02f5bbaa05f5"

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>/* 저장된 화면 모드를 먼저 적용해 깜빡임을 막는다 (기본 다크) */try{if(localStorage.getItem('simpul.theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
+  <title>수학 연습 · 심풀스터디</title>
+  <meta name="theme-color" content="#09090b">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="./styles/site.css">
+  <script src="./scripts/catalog.js" defer></script>
+  <script src="./scripts/common.js" defer></script>
+  <script src="./scripts/studytime.js" defer></script>
+  <script src="./scripts/timerbar.js" defer></script>
+  <script src="./scripts/practice.js" defer></script>
+  <script src="./scripts/conditions.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="site-logo" href="./index.html"><img src="./assets/simpul-logo-white.png" alt="심풀스터디 홈" width="695" height="257"></a>
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="./index.html#subjects" aria-current="page">과목</a>
+        <a href="./exams.html">시험범위</a>
+        <a href="./cloud.html">무한 문제</a>
+        <a href="./make.html">문제 만들기</a>
+        <a href="./timer.html">공부 타이머</a>
+        <a href="./dict.html">사전</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap practice-wrap">
+    <section id="math-conditions" aria-labelledby="conditions-title" hidden>
+      <div class="page-head">
+        <nav class="crumbs" aria-label="현재 위치"><a href="./index.html">홈</a> › <a href="./subject.html?s=math">수학</a> › 공통수학2</nav>
+        <h1 id="conditions-title">필요조건과 충분조건 서술형 연습</h1>
+        <p>두 조건 p, q의 관계를 판단하고 근거를 쓰는 연습이에요. 문제는 누를 때마다 새로 만들어져요.</p>
+      </div>
+      <div class="concept">
+        <p class="formula">p ⇒ q가 참이면 p는 q의 충분조건, q는 p의 필요조건</p>
+        <p class="tip">성립하지 않는 방향은 반례 하나로 보여 주면 돼요. 두 방향이 모두 참이면 필요충분조건이에요.</p>
+      </div>
+      <div class="toolbar">
+        <button class="btn btn-primary" id="generate" type="button">새 문제 5개 만들기</button>
+      </div>
+      <p class="status-line" id="generation-status" role="status">버튼을 누르면 문제 5개가 나와요. 풀이를 쓴 뒤 ‘정답 보기’로 확인하세요.</p>
+      <div class="question-list" id="questions"></div>
+    </section>
+
+    <section id="math-inverse" aria-labelledby="inverse-title" hidden>
+      <div class="page-head">
+        <nav class="crumbs" aria-label="현재 위치"><a href="./index.html">홈</a> › <a href="./subject.html?s=math">수학</a> › 공통수학2</nav>
+        <h1 id="inverse-title">역함수 개념과 기본 문제</h1>
+        <p>역함수를 구하는 순서를 확인하고 기본 문제 3개를 풀어 보세요.</p>
+      </div>
+      <div class="concept">
+        <p>함수 f가 x를 y로 보내면, 역함수 f⁻¹는 y를 다시 x로 돌려보내요. 일대일대응인 함수만 역함수를 가져요.</p>
+        <p class="formula">y = f(x)에서 x와 y를 바꾼 뒤 y에 대해 정리하면 y = f⁻¹(x)</p>
+        <p class="tip">원래 함수의 정의역과 치역은 역함수에서 서로 바뀌어요. f⁻¹(x)는 1/f(x)와 달라요.</p>
+      </div>
+      <div class="question-list">
+        <article class="question-card">
+          <h3>문항 1</h3>
+          <p>실수 전체에서 정의된 함수 f(x) = 2x + 3의 역함수 f⁻¹(x)를 구하시오.</p>
+          <label for="inverse-response-1">나의 풀이</label>
+          <textarea class="textarea" id="inverse-response-1" rows="3" placeholder="x와 y를 바꾸고 y에 대해 정리해 보세요."></textarea>
+          <details><summary>정답 보기</summary><p>정답: f⁻¹(x) = (x − 3)/2</p><p>해설: y = 2x + 3에서 x와 y를 바꾸면 x = 2y + 3이다. y에 대해 정리하면 y = (x − 3)/2이다.</p></details>
+        </article>
+        <article class="question-card">
+          <h3>문항 2</h3>
+          <p>실수 전체에서 정의된 함수 f(x) = 3x − 2에 대해 f⁻¹(7)의 값을 구하시오.</p>
+          <label for="inverse-response-2">나의 풀이</label>
+          <textarea class="textarea" id="inverse-response-2" rows="3" placeholder="f(a) = 7을 만족하는 a를 찾아보세요."></textarea>
+          <details><summary>정답 보기</summary><p>정답: 3</p><p>해설: f(a) = 7이면 3a − 2 = 7이므로 a = 3이다. 따라서 f⁻¹(7) = 3이다.</p></details>
+        </article>
+        <article class="question-card">
+          <h3>문항 3</h3>
+          <p>함수 f: [0, ∞) → [0, ∞), f(x) = x²의 역함수와 그 정의역을 구하시오.</p>
+          <label for="inverse-response-3">나의 풀이</label>
+          <textarea class="textarea" id="inverse-response-3" rows="3" placeholder="원래 함수의 정의역이 x ≥ 0임을 이용해 보세요."></textarea>
+          <details><summary>정답 보기</summary><p>정답: f⁻¹(x) = √x, 정의역은 [0, ∞)</p><p>해설: x와 y를 바꾸면 x = y²이다. 원래 함수의 정의역에 따라 y ≥ 0이므로 y = √x이다. 역함수의 정의역은 원래 함수의 치역인 [0, ∞)이다.</p></details>
+        </article>
+      </div>
+    </section>
+
+    <div class="section" id="practice-next"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>심풀스터디 · 최근 본 자료는 이 기기에만 저장돼요.</span>
+      <a href="./teacher.html">선생님용 출제실</a>
+    </div>
+  </footer>
+</body>
+</html>

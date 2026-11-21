@@ -1,0 +1,24 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "simpul",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "server.py",
+        "--port",
+        "8011"
+      ],
+      "port": 8011
+    },
+    {
+      "name": "simpul-windows",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "cloudflare/dev-server.mjs",
+        "8012"
+      ],
+      "port": 8012
+    }
+  ]
+}

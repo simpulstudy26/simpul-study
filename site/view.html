@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>/* 저장된 화면 모드를 먼저 적용해 깜빡임을 막는다 (기본 다크) */try{if(localStorage.getItem('simpul.theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
+  <title>자료 보기 · 심풀스터디</title>
+  <meta name="theme-color" content="#09090b">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="./styles/site.css">
+  <script src="./scripts/catalog.js" defer></script>
+  <script src="./scripts/common.js" defer></script>
+  <script src="./scripts/studytime.js" defer></script>
+  <script src="./scripts/timerbar.js" defer></script>
+  <script src="./scripts/view.js" defer></script>
+  <script src="./scripts/dict.js" defer></script>
+</head>
+<body class="viewer-body">
+  <header class="viewer-bar">
+    <a class="viewer-back" id="back-link" href="./index.html">← 자료 목록</a>
+    <h1 class="viewer-title" id="viewer-title">자료 보기</h1>
+    <nav class="viewer-actions" aria-label="자료 이동">
+      <a id="prev-link" href="#" aria-disabled="true">이전 자료</a>
+      <a id="next-link" href="#" aria-disabled="true">다음 자료</a>
+      <a id="open-link" href="#" target="_blank" rel="noopener">새 창에서 열기</a>
+    </nav>
+  </header>
+  <iframe class="viewer-frame" id="viewer-frame" title="학습 자료"></iframe>
+</body>
+</html>

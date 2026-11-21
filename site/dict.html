@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>/* 저장된 화면 모드를 먼저 적용해 깜빡임을 막는다 (기본 다크) */try{if(localStorage.getItem('simpul.theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
+  <script>/* 듀오링고 모드 색을 먼저 적용 (2학기 기말 버전에서 켰을 때만) */try{var h=document.documentElement,d=JSON.parse(localStorage.getItem('simpul.duo.v1')||'{}'),v=new URLSearchParams(location.search).get('v')||localStorage.getItem('simpul.version')||'s2-final';if(d.on===true&&v==='s2-final')h.setAttribute('data-duo','')}catch(e){}</script>
+  <title>사전 · 심풀스터디</title>
+  <meta name="description" content="영어·국어·일본어 단어의 뜻·발음·예문을 찾고 내 단어장에 모아요">
+  <meta name="theme-color" content="#09090b">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="./styles/site.css">
+  <link rel="stylesheet" href="./styles/duo.css">
+  <script src="./scripts/catalog.js" defer></script>
+  <script src="./scripts/common.js" defer></script>
+  <script src="./scripts/duo.js" defer></script>
+  <script src="./scripts/studytime.js" defer></script>
+  <script src="./scripts/timerbar.js" defer></script>
+  <script src="./scripts/dict.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="site-logo" href="./index.html"><img src="./assets/simpul-logo-white.png" alt="심풀스터디 홈" width="695" height="257"></a>
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="./index.html#subjects">과목</a>
+        <a href="./exams.html">시험범위</a>
+        <a href="./cloud.html">무한 문제</a>
+        <a href="./make.html">문제 만들기</a>
+        <a href="./timer.html">공부 타이머</a>
+        <a href="./dict.html" aria-current="page">사전</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap dict-wrap" id="dict-app">
+    <div class="page-head">
+      <nav class="crumbs" aria-label="현재 위치"><a href="./index.html">홈</a> › 사전</nav>
+      <div id="dict-tabs"></div>
+      <h1 id="dict-title">사전</h1>
+      <p>영어·국어·일본어사전에서 뜻, 발음, 예문을 찾아요. 국어사전은 한자와 비슷한말·반대말을, 일본어사전은 읽는 법과 후리가나를 함께 보여 줘요. 자주 틀리는 단어는 단어장에 모아 두고 뜻을 가려서 외워 보세요.</p>
+    </div>
+
+    <div class="dict-layout">
+      <section aria-labelledby="dict-search-title">
+        <h2 class="visually-hidden" id="dict-search-title">단어 찾기</h2>
+        <form class="search-box dict-search" id="dict-form" role="search">
+          <div class="dict-combo">
+            <input class="input" id="dict-q" type="search" maxlength="60" autocomplete="off" spellcheck="false" placeholder="찾을 단어"
+              role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="dict-ac" aria-label="찾을 단어">
+            <ul class="dict-ac" id="dict-ac" role="listbox" aria-label="추천 단어" hidden></ul>
+          </div>
+          <button class="btn btn-primary" type="submit">찾기</button>
+        </form>
+        <div class="dict-recent toolbar" id="dict-recent" aria-label="최근 찾은 단어"></div>
+        <p class="search-status" id="dict-status" role="status"></p>
+        <div id="dict-result"></div>
+      </section>
+
+      <aside class="panel dict-wordbook" aria-labelledby="wb-title">
+        <h2 class="section-title" id="wb-title">내 단어장 <small id="wb-count"></small></h2>
+        <label class="dict-hide"><input type="checkbox" id="wb-hide"> 뜻 가리기 (눌러서 보기)</label>
+        <ul class="wb-list" id="wb-list"></ul>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>사전 내용은 네이버 영어·국어·일본어사전에서 가져와요. 단어장과 최근 검색은 이 기기 브라우저에만 저장돼요.</span>
+      <a href="https://dict.naver.com/" target="_blank" rel="noopener">네이버 사전 ↗</a>
+    </div>
+  </footer>
+</body>
+</html>

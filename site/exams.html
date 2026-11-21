@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>/* 저장된 화면 모드를 먼저 적용해 깜빡임을 막는다 (기본 다크) */try{if(localStorage.getItem('simpul.theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
+  <script>/* 듀오링고 모드 색을 먼저 적용 (2학기 기말 버전에서 켰을 때만) */try{var h=document.documentElement,d=JSON.parse(localStorage.getItem('simpul.duo.v1')||'{}'),v=new URLSearchParams(location.search).get('v')||localStorage.getItem('simpul.version')||'s2-final';if(d.on===true&&v==='s2-final')h.setAttribute('data-duo','')}catch(e){}</script>
+  <title>시험범위 · 심풀스터디</title>
+  <meta name="description" content="고1 2학기 기말고사 과목별 시험범위. 공부한 범위를 체크하며 확인해요.">
+  <meta name="theme-color" content="#09090b">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="./styles/site.css">
+  <link rel="stylesheet" href="./styles/duo.css">
+  <link rel="stylesheet" href="./styles/exams.css">
+  <script src="./scripts/catalog.js" defer></script>
+  <script src="./scripts/common.js" defer></script>
+  <script src="./scripts/duo.js" defer></script>
+  <script src="./scripts/studytime.js" defer></script>
+  <script src="./scripts/timerbar.js" defer></script>
+  <script src="./scripts/ranges.js" defer></script>
+  <script src="./scripts/exams.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="site-logo" href="./index.html"><img src="./assets/simpul-logo-white.png" alt="심풀스터디 홈" width="695" height="257"></a>
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="./index.html#subjects">과목</a>
+        <a href="./exams.html" aria-current="page">시험범위</a>
+        <a href="./cloud.html">무한 문제</a>
+        <a href="./make.html">문제 만들기</a>
+        <a href="./timer.html">공부 타이머</a>
+        <a href="./dict.html">사전</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="page-head">
+      <nav class="crumbs" aria-label="현재 위치"><a href="./index.html">홈</a> › <span>시험범위</span></nav>
+      <h1>2학기 기말고사 시험범위</h1>
+      <p>1학년 과목별 시험범위예요. 공부한 범위를 체크하면 얼마나 끝냈는지 보여 줘요. 듀오링고 모드의 학습 경로와 체크가 함께 움직여요.</p>
+    </div>
+
+    <div class="ex-progress panel">
+      <div class="ex-progress-text">
+        <span class="ex-progress-label">공부한 범위</span>
+        <strong><span id="ex-done">0</span> / <span id="ex-total">0</span></strong>
+      </div>
+      <span class="ex-bar" role="progressbar" aria-label="공부한 범위" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="ex-bar"><span id="ex-fill"></span></span>
+    </div>
+
+    <div class="ex-tools">
+      <ul class="subject-tabs" id="ex-tabs" aria-label="과목 고르기"></ul>
+      <label class="visually-hidden" for="ex-q">범위 검색</label>
+      <input class="input ex-search" id="ex-q" type="search" autocomplete="off" placeholder="검색 (예: 프린트, 부교재)">
+    </div>
+
+    <div class="ex-list" id="ex-list"></div>
+
+    <p class="ex-foot">
+      <span>체크 표시는 이 기기에만 저장돼요.</span>
+      <button class="linkish" type="button" id="ex-reset">체크 모두 지우기</button>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>심풀스터디 · 시험범위는 학교 공지 기준이에요. 바뀌면 학교 공지를 따라 주세요.</span>
+      <a href="./admin.html">관리자</a>
+    </div>
+  </footer>
+</body>
+</html>
