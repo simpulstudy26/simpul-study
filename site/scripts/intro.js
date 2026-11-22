@@ -103,6 +103,7 @@
     closed = true;
     root.classList.add('is-leaving');
     html.classList.remove('intro-open');
+    document.dispatchEvent(new Event('simpul:intro-done')); // fx.js가 제목 효과를 시작
     setTimeout(() => root.remove(), reduce ? 0 : 650);
     const target = document.querySelector('.page-head h1');
     if (target) { target.setAttribute('tabindex', '-1'); target.focus({ preventScroll: true }); }

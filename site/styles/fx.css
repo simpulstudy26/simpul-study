@@ -1,0 +1,28 @@
+/* 심풀 움직임 효과 (scripts/fx.js와 짝) — React Bits BlurText · SpotlightCard · ClickSpark 바닐라 버전 */
+:root { --fx-spark: #facc15; }
+html[data-theme="light"] { --fx-spark: #ca8a04; }
+
+/* BlurText */
+.fx-blur-word { display: inline-block; animation: fx-blur-in .7s cubic-bezier(.2, .7, .2, 1) both; }
+@keyframes fx-blur-in {
+  from { opacity: 0; filter: blur(10px); transform: translateY(-0.35em); }
+  60% { opacity: .6; filter: blur(4px); transform: translateY(0.06em); }
+  to { opacity: 1; filter: blur(0); transform: none; }
+}
+
+/* SpotlightCard: 카드 위에 포인터를 따라가는 빛. 과목 색(--fx-spot)을 쓴다 */
+.subject-link { position: relative; isolation: isolate; overflow: hidden; }
+.subject-link::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: 0;
+  background: radial-gradient(220px circle at var(--fx-x, 50%) var(--fx-y, 50%), color-mix(in srgb, var(--fx-spot, #fff) 22%, transparent), transparent 70%);
+  transition: opacity .25s;
+}
+.subject-link:hover::before { opacity: 1; }
+
+/* ClickSpark 캔버스 */
+.fx-spark-canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-blur-word { animation: none; }
+  .subject-link::before { display: none; }
+}

@@ -160,9 +160,10 @@
     ]);
     const row = el('div', { class: 'duo-step-actions' });
     const btn = el('button', { type: 'button', class: 'btn btn-primary', text: done ? '다시 공부할래요' : '공부했어요 ✓' });
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', e => {
       RG.setDone(n.id, !done);
       if (!done) D.sound && D.sound('ok');
+      if (!done && window.FX) { const r = btn.getBoundingClientRect(); FX.spark(e.clientX || r.left + r.width / 2, e.clientY || r.top + r.height / 2); }
       openId = null; drawPath(x);
       const next = stage.querySelector('.duo-node.is-current');
       if (next) next.focus(); else focusNode(n.id);

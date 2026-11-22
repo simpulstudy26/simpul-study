@@ -30,7 +30,7 @@
   const grid = document.getElementById('subject-grid');
   S.SUBJECTS.forEach(subject => {
     grid.append(el('li', {}, [
-      el('a', { class: 'subject-link', href: 'subject.html?s=' + subject.id }, [
+      el('a', { class: 'subject-link', href: 'subject.html?s=' + subject.id, style: '--fx-spot:' + subject.color }, [
         el('span', { class: 'subject-mark', style: 'background:' + subject.color, 'aria-hidden': 'true', text: subject.mark }),
         el('span', { class: 'subject-name', text: subject.name }),
         el('span', { class: 'subject-meta', text: '자료 ' + subject.items.length + '개' }),

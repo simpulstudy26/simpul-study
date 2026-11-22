@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="./styles/site.css">
   <link rel="stylesheet" href="./styles/duo.css">
   <link rel="stylesheet" href="./styles/intro.css">
+  <link rel="stylesheet" href="./styles/fx.css">
   <script>/* 인트로: 이 탭에서 처음 열 때만. 인트로가 뜨기 전 홈이 비치지 않게 잠깐 가린다 */try{if(sessionStorage.getItem('simpul.intro.seen')!=='1'||/[?&]intro=1/.test(location.search))document.documentElement.classList.add('intro-pending')}catch(e){}</script>
   <script src="./scripts/catalog.js" defer></script>
   <script src="./scripts/common.js" defer></script>
@@ -23,6 +24,7 @@
   <script src="./scripts/timerbar.js" defer></script>
   <script src="./scripts/home.js" defer></script>
   <script src="./scripts/ranges.js" defer></script>
+  <script src="./scripts/fx.js" defer></script>
   <script src="./scripts/duo-home.js" defer></script>
   <script src="./scripts/intro.js" defer></script>
 </head>
@@ -44,7 +46,7 @@
 
   <main class="wrap">
     <div class="page-head">
-      <h1>고1 2학기 기말고사 대비</h1>
+      <h1 data-fx="blur">고1 2학기 기말고사 대비</h1>
       <p>과목을 고르면 2학기 기말고사 범위 핵심 개념과 자료가 나와요. 무한 문제로 연습하고, 나만의 문제도 만들어 보세요. <a href="./exams.html">시험범위 확인하기 →</a></p>
     </div>
 
