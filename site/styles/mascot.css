@@ -1,0 +1,85 @@
+/* 심풀 캐릭터 ‘풀이’ (scripts/mascot.js와 짝). 심풀 고유 색: 새싹 초록 + 연두 잎 */
+.pul {
+  --pul-size: 96px;
+  --pul-body: #3CB868; --pul-body-dark: #2A9A52; --pul-belly: #8FE3A8;
+  --pul-leaf: #7ED957; --pul-leaf-dark: #4FAF3A; --pul-ink: #173B26;
+  display: inline-block; width: var(--pul-size); height: calc(var(--pul-size) * 1.1); flex: none; line-height: 0;
+}
+.pul svg { width: 100%; height: 100%; overflow: visible; }
+.pul-shadow { fill: rgb(0 0 0 / 0.16); }
+.pul-body { fill: var(--pul-body); stroke: var(--pul-body-dark); stroke-width: 3; }
+.pul-belly { fill: var(--pul-belly); opacity: .55; }
+.pul-arm ellipse { fill: var(--pul-body); stroke: var(--pul-body-dark); stroke-width: 3; }
+.pul-arm { transform-box: view-box; transition: transform .35s cubic-bezier(.3, 1.4, .5, 1); }
+.pul-arm-l { transform-origin: 24px 78px; }  /* 어깨를 축으로 돌린다 */
+.pul-arm-r { transform-origin: 96px 78px; }
+.pul-stem { fill: none; stroke: var(--pul-leaf-dark); stroke-width: 4; stroke-linecap: round; }
+.pul-leaf { fill: var(--pul-leaf); stroke: var(--pul-leaf-dark); stroke-width: 2.5; stroke-linejoin: round; }
+.pul-vein { fill: none; stroke: var(--pul-leaf-dark); stroke-width: 1.6; stroke-linecap: round; opacity: .7; }
+.pul-sprout { transform-box: fill-box; transform-origin: 50% 100%; animation: pul-sway 3.2s ease-in-out infinite; }
+.pul-eye { fill: #fff; }
+.pul-pupil { fill: var(--pul-ink); }
+.pul-glint { fill: #fff; }
+.pul-eyes-open { transform-box: fill-box; transform-origin: 50% 50%; animation: pul-blink 4.6s infinite; }
+.pul-eyes-joy path, .pul-eyes-sad path { fill: none; stroke: var(--pul-ink); stroke-width: 4; stroke-linecap: round; }
+.pul-blush { fill: #FF8FA3; opacity: .55; }
+.pul-mouth { fill: none; stroke: var(--pul-ink); stroke-width: 3.6; stroke-linecap: round; stroke-linejoin: round; }
+.pul-mouth-open { fill: #8B2E3C; stroke-width: 3; }
+.pul-tear { fill: #7CC7FF; }
+.pul-sparks path { fill: #FFC93C; }
+.pul-dots circle { fill: currentColor; opacity: .35; }
+.pul-bob { transform-box: fill-box; transform-origin: 50% 100%; animation: pul-breathe 3.2s ease-in-out infinite; }
+
+/* 표정별로 보이는 부분 */
+.pul .pul-eyes-joy, .pul .pul-eyes-sad, .pul .pul-mouth-open, .pul .pul-mouth-sad, .pul .pul-mouth-think, .pul .pul-tear, .pul .pul-sparks, .pul .pul-dots { display: none; }
+.pul[data-mood="happy"] .pul-eyes-open, .pul[data-mood="cheer"] .pul-eyes-open { display: none; }
+.pul[data-mood="happy"] .pul-eyes-joy, .pul[data-mood="cheer"] .pul-eyes-joy { display: inline; }
+.pul[data-mood="happy"] .pul-mouth-idle, .pul[data-mood="cheer"] .pul-mouth-idle { display: none; }
+.pul[data-mood="happy"] .pul-mouth-open, .pul[data-mood="cheer"] .pul-mouth-open { display: inline; }
+.pul[data-mood="cheer"] .pul-sparks { display: inline; animation: pul-twinkle 1s ease-in-out infinite alternate; }
+.pul[data-mood="cheer"] .pul-arm-l { transform: rotate(140deg); }
+.pul[data-mood="cheer"] .pul-arm-r { transform: rotate(-140deg); }
+.pul[data-mood="happy"] .pul-arm-l { transform: rotate(100deg); }
+.pul[data-mood="happy"] .pul-arm-r { transform: rotate(-100deg); }
+.pul[data-mood="sad"] .pul-eyes-open, .pul[data-mood="sad"] .pul-mouth-idle { display: none; }
+.pul[data-mood="sad"] .pul-eyes-sad, .pul[data-mood="sad"] .pul-mouth-sad, .pul[data-mood="sad"] .pul-tear { display: inline; }
+.pul[data-mood="sad"] .pul-sprout { animation: none; transform: rotate(-14deg) scaleY(.9); }
+.pul[data-mood="sad"] .pul-arm-l { transform: rotate(-12deg); }
+.pul[data-mood="sad"] .pul-arm-r { transform: rotate(12deg); }
+.pul[data-mood="think"] .pul-mouth-idle { display: none; }
+.pul[data-mood="think"] .pul-mouth-think, .pul[data-mood="think"] .pul-dots { display: inline; }
+.pul[data-mood="think"] .pul-pupil, .pul[data-mood="think"] .pul-glint { transform: translate(3px, -3px); }
+.pul[data-mood="think"] .pul-arm-r { transform: rotate(-150deg) translate(14px, 6px); }
+
+/* 답을 고른 순간의 움직임 */
+.pul.is-react[data-mood="happy"] .pul-bob, .pul.is-react[data-mood="cheer"] .pul-bob { animation: pul-jump .7s cubic-bezier(.3, 1.4, .5, 1) 1, pul-breathe 3.2s ease-in-out .7s infinite; }
+.pul.is-react[data-mood="sad"] .pul-bob { animation: pul-droop .6s ease-out 1 both; }
+.pul[data-mood="cheer"].is-react .pul-bob { animation: pul-jump .7s cubic-bezier(.3, 1.4, .5, 1) 3; }
+
+@keyframes pul-breathe { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.03, .97); } }
+@keyframes pul-sway { 0%, 100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
+@keyframes pul-blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.08); } }
+@keyframes pul-jump { 0% { transform: translateY(0) scale(1, 1); } 25% { transform: translateY(0) scale(1.1, .88); } 55% { transform: translateY(-18px) scale(.94, 1.08); } 80% { transform: translateY(0) scale(1.06, .94); } 100% { transform: translateY(0) scale(1, 1); } }
+@keyframes pul-droop { 0% { transform: translateY(0); } 40% { transform: translateY(4px) scale(1.04, .94); } 100% { transform: translateY(2px) scale(1.01, .98); } }
+@keyframes pul-twinkle { from { opacity: .4; } to { opacity: 1; } }
+
+/* 말풍선 (레슨: 캐릭터가 문제를 말한다) */
+.pul-say { display: flex; align-items: flex-end; gap: 14px; }
+.pul-bubble {
+  position: relative; flex: 1; min-width: 0; padding: 14px 18px; border: 2px solid var(--pul-bubble-line, hsl(var(--border)));
+  border-radius: 16px; background: var(--pul-bubble-bg, hsl(var(--card))); color: inherit;
+}
+.pul-bubble::before, .pul-bubble::after { content: ""; position: absolute; left: -12px; bottom: 18px; border: 10px solid transparent; border-left: 0; }
+.pul-bubble::before { border-right: 12px solid var(--pul-bubble-line, hsl(var(--border))); }
+.pul-bubble::after { left: -8px; border-right: 10px solid var(--pul-bubble-bg, hsl(var(--card))); border-width: 8px 10px 8px 0; bottom: 20px; }
+
+@media (max-width: 560px) {
+  .pul-say.pul-say-stack { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .pul-say.pul-say-stack .pul-bubble::before, .pul-say.pul-say-stack .pul-bubble::after { left: 28px; bottom: auto; top: -12px; border: 10px solid transparent; border-top: 0; }
+  .pul-say.pul-say-stack .pul-bubble::before { border-bottom: 12px solid var(--pul-bubble-line, hsl(var(--border))); }
+  .pul-say.pul-say-stack .pul-bubble::after { top: -8px; left: 30px; border-width: 0 8px 10px; border-bottom-color: var(--pul-bubble-bg, hsl(var(--card))); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pul *, .pul.is-react .pul-bob { animation: none !important; }
+  .pul-arm { transition: none; }
+}

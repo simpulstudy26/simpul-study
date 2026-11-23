@@ -155,6 +155,15 @@ html[data-duo] .page-head h1 { font-weight: 800; }
 .duo-chip { height: 36px; padding: 0 12px; gap: 8px; background: hsl(var(--background)); color: hsl(var(--foreground)); border: 2px solid hsl(var(--border)); box-shadow: 0 3px 0 hsl(var(--border)); }
 .duo-chip .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
 
+/* 캐릭터 ‘풀이’ (styles/mascot.css) */
+.duo-greet { margin: 0 0 14px; }
+.duo-greet .pul { cursor: pointer; }
+.duo-greet .pul-bubble { font-size: 15px; font-weight: 700; }
+.duo-greet .pul-bubble p { margin: 0; }
+.duo-node-pul { position: absolute; left: calc(50% + 46px); top: 30px; pointer-events: none; }
+.duo-node-pul.is-left { left: auto; right: calc(50% + 46px); transform: scaleX(-1); }
+.duo-subject-pul { align-self: center; }
+
 /* 학습 경로 */
 .duo-path-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 8px; padding-bottom: 4px; }
 .duo-path-tabs::-webkit-scrollbar { display: none; }

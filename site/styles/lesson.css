@@ -77,6 +77,12 @@ html[data-theme="light"] .ls-body {
 }
 .ls-input:focus { outline: none; border-color: var(--ls-pick-line); }
 
+/* 캐릭터 ‘풀이’가 말하는 문제 */
+.ls-say { --pul-bubble-bg: var(--ls-bg); --pul-bubble-line: var(--ls-line); margin: 0 0 24px; color: var(--ls-sub); }
+.ls-say .ls-prompt { margin: 0; padding: 0; border: 0; color: var(--ls-ink); }
+.ls-burst-pul { display: grid; place-items: center; margin-bottom: 4px; }
+.ls-modal-pul { display: block; margin: 0 auto 8px; color: #AFAFAF; }
+
 /* O/X 문제 */
 .ls-ox { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .ls-ox .ls-choice { grid-template-columns: 1fr; justify-items: center; gap: 6px; min-height: 150px; text-align: center; }

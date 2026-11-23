@@ -48,6 +48,14 @@
 
   /* ── 레슨 상태 ── */
   let items = [], queue = [], cur = null, picked = null, phase = 'idle';
+  const M = S.mascot;
+  /* 위쪽 연속 정답 🔥 이모지를 납작한 불꽃 그림으로 바꾼다 */
+  let comboFire = null;
+  if (S.flame) {
+    const box = $('ls-streak');
+    if (box && box.firstChild && box.firstChild.nodeType === 3) box.firstChild.replaceWith(comboFire = S.flame.icon({ lit: false, size: 22 }), ' ');
+  } // 캐릭터 ‘풀이’: 문제를 말풍선으로 말하고 답에 따라 표정이 바뀐다
+  let pul = null;
   const L = { total: 0, done: 0, firstRight: 0, xp: 0, combo: 0, start: 0, streak: null };
 
   function setBar() {
@@ -57,8 +65,11 @@
     $('ls-bar').setAttribute('aria-valuenow', String(L.done));
     $('ls-combo').textContent = L.combo;
     $('ls-streak').classList.toggle('is-hot', L.combo >= 3);
+    /* 3연속 정답부터 불꽃이 켜지고, 연속이 길수록 빠르게 일렁인다. 틀리면 꺼진다 */
+    if (S.flame && comboFire) S.flame.set(comboFire, L.combo >= 3, L.combo >= 10 ? 3 : L.combo >= 7 ? 2 : L.combo >= 5 ? 1 : 0);
   }
   function comboTag(n) {
+    if (S.flame && comboFire) S.flame.burstAt(comboFire, { count: Math.min(40, 10 + n * 2) });
     const tag = $('ls-combo-tag');
     tag.textContent = n + '연속 정답!';
     tag.hidden = false;
@@ -99,7 +110,10 @@
     const body = el('section', { class: 'ls-challenge', 'aria-live': 'polite' }, [
       el('div', { class: 'ls-head' }, head),
       el('h1', { class: 'ls-title', text: isOX ? '맞으면 O, 틀리면 X' : isChoice ? '알맞은 답을 고르세요' : '답을 입력하세요' }),
-      el('p', { class: 'ls-prompt', text: q.q })
+      M ? el('div', { class: 'pul-say pul-say-stack ls-say' }, [
+        (pul = M.create(cur.tries > 0 || q.old ? 'think' : 'idle', { size: 92 })),
+        el('div', { class: 'pul-bubble' }, [el('p', { class: 'ls-prompt', text: q.q })])
+      ]) : el('p', { class: 'ls-prompt', text: q.q })
     ]);
     if (isOX) {
       const list = el('div', { class: 'ls-ox', role: 'radiogroup', 'aria-label': 'O 또는 X' });
@@ -184,6 +198,7 @@
   function grade(ok, skipped) {
     if (phase !== 'idle') return;
     phase = 'graded';
+    if (M) M.set(pul, ok ? 'happy' : 'sad');
     const q = cur.q;
     const retry = cur.tries > 0;
     /* 화면 표시 */
@@ -248,7 +263,7 @@
     $('ls-app').classList.add('is-end');
     const tile = (cls, label, value) => el('div', { class: 'ls-stat ' + cls }, [el('span', { class: 'ls-stat-label', text: label }), el('span', { class: 'ls-stat-value', text: value })]);
     main.replaceChildren(el('section', { class: 'ls-end' }, [
-      el('div', { class: 'ls-burst', 'aria-hidden': 'true' }, [el('span', { text: r.perfect ? '🏆' : '🎉' })]),
+      M ? el('div', { class: 'ls-burst ls-burst-pul' }, [M.create('cheer', { size: 150, label: '풀이가 축하해요' })]) : el('div', { class: 'ls-burst', 'aria-hidden': 'true' }, [el('span', { text: r.perfect ? '🏆' : '🎉' })]),
       el('h1', { class: 'ls-end-title', text: r.perfect ? '완벽한 레슨!' : mode === 'review' ? '복습 완료!' : '레슨 완료!' }),
       el('p', { class: 'ls-end-sub', text: r.perfect ? '한 문제도 안 틀렸어요. 보너스 XP를 받았어요.' : '틀린 문제는 복습 목록에 모아 둘게요.' }),
       el('div', { class: 'ls-stats' }, [
@@ -278,12 +293,13 @@
       week.append(el('span', { class: 'ls-day' + (lit ? ' is-lit' : '') + (i === 0 ? ' is-today' : '') }, [el('b', { text: days[d] }), el('i', { text: lit ? '✓' : '' })]));
     }
     main.replaceChildren(el('section', { class: 'ls-end ls-streak-end' }, [
-      el('div', { class: 'ls-flame', 'aria-hidden': 'true', text: '🔥' }),
+      S.flame ? el('div', { class: 'ls-flame ls-flame-svg', id: 'ls-big-flame' }, [S.flame.icon({ big: true, lit: true })]) : el('div', { class: 'ls-flame', 'aria-hidden': 'true', text: '🔥' }),
       el('p', { class: 'ls-streak-num', text: String(s.n) }),
       el('h1', { class: 'ls-end-title is-orange', text: s.n + '일 연속 학습!' }),
       el('p', { class: 'ls-end-sub', text: s.usedShield ? '🛡️ 방패가 연속 기록을 지켜 줬어요!' : s.newShield ? '7일 달성! 방패 1개를 얻었어요.' : '내일도 한 레슨만 하면 기록이 이어져요.' }),
       week
     ]));
+    if (S.flame) setTimeout(() => S.flame.burstAt($('ls-big-flame'), { count: 30 }), 450); // 큰 불꽃이 통통 튄 뒤 불티
     const go = el('button', { class: 'ls-btn ls-btn-green', type: 'button', text: '계속', id: 'ls-primary' });
     go.addEventListener('click', leave);
     foot.replaceChildren(el('div', { class: 'ls-foot-in ls-foot-one' }, [go]));
@@ -294,6 +310,7 @@
 
   /* ── 나가기 확인 ── */
   const modal = $('ls-modal');
+  if (M) { const emo = modal.querySelector('.ls-modal-emoji'); if (emo) emo.replaceWith(M.create('sad', { size: 96, className: 'ls-modal-pul' })); }
   $('ls-quit').addEventListener('click', () => {
     if ($('ls-app').classList.contains('is-end') || !L.total) return leave();
     modal.hidden = false; $('ls-stay').focus();
@@ -328,7 +345,7 @@
     const list = await build();
     if (!list.length) {
       main.replaceChildren(el('section', { class: 'ls-end' }, [
-        el('div', { class: 'ls-burst', 'aria-hidden': 'true' }, [el('span', { text: mode === 'review' ? '✨' : '📭' })]),
+        M ? el('div', { class: 'ls-burst ls-burst-pul' }, [M.create(mode === 'review' ? 'happy' : 'think', { size: 130 })]) : el('div', { class: 'ls-burst', 'aria-hidden': 'true' }, [el('span', { text: mode === 'review' ? '✨' : '📭' })]),
         el('h1', { class: 'ls-end-title', text: mode === 'review' ? '복습할 문제가 없어요' : '아직 문제가 없어요' }),
         el('p', { class: 'ls-end-sub', text: mode === 'review' ? '틀린 문제를 모두 해결했어요!' : '이 단원 문제를 준비하고 있어요. 내 문제를 만들어도 돼요.' })
       ]));

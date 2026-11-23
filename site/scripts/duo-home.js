@@ -16,10 +16,21 @@
   const day = D.today();
   const streak = D.streakNow();
   const goalPct = Math.min(100, Math.round(day.xp / D.goal() * 100));
+  /* 캐릭터 ‘풀이’ 인사: 오늘 상태에 따라 표정과 말이 바뀐다 */
+  if (S.mascot) {
+    const left = D.goal() - day.xp;
+    const mood = day.xp >= D.goal() ? 'cheer' : D.playedToday() ? 'happy' : 'idle';
+    const text = day.xp >= D.goal() ? '오늘 목표 달성! 틀린 문제 복습까지 하면 완벽해요.'
+      : D.playedToday() ? '좋아요! 목표까지 ' + left + ' XP 남았어요. 한 레슨만 더 해 볼까요?'
+      : streak ? '오늘 첫 레슨을 하면 ' + (streak + 1) + '일 연속이에요. 같이 시작해요!' : '안녕하세요, 저는 풀이예요. 오늘 첫 레슨, 같이 시작해요!';
+    const pul = S.mascot.create(mood, { size: 76, label: '풀이' });
+    root.append(el('div', { class: 'pul-say duo-greet' }, [pul, el('div', { class: 'pul-bubble' }, [el('p', { text: text })])]));
+    pul.addEventListener('click', () => S.mascot.set(pul, 'happy'));
+  }
   const ring = el('span', { class: 'duo-ring', style: '--p:' + goalPct, 'aria-hidden': 'true' }, [el('span', { text: goalPct + '%' })]);
-  root.append(el('div', { class: 'duo-bar' }, [
+  const bar = el('div', { class: 'duo-bar' }, [
     el('div', { class: 'duo-stat duo-fill duo-fill-orange' + (D.playedToday() ? ' is-lit' : '') }, [
-      el('span', { class: 'duo-ico', 'aria-hidden': 'true', text: '🔥' }),
+      S.flame ? el('span', { class: 'duo-ico duo-ico-fl', 'aria-hidden': 'true' }, [S.flame.icon({ lit: D.playedToday(), size: 32, level: streak >= 30 ? 3 : streak >= 14 ? 2 : streak >= 7 ? 1 : 0 })]) : el('span', { class: 'duo-ico', 'aria-hidden': 'true', text: '🔥' }),
       el('span', {}, [el('b', { text: streak + '일' }), el('small', { text: D.playedToday() ? '연속 학습 중' : (streak ? '오늘 풀면 ' + (streak + 1) + '일' : '오늘 시작해요') })])
     ]),
     el('div', { class: 'duo-stat duo-fill duo-fill-blue' }, [
@@ -30,7 +41,11 @@
       el('span', { class: 'duo-ico', 'aria-hidden': 'true', text: '🛡️' }),
       el('span', {}, [el('b', { text: '방패 ' + D.shields() + '개' }), el('small', { text: '7일 연속마다 1개 · 하루 빠져도 지켜 줘요' })])
     ])
-  ]));
+  ]);
+  root.append(bar);
+  /* 오늘 공부했으면 불꽃이 켜져 있다. 누르면 불티가 튄다 */
+  const fireIco = bar.querySelector('.duo-ico-fl');
+  if (fireIco && D.playedToday()) fireIco.addEventListener('click', () => S.flame.burstAt(fireIco, { count: 20 }));
 
   /* 일일 퀘스트 + 틀린 문제 복습 */
   const questBox = el('div', { class: 'duo-panel duo-fill duo-fill-gold' }, [el('h2', { class: 'duo-h', text: '오늘의 퀘스트' })]);
@@ -132,6 +147,7 @@
         node.append(el('span', { class: 'duo-node-face', 'aria-hidden': 'true', text: face }));
         const li = el('li', { style: '--x:' + [0, 1, 2, 1, 0, -1, -2, -1][i % 8] }, [
           isCurrent ? el('span', { class: 'duo-bubble', text: '시작' }) : null,
+          isCurrent && S.mascot ? S.mascot.create('idle', { size: 58, className: 'duo-node-pul' + ([0, 1, 2, 1, 0, -1, -2, -1][i % 8] > 0 ? ' is-left' : '') }) : null,
           node,
           el('span', { class: 'duo-node-label', text: n.label })
         ]);

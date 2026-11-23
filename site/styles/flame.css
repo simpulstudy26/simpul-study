@@ -1,0 +1,49 @@
+/* 납작한 만화풍 불꽃 (scripts/flame.js와 짝). 색은 이미 쓰는 듀오링고 모드 색: 주황 #FF9600 · 노랑 #FFC800 · 빨강 #FF4B4B */
+.fl { --fl-size: 22px; display: inline-block; width: var(--fl-size); height: calc(var(--fl-size) * 1.25); line-height: 0; vertical-align: -0.2em; flex: none; }
+.fl svg { width: 100%; height: 100%; overflow: visible; }
+.fl g, .fl svg { transform-box: fill-box; transform-origin: 50% 100%; }
+.fl-outer path { fill: #AFAFAF; }
+.fl-mid path { fill: #D7D7D7; }
+.fl-core path { fill: #EFEFEF; }
+.fl-shine { fill: none; stroke: rgb(255 255 255 / 0.55); stroke-width: 3.5; stroke-linecap: round; }
+html:not([data-theme="light"]) .fl:not(.is-lit) .fl-outer path { fill: #52656D; }
+html:not([data-theme="light"]) .fl:not(.is-lit) .fl-mid path { fill: #6B7F87; }
+html:not([data-theme="light"]) .fl:not(.is-lit) .fl-core path { fill: #8CA0A8; }
+.fl:not(.is-lit) .fl-shine { opacity: .4; }
+
+.fl.is-lit .fl-outer path { fill: #FF9600; }
+.fl.is-lit .fl-mid path { fill: #FFC800; }
+.fl.is-lit .fl-core path { fill: #FFF3C4; }
+.fl.is-lit .fl-outer { animation: fl-sway 1.6s ease-in-out infinite; }
+.fl.is-lit .fl-mid { animation: fl-sway 1.2s ease-in-out infinite reverse; }
+.fl.is-lit .fl-core { animation: fl-pulse .9s ease-in-out infinite; }
+/* 연속이 길수록 빠르고 크게 일렁인다 */
+.fl.is-lit[data-level="1"] .fl-outer { animation-duration: 1.2s; }
+.fl.is-lit[data-level="2"] .fl-outer { animation-duration: .9s; }
+.fl.is-lit[data-level="2"] svg, .fl.is-lit[data-level="3"] svg { transform: scale(1.12); }
+.fl.is-lit[data-level="3"] .fl-outer { animation-duration: .7s; }
+.fl.is-lit[data-level="3"] .fl-outer path { fill: #FF7A00; }
+.fl.is-pop svg { animation: fl-pop .55s cubic-bezier(.3, 1.6, .5, 1); }
+
+/* 연속 학습 화면의 큰 불꽃: 바닥 그림자 + 더 크게 일렁임 */
+.fl-big { --fl-size: 110px; position: relative; }
+.fl-big::after { content: ""; position: absolute; left: 18%; right: 18%; bottom: -6px; height: 10px; border-radius: 50%; background: rgb(0 0 0 / 0.12); }
+.fl-big.is-lit .fl-outer { animation: fl-sway-big 1.4s ease-in-out infinite; }
+
+.fl-burst-canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9998; }
+
+@keyframes fl-sway { 0%, 100% { transform: skewX(0) scale(1, 1); } 25% { transform: skewX(-4deg) scale(1.02, .97); } 50% { transform: skewX(0) scale(.98, 1.04); } 75% { transform: skewX(4deg) scale(1.02, .98); } }
+@keyframes fl-sway-big { 0%, 100% { transform: skewX(0) scale(1, 1); } 25% { transform: skewX(-6deg) scale(1.03, .96); } 50% { transform: skewX(0) scale(.97, 1.06); } 75% { transform: skewX(6deg) scale(1.03, .97); } }
+@keyframes fl-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(.85, .92); } }
+@keyframes fl-pop { 0% { transform: scale(.4); } 60% { transform: scale(1.25); } 100% { transform: scale(1); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .fl *, .fl svg { animation: none !important; }
+  .fl-burst-canvas { display: none; }
+}
+
+/* 놓이는 자리 */
+.ls-flame-svg { display: inline-block; font-size: 0; }
+.duo-ico-fl { filter: none !important; line-height: 0; }
+.duo-ico-fl .fl { cursor: pointer; }
+.duo-fill-orange .fl .fl-outer path { stroke: #fff; stroke-width: 5; stroke-linejoin: round; paint-order: stroke; }

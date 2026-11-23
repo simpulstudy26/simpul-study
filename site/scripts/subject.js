@@ -84,7 +84,8 @@
       });
       lessonBox.append(
         el('div', { class: 'duo-subject-head' }, [
-          el('div', {}, [
+          S.mascot ? S.mascot.create(done === names.length ? 'cheer' : 'idle', { size: 64, className: 'duo-subject-pul' }) : null,
+          el('div', { class: 'duo-subject-text' }, [
             el('h2', { class: 'section-title', id: 'duo-subject-title' }, [document.createTextNode(subject.name + ' 문제 레슨'), el('small', { text: '단원 ' + done + '/' + names.length + ' 완료' })]),
             el('p', { class: 'duo-note', text: '5문제씩 풀어요. O/X·객관식이 섞여 나오고, 틀린 문제는 레슨 끝에 한 번 더 나와요. 단원마다 ' + D.UNIT_GOAL + '문제를 맞히면 완료예요.' })
           ]),
