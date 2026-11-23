@@ -247,7 +247,19 @@
     if (owner) current = owner.id;
   }
   try { localStorage.setItem(VERSION_KEY, current); } catch (e) { /* 저장 불가 */ }
-  const SUBJECTS = BY_VERSION[current];
+  /* 반마다 듣는 선택 과목이 다르다: 1~4반은 일본어, 5~8반은 정보. 반을 고르면 안 듣는 과목은 목록에서 뺀다(고르기 전엔 모두 보임) */
+  const CLASS_KEY = 'simpul.class';
+  const ELECTIVE = { japanese: [1, 2, 3, 4], info: [5, 6, 7, 8] };
+  let myClass = 0;
+  try { myClass = parseInt(localStorage.getItem(CLASS_KEY), 10) || 0; } catch (e) { myClass = 0; }
+  if (myClass < 1 || myClass > 8) myClass = 0;
+  const takes = id => !myClass || !ELECTIVE[id] || ELECTIVE[id].includes(myClass);
+  const ALL_SUBJECTS = BY_VERSION[current];
+  const SUBJECTS = ALL_SUBJECTS.filter(s => takes(s.id));
+  function setClass(n) {
+    try { if (n) localStorage.setItem(CLASS_KEY, String(n)); else localStorage.removeItem(CLASS_KEY); } catch (e) { /* 저장 불가 */ }
+    location.reload();
+  }
 
   function hrefFor(item) {
     if (item.kind === 'link') return item.url;
@@ -269,10 +281,16 @@
   window.Simpul.VERSIONS = VERSIONS.map(v => ({ id: v.id, label: v.label, title: v.title, lead: v.lead, concepts: v.concepts }));
   window.Simpul.version = VERSIONS.find(v => v.id === current);
   window.Simpul.setVersion = setVersion;
-  window.Simpul.SUBJECTS = SUBJECTS;
+  window.Simpul.SUBJECTS = SUBJECTS;          // 내 반이 듣는 과목만
+  window.Simpul.ALL_SUBJECTS = ALL_SUBJECTS;  // 관리자 도구용 전체 과목
+  window.Simpul.myClass = myClass;
+  window.Simpul.setClass = setClass;
+  window.Simpul.takes = takes;
+  window.Simpul.ELECTIVE = ELECTIVE;
   window.Simpul.allItems = () => SUBJECTS.flatMap(subject => subject.items);
   /* 지금 버전에서 먼저 찾고, 없으면 다른 버전에서 (최근 본 자료·예전 주소용) */
   window.Simpul.findItem = id => findIn(current, id) || VERSIONS.map(v => findIn(v.id, id)).find(Boolean);
-  window.Simpul.findSubject = id => SUBJECTS.find(subject => subject.id === id);
+  /* 주소로 바로 들어온 과목(예: 다른 반 과목 자료)도 열리도록 전체에서 찾는다 */
+  window.Simpul.findSubject = id => ALL_SUBJECTS.find(subject => subject.id === id);
   window.Simpul.hrefFor = hrefFor;
 })();

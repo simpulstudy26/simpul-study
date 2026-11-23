@@ -75,6 +75,21 @@
     return box;
   };
 
+  /* 내 반 고르기: 1~4반은 일본어, 5~8반은 정보를 듣는다. 고르면 안 듣는 과목이 사이트 전체에서 빠진다 */
+  S.classPicker = function () {
+    const box = S.el('div', { class: 'class-pick' });
+    const tabs = S.el('div', { class: 'version-tabs class-tabs', role: 'tablist', 'aria-label': '내 반' });
+    [0, 1, 2, 3, 4, 5, 6, 7, 8].forEach(n => {
+      const on = (S.myClass || 0) === n;
+      const b = S.el('button', { type: 'button', role: 'tab', 'aria-selected': on ? 'true' : 'false', text: n ? n + '반' : '모두' , title: n ? (n <= 4 ? '일본어 반' : '정보 반') : '모든 과목 보기' });
+      if (!on) b.addEventListener('click', () => S.setClass(n));
+      tabs.append(b);
+    });
+    const note = S.myClass ? (S.myClass <= 4 ? S.myClass + '반 · 일본어를 들어요 (정보는 안 보여요)' : S.myClass + '반 · 정보를 들어요 (일본어는 안 보여요)') : '반을 고르면 내가 듣는 과목만 보여요 · 1~4반 일본어, 5~8반 정보';
+    box.append(S.el('span', { class: 'class-pick-label', text: '내 반' }), tabs, S.el('span', { class: 'class-pick-note', text: note }));
+    return box;
+  };
+
   /* 익명 사용자 id: 이름·이메일 없이 기기마다 무작위로 만든다. 현재 사용자 수 집계와 하루 문제 만들기 횟수에만 쓴다. */
   S.uid = function () {
     try {
@@ -89,11 +104,16 @@
 
   /* 접속 알림: 화면을 보고 있는 동안 2분마다. 서버(API)가 없는 곳에서는 조용히 무시 */
   /* enter: 이 탭에서 처음 보내는 접속 알림이면 ‘한 번 들어옴’으로 센다 (새 탭·새로 연 브라우저마다 1번) */
+  /* 지금 듀오링고 모드로 보고 있는지 (duo.js와 같은 규칙: 켜져 있고 2학기 기말 버전). 관리자 ‘모드별 사용량’에 쓴다 */
+  function duoMode() {
+    if (document.documentElement.hasAttribute('data-duo')) return true;
+    try { const d = JSON.parse(localStorage.getItem('simpul.duo.v1') || '{}'); return d.on === true && !!S.version && S.version.id === 's2-final'; } catch (e) { return false; }
+  }
   function ping() {
     if (document.hidden || location.protocol === 'file:') return;
     let enter = false;
     try { enter = sessionStorage.getItem('simpul.entered') !== '1'; if (enter) sessionStorage.setItem('simpul.entered', '1'); } catch (e) { /* 저장 불가 */ }
-    fetch('./api/ping', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ uid: S.uid(), enter }), keepalive: true }).catch(() => {});
+    fetch('./api/ping', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ uid: S.uid(), enter, mode: duoMode() ? 'duo' : 'normal' }), keepalive: true }).catch(() => {});
   }
   if (!/admin\.html$/.test(location.pathname)) {
     ping();

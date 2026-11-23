@@ -101,7 +101,7 @@
   }
 
   function fillOnce(d) {
-    S.SUBJECTS.forEach(s => {
+    (S.ALL_SUBJECTS || S.SUBJECTS).forEach(s => {
       $('up-subject').append(el('option', { value: s.id, text: s.name }));
       $('review-subject').append(el('option', { value: s.id, text: s.name }));
     });

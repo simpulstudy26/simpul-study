@@ -1,7 +1,7 @@
 /* 심풀스터디 클라우드 API (Cloudflare Pages Functions + D1)
 
    학생 (로그인 없음, 기기마다 무작위 익명 id)
-     POST /api/ping                   접속 기록 (현재 사용자 수 집계용, 2분마다)
+     POST /api/ping                   접속 기록 (현재 사용자 수 집계용, 2분마다). mode: 'normal' | 'duo' (일반·듀오링고 모드 사용량)
      GET  /api/info?uid=              오늘 남은 문제 만들기 횟수, 서비스 상태
      GET  /api/concepts?subject=      관리자가 올린 2학기 기말고사 범위 개념
      POST /api/generate               AI 문제 만들기. 만든 문제는 서버에 저장하지 않고 학생 브라우저에만 저장됨
@@ -39,6 +39,8 @@ const SCHEMA = [
   'CREATE TABLE IF NOT EXISTS users (uid TEXT PRIMARY KEY, first_seen INTEGER, last_seen INTEGER)',
   'CREATE TABLE IF NOT EXISTS visits (day TEXT, uid TEXT, PRIMARY KEY (day, uid))',
   'CREATE TABLE IF NOT EXISTS usage (day TEXT, who TEXT, n INTEGER, PRIMARY KEY (day, who))',
+  // 모드별 사용량: 날짜·기기·모드마다 접속 알림 수(1번 ≈ 2분 보기)와 들어온 횟수
+  'CREATE TABLE IF NOT EXISTS mode_usage (day TEXT, uid TEXT, mode TEXT, pings INTEGER DEFAULT 0, entries INTEGER DEFAULT 0, PRIMARY KEY (day, uid, mode))',
   'CREATE TABLE IF NOT EXISTS gen_log (day TEXT PRIMARY KEY, requests INTEGER DEFAULT 0, questions INTEGER DEFAULT 0, failures INTEGER DEFAULT 0)',
   'CREATE TABLE IF NOT EXISTS config (key TEXT PRIMARY KEY, value TEXT)',
   'CREATE TABLE IF NOT EXISTS concepts (id INTEGER PRIMARY KEY AUTOINCREMENT, subject TEXT, unit TEXT, data TEXT, source TEXT, updated INTEGER, UNIQUE (subject, unit))',
@@ -55,8 +57,11 @@ const MIGRATIONS = [
   'ALTER TABLE users ADD COLUMN is_admin INTEGER DEFAULT 0',
   'ALTER TABLE visits ADD COLUMN net TEXT',
   'ALTER TABLE visits ADD COLUMN dev TEXT',
-  'ALTER TABLE visits ADD COLUMN entries INTEGER DEFAULT 1'
+  'ALTER TABLE visits ADD COLUMN entries INTEGER DEFAULT 1',
+  'ALTER TABLE users ADD COLUMN mode TEXT'
 ];
+const MODES = ['normal', 'duo'];
+const PING_MINUTES = 2; // 접속 알림 1번 = 화면을 보고 있던 약 2분
 let schemaReady = false;
 
 class HttpError extends Error {
@@ -264,8 +269,11 @@ async function ping({ request, env }) {
   const now = Date.now();
   const net = (await ipHash(request, env)).slice(3, 11); // IP 원문 대신 해시 8글자 (같은 인터넷 연결인지만 알 수 있음)
   const dev = deviceLabel(request.headers.get('User-Agent'));
+  const mode = MODES.includes(body.mode) ? body.mode : 'normal';
   await env.DB.batch([
-    env.DB.prepare('INSERT INTO users (uid, first_seen, last_seen) VALUES (?1, ?2, ?2) ON CONFLICT(uid) DO UPDATE SET last_seen = ?2').bind(body.uid, now),
+    env.DB.prepare('INSERT INTO users (uid, first_seen, last_seen, mode) VALUES (?1, ?2, ?2, ?3) ON CONFLICT(uid) DO UPDATE SET last_seen = ?2, mode = ?3').bind(body.uid, now, mode),
+    env.DB.prepare('INSERT INTO mode_usage (day, uid, mode, pings, entries) VALUES (?1, ?2, ?3, 1, ?4) ' +
+      'ON CONFLICT(day, uid, mode) DO UPDATE SET pings = pings + 1, entries = entries + ?4').bind(kstDay(), body.uid, mode, body.enter ? 1 : 0),
     env.DB.prepare('INSERT INTO visits (day, uid, net, dev, entries) VALUES (?1, ?2, ?3, ?4, 1) ' +
       'ON CONFLICT(day, uid) DO UPDATE SET net = ?3, dev = ?4, entries = COALESCE(entries, 1) + ?5')
       .bind(kstDay(), body.uid, net, dev, body.enter ? 1 : 0)
@@ -410,6 +418,28 @@ async function stats({ env }) {
   const all = (sql, ...args) => env.DB.prepare(sql).bind(...args).all();
   const NA = 'COALESCE(u.is_admin, 0) = 0';           // 관리자 기기 빼기
   const V = 'FROM visits v JOIN users u ON u.uid = v.uid WHERE ' + NA;
+  const M = 'FROM mode_usage m JOIN users u ON u.uid = m.uid WHERE ' + NA;
+  const [modeOnline, modeToday, modeAll, modeSeries] = await Promise.all([
+    all('SELECT COALESCE(u.mode, \'normal\') AS mode, COUNT(*) AS n FROM users u WHERE ' + NA + ' AND last_seen > ? GROUP BY 1', now - ONLINE_WINDOW),
+    all('SELECT m.mode, COUNT(DISTINCT m.uid) AS devices, SUM(m.entries) AS entries, SUM(m.pings) AS pings ' + M + ' AND m.day = ? GROUP BY m.mode', today),
+    all('SELECT m.mode, COUNT(DISTINCT m.uid) AS devices, SUM(m.entries) AS entries, SUM(m.pings) AS pings ' + M + ' AND m.day >= ? GROUP BY m.mode', kstDay(13)),
+    all('SELECT m.day, m.mode, COUNT(DISTINCT m.uid) AS devices, SUM(m.pings) AS pings ' + M + ' AND m.day >= ? GROUP BY m.day, m.mode', kstDay(13))
+  ]);
+  /* 모드별 묶음: { normal: {...}, duo: {...} } (분 = 접속 알림 수 × 2) */
+  const byMode = rows => Object.fromEntries(MODES.map(k => {
+    const r = rows.find(x => x.mode === k) || {};
+    return [k, { devices: r.devices || 0, entries: r.entries || 0, minutes: (r.pings || 0) * PING_MINUTES }];
+  }));
+  const modeDays = [];
+  for (let i = 13; i >= 0; i--) {
+    const d = kstDay(i), row = { day: d };
+    MODES.forEach(k => { const r = modeSeries.results.find(x => x.day === d && x.mode === k) || {}; row[k] = { devices: r.devices || 0, minutes: (r.pings || 0) * PING_MINUTES }; });
+    modeDays.push(row);
+  }
+  const modes = {
+    online: Object.fromEntries(MODES.map(k => [k, (modeOnline.results.find(x => x.mode === k) || {}).n || 0])),
+    today: byMode(modeToday.results), last14: byMode(modeAll.results), days: modeDays
+  };
   const [online, active, total, fresh, admins, entries, people, dupes, gens, series, visits, concepts] = await Promise.all([
     one('SELECT COUNT(*) AS n FROM users u WHERE ' + NA + ' AND last_seen > ?', now - ONLINE_WINDOW),
     one('SELECT COUNT(*) AS n FROM users u WHERE ' + NA + ' AND last_seen >= ?', dayStart),
@@ -439,7 +469,7 @@ async function stats({ env }) {
     online: online.n, today: active.n, total: total.n, new_today: fresh.n, returning_today: Math.max(0, active.n - fresh.n),
     entries_today: entries.n, people_today: people.n, admin_devices: admins.n, dupes: groups,
     generations: gens || { requests: 0, questions: 0, failures: 0 },
-    days: Object.values(byDay), concepts: concepts.results, now
+    days: Object.values(byDay), concepts: concepts.results, modes, now
   });
 }
 

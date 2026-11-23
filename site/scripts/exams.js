@@ -16,10 +16,13 @@
     return [document.createTextNode(text.slice(0, i)), S.el('mark', { text: text.slice(i, i + q.length) }), document.createTextNode(text.slice(i + q.length))];
   }
 
+  const pageHead = document.querySelector('.page-head');
+  if (pageHead && S.classPicker) pageHead.append(S.classPicker()); // 내 반 (선택 과목)
+
   function renderTabs() {
     const box = $('ex-tabs');
     box.replaceChildren();
-    [{ s: 'all', name: '전체' }, ...RANGES].forEach(r => {
+    [{ s: 'all', name: '전체' }, ...RANGES.filter(r => !S.takes || S.takes(r.s))].forEach(r => {
       const b = S.el('button', { type: 'button', 'aria-pressed': String(r.s === active), 'data-s': r.s, text: r.name });
       box.append(S.el('li', {}, [b]));
     });
@@ -30,6 +33,7 @@
     const list = $('ex-list');
     list.replaceChildren();
     RANGES.forEach(r => {
+      if (S.takes && !S.takes(r.s)) return; // 내 반이 안 듣는 선택 과목
       if (active !== 'all' && r.s !== active) return;
       const nameHit = q && r.name.toLowerCase().includes(q.toLowerCase());
       const shown = r.items.filter(it => !q || nameHit || (it.src + ' ' + it.text).toLowerCase().includes(q.toLowerCase()));
@@ -62,7 +66,7 @@
     });
     if (!list.children.length) list.append(S.el('p', { class: 'empty', text: '“' + q + '”에 맞는 범위가 없어요.' }));
 
-    const all = RANGES.flatMap(r => r.items);
+    const all = RANGES.filter(r => !S.takes || S.takes(r.s)).flatMap(r => r.items);
     const total = all.length;
     const done = all.filter(it => R.itemState(it).all).length;
     const pct = total ? Math.round(done / total * 100) : 0;

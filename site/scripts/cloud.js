@@ -386,7 +386,8 @@
   async function init() {
     try { index = await S.bank.index(); } catch (e) { index = { subjects: {} }; }
     try { local = (await fetch('./api/auto/status', { cache: 'no-store' })).ok; } catch (e) { local = false; }
-    if (!S.findSubject(subject)) subject = S.findSubject(store.subject) ? store.subject : (S.SUBJECTS.find(s => bankCount(s.id) || hasGen(s.id)) || S.findSubject('info')).id;
+    const mine = id => S.SUBJECTS.some(s => s.id === id);
+    if (!mine(subject)) subject = mine(store.subject) ? store.subject : (S.SUBJECTS.find(s => bankCount(s.id) || hasGen(s.id)) || S.findSubject('info')).id;
     await choose(subject);
     if (local) { // 로컬에서는 엔진이 새로 만든 문제를 30초마다 받아 온다.
       setInterval(async () => {

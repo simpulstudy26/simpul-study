@@ -19,7 +19,7 @@
   let files = [];
   let busy = false;
 
-  S.SUBJECTS.forEach(s => subjectSelect.append(el('option', { value: s.id, text: s.name })));
+  (S.ALL_SUBJECTS || S.SUBJECTS).forEach(s => subjectSelect.append(el('option', { value: s.id, text: s.name })));
   function fillUnits() {
     const subject = S.findSubject(subjectSelect.value);
     unitSelect.replaceChildren(el('option', { value: '', text: '전체 범위' }));

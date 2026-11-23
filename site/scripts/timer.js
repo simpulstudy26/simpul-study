@@ -8,10 +8,12 @@
   const $ = id => document.getElementById(id);
 
   /* 과목 색: 국어·영어·수학·과학·사회는 열품타 앱 화면에서 뽑은 색, 나머지는 같은 톤으로 고른 색 */
-  const YPT_COLOR = { korean: '#DF732C', english: '#F2AB46', math: '#4994EC', science: '#67AD5B', social: '#A357D7',
-    history: '#C2675A', japanese: '#E0698E', info: '#3BA7A0', etc: '#9E9E9E' };
-  const SUBJECTS = S.SUBJECTS.map(s => ({ id: s.id, name: s.name, color: YPT_COLOR[s.id] || s.color }))
-    .concat([{ id: 'etc', name: '기타', color: YPT_COLOR.etc }]);
+  /* 과목 색: 일반 모드는 사이트 과목 색(홈·과목 탭과 같게), 듀오링고 모드는 듀오링고 색 */
+  const DUO_COLOR = { korean: '#FF9600', english: '#FFC800', math: '#1CB0F6', science: '#58CC02', social: '#CE82FF',
+    history: '#FF4B4B', japanese: '#FF86D0', info: '#2B70C9', etc: '#AFAFAF' };
+  const duoOn = document.documentElement.hasAttribute('data-duo');
+  const SUBJECTS = S.SUBJECTS.map(s => ({ id: s.id, name: s.name, color: duoOn ? DUO_COLOR[s.id] || s.color : s.color }))
+    .concat([{ id: 'etc', name: '기타', color: duoOn ? DUO_COLOR.etc : '#71717a' }]);
   const subjectOf = id => SUBJECTS.find(s => s.id === id) || { id, name: id, color: '#9E9E9E' };
 
   const pad = n => String(n).padStart(2, '0');

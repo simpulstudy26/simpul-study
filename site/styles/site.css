@@ -590,8 +590,8 @@ html[data-theme="light"] .theme-toggle .icon-moon { transform: rotate(-90deg) sc
 @keyframes home-timer-pulse { 50% { opacity: .35; } }
 @media (prefers-reduced-motion: reduce) { .home-timer.is-on .home-timer-dot { animation: none; } }
 
-/* 좁은 화면: 메뉴가 늘어도 한 줄 유지 (메뉴는 옆으로 밀어서 보기, 화면 모드 버튼은 오른쪽 끝 고정) */
-@media (max-width: 640px) {
+/* 좁은 화면(세로 태블릿까지): 메뉴가 늘어도 한 줄 유지 (메뉴는 옆으로 밀어서 보기, 화면 모드 버튼은 오른쪽 끝 고정) */
+@media (max-width: 900px) {
   .site-header .wrap { flex-wrap: nowrap; gap: 8px; }
   .site-logo { flex: none; }
   .site-nav { min-width: 0; overflow-x: auto; scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); padding-right: 14px; }
@@ -599,25 +599,28 @@ html[data-theme="light"] .theme-toggle .icon-moon { transform: rotate(-90deg) sc
   .site-nav a { flex: none; white-space: nowrap; padding: 0 9px; font-size: 13.5px; }
 }
 
-/* 작은 공부 타이머 (공부 타이머를 켠 채 다른 페이지를 쓸 때, 오른쪽 위). 열품타 공부 중 화면 색 #212121 */
+/* 작은 공부 타이머 (공부 타이머를 켠 채 다른 페이지를 쓸 때, 오른쪽 위). 사이트 토큰을 뒤집은 색(다크면 흰 알약) */
 .tbar {
   position: fixed; top: 66px; right: max(16px, env(safe-area-inset-right)); z-index: 45;
   display: flex; align-items: center; gap: 2px; padding: 4px; border-radius: 999px;
-  background: #212121; color: #fff; box-shadow: 0 6px 20px rgb(0 0 0 / 0.28); animation: tbar-in .25s ease;
+  background: hsl(var(--foreground)); color: hsl(var(--background)); box-shadow: 0 6px 20px rgb(0 0 0 / 0.28); animation: tbar-in .25s ease;
 }
 .tbar[hidden] { display: none; }
 .tbar.is-viewer { top: 60px; }
-.tbar-main { display: flex; align-items: center; gap: 8px; height: 34px; padding: 0 6px 0 12px; border-radius: 999px; color: #fff; text-decoration: none; font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; }
-.tbar-main:hover { color: #fff; background: rgb(255 255 255 / 0.08); }
+.tbar-main { display: flex; align-items: center; gap: 8px; height: 34px; padding: 0 6px 0 12px; border-radius: 999px; color: hsl(var(--background)); text-decoration: none; font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.tbar-main:hover { color: hsl(var(--background)); background: hsl(var(--background) / 0.1); }
 .tbar-dot { width: 9px; height: 9px; border-radius: 50%; flex: none; animation: tbar-blink 1.4s ease-in-out infinite; }
 .tbar-time { font-weight: 500; letter-spacing: 0.01em; }
-.tbar-pause { display: grid; place-items: center; width: 34px; height: 34px; padding: 0; border: 0; border-radius: 50%; background: rgb(255 255 255 / 0.1); color: #fff; cursor: pointer; }
-.tbar-pause:hover { background: rgb(255 255 255 / 0.2); }
-.tbar-main:focus-visible, .tbar-pause:focus-visible { outline: 2px solid #EF6C00; outline-offset: 2px; }
+.tbar-pause { display: grid; place-items: center; width: 34px; height: 34px; padding: 0; border: 0; border-radius: 50%; background: hsl(var(--background) / 0.12); color: hsl(var(--background)); cursor: pointer; }
+.tbar-pause:hover { background: hsl(var(--background) / 0.22); }
+.tbar-main:focus-visible, .tbar-pause:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 2px; }
+html[data-duo] .tbar { background: #58CC02; color: #fff; box-shadow: 0 4px 0 #58A700, 0 8px 20px rgb(0 0 0 / 0.25); }
+html[data-duo] .tbar-main, html[data-duo] .tbar-pause { color: #fff; font-weight: 800; }
+html[data-duo] .tbar-pause { background: rgb(255 255 255 / 0.2); }
 .tbar-toast {
   position: fixed; left: 50%; bottom: max(20px, env(safe-area-inset-bottom)); z-index: 46; transform: translateX(-50%);
   width: max-content; max-width: calc(100% - 32px); margin: 0; padding: 10px 16px; border-radius: 12px;
-  background: #212121; color: #fff; font-size: 14px; box-shadow: 0 6px 20px rgb(0 0 0 / 0.28); animation: tbar-in .25s ease;
+  background: hsl(var(--foreground)); color: hsl(var(--background)); font-size: 14px; box-shadow: 0 6px 20px rgb(0 0 0 / 0.28); animation: tbar-in .25s ease;
 }
 @keyframes tbar-in { from { opacity: 0; transform: translateY(-6px); } }
 .tbar-toast { animation-name: tbar-toast-in; }
@@ -754,3 +757,33 @@ button.dict-related-word:hover { background: hsl(var(--accent)); }
   .dict-entry { font-size: 21px; }
   .dict-pop { right: 8px; left: 8px; bottom: 8px; width: auto; }
 }
+/* ── 역산 플래너 (planner.html): 머리글 아래를 플래너 앱이 가득 채운다 ── */
+.planner-body { height: 100vh; height: 100dvh; display: flex; flex-direction: column; overflow: hidden; background: hsl(var(--background)); }
+.planner-body .site-header { flex: none; }
+.planner-frame { flex: 1; min-height: 0; width: 100%; border: 0; display: block; background: hsl(var(--background)); }
+
+/* ── 내 반 고르기 (common.js S.classPicker) ── */
+.class-pick { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin: 10px 0 4px; }
+.class-pick-label { font-size: 13px; font-weight: 600; color: hsl(var(--muted-foreground)); }
+.class-pick .class-tabs { margin: 0; }
+.class-pick .class-tabs button { padding-left: 10px; padding-right: 10px; }
+.class-pick-note { flex-basis: 100%; font-size: 12.5px; color: hsl(var(--muted-foreground)); }
+
+/* ── 관리자: 모드별 사용량 (일반 vs 듀오링고) ── */
+.mode-cmp { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-bottom: 12px; }
+.mode-card { padding: 14px 16px; border: 1px solid hsl(var(--border)); border-radius: calc(var(--radius) + 4px); background: hsl(var(--card)); }
+.mode-name { display: flex; align-items: center; gap: 8px; font-size: 15px; margin-bottom: 8px; }
+.mode-name::before { content: ""; width: 10px; height: 10px; border-radius: 3px; background: var(--mc); }
+.mode-normal { --mc: hsl(var(--foreground)); }
+.mode-duo { --mc: #58CC02; border-color: rgb(88 204 2 / 0.45); }
+.mode-card dl { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; margin: 0; font-size: 13.5px; }
+.mode-card dt { color: hsl(var(--muted-foreground)); }
+.mode-card dd { margin: 0; font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
+.mode-share { grid-column: 1 / -1; display: grid; gap: 6px; }
+.mode-share-bar { display: block; height: 10px; border-radius: 99px; background: #58CC02; overflow: hidden; }
+.mode-share-bar > span { display: block; height: 100%; background: hsl(var(--foreground)); border-radius: 99px 0 0 99px; }
+.mode-share small { font-size: 12.5px; color: hsl(var(--muted-foreground)); }
+#st-mode-chart { margin-bottom: 6px; }
+.bar-normal, .lg-normal::before { background: hsl(var(--foreground)); }
+.bar-duo, .lg-duo::before { background: #58CC02; }
+@media (max-width: 640px) { .mode-cmp { grid-template-columns: 1fr; } }

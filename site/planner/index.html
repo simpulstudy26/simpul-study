@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>역산 플래너 · 심풀스터디</title>
+  <!-- 심풀스터디 안의 플래너 (planner.html 안에 넣어 보여 준다). 따로 쓰는 앱은 /Volumes/T9/simpul-planner -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="../styles/mascot.css">
+  <link rel="stylesheet" href="./app.css">
+  <script>/* 사이트 화면 모드(기본 다크)를 먼저 적용해 깜빡임을 막는다 */try{document.documentElement.dataset.theme=localStorage.getItem('simpul.theme')==='light'?'light':'dark'}catch(e){document.documentElement.dataset.theme='dark'}</script>
+  <script src="../scripts/ranges.js" defer></script>
+  <script src="./data.js" defer></script>
+  <script src="../scripts/mascot.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <div id="app" class="app"></div>
+  <noscript>자바스크립트를 켜야 쓸 수 있어요.</noscript>
+</body>
+</html>

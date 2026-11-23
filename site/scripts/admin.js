@@ -91,6 +91,7 @@
       $('st-units').textContent = s.concepts.reduce((a, c) => a + c.units, 0);
       $('stats-updated').textContent = when(s.now) + ' 기준 · 30초마다 새로고침';
       renderChart(s.days);
+      if (s.modes) renderModes(s.modes);
     } catch (e) { $('stats-updated').textContent = e.message; }
   }
   /* 같은 인터넷 연결에서 들어온 기기 묶음 (한 사람이 여러 기기·시크릿 창으로 들어왔을 수 있음) */
@@ -110,6 +111,38 @@
     try { await api('admin/unmark', { body: {} }); await api('admin/me', { body: { uid: S.uid() } }); loadStats(); } catch (e) { alert(e.message); }
   });
 
+  /* 일반 모드 vs 듀오링고 모드 */
+  function renderModes(m) {
+    const fmtMin = n => n >= 60 ? Math.floor(n / 60) + '시간 ' + (n % 60 ? (n % 60) + '분' : '') : n + '분';
+    const t = m.today, totalMin = t.normal.minutes + t.duo.minutes;
+    const duoPct = totalMin ? Math.round(t.duo.minutes / totalMin * 100) : 0;
+    const card = (k, name) => el('div', { class: 'mode-card mode-' + k }, [
+      el('strong', { class: 'mode-name', text: name }),
+      el('dl', {}, [
+        el('dt', { text: '지금 접속 중' }), el('dd', { text: m.online[k] + '대' }),
+        el('dt', { text: '오늘 쓴 기기' }), el('dd', { text: t[k].devices + '대' }),
+        el('dt', { text: '오늘 들어온 횟수' }), el('dd', { text: t[k].entries + '번' }),
+        el('dt', { text: '오늘 사용 시간(약)' }), el('dd', { text: fmtMin(t[k].minutes) }),
+        el('dt', { text: '최근 14일 기기 · 시간' }), el('dd', { text: m.last14[k].devices + '대 · ' + fmtMin(m.last14[k].minutes) })
+      ])
+    ]);
+    $('st-modes').replaceChildren(
+      card('normal', '일반 모드'), card('duo', '듀오링고 모드'),
+      el('div', { class: 'mode-share', title: '오늘 사용 시간 비율' }, [
+        el('span', { class: 'mode-share-bar', role: 'img', 'aria-label': '오늘 사용 시간 중 듀오링고 모드 ' + duoPct + '%' }, [el('span', { style: 'width:' + (totalMin ? 100 - duoPct : 50) + '%' })]),
+        el('small', { text: totalMin ? '오늘 사용 시간 · 일반 ' + (100 - duoPct) + '% / 듀오링고 ' + duoPct + '%' : '오늘은 아직 사용 기록이 없어요' })
+      ]));
+    const max = Math.max(1, ...m.days.map(d => Math.max(d.normal.minutes, d.duo.minutes)));
+    $('st-mode-chart').replaceChildren(...m.days.map(d => el('div', { class: 'chart-col', title: `${d.day} 일반 ${d.normal.devices}대·${fmtMin(d.normal.minutes)} · 듀오링고 ${d.duo.devices}대·${fmtMin(d.duo.minutes)}` }, [
+      el('div', { class: 'chart-bars' }, [
+        el('span', { class: 'bar-normal', style: 'height:' + (d.normal.minutes / max * 100) + '%' }),
+        el('span', { class: 'bar-duo', style: 'height:' + (d.duo.minutes / max * 100) + '%' })
+      ]),
+      el('span', { class: 'chart-label', text: d.day.slice(8) })
+    ])));
+    $('st-mode-chart').append(el('p', { class: 'chart-legend' }, [el('span', { class: 'lg-normal', text: '일반 모드 사용 시간' }), el('span', { class: 'lg-duo', text: '듀오링고 모드 사용 시간' })]));
+  }
+
   function renderChart(days) {
     const max = Math.max(1, ...days.map(d => Math.max(d.users, d.requests)));
     $('st-chart').replaceChildren(...days.map(d => el('div', { class: 'chart-col', title: `${d.day} 방문 기기 ${d.users}대 · 들어온 횟수 ${d.entries || d.users}번 · 문제 만들기 ${d.requests}번` }, [
@@ -123,7 +156,7 @@
   }
 
   /* ── 범위 개념 ── */
-  S.SUBJECTS.forEach(s => $('ex-subject').append(el('option', { value: s.id, text: s.name })));
+  (S.ALL_SUBJECTS || S.SUBJECTS).forEach(s => $('ex-subject').append(el('option', { value: s.id, text: s.name })));
   $('extract-form').addEventListener('submit', async e => {
     e.preventDefault();
     const files = [...$('ex-files').files];

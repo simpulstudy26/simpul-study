@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <script>/* 저장된 화면 모드를 먼저 적용해 깜빡임을 막는다 (기본 다크) */try{if(localStorage.getItem('simpul.theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
+  <script>/* 듀오링고 모드 색을 먼저 적용 (2학기 기말 버전에서 켰을 때만) */try{var h=document.documentElement,d=JSON.parse(localStorage.getItem('simpul.duo.v1')||'{}'),v=new URLSearchParams(location.search).get('v')||localStorage.getItem('simpul.version')||'s2-final';if(d.on===true&&v==='s2-final')h.setAttribute('data-duo','')}catch(e){}</script>
+  <title>역산 플래너 · 심풀스터디</title>
+  <meta name="description" content="시험 준비를 끝낼 날에서 거꾸로 계산해 오늘 무엇을 얼마나 할지 정해 주는 심풀스터디 역산 스터디 플래너">
+  <meta name="theme-color" content="#09090b">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="./styles/site.css">
+  <link rel="stylesheet" href="./styles/duo.css">
+  <script src="./scripts/catalog.js" defer></script>
+  <script src="./scripts/common.js" defer></script>
+  <script src="./scripts/duo.js" defer></script>
+  <script src="./scripts/studytime.js" defer></script>
+  <script src="./scripts/timerbar.js" defer></script>
+</head>
+<body class="planner-body">
+  <header class="site-header">
+    <div class="wrap">
+      <a class="site-logo" href="./index.html"><img src="./assets/simpul-logo-white.png" alt="심풀스터디 홈" width="695" height="257"></a>
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="./index.html#subjects">과목</a>
+        <a href="./exams.html">시험범위</a>
+        <a href="./cloud.html">무한 문제</a>
+        <a href="./make.html">문제 만들기</a>
+        <a href="./timer.html">공부 타이머</a>
+        <a href="./dict.html">사전</a>
+        <a href="./notes.html">필기</a>
+        <a href="./planner.html" aria-current="page">플래너</a>
+      </nav>
+    </div>
+  </header>
+  <!-- 플래너 앱(planner/)은 자기 디자인(듀오링고식)을 그대로 쓰도록 액자 안에 띄운다. 시험범위는 scripts/ranges.js를 같이 읽는다 -->
+  <iframe class="planner-frame" src="./planner/index.html" title="역산 스터디 플래너"></iframe>
+</body>
+</html>

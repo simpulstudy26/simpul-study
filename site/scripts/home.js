@@ -8,6 +8,7 @@
   head.prepend(S.versionTabs());
   const duoToggle = S.duo && S.duo.toggle(); // 듀오링고 모드 스위치 (2학기 기말 버전에서만)
   if (duoToggle) head.querySelector('.version-tabs').after(duoToggle);
+  head.querySelector('.version-tabs').after(S.classPicker()); // 내 반 (선택 과목: 일본어·정보)
   head.querySelector('h1').textContent = S.version.title;
   head.querySelector('p').textContent = S.version.lead;
   document.title = '심풀스터디 · ' + S.version.title;
