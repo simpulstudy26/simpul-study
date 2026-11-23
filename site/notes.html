@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <script>/* 저장된 화면 모드를 먼저 적용해 깜빡임을 막는다 (기본 다크) */try{if(localStorage.getItem('simpul.theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
+  <script>/* 듀오링고 모드 색을 먼저 적용 (2학기 기말 버전에서 켰을 때만) */try{var h=document.documentElement,d=JSON.parse(localStorage.getItem('simpul.duo.v1')||'{}'),v=new URLSearchParams(location.search).get('v')||localStorage.getItem('simpul.version')||'s2-final';if(d.on===true&&v==='s2-final')h.setAttribute('data-duo','')}catch(e){}</script>
+  <title>필기 · 심풀스터디</title>
+  <meta name="description" content="펜·형광펜·지우개·올가미·도형·텍스트로 손필기하는 심풀스터디 필기 노트. PDF에 바로 필기하고 PDF로 내보내요">
+  <meta name="theme-color" content="#09090b">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="./styles/site.css">
+  <link rel="stylesheet" href="./styles/duo.css">
+  <link rel="stylesheet" href="./styles/notes.css">
+  <script src="./scripts/catalog.js" defer></script>
+  <script src="./scripts/common.js" defer></script>
+  <script src="./scripts/duo.js" defer></script>
+  <script src="./scripts/studytime.js" defer></script>
+  <script src="./scripts/timerbar.js" defer></script>
+  <script src="./scripts/notes.js" defer></script>
+</head>
+<body class="nt-body">
+  <header class="site-header">
+    <div class="wrap">
+      <a class="site-logo" href="./index.html"><img src="./assets/simpul-logo-white.png" alt="심풀스터디 홈" width="695" height="257"></a>
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="./index.html#subjects">과목</a>
+        <a href="./exams.html">시험범위</a>
+        <a href="./cloud.html">무한 문제</a>
+        <a href="./make.html">문제 만들기</a>
+        <a href="./timer.html">공부 타이머</a>
+        <a href="./dict.html">사전</a>
+        <a href="./notes.html" aria-current="page">필기</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 서재: 노트 목록 -->
+  <main class="wrap nt-library" id="nt-library">
+    <div class="page-head">
+      <nav class="crumbs" aria-label="현재 위치"><a href="./index.html">홈</a> › 필기</nav>
+      <h1>필기</h1>
+      <p>펜·형광펜·지우개·올가미로 손필기해요. 그리다가 펜을 멈추면 반듯한 도형이 되고, 학습지 PDF를 불러와 그 위에 바로 필기할 수 있어요. 다 쓴 노트는 PDF로 내보내요.</p>
+    </div>
+
+    <div class="nt-libbar">
+      <div class="toolbar">
+        <button class="btn btn-primary" type="button" id="nt-new-btn">＋ 새 노트</button>
+        <label class="btn btn-secondary nt-filebtn">PDF 가져오기<input type="file" accept="application/pdf" id="nt-pdf-in" hidden></label>
+        <button class="btn btn-secondary" type="button" id="nt-design-btn" data-pop>🎨 디자인</button>
+        <label class="btn btn-secondary nt-filebtn">백업 불러오기<input type="file" accept=".json,application/json" id="nt-json-in" hidden></label>
+      </div>
+      <input class="input nt-search" id="nt-search" type="search" placeholder="노트 이름 찾기" aria-label="노트 이름 찾기">
+    </div>
+    <div class="nt-chips toolbar" id="nt-chips" aria-label="과목으로 보기"></div>
+    <p class="search-status" id="nt-status" role="status"></p>
+    <div class="nt-grid" id="nt-grid"></div>
+  </main>
+
+  <!-- 노트 편집 화면 -->
+  <section class="nt-editor" id="nt-editor" hidden aria-label="노트 편집">
+    <div class="nt-topbar" id="nt-topbar"></div>
+    <div class="nt-body-row">
+      <aside class="nt-thumbs" id="nt-thumbs" aria-label="쪽 목록"></aside>
+      <div class="nt-viewport" id="nt-viewport">
+        <div class="nt-stack" id="nt-stack"></div>
+      </div>
+    </div>
+    <div class="nt-pageind" id="nt-pageind" aria-live="polite"></div>
+  </section>
+
+  <dialog class="nt-dialog" id="nt-new">
+    <form method="dialog" id="nt-new-form">
+      <h2>새 노트</h2>
+      <label class="field"><span>이름</span><input class="input" name="title" maxlength="60" placeholder="예: 통합사회 4단원 정리" required></label>
+      <label class="field"><span>과목</span><select class="select" name="subject" id="nt-new-subject"></select></label>
+      <div class="field"><span>표지 색</span><div class="nt-swatches" id="nt-new-covers"></div></div>
+      <div class="field"><span>종이</span><div class="nt-tpls" id="nt-new-tpls"></div></div>
+      <div class="nt-row2">
+        <div class="field"><span>종이 색</span><div class="nt-seg" id="nt-new-paper"></div></div>
+        <div class="field"><span>방향</span><div class="nt-seg" id="nt-new-orient"></div></div>
+      </div>
+      <div class="nt-dialog-actions">
+        <button class="btn btn-secondary" type="button" value="cancel" id="nt-new-cancel">취소</button>
+        <button class="btn btn-primary" type="submit" value="ok">만들기</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="nt-busy" id="nt-busy" hidden><div class="nt-busy-card"><div class="nt-spin" aria-hidden="true"></div><p id="nt-busy-text">불러오는 중…</p></div></div>
+
+  <footer class="site-footer" id="nt-footer">
+    <div class="wrap">
+      <span>노트는 이 기기 브라우저(IndexedDB)에만 저장돼요. 기기를 바꾸기 전에 ‘백업 저장’으로 파일을 받아 두세요.</span>
+      <span>단축키: P 펜 · H 형광펜 · E 지우개 · L 올가미 · T 텍스트 · ⌘Z 되돌리기</span>
+    </div>
+  </footer>
+</body>
+</html>
