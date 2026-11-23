@@ -52,7 +52,7 @@
   }
   async function loadBank(id, force) {
     if (banks[id] && !force) return banks[id];
-    try { banks[id] = (await getJSON('./cloud/' + id + '.json')).questions || []; } catch (e) { banks[id] = banks[id] || []; }
+    try { banks[id] = await S.bank.load(id); } catch (e) { banks[id] = banks[id] || []; }
     return banks[id];
   }
   const bankCount = id => ((index.subjects[id] || {}).count || 0);
@@ -91,7 +91,7 @@
     if (unseen.length && !unitIsGen()) {
       maybeRefill(unseen.filter(q => !q.mine).length);
       const pickQ = unseen[Math.floor(Math.random() * unseen.length)];
-      return Object.assign({ tag: pickQ.mine ? '내가 만든 문제' : 'AI 문제 은행' }, pickQ);
+      return Object.assign({ tag: pickQ.mine ? '내가 만든 문제' : /^m-/.test(String(pickQ.id)) ? '자료 문제' : 'AI 문제 은행' }, pickQ);
     }
     const level = levelSelect.value;
     for (let i = 0; i < 20 && hasGen(subject) && sourceSelect.value !== 'mine'; i++) {
@@ -138,7 +138,7 @@
     const units = (index.subjects[subject] || {}).units || {};
     unitSelect.replaceChildren(el('option', { value: '', text: '전체 단원' }));
     const keep = unitSelect.value;
-    if (sourceSelect.value !== 'mine') Object.entries(units).sort().forEach(([u, n]) => unitSelect.append(el('option', { value: u, text: u + ' (' + n + ')' })));
+    if (sourceSelect.value !== 'mine') Object.entries(units).forEach(([u, n]) => unitSelect.append(el('option', { value: u, text: u + ' (' + n + ')' })));
     if (sourceSelect.value !== 'shared') {
       const mineUnits = {};
       S.mine.forSubject(subject).forEach(q => { mineUnits[q.u] = (mineUnits[q.u] || 0) + 1; });
@@ -215,7 +215,7 @@
     if (!current) {
       card.replaceChildren(el('div', { class: 'concept' }, [
         el('p', { text: sourceSelect.value === 'mine' ? '이 과목에서 내가 만든 문제가 아직 없어요.' : '이 과목에는 아직 공용 문제가 없어요.' }),
-        el('p', { class: 'tip', text: '2학기 기말고사 문제를 준비하고 있어요. 지금은 정보·일본어만 무한 문제를 풀 수 있어요.' }),
+        el('p', { class: 'tip', text: '2학기 기말고사 문제를 준비하고 있어요. 지금은 영어·통합사회(자료 문제)와 정보·일본어(자동 생성)를 풀 수 있어요.' }),
         el('p', {}, [el('a', { class: 'btn btn-primary', href: 'make.html?s=' + subject, text: '내 문제 만들기' })])
       ]));
       return;
@@ -230,7 +230,26 @@
     const next = el('button', { class: 'btn btn-primary', type: 'button', text: '다음 문제 →', hidden: '' });
     next.addEventListener('click', show);
 
-    if (q.c && q.c.length) {
+    if (S.bank.isOX(q)) {
+      /* O/X 문제: 큰 동그라미·가위표 버튼 두 개. 키보드는 O·X 또는 1·2 */
+      const list = el('div', { class: 'ox-list', role: 'group', 'aria-label': 'O 또는 X' });
+      ['O', 'X'].forEach(v => {
+        const b = el('button', { class: 'choice ox-btn ox-' + v.toLowerCase(), type: 'button', 'data-ox': v, 'aria-label': v === 'O' ? '맞다 (O)' : '틀리다 (X)' }, [
+          el('span', { class: 'ox-mark', 'aria-hidden': 'true', text: v === 'O' ? '○' : '✕' }),
+          el('span', { class: 'ox-word', text: v === 'O' ? '맞다' : '틀리다' })
+        ]);
+        b.addEventListener('click', () => {
+          if (answered) return;
+          const ok = v === q.a;
+          list.querySelectorAll('.ox-btn').forEach(x => { x.disabled = true; if (x.dataset.ox === q.a) x.classList.add('is-right'); });
+          if (!ok) b.classList.add('is-wrong');
+          finish(ok, explain, next);
+        });
+        list.append(b);
+      });
+      body[0].textContent = meta + ' · O/X';
+      body.push(list);
+    } else if (q.c && q.c.length) {
       const list = el('div', { class: 'choice-list', role: 'group', 'aria-label': '보기' });
       q.c.forEach((c, i) => {
         const b = el('button', { class: 'choice', type: 'button' }, [el('span', { class: 'choice-no', text: '①②③④⑤⑥'[i] || i + 1 }), document.createTextNode(c)]);
@@ -339,12 +358,21 @@
       if (e.target.closest('textarea, input, select') || e.metaKey || e.ctrlKey || e.altKey) return;
       const choices = card.querySelectorAll('.choice:not([disabled])');
       if (/^[1-6]$/.test(e.key) && choices[e.key - 1]) { e.preventDefault(); choices[e.key - 1].click(); return; }
+      const ox = /^[oO]$/.test(e.key) ? 'O' : /^[xX]$/.test(e.key) ? 'X' : '';
+      const oxBtn = ox && card.querySelector('.ox-btn[data-ox="' + ox + '"]:not([disabled])');
+      if (oxBtn) { e.preventDefault(); oxBtn.click(); return; }
       if (e.key === 'Enter') {
         const btn = [...card.querySelectorAll('.btn-primary')].find(b => !b.hidden && b.offsetParent);
         if (btn && document.activeElement !== btn) { e.preventDefault(); btn.click(); }
       }
     });
   }
+  if (!D) document.addEventListener('keydown', e => { // 일반 모드에서도 O/X 문제는 키보드 O·X로
+    if (e.target.closest('textarea, input, select') || e.metaKey || e.ctrlKey || e.altKey) return;
+    const ox = /^[oO]$/.test(e.key) ? 'O' : /^[xX]$/.test(e.key) ? 'X' : '';
+    const btn = ox && card.querySelector('.ox-btn[data-ox="' + ox + '"]:not([disabled])');
+    if (btn) { e.preventDefault(); btn.click(); }
+  });
   unitSelect.addEventListener('change', restart);
   sourceSelect.addEventListener('change', () => { renderUnits(); restart(); });
   levelSelect.addEventListener('change', restart);
@@ -356,14 +384,14 @@
   });
 
   async function init() {
-    try { index = await getJSON('./cloud/index.json'); } catch (e) { index = { subjects: {} }; }
+    try { index = await S.bank.index(); } catch (e) { index = { subjects: {} }; }
     try { local = (await fetch('./api/auto/status', { cache: 'no-store' })).ok; } catch (e) { local = false; }
     if (!S.findSubject(subject)) subject = S.findSubject(store.subject) ? store.subject : (S.SUBJECTS.find(s => bankCount(s.id) || hasGen(s.id)) || S.findSubject('info')).id;
     await choose(subject);
     if (local) { // 로컬에서는 엔진이 새로 만든 문제를 30초마다 받아 온다.
       setInterval(async () => {
         try {
-          index = await getJSON('./cloud/index.json');
+          index = await S.bank.index();
           const before = (banks[subject] || []).length;
           await loadBank(subject, true);
           if (banks[subject].length !== before) { renderTabs(); const u = unitSelect.value; renderUnits(); unitSelect.value = u; renderStats(); }

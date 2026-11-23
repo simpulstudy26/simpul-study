@@ -1,0 +1,116 @@
+/* 심풀 자료 공통 테마 — shadcn/ui(zinc) 토큰 + React Bits 움직임(바닐라).
+   tools/restyle_material.py가 자료 HTML의 색을 var(--c-xxxxxx)로 바꾸고 이 파일을 붙인다.
+   사이트와 같은 화면 모드를 쓴다: 기본 다크, simpul.theme = 'light'면 라이트. */
+:root {
+  color-scheme: light;
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+  --card: 0 0% 100%;
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 3.8% 46.1%;
+  --accent: 240 4.8% 95.9%;
+  --border: 240 5.9% 90%;
+  --ring: 240 5.9% 10%;
+  --radius: 0.5rem;
+  --m-spot: 240 5.9% 10%;
+  --m-spark: #ca8a04;
+}
+html.m-dark {
+  color-scheme: dark;
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 240 10% 5.5%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --accent: 240 3.7% 15.9%;
+  --border: 240 3.7% 15.9%;
+  --ring: 240 4.9% 83.9%;
+  --m-spot: 0 0% 98%;
+  --m-spark: #facc15;
+}
+
+html { -webkit-text-size-adjust: 100%; }
+body { -webkit-font-smoothing: antialiased; font-feature-settings: 'ss06'; letter-spacing: -0.005em; }
+::selection { background: hsl(var(--foreground) / 0.15); }
+:focus-visible { outline: 2px solid hsl(var(--ring)) !important; outline-offset: 2px; }
+
+/* 상단 헤더: shadcn처럼 반투명 + 흐림, 얇은 테두리만 */
+.page-header, .topbar, nav.tabs {
+  background: hsl(var(--background) / 0.82) !important;
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid hsl(var(--border)) !important;
+  box-shadow: none !important;
+  color: hsl(var(--foreground));
+}
+.topbar .brand { color: hsl(var(--muted-foreground)); opacity: 1; }
+.topbar .brand b { color: hsl(var(--foreground)); }
+.unit-switch { background: hsl(var(--muted)) !important; border-radius: var(--radius) !important; }
+.unit-switch button { color: hsl(var(--muted-foreground)) !important; border-radius: calc(var(--radius) - 2px) !important; }
+.unit-switch button.on { background: hsl(var(--background)) !important; color: hsl(var(--foreground)) !important; box-shadow: 0 1px 3px rgb(0 0 0 / .12); }
+
+/* 맨 위로 버튼: shadcn outline icon 버튼 */
+.totop {
+  background: hsl(var(--background)) !important; color: hsl(var(--foreground)) !important;
+  border: 1px solid hsl(var(--border)) !important; border-radius: var(--radius) !important;
+  box-shadow: 0 1px 3px rgb(0 0 0 / .1) !important; transition: background-color .15s, transform .15s;
+}
+.totop:hover { background: hsl(var(--accent)) !important; transform: translateY(-2px); }
+
+/* 문제 자리: 무한 문제 단원으로 가는 카드 (tools/strip_material_quiz.py가 넣음) */
+.m-practice-wrap { display: grid; gap: 10px; margin: 36px 0 12px; }
+.m-practice {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px; padding: 16px 18px;
+  color: hsl(var(--foreground)) !important; text-decoration: none !important; background: hsl(var(--card));
+  border: 1px solid hsl(var(--border)); border-radius: calc(var(--radius) + 4px); box-shadow: 0 1px 2px rgb(0 0 0 / .06);
+  transition: border-color .15s, transform .15s, box-shadow .15s;
+}
+.m-practice:hover { border-color: hsl(var(--foreground) / .3); transform: translateY(-2px); box-shadow: 0 4px 14px rgb(0 0 0 / .08); }
+.m-practice-ico { width: 40px; height: 40px; display: grid; place-items: center; font-size: 20px; border-radius: var(--radius); background: hsl(var(--muted)); }
+.m-practice-txt { display: grid; gap: 2px; min-width: 0; }
+.m-practice-txt b { font-size: 15px; font-weight: 700; }
+.m-practice-txt small { font-size: 13px; color: hsl(var(--muted-foreground)); }
+.m-practice-go {
+  display: inline-flex; align-items: center; height: 36px; padding: 0 14px; border-radius: calc(var(--radius) - 2px); white-space: nowrap;
+  font-size: 13.5px; font-weight: 600; background: hsl(var(--foreground)); color: hsl(var(--background));
+}
+@media (max-width: 560px) { .m-practice { grid-template-columns: auto 1fr; } .m-practice-go { grid-column: 1 / -1; justify-content: center; } }
+@media (prefers-reduced-motion: reduce) { .m-practice:hover { transform: none; } }
+
+/* 다크 모드에서 색을 직접 넣은 SVG 도표는 반전해 읽기 쉽게 */
+html.m-dark svg.m-inv { filter: invert(0.9) hue-rotate(180deg); }
+html.m-dark img:not([src$=".svg"]) { filter: brightness(.92); }
+
+/* React Bits · SpotlightCard: 포인터를 따라오는 은은한 빛 */
+.m-spot { position: relative; isolation: isolate; }
+.m-spot::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 1; opacity: 0;
+  background: radial-gradient(260px circle at var(--m-x, 50%) var(--m-y, 50%), hsl(var(--m-spot) / 0.06), transparent 70%);
+  transition: opacity .25s;
+}
+.m-spot:hover::after { opacity: 1; }
+
+/* React Bits · BlurText */
+.m-blur-word { display: inline-block; animation: m-blur-in .7s cubic-bezier(.2, .7, .2, 1) both; }
+@keyframes m-blur-in {
+  from { opacity: 0; filter: blur(10px); transform: translateY(-0.35em); }
+  60% { opacity: .6; filter: blur(4px); transform: translateY(0.06em); }
+  to { opacity: 1; filter: blur(0); transform: none; }
+}
+
+/* React Bits · AnimatedContent: 화면에 들어올 때 아래에서 살짝 올라온다 */
+.m-reveal { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s cubic-bezier(.2, .7, .2, 1); }
+.m-reveal.m-in { opacity: 1; transform: none; }
+
+/* React Bits · ClickSpark 캔버스 */
+.m-spark-canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; }
+
+@media (prefers-reduced-motion: reduce) {
+  .m-blur-word { animation: none; }
+  .m-reveal { opacity: 1; transform: none; transition: none; }
+  .m-spot::after { display: none; }
+}
+@media print {
+  .page-header, .topbar, nav.tabs { position: static !important; backdrop-filter: none; }
+  .m-reveal { opacity: 1 !important; transform: none !important; }
+}

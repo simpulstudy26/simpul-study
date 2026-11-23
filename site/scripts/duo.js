@@ -94,7 +94,7 @@
       day.combo = 0;
       const old = st.mistakes[key];
       st.mistakes[key] = { s: subject, t: Date.now(), miss: (old ? old.miss : 0) + 1,
-        q: { q: q.q, c: q.c || [], a: q.a, e: q.e || '', u: q.u || '', d: q.d || '' } };
+        q: { q: q.q, c: q.c || [], a: q.a, e: q.e || '', u: q.u || '', d: q.d || '', t: q.t || '' } };
       pruneMistakes();
     }
     if (gain) { day.xp += gain; streak = touchStreak(); }

@@ -33,7 +33,7 @@
       return shuffle(D.mistakes(subject, unit)).slice(0, SIZE).map(q => Object.assign({ old: true }, q));
     }
     let bank = [];
-    try { bank = (await (await fetch('./cloud/' + subject + '.json', { cache: 'no-store' })).json()).questions || []; } catch (e) { bank = []; }
+    try { bank = await S.bank.load(subject); } catch (e) { bank = []; }
     const pool = bank.concat(S.mine ? S.mine.forSubject(subject) : []).filter(q => !unit || q.u === unit);
     const unseen = shuffle(pool.filter(q => !cstore.seen[keyOf(q)]));
     const picks = unseen.slice(0, SIZE);
@@ -90,6 +90,7 @@
     if (!cur) return finish();
     picked = null; phase = 'idle';
     const q = cur.q;
+    const isOX = S.bank.isOX(q);
     const isChoice = q.c && q.c.length;
     const head = [];
     if (cur.tries > 0) head.push(el('span', { class: 'ls-tag ls-tag-retry', text: '↻ 다시 도전' }));
@@ -97,10 +98,21 @@
     head.push(el('span', { class: 'ls-unit', text: q.u || '' }));
     const body = el('section', { class: 'ls-challenge', 'aria-live': 'polite' }, [
       el('div', { class: 'ls-head' }, head),
-      el('h1', { class: 'ls-title', text: isChoice ? '알맞은 답을 고르세요' : '답을 입력하세요' }),
+      el('h1', { class: 'ls-title', text: isOX ? '맞으면 O, 틀리면 X' : isChoice ? '알맞은 답을 고르세요' : '답을 입력하세요' }),
       el('p', { class: 'ls-prompt', text: q.q })
     ]);
-    if (isChoice) {
+    if (isOX) {
+      const list = el('div', { class: 'ls-ox', role: 'radiogroup', 'aria-label': 'O 또는 X' });
+      q.c.forEach((c, i) => {
+        const b = el('button', { class: 'ls-choice', type: 'button', role: 'radio', 'aria-checked': 'false', 'data-i': String(i), 'data-ox': c, 'aria-label': c === 'O' ? '맞다 (O)' : '틀리다 (X)' }, [
+          el('span', { class: 'ls-ox-mark', 'aria-hidden': 'true', text: c === 'O' ? '○' : '✕' }),
+          el('span', { class: 'ls-choice-text', text: c === 'O' ? '맞다' : '틀리다' })
+        ]);
+        b.addEventListener('click', () => select(i));
+        list.append(b);
+      });
+      body.append(list);
+    } else if (isChoice) {
       const list = el('div', { class: 'ls-choices', role: 'radiogroup', 'aria-label': '보기' });
       q.c.forEach((c, i) => {
         const b = el('button', { class: 'ls-choice', type: 'button', role: 'radio', 'aria-checked': 'false', 'data-i': String(i) }, [
@@ -295,6 +307,11 @@
     if (e.key === 'Escape') { if (!modal.hidden) modal.hidden = true; else $('ls-quit').click(); return; }
     if (!modal.hidden) return;
     const inText = e.target.closest('textarea');
+    if (!inText && /^[oOxX]$/.test(e.key) && phase === 'idle') {
+      const b = main.querySelector('.ls-choice[data-ox="' + e.key.toUpperCase() + '"]');
+      if (b) { e.preventDefault(); b.click(); }
+      return;
+    }
     if (!inText && /^[1-9]$/.test(e.key) && phase === 'idle') {
       const b = main.querySelectorAll('.ls-choice')[e.key - 1];
       if (b) { e.preventDefault(); b.click(); }

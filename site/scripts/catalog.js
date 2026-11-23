@@ -176,16 +176,22 @@
           items: []
         },
         english: {
-          summary: '2학기 기말고사 범위 자료를 준비하고 있어요',
-          items: []
+          summary: '교과서 Unit 2·3 정독 노트와 부교재 학습',
+          items: [
+          { id: 's2f-english-textbook', kind: 'note', title: '교과서 Unit 2 · Unit 3 정독 노트', course: '교과서', file: 's2-final/english/english_textbook_u2_u3.html' },
+          { id: 's2f-english-supplement', kind: 'note', title: '부교재 학습', course: '부교재', file: 's2-final/english/english_supplement.html' }
+        ]
         },
         math: {
           summary: '공통수학2 명제·함수 · 2학기 기말고사 범위 자료를 준비하고 있어요',
           items: []
         },
         social: {
-          summary: '2학기 기말고사 범위 자료를 준비하고 있어요',
-          items: []
+          summary: '정의와 불평등 · 세계화 · 시장경제와 금융',
+          items: [
+          { id: 's2f-social-part-a', kind: 'note', title: '방O현 선생님 파트 · 사회 정의와 불평등, 세계화와 평화', course: '통합사회2', file: 's2-final/social/social2_part_a.html' },
+          { id: 's2f-social-part-b', kind: 'note', title: '민O훈 선생님 파트 · 시장경제와 금융', course: '통합사회2', file: 's2-final/social/social2_part_b.html' }
+        ]
         },
         history: {
           summary: '2학기 기말고사 범위 자료를 준비하고 있어요',

@@ -77,7 +77,16 @@
     if (!raf) raf = requestAnimationFrame(tick);
   }
 
-  window.FX = { blurText, spotlight, spark, reduce };
+  /* AnimatedContent: 목록이 차례로 아래에서 올라오며 나타난다 */
+  function reveal(nodes, { step = 60, max = 480 } = {}) {
+    if (reduce) return;
+    [...nodes].forEach((n, i) => {
+      n.classList.add('fx-rise');
+      n.style.animationDelay = Math.min(i * step, max) + 'ms';
+    });
+  }
+
+  window.FX = { blurText, spotlight, spark, reveal, reduce };
 
   /* 홈: 제목은 인트로가 닫힌 뒤에 등장 */
   document.addEventListener('DOMContentLoaded', () => {

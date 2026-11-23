@@ -77,6 +77,16 @@ html[data-theme="light"] .ls-body {
 }
 .ls-input:focus { outline: none; border-color: var(--ls-pick-line); }
 
+/* O/X 문제 */
+.ls-ox { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.ls-ox .ls-choice { grid-template-columns: 1fr; justify-items: center; gap: 6px; min-height: 150px; text-align: center; }
+.ls-ox-mark { font-size: 64px; line-height: 1; font-weight: 800; }
+.ls-ox .ls-choice[data-ox="O"] .ls-ox-mark { color: #1CB0F6; }
+.ls-ox .ls-choice[data-ox="X"] .ls-ox-mark { color: #FF4B4B; }
+.ls-ox .ls-choice-text { font-size: 15px; color: var(--ls-sub); }
+.ls-ox .ls-choice.is-picked .ls-choice-text, .ls-ox .ls-choice.is-right .ls-choice-text, .ls-ox .ls-choice.is-wrong .ls-choice-text { color: inherit; }
+@media (max-width: 640px) { .ls-ox .ls-choice { min-height: 120px; } .ls-ox-mark { font-size: 52px; } }
+
 /* 아래: 확인 패널 */
 .ls-foot { border-top: 2px solid var(--ls-line); background: var(--ls-bg); position: sticky; bottom: 0; transition: background-color .2s; }
 .ls-foot-in {

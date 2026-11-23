@@ -71,7 +71,7 @@
   root.append(pathBox);
 
   function unitsOf(index, s) {
-    const set = new Set(Object.keys(((index.subjects || {})[s.id] || {}).units || {}).sort());
+    const set = new Set(Object.keys(((index.subjects || {})[s.id] || {}).units || {}));
     G.units(s.id).forEach(u => set.add(u));
     if (S.mine) S.mine.forSubject(s.id).forEach(q => set.add(q.u));
     return [...set].filter(Boolean);
@@ -178,7 +178,7 @@
 
   (async function init() {
     let index = { subjects: {} };
-    try { index = await (await fetch('./cloud/index.json', { cache: 'no-store' })).json(); } catch (e) { /* 문제 은행 없음 */ }
+    try { index = await S.bank.index(); } catch (e) { /* 문제 은행 없음 */ }
     const withUnits = S.SUBJECTS.map(s => ({ s, units: unitsOf(index, s) }));
     const back = withUnits.find(x => x.s.id === new URLSearchParams(location.search).get('ps')); // 레슨에서 돌아온 과목
     const first = back || withUnits[0];
