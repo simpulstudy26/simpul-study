@@ -115,6 +115,8 @@
         el('div', { class: 'pul-bubble' }, [el('p', { class: 'ls-prompt', text: q.q })])
       ]) : el('p', { class: 'ls-prompt', text: q.q })
     ]);
+    const fig = S.bank && S.bank.figure ? S.bank.figure(q) : null;
+    if (fig) body.append(fig);
     if (isOX) {
       const list = el('div', { class: 'ls-ox', role: 'radiogroup', 'aria-label': 'O 또는 X' });
       q.c.forEach((c, i) => {

@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="ko" class="simpul-material">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>정보 기말고사 — 알고리즘과 프로그래밍 / 빅데이터</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: var(--c-2563eb);
+  --primary-light: var(--c-eff6ff);
+  --green: var(--c-16a34a);
+  --green-light: var(--c-f0fdf4);
+  --purple: var(--c-7c3aed);
+  --purple-light: var(--c-f5f3ff);
+  --orange: var(--c-ea580c);
+  --orange-light: var(--c-fff7ed);
+  --gray: var(--c-64748b);
+  --bg: var(--c-f8fafc);
+  --surface: var(--c-ffffff);
+  --border: var(--c-e2e8f0);
+  --text: var(--c-0f172a);
+  --text-sec: var(--c-475569);
+  --code-bg: var(--c-0f172a);
+  --shadow: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+  --shadow-md: 0 4px 6px rgba(0,0,0,.07), 0 2px 4px rgba(0,0,0,.06);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);font-size:14.5px;line-height:1.75;}
+
+/* HEADER */
+.page-header{position:sticky;top:0;z-index:100;background:var(--c-ffffff);border-bottom:1px solid var(--border);padding:12px 20px 0;}
+.subject-label{font-size:11px;letter-spacing:.14em;color:var(--gray);text-transform:uppercase;margin-bottom:2px;}
+.page-title{font-size:20px;font-weight:700;color:var(--text);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.page-title span{font-size:13px;font-weight:500;color:var(--gray);background:var(--c-f1f5f9);padding:2px 10px;border-radius:20px;}
+.tab-bar{display:flex;overflow-x:auto;scrollbar-width:none;gap:0;}
+.tab-bar::-webkit-scrollbar{display:none;}
+.tab-btn{padding:9px 16px 7px;border:none;background:transparent;font-family:'Noto Sans KR',sans-serif;font-size:13px;color:var(--text-sec);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;display:flex;align-items:center;gap:5px;transition:color .2s;}
+.tab-btn.active{color:var(--primary);border-bottom-color:var(--primary);font-weight:700;}
+.tab-btn:hover:not(.active){color:var(--primary);border-bottom-color:var(--c-bfdbfe);}
+.tab-num{width:19px;height:19px;border-radius:50%;background:var(--c-f1f5f9);font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;}
+.tab-btn.active .tab-num{background:var(--primary);color:var(--c-ffffff);}
+
+/* CONTENT */
+.content-wrap{max-width:980px;margin:0 auto;padding:24px 20px 80px;}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
+/* TYPOGRAPHY */
+.section-title{font-size:19px;font-weight:700;border-bottom:2px solid var(--primary);padding-bottom:8px;margin:32px 0 16px;display:flex;align-items:center;gap:8px;}
+.section-title:first-child{margin-top:0;}
+.section-title .icon{font-size:18px;}
+.subsection-title{font-size:15px;font-weight:700;color:var(--primary);padding-left:10px;border-left:3px solid var(--primary);margin:20px 0 10px;}
+.sub2-title{font-size:13.5px;font-weight:700;color:var(--gray);padding-left:8px;border-left:2px solid var(--border);margin:14px 0 8px;text-transform:uppercase;letter-spacing:.05em;}
+
+/* BOXES */
+.def-box{background:var(--primary-light);border-left:4px solid var(--primary);border-radius:0 8px 8px 0;padding:13px 16px;font-size:14px;line-height:1.75;margin-bottom:12px;}
+.def-box strong{color:var(--primary);}
+.green-box{background:var(--green-light);border-left:4px solid var(--green);border-radius:0 8px 8px 0;padding:13px 16px;font-size:14px;line-height:1.75;margin-bottom:12px;}
+.green-box strong{color:var(--green);}
+.purple-box{background:var(--purple-light);border-left:4px solid var(--purple);border-radius:0 8px 8px 0;padding:13px 16px;font-size:14px;line-height:1.75;margin-bottom:12px;}
+.orange-box{background:var(--orange-light);border-left:4px solid var(--orange);border-radius:0 8px 8px 0;padding:13px 16px;font-size:14px;line-height:1.75;margin-bottom:12px;}
+.note{background:var(--c-fefce8);border:1px solid var(--c-fde047);color:var(--c-713f12);border-radius:8px;padding:11px 15px;font-size:13px;line-height:1.65;margin-bottom:10px;}
+.warning{background:var(--c-fef2f2);border:1px solid var(--c-fca5a5);color:var(--c-991b1b);border-radius:8px;padding:11px 15px;font-size:13px;line-height:1.65;margin-bottom:10px;}
+.tip{background:var(--c-f0fdf4);border:1px solid var(--c-86efac);color:var(--c-14532d);border-radius:8px;padding:11px 15px;font-size:13px;line-height:1.65;margin-bottom:10px;}
+
+/* CODE */
+.code-block{background:var(--code-bg);border-radius:10px;padding:16px 20px;margin-bottom:12px;overflow-x:auto;}
+.code-block code{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--c-e2e8f0);line-height:1.8;white-space:pre;}
+.kw{color:var(--c-93c5fd);}
+.fn{color:var(--c-86efac);}
+.str{color:var(--c-fde68a);}
+.cm{color:var(--c-94a3b8);}
+.num{color:var(--c-f9a8d4);}
+.var{color:var(--c-e2e8f0);}
+.op{color:var(--c-c4b5fd);}
+
+/* GRID */
+.factor-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+.factor-grid.three{grid-template-columns:1fr 1fr 1fr;}
+.factor-grid.four{grid-template-columns:1fr 1fr 1fr 1fr;}
+@media(max-width:640px){.factor-grid,.factor-grid.three,.factor-grid.four{grid-template-columns:1fr;}}
+.factor-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:15px;box-shadow:var(--shadow);}
+.factor-card.blue{border-top:3px solid var(--primary);}
+.factor-card.green{border-top:3px solid var(--green);}
+.factor-card.purple{border-top:3px solid var(--purple);}
+.factor-card.orange{border-top:3px solid var(--orange);}
+.factor-card.gray{border-top:3px solid var(--gray);}
+.factor-card h4{font-size:13px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:5px;}
+.factor-card p,.factor-card li{font-size:13px;color:var(--text-sec);line-height:1.65;}
+.factor-card ul{padding-left:15px;}
+.factor-card code{font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--c-f1f5f9);padding:1px 5px;border-radius:4px;color:var(--primary);}
+
+/* TABLE */
+.cmp-table{width:100%;border-collapse:collapse;border-radius:10px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:12px;}
+.cmp-table thead{background:var(--primary);color:var(--c-ffffff);}
+.cmp-table th{padding:9px 13px;font-size:13px;text-align:left;}
+.cmp-table td{padding:8px 13px;font-size:13.5px;line-height:1.55;border-bottom:1px solid var(--border);}
+.cmp-table tbody tr:nth-child(even){background:var(--c-f8fafc);}
+.cmp-table td:first-child{font-weight:600;color:var(--primary);white-space:nowrap;font-family:'JetBrains Mono',monospace;font-size:12.5px;}
+.green-th thead{background:var(--green);}
+.green-th td:first-child{color:var(--green);}
+.purple-th thead{background:var(--purple);}
+.purple-th td:first-child{color:var(--purple);}
+
+/* BADGES */
+.badge{padding:2px 9px;border-radius:20px;font-size:11.5px;font-weight:700;display:inline-block;margin:1px;}
+.badge-blue{background:var(--c-dbeafe);color:var(--c-1d4ed8);}
+.badge-green{background:var(--c-dcfce7);color:var(--c-15803d);}
+.badge-purple{background:var(--c-ede9fe);color:var(--c-6d28d9);}
+.badge-orange{background:var(--c-ffedd5);color:var(--c-c2410c);}
+.badge-gray{background:var(--c-f1f5f9);color:var(--c-475569);}
+
+/* FLOW */
+.flow-row{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+.flow-item{background:var(--surface);border:1.5px solid var(--primary);border-radius:8px;padding:6px 12px;font-size:13px;font-weight:600;color:var(--primary);}
+.flow-arrow{color:var(--primary);font-weight:700;font-size:18px;}
+
+/* INFO LIST */
+.info-list{list-style:none;padding:0;margin-bottom:10px;}
+.info-list li{padding:7px 12px 7px 28px;position:relative;font-size:13.5px;line-height:1.65;border-bottom:1px solid var(--c-f1f5f9);}
+.info-list li::before{content:'▸';position:absolute;left:10px;color:var(--primary);font-weight:700;}
+
+/* V-TABLE for 5V */
+.v-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:12px;}
+@media(max-width:600px){.v-grid{grid-template-columns:1fr 1fr;}}
+.v-card{background:var(--surface);border-radius:10px;border:1px solid var(--border);padding:12px;text-align:center;box-shadow:var(--shadow);}
+.v-card .v-letter{font-size:22px;font-weight:700;color:var(--primary);font-family:'JetBrains Mono',monospace;}
+.v-card .v-eng{font-size:11px;color:var(--gray);margin-bottom:4px;}
+.v-card .v-kor{font-size:13px;font-weight:700;}
+
+.totop{position:fixed;bottom:28px;right:24px;width:44px;height:44px;border-radius:50%;background:var(--primary);color:var(--c-ffffff);border:none;font-size:18px;cursor:pointer;box-shadow:0 2px 8px rgba(37,99,235,.4);z-index:200;}
+
+/* QUIZ STYLES */
+.quiz-section{margin-top:56px;padding-top:32px;border-top:3px solid var(--primary);}
+.quiz-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:16px;}
+.quiz-header h3{font-size:17px;font-weight:700;}
+.scoreboard{display:flex;gap:8px;flex-wrap:wrap;}
+.score-chip{padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;border:1.5px solid;}
+.score-chip.ox{background:var(--c-dbeafe);color:var(--c-1d4ed8);border-color:var(--c-1d4ed8);}
+.score-chip.mc{background:var(--c-dcfce7);color:var(--c-15803d);border-color:var(--c-15803d);}
+.score-chip.hard{background:var(--c-ede9fe);color:var(--c-6d28d9);border-color:var(--c-6d28d9);}
+.quiz-type-bar{display:flex;border-bottom:2px solid var(--border);overflow-x:auto;margin-bottom:16px;}
+.qtype-btn{padding:9px 18px;border:none;background:transparent;font-family:'Noto Sans KR',sans-serif;font-size:13px;color:var(--text-sec);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;display:flex;align-items:center;gap:5px;}
+.qtype-btn.active{color:var(--primary);border-bottom-color:var(--primary);font-weight:700;}
+.qtype-count{width:19px;height:19px;border-radius:50%;background:rgba(0,0,0,.07);font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;}
+.q-progress-wrap{margin-bottom:16px;}
+.q-progress-label{font-size:12px;color:var(--text-sec);margin-bottom:5px;}
+.q-progress-bar{height:5px;background:var(--c-e2e8f0);border-radius:3px;}
+.q-progress-fill{height:100%;background:var(--primary);border-radius:3px;transition:width .4s;}
+.q-card{background:var(--c-ffffff);border:1px solid var(--border);border-radius:12px;padding:20px 22px;margin-bottom:12px;box-shadow:var(--shadow);}
+.q-card.answered-correct{border-color:var(--green);background:var(--c-f0fdf4);}
+.q-card.answered-wrong{border-color:var(--c-ef4444);background:var(--c-fef2f2);}
+.q-meta{display:flex;align-items:center;gap:7px;margin-bottom:9px;flex-wrap:wrap;}
+.q-num{font-size:11px;font-weight:700;color:var(--text-sec);}
+.q-difficulty{padding:2px 7px;border-radius:10px;font-size:11px;font-weight:700;}
+.diff-basic{background:var(--c-dbeafe);color:var(--c-1d4ed8);}
+.diff-mid{background:var(--c-dcfce7);color:var(--c-15803d);}
+.diff-hard{background:var(--c-ede9fe);color:var(--c-6d28d9);}
+.q-answered-mark{font-size:14px;}
+.q-text{font-size:14px;line-height:1.75;margin-bottom:13px;color:var(--text);white-space:pre-wrap;}
+.q-text code{font-family:'JetBrains Mono',monospace;font-size:12.5px;background:var(--c-f1f5f9);padding:1px 5px;border-radius:4px;color:var(--primary);}
+.ox-row{display:flex;gap:10px;}
+.ox-btn{flex:1;padding:13px 10px;border-radius:10px;border:2px solid var(--border);background:var(--c-ffffff);display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all .15s;}
+.ox-btn:hover:not(:disabled){border-color:var(--primary);background:var(--primary-light);}
+.ox-sym{font-size:24px;}
+.ox-lbl{font-size:11px;color:var(--text-sec);}
+.ox-btn.ox-correct-picked{background:var(--c-f0fdf4);border-color:var(--green);box-shadow:0 0 0 3px var(--c-bbf7d0);}
+.ox-btn.ox-wrong-picked{background:var(--c-fef2f2);border-color:var(--c-ef4444);box-shadow:0 0 0 3px var(--c-fecaca);}
+.ox-btn.ox-correct-reveal{background:var(--c-f0fdf4);border-color:var(--green);opacity:.75;}
+.mc-options{display:flex;flex-direction:column;gap:7px;}
+.mc-opt{display:flex;align-items:flex-start;gap:9px;padding:10px 13px;border-radius:9px;border:1.5px solid var(--border);text-align:left;width:100%;font-family:'Noto Sans KR',sans-serif;font-size:13.5px;background:var(--c-ffffff);cursor:pointer;transition:all .15s;}
+.mc-opt:hover:not(:disabled){border-color:var(--primary);background:var(--primary-light);}
+.mc-opt:disabled{cursor:default;}
+.mc-opt.mc-correct{background:var(--c-f0fdf4);border-color:var(--green);font-weight:600;}
+.mc-opt.mc-wrong{background:var(--c-fef2f2);border-color:var(--c-ef4444);}
+.mc-opt-letter{width:22px;height:22px;border-radius:50%;background:var(--c-f1f5f9);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'JetBrains Mono',monospace;}
+.mc-opt.mc-correct .mc-opt-letter{background:var(--green);color:var(--c-ffffff);}
+.mc-opt.mc-wrong .mc-opt-letter{background:var(--c-ef4444);color:var(--c-ffffff);}
+.mc-opt-text{flex:1;line-height:1.55;}
+.mc-opt-text code{font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--c-f1f5f9);padding:1px 4px;border-radius:3px;color:var(--primary);}
+.q-feedback{border-radius:9px;padding:11px 15px;font-size:13.5px;line-height:1.65;margin-top:9px;}
+.q-feedback.correct{background:var(--c-f0fdf4);border:1px solid var(--c-86efac);color:var(--c-14532d);}
+.q-feedback.wrong{background:var(--c-fef2f2);border:1px solid var(--c-fca5a5);color:var(--c-991b1b);}
+.quiz-result{background:var(--c-ffffff);border:2px solid var(--primary);border-radius:14px;padding:22px;text-align:center;display:none;margin-top:14px;}
+.quiz-result.visible{display:block;}
+.result-score-big{font-size:46px;font-weight:700;color:var(--primary);font-family:'JetBrains Mono',monospace;}
+.result-score-big span{font-size:22px;color:var(--gray);}
+.result-score-label{font-size:17px;margin:7px 0 14px;color:var(--text);}
+.mini-bar-row{display:flex;align-items:center;gap:9px;margin:5px 0;font-size:12.5px;}
+.mini-bar-bg{flex:1;height:7px;background:var(--c-e2e8f0);border-radius:4px;overflow:hidden;}
+.mini-bar-fill{height:100%;border-radius:4px;}
+.reset-btn{margin-top:14px;padding:9px 22px;border-radius:20px;border:none;background:var(--primary);color:var(--c-ffffff);font-family:'Noto Sans KR',sans-serif;font-size:14px;font-weight:700;cursor:pointer;}
+.reset-btn:hover{background:var(--c-1d4ed8);}
+</style>
+  <!-- PWA: 앱 설치 설정 -->
+  
+  <meta name="theme-color" content="#07111f" />
+  
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="심풀스터디" />
+  
+
+
+
+
+
+<script data-material-theme-init>(function(){var d=document.documentElement,t="dark",o=false;try{t=localStorage.getItem("simpul.theme")==="light"?"light":"dark";o=JSON.parse(localStorage.getItem("simpul.duo.v1")||"{}").on===true}catch(e){}try{if(parent!==window&&parent.document){var p=parent.document.documentElement;o=p.hasAttribute("data-duo");if(p.getAttribute("data-theme")==="light")t="light"}}catch(e){}d.dataset.materialTheme=t;if(o)d.setAttribute("data-material-duo","")})()</script><style data-simpul-monochrome-palette>:root{--c-0f172a:#18181b;--c-14532d:#3f3f46;--c-15803d:#3f3f46;--c-16a34a:#52525b;--c-1d4ed8:#52525b;--c-2563eb:#52525b;--c-475569:#3f3f46;--c-64748b:#52525b;--c-6d28d9:#52525b;--c-713f12:#3f3f46;--c-7c3aed:#52525b;--c-86efac:#a1a1aa;--c-93c5fd:#a1a1aa;--c-94a3b8:#a1a1aa;--c-991b1b:#52525b;--c-bbf7d0:#e4e4e7;--c-bfdbfe:#e4e4e7;--c-c2410c:#52525b;--c-c4b5fd:#e4e4e7;--c-dbeafe:#e4e4e7;--c-dcfce7:#e4e4e7;--c-e2e8f0:#e4e4e7;--c-ea580c:#52525b;--c-ede9fe:#f4f4f5;--c-ef4444:#52525b;--c-eff6ff:#f4f4f5;--c-f0fdf4:#f4f4f5;--c-f1f5f9:#f4f4f5;--c-f5f3ff:#f4f4f5;--c-f8fafc:#f4f4f5;--c-f9a8d4:#a1a1aa;--c-fca5a5:#a1a1aa;--c-fde047:#52525b;--c-fde68a:#a1a1aa;--c-fecaca:#e4e4e7;--c-fef2f2:#f4f4f5;--c-fefce8:#f4f4f5;--c-ffedd5:#e4e4e7;--c-fff7ed:#f4f4f5;--c-ffffff:#ffffff;}html[data-material-theme="dark"]{--c-0f172a:#f4f4f5;--c-14532d:#d4d4d8;--c-15803d:#d4d4d8;--c-16a34a:#a1a1aa;--c-1d4ed8:#a1a1aa;--c-2563eb:#a1a1aa;--c-475569:#d4d4d8;--c-64748b:#a1a1aa;--c-6d28d9:#a1a1aa;--c-713f12:#d4d4d8;--c-7c3aed:#a1a1aa;--c-86efac:#71717a;--c-93c5fd:#71717a;--c-94a3b8:#71717a;--c-991b1b:#a1a1aa;--c-bbf7d0:#27272a;--c-bfdbfe:#27272a;--c-c2410c:#a1a1aa;--c-c4b5fd:#27272a;--c-dbeafe:#27272a;--c-dcfce7:#27272a;--c-e2e8f0:#27272a;--c-ea580c:#a1a1aa;--c-ede9fe:#18181b;--c-ef4444:#a1a1aa;--c-eff6ff:#18181b;--c-f0fdf4:#18181b;--c-f1f5f9:#18181b;--c-f5f3ff:#18181b;--c-f8fafc:#18181b;--c-f9a8d4:#71717a;--c-fca5a5:#71717a;--c-fde047:#a1a1aa;--c-fde68a:#71717a;--c-fecaca:#27272a;--c-fef2f2:#18181b;--c-fefce8:#18181b;--c-ffedd5:#27272a;--c-fff7ed:#18181b;--c-ffffff:#0e0e11;}html[data-material-duo]{--c-0f172a:#1899D6;--c-14532d:#58A700;--c-15803d:#58A700;--c-16a34a:#58A700;--c-1d4ed8:#1CB0F6;--c-2563eb:#1CB0F6;--c-475569:#1899D6;--c-64748b:#777777;--c-6d28d9:#CE82FF;--c-713f12:#CD7900;--c-7c3aed:#CE82FF;--c-86efac:#58CC02;--c-93c5fd:color-mix(in srgb,#1CB0F6 45%,#FFFFFF);--c-94a3b8:#1CB0F6;--c-991b1b:#EA2B2B;--c-bbf7d0:color-mix(in srgb,#58CC02 45%,#FFFFFF);--c-bfdbfe:color-mix(in srgb,#1CB0F6 45%,#FFFFFF);--c-c2410c:#FF9600;--c-c4b5fd:color-mix(in srgb,#1CB0F6 45%,#FFFFFF);--c-dbeafe:#DDF4FF;--c-dcfce7:#D7FFB8;--c-e2e8f0:#E5E5E5;--c-ea580c:#FF9600;--c-ede9fe:#DDF4FF;--c-ef4444:#FF4B4B;--c-eff6ff:#F7F7F7;--c-f0fdf4:#F7F7F7;--c-f1f5f9:#F7F7F7;--c-f5f3ff:#FFFFFF;--c-f8fafc:#FFFFFF;--c-f9a8d4:color-mix(in srgb,#FF4B4B 45%,#FFFFFF);--c-fca5a5:color-mix(in srgb,#FF4B4B 45%,#FFFFFF);--c-fde047:#FFC800;--c-fde68a:color-mix(in srgb,#FFC800 45%,#FFFFFF);--c-fecaca:color-mix(in srgb,#FF4B4B 45%,#FFFFFF);--c-fef2f2:#FFFFFF;--c-fefce8:#FFF5D3;--c-ffedd5:#FFF0D9;--c-fff7ed:#FFF0D9;--c-ffffff:#FFFFFF;}html[data-material-duo][data-material-theme="dark"]{--c-0f172a:color-mix(in srgb,#1CB0F6 78%,#FFFFFF);--c-14532d:color-mix(in srgb,#58CC02 78%,#FFFFFF);--c-15803d:color-mix(in srgb,#58CC02 78%,#FFFFFF);--c-16a34a:color-mix(in srgb,#58CC02 78%,#FFFFFF);--c-1d4ed8:#1CB0F6;--c-2563eb:#1CB0F6;--c-475569:color-mix(in srgb,#1CB0F6 78%,#FFFFFF);--c-64748b:#AFAFAF;--c-6d28d9:#CE82FF;--c-713f12:color-mix(in srgb,#FF9600 78%,#FFFFFF);--c-7c3aed:#CE82FF;--c-86efac:#58CC02;--c-93c5fd:color-mix(in srgb,#1CB0F6 40%,#131F24);--c-94a3b8:#1CB0F6;--c-991b1b:color-mix(in srgb,#FF4B4B 78%,#FFFFFF);--c-bbf7d0:color-mix(in srgb,#58CC02 40%,#131F24);--c-bfdbfe:color-mix(in srgb,#1CB0F6 40%,#131F24);--c-c2410c:#FF9600;--c-c4b5fd:color-mix(in srgb,#1CB0F6 40%,#131F24);--c-dbeafe:color-mix(in srgb,#1CB0F6 16%,#131F24);--c-dcfce7:color-mix(in srgb,#58CC02 16%,#131F24);--c-e2e8f0:#37464F;--c-ea580c:#FF9600;--c-ede9fe:color-mix(in srgb,#1CB0F6 16%,#131F24);--c-ef4444:#FF4B4B;--c-eff6ff:#202F36;--c-f0fdf4:#202F36;--c-f1f5f9:#202F36;--c-f5f3ff:#131F24;--c-f8fafc:#131F24;--c-f9a8d4:color-mix(in srgb,#FF4B4B 40%,#131F24);--c-fca5a5:color-mix(in srgb,#FF4B4B 40%,#131F24);--c-fde047:#FFC800;--c-fde68a:color-mix(in srgb,#FFC800 40%,#131F24);--c-fecaca:color-mix(in srgb,#FF4B4B 40%,#131F24);--c-fef2f2:#131F24;--c-fefce8:color-mix(in srgb,#FFC800 16%,#131F24);--c-ffedd5:color-mix(in srgb,#FF9600 16%,#131F24);--c-fff7ed:color-mix(in srgb,#FF9600 16%,#131F24);--c-ffffff:#131F24;}</style>
+<link rel="stylesheet" href="../../_theme/material-monochrome.css">
+<link rel="stylesheet" href="../../_theme/study-ui.css">
+<script src="../../_theme/study-ui.js" defer></script>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="subject-label">정보 · Ⅲ. 알고리즘과 프로그래밍 / Ⅱ. 데이터</div>
+  <div class="page-title">기말고사 핵심 정리 <span>Python + 빅데이터</span></div>
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab(0)"><span class="tab-num">1</span>3-6 다차원 데이터 구조</button>
+    <button class="tab-btn" onclick="switchTab(1)"><span class="tab-num">2</span>4-1 조건문</button>
+    <button class="tab-btn" onclick="switchTab(2)"><span class="tab-num">3</span>4-2 반복문</button>
+    <button class="tab-btn" onclick="switchTab(3)"><span class="tab-num">4</span>5-1 함수</button>
+    <button class="tab-btn" onclick="switchTab(4)"><span class="tab-num">5</span>5-2 모듈과 라이브러리</button>
+    <button class="tab-btn" onclick="switchTab(5)"><span class="tab-num">6</span>빅데이터 개념과 분석</button>
+  </div>
+</div>
+
+<div class="content-wrap">
+
+<!-- ===== TAB 0: 3-6 다차원 데이터 구조 ===== -->
+<div class="tab-panel active" id="panel-0">
+
+  <div class="section-title"><span class="icon"></span>3-6 다차원 데이터 구조</div>
+
+  <div class="subsection-title">다차원 데이터 구조란?</div>
+  <div class="def-box">
+    데이터를 <strong>행과 열</strong>, 또는 여러 개의 차원으로 구성하여 저장하는 방법<br>
+    많은 양의 데이터를 <strong>효율적으로 처리·관리</strong>하기 위해 사용<br>
+    리스트는 <strong>순서가 있는 자료형</strong> → 같은 데이터를 같은 순서로 저장해야 같은 리스트로 판단
+  </div>
+
+  <div class="subsection-title">① 1차원 리스트</div>
+  <div class="def-box">
+    가장 기본적으로 데이터를 묶어 <strong>하나의 이름</strong>으로 관리하는 방법<br>
+    리스트를 구성하는 각각의 값 → <strong>요소(원소)</strong><br>
+    저장된 요소의 위치 정보 → <strong>인덱스</strong> (0부터 시작)
+  </div>
+  <div class="factor-grid three">
+    <div class="factor-card blue">
+      <h4>요소(원소)</h4>
+      <p>리스트를 구성하는 각각의 값</p>
+      <p>같은 자료형 또는 서로 다른 자료형 모두 가능</p>
+    </div>
+    <div class="factor-card green">
+      <h4>인덱스</h4>
+      <p>저장된 요소의 <strong>위치 정보</strong></p>
+      <p>0부터 시작, 음수 인덱스도 사용 가능 (-1은 마지막)</p>
+    </div>
+    <div class="factor-card purple">
+      <h4>인덱싱 / 슬라이싱</h4>
+      <p><code>list[i]</code> → 인덱싱</p>
+      <p><code>list[a:b]</code> → 슬라이싱 (a이상 b미만)</p>
+    </div>
+  </div>
+  <div class="code-block"><code><span class="cm"># 1차원 리스트 선언</span>
+<span class="var">a</span> <span class="op">=</span> [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>]       <span class="cm"># 정수형 요소</span>
+<span class="var">b</span> <span class="op">=</span> [<span class="str">'apple'</span>, <span class="str">'banana'</span>, <span class="str">'cherry'</span>]  <span class="cm"># 문자열 요소</span>
+<span class="var">c</span> <span class="op">=</span> []                         <span class="cm"># 빈 리스트</span>
+
+<span class="cm"># 인덱싱</span>
+<span class="fn">print</span>(<span class="var">a</span>[<span class="num">0</span>])    <span class="cm"># 1 (첫 번째 요소)</span>
+<span class="fn">print</span>(<span class="var">a</span>[<span class="op">-</span><span class="num">1</span>])   <span class="cm"># 5 (마지막 요소)</span>
+
+<span class="cm"># 슬라이싱</span>
+<span class="fn">print</span>(<span class="var">a</span>[<span class="num">1</span>:<span class="num">4</span>])  <span class="cm"># [2, 3, 4]</span></code></div>
+
+  <div class="subsection-title">② 리스트 메소드</div>
+  <div class="note"> 메소드: 리스트를 조작(삽입·삭제·수정)하기 위해 활용. <code>리스트.메소드()</code> 형태로 작성</div>
+  <table class="cmp-table">
+    <thead><tr><th>메소드</th><th>기능</th><th>예시</th></tr></thead>
+    <tbody>
+      <tr><td>append(x)</td><td>리스트 맨 뒤에 요소 x 추가</td><td><code>a.append(6)</code></td></tr>
+      <tr><td>insert(i, x)</td><td>인덱스 i 위치에 요소 x 삽입</td><td><code>a.insert(2, 99)</code></td></tr>
+      <tr><td>remove(x)</td><td>첫 번째로 나오는 요소 x 삭제</td><td><code>a.remove(3)</code></td></tr>
+      <tr><td>pop(i)</td><td>인덱스 i의 요소를 꺼내고 삭제 (기본: 마지막)</td><td><code>a.pop()</code></td></tr>
+      <tr><td>sort()</td><td>리스트를 오름차순 정렬 (reverse=True면 내림차순)</td><td><code>a.sort()</code></td></tr>
+      <tr><td>reverse()</td><td>리스트 순서를 거꾸로 뒤집음</td><td><code>a.reverse()</code></td></tr>
+      <tr><td>extend(list)</td><td>리스트 뒤에 또 다른 리스트를 이어 붙임 (+연산과 동일)</td><td><code>a.extend([7,8])</code></td></tr>
+      <tr><td>clear()</td><td>리스트의 모든 데이터를 삭제하고 빈 리스트로 만듦</td><td><code>a.clear()</code></td></tr>
+      <tr><td>index(x)</td><td>요소 x를 오름차순 탐색하여 위치 인덱스 반환</td><td><code>a.index(3)</code></td></tr>
+    </tbody>
+  </table>
+  <div class="tip"> 형변환: 다른 시퀀스 자료형을 <code>list()</code>로 리스트로 변환 가능. 순서 없는 자료형(예: set)은 변환 시 순서가 무작위로 부여됨</div>
+
+  <div class="subsection-title">③ 2차원 리스트</div>
+  <div class="def-box">
+    <strong>1차원 리스트가 겹쳐서 쌓인 구조</strong> — 가로축(행)과 세로축(열)의 <strong>두 가지 인덱스</strong>로 값에 접근<br>
+    접근 방법: <code>리스트[행 인덱스][열 인덱스]</code>
+  </div>
+  <div class="code-block"><code><span class="cm"># 2차원 리스트 선언 (3행 3열)</span>
+<span class="var">matrix</span> <span class="op">=</span> [
+    [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>],
+    [<span class="num">4</span>, <span class="num">5</span>, <span class="num">6</span>],
+    [<span class="num">7</span>, <span class="num">8</span>, <span class="num">9</span>]
+]
+
+<span class="fn">print</span>(<span class="var">matrix</span>[<span class="num">0</span>][<span class="num">0</span>])   <span class="cm"># 1  (0행 0열)</span>
+<span class="fn">print</span>(<span class="var">matrix</span>[<span class="num">1</span>][<span class="num">2</span>])   <span class="cm"># 6  (1행 2열)</span>
+<span class="fn">print</span>(<span class="var">matrix</span>[<span class="num">2</span>][<span class="num">1</span>])   <span class="cm"># 8  (2행 1열)</span></code></div>
+
+  <div class="m-practice-wrap"><a class="m-practice" target="_top" href="../../../cloud.html?s=info&amp;u=3-6%20%EB%8B%A4%EC%B0%A8%EC%9B%90%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EA%B5%AC%EC%A1%B0"><span class="m-practice-ico" aria-hidden="true"></span><span class="m-practice-txt"><b>이 부분 문제는 무한 문제에서 풀어요</b><small>3-6 다차원 데이터 구조 · 26문제 · O/X·객관식·고난도</small></span><span class="m-practice-go">무한 문제로 풀기 →</span></a></div><div hidden style="display:none" data-moved-to-bank id="quiz-0" class="quiz-section"></div>
+</div>
+
+<!-- ===== TAB 1: 4-1 조건문 ===== -->
+<div class="tab-panel" id="panel-1">
+
+  <div class="section-title"><span class="icon"></span>4-1 조건문</div>
+
+  <div class="subsection-title">조건식이란?</div>
+  <div class="def-box">
+    <strong>비교 연산자</strong>와 <strong>논리 연산자</strong>를 활용해 작성하며, 결과는 <strong>참(True)</strong> 또는 <strong>거짓(False)</strong><br>
+    조건문을 통해 결과에 따라 동작을 제어함
+  </div>
+  <div class="factor-grid">
+    <div class="factor-card blue">
+      <h4>비교 연산자</h4>
+      <ul>
+        <li><code>==</code> 같다 &nbsp;|&nbsp; <code>!=</code> 다르다</li>
+        <li><code>&gt;</code> 크다 &nbsp;|&nbsp; <code>&lt;</code> 작다</li>
+        <li><code>&gt;=</code> 크거나 같다 &nbsp;|&nbsp; <code>&lt;=</code> 작거나 같다</li>
+      </ul>
+    </div>
+    <div class="factor-card green">
+      <h4>논리 연산자</h4>
+      <ul>
+        <li><code>and</code> : 두 조건 모두 참일 때 True</li>
+        <li><code>or</code> &nbsp;: 하나라도 참이면 True</li>
+        <li><code>not</code> : 참↔거짓 반전</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="subsection-title">① if문 (단순 조건문)</div>
+  <div class="green-box">가장 단순한 형태의 조건문. 조건식이 <strong>참(True)</strong>일 때만 특정 명령문을 실행</div>
+  <div class="code-block"><code><span class="kw">if</span> 조건식:
+    실행할 명령문   <span class="cm"># 조건이 참일 때만 실행 (들여쓰기 필수!)</span>
+
+<span class="cm"># 예시</span>
+<span class="var">score</span> <span class="op">=</span> <span class="num">85</span>
+<span class="kw">if</span> <span class="var">score</span> <span class="op">&gt;=</span> <span class="num">80</span>:
+    <span class="fn">print</span>(<span class="str">"합격"</span>)</code></div>
+
+  <div class="subsection-title">② if-else문 (이중 조건문)</div>
+  <div class="green-box">조건식이 <strong>참</strong>일 때와 <strong>거짓</strong>일 때 실행하는 명령문이 다른 구조</div>
+  <div class="code-block"><code><span class="kw">if</span> 조건식:
+    참일 때 실행할 명령문
+<span class="kw">else</span>:
+    거짓일 때 실행할 명령문
+
+<span class="cm"># 예시</span>
+<span class="var">score</span> <span class="op">=</span> <span class="num">55</span>
+<span class="kw">if</span> <span class="var">score</span> <span class="op">&gt;=</span> <span class="num">60</span>:
+    <span class="fn">print</span>(<span class="str">"합격"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"불합격"</span>)</code></div>
+
+  <div class="subsection-title">③ 중첩 if문</div>
+  <div class="green-box">조건문 안에 <strong>또 다른 조건문</strong>을 포함하는 구조</div>
+  <div class="code-block"><code><span class="kw">if</span> 조건식1:
+    <span class="kw">if</span> 조건식2:       <span class="cm"># 조건식1이 참일 때 조건식2 판별</span>
+        명령문 A
+    <span class="kw">else</span>:
+        명령문 B
+<span class="kw">else</span>:
+    명령문 C</code></div>
+
+  <div class="subsection-title">④ if-elif-else문 (다중 조건문)</div>
+  <div class="green-box">선택 사항이 <strong>여러 개</strong>일 경우 사용. 여러 개의 조건식에 따라 명령을 다르게 실행</div>
+  <div class="code-block"><code><span class="kw">if</span> 조건식1:
+    명령문1
+<span class="kw">elif</span> 조건식2:
+    명령문2
+<span class="kw">elif</span> 조건식3:
+    명령문3
+<span class="kw">else</span>:
+    명령문4   <span class="cm"># 위 조건 모두 거짓일 때</span>
+
+<span class="cm"># 예시: 학점 계산</span>
+<span class="var">score</span> <span class="op">=</span> <span class="num">75</span>
+<span class="kw">if</span> <span class="var">score</span> <span class="op">&gt;=</span> <span class="num">90</span>:
+    <span class="fn">print</span>(<span class="str">"A"</span>)
+<span class="kw">elif</span> <span class="var">score</span> <span class="op">&gt;=</span> <span class="num">80</span>:
+    <span class="fn">print</span>(<span class="str">"B"</span>)
+<span class="kw">elif</span> <span class="var">score</span> <span class="op">&gt;=</span> <span class="num">70</span>:
+    <span class="fn">print</span>(<span class="str">"C"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"F"</span>)</code></div>
+
+  <table class="cmp-table green-th">
+    <thead><tr><th>조건문 종류</th><th>구조</th><th>사용 상황</th></tr></thead>
+    <tbody>
+      <tr><td>if</td><td>if만</td><td>참일 때만 실행</td></tr>
+      <tr><td>if-else</td><td>if + else</td><td>참/거짓 2가지 분기</td></tr>
+      <tr><td>중첩 if</td><td>if 안에 if</td><td>조건이 계층적일 때</td></tr>
+      <tr><td>if-elif-else</td><td>if + elif(들) + else</td><td>3가지 이상 분기</td></tr>
+    </tbody>
+  </table>
+
+  <div class="m-practice-wrap"><a class="m-practice" target="_top" href="../../../cloud.html?s=info&amp;u=4-1%20%EC%A1%B0%EA%B1%B4%EB%AC%B8"><span class="m-practice-ico" aria-hidden="true"></span><span class="m-practice-txt"><b>이 부분 문제는 무한 문제에서 풀어요</b><small>4-1 조건문 · 26문제 · O/X·객관식·고난도</small></span><span class="m-practice-go">무한 문제로 풀기 →</span></a></div><div hidden style="display:none" data-moved-to-bank id="quiz-1" class="quiz-section"></div>
+</div>
+
+<!-- ===== TAB 2: 4-2 반복문 ===== -->
+<div class="tab-panel" id="panel-2">
+
+  <div class="section-title"><span class="icon"></span>4-2 반복문</div>
+
+  <div class="def-box">
+    특정 명령문을 <strong>반복해서 실행</strong>해야 할 때 사용하는 명령문<br>
+    반복할 명령을 계속 똑같이 기술해야 하는 비효율성 개선<br>
+    종류: <strong>for문</strong>, <strong>while문</strong>
+  </div>
+
+  <div class="subsection-title">① for문</div>
+  <div class="green-box">시퀀스(리스트, 문자열, range 등)의 <strong>요소를 순서대로 꺼내며</strong> 반복</div>
+  <div class="code-block"><code><span class="kw">for</span> <span class="var">변수</span> <span class="kw">in</span> 시퀀스:
+    반복할 명령문
+
+<span class="cm"># range() 사용</span>
+<span class="kw">for</span> <span class="var">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="num">5</span>):        <span class="cm"># 0,1,2,3,4</span>
+    <span class="fn">print</span>(<span class="var">i</span>)
+
+<span class="kw">for</span> <span class="var">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="num">1</span>, <span class="num">6</span>):    <span class="cm"># 1,2,3,4,5</span>
+    <span class="fn">print</span>(<span class="var">i</span>)
+
+<span class="kw">for</span> <span class="var">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="num">0</span>, <span class="num">10</span>, <span class="num">2</span>): <span class="cm"># 0,2,4,6,8 (2씩 증가)</span>
+    <span class="fn">print</span>(<span class="var">i</span>)
+
+<span class="cm"># 리스트 순회</span>
+<span class="var">fruits</span> <span class="op">=</span> [<span class="str">'apple'</span>, <span class="str">'banana'</span>, <span class="str">'cherry'</span>]
+<span class="kw">for</span> <span class="var">f</span> <span class="kw">in</span> <span class="var">fruits</span>:
+    <span class="fn">print</span>(<span class="var">f</span>)</code></div>
+
+  <div class="subsection-title">② while문</div>
+  <div class="green-box">조건식이 <strong>참(True)인 동안</strong> 계속 반복. 조건이 거짓이 되면 반복 종료</div>
+  <div class="code-block"><code><span class="kw">while</span> 조건식:
+    반복할 명령문
+    <span class="cm"># 조건을 변화시키는 코드가 없으면 무한루프!</span>
+
+<span class="cm"># 예시</span>
+<span class="var">i</span> <span class="op">=</span> <span class="num">1</span>
+<span class="kw">while</span> <span class="var">i</span> <span class="op">&lt;=</span> <span class="num">5</span>:
+    <span class="fn">print</span>(<span class="var">i</span>)
+    <span class="var">i</span> <span class="op">+=</span> <span class="num">1</span>    <span class="cm"># i = i + 1 (조건 변화 필수!)</span></code></div>
+
+  <div class="subsection-title">③ break / continue</div>
+  <div class="factor-grid">
+    <div class="factor-card orange">
+      <h4> break</h4>
+      <p>강제로 반복문을 <strong>벗어남</strong></p>
+      <p>중첩 반복문의 경우 가장 가까운(break가 포함된) 반복문만 벗어남</p>
+    </div>
+    <div class="factor-card purple">
+      <h4> continue</h4>
+      <p>특정 명령문을 <strong>건너뛰고</strong> 반복문의 처음으로 돌아가서 계속 실행</p>
+    </div>
+  </div>
+  <div class="code-block"><code><span class="cm"># break 예시: 3을 만나면 종료</span>
+<span class="kw">for</span> <span class="var">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="num">1</span>, <span class="num">6</span>):
+    <span class="kw">if</span> <span class="var">i</span> <span class="op">==</span> <span class="num">3</span>:
+        <span class="kw">break</span>
+    <span class="fn">print</span>(<span class="var">i</span>)    <span class="cm"># 1, 2 출력 후 종료</span>
+
+<span class="cm"># continue 예시: 3을 건너뜀</span>
+<span class="kw">for</span> <span class="var">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="num">1</span>, <span class="num">6</span>):
+    <span class="kw">if</span> <span class="var">i</span> <span class="op">==</span> <span class="num">3</span>:
+        <span class="kw">continue</span>
+    <span class="fn">print</span>(<span class="var">i</span>)    <span class="cm"># 1, 2, 4, 5 출력</span></code></div>
+
+  <table class="cmp-table green-th">
+    <thead><tr><th>구분</th><th>for문</th><th>while문</th></tr></thead>
+    <tbody>
+      <tr><td>반복 기준</td><td>시퀀스의 요소를 순서대로</td><td>조건식이 참인 동안</td></tr>
+      <tr><td>반복 횟수</td><td>시퀀스 길이만큼 (정해짐)</td><td>조건에 따라 달라짐</td></tr>
+      <tr><td>무한루프</td><td>일반적으로 발생 안 함</td><td>조건 미변화 시 무한루프</td></tr>
+      <tr><td>주요 사용</td><td>리스트/range 순회</td><td>조건 기반 반복</td></tr>
+    </tbody>
+  </table>
+
+  <div class="m-practice-wrap"><a class="m-practice" target="_top" href="../../../cloud.html?s=info&amp;u=4-2%20%EB%B0%98%EB%B3%B5%EB%AC%B8"><span class="m-practice-ico" aria-hidden="true"></span><span class="m-practice-txt"><b>이 부분 문제는 무한 문제에서 풀어요</b><small>4-2 반복문 · 26문제 · O/X·객관식·고난도</small></span><span class="m-practice-go">무한 문제로 풀기 →</span></a></div><div hidden style="display:none" data-moved-to-bank id="quiz-2" class="quiz-section"></div>
+</div>
+
+<!-- ===== TAB 3: 5-1 함수 ===== -->
+<div class="tab-panel" id="panel-3">
+
+  <div class="section-title"><span class="icon"></span>5-1 함수</div>
+
+  <div class="subsection-title">함수란?</div>
+  <div class="def-box">
+    특정한 기능을 수행하는 코드로 <strong>여러 개의 명령문을 묶어서</strong> 작성<br>
+    필요할 때마다 <strong>호출</strong>해서 사용 → 프로그램을 효율적으로 작성 가능<br>
+    종류: <strong>내장 함수 / 외장 함수 / 사용자 정의 함수</strong>
+  </div>
+
+  <div class="factor-grid three">
+    <div class="factor-card blue">
+      <h4>내장 함수</h4>
+      <p>파이썬 설치 시 <strong>함께 제공</strong></p>
+      <p>import 없이 바로 사용</p>
+      <p>예: <code>print()</code>, <code>input()</code>, <code>len()</code>, <code>sorted()</code></p>
+      <p style="font-size:11px;color:var(--c-64748b);margin-top:4px;">'Python built-in functions' 검색으로 전체 목록 확인</p>
+    </div>
+    <div class="factor-card green">
+      <h4>외장 함수</h4>
+      <p><strong>모듈을 import</strong>하여 호출·사용</p>
+      <p>파이썬 라이브러리 모듈에 포함</p>
+      <p>예: <code>math.sqrt()</code>, <code>random.randint()</code></p>
+    </div>
+    <div class="factor-card purple">
+      <h4>사용자 정의 함수</h4>
+      <p>사용자가 원하는 기능을 <strong>직접 정의</strong></p>
+      <p>함수 정의 + 함수 호출로 이루어짐</p>
+    </div>
+  </div>
+
+  <div class="subsection-title">사용자 정의 함수 — 기본 구조</div>
+  <div class="code-block"><code><span class="cm"># 함수 정의 (def 키워드 사용)</span>
+<span class="kw">def</span> <span class="fn">함수명</span>(<span class="var">매개변수1</span>, <span class="var">매개변수2</span>):
+    실행할 명령문
+    <span class="kw">return</span> 반환값    <span class="cm"># 반환값이 없으면 생략 가능</span>
+
+<span class="cm"># 함수 호출</span>
+<span class="fn">함수명</span>(<span class="var">인수1</span>, <span class="var">인수2</span>)
+
+<span class="cm"># 예시: 두 수의 합</span>
+<span class="kw">def</span> <span class="fn">add</span>(<span class="var">a</span>, <span class="var">b</span>):
+    <span class="kw">return</span> <span class="var">a</span> <span class="op">+</span> <span class="var">b</span>
+
+<span class="var">result</span> <span class="op">=</span> <span class="fn">add</span>(<span class="num">3</span>, <span class="num">5</span>)   <span class="cm"># result = 8</span>
+<span class="fn">print</span>(<span class="var">result</span>)</code></div>
+
+  <div class="subsection-title">매개변수 / 인수 / 반환값</div>
+  <div class="factor-grid three">
+    <div class="factor-card blue">
+      <h4>매개변수 (Parameter)</h4>
+      <p>함수 <strong>호출 시 전달된 인수값</strong>을 받는 변수</p>
+      <p>함수 정의 부분의 괄호 안에 작성</p>
+    </div>
+    <div class="factor-card green">
+      <h4>인수 (Argument)</h4>
+      <p>함수 <strong>호출 시 보내는 값</strong></p>
+      <p>함수 호출 부분의 괄호 안에 작성</p>
+    </div>
+    <div class="factor-card purple">
+      <h4>반환값 (Return Value)</h4>
+      <p>함수의 결과를 <strong>호출한 곳으로 전달</strong>하는 값</p>
+      <p><code>return</code>문 사용</p>
+    </div>
+  </div>
+
+  <div class="subsection-title">지역 변수 vs 전역 변수</div>
+  <div class="factor-grid">
+    <div class="factor-card orange">
+      <h4>지역 변수 (Local Variable)</h4>
+      <p>함수와 같은 <strong>특정 지역에서만</strong> 사용하는 변수</p>
+      <p>함수 밖에서는 접근 불가</p>
+    </div>
+    <div class="factor-card blue">
+      <h4>전역 변수 (Global Variable)</h4>
+      <p>함수 외부에 생성되어 <strong>프로그램 전체</strong>에서 사용하는 변수</p>
+      <p>함수 안에서 수정하려면 <code>global</code> 키워드 필요</p>
+    </div>
+  </div>
+  <div class="code-block"><code><span class="var">x</span> <span class="op">=</span> <span class="num">10</span>    <span class="cm"># 전역 변수</span>
+
+<span class="kw">def</span> <span class="fn">func</span>():
+    <span class="var">y</span> <span class="op">=</span> <span class="num">20</span>    <span class="cm"># 지역 변수 (함수 안에서만 사용 가능)</span>
+    <span class="fn">print</span>(<span class="var">x</span>)  <span class="cm"># 전역 변수는 읽기 가능</span>
+    <span class="fn">print</span>(<span class="var">y</span>)
+
+<span class="fn">func</span>()
+<span class="cm"># print(y) → 오류! 지역 변수는 함수 밖에서 접근 불가</span></code></div>
+
+  <div class="m-practice-wrap"><a class="m-practice" target="_top" href="../../../cloud.html?s=info&amp;u=5-1%20%ED%95%A8%EC%88%98"><span class="m-practice-ico" aria-hidden="true"></span><span class="m-practice-txt"><b>이 부분 문제는 무한 문제에서 풀어요</b><small>5-1 함수 · 26문제 · O/X·객관식·고난도</small></span><span class="m-practice-go">무한 문제로 풀기 →</span></a></div><div hidden style="display:none" data-moved-to-bank id="quiz-3" class="quiz-section"></div>
+</div>
+
+<!-- ===== TAB 4: 5-2 모듈과 라이브러리 ===== -->
+<div class="tab-panel" id="panel-4">
+
+  <div class="section-title"><span class="icon"></span>5-2 모듈과 라이브러리</div>
+
+  <div class="factor-grid">
+    <div class="factor-card blue">
+      <h4>모듈 (Module)</h4>
+      <p>특정 기능을 수행할 수 있도록 <strong>변수, 함수, 클래스 등을 모아 놓은 파일</strong></p>
+      <p>확장자: <code>.py</code></p>
+    </div>
+    <div class="factor-card purple">
+      <h4>라이브러리 (Library)</h4>
+      <p><strong>모듈을 모아놓은 것</strong></p>
+      <p>표준 라이브러리: 파이썬에서 공식 제공</p>
+      <p>외부 라이브러리: 표준에서 지원하지 않는 기능 제공</p>
+    </div>
+  </div>
+
+  <div class="subsection-title">표준 라이브러리 (주요 모듈)</div>
+  <div class="note"> 파이썬과 함께 설치됨. 따로 설치 불필요. <code>import 모듈명</code>으로 바로 사용</div>
+  <table class="cmp-table">
+    <thead><tr><th>모듈</th><th>기능</th><th>주요 사용 예시</th></tr></thead>
+    <tbody>
+      <tr><td>random</td><td>난수(무작위 숫자) 생성</td><td><code>random.randint(1,10)</code></td></tr>
+      <tr><td>math</td><td>수학적 계산</td><td><code>math.sqrt(16)</code>, <code>math.pi</code></td></tr>
+      <tr><td>csv</td><td>CSV 파일 데이터 불러와 사용</td><td><code>csv.reader()</code></td></tr>
+      <tr><td>turtle</td><td>화면에 좌표를 바탕으로 그림 그리기</td><td><code>turtle.forward(100)</code></td></tr>
+      <tr><td>tkinter</td><td>버튼 등의 그래픽(GUI) 기능 구현</td><td><code>tk.Button()</code></td></tr>
+    </tbody>
+  </table>
+
+  <div class="subsection-title">외부 라이브러리 (주요 종류)</div>
+  <div class="factor-grid three">
+    <div class="factor-card blue">
+      <h4>pandas</h4>
+      <p> <strong>데이터 분석</strong></p>
+      <p>표 형태(DataFrame)로 데이터 처리·분석</p>
+    </div>
+    <div class="factor-card green">
+      <h4>numpy</h4>
+      <p> <strong>수치 계산, 통계</strong></p>
+      <p>배열 연산, 수학·통계 함수</p>
+    </div>
+    <div class="factor-card purple">
+      <h4>matplotlib</h4>
+      <p> <strong>데이터 시각화</strong></p>
+      <p>그래프, 차트 그리기</p>
+    </div>
+  </div>
+
+  <div class="subsection-title">외부 라이브러리 설치 방법</div>
+  <div class="code-block"><code><span class="cm"># 1단계: 시작 메뉴 → 명령 프롬프트(cmd) 실행</span>
+<span class="cm"># 2단계: 콘솔 창에 입력</span>
+pip install 라이브러리명
+
+<span class="cm"># 예시</span>
+pip install pandas
+pip install numpy
+pip install matplotlib</code></div>
+  <div class="code-block"><code><span class="cm"># 3단계: 파이썬에서 import하여 사용</span>
+<span class="kw">import</span> <span class="var">pandas</span> <span class="kw">as</span> <span class="var">pd</span>          <span class="cm"># pd라는 별명으로 사용</span>
+<span class="kw">import</span> <span class="var">numpy</span> <span class="kw">as</span> <span class="var">np</span>           <span class="cm"># np라는 별명으로 사용</span>
+<span class="kw">import</span> <span class="var">matplotlib.pyplot</span> <span class="kw">as</span> <span class="var">plt</span>  <span class="cm"># plt라는 별명으로 사용</span>
+
+<span class="cm"># from 모듈 import 함수 형태</span>
+<span class="kw">from</span> <span class="var">math</span> <span class="kw">import</span> <span class="fn">sqrt</span>        <span class="cm"># sqrt만 가져와 사용</span></code></div>
+
+  <div class="warning"> 외부 라이브러리는 pip install로 설치 후 import해야 사용 가능. 표준 라이브러리는 설치 불필요</div>
+
+  <div class="m-practice-wrap"><a class="m-practice" target="_top" href="../../../cloud.html?s=info&amp;u=5-2%20%EB%AA%A8%EB%93%88%EA%B3%BC%20%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC"><span class="m-practice-ico" aria-hidden="true"></span><span class="m-practice-txt"><b>이 부분 문제는 무한 문제에서 풀어요</b><small>5-2 모듈과 라이브러리 · 26문제 · O/X·객관식·고난도</small></span><span class="m-practice-go">무한 문제로 풀기 →</span></a></div><div hidden style="display:none" data-moved-to-bank id="quiz-4" class="quiz-section"></div>
+</div>
+
+<!-- ===== TAB 5: 빅데이터 ===== -->
+<div class="tab-panel" id="panel-5">
+
+  <div class="section-title"><span class="icon"></span>빅데이터 개념과 분석</div>
+
+  <div class="subsection-title">① 빅데이터란?</div>
+  <div class="def-box">
+    <strong>디지털 환경에서 생성된 대규모 데이터</strong><br>
+    다양한 유형의 대규모 데이터를 <strong>데이터 과학 기술</strong>로 가치를 추출하여 활용하는 포괄적 개념<br>
+    <strong>정형 데이터</strong>(고정된 형식과 구조에 맞게 저장된 데이터) ↔ <strong>비정형 데이터</strong>(고정된 구조나 형태가 없는 데이터)로 구분
+  </div>
+
+  <div class="subsection-title">② 빅데이터의 특징 — 5V</div>
+  <div class="v-grid">
+    <div class="v-card">
+      <div class="v-letter">V</div>
+      <div class="v-eng">Volume</div>
+      <div class="v-kor">규모</div>
+    </div>
+    <div class="v-card">
+      <div class="v-letter">V</div>
+      <div class="v-eng">Velocity</div>
+      <div class="v-kor">속도</div>
+    </div>
+    <div class="v-card">
+      <div class="v-letter">V</div>
+      <div class="v-eng">Variety</div>
+      <div class="v-kor">다양성</div>
+    </div>
+    <div class="v-card">
+      <div class="v-letter">V</div>
+      <div class="v-eng">Veracity</div>
+      <div class="v-kor">정확성</div>
+    </div>
+    <div class="v-card">
+      <div class="v-letter">V</div>
+      <div class="v-eng">Value</div>
+      <div class="v-kor">가치</div>
+    </div>
+  </div>
+
+  <div class="subsection-title">③ 빅데이터 분석 절차</div>
+  <div class="flow-row">
+    <div class="flow-item">① 문제 정의</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">② 데이터 수집</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">③ 데이터 분석 (전처리)</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">④ 데이터 시각화</div>
+  </div>
+
+  <div class="sub2-title">① 문제 정의하기</div>
+  <div class="purple-box">데이터 분석의 <strong>필요성, 요구 사항, 분석 범위</strong> 등을 정확히 파악하여 구체적인 <strong>문제의 분석 목적</strong> 정의</div>
+
+  <div class="sub2-title">② 데이터 수집하기</div>
+  <div class="purple-box">
+    분석에 필요한 데이터 수집<br>
+    고려 사항: <strong>데이터 양의 균형, 개인정보 노출, 데이터 편향성, 저작권</strong><br>
+    수집 방법: 자동화된 수집기, 인터넷 직접 검색, 직접 수집(설문조사·실험관찰)
+  </div>
+  <table class="cmp-table purple-th">
+    <thead><tr><th>수집 방법</th><th>내용</th></tr></thead>
+    <tbody>
+      <tr><td>인터넷 직접 검색</td><td>공공 데이터 포털, 국가 통계 포털, 캐글, 데이콘, 지표누리 등의 빅데이터 공유 자료 사용</td></tr>
+      <tr><td>수집 프로그램</td><td>로그 수집기, 크롤링, 오픈소스 데이터 수집기 등 사용</td></tr>
+      <tr><td>참고 자료</td><td>각종 언론 자료, 논문 및 서적 내용 참고</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub2-title">③ 데이터 분석 — 전처리</div>
+  <div class="purple-box">
+    수집된 데이터를 전체적으로 살펴보고, 분석에 적합한 형태로 <strong>데이터를 가공</strong>하는 과정
+  </div>
+  <div class="factor-grid three">
+    <div class="factor-card blue">
+      <h4>통계 지표 확인</h4>
+      <ul>
+        <li><strong>평균</strong>: 모든 데이터를 더해 개수로 나눈 값</li>
+        <li><strong>중앙값</strong>: 순서대로 나열했을 때 정가운데 값</li>
+        <li><strong>최빈값</strong>: 가장 자주 나타난 값</li>
+      </ul>
+    </div>
+    <div class="factor-card orange">
+      <h4>데이터 이상치 처리</h4>
+      <ul>
+        <li><strong>결측치</strong>: 누락된 값</li>
+        <li><strong>중복값</strong>: 중복된 값</li>
+        <li><strong>이상치</strong>: 분포 범위에서 크게 벗어난 값</li>
+      </ul>
+    </div>
+    <div class="factor-card green">
+      <h4>처리 방법</h4>
+      <p>결측치·중복값·이상치를 찾아 <strong>제거하거나</strong> 분석에 적합한 형태로 <strong>가공</strong></p>
+    </div>
+  </div>
+
+  <div class="sub2-title">④ 데이터 시각화</div>
+  <div class="purple-box">
+    데이터를 명확하고 효과적으로 전달하기 위해 색채·도형·이미지 등을 이용하여 <strong>시각적으로 표현</strong><br>
+    데이터 간의 흐름과 관계를 해석하고 <strong>패턴</strong>을 찾아 분석
+  </div>
+  <table class="cmp-table purple-th">
+    <thead><tr><th>시각화 유형</th><th>목적</th><th>주요 차트</th></tr></thead>
+    <tbody>
+      <tr><td>시간 시각화</td><td>시간에 따라 변하는 데이터의 추이 표현</td><td>선그래프, 막대그래프, 영역형 차트</td></tr>
+      <tr><td>관계 시각화</td><td>데이터 간의 연관성이나 관계 표현</td><td>버블차트, 히스토그램, 산점도</td></tr>
+      <tr><td>비교 시각화</td><td>데이터 간의 차이와 유사성 비교</td><td>히트맵, 워드클라우드, 방사형차트</td></tr>
+      <tr><td>공간 시각화</td><td>장소나 지역 관련 데이터를 지도 상에 표현</td><td>버블맵, 지도맵핑</td></tr>
+      <tr><td>분포 시각화</td><td>데이터가 차지하는 영역과 분포 특성 표현</td><td>파이차트, 도넛차트, 트리맵</td></tr>
+    </tbody>
+  </table>
+
+  <div class="m-practice-wrap"><a class="m-practice" target="_top" href="../../../cloud.html?s=info&amp;u=%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EA%B0%9C%EB%85%90%EA%B3%BC%20%EB%B6%84%EC%84%9D"><span class="m-practice-ico" aria-hidden="true"></span><span class="m-practice-txt"><b>이 부분 문제는 무한 문제에서 풀어요</b><small>빅데이터 개념과 분석 · 26문제 · O/X·객관식·고난도</small></span><span class="m-practice-go">무한 문제로 풀기 →</span></a></div><div hidden style="display:none" data-moved-to-bank id="quiz-5" class="quiz-section"></div>
+</div>
+
+</div><!-- /content-wrap -->
+<button class="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// ===== QUIZ DATA =====
+const QUIZ_DATA = {"0":{"ox":[],"mc":[],"hard":[]},"1":{"ox":[],"mc":[],"hard":[]},"2":{"ox":[],"mc":[],"hard":[]}};
+
+// ===== TYPE CONFIG =====
+const TYPE_CONFIG = [
+  { key:'ox',   label:'OX 퀴즈', icon:'O', cls:'ox'   },
+  { key:'mc',   label:'객관식',  icon:'', cls:'mc'   },
+  { key:'hard', label:'고난도',  icon:'', cls:'hard' }
+];
+const COLOR_MAP = { ox:'#2563eb', mc:'#16a34a', hard:'#7c3aed' };
+
+// ===== STATE =====
+const state = {};
+for (let u = 0; u < 3; u++) {
+  state[u] = {
+    activeType: 0,
+    scores:   { ox:[0,0], mc:[0,0], hard:[0,0] },
+    answered: { ox:[],    mc:[],    hard:[]    }
+  };
+}
+
+// ===== BUILD QUIZ =====
+function buildQuizSection(unitIdx) {
+  if (unitIdx > 2) return;
+  const container = document.getElementById('quiz-' + unitIdx);
+  if (!container) return;
+  container.innerHTML = '';
+  const s = state[unitIdx];
+  const typeKey = TYPE_CONFIG[s.activeType].key;
+  const questions = QUIZ_DATA[unitIdx][typeKey];
+
+  const header = document.createElement('div');
+  header.className = 'quiz-header';
+  header.innerHTML = `<h3> 개념 확인 퀴즈</h3><div class="scoreboard" id="scoreboard-${unitIdx}"></div>`;
+  container.appendChild(header);
+
+  const typeBar = document.createElement('div');
+  typeBar.className = 'quiz-type-bar';
+  TYPE_CONFIG.forEach((tc, ti) => {
+    const btn = document.createElement('button');
+    btn.className = 'qtype-btn' + (ti === s.activeType ? ' active' : '');
+    const done = (s.answered[tc.key]||[]).filter(v => v !== undefined).length;
+    btn.innerHTML = `${tc.icon} ${tc.label} <span class="qtype-count">${done}</span>`;
+    btn.onclick = () => { state[unitIdx].activeType = ti; buildQuizSection(unitIdx); };
+    typeBar.appendChild(btn);
+  });
+  container.appendChild(typeBar);
+
+  const answered = s.answered[typeKey] || [];
+  const total = questions.length;
+  const doneCount = answered.filter(v => v !== undefined).length;
+  const prog = document.createElement('div');
+  prog.className = 'q-progress-wrap';
+  prog.innerHTML = `<div class="q-progress-label">${doneCount}/${total} 완료</div>
+    <div class="q-progress-bar"><div class="q-progress-fill" style="width:${Math.round(doneCount/total*100)}%;background:${COLOR_MAP[typeKey]};"></div></div>`;
+  container.appendChild(prog);
+
+  questions.forEach((qdata, qi) => container.appendChild(buildQCard(unitIdx, typeKey, qi, qdata, s)));
+
+  if (doneCount === total) {
+    const correct = s.scores[typeKey][0];
+    const pct = Math.round(correct/total*100);
+    const grade = pct>=90?' 완벽!':pct>=70?' 잘했어요!':pct>=50?' 복습 필요':' 다시 도전!';
+    const result = document.createElement('div');
+    result.className = 'quiz-result visible';
+    result.innerHTML = `
+      <div class="result-score-big">${correct}<span>/${total}</span></div>
+      <div class="result-score-label">${pct}% · ${grade}</div>
+      <div style="max-width:300px;margin:0 auto 8px;">${buildMiniBar(unitIdx)}</div>
+      <button class="reset-btn" onclick="resetType(${unitIdx},'${typeKey}')"> 다시 풀기</button>`;
+    container.appendChild(result);
+  }
+  updateScoreboard(unitIdx);
+}
+
+function buildMiniBar(unitIdx) {
+  return TYPE_CONFIG.map(tc => {
+    const total = QUIZ_DATA[unitIdx][tc.key].length;
+    const [correct, done] = state[unitIdx].scores[tc.key];
+    const pct = done > 0 ? Math.round(correct/done*100) : 0;
+    return `<div class="mini-bar-row">
+      <span style="width:65px;font-size:11.5px;text-align:left;">${tc.icon} ${tc.label}</span>
+      <div class="mini-bar-bg"><div class="mini-bar-fill" style="width:${pct}%;background:${COLOR_MAP[tc.key]};"></div></div>
+      <span style="width:38px;font-size:11.5px;text-align:right;">${correct}/${done||total}</span>
+    </div>`;
+  }).join('');
+}
+
+function buildQCard(unitIdx, typeKey, qi, qdata, s) {
+  const answered = s.answered[typeKey] || [];
+  const done = answered[qi] !== undefined;
+  const ans = answered[qi];
+  const isCorrect = typeKey === 'ox' ? ans === true : ans === qdata.a;
+
+  const card = document.createElement('div');
+  card.className = 'q-card' + (done ? (isCorrect ? ' answered-correct' : ' answered-wrong') : '');
+
+  const diff = typeKey==='ox'?['기초','diff-basic']:typeKey==='mc'?['중급','diff-mid']:['고난도','diff-hard'];
+  card.innerHTML = `
+    <div class="q-meta">
+      <span class="q-num">Q${qi+1}</span>
+      <span class="q-difficulty ${diff[1]}">${diff[0]}</span>
+      ${done ? `<span class="q-answered-mark">${isCorrect?'':'X'}</span>` : ''}
+    </div>
+    <div class="q-text">${qdata.q}</div>`;
+
+  if (typeKey === 'ox') {
+    const row = document.createElement('div');
+    row.className = 'ox-row';
+    [true, false].forEach(val => {
+      const btn = document.createElement('button');
+      btn.className = 'ox-btn';
+      if (done) {
+        btn.disabled = true;
+        if (val === qdata.a && ans === val) btn.classList.add('ox-correct-picked');
+        else if (val !== qdata.a && ans === val) btn.classList.add('ox-wrong-picked');
+        else if (val === qdata.a) btn.classList.add('ox-correct-reveal');
+      }
+      btn.innerHTML = `<span class="ox-sym">${val?'O':'X'}</span><span class="ox-lbl">${val?'맞다':'틀리다'}</span>`;
+      if (!done) btn.onclick = () => submitOX(unitIdx, qi, val, qdata);
+      row.appendChild(btn);
+    });
+    card.appendChild(row);
+  } else {
+    const opts = document.createElement('div');
+    opts.className = 'mc-options';
+    qdata.opts.forEach((opt, oi) => {
+      const btn = document.createElement('button');
+      btn.className = 'mc-opt';
+      if (done) {
+        btn.disabled = true;
+        if (oi === qdata.a) btn.classList.add('mc-correct');
+        else if (oi === ans) btn.classList.add('mc-wrong');
+      }
+      btn.innerHTML = `<span class="mc-opt-letter">${['A','B','C','D'][oi]}</span><span class="mc-opt-text">${opt}</span>`;
+      if (!done) btn.onclick = () => submitMC(unitIdx, qi, oi, qdata, typeKey);
+      opts.appendChild(btn);
+    });
+    card.appendChild(opts);
+  }
+
+  if (done) {
+    const fb = document.createElement('div');
+    fb.className = 'q-feedback ' + (isCorrect ? 'correct' : 'wrong');
+    fb.innerHTML = `<strong>${isCorrect?' 정답!':'X 오답'}</strong>&nbsp;&nbsp;${qdata.exp}`;
+    card.appendChild(fb);
+  }
+  return card;
+}
+
+function submitOX(unitIdx, qi, chosen, qdata) {
+  const s = state[unitIdx];
+  s.answered['ox'][qi] = chosen === qdata.a;
+  if (chosen === qdata.a) s.scores['ox'][0]++;
+  s.scores['ox'][1]++;
+  afterSubmit(unitIdx, 'ox');
+}
+
+function submitMC(unitIdx, qi, chosen, qdata, typeKey) {
+  const s = state[unitIdx];
+  s.answered[typeKey][qi] = chosen;
+  if (chosen === qdata.a) s.scores[typeKey][0]++;
+  s.scores[typeKey][1]++;
+  afterSubmit(unitIdx, typeKey);
+}
+
+function afterSubmit(unitIdx, typeKey) {
+  buildQuizSection(unitIdx);
+  const answered = state[unitIdx].answered[typeKey];
+  const total = QUIZ_DATA[unitIdx][typeKey].length;
+  const nextIdx = answered.findIndex((v, i) => v === undefined && i < total);
+  if (nextIdx >= 0) {
+    const cards = document.querySelectorAll('#quiz-' + unitIdx + ' .q-card');
+    if (cards[nextIdx]) setTimeout(() => cards[nextIdx].scrollIntoView({behavior:'smooth', block:'center'}), 100);
+  }
+}
+
+function resetType(unitIdx, typeKey) {
+  state[unitIdx].answered[typeKey] = [];
+  state[unitIdx].scores[typeKey] = [0, 0];
+  buildQuizSection(unitIdx);
+  document.getElementById('quiz-' + unitIdx).scrollIntoView({behavior:'smooth'});
+}
+
+function updateScoreboard(unitIdx) {
+  const sb = document.getElementById('scoreboard-' + unitIdx);
+  if (!sb) return;
+  sb.innerHTML = TYPE_CONFIG.map(tc => {
+    const total = QUIZ_DATA[unitIdx][tc.key].length;
+    const [correct, done] = state[unitIdx].scores[tc.key];
+    return `<span class="score-chip ${tc.cls}">${tc.icon} ${done}/${total} (${correct}점)</span>`;
+  }).join('');
+}
+
+function switchTab(idx) {
+  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', i===idx));
+  document.querySelectorAll('.tab-panel').forEach((p,i) => p.classList.toggle('active', i===idx));
+  window.scrollTo({top:0, behavior:'smooth'});
+  const qs = document.getElementById('quiz-'+idx);
+  if (qs && !qs.innerHTML.trim()) buildQuizSection(idx);
+}
+
+buildQuizSection(0);
+
+// ===== QUIZ DATA 탭 3·4·5 추가 =====
+const QUIZ_DATA_EXT = {"3":{"ox":[],"mc":[],"hard":[]},"4":{"ox":[],"mc":[],"hard":[]},"5":{"ox":[],"mc":[],"hard":[]}};
+
+// QUIZ_DATA에 탭 3·4·5 병합
+Object.assign(QUIZ_DATA, QUIZ_DATA_EXT);
+
+// state 확장 (탭 3·4·5 추가)
+for (let u = 3; u < 6; u++) {
+  state[u] = {
+    activeType: 0,
+    scores:   { ox:[0,0], mc:[0,0], hard:[0,0] },
+    answered: { ox:[],    mc:[],    hard:[]    }
+  };
+}
+
+// buildQuizSection override to allow all 6 tabs
+const _origBuild = buildQuizSection;
+function buildQuizSection(unitIdx) {
+  const container = document.getElementById('quiz-' + unitIdx);
+  if (!container) return;
+  container.innerHTML = '';
+  const s = state[unitIdx];
+  const typeKey = TYPE_CONFIG[s.activeType].key;
+  const questions = QUIZ_DATA[unitIdx][typeKey];
+
+  const header = document.createElement('div');
+  header.className = 'quiz-header';
+  header.innerHTML = `<h3> 개념 확인 퀴즈</h3><div class="scoreboard" id="scoreboard-${unitIdx}"></div>`;
+  container.appendChild(header);
+
+  const typeBar = document.createElement('div');
+  typeBar.className = 'quiz-type-bar';
+  TYPE_CONFIG.forEach((tc, ti) => {
+    const btn = document.createElement('button');
+    btn.className = 'qtype-btn' + (ti === s.activeType ? ' active' : '');
+    const done = (s.answered[tc.key]||[]).filter(v => v !== undefined).length;
+    btn.innerHTML = `${tc.icon} ${tc.label} <span class="qtype-count">${done}</span>`;
+    btn.onclick = () => { state[unitIdx].activeType = ti; buildQuizSection(unitIdx); };
+    typeBar.appendChild(btn);
+  });
+  container.appendChild(typeBar);
+
+  const answered = s.answered[typeKey] || [];
+  const total = questions.length;
+  const doneCount = answered.filter(v => v !== undefined).length;
+  const prog = document.createElement('div');
+  prog.className = 'q-progress-wrap';
+  prog.innerHTML = `<div class="q-progress-label">${doneCount}/${total} 완료</div>
+    <div class="q-progress-bar"><div class="q-progress-fill" style="width:${Math.round(doneCount/total*100)}%;background:${COLOR_MAP[typeKey]};"></div></div>`;
+  container.appendChild(prog);
+
+  questions.forEach((qdata, qi) => container.appendChild(buildQCard(unitIdx, typeKey, qi, qdata, s)));
+
+  if (doneCount === total) {
+    const correct = s.scores[typeKey][0];
+    const pct = Math.round(correct/total*100);
+    const grade = pct>=90?' 완벽!':pct>=70?' 잘했어요!':pct>=50?' 복습 필요':' 다시 도전!';
+    const result = document.createElement('div');
+    result.className = 'quiz-result visible';
+    result.innerHTML = `
+      <div class="result-score-big">${correct}<span>/${total}</span></div>
+      <div class="result-score-label">${pct}% · ${grade}</div>
+      <div style="max-width:300px;margin:0 auto 8px;">${buildMiniBar(unitIdx)}</div>
+      <button class="reset-btn" onclick="resetType(${unitIdx},'${typeKey}')"> 다시 풀기</button>`;
+    container.appendChild(result);
+  }
+  updateScoreboard(unitIdx);
+}
+
+buildQuizSection(0);
+</script>
+</body>
+</html>

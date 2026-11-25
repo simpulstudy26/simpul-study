@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="ko" class="simpul-material">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>통합과학2 생태계 파트</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+ --primary:var(--c-2563eb);--primary-light:var(--c-eff6ff);
+ --green:var(--c-16a34a);--green-light:var(--c-f0fdf4);
+ --purple:var(--c-7c3aed);--purple-light:var(--c-f5f3ff);
+ --orange:var(--c-ea580c);--orange-light:var(--c-fff7ed);
+ --teal:var(--c-0d9488);--teal-light:var(--c-f0fdfa);
+ --rose:var(--c-e11d48);--rose-light:var(--c-fff1f2);
+ --gray:var(--c-475569);--gray-light:var(--c-f1f5f9);
+ --bg:var(--c-f8fafc);--surface:var(--c-ffffff);--border:var(--c-e2e8f0);--text:var(--c-0f172a);--text-sec:var(--c-475569);
+ --shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;font-size:14.5px;line-height:1.8;color:var(--text);background:var(--bg)}
+b,strong{font-weight:700}
+
+/* header */
+.page-header{position:sticky;top:0;z-index:50;background:var(--surface);border-bottom:1px solid var(--border);box-shadow:var(--shadow)}
+.header-inner{max-width:980px;margin:0 auto;padding:14px 20px 0}
+.subject-label{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--text-sec);text-transform:uppercase}
+.page-title{font-size:19px;font-weight:700;display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:2px 0 10px}
+.badge-unit{font-size:11.5px;font-weight:700;padding:2px 10px;border-radius:999px;background:var(--primary-light);color:var(--primary)}
+.badge-unit.teal{background:var(--teal-light);color:var(--teal)}
+.badge-unit.rose{background:var(--rose-light);color:var(--rose)}
+.tab-bar{display:flex;align-items:flex-end;gap:2px;overflow-x:auto;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab-group-label{font-size:10.5px;font-weight:700;color:var(--text-sec);opacity:.55;padding:0 4px 11px 10px;white-space:nowrap;user-select:none}
+.tab-group-label:first-child{padding-left:0}
+.tab-btn{background:none;border:none;border-bottom:3px solid transparent;padding:8px 10px 9px;font-family:inherit;font-size:13px;font-weight:500;color:var(--text-sec);cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{color:var(--primary);border-bottom-color:var(--primary);font-weight:700}
+.tab-num{display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;border-radius:50%;background:var(--border);font-size:10.5px;font-weight:700;color:var(--text-sec)}
+.tab-btn.active .tab-num{background:var(--primary);color:var(--c-ffffff)}
+
+/* layout */
+.content-wrap{max-width:980px;margin:0 auto;padding:28px 20px 100px}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.unit-banner{display:inline-block;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;background:var(--primary-light);color:var(--primary);margin-bottom:18px}
+.section-title{font-size:17.5px;font-weight:700;padding-bottom:6px;border-bottom:2px solid var(--primary);margin:34px 0 14px;scroll-margin-top:130px}
+.section-title:first-of-type{margin-top:6px}
+.subsection-title{font-size:14.5px;font-weight:700;border-left:3px solid var(--primary);padding-left:9px;margin:20px 0 10px;scroll-margin-top:130px}
+.sub2-title{display:inline-block;font-size:13px;font-weight:700;background:var(--c-f1f5f9);border:1px solid var(--border);border-radius:6px;padding:1px 10px;margin:12px 0 8px}
+p{margin:6px 0}
+ul.list{padding-left:20px;margin:6px 0}
+ul.list li{margin:2px 0}
+.page-ref{font-size:11.5px;font-weight:500;color:var(--text-sec);margin-left:6px}
+
+/* boxes */
+.def-box,.green-box,.purple-box,.teal-box,.orange-box,.rose-box{border-left:4px solid var(--primary);background:var(--primary-light);border-radius:0 8px 8px 0;padding:12px 16px;margin:10px 0}
+.green-box{border-color:var(--green);background:var(--green-light)}
+.purple-box{border-color:var(--purple);background:var(--purple-light)}
+.teal-box{border-color:var(--teal);background:var(--teal-light)}
+.orange-box{border-color:var(--orange);background:var(--orange-light)}
+.rose-box{border-color:var(--rose);background:var(--rose-light)}
+.box-label{font-size:12px;font-weight:700;margin-bottom:2px;color:var(--text-sec)}
+.note,.tip,.warning{border-radius:8px;padding:10px 14px;margin:10px 0;font-size:13.5px}
+.note{background:var(--c-fefce8);border:1px solid var(--c-fde047)}
+.tip{background:var(--green-light);border:1px solid var(--c-bbf7d0)}
+.warning{background:var(--rose-light);border:1px solid var(--c-fecdd3)}
+
+/* grids & cards */
+.factor-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:12px 0}
+.factor-grid.three{grid-template-columns:repeat(3,1fr)}
+.factor-grid.four{grid-template-columns:repeat(4,1fr)}
+.factor-card{background:var(--surface);border:1px solid var(--border);border-top:4px solid var(--gray);border-radius:8px;padding:12px 14px;box-shadow:var(--shadow);font-size:13.5px}
+.factor-card h4{font-size:14px;margin-bottom:4px}
+.factor-card.blue{border-top-color:var(--primary)}.factor-card.blue h4{color:var(--primary)}
+.factor-card.green{border-top-color:var(--green)}.factor-card.green h4{color:var(--green)}
+.factor-card.purple{border-top-color:var(--purple)}.factor-card.purple h4{color:var(--purple)}
+.factor-card.orange{border-top-color:var(--orange)}.factor-card.orange h4{color:var(--orange)}
+.factor-card.teal{border-top-color:var(--teal)}.factor-card.teal h4{color:var(--teal)}
+.factor-card.rose{border-top-color:var(--rose)}.factor-card.rose h4{color:var(--rose)}
+.factor-card ul{padding-left:18px}
+.factor-card .sub{font-size:12.5px;color:var(--text-sec)}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;margin:10px 0}
+.cmp-table,.ex-table{width:100%;border-collapse:collapse;background:var(--surface);font-size:13px;box-shadow:var(--shadow);border-radius:8px;overflow:hidden}
+.cmp-table th,.cmp-table td,.ex-table th,.ex-table td{border:1px solid var(--border);padding:8px 10px;vertical-align:top;text-align:left}
+.cmp-table thead th{background:var(--primary);color:var(--c-ffffff);font-weight:700}
+.cmp-table.green-th thead th{background:var(--green)}
+.cmp-table.purple-th thead th{background:var(--purple)}
+.cmp-table.teal-th thead th{background:var(--teal)}
+.cmp-table.orange-th thead th{background:var(--orange)}
+.cmp-table.rose-th thead th{background:var(--rose)}
+.cmp-table tbody td:first-child{font-weight:700;color:var(--primary);white-space:nowrap;background:var(--c-fafcff)}
+.cmp-table.green-th tbody td:first-child{color:var(--green)}
+.cmp-table.purple-th tbody td:first-child{color:var(--purple)}
+.cmp-table.teal-th tbody td:first-child{color:var(--teal)}
+.cmp-table.orange-th tbody td:first-child{color:var(--orange)}
+.cmp-table.rose-th tbody td:first-child{color:var(--rose)}
+.ex-table thead th{background:var(--c-334155);color:var(--c-ffffff)}
+.ex-table td.c,.ex-table th.c{text-align:center}
+
+/* badges */
+.badge{display:inline-block;font-size:11.5px;font-weight:700;padding:1px 8px;border-radius:999px;margin:1px 2px;white-space:nowrap}
+.badge-blue{background:var(--primary-light);color:var(--primary)}
+.badge-green{background:var(--green-light);color:var(--green)}
+.badge-purple{background:var(--purple-light);color:var(--purple)}
+.badge-orange{background:var(--orange-light);color:var(--orange)}
+.badge-teal{background:var(--teal-light);color:var(--teal)}
+.badge-rose{background:var(--rose-light);color:var(--rose)}
+.badge-gray{background:var(--gray-light);color:var(--gray)}
+
+/* flow & stage */
+.flow-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:10px 0}
+.flow-item{background:var(--surface);border:1.5px solid var(--primary);color:var(--text);border-radius:8px;padding:6px 12px;font-size:13px;font-weight:700;box-shadow:var(--shadow)}
+.flow-item.green{border-color:var(--green)}.flow-item.purple{border-color:var(--purple)}.flow-item.teal{border-color:var(--teal)}.flow-item.orange{border-color:var(--orange)}.flow-item.rose{border-color:var(--rose)}
+.flow-item small{display:block;font-weight:500;font-size:11.5px;color:var(--text-sec)}
+.flow-arrow{color:var(--text-sec);font-weight:700}
+.stage-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+.stage-row.three{grid-template-columns:repeat(3,1fr)}
+.stage-row.five{grid-template-columns:repeat(5,1fr)}
+.stage-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:13px;position:relative;box-shadow:var(--shadow)}
+.stage-item .st-num{font-size:12px;font-weight:900;color:var(--primary)}
+.stage-item .st-name{font-weight:700;font-size:14px;margin-bottom:3px}
+.stage-item.hi{border:2px solid var(--primary);background:var(--primary-light)}
+.stage-row.green .st-num{color:var(--green)}.stage-row.green .stage-item.hi{border-color:var(--green);background:var(--green-light)}
+.stage-row.purple .st-num{color:var(--purple)}.stage-row.purple .stage-item.hi{border-color:var(--purple);background:var(--purple-light)}
+
+/* rule & pov cards */
+.rule-card{border:2px solid var(--primary);border-radius:10px;padding:12px 16px;margin:12px 0;background:var(--surface)}
+.rule-card.green{border-color:var(--green)}.rule-card.purple{border-color:var(--purple)}.rule-card.teal{border-color:var(--teal)}.rule-card.orange{border-color:var(--orange)}.rule-card.rose{border-color:var(--rose)}
+.rule-card h4{font-size:14.5px;margin-bottom:4px}
+.pov-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
+.pov-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;box-shadow:var(--shadow);font-size:13px}
+.pov-card .pv-num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--purple);color:var(--c-ffffff);font-size:12px;font-weight:700;margin-right:6px}
+.pov-card .pv-title{font-weight:700;font-size:14px}
+.pov-card .pv-who{font-size:12px;color:var(--purple);font-weight:700;margin:2px 0 4px}
+
+/* diagrams */
+.kit{display:flex;align-items:stretch;border:2px solid var(--c-94a3b8);border-radius:10px;overflow:hidden;margin:12px 0;background:var(--c-ffffff);font-size:12px;font-weight:700;text-align:center}
+.kit>div{padding:10px 6px;border-right:1px dashed var(--c-cbd5e1);display:flex;flex-direction:column;justify-content:center;gap:2px}
+.kit>div:last-child{border-right:none}
+.kit .k-sample{flex:1.2;background:var(--c-f1f5f9)}
+.kit .k-ab{flex:1.2;background:var(--c-fef3c7)}
+.kit .k-line{flex:.9;background:var(--c-ffffff)}
+.kit .k-line .bar{width:6px;height:34px;background:var(--rose);margin:0 auto;border-radius:2px}
+.kit .k-end{flex:.9;background:var(--c-e2e8f0)}
+.kit small{font-weight:500;color:var(--text-sec)}
+.kit-dir{font-size:12px;color:var(--green);font-weight:700;margin-top:-6px}
+.chrom{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.chrom .cbox{border:1px solid var(--border);background:var(--c-ffffff);border-radius:8px;padding:10px;text-align:center;font-size:12.5px}
+.chrom .cbox .ph{font-weight:900;color:var(--primary);font-size:13px}
+.chrom .pair{display:flex;justify-content:center;gap:4px;margin:6px 0}
+.chrom .c{width:9px;height:30px;border-radius:5px}
+.chrom .c.a{background:var(--c-3b82f6)}.chrom .c.b{background:var(--c-f43f5e)}
+.chrom .c.ab{background:linear-gradient(var(--c-3b82f6) 0 55%,var(--c-f43f5e) 55%)}.chrom .c.ba{background:linear-gradient(var(--c-f43f5e) 0 55%,var(--c-3b82f6) 55%)}
+.bubble-list{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.bubble{background:var(--purple-light);border:1px solid var(--c-ddd6fe);border-radius:18px;padding:6px 14px;font-size:13px}
+.bubble.t{background:var(--teal-light);border-color:var(--c-99f6e4)}
+
+/* map */
+.map-root{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin:14px 0;overflow:hidden;box-shadow:var(--shadow)}
+.map-root-head{width:100%;border:none;text-align:left;font-family:inherit;font-size:14.5px;font-weight:700;color:var(--c-ffffff);padding:10px 16px;cursor:pointer;background:var(--primary)}
+.map-root.green .map-root-head{background:var(--green)}
+.map-root.purple .map-root-head{background:var(--purple)}
+.map-root.teal .map-root-head{background:var(--teal)}
+.map-root.orange .map-root-head{background:var(--orange)}
+.map-root.rose .map-root-head{background:var(--rose)}
+.map-root.gray .map-root-head{background:var(--gray)}
+.map-root-head:hover{filter:brightness(1.08)}
+.map-children{display:flex;flex-wrap:wrap;gap:8px;padding:12px 14px}
+.map-node{border:1px solid var(--border);background:var(--c-f8fafc);border-radius:8px;padding:6px 12px;font-family:inherit;font-size:13px;cursor:pointer;color:var(--text)}
+.map-node:hover{background:var(--primary-light);border-color:var(--primary)}
+.map-group{display:flex;flex-direction:column;gap:4px;border:1px solid var(--border);border-radius:8px;padding:6px 10px;background:var(--c-f8fafc)}
+.map-group>.map-node{border:none;background:none;padding:0;font-weight:700;text-align:left}
+.map-subrow{display:flex;flex-wrap:wrap;gap:4px;border-left:2px solid var(--c-cbd5e1);padding-left:8px;margin-left:4px}
+.map-subchip{border:1px solid var(--border);background:var(--c-ffffff);border-radius:999px;padding:1px 9px;font-family:inherit;font-size:11.5px;cursor:pointer;color:var(--text-sec)}
+.map-subchip:hover{border-color:var(--primary);color:var(--primary)}
+
+.totop{position:fixed;right:18px;bottom:18px;width:42px;height:42px;border-radius:50%;border:none;background:var(--primary);color:var(--c-ffffff);font-size:18px;cursor:pointer;box-shadow:0 4px 10px rgba(37,99,235,.35);z-index:60}
+
+@media (max-width:680px){
+ .factor-grid,.factor-grid.three,.factor-grid.four,.pov-grid,.stage-row,.stage-row.three,.stage-row.five,.chrom{grid-template-columns:1fr}
+ .cmp-table,.ex-table{font-size:12px}
+ .content-wrap{padding:20px 14px 100px}
+ .kit{flex-direction:column}
+ .kit>div{border-right:none;border-bottom:1px dashed var(--c-cbd5e1)}
+}
+
+/* ---- additions for restructured version ---- */
+.lead{font-size:13.5px;color:var(--text-sec);background:var(--surface);border:1px dashed var(--border);border-radius:8px;padding:8px 14px;margin:0 0 16px}
+.lead b{color:var(--text)}
+.key-q{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin:10px 0;box-shadow:var(--shadow);font-size:13.5px}
+.key-q .kq-tag{flex:none;font-size:11px;font-weight:900;color:var(--c-ffffff);background:var(--primary);border-radius:6px;padding:2px 8px;margin-top:2px}
+.nest{margin:14px 0;font-size:13px}
+.nest .lv{border:2px solid var(--teal);border-radius:12px;padding:10px 14px 12px;background:var(--c-ffffff)}
+.nest .lv .lv{margin-top:8px;border-color:var(--c-5eead4);background:var(--teal-light)}
+.nest .lv .lv .lv{border-color:var(--c-99f6e4);background:var(--c-ffffff)}
+.nest .lv-name{font-weight:900;color:var(--teal)}
+.nest .lv-sub{color:var(--text-sec);font-size:12px}
+.cycle{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:6px;align-items:center;margin:12px 0}
+.cycle .cy{background:var(--teal-light);border:1.5px solid var(--teal);border-radius:10px;padding:8px 10px;text-align:center;font-weight:700;font-size:13px}
+.cycle .ar{font-weight:900;color:var(--teal);text-align:center}
+.cycle-desc{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.scale{display:flex;align-items:center;gap:8px;font-size:12px}
+.scale .track{flex:1;height:8px;border-radius:4px;background:var(--c-e2e8f0);overflow:hidden;min-width:60px}
+.scale .fill{height:100%;background:var(--rose);border-radius:4px}
+.link-btn{display:inline-flex;align-items:center;gap:6px;background:var(--rose);color:var(--c-ffffff) !important;text-decoration:none;font-weight:700;font-size:13px;border-radius:8px;padding:7px 14px;margin:6px 0;box-shadow:0 2px 6px rgba(225,29,72,.25)}
+.link-btn:hover{filter:brightness(1.08)}
+.timeline{position:relative;margin:14px 0 14px 8px;padding-left:18px;border-left:3px solid var(--c-fdba74)}
+.timeline .tl{position:relative;margin:0 0 10px;font-size:13px}
+.timeline .tl::before{content:'';position:absolute;left:-26px;top:5px;width:13px;height:13px;border-radius:50%;background:var(--c-ffffff);border:3px solid var(--orange)}
+.timeline .tl .yr{font-weight:900;color:var(--orange);margin-right:6px}
+.vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.vs-col{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);font-size:13px}
+.vs-col h4{margin:0;padding:8px 12px;color:var(--c-ffffff);font-size:13.5px}
+.vs-col ol{padding:10px 12px 10px 30px}
+.vs-col ol li{margin:3px 0}
+.check-list{list-style:none;padding:0;margin:8px 0}
+.check-list li{padding:6px 10px 6px 34px;position:relative;border-bottom:1px dashed var(--border);font-size:13.5px}
+.check-list li:last-child{border-bottom:none}
+.check-list li .mk{position:absolute;left:6px;top:6px;width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:var(--c-ffffff)}
+.mk.o{background:var(--green)}.mk.x{background:var(--rose)}
+.well-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0;text-align:center;font-size:12.5px}
+.well-grid .wg-h{font-weight:700;border-radius:6px;padding:3px 0}
+.well-grid .wg-h.ctrl{background:var(--c-fef3c7);color:var(--c-92400e)}
+.well-grid .wg-h.exp{background:var(--c-fce7f3);color:var(--c-9d174d)}
+@media (max-width:680px){
+ .cycle{grid-template-columns:1fr}.cycle .ar{transform:rotate(90deg)}
+ .cycle-desc,.vs-grid,.well-grid{grid-template-columns:1fr}
+}
+.sd-case{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:12px 0;box-shadow:var(--shadow)}
+.sd-head{font-weight:700;color:var(--teal);font-size:14px;margin-bottom:8px}
+.sd-sub{font-weight:500;color:var(--text-sec);font-size:12px}
+.sd-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sd-box{flex:1;min-width:200px;border:2px solid var(--border);border-radius:10px;padding:10px;text-align:center}
+.sd-box.win{border-color:var(--teal);background:var(--teal-light)}
+.sd-lab{font-weight:900;margin-bottom:6px}
+.forest{display:grid;grid-template-columns:repeat(6,26px);gap:5px;justify-content:center}
+.forest .tr{width:26px;height:26px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;color:var(--c-ffffff);font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+.sd-cnt{font-size:12px;color:var(--text-sec);margin-top:6px}
+.sd-vs{font-size:22px;font-weight:900;color:var(--teal)}
+.sd-res{margin-top:8px;font-size:13.5px}
+.era-bar{display:flex;height:46px;border-radius:10px;overflow:hidden;margin:12px 0 4px;box-shadow:var(--shadow)}
+.eb{display:flex;align-items:center;justify-content:center;flex-direction:column;color:var(--c-ffffff);font-size:12px;font-weight:700;line-height:1.2;min-width:0}
+.eb b{font-size:13px}
+.eb.pc{background:var(--c-7c3aed)}.eb.pa{background:var(--c-16a34a)}.eb.me{background:var(--c-ea580c)}.eb.ce{background:var(--c-0d9488)}
+.era-axis{display:flex;justify-content:space-between;font-size:11.5px;color:var(--text-sec);margin-bottom:10px}
+.era-t td{font-size:12.5px}
+.ozone{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;font-size:18px;font-weight:700;margin:8px 0;font-family:'Times New Roman',serif}
+.ozone .oz{display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:44px;border-radius:50%;background:var(--c-dbeafe);color:var(--c-1e3a8a)}
+.ozone .oz.o3{background:var(--c-7c3aed);color:var(--c-ffffff)}
+.ozone .ar{font-size:12px;color:var(--text-sec);font-family:'Noto Sans KR',sans-serif}
+.ext-graph,.circ-fig{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px;margin:12px 0;box-shadow:var(--shadow)}
+.ext-graph svg,.circ-fig svg{width:100%;height:auto;display:block}
+.gnote{font-size:11.5px;color:var(--text-sec);text-align:center;margin-top:4px}
+.rad-fig{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;background:var(--c-0f172a);color:var(--c-e2e8f0);border-radius:12px;padding:14px;margin:12px 0;font-size:12.5px}
+.rf-col{text-align:center}
+.rf-n{font-size:24px;font-weight:900;margin-bottom:2px}
+.rf-n.in,.rf-n.abs{color:var(--c-facc15)}.rf-n.ref{color:var(--c-fde68a)}.rf-n.out{color:var(--c-fb923c)}
+.rf-arrow{font-size:22px;color:var(--c-94a3b8)}
+.calc-box{background:var(--c-0f172a);color:var(--c-e2e8f0);border-radius:10px;padding:12px 16px;margin:10px 0;font-size:14px;line-height:1.9}
+.calc-box .res{color:var(--c-fde68a)}.calc-box b{color:var(--c-ffffff)}
+.pac{display:grid;grid-template-columns:1fr;gap:14px;margin:12px 0}
+.pac-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.pac-h{padding:8px 14px;color:var(--c-ffffff);font-weight:700}
+.pac-h.normal{background:var(--primary)}.pac-h.nino{background:var(--rose)}
+.pac-row{display:grid;grid-template-columns:1fr 2fr 1fr;gap:8px;padding:12px;align-items:stretch}
+.land{background:var(--c-fef3c7);border:2px solid var(--c-d97706);border-radius:10px;padding:8px;text-align:center;font-size:13px}
+.wx{margin-top:6px;font-size:12.5px;background:var(--c-ffffff);border-radius:6px;padding:4px}
+.sea{background:linear-gradient(var(--c-bae6fd),var(--c-0ea5e9));border-radius:10px;padding:8px;display:flex;flex-direction:column;justify-content:space-between;text-align:center;font-size:12.5px;font-weight:700}
+.wind{color:var(--c-0f172a)}.wind.weak{opacity:.6}
+.water .warm{background:var(--c-f97316);color:var(--c-ffffff);border-radius:999px;padding:2px 10px;display:inline-block}
+.water .warm.big{padding:4px 16px}
+.up{color:var(--c-1e3a8a);text-align:right}.up.faint{opacity:.55}
+.pac-sum{padding:0 14px 10px;font-size:13px}
+@media (max-width:680px){.pac-row{grid-template-columns:1fr}}
+.ol,.factor-card ol,.factor-card ul{padding-left:20px}
+.era-card{background:var(--surface);border:1px solid var(--border);border-top:5px solid var(--c-7c3aed);border-radius:12px;padding:12px 14px;margin:10px 0 18px;box-shadow:var(--shadow)}
+.era-card.pa{border-top-color:var(--c-16a34a)}.era-card.me{border-top-color:var(--c-ea580c)}.era-card.ce{border-top-color:var(--c-0d9488)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;margin-bottom:10px}
+.tile{background:var(--c-f8fafc);border:1px solid var(--border);border-radius:10px;padding:8px 10px;font-size:13px;line-height:1.6}
+.tl-h{font-weight:700;font-size:12px;color:var(--text-sec);margin-bottom:3px}
+.era-card.pc .tile b{color:var(--c-7c3aed)}.era-card.pa .tile b{color:var(--c-16a34a)}.era-card.me .tile b{color:var(--c-ea580c)}.era-card.ce .tile b{color:var(--c-0d9488)}
+.chains{display:flex;flex-direction:column;gap:6px}
+.chain{display:flex;align-items:center;flex-wrap:wrap;gap:6px;font-size:13px;color:var(--c-94a3b8);font-weight:700}
+.chain .ck{flex:none;min-width:84px;text-align:center;font-size:11.5px;font-weight:900;color:var(--c-ffffff);background:var(--c-475569);border-radius:6px;padding:3px 8px}
+.chain.end .ck{background:var(--rose)}
+.chain .cs{background:var(--c-ffffff);border:1px solid var(--border);border-radius:8px;padding:3px 10px;color:var(--text);font-weight:500}
+.chain .cs small{display:block;font-size:11px;color:var(--text-sec)}
+.rb-flow{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:12px 0;box-shadow:var(--shadow)}
+.rb-t{font-weight:700;margin-bottom:6px}
+.rb-bars{display:flex;border-radius:8px;overflow:hidden;height:40px}
+.rb{display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:700;color:var(--c-ffffff);text-align:center;line-height:1.2;padding:0 2px}
+.rb.ref{background:var(--c-94a3b8)}.rb.ref2{background:var(--c-cbd5e1);color:var(--c-0f172a)}.rb.atm{background:var(--c-0ea5e9)}.rb.sfc{background:var(--c-16a34a)}
+.rb-note{font-size:12.5px;color:var(--text-sec);margin-top:6px}
+.bal-grid{display:grid;grid-template-columns:1fr;gap:12px;margin:12px 0}
+.bal{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.bal-h{padding:8px 14px;font-weight:700;color:var(--c-ffffff)}
+.bal-h.sfc{background:var(--c-16a34a)}.bal-h.atm{background:var(--c-0ea5e9)}.bal-h.all{background:var(--orange)}
+.bal-eq{display:flex;align-items:stretch;gap:10px;padding:12px;flex-wrap:wrap}
+.side{flex:1;min-width:220px;border-radius:10px;padding:8px 10px;display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-weight:700;color:var(--text-sec)}
+.side.in{background:var(--orange-light)}.side.out{background:var(--primary-light)}
+.side .lab{width:100%;font-size:11.5px;font-weight:900;color:var(--text-sec)}
+.term{display:inline-flex;flex-direction:column;align-items:center;background:var(--c-ffffff);border:1px solid var(--border);border-radius:8px;padding:4px 10px;font-size:18px;font-weight:900;color:var(--text)}
+.term small{font-size:10.5px;font-weight:500;color:var(--text-sec);text-align:center;line-height:1.25}
+.side .tot{width:100%;text-align:right;font-size:15px;font-weight:900;color:var(--text)}
+.eqs{align-self:center;font-size:26px;font-weight:900;color:var(--orange)}
+.layer-fig{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px;margin:12px 0;box-shadow:var(--shadow)}
+.layer-svg{width:100%;height:auto;display:block;border-radius:8px}
+
+/* ================= QUIZ ================= */
+.quiz-section{margin-top:44px;border-top:3px dashed var(--border);padding-top:26px}
+.quiz-header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.quiz-title{font-size:17px;font-weight:700}
+.scoreboard{display:flex;flex-wrap:wrap;gap:6px}
+.score-chip{font-size:11.5px;font-weight:700;border-radius:999px;padding:3px 10px;border:1px solid var(--border);background:var(--surface)}
+.score-chip.ox{color:var(--c-2563eb);border-color:var(--c-bfdbfe);background:var(--c-eff6ff)}
+.score-chip.mc{color:var(--c-16a34a);border-color:var(--c-bbf7d0);background:var(--c-f0fdf4)}
+.score-chip.hard{color:var(--c-7c3aed);border-color:var(--c-ddd6fe);background:var(--c-f5f3ff)}
+.quiz-type-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.qtype-btn{display:flex;align-items:center;gap:6px;border:1.5px solid var(--border);background:var(--surface);border-radius:10px;padding:7px 14px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;color:var(--text-sec)}
+.qtype-btn:hover{border-color:var(--c-94a3b8)}
+.qtype-btn.active.ox{border-color:var(--c-2563eb);color:var(--c-2563eb);background:var(--c-eff6ff)}
+.qtype-btn.active.mc{border-color:var(--c-16a34a);color:var(--c-16a34a);background:var(--c-f0fdf4)}
+.qtype-btn.active.hard{border-color:var(--c-7c3aed);color:var(--c-7c3aed);background:var(--c-f5f3ff)}
+.qtype-count{font-size:11px;font-weight:700;background:var(--gray-light);color:var(--text-sec);border-radius:999px;padding:1px 7px}
+.q-progress-wrap{display:flex;align-items:center;gap:10px;margin-bottom:14px;font-size:12px;color:var(--text-sec)}
+.q-progress-bar{flex:1;height:8px;background:var(--c-e2e8f0);border-radius:4px;overflow:hidden}
+.q-progress-fill{height:100%;border-radius:4px;transition:width .3s}
+.q-card{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;box-shadow:var(--shadow)}
+.q-card.answered-correct{border-color:var(--c-86efac)}
+.q-card.answered-wrong{border-color:var(--c-fda4af)}
+.q-meta{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.q-num{font-size:12px;font-weight:900;color:var(--text-sec)}
+.q-difficulty{font-size:10.5px;font-weight:700;border-radius:999px;padding:1px 8px}
+.diff-basic{background:var(--c-eff6ff);color:var(--c-2563eb)}
+.diff-mid{background:var(--c-f0fdf4);color:var(--c-16a34a)}
+.diff-hard{background:var(--c-f5f3ff);color:var(--c-7c3aed)}
+.q-text{font-weight:500;font-size:14px;margin-bottom:10px}
+.q-box{border:1px solid var(--c-cbd5e1);border-radius:8px;padding:8px 12px;margin:0 0 10px;background:var(--c-f8fafc);font-size:13.5px;position:relative}
+.q-box::before{content:'보기';position:absolute;top:-9px;left:12px;background:var(--c-f8fafc);padding:0 6px;font-size:11px;font-weight:700;color:var(--text-sec)}
+.q-box div{margin:3px 0}
+.ox-row{display:flex;gap:10px}
+.ox-btn{flex:1;max-width:160px;border:2px solid var(--border);background:var(--c-ffffff);border-radius:10px;padding:8px 0;font-size:20px;cursor:pointer;font-family:inherit}
+.ox-btn:hover:not(:disabled){border-color:var(--c-94a3b8)}
+.ox-btn:disabled{cursor:default}
+.ox-btn.correct-picked{border-color:var(--green);background:var(--green-light)}
+.ox-btn.wrong-picked{border-color:var(--rose);background:var(--rose-light)}
+.ox-btn.correct-reveal{border-color:var(--green);border-style:dashed}
+.mc-options{display:flex;flex-direction:column;gap:6px}
+.mc-opt{display:flex;align-items:flex-start;gap:10px;text-align:left;border:1.5px solid var(--border);background:var(--c-ffffff);border-radius:8px;padding:8px 12px;font-family:inherit;font-size:13.5px;cursor:pointer;color:var(--text)}
+.mc-opt:hover:not(:disabled){border-color:var(--c-94a3b8);background:var(--c-f8fafc)}
+.mc-opt:disabled{cursor:default}
+.mc-opt.correct{border-color:var(--green);background:var(--green-light)}
+.mc-opt.wrong{border-color:var(--rose);background:var(--rose-light)}
+.mc-opt-letter{flex:none;width:22px;height:22px;border-radius:50%;background:var(--gray-light);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--text-sec)}
+.mc-opt.correct .mc-opt-letter{background:var(--green);color:var(--c-ffffff)}
+.mc-opt.wrong .mc-opt-letter{background:var(--rose);color:var(--c-ffffff)}
+.q-feedback{margin-top:10px;border-radius:8px;padding:8px 12px;font-size:13px}
+.q-feedback.correct{background:var(--green-light);border:1px solid var(--c-bbf7d0)}
+.q-feedback.wrong{background:var(--rose-light);border:1px solid var(--c-fecdd3)}
+.quiz-result{background:var(--surface);border:2px solid var(--border);border-radius:14px;padding:18px;text-align:center;box-shadow:var(--shadow)}
+.quiz-result .big{font-size:30px;font-weight:900}
+.quiz-result .msg{color:var(--text-sec);margin:4px 0 12px}
+.mini-bar-wrap{max-width:420px;margin:0 auto 12px;text-align:left}
+.mini-bar-row{display:flex;align-items:center;gap:8px;font-size:12px;margin:5px 0}
+.mini-bar-label{width:60px;font-weight:700}
+.mini-bar-track{flex:1;height:8px;background:var(--c-e2e8f0);border-radius:4px;overflow:hidden}
+.mini-bar-fill{height:100%;border-radius:4px}
+.mini-bar-val{width:52px;text-align:right;color:var(--text-sec)}
+.reset-btn{border:none;background:var(--primary);color:var(--c-ffffff);font-family:inherit;font-weight:700;font-size:13px;border-radius:8px;padding:8px 18px;cursor:pointer}
+.reset-btn.sm{background:var(--c-ffffff);color:var(--text-sec);border:1px solid var(--border);padding:4px 12px;font-size:12px}
+.q-fig{margin:4px 0 12px;overflow-x:auto}.q-fig svg{width:100%;max-width:640px;height:auto;display:block;margin:0 auto;border-radius:8px}
+[id^="a-"],[id^="quiz-"]{scroll-margin-top:130px}
+.rel-fig{display:flex;align-items:stretch;gap:10px;margin:12px 0;flex-wrap:wrap}
+.rel-box{flex:1;min-width:180px;border-radius:12px;padding:14px;text-align:center;font-weight:900;font-size:15px;display:flex;flex-direction:column;justify-content:center}
+.rel-box small{display:block;font-weight:500;font-size:12px;color:var(--text-sec)}
+.rel-box.abio{background:var(--primary-light);border:2px solid var(--primary);color:var(--primary)}
+.rel-box.bio{background:var(--green-light);border:2px solid var(--green);color:var(--green)}
+.rel-loop{margin-top:8px;font-size:12.5px;color:var(--purple);background:var(--c-ffffff);border:1.5px dashed var(--purple);border-radius:999px;padding:3px 8px}
+.rel-mid{display:flex;flex-direction:column;justify-content:center;gap:8px;min-width:130px}
+.rel-arrow{font-weight:900;font-size:13.5px;text-align:center;border-radius:8px;padding:6px}
+.rel-arrow.act{background:var(--orange-light);color:var(--orange)}.rel-arrow.react{background:var(--rose-light);color:var(--rose)}
+.tol-fig,.web-fig{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px;margin:12px 0;box-shadow:var(--shadow)}
+.tol-fig svg,.web-svg{width:100%;max-width:620px;height:auto;display:block;margin:0 auto}
+.gnote{font-size:11.5px;color:var(--text-sec);text-align:center;margin-top:4px}
+.ar-grid{display:grid;grid-template-columns:3fr 2fr;gap:12px;margin:12px 0}
+.ar-col{border-radius:12px;overflow:hidden;border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow)}
+.ar-h{padding:7px 12px;color:var(--c-ffffff);font-weight:700;font-size:13.5px}
+.ar-col.act .ar-h{background:var(--orange)}.ar-col.react .ar-h{background:var(--rose)}
+.ar-item{padding:7px 12px;border-bottom:1px dashed var(--border);font-size:13.5px}
+.ar-item:last-child{border-bottom:none}
+.ar-item .sub,.sub{font-size:12px;color:var(--text-sec)}
+.mini-chain{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin:4px 0;font-size:12.5px;color:var(--c-94a3b8);font-weight:700}
+.mini-chain span{background:var(--c-f8fafc);border:1px solid var(--border);border-radius:6px;padding:1px 8px;color:var(--text);font-weight:500}
+.sea-depth{border-radius:12px;overflow:hidden;margin:10px 0;box-shadow:var(--shadow)}
+.sd-row{display:flex;align-items:center;gap:12px;padding:10px 14px;color:var(--c-ffffff)}
+.sd-row .nm{font-weight:900;min-width:60px}.sd-row .ds{font-size:13px}
+.sd-row.l1{background:var(--c-38bdf8)}.sd-row.l2{background:var(--c-0284c7)}.sd-row.l3{background:var(--c-075985)}
+.frac-eq{display:flex;align-items:center;justify-content:center;gap:10px;font-size:18px;font-weight:700;margin:8px 0}
+.frac2{display:inline-flex;flex-direction:column;align-items:center;font-size:15px}
+.frac2 span:first-child{border-bottom:2px solid var(--text);padding:0 6px}
+.use-bars{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px;margin:10px 0}
+.ub{display:flex;align-items:center;gap:10px;margin:6px 0}
+.ub-l{width:110px;font-weight:700;font-size:13px;flex:none}
+.ub-b{color:var(--c-ffffff);font-size:12px;font-weight:700;border-radius:6px;padding:5px 10px;white-space:nowrap;overflow:hidden}
+.pyr{display:flex;flex-direction:column;align-items:center;gap:3px;margin:14px 0}
+.py{text-align:center;padding:9px 6px;font-size:13px;border-radius:4px;color:var(--c-0f172a)}
+.py b{margin-right:6px}
+.py.p4{width:28%;background:var(--c-c4b5fd)}.py.p3{width:48%;background:var(--c-93c5fd)}.py.p2{width:68%;background:var(--c-fde047)}.py.p1{width:88%;background:var(--c-86efac)}
+.recover{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:4px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px;margin:12px 0}
+.rc{width:150px}.pyr-svg{width:100%;height:auto;display:block}
+.rc-ar{font-size:20px;color:var(--c-64748b)}
+b.up{color:var(--c-b91c1c)}b.dn{color:var(--c-1d4ed8)}
+.q-fig{margin:4px 0 12px;overflow-x:auto}.q-fig svg{max-width:560px;width:100%;height:auto;display:block;margin:0 auto}
+.q-fig .qpyr{display:flex;justify-content:center;gap:6px;flex-wrap:wrap}.q-fig .qpyr svg{width:130px}
+@media (max-width:680px){.ar-grid{grid-template-columns:1fr}.rel-mid{width:100%}.rc{width:120px}}
+
+[id^="a-"],[id^="quiz-"]{scroll-margin-top:130px}
+</style>
+<script data-material-theme-init>(function(){var d=document.documentElement,t="dark",o=false;try{t=localStorage.getItem("simpul.theme")==="light"?"light":"dark";o=JSON.parse(localStorage.getItem("simpul.duo.v1")||"{}").on===true}catch(e){}try{if(parent!==window&&parent.document){var p=parent.document.documentElement;o=p.hasAttribute("data-duo");if(p.getAttribute("data-theme")==="light")t="light"}}catch(e){}d.dataset.materialTheme=t;if(o)d.setAttribute("data-material-duo","")})()</script><style data-simpul-monochrome-palette>:root{--c-0284c7:#52525b;--c-075985:#3f3f46;--c-0d9488:#3f3f46;--c-0ea5e9:#52525b;--c-0f172a:#18181b;--c-16a34a:#52525b;--c-1d4ed8:#52525b;--c-1e3a8a:#3f3f46;--c-2563eb:#52525b;--c-334155:#3f3f46;--c-38bdf8:#52525b;--c-3b82f6:#52525b;--c-475569:#3f3f46;--c-5eead4:#52525b;--c-64748b:#52525b;--c-7c3aed:#52525b;--c-86efac:#a1a1aa;--c-8b5cf6:#a1a1aa;--c-92400e:#3f3f46;--c-93c5fd:#a1a1aa;--c-94a3b8:#a1a1aa;--c-99f6e4:#a1a1aa;--c-9d174d:#52525b;--c-a78bfa:#a1a1aa;--c-b91c1c:#52525b;--c-bae6fd:#e4e4e7;--c-bbf7d0:#e4e4e7;--c-bfdbfe:#e4e4e7;--c-c4b5fd:#e4e4e7;--c-cbd5e1:#e4e4e7;--c-d97706:#52525b;--c-dbeafe:#e4e4e7;--c-ddd6fe:#e4e4e7;--c-e11d48:#52525b;--c-e2e8f0:#e4e4e7;--c-ea580c:#52525b;--c-eff6ff:#f4f4f5;--c-f0fdf4:#f4f4f5;--c-f0fdfa:#f4f4f5;--c-f1f5f9:#f4f4f5;--c-f43f5e:#52525b;--c-f5f3ff:#f4f4f5;--c-f8fafc:#f4f4f5;--c-f97316:#52525b;--c-facc15:#52525b;--c-fafcff:#f4f4f5;--c-fb923c:#52525b;--c-fce7f3:#f4f4f5;--c-fda4af:#a1a1aa;--c-fdba74:#a1a1aa;--c-fde047:#52525b;--c-fde68a:#a1a1aa;--c-fecdd3:#e4e4e7;--c-fef3c7:#e4e4e7;--c-fefce8:#f4f4f5;--c-fff1f2:#f4f4f5;--c-fff7ed:#f4f4f5;--c-ffffff:#ffffff;}html[data-material-theme="dark"]{--c-0284c7:#a1a1aa;--c-075985:#d4d4d8;--c-0d9488:#d4d4d8;--c-0ea5e9:#a1a1aa;--c-0f172a:#f4f4f5;--c-16a34a:#a1a1aa;--c-1d4ed8:#a1a1aa;--c-1e3a8a:#d4d4d8;--c-2563eb:#a1a1aa;--c-334155:#d4d4d8;--c-38bdf8:#a1a1aa;--c-3b82f6:#a1a1aa;--c-475569:#d4d4d8;--c-5eead4:#a1a1aa;--c-64748b:#a1a1aa;--c-7c3aed:#a1a1aa;--c-86efac:#71717a;--c-8b5cf6:#71717a;--c-92400e:#d4d4d8;--c-93c5fd:#71717a;--c-94a3b8:#71717a;--c-99f6e4:#71717a;--c-9d174d:#a1a1aa;--c-a78bfa:#71717a;--c-b91c1c:#a1a1aa;--c-bae6fd:#27272a;--c-bbf7d0:#27272a;--c-bfdbfe:#27272a;--c-c4b5fd:#27272a;--c-cbd5e1:#27272a;--c-d97706:#a1a1aa;--c-dbeafe:#27272a;--c-ddd6fe:#27272a;--c-e11d48:#a1a1aa;--c-e2e8f0:#27272a;--c-ea580c:#a1a1aa;--c-eff6ff:#18181b;--c-f0fdf4:#18181b;--c-f0fdfa:#18181b;--c-f1f5f9:#18181b;--c-f43f5e:#a1a1aa;--c-f5f3ff:#18181b;--c-f8fafc:#18181b;--c-f97316:#a1a1aa;--c-facc15:#a1a1aa;--c-fafcff:#18181b;--c-fb923c:#a1a1aa;--c-fce7f3:#18181b;--c-fda4af:#71717a;--c-fdba74:#71717a;--c-fde047:#a1a1aa;--c-fde68a:#71717a;--c-fecdd3:#27272a;--c-fef3c7:#27272a;--c-fefce8:#18181b;--c-fff1f2:#18181b;--c-fff7ed:#18181b;--c-ffffff:#0e0e11;}html[data-material-duo]{--c-0284c7:#1899D6;--c-075985:#1899D6;--c-0d9488:#1899D6;--c-0ea5e9:#1CB0F6;--c-0f172a:#1899D6;--c-16a34a:#58A700;--c-1d4ed8:#1CB0F6;--c-1e3a8a:#1899D6;--c-2563eb:#1CB0F6;--c-334155:#1899D6;--c-38bdf8:#1CB0F6;--c-3b82f6:#1CB0F6;--c-475569:#1899D6;--c-5eead4:#1CB0F6;--c-64748b:#777777;--c-7c3aed:#CE82FF;--c-86efac:#58CC02;--c-8b5cf6:#CE82FF;--c-92400e:#CD7900;--c-93c5fd:color-mix(in srgb,#1CB0F6 45%,#FFFFFF);--c-94a3b8:#1CB0F6;--c-99f6e4:color-mix(in srgb,#1CB0F6 45%,#FFFFFF);--c-9d174d:#EA2B2B;--c-a78bfa:color-mix(in srgb,#CE82FF 45%,#FFFFFF);--c-b91c1c:#FF4B4B;--c-bae6fd:color-mix(in srgb,#1CB0F6 45%,#FFFFFF);--c-bbf7d0:color-mix(in srgb,#58CC02 45%,#FFFFFF);--c-bfdbfe:color-mix(in srgb,#1CB0F6 45%,#FFFFFF);--c-c4b5fd:color-mix(in srgb,#1CB0F6 45%,#FFFFFF);--c-cbd5e1:color-mix(in srgb,#1CB0F6 45%,#FFFFFF);--c-d97706:#FF9600;--c-dbeafe:#DDF4FF;--c-ddd6fe:#DDF4FF;--c-e11d48:#FF4B4B;--c-e2e8f0:#E5E5E5;--c-ea580c:#FF9600;--c-eff6ff:#F7F7F7;--c-f0fdf4:#F7F7F7;--c-f0fdfa:#F7F7F7;--c-f1f5f9:#F7F7F7;--c-f43f5e:#FF4B4B;--c-f5f3ff:#FFFFFF;--c-f8fafc:#FFFFFF;--c-f97316:#FF9600;--c-facc15:#FFC800;--c-fafcff:#FFFFFF;--c-fb923c:#FF9600;--c-fce7f3:#FFDFE0;--c-fda4af:color-mix(in srgb,#FF4B4B 45%,#FFFFFF);--c-fdba74:#FF9600;--c-fde047:#FFC800;--c-fde68a:color-mix(in srgb,#FFC800 45%,#FFFFFF);--c-fecdd3:#FFDFE0;--c-fef3c7:color-mix(in srgb,#FFC800 45%,#FFFFFF);--c-fefce8:#FFF5D3;--c-fff1f2:#FFFFFF;--c-fff7ed:#FFF0D9;--c-ffffff:#FFFFFF;}html[data-material-duo][data-material-theme="dark"]{--c-0284c7:color-mix(in srgb,#1CB0F6 78%,#FFFFFF);--c-075985:color-mix(in srgb,#1CB0F6 78%,#FFFFFF);--c-0d9488:color-mix(in srgb,#1CB0F6 78%,#FFFFFF);--c-0ea5e9:#1CB0F6;--c-0f172a:color-mix(in srgb,#1CB0F6 78%,#FFFFFF);--c-16a34a:color-mix(in srgb,#58CC02 78%,#FFFFFF);--c-1d4ed8:#1CB0F6;--c-1e3a8a:color-mix(in srgb,#1CB0F6 78%,#FFFFFF);--c-2563eb:#1CB0F6;--c-334155:color-mix(in srgb,#1CB0F6 78%,#FFFFFF);--c-38bdf8:#1CB0F6;--c-3b82f6:#1CB0F6;--c-475569:color-mix(in srgb,#1CB0F6 78%,#FFFFFF);--c-5eead4:#1CB0F6;--c-64748b:#AFAFAF;--c-7c3aed:#CE82FF;--c-86efac:#58CC02;--c-8b5cf6:#CE82FF;--c-92400e:color-mix(in srgb,#FF9600 78%,#FFFFFF);--c-93c5fd:color-mix(in srgb,#1CB0F6 40%,#131F24);--c-94a3b8:#1CB0F6;--c-99f6e4:color-mix(in srgb,#1CB0F6 40%,#131F24);--c-9d174d:color-mix(in srgb,#FF4B4B 78%,#FFFFFF);--c-a78bfa:color-mix(in srgb,#CE82FF 40%,#131F24);--c-b91c1c:#FF4B4B;--c-bae6fd:color-mix(in srgb,#1CB0F6 40%,#131F24);--c-bbf7d0:color-mix(in srgb,#58CC02 40%,#131F24);--c-bfdbfe:color-mix(in srgb,#1CB0F6 40%,#131F24);--c-c4b5fd:color-mix(in srgb,#1CB0F6 40%,#131F24);--c-cbd5e1:color-mix(in srgb,#1CB0F6 40%,#131F24);--c-d97706:#FF9600;--c-dbeafe:color-mix(in srgb,#1CB0F6 16%,#131F24);--c-ddd6fe:color-mix(in srgb,#1CB0F6 16%,#131F24);--c-e11d48:#FF4B4B;--c-e2e8f0:#37464F;--c-ea580c:#FF9600;--c-eff6ff:#202F36;--c-f0fdf4:#202F36;--c-f0fdfa:#202F36;--c-f1f5f9:#202F36;--c-f43f5e:#FF4B4B;--c-f5f3ff:#131F24;--c-f8fafc:#131F24;--c-f97316:#FF9600;--c-facc15:#FFC800;--c-fafcff:#131F24;--c-fb923c:#FF9600;--c-fce7f3:color-mix(in srgb,#FF4B4B 16%,#131F24);--c-fda4af:color-mix(in srgb,#FF4B4B 40%,#131F24);--c-fdba74:#FF9600;--c-fde047:#FFC800;--c-fde68a:color-mix(in srgb,#FFC800 40%,#131F24);--c-fecdd3:color-mix(in srgb,#FF4B4B 16%,#131F24);--c-fef3c7:color-mix(in srgb,#FFC800 40%,#131F24);--c-fefce8:color-mix(in srgb,#FFC800 16%,#131F24);--c-fff1f2:#131F24;--c-fff7ed:color-mix(in srgb,#FF9600 16%,#131F24);--c-ffffff:#131F24;}</style>
+<link rel="stylesheet" href="../../_theme/material-monochrome.css">
+<link rel="stylesheet" href="../../_theme/study-ui.css">
+<script src="../../_theme/study-ui.js" defer></script>
+</head>
+<body>
+<header class="page-header">
+ <div class="header-inner">
+  <div class="subject-label">통합과학2 · 생태계</div>
+  <div class="page-title">통합과학2 생태계 파트
+   <span class="badge-unit teal">Ⅱ. 환경과 에너지 › 1. 생태계평형과 기후 변화</span>
+  </div>
+  <nav class="tab-bar">
+   <span class="tab-group-label">생태계구성요소</span>
+   <button class="tab-btn active" onclick="switchTab(0)"><span class="tab-num">1</span>생태계의 구성</button>
+   <button class="tab-btn" onclick="switchTab(1)"><span class="tab-num">2</span>상호작용과 내성 범위</button>
+   <button class="tab-btn" onclick="switchTab(2)"><span class="tab-num">3</span>온도와 빛</button>
+   <button class="tab-btn" onclick="switchTab(3)"><span class="tab-num">4</span>물·공기·토양</button>
+   <span class="tab-group-label">생태계평형</span>
+   <button class="tab-btn" onclick="switchTab(4)"><span class="tab-num">5</span>먹이 관계와 생태피라미드</button>
+   <button class="tab-btn" onclick="switchTab(5)"><span class="tab-num">6</span>생태계평형</button>
+   <span class="tab-group-label">지도</span>
+   <button class="tab-btn" onclick="switchTab(6)"><span class="tab-num">7</span>개념 한눈에 보기</button>
+  </nav>
+ </div>
+</header>
+
+<main class="content-wrap">
+
+<!-- ===================== TAB 0 ===================== -->
+<section class="tab-panel active" id="panel-0">
+ <div class="unit-banner" style="background:var(--teal-light);color:var(--teal)">01. 생태계구성요소와 상호작용</div>
+ <div class="lead"><b>흐름</b> — 곶자왈 예시 → 개체 · 개체군 · 군집 · 생태계 (작은 단위 → 큰 단위) → 생물요소 3가지 → 에너지를 얻는 방법 → 비생물요소</div>
+
+ <h2 class="section-title" id="a-gotjawal" style="border-color:var(--teal)">곶자왈 — 생태계의 예</h2>
+ <p><b>곶자왈</b>은 화산 활동으로 분출된 용암이 불규칙하게 굳어 생긴 암석 지대에 나무와 덤불이 자라 이루어진 숲을 뜻하는 제주어이다. 원시림의 모습을 유지하며 넓게 분포한다.</p>
+ <div class="factor-grid four">
+  <div class="factor-card green"><h4>생산자</h4>밤일엽, 제주백서향 (제주 고유 식물)</div>
+  <div class="factor-card orange"><h4>소비자</h4>섬휘파람새</div>
+  <div class="factor-card purple"><h4>분해자</h4>주황말미잘버섯 (사체를 분해)</div>
+  <div class="factor-card blue"><h4>비생물요소</h4>빛, 물, 온도, 토양, 공기</div>
+ </div>
+
+ <h2 class="section-title" id="a-level" style="border-color:var(--teal)">개체 → 개체군 → 군집 → 생태계</h2>
+ <div class="nest">
+  <div class="lv"><span class="lv-name">생태계</span> <span class="lv-sub">— 군집 + 비생물요소가 서로 영향을 주고받는 시스템</span>
+   <div class="lv"><span class="lv-name">군집 (= 생물요소)</span> <span class="lv-sub">— 일정한 지역에 서식하는 <b>여러 종</b> 개체군의 무리</span>
+    <div class="lv"><span class="lv-name">개체군</span> <span class="lv-sub">— 일정한 지역에 서식하는 <b>같은 종</b>의 무리</span>
+     <div class="lv"><span class="lv-name">개체</span> <span class="lv-sub">— 생물 한 마리(한 그루)</span></div>
+    </div>
+   </div>
+  </div>
+ </div>
+ <div class="tbl-wrap"><table class="cmp-table teal-th">
+  <thead><tr><th>단계</th><th>뜻</th><th>곶자왈 그림 예</th></tr></thead>
+  <tbody>
+   <tr><td>개체</td><td>생물 하나</td><td>사슴 한 마리</td></tr>
+   <tr><td>개체군</td><td>일정한 지역에 서식하는 <b>같은 종</b>의 무리</td><td>사슴 무리</td></tr>
+   <tr><td>군집</td><td>일정한 지역에 서식하는 <b>여러 종</b> 개체군의 무리 (= 생물요소 전체)</td><td>사슴 + 제비 + 부엉이 + 토끼 + 나비 …</td></tr>
+   <tr><td>생태계</td><td>일정한 공간에서 자연환경과 생물이 밀접한 관계를 맺으며 서로 영향을 주고받는 (안정적인) 시스템</td><td>곶자왈 전체</td></tr>
+  </tbody>
+ </table></div>
+ <div class="tip">구분 포인트: <b>같은 종</b>이면 개체군, <b>여러 종</b>이면 군집, 여기에 <b>비생물요소</b>까지 더하면 생태계</div>
+
+ <h2 class="section-title" id="a-bio" style="border-color:var(--teal)">생물요소 — 생산자 · 소비자 · 분해자</h2>
+ <div class="tbl-wrap"><table class="cmp-table teal-th">
+  <thead><tr><th>구분</th><th>하는 일</th><th>예</th></tr></thead>
+  <tbody>
+   <tr><td>생산자</td><td><b>무기물 → 유기물</b> (스스로 양분을 만듦)</td><td>식물, 식물성 플랑크톤, 심해 열수구 화학 합성 세균, 남세균, 해조류 등</td></tr>
+   <tr><td>소비자</td><td><b>다른 생물을 섭취</b>하여 양분을 얻음 (1차, 2차, …, n차 소비자)</td><td>초식동물, 육식동물</td></tr>
+   <tr><td>분해자</td><td>사체, 배설물의 <b>유기물 → 무기물</b></td><td>세균, 곰팡이(버섯) 등</td></tr>
+  </tbody>
+ </table></div>
+
+ <h3 class="subsection-title" id="a-nutri" style="border-color:var(--teal)">에너지를 얻는 방법에 따라</h3>
+ <div class="vs-grid">
+  <div class="vs-col"><h4 style="background:var(--green)">독립 영양 생물</h4><ol><li>스스로 유기물을 만든다</li><li>= <b>생산자</b></li></ol></div>
+  <div class="vs-col"><h4 style="background:var(--orange)">종속 영양 생물</h4><ol><li>다른 생물(유기물)에 의존한다</li><li>= <b>소비자 · 분해자</b></li></ol></div>
+ </div>
+ <div class="flow-row">
+  <span class="flow-item green">생산자<small>무기물 → 유기물</small></span><span class="flow-arrow">→</span>
+  <span class="flow-item orange">소비자<small>유기물 섭취</small></span><span class="flow-arrow">→</span>
+  <span class="flow-item purple">분해자<small>유기물 → 무기물</small></span><span class="flow-arrow">→</span>
+  <span class="flow-item green">다시 생산자가 이용</span>
+ </div>
+
+ <h2 class="section-title" id="a-abio" style="border-color:var(--teal)">비생물요소</h2>
+ <div class="def-box" style="border-color:var(--teal);background:var(--teal-light)">
+  <div class="box-label">비생물요소</div>
+  빛, 물, 온도, 토양, 공기 등 생물을 둘러싼 모든 <b>자연 환경적 요인</b>
+ </div>
+ <p><span class="badge badge-orange">빛</span><span class="badge badge-blue">물</span><span class="badge badge-rose">온도</span><span class="badge badge-purple">토양</span><span class="badge badge-teal">공기</span></p>
+
+ <div class="quiz-section" id="quiz-0"></div>
+</section>
+
+<!-- ===================== TAB 1 ===================== -->
+<section class="tab-panel" id="panel-1">
+ <div class="unit-banner" style="background:var(--teal-light);color:var(--teal)">01. 생태계구성요소와 상호작용</div>
+ <div class="lead"><b>흐름</b> — 영향의 방향 세 가지(작용 · 반작용 · 상호작용) → 교과서 예 → 내성 범위 · 최적 조건 · 제한 요인</div>
+
+ <h2 class="section-title" id="a-rel" style="border-color:var(--teal)">작용 · 반작용 · 상호작용</h2>
+ <div class="rel-fig">
+  <div class="rel-box abio">비생물요소<small>빛 · 물 · 온도 · 토양 · 공기</small></div>
+  <div class="rel-mid">
+   <div class="rel-arrow act">작용 ⟶</div>
+   <div class="rel-arrow react">⟵ 반작용</div>
+  </div>
+  <div class="rel-box bio">생물요소<small>생산자 · 소비자 · 분해자</small><div class="rel-loop">⟲ 상호작용 (생물요소 내부)</div></div>
+ </div>
+ <div class="tbl-wrap"><table class="cmp-table teal-th">
+  <thead><tr><th>구분</th><th>방향</th><th>교과서 예</th></tr></thead>
+  <tbody>
+   <tr><td>작용</td><td>비생물요소 → 생물요소</td><td>토양이 발달하지 않은 곶자왈에서 나무뿌리가 땅속 깊이 내리지 못하고 <b>땅 위로 드러나</b> 돌이나 바위를 붙잡으며 자란다.</td></tr>
+   <tr><td>반작용</td><td>생물요소 → 비생물요소</td><td>지렁이, 두더지, 땅강아지, 개미가 굴을 파서 <b>토양의 통기성</b>이 좋아진다. 지렁이 배설물(영양물질 많음)로 <b>토양 성분</b>이 변한다.</td></tr>
+   <tr><td>상호작용</td><td>생물요소 ↔ 생물요소</td><td>먹고 먹히는 관계 등 (5탭 먹이 관계)</td></tr>
+  </tbody>
+ </table></div>
+ <div class="tip">생물요소는 빛, 온도, 공기, 물, 토양 같은 비생물요소의 영향을 받아 <b>몸의 형태나 생활 방식</b>이 변한다. 반대로 생물의 생명활동 결과 <b>환경 조건</b>이 변하기도 한다. → 생물요소와 비생물요소는 <b>서로 영향을 주고받는다</b>.</div>
+
+ <h2 class="section-title" id="a-tol" style="border-color:var(--teal)">내성 범위 · 최적 조건 · 제한 요인</h2>
+ <div class="tol-fig">
+  <svg viewBox="0 0 560 270">
+   <line x1="60" y1="220" x2="530" y2="220" stroke="#334155" stroke-width="2"/>
+   <line x1="60" y1="220" x2="60" y2="20" stroke="#334155" stroke-width="2"/>
+   <polygon points="530,220 520,215 520,225" fill="#334155"/><polygon points="60,20 55,30 65,30" fill="#334155"/>
+   <text x="30" y="40" font-size="12" fill="#334155" font-weight="700">생장</text><text x="30" y="55" font-size="12" fill="#334155" font-weight="700">속도</text>
+   <text x="470" y="245" font-size="12" fill="#334155" font-weight="700">환경 요인</text>
+   <rect x="245" y="40" width="110" height="180" fill="#ccfbf1" opacity=".8"/>
+   <path d="M120 220 C 180 215, 210 60, 300 55 C 390 60, 420 215, 480 220" fill="none" stroke="#0d9488" stroke-width="4"/>
+   <text x="300" y="34" text-anchor="middle" font-size="13" font-weight="900" fill="#0d9488">최적 범위(최적 조건)</text>
+   <line x1="120" y1="230" x2="480" y2="230" stroke="#7c3aed" stroke-width="2"/>
+   <polygon points="120,230 130,226 130,234" fill="#7c3aed"/><polygon points="480,230 470,226 470,234" fill="#7c3aed"/>
+   <text x="300" y="258" text-anchor="middle" font-size="13" font-weight="900" fill="#7c3aed">내성 범위</text>
+   <circle cx="120" cy="220" r="6" fill="#e11d48"/><circle cx="480" cy="220" r="6" fill="#e11d48"/>
+   <text x="120" y="195" text-anchor="middle" font-size="12" font-weight="700" fill="#e11d48">최저 조건</text><text x="120" y="209" text-anchor="middle" font-size="11" fill="#e11d48">(제한)</text>
+   <text x="480" y="195" text-anchor="middle" font-size="12" font-weight="700" fill="#e11d48">최고 조건</text><text x="480" y="209" text-anchor="middle" font-size="11" fill="#e11d48">(제한)</text>
+  </svg>
+ </div>
+ <div class="factor-grid three">
+  <div class="factor-card purple"><h4>내성 범위</h4>생물이 <b>견딜 수 있는</b> 환경 범위 (최저 조건 ~ 최고 조건)</div>
+  <div class="factor-card teal"><h4>최적 조건</h4>생물이 <b>활발하게 생명활동</b>을 할 수 있는 조건</div>
+  <div class="factor-card rose"><h4>제한 요인</h4>생명활동이 <b>제한받게 되는</b> 환경 요인</div>
+ </div>
+ <div class="warning"><b>모든 조건</b>(빛, 온도, 물 …)에 대해 내성 범위를 만족해야 생장이 가능하다. 하나라도 내성 범위를 벗어나면 그 요인이 제한 요인이 된다.</div>
+
+ <div class="quiz-section" id="quiz-1"></div>
+</section>
+
+<!-- ===================== TAB 2 ===================== -->
+<section class="tab-panel" id="panel-2">
+ <div class="unit-banner" style="background:var(--orange-light);color:var(--orange)">01. 생태계구성요소와 상호작용</div>
+ <div class="lead"><b>흐름</b> — 각 비생물요소마다 <b>작용(환경 → 생물)</b>과 <b>반작용(생물 → 환경)</b>을 짝지어 정리</div>
+
+ <h2 class="section-title" id="a-temp" style="border-color:var(--orange)">온도</h2>
+ <div class="orange-box">온도는 <b>세포의 생명활동에 직접적인 영향</b>을 주는 요인이다. 생물이 진화한 결과 체온을 유지하거나 온도 변화에 적응하여 다양한 특징이 나타나기도 한다.</div>
+ <div class="ar-grid">
+  <div class="ar-col act">
+   <div class="ar-h">작용 · 온도 → 생물</div>
+   <div class="ar-item"><b>한라송이풀</b>: 잎과 줄기에 털이 나 있어 체온이 낮아지는 것을 막는다 (기온이 낮은 곳).</div>
+   <div class="ar-item"><b>추운 지역의 포유류</b>: 피하 지방 발달, 몸 크기 커짐, 귀 같은 말단부 작아짐<br><span class="sub">예) 북극여우는 귀가 작고, 사막여우는 귀가 크다.</span></div>
+   <div class="ar-item"><b>변온 동물(외온 동물)</b>: 기온↓ → 물질대사↓ → <b>동면</b></div>
+   <div class="ar-item"><b>정온 동물(내온 동물)</b>: 털, 피하 지방, 겨울잠</div>
+   <div class="ar-item"><b>계절형</b>: 계절에 따라 크기, 형태, 색이 변함</div>
+   <div class="ar-item"><b>식물 모양</b>: 털 있는 잎과 꽃</div>
+   <div class="ar-item"><b>낙엽수 / 상록수의 겨울나기</b>
+    <div class="mini-chain"><span>기온↓</span>→<span>엽록소 파괴</span>→<span>단풍</span></div>
+    <div class="mini-chain"><span>떨켜 생성</span>→<span>낙엽</span></div>
+    <div class="mini-chain"><span>두꺼운 큐티클</span></div>
+    <div class="mini-chain"><span>기온↓</span>→<span>녹말 분해</span>→<span>포도당↑</span>→<span>삼투압↑</span>→<span>어는점↓</span></div>
+   </div>
+  </div>
+  <div class="ar-col react">
+   <div class="ar-h">반작용 · 생물 → 온도</div>
+   <div class="ar-item">증산 작용에 의한 기온 조절</div>
+   <div class="ar-item">숲에 의한 미기후 형성</div>
+   <div class="ar-item">낙엽과 지표 식생에 의한 지온 유지</div>
+   <div class="ar-item">침엽수림의 알베도 변화</div>
+  </div>
+ </div>
+
+ <h2 class="section-title" id="a-light" style="border-color:var(--orange)">빛</h2>
+ <div class="orange-box">빛은 식물이 <b>광합성</b>을 할 수 있게 하는 에너지원이다. 식물 종류마다 생존에 유리한 빛의 세기가 다르다.</div>
+
+ <h3 class="subsection-title" id="a-light-int" style="border-color:var(--orange)">① 빛의 세기</h3>
+ <div class="vs-grid">
+  <div class="vs-col"><h4 style="background:var(--orange)">강한 빛에서 잘 자람</h4><ol><li>소나무, 자작나무</li><li><b>양지식물</b>: 잎이 두껍고 면적이 좁다 (<b>양엽</b>)</li></ol></div>
+  <div class="vs-col"><h4 style="background:var(--c-64748b)">약한 빛에서도 잘 자람</h4><ol><li>산세비에리아, 보스턴고사리</li><li><b>음지식물</b>: 잎이 얇고 면적이 넓다 (<b>음엽</b>)</li></ol></div>
+ </div>
+
+ <h3 class="subsection-title" id="a-light-wave" style="border-color:var(--orange)">② 빛의 파장 — 해조류의 깊이 분포</h3>
+ <div class="sea-depth">
+  <div class="sd-row l1"><span class="nm">녹조류</span><span class="ds">얕은 곳 · <b>적색광</b> 이용</span></div>
+  <div class="sd-row l2"><span class="nm">갈조류</span><span class="ds">중간 · <b>황색광</b> 이용</span></div>
+  <div class="sd-row l3"><span class="nm">홍조류</span><span class="ds">깊은 곳 · <b>청색광</b> 이용</span></div>
+ </div>
+ <p class="sub" style="font-size:12.5px;color:var(--text-sec)">→ 이용하는 빛이 달라 서로 다른 깊이에 분포한다.</p>
+
+ <h3 class="subsection-title" id="a-light-time" style="border-color:var(--orange)">③ 일조 시간</h3>
+ <div class="tbl-wrap"><table class="cmp-table orange-th">
+  <thead><tr><th>구분</th><th>예</th></tr></thead>
+  <tbody>
+   <tr><td>식물</td><td>단일 식물 / 장일 식물</td></tr>
+   <tr><td>닭의 산란</td><td>산란 주기 17~26시간, 낮이 길수록 자주 산란</td></tr>
+   <tr><td>동물의 생식</td><td>번데기 → 성체, 생식 (봄, 여름) / 동면 유도 (가을, 겨울)</td></tr>
+   <tr><td>동물의 행동</td><td>조류 산란, 짝짓기 (봄, 여름) / 송어, 노루 번식, 성호르몬 분비 (가을, 겨울)</td></tr>
+  </tbody>
+ </table></div>
+
+ <h3 class="subsection-title" id="a-light-dir" style="border-color:var(--orange)">④ 빛의 방향과 반작용</h3>
+ <div class="ar-grid">
+  <div class="ar-col act">
+   <div class="ar-h">작용 · 빛 → 생물</div>
+   <div class="ar-item"><b>빛의 방향</b>: 굴성</div>
+  </div>
+  <div class="ar-col react">
+   <div class="ar-h">반작용 · 생물 → 빛</div>
+   <div class="ar-item">숲의 수관에 의한 차광, 환경 변화</div>
+   <div class="ar-item">식물 플랑크톤 증식으로 수중 빛 차단 <span class="sub">(녹조, 적조 모두 식물 플랑크톤)</span></div>
+   <div class="ar-item">덩굴식물에 의한 피복과 차단</div>
+   <div class="ar-item">생물 발광에 의한 빛 환경 조성</div>
+  </div>
+ </div>
+
+ <div class="quiz-section" id="quiz-2"></div>
+</section>
+
+<!-- ===================== TAB 3 ===================== -->
+<section class="tab-panel" id="panel-3">
+ <div class="unit-banner" style="background:var(--primary-light);color:var(--primary)">01. 생태계구성요소와 상호작용</div>
+ <div class="lead"><b>흐름</b> — 물 · 공기 · 토양도 같은 틀(작용 ↔ 반작용)로 정리</div>
+
+ <h2 class="section-title" id="a-water">물</h2>
+ <div class="def-box">물은 생명체의 구성 성분 중 <b>가장 많은 양</b>을 차지하는 물질로, 생명 유지에 꼭 필요하다. 육상 생물은 <b>체내 물 손실을 줄이는</b> 특징을, 물속 생물은 <b>물속 생활에 유리한</b> 특징을 가진다.</div>
+ <div class="ar-grid">
+  <div class="ar-col act">
+   <div class="ar-h">작용 · 물 → 생물</div>
+   <div class="ar-item"><b>육상 동물</b>: 도마뱀 등 파충류 중 몸 표면이 <b>비늘</b>로 덮인 종은 건조한 사막에서도 수분 손실을 줄일 수 있다.</div>
+   <div class="ar-item"><b>육상 식물</b>: 건생식물, 습생식물, 수생식물
+    <div class="mini-chain"><span>건생식물</span>→<span>광합성을 밤에, 저수 조직</span></div>
+    <div class="mini-chain"><span>건기/우기(비 X)에 따라</span>→<span>뿌리 깊이 차이</span></div>
+   </div>
+   <div class="ar-item"><b>수생식물</b>: 줄기와 뿌리에 <b>통기 조직</b> 발달 → 산소와 이산화 탄소를 교환하며 물 위에 잘 뜬다. <span class="sub">예) 연꽃 줄기</span><br><span class="sub">통기 조직: 잎이나 줄기에서 흡수한 공기를 뿌리 쪽으로 보내는 긴 통로와 같은 조직</span></div>
+  </div>
+  <div class="ar-col react">
+   <div class="ar-h">반작용 · 생물 → 물</div>
+   <div class="ar-item">비버의 댐 건설로 물길 변화</div>
+   <div class="ar-item">숲의 스펀지 역할</div>
+   <div class="ar-item">수생·습생식물, 미생물의 수질 정화 (유기물, 질소, 인, 용존 산소량)</div>
+  </div>
+ </div>
+
+ <h2 class="section-title" id="a-air">공기</h2>
+ <div class="def-box">공기에는 생물의 <b>호흡</b>에 필요한 산소와 <b>광합성</b>의 원료인 이산화 탄소가 포함되어 있다. → 생물의 호흡과 광합성 결과 공기의 성분이 변한다.</div>
+ <div class="ar-grid">
+  <div class="ar-col act">
+   <div class="ar-h">작용 · 공기 → 생물</div>
+   <div class="ar-item"><b>셰르파</b> (고산 지대, 산소 부족)
+    <div class="mini-chain"><span>적혈구 수, 두께↓</span>→<span>빠른 이동, 산소 운반 효율↑</span></div>
+    <div class="mini-chain"><span>지방보다 포도당을 더 많이 이용</span>→<span>산소 소모량↓</span></div>
+    <div class="mini-chain"><span>미토콘드리아가 30 % 더 에너지를 냄</span></div>
+   </div>
+   <div class="ar-item"><b>바람</b> → 식물의 형태, 번식 방법 변화</div>
+  </div>
+  <div class="ar-col react">
+   <div class="ar-h">반작용 · 생물 → 공기</div>
+   <div class="ar-item">광합성, 호흡에 의한 대기 조성 변화</div>
+   <div class="ar-item">증산 작용에 의한 대기 습도 조절</div>
+   <div class="ar-item">숲에 의한 방풍 효과</div>
+   <div class="ar-item">토양 미생물, 습지 식물의 CH<sub>4</sub>, N<sub>2</sub>O 방출</div>
+   <div class="ar-item">식물의 휘발성 유기 화합물, <b>피톤치드</b> 방출 <span class="sub">(노송나무·삼나무: 미생물을 제거하는 피톤치드 → 주변 공기 성분 변화)</span></div>
+  </div>
+ </div>
+ <div class="rule-card blue" id="a-rq">
+  <h4>호흡률</h4>
+  <div class="frac-eq">호흡률 = <span class="frac2"><span>배출한 CO<sub>2</sub></span><span>흡수한 O<sub>2</sub></span></span></div>
+  <div class="factor-grid three">
+   <div class="factor-card blue"><h4>탄수화물</h4>1</div>
+   <div class="factor-card blue"><h4>단백질</h4>0.8</div>
+   <div class="factor-card blue"><h4>지방</h4>0.7</div>
+  </div>
+ </div>
+
+ <h2 class="section-title" id="a-soil">토양</h2>
+ <div class="def-box">토양은 여러 땅속 생물과 수많은 미생물이 서식하는 <b>터전</b>이다. 토양 속 미생물이 사체 및 배설물을 분해하여 토양 성분이 변하고 생태계 내에서 <b>물질이 순환</b>한다. 토양의 깊이에 따라 공기의 함량이 달라 분포하는 세균의 종류도 달라진다.</div>
+ <div class="tbl-wrap"><table class="cmp-table">
+  <thead><tr><th>토양의 특성</th><th>생물에 주는 영향</th></tr></thead>
+  <tbody>
+   <tr><td>① 토양 pH</td><td>식물 분포 차이</td></tr>
+   <tr><td>② 입자 크기</td><td>식물 서식 분포</td></tr>
+   <tr><td>③ 무기염류</td><td>식물 생장 상태</td></tr>
+   <tr><td>④ 수분, 통기성</td><td>식물의 종류, 활동성 차이 (호기성 세균, 혐기성 세균)</td></tr>
+  </tbody>
+ </table></div>
+ <div class="note">토양의 반작용 예는 2탭의 지렁이·두더지·개미(통기성), 지렁이 배설물(토양 성분)을 참고</div>
+
+ <div class="quiz-section" id="quiz-3"></div>
+</section>
+
+<!-- ===================== TAB 4 ===================== -->
+<section class="tab-panel" id="panel-4">
+ <div class="unit-banner" style="background:var(--green-light);color:var(--green)">02. 생태계평형과 생태계보전</div>
+ <div class="lead"><b>흐름</b> — 먹이사슬 → 먹이그물 → 생산자 양분의 쓰임 → 에너지가 줄어드는 까닭 → 생태피라미드</div>
+
+ <h2 class="section-title" id="a-chain" style="border-color:var(--green)">먹이사슬과 먹이그물</h2>
+ <div class="vs-grid">
+  <div class="vs-col"><h4 style="background:var(--green)">먹이사슬</h4><ol><li>생산자에서 최종 소비자까지 먹고 먹히는 <b>사슬 형태</b>의 먹이 관계</li><li>예) 식물의 열매 → 들쥐 → 너구리</li></ol></div>
+  <div class="vs-col"><h4 style="background:var(--teal)">먹이그물</h4><ol><li>여러 개의 먹이사슬이 <b>복잡하게 얽힌</b> 형태</li><li>한 생물이 여러 생물의 먹이가 되고, 동시에 여러 생물을 잡아먹음</li><li>실제 생태계의 먹이 관계</li></ol></div>
+ </div>
+ <div class="web-fig">
+  <svg viewBox="0 0 500 280" class="web-svg"><defs><marker id="wa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#b91c1c"/></marker></defs><line x1="81" y1="240" x2="51" y2="187" stroke="#ef4444" stroke-width="1.3" opacity=".75" marker-end="url(#wa)"/><line x1="96" y1="239" x2="113" y2="188" stroke="#ef4444" stroke-width="1.3" opacity=".75" marker-end="url(#wa)"/><line x1="103" y1="243" x2="183" y2="183" stroke="#ef4444" stroke-width="1.3" opacity=".75" marker-end="url(#wa)"/><line x1="264" y1="238" x2="275" y2="189" stroke="#ef4444" stroke-width="1.3" opacity=".75" marker-end="url(#wa)"/><line x1="273" y1="243" x2="344" y2="183" stroke="#ef4444" stroke-width="1.3" opacity=".75" marker-end="url(#wa)"/><line x1="434" y1="238" x2="445" y2="189" stroke="#ef4444" stroke-width="1.3" opacity=".75" marker-end="url(#wa)"/><line x1="49" y1="165" x2="78" y2="116" stroke="#ef4444" stroke-width="1.3" opacity=".75" marker-end="url(#wa)"/><line x1="114" y1="164" x2="98" y2="118" stroke="#ef4444" stroke-width="1.3" opacity=".75" marker-end="url(#wa)"/><line x1="135" y1="171" x2="281" y2="110" stroke="#ef4444" stroke-width="1.3" opacity=".75" marker-end="url(#wa)"/><line x1="106" y1="105" x2="170" y2="105" stroke="#ef4444" stroke-width="1.3" opacity=".75" marker-end="url(#wa)"/><line x1="436" y1="170" x2="318" y2="111" stroke="#ef4444" stroke-width="1.3" opacity=".75" marker-end="url(#wa)"/><line x1="368" y1="165" x2="390" y2="117" stroke="#ef4444" stroke-width="1.3" opacity=".75" marker-end="url(#wa)"/><line x1="294" y1="169" x2="383" y2="112" stroke="#ef4444" stroke-width="1.3" opacity=".75" marker-end="url(#wa)"/><line x1="205" y1="164" x2="243" y2="43" stroke="#ef4444" stroke-width="1.3" opacity=".75" marker-end="url(#wa)"/><line x1="277" y1="163" x2="254" y2="44" stroke="#ef4444" stroke-width="1.3" opacity=".75" marker-end="url(#wa)"/><line x1="200" y1="96" x2="238" y2="41" stroke="#ef4444" stroke-width="1.3" opacity=".75" marker-end="url(#wa)"/><line x1="386" y1="100" x2="268" y2="36" stroke="#ef4444" stroke-width="1.3" opacity=".75" marker-end="url(#wa)"/><line x1="291" y1="95" x2="261" y2="42" stroke="#ef4444" stroke-width="1.3" opacity=".75" marker-end="url(#wa)"/><line x1="350" y1="165" x2="262" y2="41" stroke="#ef4444" stroke-width="1.3" opacity=".75" marker-end="url(#wa)"/><rect x="64" y="238" width="52" height="24" rx="12" fill="#fff" stroke="#16a34a" stroke-width="2"/><text x="90" y="254" text-anchor="middle" font-size="11.5" font-weight="700" fill="#16a34a">나무</text><rect x="234" y="238" width="52" height="24" rx="12" fill="#fff" stroke="#16a34a" stroke-width="2"/><text x="260" y="254" text-anchor="middle" font-size="11.5" font-weight="700" fill="#16a34a">풀</text><rect x="404" y="238" width="52" height="24" rx="12" fill="#fff" stroke="#a16207" stroke-width="2"/><text x="430" y="254" text-anchor="middle" font-size="11.5" font-weight="700" fill="#a16207">낙엽</text><rect x="14" y="163" width="52" height="24" rx="12" fill="#fff" stroke="#ea580c" stroke-width="2"/><text x="40" y="179" text-anchor="middle" font-size="11.5" font-weight="700" fill="#ea580c">나비</text><rect x="94" y="163" width="52" height="24" rx="12" fill="#fff" stroke="#ea580c" stroke-width="2"/><text x="120" y="179" text-anchor="middle" font-size="11.5" font-weight="700" fill="#ea580c">애벌레</text><rect x="174" y="163" width="52" height="24" rx="12" fill="#fff" stroke="#ea580c" stroke-width="2"/><text x="200" y="179" text-anchor="middle" font-size="11.5" font-weight="700" fill="#ea580c">다람쥐</text><rect x="254" y="163" width="52" height="24" rx="12" fill="#fff" stroke="#ea580c" stroke-width="2"/><text x="280" y="179" text-anchor="middle" font-size="11.5" font-weight="700" fill="#ea580c">토끼</text><rect x="334" y="163" width="52" height="24" rx="12" fill="#fff" stroke="#ea580c" stroke-width="2"/><text x="360" y="179" text-anchor="middle" font-size="11.5" font-weight="700" fill="#ea580c">들쥐</text><rect x="424" y="163" width="52" height="24" rx="12" fill="#fff" stroke="#ea580c" stroke-width="2"/><text x="450" y="179" text-anchor="middle" font-size="11.5" font-weight="700" fill="#ea580c">지렁이</text><rect x="64" y="93" width="52" height="24" rx="12" fill="#fff" stroke="#2563eb" stroke-width="2"/><text x="90" y="109" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2563eb">거미</text><rect x="164" y="93" width="52" height="24" rx="12" fill="#fff" stroke="#2563eb" stroke-width="2"/><text x="190" y="109" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2563eb">도마뱀</text><rect x="274" y="93" width="52" height="24" rx="12" fill="#fff" stroke="#2563eb" stroke-width="2"/><text x="300" y="109" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2563eb">참새</text><rect x="374" y="93" width="52" height="24" rx="12" fill="#fff" stroke="#2563eb" stroke-width="2"/><text x="400" y="109" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2563eb">오소리</text><rect x="224" y="18" width="52" height="24" rx="12" fill="#fff" stroke="#7c3aed" stroke-width="2"/><text x="250" y="34" text-anchor="middle" font-size="11.5" font-weight="700" fill="#7c3aed">수리</text></svg>
+  <div class="gnote">교과서 먹이그물 그림의 일부를 영양단계별로 단순화한 것 (화살표: 먹이 → 먹는 생물)</div>
+ </div>
+
+ <h2 class="section-title" id="a-energy" style="border-color:var(--green)">생산자가 만든 양분의 쓰임</h2>
+ <p>먹고 먹히는 관계를 통해 하위 영양단계의 에너지가 상위 영양단계로 전달되면서 먹이그물을 이루는 군집 전체가 유지된다.</p>
+ <div class="use-bars">
+  <div class="ub"><span class="ub-l">세포호흡</span><div class="ub-b" style="width:100%;background:var(--c-7c3aed)">가장 많음 — 생명 유지</div></div>
+  <div class="ub"><span class="ub-l">생장량</span><div class="ub-b" style="width:55%;background:var(--c-8b5cf6)">식물이 생장하여 몸을 이룸</div></div>
+  <div class="ub"><span class="ub-l">낙엽량</span><div class="ub-b" style="width:40%;background:var(--c-a78bfa)">낙엽으로 떨어져 소모</div></div>
+  <div class="ub"><span class="ub-l">소비자에게 먹힘</span><div class="ub-b" style="width:28%;background:var(--c-e11d48)">애벌레 같은 소비자의 먹이</div></div>
+ </div>
+ <p class="sub" style="font-size:12px;color:var(--text-sec)">(막대 길이는 상대적인 크기를 나타내기 위한 것이다.)</p>
+ <div class="key-q"><span class="kq-tag" style="background:var(--green)">핵심</span><div>생산자가 합성한 양분 중 <b>일부만</b> 1차 소비자에게 전달되고, 1차 소비자의 에너지도 <b>일부만</b> 2차 소비자에게 전달된다. → 각 영양단계에서 <b>적은 양만</b> 다음 단계로 전달된다.</div></div>
+
+ <h2 class="section-title" id="a-pyramid" style="border-color:var(--green)">생태피라미드</h2>
+ <div class="pyr">
+  <div class="py p4"><b>3차 소비자</b> 매</div>
+  <div class="py p3"><b>2차 소비자</b> 개구리</div>
+  <div class="py p2"><b>1차 소비자</b> 메뚜기</div>
+  <div class="py p1"><b>생산자</b> 벼과 식물</div>
+ </div>
+ <div class="flow-row">
+  <span class="flow-item green">상위 영양단계로 갈수록</span><span class="flow-arrow">→</span>
+  <span class="flow-item green">에너지양 크게 감소</span><span class="flow-arrow">→</span>
+  <span class="flow-item green">개체수, 생물량도 감소</span><span class="flow-arrow">→</span>
+  <span class="flow-item green">쌓아 올리면 <b>피라미드</b> 형태</span>
+ </div>
+ <div class="green-box">
+  <div class="box-label">생태피라미드</div>
+  각 영양단계의 <b>개체수, 에너지양, 생물량</b>의 상대적인 양을 하위 영양단계부터 상위 영양단계로 쌓아 올린 피라미드 형태
+ </div>
+ <div class="note"><b>생물량</b>: 일정한 크기의 지역에 서식하는 생물의 총중량</div>
+
+ <div class="quiz-section" id="quiz-4"></div>
+</section>
+
+<!-- ===================== TAB 5 ===================== -->
+<section class="tab-panel" id="panel-5">
+ <div class="unit-banner" style="background:var(--green-light);color:var(--green)">02. 생태계평형과 생태계보전</div>
+ <div class="lead"><b>흐름</b> — 고롱고사 국립공원 사례 → 생태계평형의 정의 → 평형이 깨졌다가 회복되는 5단계</div>
+
+ <h2 class="section-title" id="a-gorongosa" style="border-color:var(--green)">고롱고사 국립공원 — 먹이 관계로 개체군 크기 조절</h2>
+ <div class="stage-row three green">
+  <div class="stage-item"><div class="st-num">①</div><div class="st-name">문제</div>1차 소비자인 <b>초식동물이 급증</b></div>
+  <div class="stage-item"><div class="st-num">②</div><div class="st-name">도입</div>2차 소비자인 <b>아프리카들개</b> 도입 → 초식동물 포식</div>
+  <div class="stage-item hi"><div class="st-num">③</div><div class="st-name">결과</div>1차 소비자 개체수 감소 → <b>생산자 개체수 증가</b> → 생태피라미드 안정, 생태계 회복</div>
+ </div>
+ <div class="tip">각 영양단계의 먹고 먹히는 관계에 따라 생태계를 이루는 <b>개체군의 크기가 조절</b>된다.</div>
+
+ <h2 class="section-title" id="a-eq" style="border-color:var(--green)">생태계평형</h2>
+ <div class="green-box">
+  <div class="box-label">생태계평형</div>
+  오랜 세월에 걸쳐 형성된 생태계에서 생물의 종류, 개체수와 물질의 양 등이 <b>안정적으로 유지되어 균형</b>을 이루는 상태
+ </div>
+ <p>각 영양단계의 생물이 사라지지 않고 유지되는 생태계에서는 일시적 환경 변화로 한 개체군의 수가 변하더라도, 먹이 관계로 연결된 다른 개체군의 수가 <b>연쇄적으로 변하면서</b> 다시 원래의 안정적인 상태를 회복한다.</p>
+
+ <h3 class="subsection-title" id="a-recover" style="border-color:var(--green)">평형이 유지되는 원리 — 5단계</h3>
+ <div class="recover"><div class="rc"><svg viewBox="0 0 150 160" class="pyr-svg"><polygon points="75.0,10 97.33333333333333,50 52.66666666666667,50" fill="#93c5fd"/><text x="75.0" y="34.0" text-anchor="middle" font-size="10" fill="#334155">2차 소비자</text><polygon points="52.66666666666667,50 97.33333333333333,50 119.66666666666666,90 30.333333333333336,90" fill="#fde047"/><text x="75.0" y="74.0" text-anchor="middle" font-size="10" fill="#334155">1차 소비자</text><polygon points="30.333333333333336,90 119.66666666666666,90 142.0,130 8.0,130" fill="#5eead4"/><text x="75.0" y="114.0" text-anchor="middle" font-size="10" fill="#334155">생산자</text><text x="75.0" y="152" text-anchor="middle" font-size="11.5" font-weight="700" fill="#166534">① 생태계평형 상태</text></svg></div><span class="rc-ar">→</span><div class="rc"><svg viewBox="0 0 150 160" class="pyr-svg"><polygon points="75.0,10 97.33333333333333,50 52.66666666666667,50" fill="#93c5fd"/><polygon points="49.333333333333336,50 100.66666666666666,50 129.66666666666666,90 20.333333333333336,90" fill="#fde047" stroke="#334155" stroke-dasharray="3 2"/><text x="75.0" y="75.0" text-anchor="middle" font-size="12" font-weight="900" fill="#b91c1c">증가</text><polygon points="30.333333333333336,90 119.66666666666666,90 142.0,130 8.0,130" fill="#5eead4"/><text x="75.0" y="152" text-anchor="middle" font-size="11.5" font-weight="700" fill="#166534">② 평형 깨짐</text></svg></div><span class="rc-ar">→</span><div class="rc"><svg viewBox="0 0 150 160" class="pyr-svg"><polygon points="75.0,10 107.33333333333333,50 42.66666666666667,50" fill="#93c5fd" stroke="#334155" stroke-dasharray="3 2"/><text x="75.0" y="35.0" text-anchor="middle" font-size="12" font-weight="900" fill="#b91c1c">증가</text><polygon points="52.66666666666667,50 97.33333333333333,50 119.66666666666666,90 30.333333333333336,90" fill="#fde047"/><polygon points="37.0,90 112.99999999999999,90 132.0,130 18.0,130" fill="#5eead4" stroke="#334155" stroke-dasharray="3 2"/><text x="75.0" y="115.0" text-anchor="middle" font-size="12" font-weight="900" fill="#1d4ed8">감소</text><text x="75.0" y="152" text-anchor="middle" font-size="11.5" font-weight="700" fill="#166534">③</text></svg></div><span class="rc-ar">→</span><div class="rc"><svg viewBox="0 0 150 160" class="pyr-svg"><polygon points="75.0,10 97.33333333333333,50 52.66666666666667,50" fill="#93c5fd"/><polygon points="56.00000000000001,50 94.0,50 109.66666666666666,90 40.333333333333336,90" fill="#fde047" stroke="#334155" stroke-dasharray="3 2"/><text x="75.0" y="75.0" text-anchor="middle" font-size="12" font-weight="900" fill="#1d4ed8">감소</text><polygon points="30.333333333333336,90 119.66666666666666,90 142.0,130 8.0,130" fill="#5eead4"/><text x="75.0" y="152" text-anchor="middle" font-size="11.5" font-weight="700" fill="#166534">④</text></svg></div><span class="rc-ar">→</span><div class="rc"><svg viewBox="0 0 150 160" class="pyr-svg"><polygon points="75.0,10 87.33333333333333,50 62.66666666666667,50" fill="#93c5fd" stroke="#334155" stroke-dasharray="3 2"/><text x="75.0" y="35.0" text-anchor="middle" font-size="12" font-weight="900" fill="#1d4ed8">감소</text><polygon points="52.66666666666667,50 97.33333333333333,50 119.66666666666666,90 30.333333333333336,90" fill="#fde047"/><polygon points="23.66666666666667,90 126.33333333333333,90 152.0,130 -2.0,130" fill="#5eead4" stroke="#334155" stroke-dasharray="3 2"/><text x="75.0" y="115.0" text-anchor="middle" font-size="12" font-weight="900" fill="#b91c1c">증가</text><text x="75.0" y="152" text-anchor="middle" font-size="11.5" font-weight="700" fill="#166534">⑤ 평형 회복</text></svg></div></div>
+ <div class="tbl-wrap"><table class="cmp-table green-th">
+  <thead><tr><th>단계</th><th>생산자</th><th>1차 소비자</th><th>2차 소비자</th></tr></thead>
+  <tbody>
+   <tr><td>① 평형 상태</td><td>—</td><td>—</td><td>—</td></tr>
+   <tr><td>② 평형 깨짐</td><td></td><td><b class="up">증가</b></td><td></td></tr>
+   <tr><td>③</td><td><b class="dn">감소</b> (먹힘)</td><td></td><td><b class="up">증가</b> (먹이 증가)</td></tr>
+   <tr><td>④</td><td></td><td><b class="dn">감소</b> (먹이↓, 천적↑)</td><td></td></tr>
+   <tr><td>⑤ 회복</td><td><b class="up">증가</b></td><td></td><td><b class="dn">감소</b></td></tr>
+  </tbody>
+ </table></div>
+ <div class="tip">요령: 한 단계가 늘면 <b>바로 아래(먹이)는 줄고, 바로 위(천적)는 는다</b>. 이 연쇄가 반복되며 원래대로 돌아온다.</div>
+
+ <div class="quiz-section" id="quiz-5"></div>
+</section>
+
+<!-- ===================== TAB 6 ===================== -->
+<section class="tab-panel" id="panel-6">
+ <div class="unit-banner">개념 한눈에 보기</div>
+ <div class="tip">클릭하면 해당 탭과 섹션으로 이동합니다 — 색깔 있는 큰 헤더는 탭 전체로, 작은 칸은 세부 설명 위치로 스크롤됩니다.</div>
+ <div class="map-root teal">
+  <button class="map-root-head" onclick="goTo(0)">① 생태계의 구성</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(0,'a-gotjawal')">곶자왈</button>
+   <button class="map-node" onclick="goTo(0,'a-level')">개체 → 생태계</button>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(0,'a-bio')">생물요소</button>
+    <div class="map-subrow"><button class="map-subchip" onclick="goTo(0,'a-nutri')">독립·종속 영양</button></div>
+   </div>
+   <button class="map-node" onclick="goTo(0,'a-abio')">비생물요소</button>
+  </div>
+ </div>
+ <div class="map-root teal">
+  <button class="map-root-head" onclick="goTo(1)">② 상호작용과 내성 범위</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(1,'a-rel')">작용·반작용·상호작용</button>
+   <button class="map-node" onclick="goTo(1,'a-tol')">내성 범위</button>
+  </div>
+ </div>
+ <div class="map-root orange">
+  <button class="map-root-head" onclick="goTo(2)">③ 온도와 빛</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(2,'a-temp')">온도</button>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(2,'a-light')">빛</button>
+    <div class="map-subrow">
+     <button class="map-subchip" onclick="goTo(2,'a-light-int')">세기</button>
+     <button class="map-subchip" onclick="goTo(2,'a-light-wave')">파장</button>
+     <button class="map-subchip" onclick="goTo(2,'a-light-time')">일조 시간</button>
+     <button class="map-subchip" onclick="goTo(2,'a-light-dir')">방향·반작용</button>
+    </div>
+   </div>
+  </div>
+ </div>
+ <div class="map-root">
+  <button class="map-root-head" onclick="goTo(3)">④ 물·공기·토양</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(3,'a-water')">물</button>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(3,'a-air')">공기</button>
+    <div class="map-subrow"><button class="map-subchip" onclick="goTo(3,'a-rq')">호흡률</button></div>
+   </div>
+   <button class="map-node" onclick="goTo(3,'a-soil')">토양</button>
+  </div>
+ </div>
+ <div class="map-root green">
+  <button class="map-root-head" onclick="goTo(4)">⑤ 먹이 관계와 생태피라미드</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(4,'a-chain')">먹이사슬·먹이그물</button>
+   <button class="map-node" onclick="goTo(4,'a-energy')">양분의 쓰임</button>
+   <button class="map-node" onclick="goTo(4,'a-pyramid')">생태피라미드</button>
+  </div>
+ </div>
+ <div class="map-root green">
+  <button class="map-root-head" onclick="goTo(5)">⑥ 생태계평형</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(5,'a-gorongosa')">고롱고사</button>
+   <button class="map-node" onclick="goTo(5,'a-eq')">생태계평형</button>
+   <button class="map-node" onclick="goTo(5,'a-recover')">회복 5단계</button>
+  </div>
+ </div>
+</section>
+
+</main>
+
+<button class="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="맨 위로">↑</button>
+
+<script>
+function switchTab(idx){
+ document.querySelectorAll('.tab-btn').forEach(function(b,i){b.classList.toggle('active',i===idx);});
+ document.querySelectorAll('.tab-panel').forEach(function(p,i){p.classList.toggle('active',i===idx);});
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function goTo(tabIdx,anchorId){
+ switchTab(tabIdx);
+ if(anchorId){
+  setTimeout(function(){
+   var el=document.getElementById(anchorId);
+   if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+  },120);
+ }
+}
+</script>
+
+<script>
+const QUIZ_DATA = {"0": {"ox": [{"q": "개체군은 일정한 지역에 서식하는 같은 종의 무리이다.", "a": true, "exp": "같은 종 → 개체군"}, {"q": "군집은 일정한 지역에 서식하는 여러 종 개체군의 무리이다.", "a": true, "exp": "군집 = 생물요소 전체"}, {"q": "군집은 생물요소와 비생물요소를 모두 포함한다.", "a": false, "exp": "군집은 생물요소만 포함한다. 비생물요소까지 포함하면 생태계이다."}, {"q": "생태계는 군집과 비생물요소가 서로 영향을 주고받는 시스템이다.", "a": true, "exp": "일정한 공간에서 자연환경과 생물이 밀접한 관계를 맺는 시스템"}, {"q": "한 숲에 사는 사슴 무리는 군집에 해당한다.", "a": false, "exp": "같은 종의 무리이므로 개체군이다."}, {"q": "생산자는 무기물로부터 유기물을 만든다.", "a": true, "exp": "독립 영양 생물"}, {"q": "분해자는 사체나 배설물의 유기물을 무기물로 분해한다.", "a": true, "exp": "세균, 곰팡이(버섯) 등"}, {"q": "남세균과 해조류는 소비자에 해당한다.", "a": false, "exp": "남세균, 해조류는 생산자이다."}, {"q": "소비자와 분해자는 종속 영양 생물이다.", "a": true, "exp": "다른 생물의 유기물에 의존한다."}, {"q": "온도, 빛, 토양은 생물요소에 해당한다.", "a": false, "exp": "비생물요소(자연 환경적 요인)이다."}], "mc": [{"q": "작은 단위에서 큰 단위 순으로 옳게 나열한 것은?", "opts": ["개체 → 개체군 → 군집 → 생태계", "개체군 → 개체 → 군집 → 생태계", "군집 → 개체군 → 개체 → 생태계", "개체 → 군집 → 개체군 → 생태계"], "a": 0, "exp": "개체 → 같은 종의 무리(개체군) → 여러 종(군집) → + 비생물요소(생태계)"}, {"q": "곶자왈의 생물 중 분해자에 해당하는 것은?", "opts": ["밤일엽", "주황말미잘버섯", "섬휘파람새", "제주백서향"], "a": 1, "exp": "주황말미잘버섯은 사체를 분해하여 살아간다."}, {"q": "생산자의 예로 옳지 않은 것은?", "opts": ["심해 열수구 화학 합성 세균", "해조류", "곰팡이", "식물성 플랑크톤"], "a": 2, "exp": "곰팡이는 분해자이다."}, {"q": "독립 영양 생물에 해당하는 것은?", "opts": ["소비자와 분해자", "소비자", "분해자", "생산자"], "a": 3, "exp": "스스로 유기물을 만드는 생산자"}, {"q": "소비자에 대한 설명으로 옳은 것은?", "opts": ["다른 생물을 섭취하여 양분을 얻으며 1차, 2차, … 소비자로 나뉜다.", "무기물로 유기물을 만든다.", "비생물요소에 해당한다.", "사체를 무기물로 분해한다."], "a": 0, "exp": "초식동물, 육식동물"}, {"q": "다음 중 군집에 해당하는 것은?", "opts": ["한 숲에 사는 사슴 무리", "한 숲에 사는 사슴, 제비, 부엉이, 토끼, 나비 무리 전체", "사슴 한 마리", "한 숲의 생물과 빛, 물, 토양 전체"], "a": 1, "exp": "여러 종 개체군의 무리 = 군집 / 마지막은 생태계"}, {"q": "비생물요소에 해당하지 않는 것은?", "opts": ["빛", "토양", "세균", "공기"], "a": 2, "exp": "세균은 분해자(생물요소)이다."}, {"q": "생태계에서 물질이 다시 생산자에게 이용될 수 있게 하는 생물은?", "opts": ["1차 소비자", "최종 소비자", "2차 소비자", "분해자"], "a": 3, "exp": "분해자가 유기물을 무기물로 분해한다."}], "hard": [{"q": "생태계 구성 단위에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 개체군은 같은 종으로 이루어진다.", "ㄴ. 군집은 여러 개체군으로 이루어진다.", "ㄷ. 생태계에는 비생물요소가 포함되지 않는다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 생태계 = 군집 + 비생물요소 / 옳은 것: ㄱ, ㄴ"}, {"q": "생물요소에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 분해자는 종속 영양 생물이다.", "ㄴ. 소비자는 독립 영양 생물이다.", "ㄷ. 생산자는 무기물로부터 유기물을 합성한다."], "opts": ["ㄱ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 소비자는 종속 영양 생물이다. / 옳은 것: ㄱ, ㄷ"}, {"q": "곶자왈에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 제주백서향은 분해자이다.", "ㄴ. 용암이 불규칙하게 굳어 생긴 암석 지대에 형성된 숲이다.", "ㄷ. 섬휘파람새는 소비자이다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄱ. (X) 제주백서향은 생산자(식물)이다. / 옳은 것: ㄴ, ㄷ"}, {"q": "생산자의 예로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 남세균", "ㄴ. 심해 열수구 화학 합성 세균", "ㄷ. 버섯"], "opts": ["ㄱ", "ㄴ", "ㄷ", "ㄱ, ㄴ"], "a": 3, "exp": "ㄷ. (X) 버섯(곰팡이)은 분해자이다. / 옳은 것: ㄱ, ㄴ"}, {"q": "다음 중 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 빛, 물, 온도, 토양, 공기는 비생물요소이다.", "ㄴ. 생태계는 생물과 환경이 서로 영향을 주고받는 시스템이다.", "ㄷ. 군집은 생물요소 전체를 뜻한다."], "opts": ["ㄱ", "ㄱ, ㄴ", "ㄱ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 3, "exp": "옳은 것: ㄱ, ㄴ, ㄷ"}]}, "1": {"ox": [{"q": "비생물요소가 생물요소에 영향을 주는 것을 작용이라고 한다.", "a": true, "exp": "비생물 → 생물 = 작용"}, {"q": "생물요소가 비생물요소에 영향을 주는 것을 상호작용이라고 한다.", "a": false, "exp": "생물 → 비생물 = 반작용, 생물요소 내부 = 상호작용"}, {"q": "곶자왈 나무뿌리가 땅 위로 드러나 자라는 것은 반작용의 예이다.", "a": false, "exp": "토양(비생물) → 나무(생물): 작용"}, {"q": "지렁이가 굴을 파서 토양의 통기성이 좋아지는 것은 반작용의 예이다.", "a": true, "exp": "생물 → 비생물"}, {"q": "지렁이 배설물로 토양 성분이 변하는 것은 작용의 예이다.", "a": false, "exp": "생물 → 비생물: 반작용"}, {"q": "먹고 먹히는 관계는 상호작용에 해당한다.", "a": true, "exp": "생물요소 내부의 관계"}, {"q": "내성 범위는 생물이 견딜 수 있는 환경 범위이다.", "a": true, "exp": "최저 조건 ~ 최고 조건"}, {"q": "최적 조건은 생물이 활발하게 생명활동을 할 수 있는 조건이다.", "a": true, "exp": "생장 속도가 가장 빠른 범위"}, {"q": "생물은 여러 환경 조건 중 하나만 내성 범위를 만족하면 생장할 수 있다.", "a": false, "exp": "모든 조건에 대해 내성 범위를 만족해야 생장 가능"}, {"q": "제한 요인은 생명활동이 제한받게 되는 환경 요인이다.", "a": true, "exp": "내성 범위를 벗어나는 요인"}], "mc": [{"q": "작용의 예로 옳은 것은?", "opts": ["지렁이 배설물로 토양 성분이 변한다.", "토양이 발달하지 않아 곶자왈 나무의 뿌리가 땅 위로 드러난다.", "두더지가 굴을 판다.", "지렁이가 굴을 파 토양의 통기성이 좋아진다."], "a": 1, "exp": "비생물(토양) → 생물(나무)"}, {"q": "반작용의 예로 옳은 것은?", "opts": ["소나무가 강한 빛에서 잘 자란다.", "북극여우의 귀가 작다.", "개미가 땅속에 굴을 파 토양의 통기성이 좋아진다.", "추운 지역 포유류의 피하 지방이 발달한다."], "a": 2, "exp": "생물 → 비생물"}, {"q": "생물요소 사이에 영향을 주고받는 것을 무엇이라고 하는가?", "opts": ["제한 요인", "반작용", "작용", "상호작용"], "a": 3, "exp": "생물요소 내부 = 상호작용"}, {"q": "내성 범위 그래프에서 생장 속도가 가장 빠른 구간은?", "opts": ["최적 범위", "내성 범위의 양 끝", "최저 조건", "최고 조건"], "a": 0, "exp": "최적 조건 = 활발하게 생명활동"}, {"q": "내성 범위를 옳게 나타낸 것은?", "opts": ["최저 조건보다 낮은 범위", "최저 조건부터 최고 조건까지", "최고 조건보다 높은 범위", "최적 조건만"], "a": 1, "exp": "생물이 견딜 수 있는 범위"}, {"q": "어떤 식물이 온도와 빛은 최적 조건이지만 물이 내성 범위를 벗어났을 때, 이 식물의 생장에 대한 설명으로 옳은 것은?", "opts": ["온도와 빛이 최적이므로 잘 자란다.", "내성 범위와 생장은 관계가 없다.", "물이 제한 요인이 되어 생장할 수 없다.", "빛이 제한 요인이 된다."], "a": 2, "exp": "모든 조건이 내성 범위 안에 있어야 생장할 수 있다."}, {"q": "생물요소와 비생물요소의 관계에 대한 설명으로 옳은 것은?", "opts": ["서로 영향을 주지 않는다.", "비생물요소만 생물요소에 영향을 준다.", "생물요소만 비생물요소에 영향을 준다.", "서로 영향을 주고받는다."], "a": 3, "exp": "작용과 반작용"}, {"q": "두더지, 땅강아지가 땅속에서 생명활동을 하며 굴을 팔 때 변하는 토양의 특성은?", "opts": ["통기성", "온도", "입자 크기", "pH"], "a": 0, "exp": "굴을 파면 공기가 잘 통한다."}], "hard": [{"q": "영향의 방향에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 상호작용은 비생물요소끼리 영향을 주고받는 것이다.", "ㄴ. 작용은 비생물요소가 생물요소에 영향을 주는 것이다.", "ㄷ. 반작용은 생물요소가 비생물요소에 영향을 주는 것이다."], "opts": ["ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄱ. (X) 상호작용은 생물요소 사이의 관계이다. / 옳은 것: ㄴ, ㄷ"}, {"q": "반작용의 예로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 지렁이가 많이 사는 곳은 토양 성분이 변한다.", "ㄴ. 개미가 굴을 파 토양의 통기성이 좋아진다.", "ㄷ. 곶자왈 나무뿌리가 땅 위로 드러난다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 작용(토양 → 나무)이다. / 옳은 것: ㄱ, ㄴ"}, {"q": "내성 범위 그래프에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 최저 조건과 최고 조건에서는 생명활동이 제한된다.", "ㄴ. 내성 범위 밖에서도 생장 속도는 최적 범위와 같다.", "ㄷ. 내성 범위 안에서 생장 속도는 최적 범위에서 가장 빠르다."], "opts": ["ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 내성 범위를 벗어나면 생장할 수 없다. / 옳은 것: ㄱ, ㄷ"}, {"q": "다음 중 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 최적 조건은 내성 범위 바깥에 있다.", "ㄴ. 제한 요인은 생명활동이 제한받게 되는 환경 요인이다.", "ㄷ. 생물은 모든 조건에 대해 내성 범위를 만족해야 생장할 수 있다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄱ. (X) 최적 조건은 내성 범위 안에 있다. / 옳은 것: ㄴ, ㄷ"}, {"q": "곶자왈과 땅속 생물 사례에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 곶자왈 나무는 토양의 영향으로 뿌리 형태가 달라졌다.", "ㄴ. 땅속 생물의 생명활동 결과 토양의 통기성이 변한다.", "ㄷ. 두 사례 모두 작용에 해당한다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 곶자왈 나무는 작용, 땅속 생물은 반작용 / 옳은 것: ㄱ, ㄴ"}]}, "2": {"ox": [{"q": "온도는 세포의 생명활동에 직접적인 영향을 주는 요인이다.", "a": true, "exp": "교과서 정의"}, {"q": "한라송이풀은 잎과 줄기에 털이 있어 체온이 낮아지는 것을 막는다.", "a": true, "exp": "기온이 낮은 곳"}, {"q": "추운 지역에 사는 포유류일수록 귀와 같은 말단부가 커진다.", "a": false, "exp": "말단부는 작아지고 몸 크기는 커진다."}, {"q": "사막여우는 북극여우보다 귀가 크다.", "a": true, "exp": "더운 곳 → 귀가 큼"}, {"q": "변온 동물은 기온이 낮아지면 물질대사가 줄어 동면한다.", "a": true, "exp": "기온↓ → 물질대사↓ → 동면"}, {"q": "겨울에 식물은 녹말을 분해해 포도당을 늘려 어는점을 낮춘다.", "a": true, "exp": "포도당↑ → 삼투압↑ → 어는점↓"}, {"q": "양지식물의 잎은 음지식물의 잎보다 얇고 넓다.", "a": false, "exp": "양엽은 두껍고 좁다, 음엽은 얇고 넓다."}, {"q": "홍조류는 녹조류보다 깊은 곳에 분포한다.", "a": true, "exp": "홍조류는 청색광 이용"}, {"q": "닭은 낮이 짧을수록 자주 산란한다.", "a": false, "exp": "낮이 길수록 자주 산란한다."}, {"q": "숲의 수관에 의한 차광은 빛에 대한 반작용의 예이다.", "a": true, "exp": "생물 → 빛 환경"}], "mc": [{"q": "기온이 낮은 곳에 사는 생물의 특징으로 옳지 않은 것은?", "opts": ["잎과 줄기에 털이 난다.", "몸 크기가 커진다.", "귀 같은 말단부가 커진다.", "피하 지방이 발달한다."], "a": 2, "exp": "추운 곳 → 말단부 작아짐"}, {"q": "낙엽수가 겨울을 나는 과정으로 옳은 것은?", "opts": ["기온↑ → 엽록소 증가 → 단풍", "떨켜 생성 → 엽록소 합성 증가", "기온↓ → 포도당 감소 → 어는점 상승", "기온↓ → 엽록소 파괴 → 단풍, 떨켜 생성 → 낙엽"], "a": 3, "exp": "필기 내용"}, {"q": "식물이 겨울에 어는점을 낮추는 과정으로 옳은 것은?", "opts": ["녹말 분해 → 포도당↑ → 삼투압↑ → 어는점↓", "엽록소 증가 → 어는점↓", "포도당 → 녹말 합성 → 삼투압↓", "물 흡수 증가 → 어는점↑"], "a": 0, "exp": "필기 내용"}, {"q": "음지식물의 잎(음엽)의 특징으로 옳은 것은?", "opts": ["얇고 면적이 좁다.", "얇고 면적이 넓다.", "두껍고 면적이 넓다.", "두껍고 면적이 좁다."], "a": 1, "exp": "약한 빛을 많이 받기 위해"}, {"q": "강한 빛에서 잘 자라는 식물끼리 짝지은 것은?", "opts": ["산세비에리아, 보스턴고사리", "산세비에리아, 자작나무", "소나무, 자작나무", "소나무, 보스턴고사리"], "a": 2, "exp": "교과서 예"}, {"q": "해조류와 주로 이용하는 빛의 연결로 옳은 것은?", "opts": ["홍조류 – 적색광", "녹조류 – 청색광", "갈조류 – 적색광", "홍조류 – 청색광"], "a": 3, "exp": "녹조류 적색광, 갈조류 황색광, 홍조류 청색광"}, {"q": "일조 시간의 영향으로 옳은 것은?", "opts": ["닭은 낮이 길수록 자주 산란한다.", "모든 식물은 낮의 길이와 상관없이 꽃이 핀다.", "동면은 봄에 유도된다.", "조류는 가을에만 산란한다."], "a": 0, "exp": "동면 유도는 가을·겨울"}, {"q": "빛에 대한 반작용의 예가 아닌 것은?", "opts": ["숲의 수관에 의한 차광", "식물의 굴성", "식물 플랑크톤 증식으로 수중 빛 차단", "덩굴식물에 의한 피복"], "a": 1, "exp": "굴성은 빛의 방향이 생물에 영향(작용)"}], "hard": [{"q": "온도와 생물에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 정온 동물은 털과 피하 지방으로 체온을 유지한다.", "ㄴ. 변온 동물은 기온이 낮아지면 물질대사가 증가한다.", "ㄷ. 북극여우는 사막여우보다 귀가 작다."], "opts": ["ㄱ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 물질대사가 감소한다. / 옳은 것: ㄱ, ㄷ"}, {"q": "온도에 대한 반작용의 예로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 한라송이풀의 털", "ㄴ. 증산 작용에 의한 기온 조절", "ㄷ. 숲에 의한 미기후 형성"], "opts": ["ㄴ", "ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ"], "a": 3, "exp": "ㄱ. (X) 온도 → 생물: 작용 / 옳은 것: ㄴ, ㄷ"}, {"q": "빛의 세기와 식물에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 양엽은 음엽보다 두껍다.", "ㄴ. 보스턴고사리는 빛이 약한 곳에서도 잘 자란다.", "ㄷ. 소나무는 빛이 약한 곳에서 주로 분포한다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 소나무는 강한 햇빛이 비치는 곳에 분포한다. / 옳은 것: ㄱ, ㄴ"}, {"q": "해조류의 분포에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 홍조류는 가장 깊은 곳에 분포한다.", "ㄴ. 세 해조류는 같은 파장의 빛을 이용한다.", "ㄷ. 녹조류는 적색광을 이용한다."], "opts": ["ㄱ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 이용하는 빛이 달라 다른 깊이에 분포한다. / 옳은 것: ㄱ, ㄷ"}, {"q": "일조 시간과 생물에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 송어와 노루는 봄에만 번식한다.", "ㄴ. 식물은 단일 식물과 장일 식물로 나뉜다.", "ㄷ. 조류의 산란과 짝짓기는 봄, 여름에 일어난다."], "opts": ["ㄷ", "ㄱ, ㄴ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄱ. (X) 송어, 노루 번식은 가을·겨울(낮이 짧을 때) / 옳은 것: ㄴ, ㄷ"}]}, "3": {"ox": [{"q": "물은 생명체의 구성 성분 중 가장 많은 양을 차지한다.", "a": true, "exp": "교과서 정의"}, {"q": "도마뱀의 비늘은 건조한 사막에서 수분 손실을 줄인다.", "a": true, "exp": "육상 동물의 적응"}, {"q": "수생식물의 줄기와 뿌리에는 통기 조직이 발달한다.", "a": true, "exp": "연꽃 줄기"}, {"q": "통기 조직은 뿌리에서 흡수한 물을 잎으로 보내는 조직이다.", "a": false, "exp": "잎이나 줄기에서 흡수한 공기를 뿌리 쪽으로 보내는 통로"}, {"q": "비버의 댐 건설로 물길이 바뀌는 것은 반작용이다.", "a": true, "exp": "생물 → 물"}, {"q": "노송나무와 삼나무는 피톤치드를 내뿜어 주변 공기 성분을 변화시킨다.", "a": true, "exp": "반작용"}, {"q": "호흡률은 흡수한 O₂를 배출한 CO₂로 나눈 값이다.", "a": false, "exp": "배출한 CO₂ / 흡수한 O₂"}, {"q": "지방의 호흡률은 탄수화물보다 작다.", "a": true, "exp": "탄 1, 단 0.8, 지 0.7"}, {"q": "토양 pH는 식물 분포에 영향을 준다.", "a": true, "exp": "토양 pH → 식물 분포 차이"}, {"q": "토양의 깊이에 따라 공기 함량이 달라도 분포하는 세균의 종류는 같다.", "a": false, "exp": "공기 함량에 따라 세균의 종류가 달라진다(호기성, 혐기성)."}], "mc": [{"q": "수생식물의 통기 조직이 하는 일로 옳은 것은?", "opts": ["빛을 차단한다.", "물 손실을 줄인다.", "뿌리를 깊이 내리게 한다.", "산소와 이산화 탄소를 교환하고 물 위에 잘 뜨게 한다."], "a": 3, "exp": "통기 조직 = 공기 통로"}, {"q": "물에 대한 반작용의 예가 아닌 것은?", "opts": ["도마뱀의 비늘", "수생식물의 수질 정화", "숲의 스펀지 역할", "비버의 댐 건설"], "a": 0, "exp": "도마뱀 비늘은 작용"}, {"q": "호흡률을 구하는 식으로 옳은 것은?", "opts": ["배출한 CO₂ × 흡수한 O₂", "배출한 CO₂ ÷ 흡수한 O₂", "흡수한 O₂ ÷ 배출한 CO₂", "흡수한 O₂ − 배출한 CO₂"], "a": 1, "exp": "호흡률 = CO₂/O₂"}, {"q": "호흡률이 1인 영양소는?", "opts": ["단백질", "무기염류", "탄수화물", "지방"], "a": 2, "exp": "탄수화물 1, 단백질 0.8, 지방 0.7"}, {"q": "셰르파가 고산 지대에 적응한 특징으로 필기에 정리된 것이 아닌 것은?", "opts": ["지방보다 포도당을 더 많이 이용한다.", "적혈구 수와 두께가 줄어 혈액이 빠르게 이동한다.", "미토콘드리아가 더 많은 에너지를 낸다.", "몸 표면이 비늘로 덮여 있다."], "a": 3, "exp": "비늘은 도마뱀"}, {"q": "공기에 대한 반작용의 예로 옳은 것은?", "opts": ["숲에 의한 방풍 효과", "바람에 따른 식물의 형태 변화", "셰르파의 적혈구 변화", "도마뱀의 비늘"], "a": 0, "exp": "생물 → 공기"}, {"q": "토양의 특성과 영향의 연결로 옳은 것은?", "opts": ["토양 pH – 세균의 호흡 방식", "무기염류 – 식물 생장 상태", "통기성 – 단풍", "입자 크기 – 동면"], "a": 1, "exp": "필기 ①~④"}, {"q": "토양 미생물에 대한 설명으로 옳은 것은?", "opts": ["통기 조직을 가진다.", "빛 환경을 만든다.", "사체와 배설물을 분해하여 생태계의 물질 순환에 기여한다.", "광합성으로 유기물을 만든다."], "a": 2, "exp": "분해 → 물질 순환"}], "hard": [{"q": "물과 생물에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 육상 생물은 체내 물 손실을 줄이는 특징을 가진다.", "ㄴ. 수생식물은 통기 조직으로 물 위에 잘 뜰 수 있다.", "ㄷ. 숲의 스펀지 역할은 작용의 예이다."], "opts": ["ㄱ", "ㄴ", "ㄷ", "ㄱ, ㄴ"], "a": 3, "exp": "ㄷ. (X) 생물(숲) → 물: 반작용 / 옳은 것: ㄱ, ㄴ"}, {"q": "공기와 생물에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 습지 식물은 CH₄, N₂O를 방출하기도 한다.", "ㄴ. 바람은 식물의 번식 방법에 영향을 주지 않는다.", "ㄷ. 생물의 호흡과 광합성 결과 공기의 성분이 변한다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 바람 → 식물의 형태, 번식 방법 변화 / 옳은 것: ㄱ, ㄷ"}, {"q": "호흡률에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 단백질의 호흡률은 1보다 크다.", "ㄴ. 탄수화물을 호흡할 때 배출한 CO₂와 흡수한 O₂의 양이 같다.", "ㄷ. 지방을 호흡할 때 흡수한 O₂가 배출한 CO₂보다 많다."], "opts": ["ㄱ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄱ. (X) 단백질 0.8 / 옳은 것: ㄴ, ㄷ"}, {"q": "토양에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 수분과 통기성에 따라 호기성·혐기성 세균의 분포가 달라진다.", "ㄴ. 토양의 입자 크기는 식물의 서식 분포에 영향을 준다.", "ㄷ. 토양은 생물의 터전이 되지 않는다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 땅속 생물과 미생물의 터전이다. / 옳은 것: ㄱ, ㄴ"}, {"q": "반작용의 예로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 증산 작용에 의한 대기 습도 조절", "ㄴ. 식물의 피톤치드 방출", "ㄷ. 수생·습생식물과 미생물의 수질 정화"], "opts": ["ㄱ", "ㄱ, ㄴ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 3, "exp": "옳은 것: ㄱ, ㄴ, ㄷ"}]}, "4": {"ox": [{"q": "먹이사슬은 생산자에서 최종 소비자까지 먹고 먹히는 사슬 형태의 먹이 관계이다.", "a": true, "exp": "정의"}, {"q": "실제 생태계의 먹이 관계는 먹이사슬보다 먹이그물의 형태로 나타난다.", "a": true, "exp": "한 생물이 여러 생물의 먹이가 되고 동시에 여러 생물을 먹는다."}, {"q": "먹이그물에서 한 생물은 한 종류의 생물만 먹는다.", "a": false, "exp": "여러 생물을 잡아먹는다."}, {"q": "생산자가 만든 양분은 세포호흡에 쓰이는 비율이 가장 높다.", "a": true, "exp": "생명 유지"}, {"q": "생산자가 만든 양분은 대부분 1차 소비자에게 전달된다.", "a": false, "exp": "일부만 전달된다."}, {"q": "상위 영양단계로 갈수록 전체 에너지양은 크게 줄어든다.", "a": true, "exp": "적은 양만 전달"}, {"q": "상위 영양단계로 갈수록 개체수는 증가한다.", "a": false, "exp": "개체수, 생물량도 줄어든다."}, {"q": "생물량은 일정한 크기의 지역에 서식하는 생물의 총중량이다.", "a": true, "exp": "정의"}, {"q": "생태피라미드는 개체수, 에너지양, 생물량을 하위 영양단계부터 쌓아 올린 것이다.", "a": true, "exp": "위로 갈수록 줄어드는 피라미드"}, {"q": "낙엽으로 떨어지는 양도 생산자가 만든 양분의 쓰임에 포함된다.", "a": true, "exp": "세포호흡, 생장, 낙엽, 소비자에게 먹힘"}], "mc": [{"q": "먹이그물에 대한 설명으로 옳은 것은?", "opts": ["여러 개의 먹이사슬이 복잡하게 얽힌 형태이다.", "분해자만으로 이루어진다.", "한 줄로 이어진 먹이 관계이다.", "생산자 없이도 유지된다."], "a": 0, "exp": "정의"}, {"q": "교과서의 먹이사슬 예로 옳은 것은?", "opts": ["수리 → 오소리 → 풀", "식물의 열매 → 들쥐 → 너구리", "너구리 → 들쥐 → 식물의 열매", "들쥐 → 식물의 열매 → 너구리"], "a": 1, "exp": "화살표는 먹히는 쪽 → 먹는 쪽"}, {"q": "생산자가 광합성으로 만든 양분 중 가장 많이 쓰이는 곳은?", "opts": ["낙엽", "생장", "세포호흡", "소비자에게 먹힘"], "a": 2, "exp": "생명 유지에 가장 많이 쓰인다."}, {"q": "상위 영양단계로 갈수록 에너지양이 줄어드는 까닭은?", "opts": ["에너지가 새로 만들어지기 때문", "상위 단계 생물이 광합성을 하기 때문", "분해자가 없기 때문", "각 영양단계에서 적은 양만 다음 단계로 전달되기 때문"], "a": 3, "exp": "세포호흡 등에 쓰이고 일부만 전달"}, {"q": "생태피라미드에서 위로 갈수록 줄어드는 것이 아닌 것은?", "opts": ["몸 하나의 크기", "개체수", "생물량", "에너지양"], "a": 0, "exp": "개체수, 에너지양, 생물량이 줄어든다."}, {"q": "교과서 생태피라미드에서 2차 소비자에 해당하는 생물은?", "opts": ["벼과 식물", "개구리", "메뚜기", "매"], "a": 1, "exp": "생산자 → 메뚜기(1차) → 개구리(2차) → 매(3차)"}, {"q": "생물량의 뜻으로 옳은 것은?", "opts": ["하루 동안 먹는 먹이의 양", "생물 한 개체의 무게", "일정한 크기의 지역에 서식하는 생물의 총중량", "생물종의 수"], "a": 2, "exp": "정의"}, {"q": "먹고 먹히는 관계를 통해 군집 전체가 유지되는 까닭은?", "opts": ["상위 영양단계가 생산자에게 에너지를 주기 때문", "에너지가 순환하기 때문", "모든 생물이 광합성을 하기 때문", "하위 영양단계의 에너지가 상위 영양단계로 전달되기 때문"], "a": 3, "exp": "에너지 전달"}], "hard": [{"q": "먹이 관계에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 먹이사슬이 먹이그물보다 실제 생태계를 더 잘 나타낸다.", "ㄴ. 한 생물이 여러 생물의 먹이가 될 수 있다.", "ㄷ. 먹이그물은 여러 먹이사슬이 얽힌 것이다."], "opts": ["ㄱ", "ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄱ. (X) 실제 생태계는 먹이그물 형태 / 옳은 것: ㄴ, ㄷ"}, {"q": "생산자가 만든 양분의 쓰임에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 세포호흡에 쓰이는 비율이 가장 높다.", "ㄴ. 일부는 낙엽으로 떨어져 소모된다.", "ㄷ. 대부분이 소비자에게 먹힌다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 적은 양만 소비자에게 전달된다. / 옳은 것: ㄱ, ㄴ"}, {"q": "생태피라미드에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 상위 영양단계로 갈수록 생물량이 줄어든다.", "ㄴ. 상위 영양단계로 갈수록 개체수가 늘어난다.", "ㄷ. 상위 영양단계로 갈수록 에너지양이 줄어든다."], "opts": ["ㄷ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 개체수도 줄어든다. / 옳은 것: ㄱ, ㄷ"}, {"q": "에너지 전달에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 각 영양단계의 에너지는 모두 다음 단계로 전달된다.", "ㄴ. 1차 소비자에게 전달된 에너지도 일부만 2차 소비자에게 전달된다.", "ㄷ. 에너지는 하위 영양단계에서 상위 영양단계로 전달된다."], "opts": ["ㄱ", "ㄴ", "ㄱ, ㄴ", "ㄴ, ㄷ"], "a": 3, "exp": "ㄱ. (X) 적은 양만 전달된다. / 옳은 것: ㄴ, ㄷ"}, {"q": "메뚜기, 개구리, 매, 벼과 식물로 이루어진 생태피라미드에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 메뚜기는 1차 소비자이다.", "ㄴ. 매는 개체수가 가장 적다.", "ㄷ. 개구리는 생산자이다."], "opts": ["ㄱ, ㄴ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 0, "exp": "ㄷ. (X) 개구리는 2차 소비자이다. / 옳은 것: ㄱ, ㄴ"}]}, "5": {"ox": [{"q": "고롱고사 국립공원에서는 1차 소비자인 초식동물이 급증하였다.", "a": true, "exp": "사례"}, {"q": "고롱고사 국립공원에 도입된 아프리카들개는 1차 소비자이다.", "a": false, "exp": "2차 소비자이다."}, {"q": "아프리카들개 도입 후 생산자의 개체수가 늘어났다.", "a": true, "exp": "1차 소비자 감소 → 생산자 증가"}, {"q": "먹고 먹히는 관계에 따라 개체군의 크기가 조절된다.", "a": true, "exp": "핵심"}, {"q": "생태계평형은 생물의 종류, 개체수, 물질의 양 등이 안정적으로 유지되는 상태이다.", "a": true, "exp": "정의"}, {"q": "생태계평형이 유지되는 생태계에서는 한 개체군이 변하면 원래 상태로 돌아오지 않는다.", "a": false, "exp": "연쇄적으로 변하며 회복한다."}, {"q": "1차 소비자가 증가하면 생산자는 감소하고 2차 소비자는 증가한다.", "a": true, "exp": "먹이 ↓, 천적 ↑"}, {"q": "2차 소비자가 증가하면 1차 소비자는 증가한다.", "a": false, "exp": "천적이 늘어 1차 소비자는 감소한다."}, {"q": "1차 소비자가 감소하면 생산자는 증가한다.", "a": true, "exp": "먹히는 양이 줄어든다."}, {"q": "생태계평형은 오랜 세월에 걸쳐 형성된 생태계에서 나타난다.", "a": true, "exp": "정의"}], "mc": [{"q": "고롱고사 국립공원 사례의 순서로 옳은 것은?", "opts": ["아프리카들개 도입 → 초식동물 증가 → 생산자 감소", "초식동물 급증 → 아프리카들개 도입 → 초식동물 감소 → 생산자 증가", "생산자 증가 → 초식동물 감소 → 아프리카들개 도입", "초식동물 감소 → 생산자 감소 → 아프리카들개 증가"], "a": 1, "exp": "교과서 사례"}, {"q": "그림 (가)에서 1차 소비자가 증가한 직후 (나)의 ㉠, ㉡으로 옳은 것은?", "opts": ["㉠ 2차 소비자 감소, ㉡ 생산자 증가", "㉠ 2차 소비자 증가, ㉡ 생산자 증가", "㉠ 2차 소비자 증가, ㉡ 생산자 감소", "㉠ 2차 소비자 감소, ㉡ 생산자 감소"], "a": 2, "exp": "1차 소비자↑ → 먹이(생산자)↓, 천적(2차 소비자)↑", "fig": "<div class=\"qpyr\"><svg viewBox=\"0 0 150 160\" class=\"pyr-svg\"><polygon points=\"75.0,10 97.33333333333333,50 52.66666666666667,50\" fill=\"#93c5fd\"/><text x=\"75.0\" y=\"34.0\" text-anchor=\"middle\" font-size=\"10\" fill=\"#334155\">2차 소비자</text><polygon points=\"52.66666666666667,50 97.33333333333333,50 119.66666666666666,90 30.333333333333336,90\" fill=\"#fde047\"/><text x=\"75.0\" y=\"74.0\" text-anchor=\"middle\" font-size=\"10\" fill=\"#334155\">1차 소비자</text><polygon points=\"30.333333333333336,90 119.66666666666666,90 142.0,130 8.0,130\" fill=\"#5eead4\"/><text x=\"75.0\" y=\"114.0\" text-anchor=\"middle\" font-size=\"10\" fill=\"#334155\">생산자</text><text x=\"75.0\" y=\"152\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"700\" fill=\"#166534\">평형 상태</text></svg><svg viewBox=\"0 0 150 160\" class=\"pyr-svg\"><polygon points=\"75.0,10 97.33333333333333,50 52.66666666666667,50\" fill=\"#93c5fd\"/><polygon points=\"49.333333333333336,50 100.66666666666666,50 129.66666666666666,90 20.333333333333336,90\" fill=\"#fde047\" stroke=\"#334155\" stroke-dasharray=\"3 2\"/><text x=\"75.0\" y=\"75.0\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"900\" fill=\"#b91c1c\">증가</text><polygon points=\"30.333333333333336,90 119.66666666666666,90 142.0,130 8.0,130\" fill=\"#5eead4\"/><text x=\"75.0\" y=\"152\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"700\" fill=\"#166534\">(가)</text></svg><svg viewBox=\"0 0 150 160\" class=\"pyr-svg\"><polygon points=\"75.0,10 107.33333333333333,50 42.66666666666667,50\" fill=\"#93c5fd\" stroke=\"#334155\" stroke-dasharray=\"3 2\"/><text x=\"75.0\" y=\"35.0\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"900\" fill=\"#1d4ed8\">㉠</text><polygon points=\"52.66666666666667,50 97.33333333333333,50 119.66666666666666,90 30.333333333333336,90\" fill=\"#fde047\"/><polygon points=\"37.0,90 112.99999999999999,90 132.0,130 18.0,130\" fill=\"#5eead4\" stroke=\"#334155\" stroke-dasharray=\"3 2\"/><text x=\"75.0\" y=\"115.0\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"900\" fill=\"#1d4ed8\">㉡</text><text x=\"75.0\" y=\"152\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"700\" fill=\"#166534\">(나)</text></svg></div>"}, {"q": "그림은 생태계평형이 회복되는 과정의 일부를 순서 없이 나타낸 것이다. A(평형) 다음 '1차 소비자 증가' 이후의 순서로 옳은 것은?", "opts": ["C → D → B", "D → B → C", "B → C → D", "D → C → B"], "a": 3, "exp": "1차↑ → (2차↑, 생산자↓) D → 1차↓ C → (2차↓, 생산자↑) B → 회복", "fig": "<div class=\"qpyr\"><svg viewBox=\"0 0 150 160\" class=\"pyr-svg\"><polygon points=\"75.0,10 97.33333333333333,50 52.66666666666667,50\" fill=\"#93c5fd\"/><text x=\"75.0\" y=\"34.0\" text-anchor=\"middle\" font-size=\"10\" fill=\"#334155\">2차 소비자</text><polygon points=\"52.66666666666667,50 97.33333333333333,50 119.66666666666666,90 30.333333333333336,90\" fill=\"#fde047\"/><text x=\"75.0\" y=\"74.0\" text-anchor=\"middle\" font-size=\"10\" fill=\"#334155\">1차 소비자</text><polygon points=\"30.333333333333336,90 119.66666666666666,90 142.0,130 8.0,130\" fill=\"#5eead4\"/><text x=\"75.0\" y=\"114.0\" text-anchor=\"middle\" font-size=\"10\" fill=\"#334155\">생산자</text><text x=\"75.0\" y=\"152\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"700\" fill=\"#166534\">A</text></svg><svg viewBox=\"0 0 150 160\" class=\"pyr-svg\"><polygon points=\"75.0,10 87.33333333333333,50 62.66666666666667,50\" fill=\"#93c5fd\" stroke=\"#334155\" stroke-dasharray=\"3 2\"/><text x=\"75.0\" y=\"35.0\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"900\" fill=\"#1d4ed8\">감소</text><polygon points=\"52.66666666666667,50 97.33333333333333,50 119.66666666666666,90 30.333333333333336,90\" fill=\"#fde047\"/><polygon points=\"23.66666666666667,90 126.33333333333333,90 152.0,130 -2.0,130\" fill=\"#5eead4\" stroke=\"#334155\" stroke-dasharray=\"3 2\"/><text x=\"75.0\" y=\"115.0\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"900\" fill=\"#b91c1c\">증가</text><text x=\"75.0\" y=\"152\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"700\" fill=\"#166534\">B</text></svg><svg viewBox=\"0 0 150 160\" class=\"pyr-svg\"><polygon points=\"75.0,10 97.33333333333333,50 52.66666666666667,50\" fill=\"#93c5fd\"/><polygon points=\"56.00000000000001,50 94.0,50 109.66666666666666,90 40.333333333333336,90\" fill=\"#fde047\" stroke=\"#334155\" stroke-dasharray=\"3 2\"/><text x=\"75.0\" y=\"75.0\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"900\" fill=\"#1d4ed8\">감소</text><polygon points=\"30.333333333333336,90 119.66666666666666,90 142.0,130 8.0,130\" fill=\"#5eead4\"/><text x=\"75.0\" y=\"152\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"700\" fill=\"#166534\">C</text></svg><svg viewBox=\"0 0 150 160\" class=\"pyr-svg\"><polygon points=\"75.0,10 107.33333333333333,50 42.66666666666667,50\" fill=\"#93c5fd\" stroke=\"#334155\" stroke-dasharray=\"3 2\"/><text x=\"75.0\" y=\"35.0\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"900\" fill=\"#b91c1c\">증가</text><polygon points=\"52.66666666666667,50 97.33333333333333,50 119.66666666666666,90 30.333333333333336,90\" fill=\"#fde047\"/><polygon points=\"37.0,90 112.99999999999999,90 132.0,130 18.0,130\" fill=\"#5eead4\" stroke=\"#334155\" stroke-dasharray=\"3 2\"/><text x=\"75.0\" y=\"115.0\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"900\" fill=\"#1d4ed8\">감소</text><text x=\"75.0\" y=\"152\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"700\" fill=\"#166534\">D</text></svg></div>"}, {"q": "생태계평형의 뜻으로 옳은 것은?", "opts": ["생물의 종류, 개체수, 물질의 양 등이 안정적으로 유지되어 균형을 이루는 상태", "생물이 변하지 않는 상태", "모든 생물의 개체수가 같아진 상태", "한 종만 남은 상태"], "a": 0, "exp": "정의"}, {"q": "2차 소비자가 감소하면 바로 나타나는 변화는?", "opts": ["1차 소비자 감소", "1차 소비자 증가", "생산자 감소", "2차 소비자 증가"], "a": 1, "exp": "천적이 줄면 1차 소비자가 늘어난다."}, {"q": "생태계평형이 회복되는 원리로 옳은 것은?", "opts": ["모든 개체군의 수가 동시에 증가한다.", "생산자만 변한다.", "먹이 관계로 연결된 개체군의 수가 연쇄적으로 변한다.", "비생물요소가 생물을 새로 만든다."], "a": 2, "exp": "연쇄적 조절"}, {"q": "생산자가 감소했을 때 이어서 일어나는 변화로 옳은 것은?", "opts": ["2차 소비자 증가", "변화 없음", "1차 소비자 증가", "1차 소비자 감소"], "a": 3, "exp": "먹이가 줄면 1차 소비자가 감소한다."}, {"q": "아프리카들개를 도입한 목적으로 가장 적절한 것은?", "opts": ["급증한 초식동물의 개체수를 줄여 생태계를 회복시키기 위해", "생산자의 개체수를 줄이기 위해", "들개를 보호하기 위해", "초식동물의 수를 더 늘리기 위해"], "a": 0, "exp": "2차 소비자로 1차 소비자 조절"}], "hard": [{"q": "고롱고사 국립공원 사례에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 아프리카들개 도입 후 1차 소비자의 개체수가 줄었다.", "ㄴ. 아프리카들개 도입 후 생산자의 개체수가 줄었다.", "ㄷ. 아프리카들개는 2차 소비자이다."], "opts": ["ㄱ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 생산자의 개체수는 늘어났다. / 옳은 것: ㄱ, ㄷ"}, {"q": "그림 (가) → (나)에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. (나) 이후 1차 소비자는 더 증가한다.", "ㄴ. ㉠은 증가이다.", "ㄷ. ㉡은 감소이다."], "opts": ["ㄴ", "ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄱ. (X) 먹이↓, 천적↑로 1차 소비자는 감소한다. / 옳은 것: ㄴ, ㄷ", "fig": "<div class=\"qpyr\"><svg viewBox=\"0 0 150 160\" class=\"pyr-svg\"><polygon points=\"75.0,10 97.33333333333333,50 52.66666666666667,50\" fill=\"#93c5fd\"/><text x=\"75.0\" y=\"34.0\" text-anchor=\"middle\" font-size=\"10\" fill=\"#334155\">2차 소비자</text><polygon points=\"52.66666666666667,50 97.33333333333333,50 119.66666666666666,90 30.333333333333336,90\" fill=\"#fde047\"/><text x=\"75.0\" y=\"74.0\" text-anchor=\"middle\" font-size=\"10\" fill=\"#334155\">1차 소비자</text><polygon points=\"30.333333333333336,90 119.66666666666666,90 142.0,130 8.0,130\" fill=\"#5eead4\"/><text x=\"75.0\" y=\"114.0\" text-anchor=\"middle\" font-size=\"10\" fill=\"#334155\">생산자</text><text x=\"75.0\" y=\"152\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"700\" fill=\"#166534\">평형 상태</text></svg><svg viewBox=\"0 0 150 160\" class=\"pyr-svg\"><polygon points=\"75.0,10 97.33333333333333,50 52.66666666666667,50\" fill=\"#93c5fd\"/><polygon points=\"49.333333333333336,50 100.66666666666666,50 129.66666666666666,90 20.333333333333336,90\" fill=\"#fde047\" stroke=\"#334155\" stroke-dasharray=\"3 2\"/><text x=\"75.0\" y=\"75.0\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"900\" fill=\"#b91c1c\">증가</text><polygon points=\"30.333333333333336,90 119.66666666666666,90 142.0,130 8.0,130\" fill=\"#5eead4\"/><text x=\"75.0\" y=\"152\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"700\" fill=\"#166534\">(가)</text></svg><svg viewBox=\"0 0 150 160\" class=\"pyr-svg\"><polygon points=\"75.0,10 107.33333333333333,50 42.66666666666667,50\" fill=\"#93c5fd\" stroke=\"#334155\" stroke-dasharray=\"3 2\"/><text x=\"75.0\" y=\"35.0\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"900\" fill=\"#1d4ed8\">㉠</text><polygon points=\"52.66666666666667,50 97.33333333333333,50 119.66666666666666,90 30.333333333333336,90\" fill=\"#fde047\"/><polygon points=\"37.0,90 112.99999999999999,90 132.0,130 18.0,130\" fill=\"#5eead4\" stroke=\"#334155\" stroke-dasharray=\"3 2\"/><text x=\"75.0\" y=\"115.0\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"900\" fill=\"#1d4ed8\">㉡</text><text x=\"75.0\" y=\"152\" text-anchor=\"middle\" font-size=\"11.5\" font-weight=\"700\" fill=\"#166534\">(나)</text></svg></div>"}, {"q": "생태계평형에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 일시적 환경 변화로 한 개체군의 수가 변해도 원래 상태를 회복할 수 있다.", "ㄴ. 각 영양단계의 생물이 사라지지 않고 유지되어야 회복이 가능하다.", "ㄷ. 생태계평형 상태에서는 개체수가 전혀 변하지 않는다."], "opts": ["ㄱ", "ㄴ", "ㄷ", "ㄱ, ㄴ"], "a": 3, "exp": "ㄷ. (X) 변하더라도 다시 안정적인 상태를 회복한다. / 옳은 것: ㄱ, ㄴ"}, {"q": "1차 소비자가 감소한 직후의 변화로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 2차 소비자는 감소한다.", "ㄴ. 2차 소비자는 증가한다.", "ㄷ. 생산자는 증가한다."], "opts": ["ㄱ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 1, "exp": "ㄴ. (X) 먹이가 줄어 감소한다. / 옳은 것: ㄱ, ㄷ"}, {"q": "먹이 관계와 개체군 조절에 대한 설명으로 옳은 것만을 <보기>에서 있는 대로 고른 것은?", "box": ["ㄱ. 먹이 관계는 개체군의 크기와 관계가 없다.", "ㄴ. 한 영양단계가 증가하면 바로 아래 영양단계는 감소한다.", "ㄷ. 한 영양단계가 증가하면 바로 위 영양단계는 증가한다."], "opts": ["ㄱ", "ㄱ, ㄷ", "ㄴ, ㄷ", "ㄱ, ㄴ, ㄷ"], "a": 2, "exp": "ㄱ. (X) 먹이 관계로 개체군 크기가 조절된다. / 옳은 것: ㄴ, ㄷ"}]}};
+
+const TYPE_CONFIG = [
+ { key:'ox',   label:'OX 퀴즈', icon:'O', cls:'ox',   diff:'기초',   diffCls:'diff-basic', color:'#2563eb' },
+ { key:'mc',   label:'객관식',  icon:'', cls:'mc',   diff:'중급',   diffCls:'diff-mid',   color:'#16a34a' },
+ { key:'hard', label:'고난도',  icon:'', cls:'hard', diff:'고난도', diffCls:'diff-hard',  color:'#7c3aed' }
+];
+const QUIZ_UNITS = Object.keys(QUIZ_DATA).map(Number);
+const state = {};
+QUIZ_UNITS.forEach(function(u){
+ state[u] = { activeType:0, answered:{ ox:[], mc:[], hard:[] } };
+});
+
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function typeStats(u, key){
+ var qs = QUIZ_DATA[u][key], ans = state[u].answered[key], done = 0, correct = 0;
+ for (var i = 0; i < qs.length; i++){
+  if (ans[i] !== undefined){ done++; if (ans[i] === qs[i].a) correct++; }
+ }
+ return { total: qs.length, done: done, correct: correct };
+}
+
+function buildQuiz(u){
+ var box = document.getElementById('quiz-' + u);
+ if (!box) return;
+ var st = state[u], cfg = TYPE_CONFIG[st.activeType], key = cfg.key;
+ var qs = QUIZ_DATA[u][key], s = typeStats(u, key);
+ var h = '';
+ h += '<div class="quiz-header"><div class="quiz-title">확인 문제</div><div class="scoreboard">';
+ TYPE_CONFIG.forEach(function(c){
+  var t = typeStats(u, c.key);
+  h += '<span class="score-chip ' + c.cls + '">' + c.icon + ' ' + c.label + ' ' + t.correct + '/' + t.total + '</span>';
+ });
+ h += '</div></div>';
+ h += '<div class="quiz-type-bar">';
+ TYPE_CONFIG.forEach(function(c, i){
+  var t = typeStats(u, c.key);
+  h += '<button class="qtype-btn ' + c.cls + (i === st.activeType ? ' active' : '') + '" onclick="setType(' + u + ',' + i + ')">' +
+       c.icon + ' ' + c.label + ' <span class="qtype-count">' + t.done + '/' + t.total + '</span></button>';
+ });
+ h += '</div>';
+ var pct = s.total ? Math.round(s.done / s.total * 100) : 0;
+ h += '<div class="q-progress-wrap"><span>진행</span><div class="q-progress-bar"><div class="q-progress-fill" style="width:' + pct + '%;background:' + cfg.color + '"></div></div><span>' + s.done + ' / ' + s.total + '</span></div>';
+
+ if (s.done === s.total){
+  h += buildResult(u, key, s);
+ }
+ qs.forEach(function(q, qi){ h += buildQCard(u, key, qi, q); });
+ if (s.done > 0 && s.done < s.total){
+  h += '<div style="text-align:right"><button class="reset-btn sm" onclick="resetType(' + u + ',\'' + key + '\')">↺ 이 유형 다시 풀기</button></div>';
+ }
+ box.innerHTML = h;
+}
+
+function buildResult(u, key, s){
+ var p = Math.round(s.correct / s.total * 100);
+ var msg = p === 100 ? '완벽해요! ' : p >= 80 ? '아주 잘했어요! 틀린 문제의 해설만 다시 확인해 보세요.' : p >= 60 ? '좋아요. 해설을 읽고 본문을 한 번 더 확인해 보세요.' : '본문을 다시 읽고 도전해 보세요. ';
+ var h = '<div class="quiz-result"><div class="big">' + s.correct + ' / ' + s.total + ' <span style="font-size:18px;color:var(--text-sec)">(' + p + '%)</span></div><div class="msg">' + msg + '</div><div class="mini-bar-wrap">';
+ TYPE_CONFIG.forEach(function(c){
+  var t = typeStats(u, c.key), w = t.total ? Math.round(t.correct / t.total * 100) : 0;
+  h += '<div class="mini-bar-row"><span class="mini-bar-label" style="color:' + c.color + '">' + c.label + '</span><div class="mini-bar-track"><div class="mini-bar-fill" style="width:' + w + '%;background:' + c.color + '"></div></div><span class="mini-bar-val">' + t.correct + '/' + t.total + '</span></div>';
+ });
+ h += '</div><button class="reset-btn" onclick="resetType(' + u + ',\'' + key + '\')">↺ 다시 풀기</button></div><div style="height:14px"></div>';
+ return h;
+}
+
+function buildQCard(u, key, qi, q){
+ var cfg = TYPE_CONFIG.filter(function(c){ return c.key === key; })[0];
+ var ans = state[u].answered[key][qi], done = ans !== undefined, ok = done && ans === q.a;
+ var h = '<div class="q-card' + (done ? (ok ? ' answered-correct' : ' answered-wrong') : '') + '" id="qc-' + u + '-' + key + '-' + qi + '">';
+ h += '<div class="q-meta"><span class="q-num">Q' + (qi + 1) + '</span><span class="q-difficulty ' + cfg.diffCls + '">' + cfg.diff + '</span></div>';
+ h += '<div class="q-text">' + esc(q.q) + '</div>';
+ if (q.fig){ h += '<div class="q-fig">' + q.fig + '</div>'; }
+ if (q.box){
+  h += '<div class="q-box">' + q.box.map(function(b){ return '<div>' + esc(b) + '</div>'; }).join('') + '</div>';
+ }
+ if (key === 'ox'){
+  h += '<div class="ox-row">';
+  [true, false].forEach(function(v){
+   var cls = '';
+   if (done){
+    if (ans === v) cls = (v === q.a) ? ' correct-picked' : ' wrong-picked';
+    else if (v === q.a) cls = ' correct-reveal';
+   }
+   h += '<button class="ox-btn' + cls + '"' + (done ? ' disabled' : '') + ' onclick="submitOX(' + u + ',' + qi + ',' + v + ')">' + (v ? 'O' : 'X') + '</button>';
+  });
+  h += '</div>';
+ } else {
+  h += '<div class="mc-options">';
+  q.opts.forEach(function(o, oi){
+   var cls = '';
+   if (done){
+    if (oi === q.a) cls = ' correct';
+    else if (oi === ans) cls = ' wrong';
+   }
+   h += '<button class="mc-opt' + cls + '"' + (done ? ' disabled' : '') + ' onclick="submitMC(' + u + ',\'' + key + '\',' + qi + ',' + oi + ')"><span class="mc-opt-letter">' + 'ABCD'.charAt(oi) + '</span><span>' + esc(o) + '</span></button>';
+  });
+  h += '</div>';
+ }
+ if (done){
+  h += '<div class="q-feedback ' + (ok ? 'correct' : 'wrong') + '">' + (ok ? '정답! ' : 'X 오답. ') +
+       (key === 'ox' ? '(정답: ' + (q.a ? 'O' : 'X') + ') ' : (ok ? '' : '(정답: ' + 'ABCD'.charAt(q.a) + ') ')) + esc(q.exp) + '</div>';
+ }
+ h += '</div>';
+ return h;
+}
+
+function submitOX(u, qi, v){
+ if (state[u].answered.ox[qi] !== undefined) return;
+ state[u].answered.ox[qi] = v;
+ afterSubmit(u, 'ox');
+}
+function submitMC(u, key, qi, oi){
+ if (state[u].answered[key][qi] !== undefined) return;
+ state[u].answered[key][qi] = oi;
+ afterSubmit(u, key);
+}
+function afterSubmit(u, key){
+ buildQuiz(u);
+ var qs = QUIZ_DATA[u][key], ans = state[u].answered[key];
+ for (var i = 0; i < qs.length; i++){
+  if (ans[i] === undefined){
+   (function(id){
+    setTimeout(function(){ var el = document.getElementById(id); if (el) el.scrollIntoView({behavior:'smooth', block:'center'}); }, 250);
+   })('qc-' + u + '-' + key + '-' + i);
+   return;
+  }
+ }
+ setTimeout(function(){ var el = document.getElementById('quiz-' + u); if (el) el.scrollIntoView({behavior:'smooth', block:'start'}); }, 250);
+}
+function setType(u, i){ state[u].activeType = i; buildQuiz(u); }
+function resetType(u, key){ state[u].answered[key] = []; buildQuiz(u); }
+
+QUIZ_UNITS.forEach(buildQuiz);
+
+</script>
+</body>
+</html>

@@ -33,5 +33,19 @@
 
   const isOX = q => !!q && (q.t === 'ox' || (Array.isArray(q.c) && q.c.length === 2 && q.c[0] === 'O' && q.c[1] === 'X'));
 
-  S.bank = { index, load, isOX };
+  /* 자료에서 옮긴 그림 문제(q.fig: SVG 조각)를 그린다. 스크립트·이벤트 속성은 지운다 */
+  function figure(q) {
+    if (!q || typeof q.fig !== 'string' || !q.fig) return null;
+    const doc = new DOMParser().parseFromString('<div>' + q.fig + '</div>', 'text/html');
+    doc.querySelectorAll('script, iframe, object, embed, foreignObject, style').forEach(n => n.remove());
+    doc.querySelectorAll('*').forEach(n => [...n.attributes].forEach(a => {
+      if (/^on/i.test(a.name) || /^\s*javascript:/i.test(a.value) || a.name === 'style' && /url\(/i.test(a.value)) n.removeAttribute(a.name);
+    }));
+    const box = document.createElement('div');
+    box.className = 'bank-fig';
+    box.append(...doc.body.firstChild.childNodes);
+    return box;
+  }
+
+  S.bank = { index, load, isOX, figure };
 })();

@@ -787,3 +787,8 @@ button.dict-related-word:hover { background: hsl(var(--accent)); }
 .bar-normal, .lg-normal::before { background: hsl(var(--foreground)); }
 .bar-duo, .lg-duo::before { background: #58CC02; }
 @media (max-width: 640px) { .mode-cmp { grid-template-columns: 1fr; } }
+
+/* 자료에서 옮긴 그림 문제 (scripts/bank.js의 S.bank.figure). 그림 색이 자료 기준이라 흰 바탕에 둔다 */
+.bank-fig { margin: 12px 0 4px; display: flex; flex-wrap: wrap; gap: 10px; }
+.bank-fig > * { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: center; gap: 8px 14px; background: #fff; color: #18181b; border: 1px solid hsl(var(--border)); border-radius: 12px; padding: 10px; }
+.bank-fig svg { display: block; width: 140px; max-width: 100%; height: auto; }

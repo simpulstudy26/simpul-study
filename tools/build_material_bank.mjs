@@ -9,6 +9,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { QUIZ_FILES, KOREAN_APP, quizUnits, strip as text } from './material-quiz-lib.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const MAT = path.join(ROOT, 'tools/material-src'); // 문제가 들어 있는 원본 (사이트 자료에서는 문제를 뺐음)
@@ -153,7 +154,42 @@ function social() {
   return out;
 }
 
-const banks = { english: english(), social: social() };
+/* ── QUIZ_DATA 형식 자료 (한국사·통합과학·정보·일본어) ── tools/material-quiz-lib.mjs의 QUIZ_FILES */
+function quizBank(subject) {
+  const out = [], code = subject.slice(0, 2);
+  QUIZ_FILES[subject].forEach(file => {
+    const { data, units } = quizUnits(read(file.f), file);
+    Object.keys(data).forEach(tab => {
+      const u = units[tab], set = data[tab];
+      (set.ox || []).forEach((x, i) => out.push(ox(`m-${code}-${file.key}${tab}-x${i}`, u, text(x.q), x.a === true || x.a === 'O', text(x.exp))));
+      ['mc', 'hard'].forEach(type => (set[type] || []).forEach((x, i) => {
+        let q = text(String(x.q).replace(/\^/g, '\n'));
+        if (x.stmts && x.stmts.length) q += '\n' + x.stmts.map((s, j) => 'ㄱㄴㄷㄹㅁㅂ'[j] + '. ' + text(s)).join('\n');
+        if (x.box && x.box.length) q += '\n\n<보기>\n' + x.box.map(b => text(b)).join('\n'); // 생물 고난도의 보기 상자
+        const item = mc(`m-${code}-${file.key}${tab}-${type === 'mc' ? 'm' : 'h'}${i}`, u, type === 'mc' ? 'medium' : 'hard', q, x.opts.map(o => text(o)), text(x.opts[x.a]), text(x.exp));
+        if (x.fig) item.fig = x.fig; // 그림(SVG)은 scripts/bank.js의 S.bank.figure가 그린다
+        out.push(item);
+      }));
+    });
+  });
+  return out;
+}
+
+/* ── 공통국어2 통합 학습실 (앱 안 quiz 배열) ── */
+function korean() {
+  const src = read(KOREAN_APP.f);
+  const app = JSON.parse(/<script id="app-data" type="application\/json">([\s\S]*?)<\/script>/.exec(src)[1]);
+  const title = Object.fromEntries(app.units.map(u => [u.id, KOREAN_APP.prefix + u.title]));
+  return app.quiz.map(x => {
+    const id = `m-ko-${KOREAN_APP.key}-${x.id}`, u = title[x.unit];
+    if (!u) throw new Error('단원 없음: ' + x.unit);
+    if (x.type === 'ox') return ox(id, u, text(x.q), x.a === 0, text(x.exp));
+    return mc(id, u, x.type === 'hard' ? 'hard' : 'medium', text(x.q), x.opts.map(o => text(o)), text(x.opts[x.a]), text(x.exp));
+  });
+}
+
+const banks = { english: english(), social: social(), korean: korean() };
+Object.keys(QUIZ_FILES).forEach(s => { banks[s] = quizBank(s); });
 fs.mkdirSync(OUT, { recursive: true });
 const index = { updated: Math.floor(Date.now() / 1000), subjects: {} };
 for (const [s, qs] of Object.entries(banks)) {

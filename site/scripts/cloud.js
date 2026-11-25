@@ -215,7 +215,7 @@
     if (!current) {
       card.replaceChildren(el('div', { class: 'concept' }, [
         el('p', { text: sourceSelect.value === 'mine' ? '이 과목에서 내가 만든 문제가 아직 없어요.' : '이 과목에는 아직 공용 문제가 없어요.' }),
-        el('p', { class: 'tip', text: '2학기 기말고사 문제를 준비하고 있어요. 지금은 영어·통합사회(자료 문제)와 정보·일본어(자동 생성)를 풀 수 있어요.' }),
+        el('p', { class: 'tip', text: '2학기 기말고사 문제를 준비하고 있어요. 지금은 국어·영어·통합사회·한국사·통합과학·정보·일본어 문제를 풀 수 있어요.' }),
         el('p', {}, [el('a', { class: 'btn btn-primary', href: 'make.html?s=' + subject, text: '내 문제 만들기' })])
       ]));
       return;
@@ -223,6 +223,8 @@
     const q = current;
     const meta = [q.u, LEVEL[q.d], q.tag].filter(Boolean).join(' · ');
     const body = [el('h3', { text: meta }), el('p', { class: 'bank-text cloud-q', text: q.q })];
+    const fig = S.bank.figure(q);
+    if (fig) body.push(fig);
     const explain = el('div', { class: 'cloud-explain', hidden: '' }, [
       el('p', { class: 'cloud-answer', text: '정답: ' + q.a }),
       el('p', { class: 'bank-text', text: q.e })

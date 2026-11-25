@@ -379,3 +379,13 @@ html[data-duo] .dict-ac li[aria-selected="true"] { background: hsl(var(--duo-blu
 html[data-duo] .wb-word { font-weight: 800; }
 html[data-duo] .hide-mean .wb-mean { background: hsl(var(--border)); border-radius: 8px; }
 @media (prefers-reduced-motion: reduce) { html[data-duo] .dict-save.pop { animation: none; } }
+/* 자료 보기(view.html) 머리 줄: 2px 선, 눌리는 버튼. 액자 안 자료는 materials/_theme/study-ui.css가 듀오링고 모양으로 바뀐다 */
+html[data-duo] .viewer-bar { border-bottom-width: 2px; }
+html[data-duo] .viewer-title { font-weight: 800; }
+html[data-duo] .viewer-back { font-weight: 800; color: hsl(var(--duo-blue)); }
+html[data-duo] .viewer-actions a {
+  border: 2px solid hsl(var(--border)); border-radius: 12px; box-shadow: 0 3px 0 hsl(var(--border));
+  font-weight: 800; color: hsl(var(--duo-blue)); transition: transform .1s, box-shadow .1s;
+}
+html[data-duo] .viewer-actions a:active { transform: translateY(3px); box-shadow: none; }
+html[data-duo] .viewer-frame { background: hsl(var(--background)); }

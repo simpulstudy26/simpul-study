@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html lang="ko" class="simpul-material">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>한국사 최O석 선생님 파트</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+ --primary:var(--c-2563eb);--primary-light:var(--c-eff6ff);
+ --green:var(--c-16a34a);--green-light:var(--c-f0fdf4);
+ --purple:var(--c-7c3aed);--purple-light:var(--c-f5f3ff);
+ --orange:var(--c-ea580c);--orange-light:var(--c-fff7ed);
+ --teal:var(--c-0d9488);--teal-light:var(--c-f0fdfa);
+ --rose:var(--c-e11d48);--rose-light:var(--c-fff1f2);
+ --bg:var(--c-f8fafc);--surface:var(--c-ffffff);--border:var(--c-e2e8f0);--text:var(--c-0f172a);--text-sec:var(--c-475569);
+ --shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;font-size:14.5px;line-height:1.8;color:var(--text);background:var(--bg)}
+
+/* ===== Header ===== */
+.page-header{position:sticky;top:0;z-index:50;background:var(--c-ffffff);border-bottom:1px solid var(--border);box-shadow:var(--shadow)}
+.header-inner{max-width:980px;margin:0 auto;padding:12px 20px 0}
+.subject-label{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--text-sec)}
+.page-title{font-family:'Noto Serif KR',serif;font-size:19px;font-weight:700;display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:2px 0 8px}
+.badge-unit{font-family:'Noto Sans KR',sans-serif;font-size:11px;font-weight:700;padding:2px 10px;border-radius:999px;background:var(--primary-light);color:var(--primary)}
+.tab-bar{display:flex;align-items:center;gap:2px;overflow-x:auto;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab-group-label{font-size:10.5px;font-weight:700;color:var(--text-sec);opacity:.55;padding:0 4px 0 10px;white-space:nowrap}
+.tab-group-label:first-child{padding-left:0}
+.tab-btn{border:none;background:none;font:inherit;font-size:13px;font-weight:500;color:var(--text-sec);padding:8px 10px 9px;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.tab-btn:hover{color:var(--text)}
+.tab-num{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;font-size:10.5px;font-weight:700;background:var(--c-e2e8f0);color:var(--text-sec)}
+.tab-btn.active{color:var(--primary);font-weight:700;border-bottom-color:var(--primary)}
+.tab-btn.active .tab-num{background:var(--primary);color:var(--c-ffffff)}
+
+/* ===== Layout ===== */
+.content-wrap{max-width:980px;margin:0 auto;padding:28px 20px 100px}
+.tab-panel{display:none}.tab-panel.active{display:block}
+.unit-banner{display:inline-block;font-size:12px;font-weight:700;color:var(--primary);background:var(--primary-light);padding:4px 12px;border-radius:999px;margin-bottom:14px}
+.so-head{display:flex;align-items:center;gap:12px;margin:4px 0 10px}
+.so-num{flex:none;width:40px;height:40px;border-radius:12px 12px 12px 2px;background:var(--c-15803d);color:var(--c-ffffff);font-size:22px;font-weight:900;display:flex;align-items:center;justify-content:center}
+.so-title{font-family:'Noto Serif KR',serif;font-size:20px;font-weight:700;border-bottom:2px solid var(--c-f59e0b);padding-bottom:2px}
+.goal{font-size:13px;color:var(--text-sec);background:var(--c-ffffff);border:1px dashed var(--border);border-radius:8px;padding:8px 14px;margin-bottom:18px}
+.goal b{color:var(--text)}
+.section-title{font-size:17.5px;font-weight:700;border-bottom:2px solid var(--primary);padding-bottom:6px;margin:38px 0 14px;scroll-margin-top:130px}
+.subsection-title{font-size:14.5px;font-weight:700;border-left:3px solid var(--primary);padding-left:9px;margin:20px 0 10px;scroll-margin-top:130px}
+.sub2-title{display:inline-block;font-size:13px;font-weight:700;background:var(--c-f1f5f9);border-radius:6px;padding:2px 10px;margin:12px 0 6px}
+p{margin:6px 0}
+ul.clean{list-style:none;margin:6px 0}
+ul.clean li{position:relative;padding-left:16px;margin:3px 0}
+ul.clean li::before{content:'•';position:absolute;left:3px;color:var(--text-sec)}
+
+/* ===== Emphasis marks (필기 반영) ===== */
+.u{font-weight:700;text-decoration:underline;text-decoration-color:var(--rose);text-decoration-thickness:2px;text-underline-offset:3px}
+.ub{font-weight:700;text-decoration:underline;text-decoration-color:var(--primary);text-decoration-thickness:2px;text-underline-offset:3px}
+.k{font-weight:700;border:1.6px solid var(--rose);border-radius:5px;padding:0 3px;color:var(--c-9f1239)}
+.hl{font-weight:700;background:linear-gradient(transparent 52%,var(--c-fde68a) 52%)}
+.star::after{content:'★';color:var(--rose);font-size:.85em;margin-left:2px;vertical-align:super}
+.gloss{font-size:11.5px;color:var(--purple);font-weight:500}
+.dim{color:var(--text-sec);font-size:12.5px}
+
+/* ===== Box library ===== */
+.def-box,.green-box,.purple-box,.teal-box,.orange-box,.rose-box{border-left:4px solid var(--primary);background:var(--primary-light);border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0}
+.green-box{border-color:var(--green);background:var(--green-light)}
+.purple-box{border-color:var(--purple);background:var(--purple-light)}
+.teal-box{border-color:var(--teal);background:var(--teal-light)}
+.orange-box{border-color:var(--orange);background:var(--orange-light)}
+.rose-box{border-color:var(--rose);background:var(--rose-light)}
+.note,.tip,.warning{border-radius:8px;padding:10px 14px;margin:12px 0;font-size:13.5px}
+.note{background:var(--c-fefce8);border:1px solid var(--c-fde047)}
+.tip{background:var(--green-light);border:1px solid var(--c-bbf7d0)}
+.warning{background:var(--rose-light);border:1px solid var(--c-fecdd3)}
+.note b:first-child,.tip b:first-child,.warning b:first-child{margin-right:4px}
+
+.factor-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:12px 0}
+.factor-grid.three{grid-template-columns:repeat(3,1fr)}
+.factor-grid.four{grid-template-columns:repeat(4,1fr)}
+.factor-card{background:var(--c-ffffff);border:1px solid var(--border);border-top:4px solid var(--primary);border-radius:8px;padding:12px 14px;box-shadow:var(--shadow);font-size:13px}
+.factor-card h4{font-size:14px;margin-bottom:4px}
+.factor-card.green{border-top-color:var(--green)}.factor-card.purple{border-top-color:var(--purple)}
+.factor-card.orange{border-top-color:var(--orange)}.factor-card.teal{border-top-color:var(--teal)}
+.factor-card.rose{border-top-color:var(--rose)}.factor-card.gray{border-top-color:var(--c-94a3b8)}
+
+.table-wrap{overflow-x:auto;margin:12px 0}
+.cmp-table,.ex-table{width:100%;border-collapse:collapse;font-size:13px;background:var(--c-ffffff);box-shadow:var(--shadow);border-radius:8px;overflow:hidden}
+.cmp-table th,.cmp-table td,.ex-table th,.ex-table td{border:1px solid var(--border);padding:8px 10px;vertical-align:top;text-align:left}
+.cmp-table thead th{background:var(--primary);color:var(--c-ffffff);font-weight:700}
+.cmp-table.green-th thead th{background:var(--green)}
+.cmp-table.purple-th thead th{background:var(--purple)}
+.cmp-table.rose-th thead th{background:var(--rose)}
+.cmp-table.teal-th thead th{background:var(--teal)}
+.cmp-table.orange-th thead th{background:var(--orange)}
+.cmp-table tbody td:first-child{font-weight:700;color:var(--primary);white-space:nowrap;background:var(--c-f8fafc)}
+.cmp-table.rose-th tbody td:first-child{color:var(--rose)}
+.cmp-table.purple-th tbody td:first-child{color:var(--purple)}
+.cmp-table.teal-th tbody td:first-child{color:var(--teal)}
+.cmp-table.orange-th tbody td:first-child{color:var(--orange)}
+.ex-table thead th{background:var(--c-334155);color:var(--c-ffffff)}
+
+.badge{display:inline-block;font-size:11.5px;font-weight:700;padding:1px 9px;border-radius:999px;margin:2px 2px;background:var(--c-f1f5f9);color:var(--c-334155)}
+.badge-blue{background:var(--primary-light);color:var(--primary)}
+.badge-green{background:var(--green-light);color:var(--green)}
+.badge-purple{background:var(--purple-light);color:var(--purple)}
+.badge-orange{background:var(--orange-light);color:var(--orange)}
+.badge-teal{background:var(--teal-light);color:var(--teal)}
+.badge-rose{background:var(--rose-light);color:var(--rose)}
+.badge-gray{background:var(--c-f1f5f9);color:var(--c-475569)}
+
+.flow-row{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin:12px 0}
+.flow-item{flex:1 1 120px;background:var(--c-ffffff);border:1px solid var(--border);border-radius:8px;padding:9px 11px;font-size:12.5px;box-shadow:var(--shadow)}
+.flow-item .yr{display:block;font-size:12px;font-weight:900;color:var(--primary)}
+.flow-item.hi{border-color:var(--rose);background:var(--rose-light)}
+.flow-item.hi .yr{color:var(--rose)}
+.flow-arrow{display:flex;align-items:center;color:var(--c-94a3b8);font-weight:700}
+
+.rule-card{border:2px solid var(--primary);border-radius:10px;padding:12px 16px;margin:12px 0;background:var(--c-ffffff)}
+.rule-card.rose{border-color:var(--rose)}.rule-card.purple{border-color:var(--purple)}.rule-card.teal{border-color:var(--teal)}.rule-card.orange{border-color:var(--orange)}
+.rule-card h4{font-size:14.5px;margin-bottom:6px}
+
+.stage-row{display:flex;gap:8px;margin:12px 0;flex-wrap:wrap}
+.stage-item{flex:1 1 200px;background:var(--c-ffffff);border:1px solid var(--border);border-radius:10px;padding:12px;box-shadow:var(--shadow)}
+.stage-item h4{font-size:14px;margin-bottom:6px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.stage-item.hi{border:2px solid var(--primary)}
+.stage-link{font:inherit;font-size:12px;font-weight:700;border:none;background:none;color:var(--primary);cursor:pointer;padding:0;margin-top:4px}
+
+/* ===== 자료 (collapsible) ===== */
+.jr-toolbar{display:flex;justify-content:flex-end;gap:6px;margin-bottom:6px}
+.jr-toolbar button{font:inherit;font-size:12px;font-weight:700;border:1px solid var(--border);background:var(--c-ffffff);border-radius:999px;padding:3px 12px;cursor:pointer;color:var(--text-sec)}
+.jr-toolbar button:hover{border-color:var(--purple);color:var(--purple)}
+details.jr{background:var(--c-ffffff);border:1px solid var(--c-ddd6fe);border-radius:10px;margin:14px 0;box-shadow:var(--shadow);overflow:hidden;scroll-margin-top:130px}
+details.jr>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--purple-light);font-weight:700;font-size:14px}
+details.jr>summary::-webkit-details-marker{display:none}
+.jr-tag{background:var(--purple);color:var(--c-ffffff);font-size:11.5px;padding:2px 10px;border-radius:6px 6px 6px 0;white-space:nowrap}
+.jr-tag.theme{background:var(--c-15803d)}
+.jr-caret{margin-left:auto;font-size:12px;color:var(--purple);transition:transform .2s}
+details.jr[open] .jr-caret{transform:rotate(180deg)}
+.jr-hint{font-size:11px;color:var(--text-sec);font-weight:500}
+details.jr[open] .jr-hint{display:none}
+.jr-body{padding:14px 16px;font-size:13.5px}
+.src{text-align:right;font-size:12px;color:var(--text-sec);margin-top:6px}
+.law{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:6px 0}
+.law dt{font-weight:900;color:var(--purple);white-space:nowrap}
+.law dd{margin:0}
+.quote{font-family:'Noto Serif KR',serif;font-size:13.5px;line-height:1.9;background:var(--c-fafaf9);border:1px solid var(--c-e7e5e4);border-radius:8px;padding:10px 14px}
+.cap{font-size:12px;color:var(--text-sec);background:var(--c-f8fafc);border-radius:6px;padding:6px 10px;margin-top:8px}
+.cap::before{content:'사진 설명 · ';font-weight:700}
+.cap.map::before{content:'지도 표기 · '}
+.sub-jr{margin-top:14px;padding-top:10px;border-top:1px dashed var(--border)}
+.sub-jr:first-child{margin-top:0;padding-top:0;border-top:none}
+.sub-jr h5{font-size:13.5px;margin-bottom:6px;color:var(--purple)}
+.chart{width:100%;height:auto;display:block;max-width:620px;margin:6px auto}
+.legend-row{display:flex;flex-wrap:wrap;gap:10px;font-size:12.5px;margin:8px 0}
+.legend-row span{display:inline-flex;align-items:center;gap:6px}
+.diagram{display:grid;grid-template-columns:1fr auto 1.2fr auto 1fr auto .9fr;gap:6px;align-items:center;font-size:12.5px;margin:6px 0}
+.diagram .cell{border-radius:8px;padding:6px 8px;text-align:center;font-weight:700}
+.diagram .cty{background:var(--c-fde68a);color:var(--c-78350f)}
+.diagram .mid{background:var(--c-fcd34d);color:var(--c-78350f);grid-row:span 2}
+.diagram .res{background:var(--c-bbf7d0);color:var(--c-14532d)}
+.diagram .sys{background:var(--c-15803d);color:var(--c-ffffff);border-radius:999px}
+.diagram .arr{color:var(--c-94a3b8);font-weight:900}
+.speech{display:inline-block;border:1px solid var(--border);border-radius:14px;padding:3px 12px;margin:3px;font-size:12.5px;background:var(--c-ffffff)}
+
+/* ===== 개관 요약 ===== */
+.yr-strip{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.ys{display:inline-flex;flex-direction:column;background:var(--c-ffffff);border:1px solid var(--border);border-left:4px solid var(--primary);border-radius:6px;padding:4px 10px;font-size:12px;box-shadow:var(--shadow)}
+.ys b{font-size:12.5px;font-weight:900}
+.ys.cr{border-left-color:var(--rose)}.ys.cr b{color:var(--rose)}
+.ys.cb{border-left-color:var(--primary)}.ys.cb b{color:var(--primary)}
+.ys.co{border-left-color:var(--orange)}.ys.co b{color:var(--orange)}
+.sum-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px;margin:12px 0}
+.sum-card{background:var(--c-ffffff);border:1px solid var(--border);border-top:5px solid var(--primary);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);font-size:13px;scroll-margin-top:130px;display:flex;flex-direction:column;gap:8px}
+.sum-card.cr{border-top-color:var(--rose)}.sum-card.cb{border-top-color:var(--primary)}.sum-card.co{border-top-color:var(--orange)}
+.sum-head{display:flex;align-items:center;gap:10px}
+.sum-head h3{font-size:15px;line-height:1.35}
+.sum-head .stage-link{margin:0 0 0 auto;white-space:nowrap}
+.sum-no{flex:none;width:30px;height:30px;border-radius:9px 9px 9px 2px;background:var(--c-15803d);color:var(--c-ffffff);font-weight:900;display:flex;align-items:center;justify-content:center}
+.sum-era{font-size:11px;font-weight:700;color:var(--text-sec)}
+.sum-block h5{font-size:12.5px;color:var(--c-334155);background:var(--c-f1f5f9);border-radius:5px;padding:1px 8px;display:inline-block;margin-bottom:3px}
+.sum-block p{margin:2px 0}
+.sum-block ul.clean li{margin:2px 0}
+table.mini{width:100%;border-collapse:collapse;font-size:12.5px;margin:3px 0}
+table.mini td{border-bottom:1px dashed var(--border);padding:3px 4px;vertical-align:top}
+table.mini td:first-child{font-weight:700;white-space:nowrap;color:var(--c-334155);width:1%;padding-right:10px}
+.mini-flow{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12px;color:var(--c-94a3b8);margin:3px 0}
+.mini-flow span{background:var(--primary-light);color:var(--c-1e3a8a);border-radius:6px;padding:1px 7px}
+.sum-key{margin-top:auto;display:flex;flex-wrap:wrap;gap:4px;padding-top:6px;border-top:1px solid var(--border)}
+.sum-key span{font-size:11.5px;font-weight:700;background:var(--c-fef3c7);color:var(--c-92400e);border-radius:999px;padding:1px 9px}
+
+/* ===== Concept map ===== */
+.map-root{background:var(--c-ffffff);border:1px solid var(--border);border-radius:12px;margin:16px 0;overflow:hidden;box-shadow:var(--shadow)}
+.map-root-head{display:block;width:100%;text-align:left;border:none;font:inherit;font-size:15px;font-weight:700;color:var(--c-ffffff);background:var(--primary);padding:10px 16px;cursor:pointer}
+.map-root.teal .map-root-head{background:var(--teal)}
+.map-root.rose .map-root-head{background:var(--rose)}
+.map-root.orange .map-root-head{background:var(--orange)}
+.map-root.gray .map-root-head{background:var(--c-475569)}
+.map-children{display:flex;flex-wrap:wrap;gap:10px;padding:12px}
+.map-node{font:inherit;font-size:13px;font-weight:500;border:1px solid var(--border);background:var(--c-f8fafc);border-radius:8px;padding:6px 12px;cursor:pointer;text-align:left}
+.map-node:hover{border-color:var(--primary);background:var(--primary-light)}
+.map-group{display:flex;flex-direction:column;gap:4px;flex:1 1 280px}
+.map-group>.map-node{border:none;background:none;font-weight:700;padding:4px 4px}
+.map-subrow{display:flex;flex-wrap:wrap;gap:5px;border-left:2px solid var(--c-cbd5e1);padding-left:10px;margin-left:8px}
+.map-subchip{font:inherit;font-size:12px;border:1px solid var(--border);background:var(--c-ffffff);border-radius:999px;padding:2px 10px;cursor:pointer}
+.map-subchip:hover{border-color:var(--primary);color:var(--primary)}
+.map-subchip.jr-chip{border-color:var(--c-ddd6fe);background:var(--purple-light);color:var(--purple)}
+
+.totop{position:fixed;right:18px;bottom:18px;width:44px;height:44px;border-radius:50%;border:none;background:var(--primary);color:var(--c-ffffff);font-size:18px;cursor:pointer;box-shadow:0 4px 12px rgba(37,99,235,.35)}
+
+@media (max-width:680px){
+ .factor-grid,.factor-grid.three,.factor-grid.four{grid-template-columns:1fr}
+ .cmp-table,.ex-table{font-size:12px}
+ .flow-arrow{transform:rotate(90deg);width:100%;justify-content:center}
+ .flow-item{flex-basis:100%}
+ .law{grid-template-columns:1fr}
+ .so-title{font-size:17px}
+ .diagram{grid-template-columns:1fr auto 1fr;}
+ .diagram .mid{grid-row:auto}
+}
+
+/* ===== Quiz (Pass 2) ===== */
+.quiz-section{margin:14px 0 30px}
+.quiz-header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.quiz-title{font-size:15px;font-weight:700}
+.scoreboard{display:flex;flex-wrap:wrap;gap:6px}
+.score-chip{font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--c-f1f5f9);color:var(--c-475569);border:1px solid var(--border)}
+.score-chip.ox{background:var(--primary-light);color:var(--primary);border-color:var(--primary)}
+.score-chip.mc{background:var(--green-light);color:var(--green);border-color:var(--green)}
+.score-chip.hard{background:var(--purple-light);color:var(--purple);border-color:var(--purple)}
+.qtype-bar{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.qtype-btn{font:inherit;font-size:12.5px;font-weight:700;border:1.5px solid var(--border);background:var(--c-ffffff);border-radius:999px;padding:5px 13px;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--text-sec)}
+.qtype-btn:hover{border-color:var(--primary);color:var(--primary)}
+.qtype-btn.active{color:var(--c-ffffff);border-color:transparent}
+.qtype-btn.active.ox{background:var(--primary)}
+.qtype-btn.active.mc{background:var(--green)}
+.qtype-btn.active.hard{background:var(--purple)}
+.qtype-count{font-size:10.5px;font-weight:700;background:rgba(255,255,255,.35);border-radius:999px;padding:0 6px}
+.qtype-btn:not(.active) .qtype-count{background:var(--c-e2e8f0);color:var(--c-475569)}
+.q-progress-wrap{height:6px;background:var(--c-e2e8f0);border-radius:999px;overflow:hidden;margin-bottom:14px}
+.q-progress-fill{height:100%;background:var(--primary);border-radius:999px;transition:width .3s}
+.q-card{background:var(--c-ffffff);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin:10px 0;box-shadow:var(--shadow)}
+.q-card.answered-correct{border-color:var(--green);background:var(--green-light)}
+.q-card.answered-wrong{border-color:var(--rose);background:var(--rose-light)}
+.q-meta{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.q-num{font-size:11.5px;font-weight:700;color:var(--c-ffffff);background:var(--c-94a3b8);border-radius:999px;padding:1px 9px}
+.q-difficulty{font-size:10.5px;font-weight:700;padding:1px 8px;border-radius:999px}
+.q-difficulty.diff-basic{background:var(--primary-light);color:var(--primary)}
+.q-difficulty.diff-mid{background:var(--green-light);color:var(--green)}
+.q-difficulty.diff-hard{background:var(--purple-light);color:var(--purple)}
+.q-text{font-size:13.5px;font-weight:600;line-height:1.7;white-space:pre-line;margin-bottom:10px}
+.ox-row{display:flex;gap:10px}
+.ox-btn{flex:1;font:inherit;font-size:20px;font-weight:900;padding:10px;border-radius:8px;border:2px solid var(--border);background:var(--c-ffffff);cursor:pointer;color:var(--text-sec)}
+.ox-btn:hover{border-color:var(--primary)}
+.ox-btn.picked-correct{border-color:var(--green);background:var(--green-light);color:var(--green)}
+.ox-btn.picked-wrong{border-color:var(--rose);background:var(--rose-light);color:var(--rose)}
+.ox-btn.reveal-correct{border-color:var(--green);color:var(--green)}
+.ox-btn[disabled]{cursor:default}
+.mc-options{display:flex;flex-direction:column;gap:7px}
+.mc-opt{display:flex;align-items:center;gap:9px;font:inherit;font-size:13px;text-align:left;padding:8px 12px;border-radius:8px;border:1.5px solid var(--border);background:var(--c-ffffff);cursor:pointer;color:var(--text)}
+.mc-opt:hover{border-color:var(--primary)}
+.mc-opt-letter{flex:none;width:22px;height:22px;border-radius:50%;background:var(--c-f1f5f9);color:var(--text-sec);font-size:11.5px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.mc-opt.picked-correct{border-color:var(--green);background:var(--green-light)}
+.mc-opt.picked-correct .mc-opt-letter{background:var(--green);color:var(--c-ffffff)}
+.mc-opt.picked-wrong{border-color:var(--rose);background:var(--rose-light)}
+.mc-opt.picked-wrong .mc-opt-letter{background:var(--rose);color:var(--c-ffffff)}
+.mc-opt.reveal-correct{border-color:var(--green)}
+.mc-opt.reveal-correct .mc-opt-letter{background:var(--green);color:var(--c-ffffff)}
+.mc-opt[disabled]{cursor:default}
+.q-feedback{margin-top:10px;padding:9px 12px;border-radius:8px;font-size:12.5px;line-height:1.7}
+.q-feedback.correct{background:var(--green-light);color:var(--c-14532d);border:1px solid var(--c-bbf7d0)}
+.q-feedback.wrong{background:var(--rose-light);color:var(--c-881337);border:1px solid var(--c-fecdd3)}
+.quiz-result{background:var(--c-ffffff);border:2px solid var(--primary);border-radius:12px;padding:18px;text-align:center;box-shadow:var(--shadow)}
+.quiz-result .r-score{font-size:28px;font-weight:900;color:var(--primary);margin:4px 0}
+.quiz-result .r-grade{font-size:13.5px;font-weight:700;color:var(--text-sec);margin-bottom:12px}
+.mini-bar-row{display:flex;flex-direction:column;gap:6px;margin:10px 0;text-align:left}
+.mini-bar-label{display:flex;justify-content:space-between;font-size:11.5px;color:var(--text-sec);margin-bottom:2px}
+.mini-bar{height:8px;background:var(--c-e2e8f0);border-radius:999px;overflow:hidden}
+.mini-bar-fill{height:100%;border-radius:999px}
+.mini-bar-fill.ox{background:var(--primary)}
+.mini-bar-fill.mc{background:var(--green)}
+.mini-bar-fill.hard{background:var(--purple)}
+.reset-btn{margin-top:12px;font:inherit;font-size:13px;font-weight:700;border:none;background:var(--primary);color:var(--c-ffffff);border-radius:999px;padding:8px 20px;cursor:pointer}
+.reset-btn:hover{background:var(--c-1d4ed8)}
+@media (max-width:680px){
+ .q-text{font-size:13px}
+ .scoreboard{width:100%}
+}
+
+.tab-pg{margin-left:auto;font-size:12px;font-weight:700;color:var(--text-sec);background:var(--c-f1f5f9);border-radius:999px;padding:3px 10px;white-space:nowrap}
+.so-head{flex-wrap:wrap}
+</style>
+
+<script data-material-theme-init>(function(){var d=document.documentElement,t="dark",o=false;try{t=localStorage.getItem("simpul.theme")==="light"?"light":"dark";o=JSON.parse(localStorage.getItem("simpul.duo.v1")||"{}").on===true}catch(e){}try{if(parent!==window&&parent.document){var p=parent.document.documentElement;o=p.hasAttribute("data-duo");if(p.getAttribute("data-theme")==="light")t="light"}}catch(e){}d.dataset.materialTheme=t;if(o)d.setAttribute("data-material-duo","")})()</script><style data-simpul-monochrome-palette>:root{--c-0d9488:#3f3f46;--c-0f172a:#18181b;--c-14532d:#3f3f46;--c-15803d:#3f3f46;--c-16a34a:#52525b;--c-1d4ed8:#52525b;--c-1e3a8a:#3f3f46;--c-2563eb:#52525b;--c-334155:#3f3f46;--c-475569:#3f3f46;--c-78350f:#3f3f46;--c-7c3aed:#52525b;--c-881337:#3f3f46;--c-92400e:#3f3f46;--c-94a3b8:#a1a1aa;--c-9f1239:#3f3f46;--c-bbf7d0:#e4e4e7;--c-be185d:#52525b;--c-cbd5e1:#e4e4e7;--c-ddd6fe:#e4e4e7;--c-e11d48:#52525b;--c-e2e8f0:#e4e4e7;--c-e7e5e4:#e4e4e7;--c-ea580c:#52525b;--c-eff6ff:#f4f4f5;--c-f0fdf4:#f4f4f5;--c-f0fdfa:#f4f4f5;--c-f1f5f9:#f4f4f5;--c-f59e0b:#52525b;--c-f5f3ff:#f4f4f5;--c-f8fafc:#f4f4f5;--c-fafaf9:#f4f4f5;--c-fcd34d:#52525b;--c-fde047:#52525b;--c-fde68a:#a1a1aa;--c-fecdd3:#e4e4e7;--c-fef3c7:#e4e4e7;--c-fefce8:#f4f4f5;--c-fff1f2:#f4f4f5;--c-fff7ed:#f4f4f5;--c-ffffff:#ffffff;}html[data-material-theme="dark"]{--c-0d9488:#d4d4d8;--c-0f172a:#f4f4f5;--c-14532d:#d4d4d8;--c-15803d:#d4d4d8;--c-16a34a:#a1a1aa;--c-1d4ed8:#a1a1aa;--c-1e3a8a:#d4d4d8;--c-2563eb:#a1a1aa;--c-334155:#d4d4d8;--c-475569:#d4d4d8;--c-78350f:#d4d4d8;--c-7c3aed:#a1a1aa;--c-881337:#d4d4d8;--c-92400e:#d4d4d8;--c-94a3b8:#71717a;--c-9f1239:#d4d4d8;--c-bbf7d0:#27272a;--c-be185d:#a1a1aa;--c-cbd5e1:#27272a;--c-ddd6fe:#27272a;--c-e11d48:#a1a1aa;--c-e2e8f0:#27272a;--c-e7e5e4:#27272a;--c-ea580c:#a1a1aa;--c-eff6ff:#18181b;--c-f0fdf4:#18181b;--c-f0fdfa:#18181b;--c-f1f5f9:#18181b;--c-f59e0b:#a1a1aa;--c-f5f3ff:#18181b;--c-f8fafc:#18181b;--c-fafaf9:#18181b;--c-fcd34d:#a1a1aa;--c-fde047:#a1a1aa;--c-fde68a:#71717a;--c-fecdd3:#27272a;--c-fef3c7:#27272a;--c-fefce8:#18181b;--c-fff1f2:#18181b;--c-fff7ed:#18181b;--c-ffffff:#0e0e11;}html[data-material-duo]{--c-0d9488:#1899D6;--c-0f172a:#1899D6;--c-14532d:#58A700;--c-15803d:#58A700;--c-16a34a:#58A700;--c-1d4ed8:#1CB0F6;--c-1e3a8a:#1899D6;--c-2563eb:#1CB0F6;--c-334155:#1899D6;--c-475569:#1899D6;--c-78350f:#CD7900;--c-7c3aed:#CE82FF;--c-881337:#EA2B2B;--c-92400e:#CD7900;--c-94a3b8:#1CB0F6;--c-9f1239:#EA2B2B;--c-bbf7d0:color-mix(in srgb,#58CC02 45%,#FFFFFF);--c-be185d:#FF4B4B;--c-cbd5e1:color-mix(in srgb,#1CB0F6 45%,#FFFFFF);--c-ddd6fe:#DDF4FF;--c-e11d48:#FF4B4B;--c-e2e8f0:#E5E5E5;--c-e7e5e4:#E5E5E5;--c-ea580c:#FF9600;--c-eff6ff:#F7F7F7;--c-f0fdf4:#F7F7F7;--c-f0fdfa:#F7F7F7;--c-f1f5f9:#F7F7F7;--c-f59e0b:#FF9600;--c-f5f3ff:#FFFFFF;--c-f8fafc:#FFFFFF;--c-fafaf9:#FFFFFF;--c-fcd34d:#FFC800;--c-fde047:#FFC800;--c-fde68a:color-mix(in srgb,#FFC800 45%,#FFFFFF);--c-fecdd3:#FFDFE0;--c-fef3c7:color-mix(in srgb,#FFC800 45%,#FFFFFF);--c-fefce8:#FFF5D3;--c-fff1f2:#FFFFFF;--c-fff7ed:#FFF0D9;--c-ffffff:#FFFFFF;}html[data-material-duo][data-material-theme="dark"]{--c-0d9488:color-mix(in srgb,#1CB0F6 78%,#FFFFFF);--c-0f172a:color-mix(in srgb,#1CB0F6 78%,#FFFFFF);--c-14532d:color-mix(in srgb,#58CC02 78%,#FFFFFF);--c-15803d:color-mix(in srgb,#58CC02 78%,#FFFFFF);--c-16a34a:color-mix(in srgb,#58CC02 78%,#FFFFFF);--c-1d4ed8:#1CB0F6;--c-1e3a8a:color-mix(in srgb,#1CB0F6 78%,#FFFFFF);--c-2563eb:#1CB0F6;--c-334155:color-mix(in srgb,#1CB0F6 78%,#FFFFFF);--c-475569:color-mix(in srgb,#1CB0F6 78%,#FFFFFF);--c-78350f:color-mix(in srgb,#FF9600 78%,#FFFFFF);--c-7c3aed:#CE82FF;--c-881337:color-mix(in srgb,#FF4B4B 78%,#FFFFFF);--c-92400e:color-mix(in srgb,#FF9600 78%,#FFFFFF);--c-94a3b8:#1CB0F6;--c-9f1239:color-mix(in srgb,#FF4B4B 78%,#FFFFFF);--c-bbf7d0:color-mix(in srgb,#58CC02 40%,#131F24);--c-be185d:#FF4B4B;--c-cbd5e1:color-mix(in srgb,#1CB0F6 40%,#131F24);--c-ddd6fe:color-mix(in srgb,#1CB0F6 16%,#131F24);--c-e11d48:#FF4B4B;--c-e2e8f0:#37464F;--c-e7e5e4:#37464F;--c-ea580c:#FF9600;--c-eff6ff:#202F36;--c-f0fdf4:#202F36;--c-f0fdfa:#202F36;--c-f1f5f9:#202F36;--c-f59e0b:#FF9600;--c-f5f3ff:#131F24;--c-f8fafc:#131F24;--c-fafaf9:#131F24;--c-fcd34d:#FFC800;--c-fde047:#FFC800;--c-fde68a:color-mix(in srgb,#FFC800 40%,#131F24);--c-fecdd3:color-mix(in srgb,#FF4B4B 16%,#131F24);--c-fef3c7:color-mix(in srgb,#FFC800 40%,#131F24);--c-fefce8:color-mix(in srgb,#FFC800 16%,#131F24);--c-fff1f2:#131F24;--c-fff7ed:color-mix(in srgb,#FF9600 16%,#131F24);--c-ffffff:#131F24;}</style>
+<link rel="stylesheet" href="../../_theme/material-monochrome.css">
+<link rel="stylesheet" href="../../_theme/study-ui.css">
+<script src="../../_theme/study-ui.js" defer></script>
+</head>
+<body>
+
+<header class="page-header">
+ <div class="header-inner">
+  <div class="subject-label">한국사 · Ⅰ. 일제 식민 통치와 민족 운동 · Ⅱ. 대한민국의 발전</div>
+  <div class="page-title">한국사 최O석 선생님 파트
+   <span class="badge-unit">Ⅰ-04 사회·문화의 변화와 대중 운동</span>
+   <span class="badge-unit" style="background:var(--orange-light);color:var(--orange)">Ⅰ-05 독립 국가 건설 노력</span>
+   <span class="badge-unit" style="background:var(--rose-light);color:var(--rose)">Ⅱ-04 경제 성장과 사회 변화</span>
+  </div>
+  <nav class="tab-bar">
+   <span class="tab-group-label">Ⅰ-04 사회·문화와 대중 운동</span>
+   <button class="tab-btn active" onclick="switchTab(0)"><span class="tab-num">≡</span>Ⅰ-04 개관</button>
+   <button class="tab-btn" onclick="switchTab(1)"><span class="tab-num">1</span>사회의 변화</button>
+   <button class="tab-btn" onclick="switchTab(2)"><span class="tab-num">2</span>민족 문화 수호 운동</button>
+   <button class="tab-btn" onclick="switchTab(3)"><span class="tab-num">3</span>대중 운동의 전개</button>
+   <span class="tab-group-label">Ⅰ-05 독립 국가 건설 노력</span>
+   <button class="tab-btn" onclick="switchTab(4)"><span class="tab-num">≡</span>Ⅰ-05 개관</button>
+   <button class="tab-btn" onclick="switchTab(5)"><span class="tab-num">1</span>한국 광복군과 조선 의용대</button>
+   <button class="tab-btn" onclick="switchTab(6)"><span class="tab-num">2</span>독립 국가 수립을 위한 노력</button>
+   <span class="tab-group-label">Ⅱ-04 경제 성장과 사회 변화</span>
+   <button class="tab-btn" onclick="switchTab(7)"><span class="tab-num">≡</span>Ⅱ-04 개관</button>
+   <button class="tab-btn" onclick="switchTab(8)"><span class="tab-num">1</span>경제 성장에 따른 산업 구조의 변화</button>
+   <button class="tab-btn" onclick="switchTab(9)"><span class="tab-num">2</span>경제 성장과 사회 갈등</button>
+   <span class="tab-group-label">지도</span>
+   <button class="tab-btn" onclick="switchTab(10)"><span class="tab-num">◎</span>개념 한눈에 보기</button>
+  </nav>
+ </div>
+</header>
+
+<main class="content-wrap">
+<!-- ================= TAB 0 : Ⅰ-04 단원 개관 ================= -->
+<section class="tab-panel active" id="panel-0">
+ <div class="unit-banner">Ⅰ-04 사회·문화의 변화와 대중 운동 · 한눈에 보기</div>
+
+ <div class="tip"><b>이 앱 보는 법</b>
+  탭 = 교과서 <b>소단원</b>, 탭 안의 큰 제목 = 교과서 <b>소제목</b>입니다. 개관 탭은 소단원 내용을 한 장으로 줄인 <b>요약판</b>입니다.<br>
+  <span class="u">빨간 밑줄</span> = 교과서에 밑줄 친 핵심 ·
+  <span class="k">네모</span> = 동그라미/네모 친 핵심어 ·
+  <span class="hl">형광</span> = 형광펜 표시 ·
+  <span class="star">별표</span> = 별표 친 자료.
+  보라색 <b>자료</b> 상자는 눌러서 펼치고 접을 수 있습니다. 각 소단원 탭 맨 아래에 <b>확인 학습</b> 문제가 있습니다.
+ </div>
+
+ <h2 class="section-title" id="a-o4-years">핵심 연도 줄 세우기</h2>
+ <div class="yr-strip">
+  <span class="ys cb"><b>1921</b>조선어 연구회 · 천도교 소년회</span><span class="ys co"><b>1923</b>암태도 소작 쟁의 · 조선 형평사</span><span class="ys co"><b>1924</b>조선 청년 총동맹</span><span class="ys cb"><b>1927</b>『한글』 창간 · 근우회</span><span class="ys co"><b>1929</b>원산 총파업</span><span class="ys cb"><b>1931</b>조선어 학회</span><span class="ys co"><b>1932</b>조선 소작 조정령</span><span class="ys cb"><b>1934</b>조선학 운동</span><span class="ys cb"><b>1942</b>조선어 학회 사건</span>
+ </div>
+
+ <h2 class="section-title" id="a-o4-sum">소단원별 한 장 요약</h2>
+ <div class="sum-grid">
+  <div class="sum-card cr" id="a-o4-s1">
+   <div class="sum-head"><span class="sum-no">1</span><div><div class="sum-era">도시와 농촌</div><h3>사회의 변화</h3></div><button class="stage-link" onclick="goTo(1)">탭 열기 →</button></div>
+   <div class="sum-block"><h5>식민지 도시화</h5>
+    <ul class="clean">
+     <li><b>항만</b> 군산·목포(쌀 반출) / <b>군사</b> 진해(군항) / <b>공업</b> 청진·흥남(1930년대 이후) / <b>교통</b> 대전·신의주(철도)</li>
+     <li>전주·경주 등 <b>전통 도시</b> → 개발에서 소외</li>
+     <li>경성: 청계천 남쪽 <b>남촌</b>(일본인, 은행·백화점) → <b>북촌</b>(한국인)으로 영역 확대</li>
+     <li>농토를 잃은 사람 → 행랑살이, <b>토막민</b>(변두리 토막집)</li>
+    </ul></div>
+   <div class="sum-block"><h5>농촌의 변화</h5>
+    <ul class="clean">
+     <li><span class="u">군·면·동리 통폐합</span> → 행정 중심 단위 <b>면</b>, 전통 질서 흔들림</li>
+     <li><b>장시</b> 증가 → 정보 교환·볼거리, 3·1 운동 때 저항 장소</li>
+     <li>토지 조사 사업·산미 증식 계획 → 토지 집중, 자작농↓ 소작농↑ → 이주·<b>화전민</b></li>
+    </ul></div>
+   <div class="sum-key"><span>남촌 vs 북촌</span><span>토막민</span><span>면 중심 행정</span><span>화전민</span></div>
+  </div>
+
+  <div class="sum-card cb" id="a-o4-s2">
+   <div class="sum-head"><span class="sum-no">2</span><div><div class="sum-era">우리말과 역사 지키기</div><h3>민족 문화 수호 운동</h3></div><button class="stage-link" onclick="goTo(2)">탭 열기 →</button></div>
+   <div class="sum-block"><h5>한글</h5>
+    <div class="mini-flow"><span>조선어 연구회(1921)</span>→<span>조선어 학회(1931)</span>→<span>조선어 학회 사건(1942)</span></div>
+    <ul class="clean">
+     <li>조선어 연구회: 주시경 제자들, 강습회, <b>가갸날</b>, 잡지 『<b>한글</b>』(1927)</li>
+     <li>조선어 학회: <b>한글 맞춤법 통일안</b>, 표준어·외래어 표기법 → 『<b>조선말 큰사전</b>』 편찬 시작 → 강제 해산</li>
+    </ul></div>
+   <div class="sum-block"><h5>한국사</h5>
+    <table class="mini"><tbody>
+     <tr><td>일제</td><td><b>조선사 편수회</b> → 타율성론·정체성론·당파성론</td></tr>
+     <tr><td>민족주의 사학</td><td>박은식, 신채호 → 정인보·안재홍 <b>조선학 운동</b>(1934)</td></tr>
+     <tr><td>사회 경제 사학</td><td><b>백남운</b>: 세계사적 발전 단계 → 정체성론 극복</td></tr>
+    </tbody></table></div>
+   <div class="sum-block"><h5>종교·문학</h5><p>여러 종교계의 민족·사회 운동 / 1920년대 <b>신경향파 문학</b> / 1930년대 이후 이육사·윤동주</p></div>
+   <div class="sum-key"><span>가갸날</span><span>조선말 큰사전</span><span>조선사 편수회</span><span>백남운</span></div>
+  </div>
+
+  <div class="sum-card co" id="a-o4-s3">
+   <div class="sum-head"><span class="sum-no">3</span><div><div class="sum-era">주체별 대중 운동</div><h3>대중 운동의 전개</h3></div><button class="stage-link" onclick="goTo(3)">탭 열기 →</button></div>
+   <table class="mini"><tbody>
+    <tr><td>농민</td><td>1920년대 생존권 투쟁 · <b>암태도 소작 쟁의</b>(1923) → 일제 <b>조선 소작 조정령</b>(1932)</td></tr>
+    <tr><td>노동</td><td><b>원산 총파업</b>(1929) → 1930년대 <b>혁명적 노동조합 운동</b>, 항일 성격</td></tr>
+    <tr><td>청년</td><td><b>조선 청년 총동맹</b>(1924, 민족주의+사회주의)</td></tr>
+    <tr><td>소년</td><td><b>방정환</b> · 천도교 소년회(1921), '어린이', 어린이날, 『어린이』</td></tr>
+    <tr><td>여성</td><td>조선 여자 교육회 등 / 조선 여성 동우회 → <b>근우회</b>(1927, 『근우』)</td></tr>
+    <tr><td>형평</td><td><b>조선 형평사</b>(1923, 진주) — 백정 차별 철폐</td></tr>
+   </tbody></table>
+   <div class="sum-key"><span>암태도</span><span>원산 총파업</span><span>근우회</span><span>조선 형평사</span></div>
+  </div>
+ </div>
+
+ <h2 class="section-title" id="a-o4-compare">대중 운동 주체별 비교</h2>
+ <div class="table-wrap"><table class="cmp-table rose-th"><thead><tr><th style="width:80px">주체</th><th>단체·사건</th><th>주장·목표</th><th>변화·결과</th></tr></thead><tbody>
+  <tr><td>농민</td><td>암태도 소작 쟁의(1923)</td><td>소작료 인하, 소작권 이동 반대 (생존권 투쟁)</td><td>1920년대 중후반 이후 급증 → 탄압 + 조선 소작 조정령(1932) → 1930년대 항일 성격, 공출 반대·징용 거부</td></tr>
+  <tr><td>노동</td><td>원산 총파업(1929)</td><td>일본인 감독 파면, 최저 임금제</td><td>1930년대 대공황 → 파업 증가, 혁명적 노동조합 운동과 연계 → 탄압으로 위축</td></tr>
+  <tr><td>청년</td><td>조선 청년 총동맹(1924)</td><td>청년 단결, 식민지 교육 비판</td><td>농민·노동 운동 지원</td></tr>
+  <tr><td>소년</td><td>천도교 소년회(1921)</td><td>어린이를 인격체로 대우</td><td>어린이날(5월 1일), 『어린이』, 색동회</td></tr>
+  <tr><td>여성</td><td>근우회(1927)</td><td>조선 여자의 공고한 단결과 지위 향상</td><td>여성계의 민족 협동 전선, 사회 개혁 지향</td></tr>
+  <tr><td>백정</td><td>조선 형평사(1923)</td><td>사회적 편견과 차별 철폐</td><td>전국 조직, 항일 민족 운동 → 내부 갈등·탄압으로 약화</td></tr>
+ </tbody></table></div>
+</section>
+
+<!-- ================= TAB 1 : Ⅰ-04 소단원 1 ================= -->
+<section class="tab-panel" id="panel-1">
+ <div class="unit-banner">Ⅰ-04 사회·문화의 변화와 대중 운동 › 소단원 1</div>
+ <div class="so-head"><span class="so-num">1</span><span class="so-title">사회의 변화</span><span class="tab-pg">p.44–45</span></div>
+ <div class="goal"><b>학습 목표</b> | 일제 강점기에 나타난 도시와 농촌의 변화 모습을 설명할 수 있다.</div>
+ <div class="jr-toolbar"><button onclick="toggleAllJr(1,true)">자료 모두 펼치기</button><button onclick="toggleAllJr(1,false)">모두 접기</button></div>
+
+ <h2 class="section-title" id="a-s1-city">식민지 도시화와 한국인의 삶</h2>
+ <p>개항과 일제 강점기를 거치면서 <b>근대 도시</b>가 발달하였다.</p>
+ <div class="table-wrap"><table class="cmp-table"><thead><tr><th style="width:110px">유형</th><th style="width:130px">도시</th><th>성장 배경</th></tr></thead><tbody>
+  <tr><td>항만 도시</td><td>군산, 목포</td><td>일본으로 <b>쌀을 실어 나르는 항만</b>으로 이용되면서 성장</td></tr>
+  <tr><td>군사 도시</td><td>진해</td><td>일본 해군 <b>군항</b>이 들어서면서 대표적인 군사 도시가 됨</td></tr>
+  <tr><td>공업 도시</td><td>청진, 흥남</td><td><b>1930년대 이후</b> 식민지 공업화의 추진으로 공장이 들어서면서 새로운 공업 도시로 급성장</td></tr>
+  <tr><td>교통 도시</td><td>대전, 신의주</td><td>경부선과 경의선 등 <b>철도</b>가 개통되자 철도 교통의 요지가 되어 대도시로 성장</td></tr>
+  <tr><td>전통 도시</td><td>전주, 경주 등</td><td>식민지 지배를 위한 개발에서 <b>소외</b>되어 발전이 더디어짐</td></tr>
+ </tbody></table></div>
+
+ <div class="subsection-title" id="a-s1-gyeongseong">시가지 형성과 경성의 남촌 · 북촌</div>
+ <ul class="clean">
+  <li>도시에는 신작로가 뚫리고 새로운 <span class="hl">시가지</span><span class="gloss">도시의 큰 길거리를 이루는 지역</span>가 형성되었다.</li>
+  <li><b>일본인</b>은 시가지의 중심을 차지하였으며 경제권을 장악하였다.</li>
+  <li>경성의 청계천 남쪽인 <b>'남촌'</b>에 주로 거주하던 일본인은 점차 한국인이 많이 거주하던 <b>'북촌'</b>으로 영역을 확대하였다.</li>
+  <li>'남촌'을 중심으로 은행, 우체국, 백화점, 극장 등이 들어섰으며, 일본인과 일부 한국인이 누릴 수 있는 <b>도시 소비 문화</b>가 생겨났다.</li>
+ </ul>
+ <div class="subsection-title" id="a-s1-tomak">도시 빈민의 등장</div>
+ <div class="flow-row">
+  <div class="flow-item"><span class="yr">원인</span>농토를 잃거나 농촌에서 살아갈 수 없게 된 사람들</div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-item">이웃한 도시나 <b>경성</b>으로 몰려듦</div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-item hi"><span class="yr">결과</span>'<b>행랑살이</b>'를 하거나 도시 빈민(<b>토막민</b>)이 되어 변두리에 <span class="hl">토막집</span>을 지어 거주</div>
+ </div>
+ <div class="dim" style="margin-top:6px"><span class="gloss">토막집: 경성을 비롯한 대도시 변두리에 짚이나 거적을 둘러 만든 집</span></div>
+
+ <details class="jr" id="a-s1-jr1"><summary><span class="jr-tag">자료 1</span>한국인을 밀어내고 있는 일본인<span class="jr-hint">눌러서 펼치기</span><span class="jr-caret">▼</span></summary><div class="jr-body">
+  <div class="quote">경성의 북부를 향하여 일본인의 세력이 날로 침범하는 것은 경성에 거주하는 조선인에게 큰 위협을 주는 말이다. 종로에 일본인 상점이 늘어가는 것은 딸각 신 소리만 들어도 알거니와 …….</div>
+  <div class="src">– 『동아일보』, 1923. 10. 26.</div>
+  <div class="table-wrap"><table class="cmp-table"><thead><tr><th style="width:150px">구역</th><th>지도에 표시된 곳</th></tr></thead><tbody>
+   <tr><td>'북촌' (청계천 북쪽)</td><td>종로, 화신백화점</td></tr>
+   <tr><td>'남촌' (청계천 남쪽, 본정 · 현 충무로)</td><td>조지아 백화점, 미쓰코시 백화점, 히라타 백화점, 미나카이 백화점, 경성우편국, 조선은행</td></tr>
+   <tr><td>기타</td><td>청계천, 남대문, 경성역</td></tr>
+  </tbody></table></div>
+  <div class="cap map">경성 지도는 표시된 장소만 표로 정리</div>
+  <div class="quote">경성은 청계천을 경계로 남과 북으로 나뉘었어. 청계천 북쪽에 한국인 상가가 많았던 종로통을 중심으로 '북촌'이 형성됐어. 청계천 남쪽인 현재의 충무로와 명동 일대에는 일본인 상가들을 중심으로 '남촌'이 생겼어.</div>
+  <div class="cap">▲ '북촌', 종로 거리 · ▲ '남촌', 본정(현 충무로 앞) · ▲ '북촌'에 자리 잡은 한국인 상가 · ▲ 경성우편국</div>
+ </div></details>
+
+ <h2 class="section-title" id="a-s1-rural">농촌의 변화와 한국인의 삶</h2>
+ <div class="factor-grid three">
+  <div class="factor-card blue"><h4>행정 구역 재편</h4>조선 총독부가 식민지 지배의 효율성을 명목으로 전국의 <span class="u">군, 면, 동리를 통폐합</span> → 전통적인 지역 구분 재편<br>지방 행정의 중심 단위가 <b>면</b>이 되면서 군을 중심으로 편제되었던 <b>전통 사회 질서</b>가 흔들림</div>
+  <div class="factor-card green"><h4>장시</h4>물건을 사고팔며 정보를 교환하고 순회 극단 등 다양한 볼거리를 접함<br>농촌 사회의 변화와 농민의 새로운 수요 증가로 <b>점차 증가</b><br>정기적으로 모였던 장시는 <b>3·1 운동</b> 때처럼 저항이 분출되는 장소가 되기도 함</div>
+  <div class="factor-card orange"><h4>토지 집중</h4>토지 조사 사업, 산미 증식 계획 → 농촌의 토지가 <b>일본 토지 회사나 소수의 지주</b>에게 집중<br>→ 자작농 감소, <b>소작농 증가</b></div>
+ </div>
+ <div class="def-box"><b>농민의 삶</b> 일부는 일본, 만주, 연해주 등지로 <b>이주</b>하였고, <b>화전민</b>이 되어 생활을 이어 가는 경우도 있었다. 농촌의 마을·노동 조직 등은 <b>지주 소작제의 강화</b>, <b>상품 화폐 경제의 침투</b> 등으로 상당 부분 해체되었다.</div>
+
+ <details class="jr" id="a-s1-jr2"><summary><span class="jr-tag">자료 2</span>도시 빈민과 농민의 삶<span class="jr-hint">눌러서 펼치기</span><span class="jr-caret">▼</span></summary><div class="jr-body">
+  <div class="sub-jr"><h5>❶ 도시 빈민의 처지</h5>
+   <div class="quote">언덕 비탈을 의지하여 오막살이들이 생선 비늘같이 들어박힌 개복동, 그중에서도 상상 꼭대기에 올라앉은 납작한 토담집. 방이라야 안방 하나, 건넌방 하나, 단 두 개뿐인 것을 명님이네가 도통 오 원에 집주인한테서 세를 얻어 가지고, 건넌방은 따로 먹곰보네한테 이 원씩 받고 세를 내주었다. 대지가 일곱 평 네 홉이니, 안방 세 식구, 건넌방 세 식구, 도합 여섯 사람에 일곱 평 네 홉인 것이다. …… 방 안은 불을 처질러 놓아서, 퀴퀴한 빈취(貧臭)가 더운 기운에 섞여 물큰 치닫는다.</div>
+   <div class="src">– 채만식, 『탁류』</div></div>
+  <div class="sub-jr"><h5>❷ 화전민의 처지</h5>
+   <div class="quote">물론 우리들도 어느 때는 농민으로 농사를 지었다. 그러나 요즈음의 세상인지 해마다 우리들의 생활은 형편이 딱해지기만 하였다. …… 결국 우리들은 농촌에서 배겨 나지 못하고 산으로 기어오르기 시작하였다. …… 우리들이 사는 집이란 것은 보통 집이라고 하는 것보다는 도야지 울이라고 하는 것이 나을 것 같다. …… 농사라고 짓는 밭도 보통 밭이 아니고 지금까지 산이던 것을 불을 놓아서 태우고 밭으로 삼는 것이다. …… 그저 굶어 죽지 않는 것이 우리들의 일생의 소원이다.</div>
+   <div class="src">– 백웅, 「제일선」</div>
+   <div class="cap">▲ 생활고를 견디다 산속으로 들어가 살아가던 화전민</div></div>
+ </div></details>
+
+ <h2 class="section-title">확인 학습</h2>
+ <div class="m-practice-wrap"><a class="m-practice" target="_top" href="../../../cloud.html?s=history&amp;u=%EC%82%AC%ED%9A%8C%EC%9D%98%20%EB%B3%80%ED%99%94"><span class="m-practice-ico" aria-hidden="true"></span><span class="m-practice-txt"><b>이 부분 문제는 무한 문제에서 풀어요</b><small>사회의 변화 · 16문제 · O/X·객관식·고난도</small></span><span class="m-practice-go">무한 문제로 풀기 →</span></a></div><div hidden style="display:none" data-moved-to-bank class="quiz-section" id="quiz-panel-1"></div>
+</section>
+
+<!-- ================= TAB 2 : Ⅰ-04 소단원 2 ================= -->
+<section class="tab-panel" id="panel-2">
+ <div class="unit-banner">Ⅰ-04 사회·문화의 변화와 대중 운동 › 소단원 2</div>
+ <div class="so-head"><span class="so-num">2</span><span class="so-title">민족 문화 수호 운동</span><span class="tab-pg">p.46–47</span></div>
+ <div class="goal"><b>학습 목표</b> | 일제 강점기에 전개된 민족 문화 수호 운동의 내용을 말할 수 있다.</div>
+ <div class="jr-toolbar"><button onclick="toggleAllJr(2,true)">자료 모두 펼치기</button><button onclick="toggleAllJr(2,false)">모두 접기</button></div>
+
+ <h2 class="section-title" id="a-s2-hangul">일본어 교육에 맞선 한글 보급 활동</h2>
+ <p>일제는 한국인을 동화시키기 위해 일본어를 보급하고, 학교에서 <b>일본어 교육의 비중</b>을 크게 늘렸다.</p>
+ <div class="flow-row">
+  <div class="flow-item"><span class="yr">1921</span><span class="k">조선어 연구회</span><br><span class="k">주시경</span>의 제자들이 중심 → 한글 연구와 보급<br>• 조선어 강습회 → 한글 보급 운동<br>• 한글날의 시초가 된 '<span class="u">가갸날</span>' 제정<br>• 잡지 『<span class="u">한글</span>』 창간(<span class="u">1927</span>)</div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-item hi"><span class="yr"><span class="u">1931</span></span><span class="k">조선어 학회</span>로 확대·개편<br>• 한글 표준화: <span class="u">한글 맞춤법 통일안</span>, 표준어 및 외래어 표기법 통일안 제정<br>• 이를 기초로 『<span class="u">조선말 큰사전</span>』 편찬 시작</div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-item"><span class="yr">1942</span><b>조선어 학회 사건</b><br>조선 총독부는 한글 연구를 독립을 위한 <b>실력 양성 운동</b>으로 간주 → 회원 검거, 강제 <span class="k">해산</span></div>
+ </div>
+ <div class="dim"><span class="gloss">주시경: 개항 이후 일제 강점기까지 우리말과 한글을 연구하고 보급하기 위해 노력한 한글학자</span></div>
+ <div class="cap">▲ 조선어 학회 회원들(상, 1935)과 『조선말 큰사전』 원고(하, 독립기념관) — 사진 속 이윤재</div>
+
+ <details class="jr" id="a-s2-jr1"><summary><span class="jr-tag">자료 1</span>한글을 창간한 이유<span class="jr-hint">눌러서 펼치기</span><span class="jr-caret">▼</span></summary><div class="jr-body">
+  <div class="quote">『한글』이 났다. 『한글』이 났다. 훈민정음의 아들로 났으며, 2천 3백만 민중이 동무로 났다. 조선 문학의 바른 길이 되며, 조선 문화의 원동력이 되어, 조선이란 큰 집의 터전을 닦으며 주춧돌을 놓기 위하여 병인년 이듬해인 정묘년 벽두에 났다.</div>
+  <div class="src">– 『한글』 창간호</div>
+  <div class="cap">▶ 『한글』 창간호(국립한글박물관)</div>
+ </div></details>
+
+ <h2 class="section-title" id="a-s2-history">한국사 왜곡에 맞선 한국사 연구</h2>
+ <div class="subsection-title" id="a-s2-colonial">일제의 한국사 왜곡 — 식민 사관</div>
+ <p>조선 총독부는 <span class="u">조선사 편수회</span>를 설치하고, 한국 침략과 식민 통치를 정당화하기 위한 작업에 착수하였다. 조선사 편수회는 타율성론, 정체성론, 당파성론을 한국사의 특징으로 규정하여 우리 역사의 <b>주체성과 발전성을 부정</b>하였다.</p>
+ <div class="table-wrap"><table class="cmp-table purple-th"><thead><tr><th style="width:110px">식민 사관</th><th>내용</th></tr></thead><tbody>
+  <tr><td>타율성론</td><td>한국 역사는 중국, 일본 등 주변 나라의 간섭과 지배를 받아 왔으므로 <b>주체성과 독자성이 없다</b>는 논리</td></tr>
+  <tr><td>정체성론</td><td>일본을 포함한 다른 지역이 시대별로 발전을 거듭한 데 반해 한국은 <b>발전 없이 정체</b>되어 있다는 논리</td></tr>
+  <tr><td>당파성론</td><td>조선 시대 붕당 정치를 <b>당파 싸움</b>으로 규정하여 한국 민족은 늘 편을 갈라 싸운다고 주장하는 논리</td></tr>
+ </tbody></table></div>
+
+ <div class="subsection-title" id="a-s2-response">한국사 연구로 맞서다</div>
+ <div class="factor-grid three">
+  <div class="factor-card rose"><h4>민족주의 사학</h4><span class="k">박은식</span>: 일본의 침략과 한국 민족 운동의 역사를 정리<br><span class="k">신채호</span>: 『<b>조선사연구초</b>』, 『<b>조선상고사</b>』에서 우리 민족의 문화적 전통과 <b>자주적 역사관</b> 강조<br>→ 정인보, 안재홍 등이 계승 → 1934년 <span class="hl">조선학 운동</span> 제창 <span class="dim">(2권 42쪽 참고)</span></div>
+  <div class="factor-card blue"><h4>사회 경제 사학</h4><span class="u">사회 경제 사학자</span> <span class="k">백남운</span>: 한국사가 '고대 노예제 사회', '중세 봉건제 사회', '근대 자본주의 사회'의 단계를 거쳐 발전해 왔다고 주장<br>→ 일제가 내세운 <b>정체성론을 극복</b>하는 근거 제공</div>
+  <div class="factor-card gray"><h4>문헌 고증</h4>문헌 고증을 통해 <b>객관적 사실</b>을 밝히는 데 목적을 둔 한국사 연구자들도 있었음</div>
+ </div>
+
+ <details class="jr" id="a-s2-jr2"><summary><span class="jr-tag">자료 2</span>일제의 한국사 왜곡<span class="jr-hint">눌러서 펼치기</span><span class="jr-caret">▼</span></summary><div class="jr-body">
+  <div class="quote">한국인은 다른 식민지의 야만적이거나 완전히 개화하지 못한 민족과는 달리 독서를 하는 문화에 속해 있으며 감히 문명인에 뒤지지 않는다. 옛날부터 전해져 오는 역사서들이 많으며, 또한 새롭게 저술된 것도 적지 않다. …… 이러한 역사 서적이 인심을 홀리는 해독은 진실로 이루 말할 수 없을 것이다. …… <span class="u">옛 역사를 금지하는 것 대신, 공명 적확(的確)한 역사서를 만드는 것이 지름길</span>이며, 효과가 더욱 현저해질 것이다. 이것이 조선반도사의 편찬이 필요한 주된 이유이다.</div>
+  <div class="src">– 조선 총독부 조선사 편수회, 「조선사 편수회 사업 개요」</div>
+ </div></details>
+
+ <details class="jr" id="a-s2-jr3"><summary><span class="jr-tag">자료 3</span>일제의 한국사 왜곡에 맞선 한국사 연구<span class="star"></span><span class="jr-hint">눌러서 펼치기</span><span class="jr-caret">▼</span></summary><div class="jr-body">
+  <div class="sub-jr"><h5>❶ 민족주의 사학</h5>
+   <div class="quote">옛 사람이 이르기를, 나라는 없어질 수 있으나 역사는 없어질 수 없다고 하였으니, 그것은 나라는 형체이고 역사는 정신이기 때문이다. 이제 나라의 형체는 허물어졌으나, 정신만이라도 오로지 남아 있을 수 없단 말인가. 이것이 내가 역사를 쓰는 까닭이다. 정신이 살아서 없어지지 않으면 형체도 부활할 때가 있을 것이다.</div>
+   <div class="src">– 박은식, 『<span class="u">한국통사</span>』</div>
+   <div class="cap">▲ 박은식</div></div>
+  <div class="sub-jr"><h5>❷ 사회 경제 사학</h5>
+   <div class="quote">우리 조선의 역사적 발전의 전 과정은 가령 지리적 조건, 인종학적 골상, 문화 형태의 외형적 특징 등 다소의 차이는 인정되더라도, 외관적인 소위 특수성은 다른 문화 민족의 역사적 발전 법칙과 구별되어야 하는 독자적인 것이 아니며, 세계사적·일원론적인 역사 법칙에 의하여 다른 제 민족과 거의 동일한 발전 과정을 거쳐 온 것이다. 그 발전 과정의 빠름과 느림, 각 문화의 특수한 모습의 짙고 옅음은 결코 본질적인 특수성이 아니다.</div>
+   <div class="src">– 백남운, 『조선사회경제사』</div>
+   <div class="cap">▲ 백남운</div></div>
+  <div class="note"><b>ⓘ</b> 박은식은 『한국통사』와 『한국독립운동지혈사』에서 역사를 통해 <b>국혼</b>을 간직해야 독립을 이룰 수 있다고 주장하였다. 백남운은 『조선사회경제사』에서 한국사가 <b>세계사의 보편적 발전 법칙</b>에 따라 발전해 왔음을 강조하였다.</div>
+ </div></details>
+
+ <h2 class="section-title" id="a-s2-religion">종교계의 민족 운동과 문학 · 예술의 변화</h2>
+ <div class="def-box"><b>종교계</b> 일제의 탄압과 회유 속에서도 <b>천도교, 대종교, 천주교, 개신교, 불교, 원불교</b>를 믿는 종교인들은 다양한 민족 운동과 사회 운동을 끊임없이 전개하였다.</div>
+ <div class="factor-grid">
+  <div class="factor-card purple"><h4>1920년대</h4>사회주의 사상이 유입되면서 계급 모순을 비판하는 <span class="hl">신경향파 문학(프로 문학)</span>이 등장<br><span class="gloss">노동자와 농민 등의 해방을 목적으로 삼는 계몽 문학</span></div>
+  <div class="factor-card teal"><h4>1930년대 이후</h4><b>이육사, 윤동주</b> 등이 일제의 식민 통치에 대한 <b>저항 의식</b>을 담은 문학 작품 발표</div>
+ </div>
+
+ <h2 class="section-title">확인 학습</h2>
+ <div class="m-practice-wrap"><a class="m-practice" target="_top" href="../../../cloud.html?s=history&amp;u=%EB%AF%BC%EC%A1%B1%20%EB%AC%B8%ED%99%94%20%EC%88%98%ED%98%B8%20%EC%9A%B4%EB%8F%99"><span class="m-practice-ico" aria-hidden="true"></span><span class="m-practice-txt"><b>이 부분 문제는 무한 문제에서 풀어요</b><small>민족 문화 수호 운동 · 16문제 · O/X·객관식·고난도</small></span><span class="m-practice-go">무한 문제로 풀기 →</span></a></div><div hidden style="display:none" data-moved-to-bank class="quiz-section" id="quiz-panel-2"></div>
+</section>
+
+<!-- ================= TAB 3 : Ⅰ-04 소단원 3 ================= -->
+<section class="tab-panel" id="panel-3">
+ <div class="unit-banner">Ⅰ-04 사회·문화의 변화와 대중 운동 › 소단원 3</div>
+ <div class="so-head"><span class="so-num">3</span><span class="so-title">대중 운동의 전개</span><span class="tab-pg">p.48–51</span></div>
+ <div class="goal"><b>학습 목표</b> | 일제 강점기에 전개된 대중 운동의 양상을 운동 주체별로 설명할 수 있다.</div>
+ <div class="jr-toolbar"><button onclick="toggleAllJr(3,true)">자료 모두 펼치기</button><button onclick="toggleAllJr(3,false)">모두 접기</button></div>
+
+ <h2 class="section-title" id="a-s3-new">새롭게 떠오르는 사회층</h2>
+ <div class="flow-row">
+  <div class="flow-item">개항 이후 서양의 기술, 제도, 지식 도입 → 한국 사회 변화</div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-item">3·1 운동 전후 <b>다양한 사상의 유입</b> 가속화 → 새로운 사회 세력 등장</div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-item hi">'<b>평등</b>', '<b>균등</b>'이라는 이름 아래 자신과 타인의 권리 주장 → <b>농민·노동조합</b>과 같은 일상적인 조직</div>
+ </div>
+
+ <h2 class="section-title" id="a-s3-farmer">농민 운동</h2>
+ <p>조선 총독부가 <b>지주 중심의 농업 정책</b>을 실시한 결과 농민의 생활은 갈수록 어려워졌다. 농민들은 지주의 가혹한 수탈에 저항하여 소작 <span class="hl">쟁의</span><span class="gloss">지주나 소작인 또는 사용자와 근로자 사이에서 일어나는 분쟁</span>를 일으켰다.</p>
+ <div class="table-wrap"><table class="cmp-table green-th"><thead><tr><th style="width:150px">시기</th><th>내용</th></tr></thead><tbody>
+  <tr><td>1920년대</td><td>소작료 인하, <span class="u">소작권 이동 반대 등을 주장하는 생존권 투쟁</span>의 성격<br>대표: <span class="u">암태도 소작 쟁의</span>(<span class="k">1923</span>)</td></tr>
+  <tr><td>1920년대 중후반 이후</td><td>쌀값 폭락 + 지주들의 세금 부담 증가 → 지주들이 소작료를 올리거나 여러 부담을 소작농에게 떠넘김 → 소작 쟁의 <b>급증</b> → 조선 총독부는 소작 쟁의에 대한 <b>탄압 강화</b></td></tr>
+  <tr><td>회유책</td><td>지주와 분쟁이 있을 때 소작인이 관청에 조정을 요청하도록 하는 <span class="u">조선 소작 조정령</span> 제정(<span class="k">1932</span>)<br>→ 소작 쟁의는 줄었으나, 조정이 <b>지주에 유리</b>하게 이루어져 농민의 처지는 개선되지 않음</td></tr>
+ </tbody></table></div>
+ <div class="cap">▲ 힘겹게 소작료를 내는 소작인과 편하게 사는 지주(『동아일보』, 1924. 11. 28.)</div>
+
+ <h2 class="section-title" id="a-s3-labor">노동 운동</h2>
+ <div class="table-wrap"><table class="cmp-table"><thead><tr><th style="width:150px">시기</th><th>내용</th></tr></thead><tbody>
+  <tr><td>1920년대</td><td>식민지 공업화 진전 → 노동자 수 증가<br>한국인 노동자: <b>장시간·저임금</b> 노동 + 일본인 감독의 횡포와 학대<br>→ 원산 지역 노동자들이 <b>일본인 감독 파면, 최저 임금제</b> 등을 요구하며 대규모 파업(<span class="u">원산 총파업</span>, <span class="k">1929</span>)</td></tr>
+  <tr><td>1930년대</td><td><span class="u">대공황</span>의 영향 → 노동 조건 악화, 생활이 더욱 어려워짐 → 파업 증가<br>사회주의자들의 <span class="u">혁명적 노동조합 운동</span>과 연계 → 강경한 모습<br>경찰의 강력한 탄압 → 조직적인 저항 점차 위축</td></tr>
+ </tbody></table></div>
+ <div class="def-box"><b>1930년대 농민·노동 운동</b> 생존권 투쟁에 그치지 않고 <b>항일 투쟁의 성격</b>을 띠었다. 그러나 일제의 가혹한 탄압으로 모두 침체되었다. 이러한 가운데 일부 노동 현장에서 <b>폭력적 저항</b>이 나타나기도 하였고, 농민들은 <b>공출 반대나 징용 거부</b> 등의 움직임을 보였다.</div>
+ <div class="cap">▲ 을밀대 위에서 농성을 벌이는 강주룡 — 1931년 평양 고무 공장 파업에서 여성 노동자 강주룡은 사용자의 일방적인 임금 삭감에 항의하여 을밀대에 올라가 농성을 벌였다.</div>
+
+ <details class="jr" id="a-s3-jr1"><summary><span class="jr-tag">자료 1</span>소작 쟁의와 노동 쟁의<span class="jr-hint">눌러서 펼치기</span><span class="jr-caret">▼</span></summary><div class="jr-body">
+  <div class="sub-jr"><h5>❶ 소작 쟁의 발생 건수</h5>
+   <svg class="chart" viewBox="0 0 600 300" role="img" aria-label="소작 쟁의 발생 건수와 참가 인원">
+<text x="62.0" y="22.0" font-family="'Noto Sans KR',sans-serif" font-size="10.5" font-weight="400" fill="#475569" text-anchor="end">(명)</text>
+<text x="538.0" y="22.0" font-family="'Noto Sans KR',sans-serif" font-size="10.5" font-weight="400" fill="#475569" text-anchor="start">(건)</text>
+<line x1="70" y1="250.0" x2="530" y2="250.0" stroke="#e2e8f0"/>
+<text x="64.0" y="254.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">0</text>
+<line x1="70" y1="230.9" x2="530" y2="230.9" stroke="#e2e8f0"/>
+<text x="64.0" y="234.9" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">1,000</text>
+<line x1="70" y1="192.7" x2="530" y2="192.7" stroke="#e2e8f0"/>
+<text x="64.0" y="196.7" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">3,000</text>
+<line x1="70" y1="154.5" x2="530" y2="154.5" stroke="#e2e8f0"/>
+<text x="64.0" y="158.5" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">5,000</text>
+<line x1="70" y1="116.4" x2="530" y2="116.4" stroke="#e2e8f0"/>
+<text x="64.0" y="120.4" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">7,000</text>
+<line x1="70" y1="78.2" x2="530" y2="78.2" stroke="#e2e8f0"/>
+<text x="64.0" y="82.2" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">9,000</text>
+<line x1="70" y1="40.0" x2="530" y2="40.0" stroke="#e2e8f0"/>
+<text x="64.0" y="44.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">11,000</text>
+<text x="536.0" y="254.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="start">0</text>
+<text x="536.0" y="234.9" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="start">20</text>
+<text x="536.0" y="196.7" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="start">60</text>
+<text x="536.0" y="158.5" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="start">100</text>
+<text x="536.0" y="120.4" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="start">140</text>
+<text x="536.0" y="82.2" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="start">180</text>
+<text x="536.0" y="44.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="start">220</text>
+<line x1="70" y1="250" x2="530" y2="250" stroke="#94a3b8"/>
+<rect x="99.0" y="224.2" width="34" height="25.8" rx="4" fill="#2563eb" opacity=".8"/>
+<text x="120.0" y="218.2" font-family="'Noto Sans KR',sans-serif" font-size="11.5" font-weight="700" fill="#2563eb" text-anchor="start">27</text>
+<text x="116.0" y="266.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1921</text>
+<rect x="191.0" y="93.5" width="34" height="156.5" rx="4" fill="#2563eb" opacity=".8"/>
+<text x="212.0" y="87.5" font-family="'Noto Sans KR',sans-serif" font-size="11.5" font-weight="700" fill="#2563eb" text-anchor="start">164</text>
+<text x="208.0" y="266.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1924</text>
+<rect x="283.0" y="164.1" width="34" height="85.9" rx="4" fill="#2563eb" opacity=".8"/>
+<text x="304.0" y="158.1" font-family="'Noto Sans KR',sans-serif" font-size="11.5" font-weight="700" fill="#2563eb" text-anchor="start">90</text>
+<text x="300.0" y="266.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1930</text>
+<rect x="375.0" y="148.8" width="34" height="101.2" rx="4" fill="#2563eb" opacity=".8"/>
+<text x="396.0" y="142.8" font-family="'Noto Sans KR',sans-serif" font-size="11.5" font-weight="700" fill="#2563eb" text-anchor="start">106</text>
+<text x="392.0" y="266.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1934</text>
+<rect x="467.0" y="221.4" width="34" height="28.6" rx="4" fill="#2563eb" opacity=".8"/>
+<text x="488.0" y="215.4" font-family="'Noto Sans KR',sans-serif" font-size="11.5" font-weight="700" fill="#2563eb" text-anchor="start">30</text>
+<text x="484.0" y="266.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1938</text>
+<polyline fill="none" stroke="#be185d" stroke-width="2.2" points="116.0,193.4 208.0,117.7 300.0,58.4 392.0,171.5 484.0,224.5"/>
+<circle cx="116.0" cy="193.4" r="4.5" fill="#fff" stroke="#be185d" stroke-width="2.2"/>
+<text stroke="#fff" stroke-width="3.5" paint-order="stroke" x="90.0" y="184.4" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#be185d" text-anchor="middle">2,967</text>
+<circle cx="208.0" cy="117.7" r="4.5" fill="#fff" stroke="#be185d" stroke-width="2.2"/>
+<text stroke="#fff" stroke-width="3.5" paint-order="stroke" x="182.0" y="108.7" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#be185d" text-anchor="middle">6,929</text>
+<circle cx="300.0" cy="58.4" r="4.5" fill="#fff" stroke="#be185d" stroke-width="2.2"/>
+<text stroke="#fff" stroke-width="3.5" paint-order="stroke" x="274.0" y="49.4" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#be185d" text-anchor="middle">10,037</text>
+<circle cx="392.0" cy="171.5" r="4.5" fill="#fff" stroke="#be185d" stroke-width="2.2"/>
+<text stroke="#fff" stroke-width="3.5" paint-order="stroke" x="366.0" y="162.5" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#be185d" text-anchor="middle">4,113</text>
+<circle cx="484.0" cy="224.5" r="4.5" fill="#fff" stroke="#be185d" stroke-width="2.2"/>
+<text stroke="#fff" stroke-width="3.5" paint-order="stroke" x="458.0" y="215.5" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#be185d" text-anchor="middle">1,338</text>
+<text x="530.0" y="282.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">(년)</text>
+</svg><div class="legend-row"><span><i style="width:14px;height:10px;border-radius:3px;background:var(--c-2563eb);display:inline-block"></i>쟁의 건수(오른쪽 눈금, 건)</span><span><i style="width:14px;height:3px;background:var(--c-be185d);display:inline-block"></i>참가 인원(왼쪽 눈금, 명)</span></div>
+   <div class="src">– 『최근 조선의 치안 상황』(1938)</div></div>
+  <div class="sub-jr"><h5>❷ 노동 쟁의 발생 건수</h5>
+   <svg class="chart" viewBox="0 0 600 300" role="img" aria-label="노동 쟁의 발생 건수와 참가 인원">
+<text x="62.0" y="22.0" font-family="'Noto Sans KR',sans-serif" font-size="10.5" font-weight="400" fill="#475569" text-anchor="end">(명)</text>
+<text x="538.0" y="22.0" font-family="'Noto Sans KR',sans-serif" font-size="10.5" font-weight="400" fill="#475569" text-anchor="start">(건)</text>
+<line x1="70" y1="250.0" x2="530" y2="250.0" stroke="#e2e8f0"/>
+<text x="64.0" y="254.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">0</text>
+<line x1="70" y1="197.5" x2="530" y2="197.5" stroke="#e2e8f0"/>
+<text x="64.0" y="201.5" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">5,000</text>
+<line x1="70" y1="145.0" x2="530" y2="145.0" stroke="#e2e8f0"/>
+<text x="64.0" y="149.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">10,000</text>
+<line x1="70" y1="92.5" x2="530" y2="92.5" stroke="#e2e8f0"/>
+<text x="64.0" y="96.5" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">15,000</text>
+<line x1="70" y1="40.0" x2="530" y2="40.0" stroke="#e2e8f0"/>
+<text x="64.0" y="44.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">20,000</text>
+<text x="536.0" y="254.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="start">0</text>
+<text x="536.0" y="201.5" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="start">50</text>
+<text x="536.0" y="149.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="start">100</text>
+<text x="536.0" y="96.5" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="start">150</text>
+<text x="536.0" y="44.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="start">200</text>
+<line x1="70" y1="250" x2="530" y2="250" stroke="#94a3b8"/>
+<rect x="110.5" y="164.9" width="34" height="85.1" rx="4" fill="#16a34a" opacity=".8"/>
+<text x="131.5" y="158.9" font-family="'Noto Sans KR',sans-serif" font-size="11.5" font-weight="700" fill="#16a34a" text-anchor="start">81</text>
+<text x="127.5" y="266.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1920</text>
+<rect x="225.5" y="192.2" width="34" height="57.8" rx="4" fill="#16a34a" opacity=".8"/>
+<text x="246.5" y="186.2" font-family="'Noto Sans KR',sans-serif" font-size="11.5" font-weight="700" fill="#16a34a" text-anchor="start">55</text>
+<text x="242.5" y="266.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1925</text>
+<rect x="340.5" y="82.0" width="34" height="168.0" rx="4" fill="#16a34a" opacity=".8"/>
+<text x="361.5" y="76.0" font-family="'Noto Sans KR',sans-serif" font-size="11.5" font-weight="700" fill="#16a34a" text-anchor="start">160</text>
+<text x="357.5" y="266.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1930</text>
+<rect x="455.5" y="71.5" width="34" height="178.5" rx="4" fill="#16a34a" opacity=".8"/>
+<text x="476.5" y="65.5" font-family="'Noto Sans KR',sans-serif" font-size="11.5" font-weight="700" fill="#16a34a" text-anchor="start">170</text>
+<text x="472.5" y="266.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1935</text>
+<polyline fill="none" stroke="#be185d" stroke-width="2.2" points="127.5,201.7 242.5,190.2 357.5,50.8 472.5,122.0"/>
+<circle cx="127.5" cy="201.7" r="4.5" fill="#fff" stroke="#be185d" stroke-width="2.2"/>
+<text stroke="#fff" stroke-width="3.5" paint-order="stroke" x="101.5" y="192.7" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#be185d" text-anchor="middle">4,599</text>
+<circle cx="242.5" cy="190.2" r="4.5" fill="#fff" stroke="#be185d" stroke-width="2.2"/>
+<text stroke="#fff" stroke-width="3.5" paint-order="stroke" x="216.5" y="181.2" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#be185d" text-anchor="middle">5,700</text>
+<circle cx="357.5" cy="50.8" r="4.5" fill="#fff" stroke="#be185d" stroke-width="2.2"/>
+<text stroke="#fff" stroke-width="3.5" paint-order="stroke" x="331.5" y="41.8" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#be185d" text-anchor="middle">18,972</text>
+<circle cx="472.5" cy="122.0" r="4.5" fill="#fff" stroke="#be185d" stroke-width="2.2"/>
+<text stroke="#fff" stroke-width="3.5" paint-order="stroke" x="446.5" y="113.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#be185d" text-anchor="middle">12,189</text>
+<text x="530.0" y="282.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">(년)</text>
+</svg><div class="legend-row"><span><i style="width:14px;height:10px;border-radius:3px;background:var(--c-16a34a);display:inline-block"></i>쟁의 건수(오른쪽 눈금, 건)</span><span><i style="width:14px;height:3px;background:var(--c-be185d);display:inline-block"></i>참가 인원(왼쪽 눈금, 명)</span></div>
+   <div class="src">– 『최근 조선의 치안 상황』(1938)</div></div>
+ </div></details>
+
+ <details class="jr" id="a-s3-jr2"><summary><span class="jr-tag">자료 2</span>암태소작인회 결의 내용<span class="jr-hint">눌러서 펼치기</span><span class="jr-caret">▼</span></summary><div class="jr-body">
+  <div class="quote">1. 소작료는 논 4할, 밭 3할로 할 것<br>2. 이러한 소작료에 불응하는 지주에게는 소작료를 내지 말 것<br>3. 지주와의 분규가 해결이 안 되면 파작(罷作)을 단행할 것<br>4. 1리 이상 소작료 운반 운임은 지주가 부담할 것<br>5. 마름은 부인할 것</div>
+  <div class="src">– 『동아일보』, 1923. 12. 11.</div>
+  <div class="cap">▼ 암태도 소작인 항쟁 기념탑(전남 신안)</div>
+  <div class="note"><b>ⓘ</b> 암태도의 최대 지주였던 <span class="k">문재철</span>은 수확의 6~8할을 소작료로 수취하였다. 문재철은 암태소작인회의 결의 내용을 거부하였고, 결국 소작인회와 충돌하였다. 이는 소작 쟁의로 이어져 전국적으로 주목을 받았고, 암태도 소작 쟁의는 언론, 여론의 전국적인 지지에 힘입어 <b>승리</b>할 수 있었다.</div>
+ </div></details>
+
+ <details class="jr" id="a-s3-jr3"><summary><span class="jr-tag">자료 3</span>원산 총파업<span class="jr-hint">눌러서 펼치기</span><span class="jr-caret">▼</span></summary><div class="jr-body">
+  <div class="quote">원산 총파업의 이유를 생각해 보면, …… 작년(1928) 8월부터 진행된 노동 쟁의의 연속이다. 그러나 그때에는 단순하게 임금을 인상하는 것을 요구하였다. …… 임금 인상은 되었으나 공장주 측은 노동 시간을 연장하였다. 노동자 측에서는 최저 임금제, 해고 수당 제정, 사상자에 대한 위자료 지급을 요구하였다. 그러나 공장주 측에서는 이를 거부하였고, 결국 쟁의가 되고 말았다.</div>
+  <div class="src">– 『조선일보』, 1929. 1. 23.</div>
+  <div class="cap">▲ 총파업을 전개하는 노동자들(1929)</div>
+  <div class="note"><b>ⓘ</b> 원산 총파업은 원산의 한 석유회사에서 <b>일본인 감독이 한국인 노동자를 구타한 사건</b>에서 시작되었다. 조선 총독부의 탄압에도 불구하고 노동자들은 일본인 감독 파면, 근무 조건 개선 등을 요구하며 대규모 파업을 진행하였다.</div>
+ </div></details>
+
+ <h2 class="section-title" id="a-s3-youth">청년 운동과 소년 운동의 활성화</h2>
+ <div class="factor-grid">
+  <div class="factor-card blue"><h4>청년 운동</h4>3·1 운동 이후 전국에 수백 개의 <b>청년회</b> — 지방 유지나 명망가 중심, 청년들의 수양과 계몽이 주된 목표<br>강연회, 토론회, 야학 등을 개최 → 농촌 개량 및 민중 계몽<br><span class="k">1924</span>년 <span class="u">민족주의</span> 계열과 <span class="u">사회주의</span> 계열의 연합 단체인 <span class="k">조선 청년 총동맹</span> 출범 → 청년들의 단결, 식민지 교육 비판, 농민·노동 운동 지원</div>
+  <div class="factor-card orange"><h4>소년 운동</h4>대부분의 아이들은 교육을 받지 못하고 공장이나 농촌에서 장시간 노동<br>1920년대 <span class="k">방정환</span>을 중심으로 <span class="u">천도교 소년회</span>가 조직되면서 본격 전개(<span class="k">1921</span>)<br>• 아이들을 인격체로 대하자는 의미로 '<b>어린이</b>'라는 용어 사용<br>• <span class="u">5월 1일을 어린이날</span>로 정하고 기념행사, 소년 보호 운동<br>• 잡지 『<span class="u">어린이</span>』 창간(동요·동화), 어린이 연구 단체 <b>색동회</b> 창립</div>
+ </div>
+ <div class="cap">▲ 방정환 — 어린이 운동의 선구자로, 최초의 아동 잡지인 『어린이』를 창간하였다.</div>
+
+ <h2 class="section-title" id="a-s3-women">사회적 차별에 맞선 여성 운동</h2>
+ <p>개항 이후 <span class="hl">민권 의식</span><span class="dim">(1권 140쪽 참고)</span>이 확대되면서 여성은 사회의 주요한 주체로 성장하였다.</p>
+ <div class="factor-grid">
+  <div class="factor-card green"><h4>1920년대 여성 계몽 단체</h4>목표: 여성의 해방과 사회적 지위 향상<br><span class="u">조선 여자 청년회</span>, <span class="u">조선 여자 교육회</span>, <span class="u">조선 여자 기독교 청년회 연합회</span> 등<br>→ 여성의 계몽과 교육 중시, <b>문맹 퇴치, 생활 개선</b></div>
+  <div class="factor-card rose"><h4>사회주의 계열</h4><span class="u">사회주의 사상의 영향</span>을 받은 여성들<br>목표: <b>계급 투쟁과 여성 해방</b><br>→ <span class="u">조선 여성 동우회</span> 결성</div>
+ </div>
+ <div class="rule-card">
+  <p><span class="k">1927</span>년 '<b>조선 여자의 공고한 단결과 지위 향상</b>'을 목적으로 내세우며 여성계의 <b>민족 협동 전선</b> 단체를 지향하는 <span class="k">근우회</span> 결성</p>
+  <ul class="clean">
+   <li>목표: 여성에 대한 사회적·법률적 차별 철폐, 봉건적 인습과 미신 타파, 조혼 폐지와 결혼의 자유, 농촌 부인의 경제적 이익 옹호</li>
+   <li>→ 여성만의 운동을 넘어 <b>사회 개혁</b>을 지향</li>
+   <li>기관지 『<span class="u">근우</span>』 발간, 순회 강연 → 여성의 의식 향상</li>
+  </ul>
+ </div>
+
+ <h2 class="section-title" id="a-s3-hyeong">평등한 사회를 꿈꾼 형평 운동</h2>
+ <div class="flow-row">
+  <div class="flow-item"><span class="yr">배경</span>신분제는 <b>갑오개혁</b> 이후 법적으로 철폐<br>그러나 <b>백정</b>에 대한 사회적 차별 여전 — 호적에 따로 표시, 자녀는 학교에 입학하지 못하거나 차별 대우</div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-item hi"><span class="yr"><span class="k">1923</span></span>일부 백정들이 <span class="k">진주</span>에서 <span class="k">조선 형평사</span> 조직<br>사회적 편견과 차별 철폐, 인간으로서 권리와 존엄성 회복 → <span class="u">형평 운동</span></div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-item"><span class="yr">전개·결과</span>전국에 지사와 분사 → 다른 사회 운동 단체와 협력하여 <b>항일 민족 운동</b>도 전개<br>내부적 갈등과 일제의 탄압으로 약화</div>
+ </div>
+ <div class="cap">▲ 형평사 제6회 전 조선 정기 대회 포스터</div>
+
+ <details class="jr" id="a-s3-jr4"><summary><span class="jr-tag">자료 4</span>다양한 대중 운동의 전개<span class="jr-hint">눌러서 펼치기</span><span class="jr-caret">▼</span></summary><div class="jr-body">
+  <div class="sub-jr"><h5>❶ 조선 청년 총동맹 발족 선언</h5>
+   <div class="quote">서울 청년회와 조선 청년 연합회의 주최로 조선 청년 총동맹을 발족하는 것은 이미 보도한 바이다. 그동안 선언과 강령 등을 만들고 오는 4월 21일에 조선 청년 총동맹 창립 대회를 열 예정이다.<br><br><b>선언</b><br>우리는 계급적 대단결을 목표로 청년 운동의 통일을 위해 조선 청년 총동맹을 발족한다.<br><br><b>강령</b><br>• 대중 중심의 신사회 건설을 기도함<br>• 조선 민중 해방 운동의 선구가 되기를 기함</div>
+   <div class="src">– 『동아일보』, 1924. 3. 2.</div></div>
+  <div class="sub-jr"><h5>❷ 소년 운동 기초 조항</h5>
+   <div class="quote">1. 어린이를 재래의 윤리적 압박으로부터 해방하여 그들에 대한 인격적 대우를 허락하게 하라.<br>2. 어린이를 재래의 경제적 압박으로부터 해방하여 만 14세 이하의 그들에 대한 무상, 유상 노동을 폐지하게 하라.<br>3. 어린이들이 고요히 배우고 즐거이 놀기에 족한 각양의 가정, 사회적 시설을 행하게 하라.</div>
+   <div class="src">– 『동아일보』, 1923. 5. 1.</div>
+   <div class="cap">► 어린이날 포스터(독립기념관)</div></div>
+  <div class="sub-jr"><h5>❸ 근우회 행동 강령</h5>
+   <div class="quote">1. 여성에 대한 사회적·법률적 일체 차별 철폐<br>2. 일체 봉건적 인습과 미신 타파<br>3. 조혼 폐지 및 결혼의 자유<br>4. 인신매매 및 공창 폐지<br>5. 농민 부인의 경제적 이익 옹호<br>6. 부인 노동의 임금 차별 철폐 및 산전, 산후 임금 지불<br>7. 부인 및 소년공의 위험 노동 및 야업(夜業) 폐지</div>
+   <div class="src">– 『동아일보』, 1929. 7. 25.</div>
+   <div class="cap">▲ 근우회 창립 총회(상)와 기관지 『근우』 창간호 표지(하)</div></div>
+  <div class="sub-jr"><h5>❹ 조선 형평사 설립 취지문</h5>
+   <div class="quote">공평은 사회의 근본이고 애정은 인류의 근본 강령이다. 우리는 계급을 타파하고 모욕적 칭호를 폐지하여 교육을 장려하며, 우리도 참다운 인간이 되는 것을 기대하는 것이 본사(本社)의 취지이다. 지금까지 백정은 어떠한 지위와 어떠한 압박을 받아 왔던가? …… 지위와 조건 문제 등을 제기할 여유도 없이 일전의 압박에 대해 절규하는 것이 우리의 실정이다. 이 문제를 선결하는 것이야말로 우리의 급무이다.</div>
+   <div class="src">– 『조선일보』, 1923. 4. 30.</div>
+   <div class="cap">▼ 형평 운동 기념탑(경남 진주)</div></div>
+ </div></details>
+
+ <h2 class="section-title">확인 학습</h2>
+ <div class="m-practice-wrap"><a class="m-practice" target="_top" href="../../../cloud.html?s=history&amp;u=%EB%8C%80%EC%A4%91%20%EC%9A%B4%EB%8F%99%EC%9D%98%20%EC%A0%84%EA%B0%9C"><span class="m-practice-ico" aria-hidden="true"></span><span class="m-practice-txt"><b>이 부분 문제는 무한 문제에서 풀어요</b><small>대중 운동의 전개 · 16문제 · O/X·객관식·고난도</small></span><span class="m-practice-go">무한 문제로 풀기 →</span></a></div><div hidden style="display:none" data-moved-to-bank class="quiz-section" id="quiz-panel-3"></div>
+</section>
+
+<!-- ================= TAB 4 : Ⅰ-05 단원 개관 ================= -->
+<section class="tab-panel" id="panel-4">
+ <div class="unit-banner">Ⅰ-05 독립 국가 건설 노력 · 한눈에 보기</div>
+
+ <h2 class="section-title" id="a-o5-years">핵심 연도 줄 세우기</h2>
+ <div class="yr-strip">
+  <span class="ys cr"><b>1938</b>조선 의용대 창설</span><span class="ys cr"><b>1940</b>한국 광복군 총사령부</span><span class="ys cb"><b>1941</b>임시 정부 건국 강령 · 조선 의용대 화북 지대</span><span class="ys cb"><b>1942</b>화북 조선 독립 동맹 · 조선 의용군</span><span class="ys cb"><b>1943</b>인도·미얀마 전선 파견 · 카이로 회담</span><span class="ys cb"><b>1944</b>조선 건국 동맹</span><span class="ys co"><b>1945. 2.</b>얄타 회담</span><span class="ys co"><b>1945. 7.</b>포츠담 회담</span>
+ </div>
+
+ <h2 class="section-title" id="a-o5-sum">소단원별 한 장 요약</h2>
+ <div class="sum-grid">
+  <div class="sum-card cr" id="a-o5-s1">
+   <div class="sum-head"><span class="sum-no">1</span><div><div class="sum-era">교과서 p.55 자료</div><h3>한국 광복군과 조선 의용대</h3></div><button class="stage-link" onclick="goTo(5)">탭 열기 →</button></div>
+   <div class="sum-block"><h5>한국 광복군</h5><p>1940년 9월 17일 <b>충칭</b>에서 총사령부 창설, 총사령관 <b>지청천</b> — 중화민국 국민과 합작, 연합국의 일원으로 항전</p></div>
+   <div class="sum-block"><h5>조선 의용대의 이동</h5>
+    <div class="mini-flow"><span>창설 1938. 10.</span>→<span>화북 지대 1941. 7.</span>→<span>호가장 전투 1941. 12.</span>→<span>조선 의용군 1942. 7.</span>→<span>옌안 1944. 4.</span></div>
+    <p>북쪽으로 가지 않은 <b>김원봉</b> 등 일부 → 한국 광복군 합류</p></div>
+   <div class="sum-block"><h5>결집</h5><p>김원봉의 <b>조선 민족 혁명당</b> 임시 정부 참여 → 군무부장, 한국 광복군 부사령관</p></div>
+   <div class="sum-key"><span>지청천</span><span>중국 관내 최초 한인 무장 부대</span><span>김원봉 합류</span></div>
+  </div>
+
+  <div class="sum-card cb" id="a-o5-s2">
+   <div class="sum-head"><span class="sum-no">2</span><div><div class="sum-era">1940년대</div><h3>독립 국가 수립을 위한 노력</h3></div><button class="stage-link" onclick="goTo(6)">탭 열기 →</button></div>
+   <table class="mini"><tbody>
+    <tr><td>임시 정부<br>(충칭)</td><td><b>한국 광복군</b>: 인도·미얀마 전선, 제2 지대 + <b>OSS</b> → 국내 진공 작전(<b>독수리 작전</b>) 실행 ✕<br>건국 강령(1941, 조소앙 <b>삼균주의</b>)</td></tr>
+    <tr><td>화북<br>(옌안)</td><td><b>화북 조선 독립 동맹</b>(1942) → <b>조선 의용군</b>(팔로군과 함께)</td></tr>
+    <tr><td>만주·연해주</td><td>동북 항일 연군 → 교도려(소련군 88 독립 보병 여단) → <b>조선 공작단 위원회</b></td></tr>
+    <tr><td>국내</td><td><b>여운형</b>의 <b>조선 건국 동맹</b>(1944) — 민족 통일 전선, 노농군 계획</td></tr>
+   </tbody></table>
+   <div class="sum-block"><h5>전후 처리 회담</h5><p><b>카이로</b>(1943, 한국 독립 최초 보장) → <b>얄타</b>(1945. 2., 소련 참전) → <b>포츠담</b>(1945. 7., 카이로 선언 재확인)</p></div>
+   <div class="sum-key"><span>독수리 작전</span><span>삼균주의</span><span>조선 건국 동맹</span><span>카이로 선언</span></div>
+  </div>
+ </div>
+
+ <h2 class="section-title" id="a-o5-compare">1940년대 독립운동 세력 비교</h2>
+ <div class="table-wrap"><table class="cmp-table purple-th"><thead><tr><th style="width:110px">구분</th><th style="background:var(--primary)">대한민국 임시 정부</th><th style="background:var(--rose)">화북 조선 독립 동맹</th><th style="background:var(--green)">조선 건국 동맹</th></tr></thead><tbody>
+  <tr><td>지역</td><td>충칭</td><td>화북(옌안)</td><td>국내(경성)</td></tr>
+  <tr><td>결성·중심</td><td>—</td><td>1942, 한국인 사회주의자 (조선 의용대 화북 지대 포함)</td><td>1944, 여운형 (사회주의+민족주의)</td></tr>
+  <tr><td>군사 조직</td><td>한국 광복군</td><td>조선 의용군</td><td>노농군·유격대 편성 계획</td></tr>
+  <tr><td>건국 강령</td><td>1941, 조소앙의 삼균주의 — 정치·경제·교육의 균등</td><td>1942, 보통 선거 민주 정권, 8시간 노동제, 의무 교육제, 토지 분배</td><td>1944, 반일 통일 전선, 민주주의 원칙의 국가, 노농 대중 해방</td></tr>
+  <tr><td>연대</td><td>화북 조선 독립 동맹·만주 항일 유격대와 연대 꾀함</td><td>—</td><td>화북 조선 독립 동맹과 연대, 충칭 임시 정부에 특사 파견 시도</td></tr>
+ </tbody></table></div>
+ <div class="warning"><b>결과</b> 민족 운동 세력은 일제의 패망을 앞두고 연대를 꾀하였으나 <b>갑작스러운 일제의 항복</b>으로 성과를 거두지 못하였다.</div>
+</section>
+
+<!-- ================= TAB 5 : Ⅰ-05 소단원 1 (p.55 자료) ================= -->
+<section class="tab-panel" id="panel-5">
+ <div class="unit-banner">Ⅰ-05 독립 국가 건설 노력 › 소단원 1 자료</div>
+ <div class="so-head"><span class="so-num">1</span><span class="so-title">한국 광복군과 조선 의용대</span><span class="tab-pg">p.55</span></div>
+ <div class="tip"><b>안내</b> 이 탭은 받은 사진 가운데 소단원 1의 <b>자료 페이지(p.55)</b>만으로 구성하였습니다. 아래 요약은 세 자료에 실린 내용만 정리한 것입니다.</div>
+ <div class="jr-toolbar"><button onclick="toggleAllJr(5,true)">자료 모두 펼치기</button><button onclick="toggleAllJr(5,false)">모두 접기</button></div>
+
+ <h2 class="section-title" id="a-s5-kla">한국 광복군의 창설</h2>
+ <div class="rule-card">
+  <ul class="clean">
+   <li>근거: 대한민국 원년(<b>1919</b>)에 정부가 공포한 <b>군사 조직법</b></li>
+   <li>중화민국 총통 <b>장제스</b>의 특별 허락으로 중화민국 영토 내에서 조직</li>
+   <li>대한민국 22년(<b>1940</b>) <b>9월 17일</b> 한국 광복군 총사령부 창설 — 총사령관 <span class="k">지청천</span></li>
+   <li>목표: 중화민국 국민과 합작하여 두 나라의 독립 회복, 공동의 적인 일본 제국주의자 타도 → <b>연합국의 일원</b>으로 항전</li>
+  </ul>
+ </div>
+
+ <details class="jr" id="a-s5-jr1"><summary><span class="jr-tag">자료 1</span>한국 광복군 선언문<span class="jr-hint">눌러서 펼치기</span><span class="jr-caret">▼</span></summary><div class="jr-body">
+  <div class="quote">대한민국 임시 정부는 대한민국 원년(1919)에 정부가 공포한 군사 조직법에 의거하여 중화민국 총통 장제스 원수의 특별 허락으로 중화민국 영토 내에서 광복군을 조직하고 대한민국 22년(1940) 9월 17일 한국 광복군 총사령부를 창설함을 선언한다. 한국 광복군은 중화민국 국민과 합작하여 우리 두 나라의 독립을 회복하고자 공동의 적인 일본 제국주의자들을 타도하기 위하여 연합국의 일원으로 항전을 계속한다.</div>
+  <div class="src">– 국사편찬위원회, 『대한민국 임시 정부 자료집 10』</div>
+  <div class="cap">► 한국 광복군 총사령관 지청천 · ▲ 한국 광복군 총사령부 성립 전례식(1940)</div>
+ </div></details>
+
+ <h2 class="section-title" id="a-s5-uiyong">조선 의용대의 이동</h2>
+ <div class="def-box"><b>조선 의용대</b> 중국 관내 <b>최초의 한인 무장 부대</b>. 북쪽으로 이동하지 않은 <b>김원봉</b>을 비롯한 일부 세력은 대한민국 임시 정부의 <b>한국 광복군에 합류</b>하였다.</div>
+
+ <details class="jr" id="a-s5-jr2"><summary><span class="jr-tag">자료 2</span>조선 의용대 이동 경로<span class="jr-hint">눌러서 펼치기</span><span class="jr-caret">▼</span></summary><div class="jr-body">
+  <div class="stage-row">
+   <div class="stage-item" style="border-top:4px solid var(--rose)"><h4>1938. 10.</h4>조선 의용대 창설<br>(한커우·우한)</div>
+   <div class="stage-item" style="border-top:4px solid var(--orange)"><h4>1941. 7.</h4>조선 의용대 화북 지대 결성</div>
+   <div class="stage-item" style="border-top:4px solid var(--orange)"><h4>1941. 12.</h4>호가장 전투</div>
+   <div class="stage-item hi" style="border-top:4px solid var(--purple)"><h4>1942. 7.</h4>조선 의용군으로 개편</div>
+   <div class="stage-item" style="border-top:4px solid var(--primary)"><h4>1944. 4.</h4>옌안으로 이동</div>
+  </div>
+  <div class="table-wrap"><table class="cmp-table"><tbody>
+   <tr><td style="width:150px">북쪽 이동 경로</td><td>한커우(우한) → 라오허커우 → 뤄양 → 타이항산·스자좡 일대 → 옌안 → 광복 이후 만주, 북한 이동</td></tr>
+   <tr><td>남은 세력</td><td>일부 → 충칭에서 <b>한국 광복군 합류</b> (김원봉)</td></tr>
+  </tbody></table></div>
+  <div class="cap map">지도는 표시된 시기·장소만 정리</div>
+  <div class="quote">조선 의용대는 중국 관내 최초의 한인 무장 부대야. 북쪽으로 이동하지 않은 김원봉을 비롯한 일부 세력은 대한민국 임시 정부의 한국 광복군에 합류했어.</div>
+ </div></details>
+
+ <h2 class="section-title" id="a-s5-mh">조선 민족 혁명당의 임시 정부 참여</h2>
+ <div class="flow-row">
+  <div class="flow-item"><span class="yr">배경</span>아시아·태평양 전쟁 → 민족 운동 세력의 <b>결집</b> 더욱 절실<br>중국 국민당 정부가 <b>임시 정부 승인</b> 문제에 관심</div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-item hi"><span class="yr">참여</span><b>김원봉</b>이 조선 민족 혁명당을 이끌고 임시 정부에 참여</div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-item"><span class="yr">직책</span>임시 정부 <b>군무부장</b>, 한국 광복군 <b>부사령관</b></div>
+ </div>
+
+ <details class="jr" id="a-s5-jr3"><summary><span class="jr-tag">자료 3</span>조선 민족 혁명당의 임시 정부 참여 선언<span class="jr-hint">눌러서 펼치기</span><span class="jr-caret">▼</span></summary><div class="jr-body">
+  <div class="quote">유럽에서는 반파시즘 망명 정부가 잇따라 각 민주 국가로부터 인정과 지원을 받고 있으며, 반일의 기치를 높이 세우고 있는 한국 정부 역시 각국으로부터 인정받기를 희망하고 있다. 특히 항일의 중국 정부가 적극적인 지원을 준비하고 있다. 이러한 해외의 지원은 조선 혁명에 큰 힘을 실어 줄 것이다. 따라서 본 당은 임시 정부에 가입하여 임시 정부의 활동을 적극 지원하고 임시 정부가 조선을 대표할 수 있는 기구로 발전하도록 규모 확대를 주장한다.</div>
+  <div class="src">– 국사편찬위원회, 『대한민국 임시 정부 자료집 37』</div>
+  <div class="note"><b>ⓘ</b> 아시아·태평양 전쟁이 일어나자 민족 운동 세력의 결집은 더욱 절실해졌고, 중국 국민당 정부는 임시 정부 승인 문제에 관심을 보이기 시작하였다. 이러한 상황에서 김원봉은 조선 민족 혁명당을 이끌고 임시 정부에 참여하여 임시 정부 군무부장과 한국 광복군 부사령관이 되었다.</div>
+ </div></details>
+
+ <h2 class="section-title">확인 학습</h2>
+ <div class="m-practice-wrap"><a class="m-practice" target="_top" href="../../../cloud.html?s=history&amp;u=%ED%95%9C%EA%B5%AD%20%EA%B4%91%EB%B3%B5%EA%B5%B0%EA%B3%BC%20%EC%A1%B0%EC%84%A0%20%EC%9D%98%EC%9A%A9%EB%8C%80"><span class="m-practice-ico" aria-hidden="true"></span><span class="m-practice-txt"><b>이 부분 문제는 무한 문제에서 풀어요</b><small>한국 광복군과 조선 의용대 · 10문제 · O/X·객관식·고난도</small></span><span class="m-practice-go">무한 문제로 풀기 →</span></a></div><div hidden style="display:none" data-moved-to-bank class="quiz-section" id="quiz-panel-5"></div>
+</section>
+
+<!-- ================= TAB 6 : Ⅰ-05 소단원 2 ================= -->
+<section class="tab-panel" id="panel-6">
+ <div class="unit-banner">Ⅰ-05 독립 국가 건설 노력 › 소단원 2</div>
+ <div class="so-head"><span class="so-num">2</span><span class="so-title">독립 국가 수립을 위한 노력</span><span class="tab-pg">p.56–59</span></div>
+ <div class="goal"><b>학습 목표</b> | 민족 운동 세력이 독립 국가 수립을 위해 기울인 노력에 대해 말할 수 있다.</div>
+ <div class="jr-toolbar"><button onclick="toggleAllJr(6,true)">자료 모두 펼치기</button><button onclick="toggleAllJr(6,false)">모두 접기</button></div>
+
+ <h2 class="section-title" id="a-s6-kla">한국 광복군과 연합군의 공동 작전</h2>
+ <p>아시아·태평양 전쟁이 전개되면서 대한민국 임시 정부는 한국 광복군의 활동을 강화하고, <b>연합군과 공동 작전</b>을 전개하고자 하였다.</p>
+ <div class="factor-grid">
+  <div class="factor-card blue"><h4>인도·미얀마 전선 (1943)</h4><b>영국군</b>의 요청에 따라 일부 대원을 <span class="u">인도·미얀마 전선</span>에 파견<br>→ <b>포로 심문, 정보 수집</b> 등</div>
+  <div class="factor-card rose"><h4>국내 진공 작전 (1945)</h4>시안에 주둔한 한국 광복군 <span class="u">제2 지대</span>가 미국 전략 정보국(<span class="k">OSS</span>)과 협력하여 국내 진공 작전(<span class="u">독수리 작전</span>) 수립<br>→ 훈련을 마치고 실행 직전 일본 항복으로 <span class="u">실행에 옮기지 못함</span></div>
+ </div>
+ <div class="cap">▲ 국내 진공 작전을 준비하는 제2 지대 대원들</div>
+
+ <details class="jr" id="a-s6-jr1"><summary><span class="jr-tag">자료 1</span>한국 광복군의 활동<span class="jr-hint">눌러서 펼치기</span><span class="jr-caret">▼</span></summary><div class="jr-body">
+  <div class="table-wrap"><table class="cmp-table"><thead><tr><th style="width:170px">지도 표시</th><th>위치·내용</th></tr></thead><tbody>
+   <tr><td>한국 광복군 총사령부</td><td>충칭</td></tr>
+   <tr><td>제1 지대</td><td>충칭 부근</td></tr>
+   <tr><td>제2 지대</td><td>시안</td></tr>
+   <tr><td>제3 지대</td><td>푸양</td></tr>
+   <tr><td>훈련반 개설 예정지</td><td>청두</td></tr>
+   <tr><td>인도·미얀마 전선 파견</td><td>1943</td></tr>
+   <tr><td>한국 광복군의 국내 진공 작전</td><td>1945 (중국 → 황해 → 한반도)</td></tr>
+  </tbody></table></div>
+  <div class="cap map">지도는 표시된 부대·장소만 표로 정리</div>
+  <div class="cap">▲ 미국 전략 정보국(OSS)으로부터 무전 교육을 받는 한국 광복군(1945) · ◄ 인도·미얀마 전선에 파견된 한국 광복군(1943)</div>
+ </div></details>
+
+ <details class="jr" id="a-s6-jr2"><summary><span class="jr-tag">자료 2</span>민족 운동가가 사용하였던 암호<span class="jr-hint">눌러서 펼치기</span><span class="jr-caret">▼</span></summary><div class="jr-body">
+  <div class="quote" style="font-family:inherit">일제 강점기에는 수많은 민족 운동가가 점조직 형태로 활동하며 연락을 주고받았다. 민족 운동가는 정보를 비밀리에 공유하기 위해 암호를 사용하였고, 다양한 한글 암호가 개발되어 실전에 활용되었다.<br>한국 광복군에 소속되어 있던 김우전은 미국 전략 정보국(OSS) 본부에서 광복군 무전 기술 교재와 한글 암호표를 만들었다. 그는 한글의 자음과 모음, 받침을 구분하여 자음과 모음을 두 자리 숫자로, 받침은 00을 앞에 붙여 네 자리로 표시하였다. 또한 자음은 11~24로, 쌍자음은 25~29로, 모음은 30~39로, 복합 모음은 40~49로 대체하였다. W-K 한글 암호표는 전파를 이용한 무전용 암호로, 하고 싶은 말을 모두 전달할 수 있었다. 모든 숫자를 붙여쓰기 때문에 상당히 길지만, 네 자리씩 끊어서 읽으면 암호를 쉽게 해독할 수 있다.</div>
+  <div class="table-wrap"><table class="cmp-table" style="text-align:center"><thead><tr><th colspan="2">자음</th><th colspan="2">모음</th><th colspan="2">받침</th></tr></thead><tbody>
+   <tr><td>ㄱ 11</td><td>ㅋ 21</td><td>ㅏ 30</td><td>ㅐ 40</td><td>ㄱ 0011</td><td>ㅋ 0021</td></tr>
+   <tr><td>ㄴ 12</td><td>ㅌ 22</td><td>ㅑ 31</td><td>ㅔ 41</td><td>ㄴ 0012</td><td>ㅌ 0022</td></tr>
+   <tr><td>ㄷ 13</td><td>ㅍ 23</td><td>ㅓ 32</td><td>ㅖ 42</td><td>ㄷ 0013</td><td>ㅍ 0023</td></tr>
+   <tr><td>ㄹ 14</td><td>ㅎ 24</td><td>ㅕ 33</td><td>ㅚ 43</td><td>ㄹ 0014</td><td>ㅎ 0024</td></tr>
+   <tr><td>ㅁ 15</td><td>ㄲ 25</td><td>ㅗ 34</td><td>ㅟ 44</td><td>ㅁ 0015</td><td>ㄲ 0025</td></tr>
+   <tr><td>ㅂ 16</td><td>ㅆ 26</td><td>ㅛ 35</td><td>ㅢ 45</td><td>ㅂ 0016</td><td>ㅆ 0026</td></tr>
+   <tr><td>ㅅ 17</td><td>ㄸ 27</td><td>ㅜ 36</td><td>ㅘ 46</td><td>ㅅ 0017</td><td>ㄵ 0027</td></tr>
+   <tr><td>ㅇ 18</td><td>ㅃ 28</td><td>ㅠ 37</td><td>ㅙ 47</td><td>ㅇ 0018</td><td>ㄶ 0028</td></tr>
+   <tr><td>ㅈ 19</td><td>ㅉ 29</td><td>ㅡ 38</td><td>ㅝ 48</td><td>ㅈ 0019</td><td>ㄺ 0029</td></tr>
+   <tr><td>ㅊ 20</td><td></td><td>ㅣ 39</td><td>ㅞ 49</td><td>ㅊ 0010</td><td>ㄻ 0030</td></tr>
+  </tbody></table></div>
+  <div class="src">– 『한국 독립운동과 암호』(2017)</div>
+  <div class="cap">▲ W-K 한글 암호표</div>
+ </div></details>
+
+ <h2 class="section-title" id="a-s6-north">화북 조선 독립 동맹과 동북 항일 연군</h2>
+ <div class="factor-grid">
+  <div class="factor-card rose"><h4>화북 조선 독립 동맹 (1942)</h4>화북 지역에서 활동하던 <b>한국인 사회주의자</b> → 조선 의용대 화북 지대 대원을 포함한 여러 세력 통합<br>→ <b>민족 통일 전선</b>을 지향하는 <span class="k">화북 조선 독립 동맹</span> 결성<br>조선 의용대 화북 지대를 개편하여 <b>조선 의용군</b> 조직<br>• 중국 공산당 <span class="u">팔로군</span>과 함께 적진 침투, 병사 모집, 선전, 첩보 활동<br>• <b>항일 군정 학교</b>를 세워 혁명가 양성</div>
+  <div class="factor-card teal"><h4>동북 항일 연군</h4>만주 지역 항일 투쟁 → 일제의 공격으로 <b>1930년대 후반</b> 세력 크게 약화<br>제2차 세계 대전으로 독일과 전쟁하던 <b>소련</b>이 일본과의 충돌을 피하기 위해 이동 요구 → <b>연해주</b>로 이동<br>소련의 지도 → <b>동북 항일 연군 교도려</b>(소련군 88 독립 보병 여단)로 재편<br>일제 패망이 가까워지자 한국의 독립을 준비하기 위해 <span class="u">조선 공작단 위원회</span> 조직</div>
+ </div>
+ <div class="cap">▲ 선전 표어를 적고 있는 조선 의용군 대원 — "중국과 한국 양 민족이 연합하여 일본 강도를 타도하자!"</div>
+
+ <h2 class="section-title" id="a-s6-gm">조선 건국 동맹의 조직</h2>
+ <div class="rule-card">
+  <p>일제의 패망이 가까워지자 <span class="k">여운형</span>은 국내에서 비밀리에 <span class="k">조선 건국 동맹</span>을 조직(<span class="k">1944</span>)</p>
+  <ul class="clean">
+   <li>사회주의 계열 + 민족주의 계열 인사가 함께 참여한 <span class="u">민족 통일 전선</span> 단체</li>
+   <li>전국 10개 도에 지방 조직 → 무장 봉기를 일으켜 임시 정부 수립 구상</li>
+   <li>1945년 3월 <b>군사 위원회</b> 조직, <span class="hl">노농군</span><span class="gloss">노동자와 농민 중심의 군대</span>과 유격대 편성 계획 → 일제의 패망으로 실현 ✕</li>
+  </ul>
+ </div>
+ <div class="cap">▲ 조선 건국 동맹 모임(1945) — 서울 종로 경운동에 있던 삼광한의원에서 가졌던 모임의 모습이다.</div>
+
+ <h2 class="section-title" id="a-s6-plan">새로운 국가 건설을 위한 모색과 연대 시도</h2>
+ <p>일제의 패망을 앞두고 국내외 민족 운동 세력은 <span class="hl">건국 강령</span><span class="gloss">건국의 기본 방향과 원칙</span>을 제정하고 새로운 국가 건설을 준비하였다.</p>
+ <div class="table-wrap"><table class="cmp-table"><thead><tr><th style="width:160px">세력</th><th>건국 강령의 내용</th></tr></thead><tbody>
+  <tr><td>대한민국 임시 정부</td><td><span class="k">1941</span>년 <span class="k">조소앙</span>의 <span class="u">삼균주의</span>를 바탕으로 건국 강령 발표</td></tr>
+  <tr><td><span class="u">화북 조선 독립 동맹</span></td><td>보통 선거에 따른 민주 정권의 수립, 8시간 노동제, 의무 교육제, 토지 분배</td></tr>
+  <tr><td>조선 건국 동맹</td><td>반일 통일 전선 결성, 민주주의 원칙에 바탕을 둔 국가의 건설, 노농 대중의 해방</td></tr>
+ </tbody></table></div>
+ <div class="def-box"><b>＊ 삼균주의</b> 정치·경제·교육의 균등을 확립하고 개인과 개인, 민족과 민족, 국가와 국가 간의 평등을 실현하여 민주 국가를 건설하려는 이념이다.</div>
+ <div class="subsection-title" id="a-s6-unite">단일 항일 전선을 위한 연대</div>
+ <ul class="clean">
+  <li><b>임시 정부</b> → 화북 조선 독립 동맹, 만주의 항일 유격대와 연대를 꾀함</li>
+  <li><b>조선 건국 동맹</b> → 화북 조선 독립 동맹과 연대, 충칭의 임시 정부에 특사 파견 시도</li>
+ </ul>
+
+ <details class="jr" id="a-s6-jr3"><summary><span class="jr-tag">자료 3</span>민족 운동 세력의 연대 노력<span class="jr-hint">눌러서 펼치기</span><span class="jr-caret">▼</span></summary><div class="jr-body">
+  <div class="table-wrap"><table class="cmp-table"><thead><tr><th>세력 (위치)</th><th>군사 조직</th><th>지도에 표시된 연대 시도</th></tr></thead><tbody>
+   <tr><td>대한민국 임시 정부 (충칭)</td><td>한국 광복군</td><td>화북 조선 독립 동맹에 <b>장건상 파견</b> / 조선 공작단 위원회 쪽으로 특사 파견 시도</td></tr>
+   <tr><td>화북 조선 독립 동맹 (옌안)</td><td>조선 의용군</td><td>—</td></tr>
+   <tr><td>조선 공작단 위원회 (하바롭스크)</td><td>한인 유격대</td><td>—</td></tr>
+   <tr><td>조선 건국 동맹 (경성)</td><td>노농군 준비</td><td>화북 조선 독립 동맹에 <b>김태준·이상백 파견</b> / 임시 정부에 특사 파견 시도</td></tr>
+  </tbody></table></div>
+  <div class="cap map">지도는 세력과 연결선만 표로 정리</div>
+  <div class="sub-jr"><h5>국내외 동포에게 고함</h5>
+   <div class="quote">우리는 각 혁명 단체, 각 무장 대오, 전체 전사 및 국내외 동포와 더불어 전 민족적 통일 전선을 확대하면서 일본 제국주의자에 대한 전면적 무장 투쟁을 전개하기 위하여 최대의 노력을 하기로 결심한다.</div>
+   <div class="src">– 『백범 김구 전집 5』</div></div>
+  <div class="note"><b>ⓘ</b> 민족 운동 세력은 일제의 패망을 앞두고 연대를 꾀하였으나 갑작스러운 일제의 항복으로 성과를 거두지 못하였다.</div>
+ </div></details>
+
+ <h2 class="section-title" id="a-s6-talks">연합국의 전후 처리 회담</h2>
+ <div class="table-wrap"><table class="cmp-table purple-th"><thead><tr><th style="width:120px">회담</th><th style="width:150px">참가국</th><th>내용</th></tr></thead><tbody>
+  <tr><td><span class="u">카이로</span> 회담<br>(<span class="k">1943</span>)</td><td>미국, 영국, 중국</td><td>제1차 세계 대전 이후 일본이 점령한 영토 몰수, 만주와 타이완 등 중국 반환, 일본의 무조건 항복 → <b>카이로 선언</b><br>→ 연합국이 <b>최초로 한국의 독립을 보장</b>한 결의</td></tr>
+  <tr><td><span class="u">얄타</span> 회담<br>(<span class="k">1945</span>. <span class="k">2</span>.)</td><td>미국, 영국, 소련<br>(소련의 얄타)</td><td>독일의 분할 점령 합의, 독일과의 싸움이 끝나면 <b>3개월 이내</b>에 소련이 아시아·태평양 전쟁에 <b>참전</b>하기로 결정</td></tr>
+  <tr><td><span class="u">포츠담</span> 회담<br>(<span class="k">1945</span>. <span class="k">7</span>.)</td><td>미국, 영국, 소련<br>(독일의 포츠담)</td><td>독일이 항복하고 난 후 → <b>카이로 선언의 내용 재확인</b>, 일본의 무조건 항복 요구</td></tr>
+ </tbody></table></div>
+ <div class="warning"><b>카이로 선언의 한계</b> 연합국은 우리 민족의 독립을 최초로 보장하였다. 그러나 즉시 독립이 아닌 '<b>적절한 시기를 거쳐(in due course)</b>'라고 하여 임시 정부가 <b>항의 성명</b>을 발표하기도 하였다.</div>
+ <div class="cap">▲ 카이로 회담에 참가한 3국의 지도자 — 장제스, 루스벨트, 처칠</div>
+
+ <h2 class="section-title" id="a-s6-theme">주제 탐구 — 민족 운동 세력의 독립 국가 건설 구상</h2>
+ <p>국내외 민족 운동 세력은 일제의 패망을 앞두고 건국 강령을 발표하였다. 이들이 활동하는 지역과 이념은 달랐지만, 건국 강령에 담은 목표는 <b>크게 다르지 않았다</b>.</p>
+ <details class="jr" id="a-s6-jr4"><summary><span class="jr-tag">자료 4</span>세 건국 강령 (주제 탐구 p.59)<span class="jr-hint">눌러서 펼치기</span><span class="jr-caret">▼</span></summary><div class="jr-body">
+  <div class="sub-jr"><h5>❶ 대한민국 임시 정부 건국 강령(1941)</h5>
+   <div class="quote"><b>제1장 총강</b><br>6. 보통 선거 제도를 시행하여 정권(政權)을 균등히 하고, 국유 제도를 채용하여 이권(利權)을 균등히 하고, 공비 교육으로써 학권(學權)을 균등히 하며, 국내외에 대하여 민족 자결의 권리를 보장하여 민족과 민족, 국가와 국가의 불평등을 깨뜨려 없앨 것이며, 이를 국내에 실현하면 특권 계급이 곧 소멸하고 …….</div></div>
+  <div class="sub-jr"><h5>❷ 화북 조선 독립 동맹 건국 강령(1942)</h5>
+   <div class="quote">1. 전 국민의 보통 선거에 의한 민주 정권을 수립한다.<br>2. 언론·출판·집회·신앙·사상·태업의 자유를 확보한다.<br>6. 조선에 있는 일본 제국주의자의 일체 자산 및 토지를 몰수하고, 일본 제국주의자와 밀접한 관계에 있는 대기업을 국영으로 귀속하며 토지 분배를 실행한다.<br>9. 국민의 의무 교육 제도를 실시하고 그 경비는 국가가 부담한다.</div></div>
+  <div class="sub-jr"><h5>❸ 조선 건국 동맹 건국 강령(1944)</h5>
+   <div class="quote">1. 각인 각파를 대동단결하여 거국일치로 일본 제국주의의 모든 세력을 몰아내고 조선 민족의 자유와 독립을 회복할 것<br>2. 반추축 세력과 협력하여 대일 연합 전선을 형성하고 조선의 완전한 독립을 저해하는 일체의 반동 세력을 박멸할 것<br>3. 건설 부면에 있어서 일체의 시정을 민주주의적 원칙에 의거하고 특히 노농 대중의 해방에 치중할 것</div></div>
+ </div></details>
+ <div class="table-wrap"><table class="cmp-table"><thead><tr><th style="width:170px">공통점 정리</th><th>세 강령에 공통으로 보이는 국가의 모습</th></tr></thead><tbody>
+  <tr><td>정치</td><td>보통 선거에 의한 <b>민주 공화국</b> (임시 정부 6조, 독립 동맹 1조, 건국 동맹 3조)</td></tr>
+  <tr><td>경제</td><td>일제 자산·대기업의 국유화(국영), 토지 분배 등 <b>경제적 균등</b> (임시 정부 6조 '이권 균등', 독립 동맹 6조)</td></tr>
+  <tr><td>교육</td><td>국가가 경비를 대는 교육 (임시 정부 '공비 교육', 독립 동맹 9조 '의무 교육')</td></tr>
+ </tbody></table></div>
+
+ <h2 class="section-title">확인 학습</h2>
+ <div class="m-practice-wrap"><a class="m-practice" target="_top" href="../../../cloud.html?s=history&amp;u=%EB%8F%85%EB%A6%BD%20%EA%B5%AD%EA%B0%80%20%EC%88%98%EB%A6%BD%EC%9D%84%20%EC%9C%84%ED%95%9C%20%EB%85%B8%EB%A0%A5"><span class="m-practice-ico" aria-hidden="true"></span><span class="m-practice-txt"><b>이 부분 문제는 무한 문제에서 풀어요</b><small>독립 국가 수립을 위한 노력 · 16문제 · O/X·객관식·고난도</small></span><span class="m-practice-go">무한 문제로 풀기 →</span></a></div><div hidden style="display:none" data-moved-to-bank class="quiz-section" id="quiz-panel-6"></div>
+</section>
+
+<!-- ================= TAB 7 : Ⅱ-04 단원 개관 ================= -->
+<section class="tab-panel" id="panel-7">
+ <div class="unit-banner">Ⅱ-04 경제 성장과 사회 변화 · 한눈에 보기</div>
+
+ <h2 class="section-title" id="a-oe-years">핵심 연도 줄 세우기</h2>
+ <div class="yr-strip">
+  <span class="ys cr"><b>1962</b>제1차 경제 개발 5개년 계획</span><span class="ys cr"><b>1963~1977</b>서독 광부 파견</span><span class="ys cr"><b>1964</b>수출 1억 달러</span><span class="ys cb"><b>1970</b>전태일 · 새마을 운동</span><span class="ys cb"><b>1971</b>수출 10억 달러 · 광주 대단지 사건</span><span class="ys cr"><b>1973</b>제1차 석유 파동</span><span class="ys cb"><b>1976~1978</b>함평 고구마 사건</span><span class="ys cr"><b>1977</b>수출 100억 달러</span><span class="ys cr"><b>1979</b>제2차 석유 파동 · YH 무역 사건</span><span class="ys co"><b>1982</b>경제 사회 발전 5개년 계획</span><span class="ys co"><b>1980년대 중반</b>3저 호황</span><span class="ys co"><b>1996</b>OECD 가입</span>
+ </div>
+
+ <h2 class="section-title" id="a-oe-sum">소단원별 한 장 요약</h2>
+ <div class="sum-grid">
+  <div class="sum-card cr" id="a-oe-s1">
+   <div class="sum-head"><span class="sum-no">1</span><div><div class="sum-era">1960~1990년대</div><h3>경제 성장에 따른 산업 구조의 변화</h3></div><button class="stage-link" onclick="goTo(8)">탭 열기 →</button></div>
+   <table class="mini"><tbody>
+    <tr><td>1·2차<br>(1962~1971)</td><td>원조 경제 → <b>자립 경제</b>, 수출 위주 / 한일 국교 정상화(청구권 자금), <b>베트남 특수</b>, 서독 광부·간호사 / 울산·포항 공단, <b>마산 자유 무역 지구</b>, 고속 국도 / 연평균 9.2% 성장, 외채 부담</td></tr>
+    <tr><td>3·4차<br>(1972~1981)</td><td><b>중화학 공업</b>(철강·조선·전자·석유화학 등), 포항제철 / <b>제1차 석유 파동</b>(1973) → <b>중동 건설 붐</b>으로 극복 → <b>1977 수출 100억 달러</b>, '한강의 기적'</td></tr>
+    <tr><td>1980년대</td><td>과잉·중복 투자 + 제2차 석유 파동(1979) → 불황 / 전두환 정부: 부실 기업 정리, <b>경제 사회 발전 5개년 계획</b> / <b>3저 호황</b>(저유가·저금리·저달러), 중산층 확대</td></tr>
+    <tr><td>구조적 어려움</td><td>1996 <b>OECD</b> 가입 / 재벌 중심·정경 유착, 대외 의존도, 노동 문제, 빈부·지역 격차</td></tr>
+   </tbody></table>
+   <div class="sum-key"><span>베트남 특수</span><span>중화학 공업</span><span>수출 100억 달러</span><span>3저 호황</span></div>
+  </div>
+
+  <div class="sum-card cb" id="a-oe-s2">
+   <div class="sum-head"><span class="sum-no">2</span><div><div class="sum-era">1960~1980년대</div><h3>경제 성장과 사회 갈등</h3></div><button class="stage-link" onclick="goTo(9)">탭 열기 →</button></div>
+   <table class="mini"><tbody>
+    <tr><td>노동</td><td>저임금 정책 → <b>전태일 분신</b>(1970) → 민주노동조합 → 박정희 정부 탄압 → <b>YH 무역 사건</b> → 부마 민주 항쟁 → 1980년대 중소기업 중심, 대학생 위장 취업</td></tr>
+    <tr><td>농업</td><td>저곡가 정책, 소득 격차 → <b>새마을 운동</b>(1970) / 한국 가톨릭 농민회 <b>함평 고구마 피해 보상 운동</b> → 추곡 수매 운동, 농협 민주화 운동, 농산물 수입 반대</td></tr>
+    <tr><td>도시</td><td><b>광주 대단지 사건</b>(1971), '달동네', 철거민</td></tr>
+    <tr><td>환경</td><td>중화학 공업화 → 공해 심각, 1970년대 후반 인식 확산, 경제 성장 우선에 밀림</td></tr>
+   </tbody></table>
+   <div class="sum-key"><span>전태일</span><span>새마을 운동</span><span>함평 고구마</span><span>광주 대단지</span></div>
+  </div>
+ </div>
+
+ <h2 class="section-title" id="a-oe-compare">경제 개발 5개년 계획 비교</h2>
+ <div class="table-wrap"><table class="cmp-table purple-th"><thead><tr><th style="width:120px">계획</th><th>목표·중점</th><th>주요 내용</th><th>성과·문제</th></tr></thead><tbody>
+  <tr><td>제1차<br>(1962~1966)</td><td>기간 산업과 사회 간접 자본 확충</td><td>외국 자금·기술 도입, 수출 위주 / 한일 국교 정상화, 베트남 특수, 서독 광부·간호사 파견</td><td>1964 수출 1억 달러</td></tr>
+  <tr><td>제2차<br>(1967~1971)</td><td>경공업 중심 수출 주도 정책 / 기계·철강·화학 공업 육성</td><td>울산·포항 공단, 마산 자유 무역 지구, 항만·댐·고속 국도</td><td>1971 수출 10억 달러 / (1·2차 10년간) 연평균 9.2% 성장, 외채 상환 부담, 기업 부도 위기</td></tr>
+  <tr><td>제3·4차<br>(1972~1981)</td><td>3차: 수출 주도형 중화학 공업화<br>4차: 자력 성장 산업 구조 확립</td><td>철강·비철금속·기계·조선·전자·석유화학 전략 업종 / 울산·거제 조선소, 포항제철 → 광양제철소 추진 / 구미·창원·여수 공업 단지, 원자력 발전소</td><td>제1차 석유 파동(1973) → 중동 건설 붐으로 극복 → 1977 수출 100억 달러<br>1978 과잉·중복 투자 + 1979 제2차 석유 파동 → 불황</td></tr>
+ </tbody></table></div>
+</section>
+
+<!-- ================= TAB 8 : Ⅱ-04 소단원 1 ================= -->
+<section class="tab-panel" id="panel-8">
+ <div class="unit-banner">Ⅱ-04 경제 성장과 사회 변화 › 소단원 1</div>
+ <div class="so-head"><span class="so-num">1</span><span class="so-title">경제 성장에 따른 산업 구조의 변화</span><span class="tab-pg">p.108–111</span></div>
+ <div class="goal"><b>학습 목표</b> | 경제 성장에 따른 산업의 변화를 파악할 수 있다.</div>
+ <div class="jr-toolbar"><button onclick="toggleAllJr(8,true)">자료 모두 펼치기</button><button onclick="toggleAllJr(8,false)">모두 접기</button></div>
+
+ <h2 class="section-title" id="a-e1-12">자립 경제를 위한 제1, 2차 경제 개발 5개년 계획</h2>
+ <div class="factor-grid">
+  <div class="factor-card blue"><h4>제1차 경제 개발 5개년 계획 (1962~)</h4><b>박정희 정부</b>: 원조 경제를 벗어나 <b>자립 경제</b>를 달성할 수 있는 기반 구축<br>• 외국을 통해 자금과 기술 도입 → <b>수출 위주</b>의 성장 전략<br>• 일본과 <b>국교 정상화</b> → 일본 자본과 청구권 자금 유입<br>• <b>베트남 전쟁 참전</b> → 베트남 특수<br>• 실업 문제 해소·외화 획득 → 인력난을 겪던 <b>서독에 광부와 간호사 파견</b></div>
+  <div class="factor-card green"><h4>제2차 경제 개발 5개년 계획</h4>기본 목표: 기계·철강·화학 공업 육성 → 산업 구조 근대화, 자립 경제 기반 확대<br>• <b>울산과 포항</b> 등지에 공단 조성 → 특정 공업 집중 육성<br>• <b>마산</b>에 자유 무역 지구 → 수출 촉진<br>• 항만, 댐, 고속 국도 건설 → 산업 인프라 확대</div>
+ </div>
+ <div class="factor-grid">
+  <div class="factor-card teal"><h4>성과</h4>경제 개발 계획이 추진된 10년간 <b>연평균 9.2%</b>의 높은 경제 성장률</div>
+  <div class="factor-card rose"><h4>문제</h4><b>외채 상환 부담</b> 증가, 한때 기업들이 <b>부도 위기</b>에 직면</div>
+ </div>
+
+ <details class="jr" id="a-e1-jr1"><summary><span class="jr-tag">자료 1</span>서독 탄광 파견 광부들의 삶<span class="jr-hint">눌러서 펼치기</span><span class="jr-caret">▼</span></summary><div class="jr-body">
+  <dl class="law">
+   <dt>질문</dt><dd>광산 노동이나 이런 것들에 대해서 얘기 좀 해 주세요.</dd>
+   <dt>답변</dt><dd>우리가 일했던 데가 …… 1미터가 안 돼 가지고 무릎 꿇고 한번 이제 그 안에 가면은 마칠 때까지 못 나오죠, 밖으로. 그런데 거기서 있으면서, 그 일을 못 한다고 슈타이거(Steiger, 갱부장)들이라고 하는 그 사람들이 와서 욕하고 다니지, 이거 일은 힘이 부쳐서 안 되지. 운 적이 한두 번이, 다 그랬을 거예요, 그때.</dd>
+   <dt>질문</dt><dd>근데 그 광산에서 일하는 게 군대 생활도 오래하시고, 월남전에도 가시고 그랬는데 전쟁에 간 것보다 더 어려웠습니까?</dd>
+   <dt>답변</dt><dd>육체적으로는 훨씬 힘들었죠. 육체적으로 그런 것이 힘들고.</dd>
+  </dl>
+  <div class="src">– 국사편찬위원회, 『파독광부 생애사』</div>
+  <div class="note"><b>ⓘ</b> 정부는 <b>1963년부터 1977년까지</b> 서독의 석탄 광산에 <b>8천여 명</b>의 광부를 보냈다. 이들이 고된 노동으로 벌어들인 돈은 고국의 가족이 살아가는 생활비이자 국가의 국제 수지를 개선하는 <b>외화벌이</b>였다.</div>
+ </div></details>
+
+ <h2 class="section-title" id="a-e1-34">중화학 공업 중심의 제3, 4차 경제 개발 5개년 계획</h2>
+ <div class="rule-card">
+  <p>목표: <b>중화학 공업</b>을 육성하고, <b>자력으로 성장할 산업 구조</b>를 확립</p>
+  <ul class="clean">
+   <li>전략 업종: <b>철강·비철금속·기계·조선·전자·석유화학</b></li>
+   <li>울산과 거제 등지에 <b>조선소</b>, <b>포항제철</b> 건립 → <b>광양제철소</b> 건립 추진</li>
+   <li>구미와 창원에 전자와 금속, 기계 / 여수에 석유화학 관련 공업 단지</li>
+   <li>경공업과 가공 무역 대신 <b>중화학 공업 제품이 수출을 주도</b> → 공업 구조 변화</li>
+   <li>공장은 주로 <b>경상도 일대</b>, <b>원자력 발전소</b>를 지어 전력 공급</li>
+  </ul>
+ </div>
+ <div class="flow-row">
+  <div class="flow-item"><span class="yr">위기</span>핵심 원자재의 대외 의존도가 높음 → <b>1973년 제1차 석유 파동</b>으로 큰 위기</div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-item"><span class="yr">극복</span>때마침 시작된 <b>중동 건설 붐</b>에 적극 합류</div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-item hi"><span class="yr">1977</span><b>수출 100억 달러</b> 달성 → <span class="hl">보릿고개</span>와 같은 사회 현상이 사라지고 <b>절대 빈곤 사회</b>에서 벗어남</div>
+ </div>
+ <div class="dim"><span class="gloss">보릿고개: 식량이 떨어져 햇보리가 나올 때까지 넘기기 힘든 기간</span></div>
+ <div class="def-box"><b>한강의 기적</b> 이러한 한국 경제의 성장을 서독의 '라인강의 기적'에 빗대 '한강의 기적'이라고 한다.</div>
+ <div class="cap">▲ 1977년 12월 광화문 네거리에 세워진 수출 100억 달러 달성 기념탑</div>
+
+ <details class="jr" id="a-e1-jr2"><summary><span class="jr-tag">자료 2</span>경제 개발 5개년 계획과 산업 구조의 변화<span class="star"></span><span class="jr-hint">눌러서 펼치기</span><span class="jr-caret">▼</span></summary><div class="jr-body">
+  <div class="sub-jr"><h5>❶ 경제 개발 5개년 계획과 수출</h5>
+   <div class="stage-row">
+    <div class="stage-item" style="border-top:4px solid var(--primary)"><h4>제1차(1962~1966)</h4>기간 산업과 사회 간접 자본 확충</div>
+    <div class="stage-item" style="border-top:4px solid var(--teal)"><h4>1964년</h4>수출 1억 달러 달성</div>
+    <div class="stage-item" style="border-top:4px solid var(--primary)"><h4>제2차(1967~1971)</h4>경공업 중심 수출 주도 정책 추진</div>
+    <div class="stage-item" style="border-top:4px solid var(--teal)"><h4>1971년</h4>수출 10억 달러 달성</div>
+    <div class="stage-item" style="border-top:4px solid var(--primary)"><h4>제3차(1972~1976)</h4>수출 주도형 중화학 공업화 추진</div>
+    <div class="stage-item hi" style="border-top:4px solid var(--rose)"><h4>1977년 <span class="star"></span></h4>수출 100억 달러 달성</div>
+    <div class="stage-item" style="border-top:4px solid var(--primary)"><h4>제4차(1977~1981)</h4>자력 성장 산업 구조 확립</div>
+   </div></div>
+  <div class="sub-jr"><h5>❷ 제1, 2, 3차 산업의 비중 변화</h5>
+   <svg class="chart" viewBox="0 0 600 290" role="img" aria-label="제1, 2, 3차 산업의 비중 변화">
+<text x="47.0" y="20.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">(%)</text>
+<line x1="55" y1="240.0" x2="560" y2="240.0" stroke="#e2e8f0"/>
+<text x="49.0" y="244.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">0</text>
+<line x1="55" y1="198.0" x2="560" y2="198.0" stroke="#e2e8f0"/>
+<text x="49.0" y="202.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">20</text>
+<line x1="55" y1="156.0" x2="560" y2="156.0" stroke="#e2e8f0"/>
+<text x="49.0" y="160.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">40</text>
+<line x1="55" y1="114.0" x2="560" y2="114.0" stroke="#e2e8f0"/>
+<text x="49.0" y="118.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">60</text>
+<line x1="55" y1="72.0" x2="560" y2="72.0" stroke="#e2e8f0"/>
+<text x="49.0" y="76.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">80</text>
+<line x1="55" y1="30.0" x2="560" y2="30.0" stroke="#e2e8f0"/>
+<text x="49.0" y="34.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">100</text>
+<rect x="75.5" y="140.7" width="60" height="99.3" fill="#16a34a"/>
+<text x="105.5" y="194.8" font-family="'Noto Sans KR',sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">47.3</text>
+<rect x="75.5" y="51.2" width="60" height="89.5" fill="#ea580c"/>
+<text x="105.5" y="100.4" font-family="'Noto Sans KR',sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">42.6</text>
+<rect x="75.5" y="30.0" width="60" height="21.2" fill="#2563eb"/>
+<text x="105.5" y="45.1" font-family="'Noto Sans KR',sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">10.1</text>
+<text x="105.5" y="257.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1953</text>
+<rect x="176.5" y="162.3" width="60" height="77.7" fill="#16a34a"/>
+<text x="206.5" y="205.7" font-family="'Noto Sans KR',sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">37.0</text>
+<rect x="176.5" y="64.4" width="60" height="97.9" fill="#ea580c"/>
+<text x="206.5" y="117.9" font-family="'Noto Sans KR',sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">46.6</text>
+<rect x="176.5" y="30.0" width="60" height="34.4" fill="#2563eb"/>
+<text x="206.5" y="51.7" font-family="'Noto Sans KR',sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">16.4</text>
+<text x="206.5" y="257.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1962</text>
+<rect x="277.5" y="183.9" width="60" height="56.1" fill="#16a34a"/>
+<text x="307.5" y="216.5" font-family="'Noto Sans KR',sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">26.7</text>
+<rect x="277.5" y="79.3" width="60" height="104.6" fill="#ea580c"/>
+<text x="307.5" y="136.1" font-family="'Noto Sans KR',sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">49.8</text>
+<rect x="277.5" y="30.0" width="60" height="49.3" fill="#2563eb"/>
+<text x="307.5" y="59.2" font-family="'Noto Sans KR',sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">23.5</text>
+<text x="307.5" y="257.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1972</text>
+<rect x="378.5" y="209.8" width="60" height="30.2" fill="#16a34a"/>
+<text x="408.5" y="229.4" font-family="'Noto Sans KR',sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">14.4</text>
+<rect x="378.5" y="92.0" width="60" height="117.8" fill="#ea580c"/>
+<text x="408.5" y="155.4" font-family="'Noto Sans KR',sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">56.1</text>
+<rect x="378.5" y="30.0" width="60" height="61.9" fill="#2563eb"/>
+<text x="408.5" y="65.5" font-family="'Noto Sans KR',sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">29.5</text>
+<text x="408.5" y="257.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1982</text>
+<rect x="479.5" y="221.7" width="60" height="18.3" fill="#16a34a"/>
+<text x="509.5" y="235.4" font-family="'Noto Sans KR',sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">8.7</text>
+<rect x="479.5" y="92.4" width="60" height="129.4" fill="#ea580c"/>
+<text x="509.5" y="161.6" font-family="'Noto Sans KR',sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">61.6</text>
+<rect x="479.5" y="30.0" width="60" height="62.4" fill="#2563eb"/>
+<text x="509.5" y="65.7" font-family="'Noto Sans KR',sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">29.7</text>
+<text x="509.5" y="257.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1990</text>
+<text x="560.0" y="274.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">(년)</text>
+</svg><div class="legend-row"><span><i style="width:14px;height:10px;border-radius:3px;background:var(--c-2563eb);display:inline-block"></i>광공업</span><span><i style="width:14px;height:10px;border-radius:3px;background:var(--c-ea580c);display:inline-block"></i>서비스업</span><span><i style="width:14px;height:10px;border-radius:3px;background:var(--c-16a34a);display:inline-block"></i>농림 어업</span></div>
+   <div class="src">– 『한국경제 반세기 정책자료집』(1995)</div></div>
+  <div class="sub-jr"><h5>❸ 공업 구조의 변화</h5>
+   <svg class="chart" viewBox="0 0 600 290" role="img" aria-label="공업 구조의 변화">
+<text x="47.0" y="20.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">(%)</text>
+<line x1="55" y1="240.0" x2="560" y2="240.0" stroke="#e2e8f0"/>
+<text x="49.0" y="244.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">0</text>
+<line x1="55" y1="198.0" x2="560" y2="198.0" stroke="#e2e8f0"/>
+<text x="49.0" y="202.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">20</text>
+<line x1="55" y1="156.0" x2="560" y2="156.0" stroke="#e2e8f0"/>
+<text x="49.0" y="160.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">40</text>
+<line x1="55" y1="114.0" x2="560" y2="114.0" stroke="#e2e8f0"/>
+<text x="49.0" y="118.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">60</text>
+<line x1="55" y1="72.0" x2="560" y2="72.0" stroke="#e2e8f0"/>
+<text x="49.0" y="76.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">80</text>
+<line x1="55" y1="30.0" x2="560" y2="30.0" stroke="#e2e8f0"/>
+<text x="49.0" y="34.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">100</text>
+<rect x="75.5" y="74.3" width="60" height="165.7" fill="#ea580c"/>
+<text x="105.5" y="161.7" font-family="'Noto Sans KR',sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">78.9</text>
+<rect x="75.5" y="30.0" width="60" height="44.3" fill="#2563eb"/>
+<text x="105.5" y="56.7" font-family="'Noto Sans KR',sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">21.1</text>
+<text x="105.5" y="257.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1953</text>
+<rect x="176.5" y="90.1" width="60" height="149.9" fill="#ea580c"/>
+<text x="206.5" y="169.5" font-family="'Noto Sans KR',sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">71.4</text>
+<rect x="176.5" y="30.0" width="60" height="60.1" fill="#2563eb"/>
+<text x="206.5" y="64.5" font-family="'Noto Sans KR',sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">28.6</text>
+<text x="206.5" y="257.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1962</text>
+<rect x="277.5" y="107.7" width="60" height="132.3" fill="#ea580c"/>
+<text x="307.5" y="178.3" font-family="'Noto Sans KR',sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">63.0</text>
+<rect x="277.5" y="30.0" width="60" height="77.7" fill="#2563eb"/>
+<text x="307.5" y="73.3" font-family="'Noto Sans KR',sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">37.0</text>
+<text x="307.5" y="257.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1972</text>
+<rect x="378.5" y="145.7" width="60" height="94.3" fill="#ea580c"/>
+<text x="408.5" y="197.4" font-family="'Noto Sans KR',sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">44.9</text>
+<rect x="378.5" y="30.0" width="60" height="115.7" fill="#2563eb"/>
+<text x="408.5" y="92.4" font-family="'Noto Sans KR',sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">55.1</text>
+<text x="408.5" y="257.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1982</text>
+<rect x="479.5" y="168.4" width="60" height="71.6" fill="#ea580c"/>
+<text x="509.5" y="208.7" font-family="'Noto Sans KR',sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">34.1</text>
+<rect x="479.5" y="30.0" width="60" height="138.4" fill="#2563eb"/>
+<text x="509.5" y="103.7" font-family="'Noto Sans KR',sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">65.9</text>
+<text x="509.5" y="257.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1990</text>
+<text x="560.0" y="274.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">(년)</text>
+</svg><div class="legend-row"><span><i style="width:14px;height:10px;border-radius:3px;background:var(--c-2563eb);display:inline-block"></i>중화학 공업</span><span><i style="width:14px;height:10px;border-radius:3px;background:var(--c-ea580c);display:inline-block"></i>경공업</span></div>
+   <div class="src">– 『한국경제 반세기 정책자료집』(1995)</div></div>
+ </div></details>
+
+ <details class="jr" id="a-e1-jr3"><summary><span class="jr-tag">자료 3</span>정책 담당자가 생각하는 수출 100억 달러의 의미<span class="jr-hint">눌러서 펼치기</span><span class="jr-caret">▼</span></summary><div class="jr-body">
+  <div class="quote">'100억 달러 수출'이 달성되면, 우리나라의 국력은 북한을 완전히 압도하게 되고, 국민의 생활이 북한 주민보다 월등히 윤택해진다. 또한 방위 산업을 비롯한 모든 중화학 공업이 북한을 능가해서 감히 6·25 전쟁과 같은 도발은 못하게 된다. 결과적으로 남의 자유 경제 체제가 북의 사회주의 체제보다 우월하다는 것이 입증되어, 남북한 간의 '체제의 경쟁'에서 완승하게 된다. 결국 '100억 달러 수출 과업'은 국가 원수의 통치 이념에 관계되는 사항이다. …… 우리나라가 중화학 공업을 건설한다는 것은 '남북 간의 경제전'에 돌입한다는 뜻이다. 이 전쟁에 패하면 패한 쪽의 체제는 무너지게 될 것이다.</div>
+  <div class="src">– 오원철, 『박정희는 어떻게 경제강국 만들었나』</div>
+ </div></details>
+
+ <h2 class="section-title" id="a-e1-3low">3저 호황과 산업 구조의 변화</h2>
+ <div class="flow-row">
+  <div class="flow-item"><span class="yr">불황</span><b>1978년</b> 중화학 공업의 과잉·중복 투자 + <b>1979년 제2차 석유 파동</b> → 물가 상승, 마이너스 경제 성장 → 국민 불만 → <b>박정희 정부의 위기</b></div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-item"><span class="yr">전두환 정부</span>물가 안정 위해 <b>금리 인하</b>, 중화학 공업 구조 조정 위해 <b>부실 기업 정리</b> / 성장 우선 정책 부분 수정 → <b>경제 사회 발전 5개년 계획</b></div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-item hi"><span class="yr">1980년대 중반</span>세계 경제의 <b>저유가·저금리·저달러</b> → 물가 안정, 수출 경쟁력 강화 → 고도 성장 (<b>3저 호황</b>)</div>
+ </div>
+ <div class="def-box"><b>＊ 경제 사회 발전 5개년 계획</b> 경제 개발에만 집중하지 않고 사회 전반에 나타난 문제까지 해결하기 위해 노력한다는 의미에서 <b>1982년</b>부터 '사회'를 추가하였다.</div>
+ <div class="factor-grid">
+  <div class="factor-card teal"><h4>변화</h4>1980년대 중반: 노동 집약적인 산업 → <b>반도체</b> 같은 첨단 산업과 <b>자동차, 선박</b> 등 기술 집약형 산업 중심으로 재편<br>국민의 생활 수준 향상, <b>중산층</b> 크게 확대</div>
+  <div class="factor-card rose"><h4>문제</h4>정부 주도 산업 구조 개편 → <b>재벌 중심</b>의 경제 구조 강화, <b>정경 유착</b><br>저임금 중심 성장 전략 지속 → 노동자의 반발 거세짐<br>외국 자본의 직접 투자 확대를 위한 <b>금융 부문 개방</b> → 초국적 자본이 주요 산업에 진출</div>
+ </div>
+ <div class="cap">▲ 제2차 석유 파동과 시민의 삶 — 당시 석유 가격은 배럴당 12달러에서 20달러를 넘었다. 석유 가격 인상 소식에 시민들이 석유를 사기 위해 길게 줄을 서 있다.</div>
+
+ <h2 class="section-title" id="a-e1-struct">경제 성장의 구조적 어려움</h2>
+ <div class="rule-card">
+  <p>지속적인 경제 성장 → 절대 빈곤 사회에서 벗어나 <b>1996년</b> 선진국 대다수가 회원국인 <b>경제 협력 개발 기구(OECD)</b>에 가입</p>
+  <ul class="clean"><li>배경: 외자를 도입한 정부의 경제 개발 계획 추진 + 국민의 근면함과 매우 높은 교육열을 바탕으로 한 값싸고 풍부한 양질의 노동력</li></ul>
+ </div>
+ <div class="cap">▲ 경제 협력 개발 기구(OECD) 가입(『동아일보』, 1996. 10. 12.) — "한국 OECD 가입 / 만장일치 승인-29번째 회원국"</div>
+ <div class="table-wrap"><table class="cmp-table rose-th"><thead><tr><th style="width:140px">문제</th><th>원인과 내용</th></tr></thead><tbody>
+  <tr><td>재벌 · 정경 유착</td><td>대기업을 육성하는 정부의 수출 주도 정책 → <b>재벌 중심</b>의 경제 구조 → 정경 유착 등 부정부패</td></tr>
+  <tr><td>채무 · 외부 영향</td><td>많은 외국 자본의 도입 → 국가와 기업의 채무 부담 → 세계 경제의 변화에 큰 영향을 받는 구조</td></tr>
+  <tr><td>대외 의존</td><td>원자재와 기술이 부족한 상황에서 정부 주도의 수출 주도형 성장 정책 → <b>압축 성장</b> → <b>대외 의존도</b> 계속 높아짐 → 세계 경제 동향 + 국제 정치의 움직임에도 민감하게 대응해야 함</td></tr>
+  <tr><td>노동 문제</td><td>저임금의 장시간 노동에 기반을 둔 성장 위주 경제 정책 → 노동 문제가 사회 문제로 대두</td></tr>
+  <tr><td>격차</td><td>성과가 가족 경영 형태의 재벌에 집중 → <b>빈부 격차</b> 확대 / 도시와 농촌, <b>지역 간 소득 격차</b><br>→ 1990년대 이후 빈부 격차는 <b>사회의 양극화</b>로, 지역 간 격차는 <b>수도권 집중</b>으로 나타남</td></tr>
+ </tbody></table></div>
+
+ <details class="jr" id="a-e1-jr4"><summary><span class="jr-tag">자료 4</span>전자 산업의 감초, 반도체<span class="jr-hint">눌러서 펼치기</span><span class="jr-caret">▼</span></summary><div class="jr-body">
+  <div class="quote">반도체 수출은 대한민국의 수출 구조를 바꾸어 놓았다. 1980년대 초반 수출 1위 품목인 의류가 전체 수출의 11.7%를 차지하였다. 그러나 반도체 수출이 늘어나며 수출 주도 품목이 노동 집약적 경공업 제품에서 반도체를 비롯하여 기술 집약형 첨단 산업 제품으로 바뀌어 갔다. 반도체는 1992년 수출 1위 품목이 되었고, 1994년 단일 품목으로는 처음 100억 달러 수출을 달성하였다. 정부는 2013년 64K DRAM을 근현대 산업 기술 유물로 지정하였다.</div>
+  <div class="cap">▲ 우리나라에서 최초로 개발한 64K DRAM</div>
+ </div></details>
+
+ <details class="jr" id="a-e1-jr5"><summary><span class="jr-tag">자료 5</span>1980년대 경제 성장률과 소비자 물가 증가율<span class="jr-hint">눌러서 펼치기</span><span class="jr-caret">▼</span></summary><div class="jr-body">
+  <svg class="chart" viewBox="0 0 600 300" role="img" aria-label="1980년대 경제 성장률과 소비자 물가 증가율">
+<text x="47.0" y="20.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">(%)</text>
+<line x1="55" y1="218.6" x2="575" y2="218.6" stroke="#94a3b8"/>
+<text x="49.0" y="222.6" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">0</text>
+<line x1="55" y1="155.7" x2="575" y2="155.7" stroke="#e2e8f0"/>
+<text x="49.0" y="159.7" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">10</text>
+<line x1="55" y1="92.9" x2="575" y2="92.9" stroke="#e2e8f0"/>
+<text x="49.0" y="96.9" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">20</text>
+<line x1="55" y1="30.0" x2="575" y2="30.0" stroke="#e2e8f0"/>
+<text x="49.0" y="34.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">30</text>
+<text x="65.0" y="267.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1980</text>
+<text x="127.5" y="267.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1981</text>
+<text x="190.0" y="267.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1982</text>
+<text x="252.5" y="267.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1983</text>
+<text x="315.0" y="267.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1984</text>
+<text x="377.5" y="267.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1985</text>
+<text x="440.0" y="267.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1986</text>
+<text x="502.5" y="267.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1987</text>
+<text x="565.0" y="267.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1988</text>
+<text x="575.0" y="284.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">(년)</text>
+<polyline fill="none" stroke="#be185d" stroke-width="2.4" stroke-linejoin="round" points="65.0,38.2 127.5,84.1 190.0,173.3 252.5,197.2 315.0,204.1 377.5,202.9 440.0,201.0 502.5,199.7 565.0,173.9"/>
+<circle cx="65.0" cy="38.2" r="4" fill="#fff" stroke="#be185d" stroke-width="2.2"/>
+<text x="65.0" y="29.2" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#be185d" text-anchor="middle">28.7</text>
+<circle cx="127.5" cy="84.1" r="4" fill="#fff" stroke="#be185d" stroke-width="2.2"/>
+<text x="127.5" y="75.1" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#be185d" text-anchor="middle">21.4</text>
+<circle cx="190.0" cy="173.3" r="4" fill="#fff" stroke="#be185d" stroke-width="2.2"/>
+<text x="190.0" y="187.3" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#be185d" text-anchor="middle">7.2</text>
+<circle cx="252.5" cy="197.2" r="4" fill="#fff" stroke="#be185d" stroke-width="2.2"/>
+<text x="252.5" y="211.2" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#be185d" text-anchor="middle">3.4</text>
+<circle cx="315.0" cy="204.1" r="4" fill="#fff" stroke="#be185d" stroke-width="2.2"/>
+<text x="315.0" y="218.1" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#be185d" text-anchor="middle">2.3</text>
+<circle cx="377.5" cy="202.9" r="4" fill="#fff" stroke="#be185d" stroke-width="2.2"/>
+<text x="377.5" y="216.9" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#be185d" text-anchor="middle">2.5</text>
+<circle cx="440.0" cy="201.0" r="4" fill="#fff" stroke="#be185d" stroke-width="2.2"/>
+<text x="440.0" y="215.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#be185d" text-anchor="middle">2.8</text>
+<circle cx="502.5" cy="199.7" r="4" fill="#fff" stroke="#be185d" stroke-width="2.2"/>
+<text x="502.5" y="213.7" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#be185d" text-anchor="middle">3.0</text>
+<circle cx="565.0" cy="173.9" r="4" fill="#fff" stroke="#be185d" stroke-width="2.2"/>
+<text x="565.0" y="164.9" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#be185d" text-anchor="middle">7.1</text>
+<polyline fill="none" stroke="#0d9488" stroke-width="2.4" stroke-linejoin="round" points="65.0,228.6 127.5,173.3 190.0,166.4 252.5,134.3 315.0,151.9 377.5,169.5 440.0,147.5 502.5,138.7 565.0,143.1"/>
+<circle cx="65.0" cy="228.6" r="4" fill="#fff" stroke="#0d9488" stroke-width="2.2"/>
+<text x="65.0" y="244.6" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#0d9488" text-anchor="middle">-1.6</text>
+<circle cx="127.5" cy="173.3" r="4" fill="#fff" stroke="#0d9488" stroke-width="2.2"/>
+<text x="127.5" y="164.3" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#0d9488" text-anchor="middle">7.2</text>
+<circle cx="190.0" cy="166.4" r="4" fill="#fff" stroke="#0d9488" stroke-width="2.2"/>
+<text x="190.0" y="157.4" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#0d9488" text-anchor="middle">8.3</text>
+<circle cx="252.5" cy="134.3" r="4" fill="#fff" stroke="#0d9488" stroke-width="2.2"/>
+<text x="252.5" y="125.3" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#0d9488" text-anchor="middle">13.4</text>
+<circle cx="315.0" cy="151.9" r="4" fill="#fff" stroke="#0d9488" stroke-width="2.2"/>
+<text x="315.0" y="142.9" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#0d9488" text-anchor="middle">10.6</text>
+<circle cx="377.5" cy="169.5" r="4" fill="#fff" stroke="#0d9488" stroke-width="2.2"/>
+<text x="377.5" y="185.5" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#0d9488" text-anchor="middle">7.8</text>
+<circle cx="440.0" cy="147.5" r="4" fill="#fff" stroke="#0d9488" stroke-width="2.2"/>
+<text x="440.0" y="138.5" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#0d9488" text-anchor="middle">11.3</text>
+<circle cx="502.5" cy="138.7" r="4" fill="#fff" stroke="#0d9488" stroke-width="2.2"/>
+<text x="502.5" y="129.7" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#0d9488" text-anchor="middle">12.7</text>
+<circle cx="565.0" cy="143.1" r="4" fill="#fff" stroke="#0d9488" stroke-width="2.2"/>
+<text x="565.0" y="134.1" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="700" fill="#0d9488" text-anchor="middle">12.0</text>
+</svg><div class="legend-row"><span><i style="width:16px;height:3px;background:var(--c-be185d);display:inline-block"></i>소비자 물가 증가율</span><span><i style="width:16px;height:3px;background:var(--c-0d9488);display:inline-block"></i>경제 성장률</span></div><div class="dim" style="text-align:right">※ 전년 동기 대비</div>
+  <div class="src">– 한국은행 경제통계시스템 외</div>
+  <div class="quote" style="font-family:inherit">1980년대 한국 경제는 '단군 이래 최대의 호황'이라는 말이 나올 만큼 높은 경제 성장률을 기록하였다. 이후 한국 경제는 만성적인 무역 적자에서 흑자 구조로 전환하며 지속적인 성장 궤도로 접어들었다.<br>물가 안정과 경제 성장으로 새로운 중산층이 급속히 확대되었다. 이들은 정부의 '주택 500만 호 건설' 정책에 따라 전개된 본격적인 아파트 시대에 편승하였으며, 1985년 자동차 보유 100만 대를 넘어서는 '마이카 시대'에 합류하였다. 다른 한편으로 이들은 제5공화국의 권위주의 정치에 거부 반응을 보이며 민주화를 기대하였다. 직선제 개헌을 이룩하려는 6월 민주 항쟁에도 참여하거나 이를 후원하였다.</div>
+ </div></details>
+
+ <details class="jr" id="a-e1-jr6"><summary><span class="jr-tag">자료 6</span>수출 규모와 무역 의존도 변화<span class="jr-hint">눌러서 펼치기</span><span class="jr-caret">▼</span></summary><div class="jr-body">
+  <svg class="chart" viewBox="0 0 600 300" role="img" aria-label="수출 규모와 무역 의존도 변화">
+<text x="47.0" y="20.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">(억 달러)</text>
+<line x1="55" y1="250.0" x2="575" y2="250.0" stroke="#94a3b8"/>
+<text x="49.0" y="254.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">0</text>
+<line x1="55" y1="206.0" x2="575" y2="206.0" stroke="#e2e8f0"/>
+<text x="49.0" y="210.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">1,000</text>
+<line x1="55" y1="162.0" x2="575" y2="162.0" stroke="#e2e8f0"/>
+<text x="49.0" y="166.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">2,000</text>
+<line x1="55" y1="118.0" x2="575" y2="118.0" stroke="#e2e8f0"/>
+<text x="49.0" y="122.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">3,000</text>
+<line x1="55" y1="74.0" x2="575" y2="74.0" stroke="#e2e8f0"/>
+<text x="49.0" y="78.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">4,000</text>
+<line x1="55" y1="30.0" x2="575" y2="30.0" stroke="#e2e8f0"/>
+<text x="49.0" y="34.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">5,000</text>
+<text x="65.0" y="267.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1956</text>
+<text x="174.8" y="267.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1965</text>
+<text x="247.9" y="267.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1971</text>
+<text x="321.1" y="267.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1977</text>
+<text x="394.3" y="267.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1983</text>
+<text x="455.2" y="267.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1988</text>
+<text x="540.6" y="267.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1995</text>
+<text x="575.0" y="284.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">(년)</text>
+<polyline fill="none" stroke="#be185d" stroke-width="2.4" stroke-linejoin="round" points="65.0,250.0 113.8,250.0 174.8,249.8 247.9,248.2 284.5,247.4 321.1,244.7 357.7,239.9 394.3,236.8 430.9,225.4 455.2,203.8 479.6,201.6 516.2,195.0 540.6,186.2 565.0,186.2"/>
+<polyline fill="none" stroke="#0d9488" stroke-width="2.4" stroke-linejoin="round" points="65.0,210.4 89.4,214.8 113.8,213.9 138.2,201.6 162.6,195.0 187.0,197.2 211.3,184.0 235.7,173.0 247.9,157.6 272.3,153.2 284.5,124.6 308.9,107.0 321.1,100.4 345.5,98.2 357.7,87.2 369.9,54.2 382.1,65.2 394.3,82.8 418.7,78.4 430.9,91.6 443.0,78.4 455.2,104.8 479.6,122.4 504.0,126.8 516.2,118.0 540.6,104.8 552.8,87.2 565.0,65.2"/>
+<line x1="321.1" y1="244.7" x2="291.1" y2="212.7" stroke="#be185d"/><rect x="253.1" y="194.7" width="76" height="18" rx="9" fill="#be185d"/><text x="291.1" y="207.7" font-family="'Noto Sans KR',sans-serif" font-size="10.5" font-weight="700" fill="#fff" text-anchor="middle">100억 달러</text><line x1="430.9" y1="225.4" x2="405.9" y2="176.4" stroke="#be185d"/><rect x="367.9" y="158.4" width="76" height="18" rx="9" fill="#be185d"/><text x="405.9" y="171.4" font-family="'Noto Sans KR',sans-serif" font-size="10.5" font-weight="700" fill="#fff" text-anchor="middle">500억 달러</text><line x1="455.2" y1="203.8" x2="470.2" y2="149.8" stroke="#be185d"/><rect x="432.2" y="131.8" width="76" height="18" rx="9" fill="#be185d"/><text x="470.2" y="144.8" font-family="'Noto Sans KR',sans-serif" font-size="10.5" font-weight="700" fill="#fff" text-anchor="middle">1,000억 달러</text></svg><div class="legend-row"><span><i style="width:16px;height:3px;background:var(--c-be185d);display:inline-block"></i>수출 규모</span><span><i style="width:16px;height:3px;background:var(--c-0d9488);display:inline-block"></i>무역 의존도</span></div><div class="dim">※ 교과서 그래프의 모양을 옮겨 그린 것으로, 곡선의 중간값은 근사치입니다.</div>
+  <div class="src">– 한국무역협회 외</div>
+  <div class="quote" style="font-family:inherit">한국 경제는 원자재 및 생산 수단을 수입해야 하는 가공 무역형 경제 구조를 갖추고 있다. 이에 따라 수출이 증가하면 이에 필요한 생산 수단(생산재)의 수입이 함께 증가하는 구조적인 문제를 가지고 있다. 이는 한 나라의 국민 경제가 국외 사정에 많이 의존하게 되어 외국의 경기 변동, 기타 경제 사정에 따라 좌우될 수 있기 때문에 그만큼 불안정하다는 것을 의미한다.</div>
+ </div></details>
+
+ <h2 class="section-title">확인 학습</h2>
+ <div class="m-practice-wrap"><a class="m-practice" target="_top" href="../../../cloud.html?s=history&amp;u=%EA%B2%BD%EC%A0%9C%20%EC%84%B1%EC%9E%A5%EC%97%90%20%EB%94%B0%EB%A5%B8%20%EC%82%B0%EC%97%85%20%EA%B5%AC%EC%A1%B0%EC%9D%98%20%EB%B3%80%ED%99%94"><span class="m-practice-ico" aria-hidden="true"></span><span class="m-practice-txt"><b>이 부분 문제는 무한 문제에서 풀어요</b><small>경제 성장에 따른 산업 구조의 변화 · 16문제 · O/X·객관식·고난도</small></span><span class="m-practice-go">무한 문제로 풀기 →</span></a></div><div hidden style="display:none" data-moved-to-bank class="quiz-section" id="quiz-panel-8"></div>
+</section>
+
+<!-- ================= TAB 9 : Ⅱ-04 소단원 2 ================= -->
+<section class="tab-panel" id="panel-9">
+ <div class="unit-banner">Ⅱ-04 경제 성장과 사회 변화 › 소단원 2</div>
+ <div class="so-head"><span class="so-num">2</span><span class="so-title">경제 성장과 사회 갈등</span><span class="tab-pg">p.112–114</span></div>
+ <div class="goal"><b>학습 목표</b> | 경제 성장 과정에서 일어난 사회 문제를 파악할 수 있다.</div>
+ <div class="jr-toolbar"><button onclick="toggleAllJr(9,true)">자료 모두 펼치기</button><button onclick="toggleAllJr(9,false)">모두 접기</button></div>
+
+ <h2 class="section-title" id="a-e2-labor">노동 문제와 노동 운동</h2>
+ <p>1960년대 산업화 과정에서 노동자 수가 크게 늘었다. 이들 대부분은 양질의 우수한 노동력으로 산업화에 기여하였다. 정부는 수출 주도의 경제 성장 정책을 추진하며 수출품의 국제 가격 경쟁력을 확보하고자 <b>저임금 정책</b>으로 계속 노동자를 통제하였다.</p>
+ <div class="flow-row">
+  <div class="flow-item"><span class="yr">1970</span><b>전태일</b>이 근로 기준법을 준수하라며 분신 → 열악한 노동 환경에 대한 사회의 관심</div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-item">경공업 분야의 <b>여성 노동자</b> 중심 → <b>민주노동조합</b> 설립 움직임</div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-item">박정희 정부: 노동자의 <b>단체 행동권과 교섭권을 제한</b>하는 특별법 제정, 노동 운동 탄압</div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-item hi"><span class="yr">1979</span><b>YH 무역 사건</b> → <b>부마 민주 항쟁</b> → 유신 체제 크게 동요</div>
+ </div>
+ <ul class="clean">
+  <li>유신 체제가 무너진 후: 탄광과 대규모 공장에서 <b>어용 노조</b>를 비판하고 <b>최저 임금</b>을 요구하는 파업</li>
+  <li>1980년대 중반: 임금 인상과 근로 조건 개선 움직임이 <b>중소기업</b>을 중심으로 일어남</li>
+  <li>일부 대학생이 공장에 <b>위장 취업</b>하여 노동 운동에 뛰어듦, 여러 기업체 노동자들 사이에 <b>연대</b>하는 움직임</li>
+ </ul>
+ <div class="cap">▲ 신민당사에서 농성 중인 YH 무역 노조원 강제 해산(1979) — YH 무역의 여성 노동자들은 회사의 일방적인 폐업 조치에 대항하여 신민당사에서 회사의 정상화와 노동자의 생존권을 보장하라며 농성을 벌였다.</div>
+
+ <details class="jr" id="a-e2-jr1"><summary><span class="jr-tag">자료 1</span>노동 조건<span class="jr-hint">눌러서 펼치기</span><span class="jr-caret">▼</span></summary><div class="jr-body">
+  <div class="sub-jr"><h5>❶ 최저 생계비에 대한 임금의 비율</h5>
+   <div class="table-wrap"><table class="cmp-table green-th" style="text-align:right"><thead><tr><th>연도</th><th>최저 생계비(A)</th><th>임금(전체 산업, B)</th><th>비율(B/A)</th></tr></thead><tbody>
+    <tr><td style="text-align:center">1970</td><td>29,005원</td><td>17,831원</td><td>61.5%</td></tr>
+    <tr><td style="text-align:center">1972</td><td>43,638원</td><td>24,179원</td><td>55.4%</td></tr>
+    <tr><td style="text-align:center">1976</td><td>122,658원</td><td>62,362원</td><td>50.8%</td></tr>
+    <tr><td style="text-align:center">1978</td><td>210,992원</td><td>111,201원</td><td>52.7%</td></tr>
+    <tr><td style="text-align:center">1980</td><td>394,421원</td><td>176,058원</td><td>44.6%</td></tr>
+   </tbody></table></div>
+   <div class="src">– 『한국 현대 생활 문화사 1970년대』(2016)</div></div>
+  <div class="sub-jr"><h5>❷ 각국 제조업 생산직의 노동 시간</h5>
+   <svg class="chart" viewBox="0 0 600 300" role="img" aria-label="각국 제조업 생산직의 노동 시간">
+<text x="47.0" y="20.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">(시간)</text>
+<line x1="55" y1="250.0" x2="575" y2="250.0" stroke="#e2e8f0"/>
+<text x="49.0" y="254.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">30</text>
+<line x1="55" y1="176.7" x2="575" y2="176.7" stroke="#e2e8f0"/>
+<text x="49.0" y="180.7" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">40</text>
+<line x1="55" y1="103.3" x2="575" y2="103.3" stroke="#e2e8f0"/>
+<text x="49.0" y="107.3" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">50</text>
+<line x1="55" y1="30.0" x2="575" y2="30.0" stroke="#e2e8f0"/>
+<text x="49.0" y="34.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">60</text>
+<text x="65.0" y="267.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1970</text>
+<text x="190.0" y="267.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1975</text>
+<text x="315.0" y="267.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1980</text>
+<text x="440.0" y="267.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1985</text>
+<text x="490.0" y="267.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1987</text>
+<text x="565.0" y="267.0" font-family="'Noto Sans KR',sans-serif" font-size="11" font-weight="400" fill="#334155" text-anchor="middle">1990</text>
+<text x="575.0" y="284.0" font-family="'Noto Sans KR',sans-serif" font-size="10" font-weight="400" fill="#64748b" text-anchor="end">(년)</text>
+<polyline fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round" points="65.0,88.7 190.0,99.7 315.0,81.3 440.0,74.0 490.0,71.8 565.0,103.3"/>
+<polyline fill="none" stroke="#16a34a" stroke-width="2.4" stroke-linejoin="round" points="65.0,153.2 190.0,162.0 315.0,163.5 440.0,162.0 490.0,162.0 565.0,162.0"/>
+<polyline fill="none" stroke="#e11d48" stroke-width="2.4" stroke-linejoin="round" points="65.0,147.3 190.0,169.3 315.0,165.7 440.0,167.9 490.0,169.3 565.0,170.8"/>
+<polyline fill="none" stroke="#ea580c" stroke-width="2.4" stroke-linejoin="round" points="65.0,143.7 190.0,185.5 315.0,169.3 440.0,165.7 490.0,165.7 565.0,165.7"/>
+<polyline fill="none" stroke="#7c3aed" stroke-width="2.4" stroke-linejoin="round" points="65.0,178.1 190.0,180.3 315.0,178.1 440.0,173.0 490.0,170.8 565.0,170.8"/>
+</svg><div class="legend-row"><span><i style="width:16px;height:3px;background:var(--c-2563eb);display:inline-block"></i>한국</span><span><i style="width:16px;height:3px;background:var(--c-16a34a);display:inline-block"></i>영국</span><span><i style="width:16px;height:3px;background:var(--c-e11d48);display:inline-block"></i>독일</span><span><i style="width:16px;height:3px;background:var(--c-ea580c);display:inline-block"></i>일본</span><span><i style="width:16px;height:3px;background:var(--c-7c3aed);display:inline-block"></i>미국</span></div><div class="dim">※ 교과서 그래프의 모양을 옮겨 그린 것으로, 값은 근사치입니다.</div>
+   <div class="src">– 『KLI 해외 노동 통계』(1992)</div></div>
+  <div class="quote">1970년대 노동자의 임금은 최저 생계비의 50%를 겨우 넘는 정도였어. 또한 한국의 제조업 생산직 노동자는 다른 선진국의 노동자보다 월등히 긴 시간의 노동에 시달렸어.</div>
+ </div></details>
+
+ <details class="jr" id="a-e2-jr2"><summary><span class="jr-tag">자료 2</span>전태일의 외침<span class="jr-hint">눌러서 펼치기</span><span class="jr-caret">▼</span></summary><div class="jr-body">
+  <div class="quote">대통령 각하,<br>저희들은 근로 기준법의 혜택을 조금도 못 받으며 …… 90% 이상이 평균 연령 18세의 여성입니다. …… 또한 2만여 명 중 40%를 차지하는 시다공은 평균 연령이 15세의 어린이들로서 …… 일반 공무원의 평균 근무 시간이 1주 45시간인 데 비해, 15세의 어린 시다공은 1주 98시간의 고된 작업에 시달립니다. …… 저희들의 요구는 …… 1일 15시간의 작업 시간을 1일 10시간~12시간으로 단축해 주십시오. 1개월 휴일 2일을, 일요일마다 휴일로 쉬기를 희망합니다. …… 절대로 무리한 요구가 아님을 맹세합니다. 인간으로서 최소한의 요구입니다.</div>
+  <div class="src">– 조영래, 『전태일평전』</div>
+  <div class="cap">▲ 전태일의 장례식에서 아들의 영정 사진을 안고 있는 이소선</div>
+  <div class="note"><b>ⓘ</b> <b>1970년 11월 13일</b> 전태일은 서울 <b>평화시장</b> 앞길에서 근로 기준법 책을 태우고 스스로 몸에 불을 사르며 "근로 기준법을 지켜라.", "우리는 기계가 아니다.", "노동자들을 혹사시키지 말라."라고 외치며 산화해 갔다. 그는 박정희 대통령에게 편지를 보내 자신이 처한 노동 조건을 설명하고 개선을 요구하였다.</div>
+ </div></details>
+
+ <h2 class="section-title" id="a-e2-farm">농업 문제와 농민 운동</h2>
+ <p>공업화를 우선하는 산업 정책과 <b>저곡가 정책</b>으로 도시와 농촌의 소득 격차가 커졌다. 또한 도시화가 빠르게 진행되는 가운데 농촌 경제가 어려워지며 농촌 인구도 급격히 줄어들었다.</p>
+ <div class="factor-grid">
+  <div class="factor-card green"><h4>새마을 운동 (1970)</h4>박정희 정부: '<b>근면, 자조, 협동</b>'의 정신 아래 농가의 소득 증대와 농촌의 생활 환경 개선 → 이후 <b>도시와 직장</b>으로 확대<br>✔ 농어촌 근대화에 기여<br>✘ 실질 소득을 높이기보다 <b>농촌 생활 환경</b>을 바꾸는 데 치중<br>✘ <b>유신 체제를 유지</b>하는 데 이용했다는 지적</div>
+  <div class="factor-card orange"><h4>농민 운동</h4>1970년대 이농 증가, 도시와 농촌의 소득 격차 계속 → 정부의 농업 정책과 농민 통제에 반대, 농민의 권익 옹호<br>• ＊<b>한국 가톨릭 농민회</b>: <b>함평 고구마 피해 보상 운동</b> → 정부로부터 보상을 받는 성과<br>• 저곡가 정책 대응 → <b>추곡 수매 운동</b>, <b>농협 민주화 운동</b><br>• 무역 수지 흑자 → 농축산물 시장 개방 압력 → 농산물 수입 급증 → 농민회 결성, <b>수입 반대</b>, 농업 정책 비판</div>
+ </div>
+ <div class="def-box"><b>＊ 한국 가톨릭 농민회</b> 농민 스스로의 단결과 협력으로 농민의 권익을 옹호하고 인간적 발전을 도모하고자 <b>1972년</b>에 결성된 가톨릭 농민 운동 단체이다.</div>
+ <div class="cap">▲ 새마을 운동 당시 농로 확장 공사 모습</div>
+
+ <details class="jr" id="a-e2-jr3"><summary><span class="jr-tag">자료 3</span>함평 고구마 사건(1976~1978)<span class="jr-hint">눌러서 펼치기</span><span class="jr-caret">▼</span></summary><div class="jr-body">
+  <div class="quote">수매 약속 불이행으로 빚어진 함평 고구마 피해 농민들의 경제적 손실 및 정신적 고통을 외면하는 농협의 처사는 반농민적, 비민주적 농협임을 스스로 입증하고 있으며 …… 최근 당국이 노골적으로 본회 활동을 '불온', '용공적' 운운하며 사실을 허위 날조·유포하는가 하면 부당한 사찰, 협박, 폭행, 구금, 구속 등 갖은 방법으로 종교 활동마저 탄압하는 몰지각한 만행은 경악을 금치 못하게 하고 있다. …… 우리의 결의를 밝힌다.<br>1. 함평 고구마 피해 농가의 피해액을 즉각 보상하라.<br>1. 함평군 농협 조합장은 고구마 사건에 관한 책임을 지고 물러가라.<br>1. 농민의 탄압을 즉각 중단하라.</div>
+  <div class="src">– 한국 가톨릭 농민회, 『활동사례 제2집』</div>
+  <div class="note"><b>ⓘ</b> 1978년 함평군 농민은 고구마 수매 약속을 지키지 않는 <b>농협</b>에 위와 같이 요구하며 단식 농성을 벌여 <b>309만 원</b>의 보상금을 받아 냈다. 감사원도 농협이 고구마 수매 자금 80억 원을 횡령한 사실을 밝혀냈다.</div>
+ </div></details>
+
+ <h2 class="section-title" id="a-e2-city">도시의 사회 문제</h2>
+ <p>산업화로 국민의 생활 수준은 높아져 갔다. 정부는 급속한 도시화로 드러나는 문제를 해결하고자 <b>지하철</b>을 비롯한 대중교통을 확장하고 학교를 신설하였다. 또한 쾌적한 삶의 공간을 이루고자 공원을 만들고 쓰레기 매립장을 건설하였다.</p>
+ <div class="rule-card">
+  <p><b>광주 대단지 사건 (1971, 경기도 광주)</b> — 문제점이 합리적으로 해결되지 않아 갈등이 폭발한 대표적 사례</p>
+  <ul class="clean">
+   <li>서울시: 도심 개발을 위해 시내 <b>무허가 판자촌</b>을 정리 → 철거민을 광주로 집단 이주시켜 도시를 건설할 계획</li>
+   <li>서울시가 <b>상하수도</b> 설치와 같은 도시 기반 시설에 대한 기본적인 약속을 지키지 않음 → 이주민 격렬 항의</li>
+  </ul>
+ </div>
+ <div class="def-box"><b>달동네와 철거민</b> 낮은 소득과 취업의 불안정성에 시달리는 빈민은 도시의 변두리나 높은 지대에 '<b>달동네</b>'라고 불리는 빈민촌을 형성 — 대다수는 소득과 취업 기회를 찾아 <b>농촌에서 도시로 이주</b>한 사람. 정부가 '도시 개발 사업'이라는 이름으로 무허가 주택을 철거하고 아파트를 지을 때마다 도시 빈민들은 '<b>철거민</b>'이 되어 도시 외곽으로 내몰림</div>
+ <div class="cap">▲ '광주 대단지'로 조성된 1970년대 성남시 모습</div>
+
+ <h2 class="section-title" id="a-e2-env">환경 문제의 발생</h2>
+ <div class="flow-row">
+  <div class="flow-item"><span class="yr">발생</span>도시화 과정에서 자연 녹지 훼손, 오염된 생활 하수나 공장 폐수의 무단 방류, 매연을 내뿜는 자동차의 증가와 소음</div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-item"><span class="yr">심화</span>공해 문제는 산업화 정책, 특히 <b>중화학 공업화 정책</b>을 적극 추진하는 과정에서 더욱 심각</div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-item hi"><span class="yr">인식</span>기형 물고기, 괴질 → 생태계 자연정화 능력의 한계 → 공해를 <b>재난</b>으로 인식, <b>환경 보호 운동</b></div>
+ </div>
+ <div class="warning"><b>한계</b> 공해에 반대하고 환경을 보존해야 한다는 목소리는 <b>경제 성장을 최우선</b>으로 내세우는 주장에 비해 주목을 끌지 못하였다. 당시 한국 사회는 경제 성장과 환경 보호의 가치가 공존할 수 있는 대안을 제시하지 못하였다.</div>
+ <div class="cap">▲ 뚝섬 앞에서 잡힌 기형 누치(『경향신문』, 1979. 3. 22.)</div>
+
+ <details class="jr" id="a-e2-jr4"><summary><span class="jr-tag">자료 4</span>환경 오염에 대한 인식 변화<span class="jr-hint">눌러서 펼치기</span><span class="jr-caret">▼</span></summary><div class="jr-body">
+  <div class="quote">인간의 행위가 자연의 한계선을 넘고 있다는 인식은 실제 1970년대 후반 들어 확산되었다. 한강이 이미 '죽음의 강'이 되어가고 있다거나, '거대한 하수구'로 변해가고 있다는 인식이 많았으며, 토양 오염이 심해져 매일 먹는 음식에서도 수은과 납, 카드뮴이 검출되었다는 사실은 사람들에게 경각심을 불러일으켰다. 한 신문 사설에서는 "경제 성장이란 이름 아래 이루어진 공업화는 …… 큰 경제적 효과를 가져온 것도 사실이지만, 공해 오염의 증가 형태가 기하급수적으로 늘어나 지금 우리의 대기, 토양, 하천, 해양은 되돌이킬 수 없는 오염의 한계점에 다다르고 있다."라고 하였다.</div>
+  <div class="src">– 고태우, 「1970년대 한국의 공해(公害) 상황과 재난 인식」</div>
+  <div class="note"><b>ⓘ</b> 산업화와 도시화는 환경 오염과 밀접한 관련이 있다. 한국 사회는 급속한 산업화에 따라 <b>1970년대 후반</b>부터 환경 문제에 직면하였다. 공장 폐수와 산업 폐기물 등으로 하천과 바다가 오염되는 심각한 문제가 나타났으며, 도시화에 따르는 자동차 배기가스와 난방으로 인한 대기 오염까지 발생하였다.</div>
+ </div></details>
+
+ <h2 class="section-title">확인 학습</h2>
+ <div class="m-practice-wrap"><a class="m-practice" target="_top" href="../../../cloud.html?s=history&amp;u=%EA%B2%BD%EC%A0%9C%20%EC%84%B1%EC%9E%A5%EA%B3%BC%20%EC%82%AC%ED%9A%8C%20%EA%B0%88%EB%93%B1"><span class="m-practice-ico" aria-hidden="true"></span><span class="m-practice-txt"><b>이 부분 문제는 무한 문제에서 풀어요</b><small>경제 성장과 사회 갈등 · 16문제 · O/X·객관식·고난도</small></span><span class="m-practice-go">무한 문제로 풀기 →</span></a></div><div hidden style="display:none" data-moved-to-bank class="quiz-section" id="quiz-panel-9"></div>
+</section>
+
+<!-- ================= TAB 10 : 개념 지도 ================= -->
+<section class="tab-panel" id="panel-10">
+ <div class="unit-banner">개념 한눈에 보기</div>
+ <div class="tip"><b>사용법</b> 클릭하면 해당 탭+섹션으로 이동합니다 — 큰 헤더는 개관·소단원 탭 전체로, 굵은 제목은 교과서 소제목으로, 작은 칸은 세부 설명 위치로 스크롤됩니다. 보라색 칸은 <b>자료</b>이며, 누르면 자동으로 펼쳐집니다.</div>
+ <div class="sub2-title">Ⅰ-04 사회·문화의 변화와 대중 운동</div>
+ <div class="map-root gray">
+  <button class="map-root-head" onclick="goTo(0)">Ⅰ-04 단원 개관</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(0,'a-o4-years')">핵심 연도</button>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(0,'a-o4-sum')">소단원별 한 장 요약</button>
+    <div class="map-subrow">
+     <button class="map-subchip" onclick="goTo(0,'a-o4-s1')">1 사회의 변화</button>
+     <button class="map-subchip" onclick="goTo(0,'a-o4-s2')">2 민족 문화 수호</button>
+     <button class="map-subchip" onclick="goTo(0,'a-o4-s3')">3 대중 운동</button>
+    </div>
+   </div>
+   <button class="map-node" onclick="goTo(0,'a-o4-compare')">대중 운동 주체별 비교</button>
+  </div>
+ </div>
+ <div class="map-root rose">
+  <button class="map-root-head" onclick="goTo(1)">1 사회의 변화</button>
+  <div class="map-children">
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(1,'a-s1-city')">식민지 도시화와 한국인의 삶</button>
+    <div class="map-subrow">
+     <button class="map-subchip" onclick="goTo(1,'a-s1-city')">도시 유형</button>
+     <button class="map-subchip" onclick="goTo(1,'a-s1-gyeongseong')">남촌 · 북촌</button>
+     <button class="map-subchip" onclick="goTo(1,'a-s1-tomak')">토막민</button>
+     <button class="map-subchip jr-chip" onclick="goTo(1,'a-s1-jr1')">자료 1</button>
+    </div>
+   </div>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(1,'a-s1-rural')">농촌의 변화와 한국인의 삶</button>
+    <div class="map-subrow">
+     <button class="map-subchip" onclick="goTo(1,'a-s1-rural')">면 중심 행정 · 장시 · 토지 집중</button>
+     <button class="map-subchip jr-chip" onclick="goTo(1,'a-s1-jr2')">자료 2</button>
+    </div>
+   </div>
+  </div>
+ </div>
+ <div class="map-root">
+  <button class="map-root-head" onclick="goTo(2)">2 민족 문화 수호 운동</button>
+  <div class="map-children">
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(2,'a-s2-hangul')">일본어 교육에 맞선 한글 보급 활동</button>
+    <div class="map-subrow">
+     <button class="map-subchip" onclick="goTo(2,'a-s2-hangul')">조선어 연구회 → 조선어 학회</button>
+     <button class="map-subchip jr-chip" onclick="goTo(2,'a-s2-jr1')">자료 1</button>
+    </div>
+   </div>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(2,'a-s2-history')">한국사 왜곡에 맞선 한국사 연구</button>
+    <div class="map-subrow">
+     <button class="map-subchip" onclick="goTo(2,'a-s2-colonial')">식민 사관</button>
+     <button class="map-subchip" onclick="goTo(2,'a-s2-response')">민족주의 · 사회 경제 사학</button>
+     <button class="map-subchip jr-chip" onclick="goTo(2,'a-s2-jr2')">자료 2</button>
+     <button class="map-subchip jr-chip" onclick="goTo(2,'a-s2-jr3')">자료 3</button>
+    </div>
+   </div>
+   <button class="map-node" onclick="goTo(2,'a-s2-religion')">종교계의 민족 운동과 문학·예술</button>
+  </div>
+ </div>
+ <div class="map-root orange">
+  <button class="map-root-head" onclick="goTo(3)">3 대중 운동의 전개</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(3,'a-s3-new')">새롭게 떠오르는 사회층</button>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(3,'a-s3-farmer')">농민 운동</button>
+    <div class="map-subrow">
+     <button class="map-subchip" onclick="goTo(3,'a-s3-farmer')">암태도 · 조선 소작 조정령</button>
+     <button class="map-subchip jr-chip" onclick="goTo(3,'a-s3-jr1')">자료 1</button>
+     <button class="map-subchip jr-chip" onclick="goTo(3,'a-s3-jr2')">자료 2</button>
+    </div>
+   </div>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(3,'a-s3-labor')">노동 운동</button>
+    <div class="map-subrow">
+     <button class="map-subchip" onclick="goTo(3,'a-s3-labor')">원산 총파업 · 혁명적 노동조합</button>
+     <button class="map-subchip jr-chip" onclick="goTo(3,'a-s3-jr3')">자료 3</button>
+    </div>
+   </div>
+   <button class="map-node" onclick="goTo(3,'a-s3-youth')">청년 운동과 소년 운동</button>
+   <button class="map-node" onclick="goTo(3,'a-s3-women')">여성 운동</button>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(3,'a-s3-hyeong')">형평 운동</button>
+    <div class="map-subrow">
+     <button class="map-subchip" onclick="goTo(3,'a-s3-hyeong')">조선 형평사</button>
+     <button class="map-subchip jr-chip" onclick="goTo(3,'a-s3-jr4')">자료 4</button>
+    </div>
+   </div>
+  </div>
+ </div>
+ <div class="sub2-title">Ⅰ-05 독립 국가 건설 노력</div>
+ <div class="map-root gray">
+  <button class="map-root-head" onclick="goTo(4)">Ⅰ-05 단원 개관</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(4,'a-o5-years')">핵심 연도</button>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(4,'a-o5-sum')">소단원별 한 장 요약</button>
+    <div class="map-subrow">
+     <button class="map-subchip" onclick="goTo(4,'a-o5-s1')">1 광복군 · 의용대</button>
+     <button class="map-subchip" onclick="goTo(4,'a-o5-s2')">2 독립 국가 수립 노력</button>
+    </div>
+   </div>
+   <button class="map-node" onclick="goTo(4,'a-o5-compare')">1940년대 세력 비교</button>
+  </div>
+ </div>
+ <div class="map-root rose">
+  <button class="map-root-head" onclick="goTo(5)">1 한국 광복군과 조선 의용대 (p.55)</button>
+  <div class="map-children">
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(5,'a-s5-kla')">한국 광복군의 창설</button>
+    <div class="map-subrow">
+     <button class="map-subchip jr-chip" onclick="goTo(5,'a-s5-jr1')">자료 1</button>
+    </div>
+   </div>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(5,'a-s5-uiyong')">조선 의용대의 이동</button>
+    <div class="map-subrow">
+     <button class="map-subchip jr-chip" onclick="goTo(5,'a-s5-jr2')">자료 2</button>
+    </div>
+   </div>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(5,'a-s5-mh')">조선 민족 혁명당의 참여</button>
+    <div class="map-subrow">
+     <button class="map-subchip jr-chip" onclick="goTo(5,'a-s5-jr3')">자료 3</button>
+    </div>
+   </div>
+  </div>
+ </div>
+ <div class="map-root">
+  <button class="map-root-head" onclick="goTo(6)">2 독립 국가 수립을 위한 노력</button>
+  <div class="map-children">
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(6,'a-s6-kla')">한국 광복군과 연합군의 공동 작전</button>
+    <div class="map-subrow">
+     <button class="map-subchip" onclick="goTo(6,'a-s6-kla')">인도·미얀마 · 독수리 작전</button>
+     <button class="map-subchip jr-chip" onclick="goTo(6,'a-s6-jr1')">자료 1</button>
+     <button class="map-subchip jr-chip" onclick="goTo(6,'a-s6-jr2')">자료 2</button>
+    </div>
+   </div>
+   <button class="map-node" onclick="goTo(6,'a-s6-north')">화북 조선 독립 동맹과 동북 항일 연군</button>
+   <button class="map-node" onclick="goTo(6,'a-s6-gm')">조선 건국 동맹</button>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(6,'a-s6-plan')">건국 강령과 연대 시도</button>
+    <div class="map-subrow">
+     <button class="map-subchip" onclick="goTo(6,'a-s6-plan')">건국 강령 · 삼균주의</button>
+     <button class="map-subchip" onclick="goTo(6,'a-s6-unite')">연대</button>
+     <button class="map-subchip jr-chip" onclick="goTo(6,'a-s6-jr3')">자료 3</button>
+    </div>
+   </div>
+   <button class="map-node" onclick="goTo(6,'a-s6-talks')">연합국의 전후 처리 회담</button>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(6,'a-s6-theme')">주제 탐구</button>
+    <div class="map-subrow">
+     <button class="map-subchip jr-chip" onclick="goTo(6,'a-s6-jr4')">자료 4</button>
+    </div>
+   </div>
+  </div>
+ </div>
+ <div class="sub2-title">Ⅱ-04 경제 성장과 사회 변화</div>
+ <div class="map-root gray">
+  <button class="map-root-head" onclick="goTo(7)">Ⅱ-04 단원 개관</button>
+  <div class="map-children">
+   <button class="map-node" onclick="goTo(7,'a-oe-years')">핵심 연도</button>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(7,'a-oe-sum')">소단원별 한 장 요약</button>
+    <div class="map-subrow">
+     <button class="map-subchip" onclick="goTo(7,'a-oe-s1')">1 산업 구조의 변화</button>
+     <button class="map-subchip" onclick="goTo(7,'a-oe-s2')">2 사회 갈등</button>
+    </div>
+   </div>
+   <button class="map-node" onclick="goTo(7,'a-oe-compare')">경제 개발 계획 비교</button>
+  </div>
+ </div>
+ <div class="map-root rose">
+  <button class="map-root-head" onclick="goTo(8)">1 경제 성장에 따른 산업 구조의 변화</button>
+  <div class="map-children">
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(8,'a-e1-12')">제1, 2차 경제 개발 5개년 계획</button>
+    <div class="map-subrow">
+     <button class="map-subchip jr-chip" onclick="goTo(8,'a-e1-jr1')">자료 1</button>
+    </div>
+   </div>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(8,'a-e1-34')">제3, 4차 경제 개발 5개년 계획</button>
+    <div class="map-subrow">
+     <button class="map-subchip jr-chip" onclick="goTo(8,'a-e1-jr2')">자료 2</button>
+     <button class="map-subchip jr-chip" onclick="goTo(8,'a-e1-jr3')">자료 3</button>
+    </div>
+   </div>
+   <button class="map-node" onclick="goTo(8,'a-e1-3low')">3저 호황과 산업 구조의 변화</button>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(8,'a-e1-struct')">경제 성장의 구조적 어려움</button>
+    <div class="map-subrow">
+     <button class="map-subchip jr-chip" onclick="goTo(8,'a-e1-jr4')">자료 4</button>
+     <button class="map-subchip jr-chip" onclick="goTo(8,'a-e1-jr5')">자료 5</button>
+     <button class="map-subchip jr-chip" onclick="goTo(8,'a-e1-jr6')">자료 6</button>
+    </div>
+   </div>
+  </div>
+ </div>
+ <div class="map-root">
+  <button class="map-root-head" onclick="goTo(9)">2 경제 성장과 사회 갈등</button>
+  <div class="map-children">
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(9,'a-e2-labor')">노동 문제와 노동 운동</button>
+    <div class="map-subrow">
+     <button class="map-subchip jr-chip" onclick="goTo(9,'a-e2-jr1')">자료 1</button>
+     <button class="map-subchip jr-chip" onclick="goTo(9,'a-e2-jr2')">자료 2</button>
+    </div>
+   </div>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(9,'a-e2-farm')">농업 문제와 농민 운동</button>
+    <div class="map-subrow">
+     <button class="map-subchip jr-chip" onclick="goTo(9,'a-e2-jr3')">자료 3</button>
+    </div>
+   </div>
+   <button class="map-node" onclick="goTo(9,'a-e2-city')">도시의 사회 문제</button>
+   <div class="map-group">
+    <button class="map-node" onclick="goTo(9,'a-e2-env')">환경 문제의 발생</button>
+    <div class="map-subrow">
+     <button class="map-subchip jr-chip" onclick="goTo(9,'a-e2-jr4')">자료 4</button>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+</main>
+<button class="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="맨 위로">↑</button>
+<script>
+function switchTab(idx){
+ document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',i===idx));
+ document.querySelectorAll('.tab-panel').forEach((p,i)=>p.classList.toggle('active',i===idx));
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function goTo(tabIdx,anchorId){
+ switchTab(tabIdx);
+ if(anchorId){
+  setTimeout(()=>{
+   const el=document.getElementById(anchorId);
+   if(el){
+    if(el.tagName==='DETAILS') el.open=true;
+    el.scrollIntoView({behavior:'smooth',block:'start'});
+   }
+  },120);
+ }
+}
+function toggleAllJr(panelIdx,open){
+ document.querySelectorAll('#panel-'+panelIdx+' details.jr').forEach(d=>d.open=open);
+}
+
+const QUIZ_DATA={"1":{"ox":[],"mc":[],"hard":[]},"2":{"ox":[],"mc":[],"hard":[]},"3":{"ox":[],"mc":[],"hard":[]},"5":{"ox":[],"mc":[],"hard":[]},"6":{"ox":[],"mc":[],"hard":[]},"8":{"ox":[],"mc":[],"hard":[]},"9":{"ox":[],"mc":[],"hard":[]}};
+
+const TYPE_CONFIG=[
+ {key:'ox',label:'OX 퀴즈',icon:'O',cls:'ox',diff:'기초',diffCls:'diff-basic'},
+ {key:'mc',label:'객관식',icon:'',cls:'mc',diff:'중급',diffCls:'diff-mid'},
+ {key:'hard',label:'고난도',icon:'',cls:'hard',diff:'고난도',diffCls:'diff-hard'}
+];
+const quizState={};
+
+function qPanelData(panelIdx){ return QUIZ_DATA[panelIdx]; }
+
+function qActiveTypes(panelIdx){
+ const data=qPanelData(panelIdx);
+ return TYPE_CONFIG.filter(t=>data[t.key]&&data[t.key].length);
+}
+
+function initQuizState(panelIdx){
+ if(quizState[panelIdx]) return quizState[panelIdx];
+ const data=qPanelData(panelIdx);
+ const types=qActiveTypes(panelIdx);
+ const st={activeType:types.length?types[0].key:'ox',scores:{},answered:{}};
+ TYPE_CONFIG.forEach(t=>{
+  const n=(data[t.key]||[]).length;
+  st.scores[t.key]=[0,0];
+  st.answered[t.key]=new Array(n).fill(null);
+ });
+ quizState[panelIdx]=st;
+ return st;
+}
+
+function buildQuizSection(panelIdx){
+ const container=document.getElementById('quiz-panel-'+panelIdx);
+ if(!container) return;
+ const data=qPanelData(panelIdx);
+ if(!data) return;
+ const st=initQuizState(panelIdx);
+ const types=qActiveTypes(panelIdx);
+
+ let html='<div class="quiz-header"><div class="quiz-title">확인 학습</div><div class="scoreboard">';
+ types.forEach(t=>{
+  const n=(data[t.key]||[]).length;
+  const answered=st.answered[t.key].filter(a=>a!==null).length;
+  html+='<span class="score-chip '+t.cls+'">'+t.icon+' '+t.label+' '+answered+'/'+n+'</span>';
+ });
+ html+='</div></div>';
+
+ html+='<div class="qtype-bar">';
+ types.forEach(t=>{
+  const n=(data[t.key]||[]).length;
+  const answered=st.answered[t.key].filter(a=>a!==null).length;
+  const active=st.activeType===t.key?' active':'';
+  html+='<button class="qtype-btn '+t.cls+active+'" onclick="switchQType('+panelIdx+',\''+t.key+'\')">'+t.icon+' '+t.label+' <span class="qtype-count">'+answered+'/'+n+'</span></button>';
+ });
+ html+='</div>';
+
+ const curType=TYPE_CONFIG.find(t=>t.key===st.activeType);
+ const qs=data[st.activeType]||[];
+ const answeredCount=st.answered[st.activeType].filter(a=>a!==null).length;
+ const pct=qs.length?Math.round(answeredCount/qs.length*100):0;
+ html+='<div class="q-progress-wrap"><div class="q-progress-fill" style="width:'+pct+'%"></div></div>';
+
+ if(qs.length&&answeredCount===qs.length){
+  html+=buildQuizResult(panelIdx);
+ }else{
+  qs.forEach((qdata,qi)=>{ html+=buildQCard(panelIdx,st.activeType,qi,qdata,curType); });
+ }
+
+ container.innerHTML=html;
+}
+
+function buildQCard(panelIdx,typeKey,qi,qdata,typeCfg){
+ const st=quizState[panelIdx];
+ const picked=st.answered[typeKey][qi];
+ const answered=picked!==null;
+ let cardCls='q-card';
+ if(answered){
+  const isCorrect = typeKey==='ox' ? (picked===qdata.a) : (picked===qdata.a);
+  cardCls+=isCorrect?' answered-correct':' answered-wrong';
+ }
+ let html='<div class="'+cardCls+'" id="q-'+panelIdx+'-'+typeKey+'-'+qi+'">';
+ html+='<div class="q-meta"><span class="q-num">Q'+(qi+1)+'</span><span class="q-difficulty '+typeCfg.diffCls+'">'+typeCfg.diff+'</span></div>';
+ html+='<div class="q-text">'+qdata.q+'</div>';
+
+ if(typeKey==='ox'){
+  html+='<div class="ox-row">';
+  [true,false].forEach(val=>{
+   let cls='ox-btn';
+   if(answered){
+    if(picked===val && val===qdata.a) cls+=' picked-correct';
+    else if(picked===val && val!==qdata.a) cls+=' picked-wrong';
+    else if(val===qdata.a) cls+=' reveal-correct';
+   }
+   const dis=answered?' disabled':'';
+   html+='<button class="'+cls+'"'+dis+' onclick="submitAnswer('+panelIdx+',\''+typeKey+'\','+qi+','+val+')">'+(val?'O':'X')+'</button>';
+  });
+  html+='</div>';
+ }else{
+  html+='<div class="mc-options">';
+  const letters=['A','B','C','D','E','F'];
+  qdata.opts.forEach((opt,oi)=>{
+   let cls='mc-opt';
+   if(answered){
+    if(picked===oi && oi===qdata.a) cls+=' picked-correct';
+    else if(picked===oi && oi!==qdata.a) cls+=' picked-wrong';
+    else if(oi===qdata.a) cls+=' reveal-correct';
+   }
+   const dis=answered?' disabled':'';
+   html+='<button class="'+cls+'"'+dis+' onclick="submitAnswer('+panelIdx+',\''+typeKey+'\','+qi+','+oi+')"><span class="mc-opt-letter">'+letters[oi]+'</span><span>'+opt+'</span></button>';
+  });
+  html+='</div>';
+ }
+
+ if(answered){
+  const isCorrect=picked===qdata.a;
+  html+='<div class="q-feedback '+(isCorrect?'correct':'wrong')+'">'+(isCorrect?'정답입니다! ':'X 오답입니다. ')+qdata.exp+'</div>';
+ }
+ html+='</div>';
+ return html;
+}
+
+function buildQuizResult(panelIdx){
+ const st=quizState[panelIdx];
+ const data=qPanelData(panelIdx);
+ const types=qActiveTypes(panelIdx);
+ const typeKey=st.activeType;
+ const sc=st.scores[typeKey];
+ const total=(data[typeKey]||[]).length;
+ const pct=total?Math.round(sc[0]/total*100):0;
+ let grade='조금 더 복습해 볼까요?';
+ if(pct===100) grade='완벽해요! 만점입니다!';
+ else if(pct>=80) grade='훌륭해요!';
+ else if(pct>=60) grade='잘했어요!';
+
+ let html='<div class="quiz-result"><div style="font-size:13px;color:var(--text-sec)">결과</div>';
+ html+='<div class="r-score">'+sc[0]+' / '+total+'</div>';
+ html+='<div class="r-grade">'+grade+' ('+pct+'%)</div>';
+ html+='<div class="mini-bar-row">';
+ types.forEach(t=>{
+  const tn=(data[t.key]||[]).length;
+  const ta=st.answered[t.key].filter(a=>a!==null).length;
+  const tc=st.scores[t.key][0];
+  const tp=tn?Math.round(tc/tn*100):0;
+  html+='<div><div class="mini-bar-label"><span>'+t.icon+' '+t.label+'</span><span>'+tc+'/'+tn+(ta<tn?' (미응시 '+(tn-ta)+')':'')+'</span></div><div class="mini-bar"><div class="mini-bar-fill '+t.cls+'" style="width:'+tp+'%"></div></div></div>';
+ });
+ html+='</div>';
+ html+='<button class="reset-btn" onclick="resetQuizType('+panelIdx+',\''+typeKey+'\')">↻ 다시 풀기</button>';
+ html+='</div>';
+ return html;
+}
+
+function submitAnswer(panelIdx,typeKey,qi,choice){
+ const st=quizState[panelIdx];
+ const data=qPanelData(panelIdx);
+ const qdata=data[typeKey][qi];
+ if(st.answered[typeKey][qi]!==null) return;
+ st.answered[typeKey][qi]=choice;
+ st.scores[typeKey][1]++;
+ if(choice===qdata.a) st.scores[typeKey][0]++;
+ buildQuizSection(panelIdx);
+ setTimeout(()=>{
+  const qs=data[typeKey];
+  let nextIdx=-1;
+  for(let i=0;i<qs.length;i++){ if(st.answered[typeKey][i]===null){ nextIdx=i; break; } }
+  let el;
+  if(nextIdx>=0) el=document.getElementById('q-'+panelIdx+'-'+typeKey+'-'+nextIdx);
+  else el=document.querySelector('#quiz-panel-'+panelIdx+' .quiz-result');
+  if(el) el.scrollIntoView({behavior:'smooth',block:'center'});
+ },200);
+}
+
+function switchQType(panelIdx,typeKey){
+ const st=quizState[panelIdx];
+ st.activeType=typeKey;
+ buildQuizSection(panelIdx);
+}
+
+function resetQuizType(panelIdx,typeKey){
+ const st=quizState[panelIdx];
+ const n=(qPanelData(panelIdx)[typeKey]||[]).length;
+ st.answered[typeKey]=new Array(n).fill(null);
+ st.scores[typeKey]=[0,0];
+ buildQuizSection(panelIdx);
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+ Object.keys(QUIZ_DATA).map(Number).forEach(buildQuizSection);
+});
+
+</script>
+</body>
+</html>

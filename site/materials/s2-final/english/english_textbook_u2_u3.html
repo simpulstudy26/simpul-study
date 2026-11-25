@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="simpul-material">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -93,7 +93,7 @@ main{max-width:920px;margin:0 auto;padding:22px 14px 110px}
 .snotes{display:flex;flex-direction:column;gap:5px;margin-top:9px}
 .note{font-size:13px;line-height:1.55;padding:5px 10px 5px 30px;border-radius:9px;position:relative}
 .note.n{background:var(--pen-bg);color:var(--c-1f3590)}
-.note.n::before{content:"✍";position:absolute;left:10px;top:5px}
+.note.n::before{content:"";position:absolute;left:10px;top:5px}
 .note.p{background:var(--plus-bg);color:var(--c-374151)}
 .note.p::before{content:"＋";position:absolute;left:10px;top:5px;font-weight:700;color:var(--plus)}
 
@@ -269,11 +269,19 @@ footer{text-align:center;font-size:12px;color:var(--ink3);padding:10px 0 30px}
 </style>
 
 <!-- 심풀 테마: tools/restyle_material.py로 만듦 -->
-<script>try{if(localStorage.getItem('simpul.theme')!=='light')document.documentElement.classList.add('m-dark')}catch(e){document.documentElement.classList.add('m-dark')}</script>
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<style>:root{--c-0e8a7d:#0e8a7d;--c-1d1b18:#18181b;--c-1f3590:#1f3590;--c-1f3f94:#1f3f94;--c-2846b8:#2846b8;--c-2b59c3:#2b59c3;--c-331100:#331100;--c-374151:#3f3f46;--c-5b554c:#52525b;--c-5d8bf0:#5d8bf0;--c-6b7280:#71717a;--c-6d3fc0:#6d3fc0;--c-7c3aed:#7c3aed;--c-8a4b06:#8a4b06;--c-8a6200:#8a6200;--c-8c857a:#71717a;--c-9a2a14:#9a2a14;--c-c2410c:#c2410c;--c-c8371d:#c8371d;--c-c9d2f5:#c9d2f5;--c-d1336f:#d1336f;--c-d6ddf8:#e4e4e7;--c-d8d2c6:#d4d4d8;--c-d97706:#d97706;--c-d9a300:#d9a300;--c-e0a800:#e0a800;--c-e11d48:#e11d48;--c-e5edfd:#f4f4f5;--c-e6e0d4:#d4d4d8;--c-eef1fc:#f4f4f5;--c-eef3fc:#f4f4f5;--c-f0634a:#f0634a;--c-f0ebe1:#e4e4e7;--c-f3c7a8:#f3c7a8;--c-f3f4f6:#f4f4f5;--c-f6dcb4:#f6dcb4;--c-f6f3ec:#f4f4f5;--c-fbfaf6:#fafafa;--c-fbfaf7:#fafafa;--c-fcf0f5:#f4f4f5;--c-fcfbf8:#fafafa;--c-fde8e3:#f4f4f5;--c-ffd23f:#ffd23f;--c-ffd27a:#ffd27a;--c-ffe58a:#ffe58a;--c-fff4c7:#fff4c7;--c-fff7ec:#f4f4f5;--c-ffffff:#ffffff}html.m-dark{--c-0e8a7d:#9df1e8;--c-1d1b18:#f4f4f5;--c-1f3590:#a3b1eb;--c-1f3f94:#6788df;--c-2846b8:#6881de;--c-2b59c3:#698cde;--c-331100:#f1b99d;--c-374151:#d4d4d8;--c-5b554c:#a1a1aa;--c-5d8bf0:#213f83;--c-6b7280:#a1a1aa;--c-6d3fc0:#9675d2;--c-7c3aed:#8f57f0;--c-8a4b06:#f1c99d;--c-8a6200:#f1d99d;--c-8c857a:#a1a1aa;--c-9a2a14:#f1ab9d;--c-c2410c:#f18355;--c-c8371d:#e8735f;--c-c9d2f5:#213583;--c-d1336f:#dd6995;--c-d6ddf8:#27272a;--c-d8d2c6:#3f3f46;--c-d97706:#f1a955;--c-d9a300:#f1ca55;--c-e0a800:#f1ca55;--c-e11d48:#ea5c7b;--c-e5edfd:#18181b;--c-e6e0d4:#3f3f46;--c-eef1fc:#18181b;--c-eef3fc:#18181b;--c-f0634a:#f16d55;--c-f0ebe1:#27272a;--c-f3c7a8:#834921;--c-f3f4f6:#18181b;--c-f6dcb4:#835c21;--c-f6f3ec:#18181b;--c-fbfaf6:#09090b;--c-fbfaf7:#09090b;--c-fcf0f5:#18181b;--c-fcfbf8:#09090b;--c-fde8e3:#18181b;--c-ffd23f:#f1cd55;--c-ffd27a:#836121;--c-ffe58a:#836d21;--c-fff4c7:#373010;--c-fff7ec:#18181b;--c-ffffff:#0e0e11}</style>
-<link rel="stylesheet" href="../../_theme/material.css">
-<script src="../../_theme/material.js" defer></script>
+<style>:root{--c-0e8a7d:var(--c-0e8a7d);--c-1d1b18:var(--c-18181b);--c-1f3590:var(--c-1f3590);--c-1f3f94:var(--c-1f3f94);--c-2846b8:var(--c-2846b8);--c-2b59c3:var(--c-2b59c3);--c-331100:var(--c-331100);--c-374151:var(--c-3f3f46);--c-5b554c:var(--c-52525b);--c-5d8bf0:var(--c-5d8bf0);--c-6b7280:var(--c-71717a);--c-6d3fc0:var(--c-6d3fc0);--c-7c3aed:var(--c-7c3aed);--c-8a4b06:var(--c-8a4b06);--c-8a6200:var(--c-8a6200);--c-8c857a:var(--c-71717a);--c-9a2a14:var(--c-9a2a14);--c-c2410c:var(--c-c2410c);--c-c8371d:var(--c-c8371d);--c-c9d2f5:var(--c-c9d2f5);--c-d1336f:var(--c-d1336f);--c-d6ddf8:var(--c-e4e4e7);--c-d8d2c6:var(--c-d4d4d8);--c-d97706:var(--c-d97706);--c-d9a300:var(--c-d9a300);--c-e0a800:var(--c-e0a800);--c-e11d48:var(--c-e11d48);--c-e5edfd:var(--c-f4f4f5);--c-e6e0d4:var(--c-d4d4d8);--c-eef1fc:var(--c-f4f4f5);--c-eef3fc:var(--c-f4f4f5);--c-f0634a:var(--c-f0634a);--c-f0ebe1:var(--c-e4e4e7);--c-f3c7a8:var(--c-f3c7a8);--c-f3f4f6:var(--c-f4f4f5);--c-f6dcb4:var(--c-f6dcb4);--c-f6f3ec:var(--c-f4f4f5);--c-fbfaf6:var(--c-fafafa);--c-fbfaf7:var(--c-fafafa);--c-fcf0f5:var(--c-f4f4f5);--c-fcfbf8:var(--c-fafafa);--c-fde8e3:var(--c-f4f4f5);--c-ffd23f:var(--c-ffd23f);--c-ffd27a:var(--c-ffd27a);--c-ffe58a:var(--c-ffe58a);--c-fff4c7:var(--c-fff4c7);--c-fff7ec:var(--c-f4f4f5);--c-ffffff:var(--c-ffffff)}html.m-dark{--c-0e8a7d:var(--c-9df1e8);--c-1d1b18:var(--c-f4f4f5);--c-1f3590:var(--c-a3b1eb);--c-1f3f94:var(--c-6788df);--c-2846b8:var(--c-6881de);--c-2b59c3:var(--c-698cde);--c-331100:var(--c-f1b99d);--c-374151:var(--c-d4d4d8);--c-5b554c:var(--c-a1a1aa);--c-5d8bf0:var(--c-213f83);--c-6b7280:var(--c-a1a1aa);--c-6d3fc0:var(--c-9675d2);--c-7c3aed:var(--c-8f57f0);--c-8a4b06:var(--c-f1c99d);--c-8a6200:var(--c-f1d99d);--c-8c857a:var(--c-a1a1aa);--c-9a2a14:var(--c-f1ab9d);--c-c2410c:var(--c-f18355);--c-c8371d:var(--c-e8735f);--c-c9d2f5:var(--c-213583);--c-d1336f:var(--c-dd6995);--c-d6ddf8:var(--c-27272a);--c-d8d2c6:var(--c-3f3f46);--c-d97706:var(--c-f1a955);--c-d9a300:var(--c-f1ca55);--c-e0a800:var(--c-f1ca55);--c-e11d48:var(--c-ea5c7b);--c-e5edfd:var(--c-18181b);--c-e6e0d4:var(--c-3f3f46);--c-eef1fc:var(--c-18181b);--c-eef3fc:var(--c-18181b);--c-f0634a:var(--c-f16d55);--c-f0ebe1:var(--c-27272a);--c-f3c7a8:var(--c-834921);--c-f3f4f6:var(--c-18181b);--c-f6dcb4:var(--c-835c21);--c-f6f3ec:var(--c-18181b);--c-fbfaf6:var(--c-09090b);--c-fbfaf7:var(--c-09090b);--c-fcf0f5:var(--c-18181b);--c-fcfbf8:var(--c-09090b);--c-fde8e3:var(--c-18181b);--c-ffd23f:var(--c-f1cd55);--c-ffd27a:var(--c-836121);--c-ffe58a:var(--c-836d21);--c-fff4c7:var(--c-373010);--c-fff7ec:var(--c-18181b);--c-ffffff:var(--c-0e0e11)}</style>
+
+
+
+
+
+
+<script data-material-theme-init>(function(){var d=document.documentElement,t="dark",o=false;try{t=localStorage.getItem("simpul.theme")==="light"?"light":"dark";o=JSON.parse(localStorage.getItem("simpul.duo.v1")||"{}").on===true}catch(e){}try{if(parent!==window&&parent.document){var p=parent.document.documentElement;o=p.hasAttribute("data-duo");if(p.getAttribute("data-theme")==="light")t="light"}}catch(e){}d.dataset.materialTheme=t;if(o)d.setAttribute("data-material-duo","")})()</script><style data-simpul-monochrome-palette>:root{--c-09090b:#09090b;--c-0e0e11:#09090b;--c-0e8a7d:#3f3f46;--c-18181b:#18181b;--c-1d1b18:#18181b;--c-1f3590:#3f3f46;--c-1f3f94:#52525b;--c-213583:#3f3f46;--c-213f83:#3f3f46;--c-27272a:#18181b;--c-2846b8:#52525b;--c-2b59c3:#52525b;--c-331100:#18181b;--c-373010:#18181b;--c-374151:#3f3f46;--c-3f3f46:#3f3f46;--c-52525b:#3f3f46;--c-5b554c:#3f3f46;--c-5d8bf0:#a1a1aa;--c-6788df:#52525b;--c-6881de:#52525b;--c-698cde:#52525b;--c-6b7280:#52525b;--c-6d3fc0:#52525b;--c-71717a:#52525b;--c-7c3aed:#52525b;--c-834921:#3f3f46;--c-835c21:#3f3f46;--c-836121:#3f3f46;--c-836d21:#3f3f46;--c-8a4b06:#3f3f46;--c-8a6200:#3f3f46;--c-8c857a:#52525b;--c-8f57f0:#52525b;--c-9675d2:#52525b;--c-9a2a14:#3f3f46;--c-9df1e8:#a1a1aa;--c-a1a1aa:#52525b;--c-a3b1eb:#a1a1aa;--c-c2410c:#52525b;--c-c8371d:#52525b;--c-c9d2f5:#e4e4e7;--c-d1336f:#52525b;--c-d4d4d8:#e4e4e7;--c-d6ddf8:#e4e4e7;--c-d8d2c6:#a1a1aa;--c-d97706:#52525b;--c-d9a300:#52525b;--c-dd6995:#52525b;--c-e0a800:#52525b;--c-e11d48:#52525b;--c-e4e4e7:#e4e4e7;--c-e5edfd:#f4f4f5;--c-e6e0d4:#e4e4e7;--c-e8735f:#52525b;--c-ea5c7b:#52525b;--c-eef1fc:#f4f4f5;--c-eef3fc:#f4f4f5;--c-f0634a:#52525b;--c-f0ebe1:#e4e4e7;--c-f16d55:#52525b;--c-f18355:#52525b;--c-f1a955:#52525b;--c-f1ab9d:#a1a1aa;--c-f1b99d:#a1a1aa;--c-f1c99d:#a1a1aa;--c-f1ca55:#52525b;--c-f1cd55:#52525b;--c-f1d99d:#a1a1aa;--c-f3c7a8:#a1a1aa;--c-f3f4f6:#f4f4f5;--c-f4f4f5:#f4f4f5;--c-f6dcb4:#e4e4e7;--c-f6f3ec:#f4f4f5;--c-fafafa:#f4f4f5;--c-fbfaf6:#f4f4f5;--c-fbfaf7:#f4f4f5;--c-fcf0f5:#f4f4f5;--c-fcfbf8:#f4f4f5;--c-fde8e3:#f4f4f5;--c-ffd23f:#52525b;--c-ffd27a:#a1a1aa;--c-ffe58a:#a1a1aa;--c-fff4c7:#e4e4e7;--c-fff7ec:#f4f4f5;--c-ffffff:#ffffff;}html[data-material-theme="dark"]{--c-09090b:#fafafa;--c-0e0e11:#fafafa;--c-0e8a7d:#d4d4d8;--c-18181b:#f4f4f5;--c-1d1b18:#f4f4f5;--c-1f3590:#d4d4d8;--c-1f3f94:#a1a1aa;--c-213583:#d4d4d8;--c-213f83:#d4d4d8;--c-27272a:#f4f4f5;--c-2846b8:#a1a1aa;--c-2b59c3:#a1a1aa;--c-331100:#f4f4f5;--c-373010:#f4f4f5;--c-374151:#d4d4d8;--c-3f3f46:#d4d4d8;--c-52525b:#d4d4d8;--c-5b554c:#d4d4d8;--c-5d8bf0:#71717a;--c-6788df:#a1a1aa;--c-6881de:#a1a1aa;--c-698cde:#a1a1aa;--c-6b7280:#a1a1aa;--c-6d3fc0:#a1a1aa;--c-71717a:#a1a1aa;--c-7c3aed:#a1a1aa;--c-834921:#d4d4d8;--c-835c21:#d4d4d8;--c-836121:#d4d4d8;--c-836d21:#d4d4d8;--c-8a4b06:#d4d4d8;--c-8a6200:#d4d4d8;--c-8c857a:#a1a1aa;--c-8f57f0:#a1a1aa;--c-9675d2:#a1a1aa;--c-9a2a14:#d4d4d8;--c-9df1e8:#71717a;--c-a1a1aa:#a1a1aa;--c-a3b1eb:#71717a;--c-c2410c:#a1a1aa;--c-c8371d:#a1a1aa;--c-c9d2f5:#27272a;--c-d1336f:#a1a1aa;--c-d4d4d8:#27272a;--c-d6ddf8:#27272a;--c-d8d2c6:#71717a;--c-d97706:#a1a1aa;--c-d9a300:#a1a1aa;--c-dd6995:#a1a1aa;--c-e0a800:#a1a1aa;--c-e11d48:#a1a1aa;--c-e4e4e7:#27272a;--c-e5edfd:#18181b;--c-e6e0d4:#27272a;--c-e8735f:#a1a1aa;--c-ea5c7b:#a1a1aa;--c-eef1fc:#18181b;--c-eef3fc:#18181b;--c-f0634a:#a1a1aa;--c-f0ebe1:#27272a;--c-f16d55:#a1a1aa;--c-f18355:#a1a1aa;--c-f1a955:#a1a1aa;--c-f1ab9d:#71717a;--c-f1b99d:#71717a;--c-f1c99d:#71717a;--c-f1ca55:#a1a1aa;--c-f1cd55:#a1a1aa;--c-f1d99d:#71717a;--c-f3c7a8:#71717a;--c-f3f4f6:#18181b;--c-f4f4f5:#18181b;--c-f6dcb4:#27272a;--c-f6f3ec:#18181b;--c-fafafa:#18181b;--c-fbfaf6:#18181b;--c-fbfaf7:#18181b;--c-fcf0f5:#18181b;--c-fcfbf8:#18181b;--c-fde8e3:#18181b;--c-ffd23f:#a1a1aa;--c-ffd27a:#71717a;--c-ffe58a:#71717a;--c-fff4c7:#27272a;--c-fff7ec:#18181b;--c-ffffff:#0e0e11;}html[data-material-duo]{--c-09090b:#3C3C3C;--c-0e0e11:#3C3C3C;--c-0e8a7d:#1899D6;--c-18181b:#3C3C3C;--c-1d1b18:#3C3C3C;--c-1f3590:#1899D6;--c-1f3f94:#1899D6;--c-213583:#1899D6;--c-213f83:#1899D6;--c-27272a:#3C3C3C;--c-2846b8:#1CB0F6;--c-2b59c3:#1CB0F6;--c-331100:#CD7900;--c-373010:#E5A000;--c-374151:#1899D6;--c-3f3f46:#4B4B4B;--c-52525b:#4B4B4B;--c-5b554c:#4B4B4B;--c-5d8bf0:#1CB0F6;--c-6788df:#1CB0F6;--c-6881de:#1CB0F6;--c-698cde:#1CB0F6;--c-6b7280:#777777;--c-6d3fc0:#CE82FF;--c-71717a:#777777;--c-7c3aed:#CE82FF;--c-834921:#CD7900;--c-835c21:#CD7900;--c-836121:#CD7900;--c-836d21:#E5A000;--c-8a4b06:#CD7900;--c-8a6200:#E5A000;--c-8c857a:#777777;--c-8f57f0:#CE82FF;--c-9675d2:#CE82FF;--c-9a2a14:#EA2B2B;--c-9df1e8:color-mix(in srgb,#1CB0F6 45%,#FFFFFF);--c-a1a1aa:#AFAFAF;--c-a3b1eb:color-mix(in srgb,#1CB0F6 45%,#FFFFFF);--c-c2410c:#FF9600;--c-c8371d:#FF4B4B;--c-c9d2f5:color-mix(in srgb,#1CB0F6 45%,#FFFFFF);--c-d1336f:#FF4B4B;--c-d4d4d8:#AFAFAF;--c-d6ddf8:#DDF4FF;--c-d8d2c6:color-mix(in srgb,#FFC800 45%,#FFFFFF);--c-d97706:#FF9600;--c-d9a300:#FFC800;--c-dd6995:#FF4B4B;--c-e0a800:#FFC800;--c-e11d48:#FF4B4B;--c-e4e4e7:#E5E5E5;--c-e5edfd:#DDF4FF;--c-e6e0d4:color-mix(in srgb,#FFC800 45%,#FFFFFF);--c-e8735f:#FF4B4B;--c-ea5c7b:#FF4B4B;--c-eef1fc:#F7F7F7;--c-eef3fc:#F7F7F7;--c-f0634a:#FF4B4B;--c-f0ebe1:#E5E5E5;--c-f16d55:#FF4B4B;--c-f18355:#FF9600;--c-f1a955:#FF9600;--c-f1ab9d:color-mix(in srgb,#FF4B4B 45%,#FFFFFF);--c-f1b99d:color-mix(in srgb,#FF9600 45%,#FFFFFF);--c-f1c99d:color-mix(in srgb,#FF9600 45%,#FFFFFF);--c-f1ca55:#FFC800;--c-f1cd55:#FFC800;--c-f1d99d:color-mix(in srgb,#FFC800 45%,#FFFFFF);--c-f3c7a8:color-mix(in srgb,#FF9600 45%,#FFFFFF);--c-f3f4f6:#F7F7F7;--c-f4f4f5:#F7F7F7;--c-f6dcb4:color-mix(in srgb,#FF9600 45%,#FFFFFF);--c-f6f3ec:#F7F7F7;--c-fafafa:#FFFFFF;--c-fbfaf6:#FFFFFF;--c-fbfaf7:#FFFFFF;--c-fcf0f5:#F7F7F7;--c-fcfbf8:#FFFFFF;--c-fde8e3:#FFDFE0;--c-ffd23f:#FFC800;--c-ffd27a:#FF9600;--c-ffe58a:color-mix(in srgb,#FFC800 45%,#FFFFFF);--c-fff4c7:color-mix(in srgb,#FFC800 45%,#FFFFFF);--c-fff7ec:#FFF0D9;--c-ffffff:#FFFFFF;}html[data-material-duo][data-material-theme="dark"]{--c-09090b:#F1F7FB;--c-0e0e11:#F1F7FB;--c-0e8a7d:color-mix(in srgb,#1CB0F6 78%,#FFFFFF);--c-18181b:#F1F7FB;--c-1d1b18:#F1F7FB;--c-1f3590:color-mix(in srgb,#1CB0F6 78%,#FFFFFF);--c-1f3f94:color-mix(in srgb,#1CB0F6 78%,#FFFFFF);--c-213583:color-mix(in srgb,#1CB0F6 78%,#FFFFFF);--c-213f83:color-mix(in srgb,#1CB0F6 78%,#FFFFFF);--c-27272a:#F1F7FB;--c-2846b8:#1CB0F6;--c-2b59c3:#1CB0F6;--c-331100:color-mix(in srgb,#FF9600 78%,#FFFFFF);--c-373010:color-mix(in srgb,#FFC800 78%,#FFFFFF);--c-374151:color-mix(in srgb,#1CB0F6 78%,#FFFFFF);--c-3f3f46:#DCE6EC;--c-52525b:#DCE6EC;--c-5b554c:#DCE6EC;--c-5d8bf0:#1CB0F6;--c-6788df:#1CB0F6;--c-6881de:#1CB0F6;--c-698cde:#1CB0F6;--c-6b7280:#AFAFAF;--c-6d3fc0:#CE82FF;--c-71717a:#AFAFAF;--c-7c3aed:#CE82FF;--c-834921:color-mix(in srgb,#FF9600 78%,#FFFFFF);--c-835c21:color-mix(in srgb,#FF9600 78%,#FFFFFF);--c-836121:color-mix(in srgb,#FF9600 78%,#FFFFFF);--c-836d21:color-mix(in srgb,#FFC800 78%,#FFFFFF);--c-8a4b06:color-mix(in srgb,#FF9600 78%,#FFFFFF);--c-8a6200:color-mix(in srgb,#FFC800 78%,#FFFFFF);--c-8c857a:#AFAFAF;--c-8f57f0:#CE82FF;--c-9675d2:#CE82FF;--c-9a2a14:color-mix(in srgb,#FF4B4B 78%,#FFFFFF);--c-9df1e8:color-mix(in srgb,#1CB0F6 40%,#131F24);--c-a1a1aa:#52656D;--c-a3b1eb:color-mix(in srgb,#1CB0F6 40%,#131F24);--c-c2410c:#FF9600;--c-c8371d:#FF4B4B;--c-c9d2f5:color-mix(in srgb,#1CB0F6 40%,#131F24);--c-d1336f:#FF4B4B;--c-d4d4d8:#52656D;--c-d6ddf8:color-mix(in srgb,#1CB0F6 16%,#131F24);--c-d8d2c6:color-mix(in srgb,#FFC800 40%,#131F24);--c-d97706:#FF9600;--c-d9a300:#FFC800;--c-dd6995:#FF4B4B;--c-e0a800:#FFC800;--c-e11d48:#FF4B4B;--c-e4e4e7:#37464F;--c-e5edfd:color-mix(in srgb,#1CB0F6 16%,#131F24);--c-e6e0d4:color-mix(in srgb,#FFC800 40%,#131F24);--c-e8735f:#FF4B4B;--c-ea5c7b:#FF4B4B;--c-eef1fc:#202F36;--c-eef3fc:#202F36;--c-f0634a:#FF4B4B;--c-f0ebe1:#37464F;--c-f16d55:#FF4B4B;--c-f18355:#FF9600;--c-f1a955:#FF9600;--c-f1ab9d:color-mix(in srgb,#FF4B4B 40%,#131F24);--c-f1b99d:color-mix(in srgb,#FF9600 40%,#131F24);--c-f1c99d:color-mix(in srgb,#FF9600 40%,#131F24);--c-f1ca55:#FFC800;--c-f1cd55:#FFC800;--c-f1d99d:color-mix(in srgb,#FFC800 40%,#131F24);--c-f3c7a8:color-mix(in srgb,#FF9600 40%,#131F24);--c-f3f4f6:#202F36;--c-f4f4f5:#202F36;--c-f6dcb4:color-mix(in srgb,#FF9600 40%,#131F24);--c-f6f3ec:#202F36;--c-fafafa:#131F24;--c-fbfaf6:#131F24;--c-fbfaf7:#131F24;--c-fcf0f5:#202F36;--c-fcfbf8:#131F24;--c-fde8e3:color-mix(in srgb,#FF4B4B 16%,#131F24);--c-ffd23f:#FFC800;--c-ffd27a:#FF9600;--c-ffe58a:color-mix(in srgb,#FFC800 40%,#131F24);--c-fff4c7:color-mix(in srgb,#FFC800 40%,#131F24);--c-fff7ec:color-mix(in srgb,#FF9600 16%,#131F24);--c-ffffff:#131F24;}</style>
+<link rel="stylesheet" href="../../_theme/material-monochrome.css">
+<link rel="stylesheet" href="../../_theme/study-ui.css">
+<script src="../../_theme/study-ui.js" defer></script>
 </head>
 <body data-unit="u2">
 
@@ -285,7 +293,7 @@ footer{text-align:center;font-size:12px;color:var(--ink3);padding:10px 0 30px}
 <header class="hero"><div class="hero-in" id="hero"></div></header>
 <nav class="tabs"><div class="tabs-in" id="tabs"></div></nav>
 <main id="main"></main>
-<footer>교과서 지문 + 수업 필기 기반 정리 · ✍ 표시는 선생님 필기, ＋ 표시는 본문 구조 보충</footer>
+<footer>교과서 지문 + 수업 필기 기반 정리 ·  표시는 선생님 필기, ＋ 표시는 본문 구조 보충</footer>
 <button class="totop" id="totop" aria-label="맨 위로">↑</button>
 
 <script>
@@ -294,7 +302,7 @@ footer{text-align:center;font-size:12px;color:var(--ink3);padding:10px 0 30px}
    [[ ]] 관계사절·what절   (( )) 수식어구·부사절   << >> 명사절
    __x__ 병렬·짝 표현 밑줄   {단어|필기 뜻}  {단어^문장성분}
    *x* 작품명 이탤릭   ==x== 형광 강조
-   노트: 일반 문자열 = 선생님 필기(✍) / '+'로 시작 = 보충(＋)
+   노트: 일반 문자열 = 선생님 필기() / '+'로 시작 = 보충(＋)
    ========================================================= */
 
 const UNITS = [
@@ -461,12 +469,12 @@ const UNITS = [
 
   <div class="sec-h"><h2>¶1 숫자 정리</h2><p>누가 · 언제 · 얼마나</p></div>
   <div class="card box">
-    <h3>🇺🇸 미국 대학생 한국어 강좌 등록 <span class="chip">Modern Language Association</span></h3>
+    <h3> 미국 대학생 한국어 강좌 등록 <span class="chip">Modern Language Association</span></h3>
     <div class="bars">
       <div class="bar-row"><span>2009 → 2016</span><div class="bar-tr"><div class="bar-fl" style="width:100%"></div></div><span class="bar-v">+78%</span></div>
       <div class="bar-row"><span>2016 → 2021</span><div class="bar-tr"><div class="bar-fl" style="width:49%"></div></div><span class="bar-v">+38.3%</span></div>
     </div>
-    <h3 style="margin-top:16px">🇬🇧 영국 고등교육 학생 한국어 수강생 <span class="chip">University Council of Modern Languages</span></h3>
+    <h3 style="margin-top:16px"> 영국 고등교육 학생 한국어 수강생 <span class="chip">University Council of Modern Languages</span></h3>
     <p style="font-size:13.5px">2012 → 2018: <b>steadily increased</b> (꾸준히 증가 — 구체적 수치는 제시되지 않음)</p>
     <p class="src">기간과 기관을 바꿔 묻는 선택지에 주의: 78%는 2009–2016, 38.3%는 2016–2021, 영국 자료는 2012–2018</p>
   </div>
@@ -518,11 +526,11 @@ const UNITS = [
     {p:6, w:'dive in', ko:'~에 뛰어들다', eq:['jump right in','immerse myself'], ref:'6-5', hi:'dive in'}
   ],
   links:[
-    {t:'📝 등록하다', ch:[['enrollment','¶1'],['= who registered for',''],['= who enrolled in',''],['enroll in','¶5'],['= register for · take · sign up for','']], d:'¶1의 명사 enrollment와 ¶5의 동사 enroll in이 같은 의미 계열로 이어진다.'},
-    {t:'🔥 불러일으키다', ch:[['trigger','¶3'],['= ignite',''],['= spark',''],['sparked','¶5']], d:'¶3 필기의 spark가 ¶5 본문에 실제로 등장한다: Watching different shows sparked my desire …'},
-    {t:'💗 관심 · 빠져들다', ch:[['interest in','¶3'],['= fascination with · love for',''],['have been hooked','¶2'],['Getting hooked on','¶6']], d:'hook(관심을 끌다)은 ¶2와 ¶6에서 각각 “빠져 있다 / 빠지게 된 것”으로 쓰인다.'},
-    {t:'🔗 with + 명사 + -ing (부대상황)', ch:[['with more people wanting …','¶1'],['with … storylines pulling …','¶4']], d:'두 곳 모두 명사가 동작의 주체 → 능동 -ing.'},
-    {t:'🚪 unless = ~하지 않는다면', ch:[['unless I understand …','¶3'],['unless I dive in','¶6']], d:'두 화자 모두 unless로 “직접 이해하고 뛰어들어야 한다”는 생각을 드러낸다.'}
+    {t:' 등록하다', ch:[['enrollment','¶1'],['= who registered for',''],['= who enrolled in',''],['enroll in','¶5'],['= register for · take · sign up for','']], d:'¶1의 명사 enrollment와 ¶5의 동사 enroll in이 같은 의미 계열로 이어진다.'},
+    {t:' 불러일으키다', ch:[['trigger','¶3'],['= ignite',''],['= spark',''],['sparked','¶5']], d:'¶3 필기의 spark가 ¶5 본문에 실제로 등장한다: Watching different shows sparked my desire …'},
+    {t:' 관심 · 빠져들다', ch:[['interest in','¶3'],['= fascination with · love for',''],['have been hooked','¶2'],['Getting hooked on','¶6']], d:'hook(관심을 끌다)은 ¶2와 ¶6에서 각각 “빠져 있다 / 빠지게 된 것”으로 쓰인다.'},
+    {t:' with + 명사 + -ing (부대상황)', ch:[['with more people wanting …','¶1'],['with … storylines pulling …','¶4']], d:'두 곳 모두 명사가 동작의 주체 → 능동 -ing.'},
+    {t:' unless = ~하지 않는다면', ch:[['unless I understand …','¶3'],['unless I dive in','¶6']], d:'두 화자 모두 unless로 “직접 이해하고 뛰어들어야 한다”는 생각을 드러낸다.'}
   ],
   banks:[],
 
@@ -583,7 +591,7 @@ const UNITS = [
      ['the joy of life [he felt there]: 앞 명사를 꾸미는 절 — 목적격 관계대명사 생략']],
     [`During his short life of 37 years, he created more than 900 paintings, [[around 300 of which {feature|~을 특징으로 하다} mostly yellow]].`,
      `37년의 짧은 생애 동안 그는 900점이 넘는 그림을 그렸는데, 그중 약 300점은 주로 노란색을 특징으로 한다.`,
-     ['★ more than 900 paintings, around 300 of which feature mostly yellow',
+     [' more than 900 paintings, around 300 of which feature mostly yellow',
       '= more than 900 paintings, and around 300 of them feature mostly yellow',
       'feature ⓥ: ~을 특징으로 하다']],
     [`The series of paintings called *Sunflowers* includes some of his most {recognizable|유명한} works.`,
@@ -691,7 +699,7 @@ const UNITS = [
     [`Her {figure|모습, 모양} ((in a red dress)) {resembles|~와 닮아있다} a huge mountain against the background of the deep, starry blue night, suggesting the relationship between her and nature.`,
      `빨간 드레스를 입은 그녀의 모습은 별이 빛나는 깊고 푸른 밤을 배경으로 거대한 산을 닮아 있어, 그녀와 자연 사이의 관계를 암시한다.`,
      ['suggesting the relationship between her and nature = blending human and natural elements',
-      '+ resemble: 전치사 없이 바로 목적어 (resemble with ✕)']],
+      '+ resemble: 전치사 없이 바로 목적어 (resemble with X)']],
     [`Sometimes red is used to express the beauty of nature.`,
      `때때로 빨간색은 자연의 아름다움을 표현하는 데 사용된다.`, []],
     [`Claude Monet's *Autumn Effect at Argenteuil* shows how the artist celebrated beautiful autumn moments.`,
@@ -784,10 +792,10 @@ const UNITS = [
     {p:6, w:'suggesting the relationship between her and nature', mine:1, ko:'그녀와 자연의 관계를 암시', eq:['blending human and natural elements'], ref:'6-4', hi:'suggesting the relationship between her and nature'}
   ],
   links:[
-    {t:'💭 떠올리게 하다', ch:[['remind A of B','¶4'],['bring up','¶4'],['= evoke',''],['= call to mind','']], d:'김환기 문단에서 같은 의미가 두 번 다른 표현으로 등장한다.'},
-    {t:'🎨 표현하다 · 나타내다', ch:[['express','¶2·¶3'],['depict','¶3·¶6'],['= illustrate · portray · render',''],['symbolize','¶6'],['= represent · embody · signify',''],['speak of','¶5'],['= show · suggest','']], d:'화가가 색으로 감정을 “나타낸다”는 의미의 다양한 동사들.'},
-    {t:'🔆 강조하다', ch:[['emphasize','¶2'],['serve to emphasize','¶2'],['emphasizing','¶3 ×2']], d:'호퍼 문단의 분사구문 두 개가 모두 emphasizing으로 시작한다.'},
-    {t:'🔗 계속적 용법', ch:[[', where = and in …','¶2'],[', which = and it','¶4 · ¶5 · ¶6']], d:'콤마 뒤 관계사 = 접속사 + 대명사로 바꿔 읽기.'},
+    {t:' 떠올리게 하다', ch:[['remind A of B','¶4'],['bring up','¶4'],['= evoke',''],['= call to mind','']], d:'김환기 문단에서 같은 의미가 두 번 다른 표현으로 등장한다.'},
+    {t:' 표현하다 · 나타내다', ch:[['express','¶2·¶3'],['depict','¶3·¶6'],['= illustrate · portray · render',''],['symbolize','¶6'],['= represent · embody · signify',''],['speak of','¶5'],['= show · suggest','']], d:'화가가 색으로 감정을 “나타낸다”는 의미의 다양한 동사들.'},
+    {t:' 강조하다', ch:[['emphasize','¶2'],['serve to emphasize','¶2'],['emphasizing','¶3 ×2']], d:'호퍼 문단의 분사구문 두 개가 모두 emphasizing으로 시작한다.'},
+    {t:' 계속적 용법', ch:[[', where = and in …','¶2'],[', which = and it','¶4 · ¶5 · ¶6']], d:'콤마 뒤 관계사 = 접속사 + 대명사로 바꿔 읽기.'},
     {t:'↔ 대조의 연결어', ch:[['but','¶3'],['On the other hand','¶5'],['Sometimes','¶6']], d:'같은 색을 쓴 두 화가를 비교·대조하는 글의 구조를 드러내는 표지.'}
   ],
   banks:[
@@ -801,7 +809,7 @@ const UNITS = [
 
   grammar:[
     {t:'관계부사 where — 계속적 용법', s:'n', b:`<p><span class="formula">, where … = , in which … = and in + 선행사</span></p><p>the French city of Arles, where van Gogh spent his later years, = and in the French city of Arles van Gogh spent …</p>`, ex:['2-2']},
-    {t:'★ 수량 표현 + of which', s:'n', b:`<p><span class="formula">명사, around 300 of which + V</span> = <span class="formula">명사, and around 300 of them + V</span></p><p>콤마 뒤에 접속사 and가 없으면 대명사 them을 쓸 수 없고, 관계대명사 which를 쓴다.</p>`, ex:['2-4']},
+    {t:' 수량 표현 + of which', s:'n', b:`<p><span class="formula">명사, around 300 of which + V</span> = <span class="formula">명사, and around 300 of them + V</span></p><p>콤마 뒤에 접속사 and가 없으면 대명사 them을 쓸 수 없고, 관계대명사 which를 쓴다.</p>`, ex:['2-4']},
     {t:'목적격 관계대명사 생략', s:'n', b:`<p>명사 + [주어 + 동사 …] — 명사와 주어가 바로 붙어 있으면 목적격 관계대명사가 생략된 것.</p>`,
       ex:[{r:'2-3', why:'the joy of life [he felt there]'},{r:'4-4', why:'the place [(which) he grew up in] — 전치사 in은 끝에 남음'},{r:'5-5', why:'the freedom [he experienced …]'}]},
     {t:'5형식 V + O + to V / 형용사', s:'n', b:`
@@ -816,7 +824,7 @@ const UNITS = [
       <table class="gt"><tr><th>품사</th><th>형태</th><th>뜻</th></tr>
       <tr><td>명사 ⓝ</td><td class="e">create a contrast to ~</td><td>대조</td></tr>
       <tr><td>동사 ⓥ</td><td class="e">contrast with ~</td><td>~와 대조하다</td></tr></table>`, ex:['3-5','3-7']},
-    {t:'비교급 강조 even', s:'n', b:`<p><span class="formula">even + 비교급</span> = 훨씬 더 ~한</p><p class="note p" style="margin-top:8px">much · still · far · a lot도 비교급을 강조 (very ✕)</p>`, ex:['3-6']},
+    {t:'비교급 강조 even', s:'n', b:`<p><span class="formula">even + 비교급</span> = 훨씬 더 ~한</p><p class="note p" style="margin-top:8px">much · still · far · a lot도 비교급을 강조 (very X)</p>`, ex:['3-6']},
     {t:'how가 이끄는 명사절 〈 〉', s:'n', b:`<p>〈how + S + V〉 = 어떻게 ~하는지 → 동사의 목적어 역할</p>`,
       ex:[{r:'3-2', why:'showed의 목적어'},{r:'3-5', why:'emphasizing의 목적어 — 그 안에서 can be와 feel이 and로 병렬'}]},
     {t:'remind A of B / prevent A from B', s:'n', b:`
@@ -835,7 +843,7 @@ const UNITS = [
     {t:'may have p.p.', s:'p', b:`<p><span class="formula">may have p.p.</span> = ~했을지도 모른다 (과거에 대한 추측)</p>`, ex:['6-2']},
     {t:'주어–동사 수일치', s:'p', b:`<p>수식어를 걷어내고 핵심 주어를 찾는다.</p>`,
       ex:[{r:'2-5', why:'The series (of paintings called …) → includes'},{r:'4-5', why:'the waves (of deep blue and light blue dots) → bring'}]},
-    {t:'resemble — 전치사 없이 목적어', s:'p', b:`<p><span class="formula">resemble + 목적어</span> (resemble with ✕) = ~와 닮다</p>`, ex:['6-4']},
+    {t:'resemble — 전치사 없이 목적어', s:'p', b:`<p><span class="formula">resemble + 목적어</span> (resemble with X) = ~와 닮다</p>`, ex:['6-4']},
     {t:'관계부사 when', s:'p', b:`<p>시간 명사 + when + S + V = ~하는 (때/순간)</p>`, ex:['6-8']}
   ],
 
@@ -846,11 +854,11 @@ const UNITS = [
 
 /* ======================= ENGINE ======================= */
 const TABS = [
-  {k:'overview', l:'한눈에', ic:'🗺️'},
-  {k:'text', l:'본문 정독', ic:'📖'},
-  {k:'para', l:'패러프레이즈', ic:'🔁'},
-  {k:'gram', l:'문법', ic:'🧩'},
-  {k:'drill', l:'어휘 문제', ic:'📝'}
+  {k:'overview', l:'한눈에', ic:''},
+  {k:'text', l:'본문 정독', ic:''},
+  {k:'para', l:'패러프레이즈', ic:''},
+  {k:'gram', l:'문법', ic:''},
+  {k:'drill', l:'어휘 문제', ic:''}
 ];
 const S = {unit:0, tab:1};
 try{ const sv = JSON.parse(localStorage.getItem('simpul-eng-u23')||'{}'); if(sv.unit!=null) S.unit=sv.unit; if(sv.tab!=null) S.tab=sv.tab; if(sv.hide) document.body.className = sv.hide; }catch(e){}
@@ -957,11 +965,11 @@ function rGram(u){
   const list = u.grammar.filter(g=>gFilter==='all'||g.s===gFilter);
   let h = `<div class="gfilter">
     <button class="gf${gFilter==='all'?' on':''}" data-g="all">전체 ${u.grammar.length}</button>
-    <button class="gf${gFilter==='n'?' on':''}" data-g="n">✍ 필기 ${u.grammar.filter(g=>g.s==='n').length}</button>
+    <button class="gf${gFilter==='n'?' on':''}" data-g="n"> 필기 ${u.grammar.filter(g=>g.s==='n').length}</button>
     <button class="gf${gFilter==='p'?' on':''}" data-g="p">＋ 보충 ${u.grammar.filter(g=>g.s==='p').length}</button></div><div class="gcards">`;
   list.forEach(g=>{
     const no = u.grammar.indexOf(g)+1;
-    h += `<div class="card gc"><div class="gc-h"><span class="gno">${String(no).padStart(2,'0')}</span><h3>${esc(g.t)}</h3><span class="badge ${g.s}">${g.s==='n'?'✍ 필기':'＋ 보충'}</span></div><div class="gc-b">${g.b}</div>`;
+    h += `<div class="card gc"><div class="gc-h"><span class="gno">${String(no).padStart(2,'0')}</span><h3>${esc(g.t)}</h3><span class="badge ${g.s}">${g.s==='n'?' 필기':'＋ 보충'}</span></div><div class="gc-b">${g.b}</div>`;
     if(g.ex.length){
       h += `<div class="gex">`;
       g.ex.forEach(e=>{
@@ -988,7 +996,7 @@ function rDrill(u){
   return h + `</div>`;
 }
 
-const PRACTICE = {"u2": ["<a class=\"m-practice\" target=\"_top\" href=\"../../../cloud.html?s=english&amp;u=%EA%B5%90%EA%B3%BC%EC%84%9C%20Unit%202%20%C2%B7%20%EC%96%B4%ED%9C%98\"><span class=\"m-practice-ico\" aria-hidden=\"true\">📝</span><span class=\"m-practice-txt\"><b>어휘 문제</b><small>교과서 Unit 2 · 어휘 · 14문제 · 5문제씩 풀어요</small></span><span class=\"m-practice-go\">무한 문제로 풀기 →</span></a>", "<a class=\"m-practice\" target=\"_top\" href=\"../../../cloud.html?s=english&amp;u=%EA%B5%90%EA%B3%BC%EC%84%9C%20Unit%202%20%C2%B7%20%EC%96%B4%ED%9C%98%20O/X\"><span class=\"m-practice-ico\" aria-hidden=\"true\">📝</span><span class=\"m-practice-txt\"><b>어휘 O/X 문제</b><small>교과서 Unit 2 · 어휘 O/X · 13문제 · 5문제씩 풀어요</small></span><span class=\"m-practice-go\">무한 문제로 풀기 →</span></a>"], "u3": ["<a class=\"m-practice\" target=\"_top\" href=\"../../../cloud.html?s=english&amp;u=%EA%B5%90%EA%B3%BC%EC%84%9C%20Unit%203%20%C2%B7%20%EC%96%B4%ED%9C%98\"><span class=\"m-practice-ico\" aria-hidden=\"true\">📝</span><span class=\"m-practice-txt\"><b>어휘 문제</b><small>교과서 Unit 3 · 어휘 · 15문제 · 5문제씩 풀어요</small></span><span class=\"m-practice-go\">무한 문제로 풀기 →</span></a>", "<a class=\"m-practice\" target=\"_top\" href=\"../../../cloud.html?s=english&amp;u=%EA%B5%90%EA%B3%BC%EC%84%9C%20Unit%203%20%C2%B7%20%EC%96%B4%ED%9C%98%20O/X\"><span class=\"m-practice-ico\" aria-hidden=\"true\">📝</span><span class=\"m-practice-txt\"><b>어휘 O/X 문제</b><small>교과서 Unit 3 · 어휘 O/X · 15문제 · 5문제씩 풀어요</small></span><span class=\"m-practice-go\">무한 문제로 풀기 →</span></a>"]};
+const PRACTICE = {"u2": ["<a class=\"m-practice\" target=\"_top\" href=\"../../../cloud.html?s=english&amp;u=%EA%B5%90%EA%B3%BC%EC%84%9C%20Unit%202%20%C2%B7%20%EC%96%B4%ED%9C%98\"><span class=\"m-practice-ico\" aria-hidden=\"true\"></span><span class=\"m-practice-txt\"><b>어휘 문제</b><small>교과서 Unit 2 · 어휘 · 14문제 · 5문제씩 풀어요</small></span><span class=\"m-practice-go\">무한 문제로 풀기 →</span></a>", "<a class=\"m-practice\" target=\"_top\" href=\"../../../cloud.html?s=english&amp;u=%EA%B5%90%EA%B3%BC%EC%84%9C%20Unit%202%20%C2%B7%20%EC%96%B4%ED%9C%98%20O/X\"><span class=\"m-practice-ico\" aria-hidden=\"true\"></span><span class=\"m-practice-txt\"><b>어휘 O/X 문제</b><small>교과서 Unit 2 · 어휘 O/X · 13문제 · 5문제씩 풀어요</small></span><span class=\"m-practice-go\">무한 문제로 풀기 →</span></a>"], "u3": ["<a class=\"m-practice\" target=\"_top\" href=\"../../../cloud.html?s=english&amp;u=%EA%B5%90%EA%B3%BC%EC%84%9C%20Unit%203%20%C2%B7%20%EC%96%B4%ED%9C%98\"><span class=\"m-practice-ico\" aria-hidden=\"true\"></span><span class=\"m-practice-txt\"><b>어휘 문제</b><small>교과서 Unit 3 · 어휘 · 15문제 · 5문제씩 풀어요</small></span><span class=\"m-practice-go\">무한 문제로 풀기 →</span></a>", "<a class=\"m-practice\" target=\"_top\" href=\"../../../cloud.html?s=english&amp;u=%EA%B5%90%EA%B3%BC%EC%84%9C%20Unit%203%20%C2%B7%20%EC%96%B4%ED%9C%98%20O/X\"><span class=\"m-practice-ico\" aria-hidden=\"true\"></span><span class=\"m-practice-txt\"><b>어휘 O/X 문제</b><small>교과서 Unit 3 · 어휘 O/X · 15문제 · 5문제씩 풀어요</small></span><span class=\"m-practice-go\">무한 문제로 풀기 →</span></a>"]};
 function rPractice(u){ return `<div class="lead">이 단원의 어휘 문제(뜻 고르기·O/X)는 무한 문제에서 풀어요.</div><div class="m-practice-wrap">${(PRACTICE[u.id]||[]).join('')}</div>`; }
 const R = {overview:rOverview, text:rText, para:rPara, gram:rGram, drill:rPractice};
 

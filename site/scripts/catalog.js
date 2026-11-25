@@ -172,8 +172,10 @@
       lead: '과목을 고르면 2학기 기말고사 범위 핵심 개념과 자료가 나와요. 무한 문제로 연습하고, 나만의 문제도 만들어 보세요.',
       subjects: {
         korean: {
-          summary: '2학기 기말고사 범위 자료를 준비하고 있어요',
-          items: []
+          summary: '공통국어2 기말 단원 통합 학습',
+          items: [
+          { id: 's2f-korean-integrated', kind: 'note', title: '공통국어2 통합 학습실', course: '공통국어2', file: 's2-final/korean/korean2_integrated.html' }
+        ]
         },
         english: {
           summary: '교과서 Unit 2·3 정독 노트와 부교재 학습',
@@ -194,26 +196,36 @@
         ]
         },
         history: {
-          summary: '2학기 기말고사 범위 자료를 준비하고 있어요',
-          items: []
+          summary: '사회·문화와 대중 운동 · 독립 국가 건설 · 경제 성장 · 민주화를 위한 노력',
+          items: [
+          { id: 's2f-history-part-choi', kind: 'note', title: '최O석 선생님 파트 · 대중 운동, 독립 국가 건설, 경제 성장과 사회 변화', course: '한국사', file: 's2-final/history/history_part_choi.html' },
+          { id: 's2f-history-part-jung', kind: 'note', title: '정O수 선생님 파트 · 민주화를 위한 노력', course: '한국사', file: 's2-final/history/history_part_jung.html' }
+        ]
         },
         science: {
-          summary: '2학기 기말고사 범위 자료를 준비하고 있어요',
-          items: []
+          summary: '생태계평형 · 산·염기와 중화 반응 · 발전과 에너지 효율 · 빅데이터와 과학 윤리',
+          items: [
+          { id: 's2f-science-biology', kind: 'note', title: '생태계 구성 요소와 생태계평형', course: '통합과학2 · 생명', file: 's2-final/science/biology_ecosystem.html' },
+          { id: 's2f-science-chemistry', kind: 'note', title: '산·염기와 중화 반응', course: '통합과학2 · 화학', file: 's2-final/science/chemistry.html' },
+          { id: 's2f-science-physics', kind: 'note', title: '발전과 에너지의 효율적 이용', course: '통합과학2 · 물리', file: 's2-final/science/physics.html' },
+          { id: 's2f-science-society', kind: 'note', title: '빅데이터와 과학 윤리', course: '통합과학2 · 과학과 미래 사회', file: 's2-final/science/science_society.html' },
+          { id: 's2f-science-earth', kind: 'note', title: '지구과학 파트 · 빅데이터와 과학 관련 사회적 쟁점', course: '통합과학2 · 지구과학', file: 's2-final/science/earth_future_society.html' }
+        ]
         },
         japanese: {
           summary: '히라가나·가타카나 퀴즈와 일본어Ⅰ 정리',
           items: [
-          { id: 'japanese-hiragana', kind: 'quiz', title: '히라가나 퀴즈', course: '일본어Ⅰ', file: 'japanese/japanese_hiragana.html' },
-          { id: 'japanese-katakana', kind: 'quiz', title: '가타카나 퀴즈', course: '일본어Ⅰ', file: 'japanese/japanese_katakana.html' },
-          { id: 'japanese-summary', kind: 'note', title: '가타카나·일본 문화·길찾기와 가족 방문 회화', course: '일본어Ⅰ', file: 'japanese/japanese_summary.html' }
+          { id: 's2f-japanese-supplement', kind: 'note', title: '일본어 누락 내용 보충 · 가타카나와 주거', course: '일본어Ⅰ', file: 's2-final/japanese/japanese_supplement.html' },
+          { id: 'japanese-hiragana', kind: 'quiz', title: '히라가나 퀴즈', course: '일본어Ⅰ', file: 's2-final/japanese/japanese_hiragana.html' },
+          { id: 'japanese-katakana', kind: 'quiz', title: '가타카나 퀴즈', course: '일본어Ⅰ', file: 's2-final/japanese/japanese_katakana.html' },
+          { id: 'japanese-summary', kind: 'note', title: '가타카나·일본 문화·길찾기와 가족 방문 회화', course: '일본어Ⅰ', file: 's2-final/japanese/japanese_summary.html' }
         ]
         },
         info: {
           summary: '디지털 문화, 알고리즘과 프로그래밍, 빅데이터',
           items: [
-          { id: 'info-midterm', kind: 'exam', title: '중간고사 대비: 디지털 문화, 알고리즘과 프로그래밍', course: '정보', file: 'info/info_midterm.html' },
-          { id: 'info-final', kind: 'exam', title: '기말고사 대비: 알고리즘과 프로그래밍, 빅데이터', course: '정보', file: 'info/info_new.html' }
+          { id: 'info-midterm', kind: 'exam', title: '중간고사 대비: 디지털 문화, 알고리즘과 프로그래밍', course: '정보', file: 's2-final/info/info_midterm.html' },
+          { id: 'info-final', kind: 'exam', title: '기말고사 대비: 알고리즘과 프로그래밍, 빅데이터', course: '정보', file: 's2-final/info/info_new.html' }
         ]
         }
       }

@@ -1,0 +1,292 @@
+/* 심풀 학습 노트 디자인 — material-monochrome.css(구조) 위에 얹는다.
+   기본: shadcn/ui (zinc) — Card · Tabs · Badge · Alert · Table · Button 모양과 토큰
+   듀오링고 모드(<html data-material-duo>): duolingo.com 웹 색·모양 (REA로 확인한 값, styles/duo.css 머리말과 같음)
+     초록 #58CC02/#58A700 · 파랑 #1CB0F6/#1899D6 · 빨강 #FF4B4B/#EA2B2B · 노랑 #FFC800 · 주황 #FF9600/#CD7900
+     다크: 배경 #131F24 · 면 #202F36 · 테두리 #37464F · 글자 #F1F7FB   라이트: 글자 #4B4B4B · 테두리 #E5E5E5 · 면 #F7F7F7
+     두께 2px 테두리 + 아래쪽 4px 그림자(눌리는 버튼), 둥근 모서리 12~16px, 굵은 글꼴
+   React Bits 효과는 study-ui.js가 붙이는 클래스(ui-*)를 꾸민다. 내용은 건드리지 않는다. */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap');
+
+/* ───────── 토큰 ───────── */
+html.simpul-material {
+  --ui-bg: #fafafa; --ui-card: #ffffff; --ui-fg: #09090b; --ui-muted: #f4f4f5; --ui-muted-fg: #71717a;
+  --ui-border: #e4e4e7; --ui-ring: #a1a1aa; --ui-primary: #18181b; --ui-primary-fg: #fafafa;
+  --ui-radius: 12px; --ui-shadow: 0 1px 2px rgb(0 0 0 / .05); --ui-shadow-lg: 0 10px 30px -12px rgb(0 0 0 / .18);
+  --ui-spot: 0 0% 0%; --ui-progress: #18181b; --ui-ease: cubic-bezier(.2, .7, .2, 1);
+  --m-spark: #71717a;
+  filter: none !important;
+}
+html.simpul-material[data-material-theme="dark"] {
+  --ui-bg: #09090b; --ui-card: #0e0e11; --ui-fg: #fafafa; --ui-muted: #18181b; --ui-muted-fg: #a1a1aa;
+  --ui-border: #27272a; --ui-ring: #52525b; --ui-primary: #fafafa; --ui-primary-fg: #18181b;
+  --ui-shadow: 0 1px 2px rgb(0 0 0 / .4); --ui-shadow-lg: 0 10px 30px -12px rgb(0 0 0 / .7);
+  --ui-spot: 0 0% 100%; --ui-progress: #fafafa; --m-spark: #a1a1aa;
+}
+
+/* 듀오링고 모드: material-monochrome.css가 쓰는 무채색 변수까지 듀오링고 색으로 바꾼다 */
+html.simpul-material[data-material-duo] {
+  --mono-ffffff: #FFFFFF; --mono-fafafa: #FFFFFF; --mono-f4f4f5: #F7F7F7; --mono-eaeaec: #EFEFEF; --mono-ededee: #E5E5E5;
+  --mono-e4e4e7: #E5E5E5; --mono-d4d4d8: #E5E5E5; --mono-a1a1aa: #AFAFAF; --mono-71717a: #777777; --mono-52525b: #777777;
+  --mono-3f3f46: #4B4B4B; --mono-27272a: #4B4B4B; --mono-18181b: #4B4B4B; --mono-09090b: #3C3C3C;
+  --mono-2563eb: #1CB0F6; --mono-93c5fd: #84D8FF; --mono-16a34a: #58CC02; --mono-166534: #58A700; --mono-bbf7d0: #D7FFB8;
+  --mono-0d9488: #1899D6; --mono-0f766e: #1899D6; --mono-7c3aed: #CE82FF; --mono-e11d48: #FF4B4B; --mono-fecdd3: #FFDFE0;
+  --mono-ea580c: #FF9600; --mono-9a3412: #CD7900; --mono-ca8a04: #FFC800; --mono-fcd34d: #FFC800;
+  --material-surface-rgb: 255 255 255;
+  --ui-bg: #FFFFFF; --ui-card: #FFFFFF; --ui-fg: #4B4B4B; --ui-muted: #F7F7F7; --ui-muted-fg: #777777;
+  --ui-border: #E5E5E5; --ui-ring: #1CB0F6; --ui-primary: #58CC02; --ui-primary-fg: #FFFFFF;
+  --duo-green: #58CC02; --duo-green-deep: #58A700; --duo-green-tint: #D7FFB8;
+  --duo-blue: #1CB0F6; --duo-blue-deep: #1899D6; --duo-blue-tint: #DDF4FF; --duo-blue-line: #84D8FF;
+  --duo-red: #FF4B4B; --duo-red-deep: #EA2B2B; --duo-red-tint: #FFDFE0;
+  --duo-yellow: #FFC800; --duo-yellow-tint: #FFF5D3; --duo-orange: #FF9600; --duo-orange-deep: #CD7900;
+  --duo-purple: #CE82FF; --duo-purple-tint: #F4E5FF;
+  --ui-radius: 16px; --ui-progress: #58CC02; --m-spark: #58CC02; --ui-spot: 199 92% 54%;
+  --ui-ease: cubic-bezier(.34, 1.56, .64, 1);
+}
+html.simpul-material[data-material-duo][data-material-theme="dark"] {
+  --mono-ffffff: #131F24; --mono-fafafa: #131F24; --mono-f4f4f5: #202F36; --mono-eaeaec: #2B3B42; --mono-ededee: #37464F;
+  --mono-e4e4e7: #37464F; --mono-d4d4d8: #37464F; --mono-a1a1aa: #52656D; --mono-71717a: #AFAFAF; --mono-52525b: #DCE6EC;
+  --mono-3f3f46: #DCE6EC; --mono-27272a: #F1F7FB; --mono-18181b: #F1F7FB; --mono-09090b: #F1F7FB;
+  --mono-bbf7d0: color-mix(in srgb, #58CC02 18%, #131F24); --mono-fecdd3: color-mix(in srgb, #FF4B4B 18%, #131F24);
+  --material-surface-rgb: 19 31 36;
+  --ui-bg: #131F24; --ui-card: #131F24; --ui-fg: #F1F7FB; --ui-muted: #202F36; --ui-muted-fg: #AFAFAF; --ui-border: #37464F;
+  --duo-green-tint: color-mix(in srgb, #58CC02 16%, #131F24); --duo-blue-tint: color-mix(in srgb, #1CB0F6 16%, #131F24);
+  --duo-blue-line: #1CB0F6; --duo-red-tint: color-mix(in srgb, #FF4B4B 16%, #131F24);
+  --duo-yellow-tint: color-mix(in srgb, #FFC800 14%, #131F24); --duo-purple-tint: color-mix(in srgb, #CE82FF 16%, #131F24);
+}
+
+/* ───────── 기본: shadcn/ui ───────── */
+html.simpul-material body { background: var(--ui-bg) !important; color: var(--ui-fg) !important; }
+html.simpul-material ::selection { background: color-mix(in srgb, var(--ui-fg) 16%, transparent); }
+
+/* 머리글: 흐림 유리 + 1px 테두리 */
+html.simpul-material :is(.page-header, .topbar, .top) {
+  background: color-mix(in srgb, var(--ui-bg) 82%, transparent) !important;
+  -webkit-backdrop-filter: saturate(180%) blur(14px); backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid var(--ui-border) !important;
+}
+html.simpul-material :is(.page-title, .topbar h1, .top h1, header > h1, .hero h1) { color: var(--ui-fg) !important; font-weight: 700 !important; letter-spacing: -.04em !important; }
+html.simpul-material :is(.subject-label, .eyebrow) { color: var(--ui-muted-fg) !important; }
+
+/* Tabs: TabsList(회색 바탕) + 미끄러지는 활성 표시 */
+html.simpul-material :is(.tab-bar, .tabs, .tab-nav, .navtabs, .mode-toggle, .unit-switch) {
+  background: var(--ui-muted) !important; border: 1px solid var(--ui-border) !important; border-radius: 10px !important;
+}
+html.simpul-material :is(.tab-btn, .tab, .navtab, .mode-btn, .unit-switch button) { color: var(--ui-muted-fg) !important; position: relative; z-index: 1; }
+html.simpul-material :is(.tab-btn, .tab, .navtab, .mode-btn, .unit-switch button):hover { color: var(--ui-fg) !important; }
+html.simpul-material :is(.tab-btn, .tab, .navtab, .mode-btn, .unit-switch button):is(.active, .on, .selected, [aria-selected="true"]) {
+  color: var(--ui-fg) !important; background: var(--ui-card) !important; box-shadow: 0 1px 3px rgb(0 0 0 / .1) !important;
+}
+html.simpul-material .ui-has-indicator :is(.tab-btn, .tab, .navtab, .mode-btn, button):is(.active, .on, .selected, [aria-selected="true"]) { background: transparent !important; box-shadow: none !important; }
+.ui-tab-indicator {
+  position: absolute; left: 0; top: 0; z-index: 0; pointer-events: none; border-radius: 7px;
+  background: var(--ui-card); box-shadow: 0 1px 3px rgb(0 0 0 / .1), 0 0 0 1px color-mix(in srgb, var(--ui-border) 60%, transparent);
+  transition: transform .32s var(--ui-ease), width .32s var(--ui-ease), height .32s var(--ui-ease), opacity .2s;
+}
+html.simpul-material :is(.tab-btn, .tab):is(.active) .tab-num { background: var(--ui-primary) !important; border-color: var(--ui-primary) !important; color: var(--ui-primary-fg) !important; }
+
+/* Card */
+html.simpul-material :is(.factor-card, .rule-card, .pov-card, .method-card, .para-card, .passage-card, .grammar-card, .s-card, .card, .lab, .sum-block, .lesson-section, .quiz-section, .stat) {
+  border-radius: var(--ui-radius) !important; box-shadow: var(--ui-shadow) !important;
+  transition: transform .25s var(--ui-ease), box-shadow .25s, border-color .2s;
+}
+html.simpul-material :is(.factor-card, .rule-card, .pov-card, .method-card, .grammar-card, .s-card, .card, .sum-block):hover { box-shadow: var(--ui-shadow-lg) !important; }
+
+/* 제목 */
+html.simpul-material :is(.section-title, .sec-h) {
+  border-bottom: 0 !important; padding-bottom: 0 !important; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+}
+html.simpul-material :is(.section-title, .sec-h)::before {
+  content: ""; flex: none; width: 4px; height: 1.05em; border-radius: 4px; background: var(--ui-primary);
+}
+html.simpul-material :is(.section-title, .sec-h)::after {
+  content: ""; flex: 1 1 40px; height: 1px; background: linear-gradient(90deg, var(--ui-border), transparent);
+}
+
+/* Alert */
+html.simpul-material :is(.note, .tip, .warning, .callout) { border-radius: 10px !important; background: var(--ui-card) !important; box-shadow: var(--ui-shadow) !important; }
+html.simpul-material :is(.def-box, .green-box, .purple-box, .teal-box, .orange-box, .rose-box, .para-kr-box) { border-radius: 0 10px 10px 0 !important; }
+
+/* Table */
+html.simpul-material :is(.table-wrap, .tbl-wrap) { border-radius: 10px !important; background: var(--ui-card); }
+html.simpul-material :is(.cmp-table, .ex-table, .phono-table, .vocab-table) tbody tr { transition: background-color .15s; }
+html.simpul-material :is(.cmp-table, .ex-table, .phono-table, .vocab-table) tbody tr:hover { background: color-mix(in srgb, var(--ui-muted) 70%, transparent); }
+
+/* Badge */
+html.simpul-material :is(.badge, .tag, .tag2, .unit-banner, .mode-badge) { border: 1px solid var(--ui-border) !important; }
+
+/* Button: outline 기본, 주요 버튼은 primary */
+html.simpul-material :is(.btn, .action-btn, .act-btn) {
+  border-radius: 8px !important; transition: background-color .15s, color .15s, transform .15s, box-shadow .15s;
+}
+html.simpul-material :is(.btn, .action-btn, .act-btn):active { transform: scale(.97); }
+html.simpul-material :is(.next-btn, .restart-btn, .btn.primary, .m-practice-go) { background: var(--ui-primary) !important; color: var(--ui-primary-fg) !important; border-color: var(--ui-primary) !important; border-radius: 8px !important; }
+html.simpul-material :is(.map-node, .map-subchip, .flow-item) { transition: transform .2s var(--ui-ease), background-color .15s, border-color .15s !important; }
+html.simpul-material :is(.map-node, .map-subchip):hover { transform: translateY(-1px); }
+
+/* 무한 문제로 가는 카드 (tools/strip_material_quiz.*가 넣음): 글 | 단추 두 칸 */
+html.simpul-material .m-practice { grid-template-columns: minmax(0, 1fr) auto !important; }
+html.simpul-material .m-practice-ico:empty { display: none !important; }
+@media (max-width: 560px) { html.simpul-material .m-practice { grid-template-columns: 1fr !important; } }
+
+/* 맨 위로·화면 모드 버튼 */
+html.simpul-material :is(.totop, .material-mode-toggle) { transition: transform .25s var(--ui-ease), background-color .15s !important; will-change: transform; }
+html.simpul-material .totop { width: auto !important; min-width: 38px; padding: 0 10px !important; white-space: nowrap; }
+html.simpul-material .material-mode-toggle.ui-in-flow { position: static !important; align-self: center; }
+
+/* ───────── React Bits 효과 ───────── */
+/* ScrollProgress: 읽은 만큼 차는 막대 */
+.ui-progress { position: fixed; left: 0; right: 0; top: 0; height: 2px; z-index: 100; pointer-events: none; }
+.ui-progress > i { display: block; height: 100%; width: 100%; transform-origin: 0 50%; transform: scaleX(var(--ui-read, 0)); background: var(--ui-progress); transition: transform .12s linear; }
+
+/* ShinyText: 작은 머리말에 빛이 한 번씩 지나간다 */
+.ui-shiny {
+  background: linear-gradient(110deg, var(--ui-muted-fg) 40%, var(--ui-fg) 50%, var(--ui-muted-fg) 60%) 0 0 / 250% 100%;
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  animation: ui-shine 4.5s linear infinite;
+}
+@keyframes ui-shine { from { background-position: 150% 0; } to { background-position: -100% 0; } }
+
+/* SpotlightCard */
+html.simpul-material .m-spot::after { background: radial-gradient(280px circle at var(--m-x, 50%) var(--m-y, 50%), hsl(var(--ui-spot) / .07), transparent 70%) !important; }
+
+/* AnimatedContent */
+html.simpul-material .m-reveal { opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .6s var(--ui-ease); }
+html.simpul-material .m-reveal.m-in { opacity: 1; transform: none; }
+
+/* 다크 모드에서 밝게 칠한 SVG 도표 */
+html.simpul-material[data-material-theme="dark"] svg.m-inv { filter: invert(.9) hue-rotate(180deg) !important; }
+html.simpul-material[data-material-theme="dark"]:not([data-material-duo]) svg.m-inv { filter: invert(.9) grayscale(1) !important; }
+
+/* ───────── 듀오링고 모드 ───────── */
+html.simpul-material[data-material-duo] body {
+  font-family: Nunito, 'Pretendard Variable', Pretendard, -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif !important;
+  font-weight: 600;
+}
+html.simpul-material[data-material-duo] :is(h1, h2, h3, h4, h5, .page-title, .section-title, .sec-h, .subsection-title, b, strong, th) { font-weight: 800 !important; }
+html.simpul-material[data-material-duo] a:not([class]) { color: var(--duo-blue) !important; }
+html.simpul-material[data-material-duo] ::selection { background: var(--duo-blue-tint); }
+
+/* 머리글: 단색 + 2px 선 */
+html.simpul-material[data-material-duo] :is(.page-header, .topbar, .top) {
+  background: var(--ui-bg) !important; -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom: 2px solid var(--ui-border) !important;
+}
+html.simpul-material[data-material-duo] :is(.subject-label, .eyebrow) { color: var(--duo-green) !important; font-weight: 900 !important; letter-spacing: .08em; }
+html.simpul-material[data-material-duo] .ui-shiny { background-image: linear-gradient(110deg, var(--duo-green) 40%, var(--duo-yellow) 50%, var(--duo-green) 60%); }
+
+/* 진행 막대: 듀오링고 레슨 막대처럼 두툼하고 둥글게, 위에 하이라이트 줄 */
+html[data-material-duo] .ui-progress { top: auto; bottom: 10px; left: 50%; right: auto; width: min(360px, calc(100% - 140px)); height: 12px; transform: translateX(-50%); border-radius: 99px; background: var(--ui-border); overflow: hidden; z-index: 95; box-shadow: 0 0 0 4px var(--ui-bg); }
+html[data-material-duo] .ui-progress > i { border-radius: 99px; background: var(--duo-green); position: relative; transition: transform .35s cubic-bezier(.34, 1.56, .64, 1); }
+html[data-material-duo] .ui-progress > i::after { content: ""; position: absolute; left: 8px; right: 8px; top: 3px; height: 4px; border-radius: 99px; background: rgb(255 255 255 / .3); }
+html[data-material-duo] .ui-progress.ui-done > i { background: var(--duo-yellow); }
+
+/* Tabs: 한 칸씩 눌리는 버튼, 선택한 칸은 파랑 (듀오링고 보기 고르기와 같은 모양) */
+html.simpul-material[data-material-duo] :is(.tab-bar, .tabs, .tab-nav, .navtabs, .mode-toggle, .unit-switch) {
+  background: transparent !important; border: 0 !important; padding: 4px 2px 10px !important; gap: 8px !important;
+}
+html.simpul-material[data-material-duo] .ui-tab-indicator { display: none; }
+html.simpul-material[data-material-duo] :is(.tab-btn, .tab, .navtab, .mode-btn, .unit-switch button) {
+  background: var(--ui-card) !important; color: var(--ui-muted-fg) !important; border: 2px solid var(--ui-border) !important;
+  border-radius: 12px !important; box-shadow: 0 3px 0 var(--ui-border) !important; font-weight: 800 !important; min-height: 38px;
+  transition: transform .1s, box-shadow .1s, background-color .15s !important;
+}
+html.simpul-material[data-material-duo] :is(.tab-btn, .tab, .navtab, .mode-btn, .unit-switch button):hover { background: var(--ui-muted) !important; }
+html.simpul-material[data-material-duo] :is(.tab-btn, .tab, .navtab, .mode-btn, .unit-switch button):active { transform: translateY(3px); box-shadow: 0 0 0 var(--ui-border) !important; }
+html.simpul-material[data-material-duo] :is(.tab-btn, .tab, .navtab, .mode-btn, .unit-switch button):is(.active, .on, .selected, [aria-selected="true"]),
+html.simpul-material[data-material-duo] .ui-has-indicator :is(.tab-btn, .tab, .navtab, .mode-btn, button):is(.active, .on, .selected, [aria-selected="true"]) {
+  background: var(--duo-blue-tint) !important; border-color: var(--duo-blue-line) !important; color: var(--duo-blue) !important;
+  box-shadow: 0 3px 0 var(--duo-blue-line) !important;
+}
+html.simpul-material[data-material-duo] .tab-num { border: 0 !important; background: var(--ui-border) !important; color: var(--ui-muted-fg) !important; font-weight: 900; }
+html.simpul-material[data-material-duo] :is(.tab-btn, .tab).active .tab-num { background: var(--duo-blue) !important; color: #fff !important; }
+html.simpul-material[data-material-duo] .tab-group-label { color: var(--duo-green) !important; font-weight: 900 !important; }
+
+/* 카드: 2px 테두리 + 아래 4px 두께 */
+html.simpul-material[data-material-duo] :is(.factor-card, .rule-card, .pov-card, .method-card, .para-card, .passage-card, .grammar-card, .s-card, .card, .lab, .sum-block, .lesson-section, .quiz-section, .stat, .map-root, .table-wrap, .tbl-wrap, .m-practice) {
+  border: 2px solid var(--ui-border) !important; border-bottom-width: 4px !important; border-radius: 16px !important; box-shadow: none !important;
+  background: var(--ui-card) !important;
+}
+html.simpul-material[data-material-duo] .factor-card { border-top: 2px solid var(--topic, var(--ui-border)) !important; }
+html.simpul-material[data-material-duo] :is(.factor-card, .rule-card, .card, .sum-block, .m-practice):hover { transform: translateY(-2px); border-color: var(--duo-blue-line) !important; }
+
+/* 제목 표시: 초록 알약 */
+html.simpul-material[data-material-duo] :is(.section-title, .sec-h)::before { width: 8px; height: 1.1em; background: var(--duo-green); box-shadow: 0 2px 0 var(--duo-green-deep); }
+html.simpul-material[data-material-duo] :is(.section-title, .sec-h)::after { height: 2px; background: var(--ui-border); }
+html.simpul-material[data-material-duo] .subsection-title { border-left: 4px solid var(--duo-blue) !important; border-radius: 2px; }
+
+/* 안내 상자: 듀오링고 피드백 색 */
+html.simpul-material[data-material-duo] :is(.note, .tip, .warning, .callout, .def-box, .green-box, .purple-box, .teal-box, .orange-box, .rose-box, .para-kr-box) {
+  border: 2px solid var(--ui-border) !important; border-radius: 16px !important; box-shadow: none !important;
+}
+html.simpul-material[data-material-duo] .tip { background: var(--duo-green-tint) !important; border-color: color-mix(in srgb, var(--duo-green) 45%, transparent) !important; }
+html.simpul-material[data-material-duo] .warning { background: var(--duo-red-tint) !important; border-color: color-mix(in srgb, var(--duo-red) 45%, transparent) !important; }
+html.simpul-material[data-material-duo] .note { background: var(--duo-yellow-tint) !important; border-color: color-mix(in srgb, var(--duo-yellow) 55%, transparent) !important; }
+html.simpul-material[data-material-duo] :is(.def-box, .teal-box) { background: var(--duo-blue-tint) !important; border-color: color-mix(in srgb, var(--duo-blue) 40%, transparent) !important; }
+html.simpul-material[data-material-duo] .green-box { background: var(--duo-green-tint) !important; border-color: color-mix(in srgb, var(--duo-green) 45%, transparent) !important; }
+html.simpul-material[data-material-duo] .purple-box { background: var(--duo-purple-tint) !important; border-color: color-mix(in srgb, var(--duo-purple) 45%, transparent) !important; }
+html.simpul-material[data-material-duo] .orange-box { background: color-mix(in srgb, var(--duo-orange) 14%, var(--ui-bg)) !important; border-color: color-mix(in srgb, var(--duo-orange) 45%, transparent) !important; }
+html.simpul-material[data-material-duo] .rose-box { background: var(--duo-red-tint) !important; border-color: color-mix(in srgb, var(--duo-red) 45%, transparent) !important; }
+
+/* 표 */
+html.simpul-material[data-material-duo] :is(.cmp-table, .phono-table, .vocab-table) th { background: var(--ui-muted) !important; color: var(--ui-fg) !important; }
+html.simpul-material[data-material-duo] .ex-table th { background: var(--duo-blue) !important; color: #fff !important; }
+html.simpul-material[data-material-duo] :is(.cmp-table, .ex-table, .phono-table, .vocab-table) :is(td, th) { border-color: var(--ui-border) !important; border-bottom-width: 2px !important; }
+html.simpul-material[data-material-duo] .cmp-table td:first-child { color: var(--duo-blue) !important; }
+
+/* 배지·칩 */
+html.simpul-material[data-material-duo] :is(.badge, .tag, .tag2, .unit-banner, .mode-badge) {
+  border: 2px solid var(--ui-border) !important; border-radius: 99px !important; font-weight: 800 !important; background: var(--ui-card) !important; color: var(--ui-muted-fg) !important;
+}
+html.simpul-material[data-material-duo] .badge-unit { background: var(--duo-green) !important; border-color: var(--duo-green) !important; color: #fff !important; box-shadow: 0 2px 0 var(--duo-green-deep); }
+html.simpul-material[data-material-duo] :is(.map-node, .map-subchip, .flow-item) {
+  border: 2px solid var(--ui-border) !important; border-radius: 12px !important; box-shadow: 0 2px 0 var(--ui-border) !important; font-weight: 700;
+}
+html.simpul-material[data-material-duo] :is(.map-node, .map-subchip):hover { background: var(--duo-blue-tint) !important; border-color: var(--duo-blue-line) !important; color: var(--duo-blue) !important; }
+html.simpul-material[data-material-duo] .map-root-head { background: var(--ui-muted) !important; color: var(--ui-fg) !important; border-bottom: 2px solid var(--ui-border) !important; font-weight: 800 !important; }
+html.simpul-material[data-material-duo] .flow-arrow { color: var(--duo-green) !important; font-weight: 900; }
+html.simpul-material[data-material-duo] :is(.hl-y, .hl-b, .hl-g, .highlight) { background: var(--duo-yellow-tint) !important; }
+
+/* 버튼: 초록 3D (누르면 내려감) */
+html.simpul-material[data-material-duo] :is(.next-btn, .restart-btn, .btn.primary, .m-practice-go) {
+  background: var(--duo-green) !important; color: #fff !important; border: 0 !important; border-radius: 12px !important;
+  box-shadow: 0 4px 0 var(--duo-green-deep) !important; font-weight: 800 !important; letter-spacing: .02em;
+}
+html.simpul-material[data-material-duo] :is(.btn, .action-btn, .act-btn):not(.primary) {
+  background: var(--ui-card) !important; color: var(--duo-blue) !important; border: 2px solid var(--ui-border) !important;
+  border-radius: 12px !important; box-shadow: 0 3px 0 var(--ui-border) !important; font-weight: 800 !important;
+}
+html.simpul-material[data-material-duo] :is(.btn, .action-btn, .act-btn, .next-btn, .restart-btn, .m-practice-go):active { transform: translateY(3px) !important; box-shadow: none !important; }
+html.simpul-material[data-material-duo] :is(input, select, textarea):not([type=range]):not([type=checkbox]):not([type=radio]) {
+  border: 2px solid var(--ui-border) !important; border-radius: 12px !important; background: var(--ui-muted) !important;
+}
+html.simpul-material[data-material-duo] :is(input, select, textarea):focus { border-color: var(--duo-blue) !important; outline: 0 !important; }
+html.simpul-material[data-material-duo] input[type=range] { accent-color: var(--duo-green) !important; }
+html.simpul-material[data-material-duo] :focus-visible { outline: 2px solid var(--duo-blue) !important; }
+
+html.simpul-material[data-material-duo] :is(.totop, .material-mode-toggle) {
+  background: var(--ui-card) !important; color: var(--duo-blue) !important; border: 2px solid var(--ui-border) !important;
+  border-radius: 12px !important; box-shadow: 0 3px 0 var(--ui-border) !important; font-weight: 800 !important;
+}
+
+/* AnimatedContent(튀어 오르기): 듀오링고 카드가 등장하는 탄성 */
+html.simpul-material[data-material-duo] .m-reveal { transform: translateY(18px) scale(.96); }
+html.simpul-material[data-material-duo] .m-reveal.m-in { transform: none; }
+html.simpul-material[data-material-duo] .tab-panel.active { animation: ui-duo-pop .4s cubic-bezier(.34, 1.56, .64, 1) both !important; }
+@keyframes ui-duo-pop { from { opacity: .4; transform: translateY(10px) scale(.985); } to { opacity: 1; transform: none; } }
+
+/* 다 읽었을 때 축하 조각 */
+.ui-confetti { position: fixed; inset: 0; pointer-events: none; z-index: 9998; }
+
+@media (max-width: 680px) {
+  html[data-material-duo] .ui-progress { width: calc(100% - 120px); left: 16px; transform: none; bottom: 18px; }
+  html.simpul-material[data-material-duo] :is(.tab-btn, .tab, .navtab) { min-height: 36px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ui-shiny { animation: none; -webkit-text-fill-color: currentColor; background: none; }
+  .ui-tab-indicator, .ui-progress > i { transition: none; }
+  html.simpul-material[data-material-duo] .tab-panel.active { animation: none !important; }
+  html.simpul-material .m-reveal { opacity: 1; transform: none; transition: none; }
+}
+@media print {
+  .ui-progress, .ui-confetti, .ui-tab-indicator { display: none !important; }
+  html.simpul-material .m-reveal { opacity: 1 !important; transform: none !important; }
+}

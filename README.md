@@ -125,17 +125,24 @@ AI 공급자 (`simpul_auto/providers.py`)
 2. `site/scripts/catalog.js`의 해당 과목 `items`에 한 줄을 추가합니다.
    `{ id: '고유-이름', kind: 'note', title: '자료 제목', course: '단원', file: '<과목>/파일.html' }`
    kind는 note(개념 정리), exam(문제·모의고사), quiz(퀴즈), practice(바로 풀기), link(외부 자료) 중 하나입니다.
-3. (선택) 사이트 디자인에 맞추기: `python3 tools/restyle_material.py <원본.html> site/materials/<…>/<파일.html>`
-   자료의 색을 shadcn/ui zinc 토큰으로 바꿔 사이트와 같은 다크·라이트 모드를 따르게 하고, `site/materials/_theme/`의 React Bits 움직임(BlurText·SpotlightCard·AnimatedContent·ClickSpark)을 붙입니다.
-   2학기 기말 영어·통합사회 자료(`site/materials/s2-final/`)는 Google Drive ‘심풀스터디 2학기 기말’ 폴더 원본을 이렇게 바꾼 것입니다.
+3. 사이트 디자인 입히기: `node tools/unify_final_materials.mjs [파일 ...]` (파일을 안 주면 `site/materials/s2-final` 전체)
+   - 기본: shadcn/ui(zinc) 카드·탭·배지·표 모양. 사이트와 같은 다크·라이트 모드를 따른다.
+   - 듀오링고 모드(사이트에서 켜면 액자 안 자료도 바로 바뀜): 듀오링고 웹 색(REA로 확인한 값)·두꺼운 테두리·눌리는 단추·레슨 진행 막대, 끝까지 읽으면 축하 조각.
+   - React Bits 효과(바닐라 JS): BlurText·ShinyText·AnimatedContent·SpotlightCard·ClickSpark·Magnet, 미끄러지는 탭 표시, 읽은 만큼 차는 진행 막대.
+   - 장식 이모지만 지운다(⭕·❌는 O·X 글자로, ★☆✓✔✕✘ ❶~❿은 남김). 글·표·문제 내용은 바꾸지 않는다.
+   - 파일: `site/materials/_theme/material-monochrome.css`(구조) · `study-ui.css`(디자인) · `study-ui.js`(효과·모드)
+   2학기 기말 자료(`site/materials/s2-final/`)는 Google Drive ‘심풀스터디 2학기 기말’ 폴더 원본에 이 디자인을 입힌 것입니다.
+   (한국사 통합본 `심풀스터디_한국사_통합.html`은 12MB라 커넥터로 받지 못해 아직 없음 · 두 선생님 파트는 들어 있음)
 4. 자료 안의 문제를 무한 문제로 옮기기 (문제는 과목 자료에서 빼고 무한 문제에서만 풀어요)
    1) 문제가 들어 있는 원본을 `tools/material-src/<과목>/`에 둡니다(restyle을 거친 파일).
    2) `node tools/build_material_bank.mjs` → `site/banks/<과목>.json`, `site/banks/index.json`
    3) `python3 tools/strip_material_quiz.py` → `site/materials/s2-final/`의 자료에서 문제를 빼고, 그 자리에 무한 문제 단원 카드를 넣습니다.
    - 지금은 영어(교과서 어휘, 부교재 어법·낱말·어휘 O/X·제목·글의 순서·요약문 빈칸·문장 배열)와 통합사회(OX·객관식·고난도)를 옮깁니다.
+   - 한국사·통합과학(생태계·지구과학)·정보·일본어 정리·공통국어2는 `node tools/strip_material_quiz.mjs`가 뺍니다(공통 형식은 `tools/material-quiz-lib.mjs`의 `QUIZ_FILES`). 그 뒤 `node tools/unify_final_materials.mjs`로 디자인을 다시 입힙니다.
+   - 그림이 있는 문제는 `fig`(SVG)로 옮겨 무한 문제·레슨에서 같이 보여 줍니다(`S.bank.figure`).
    - `cloud/*.json`은 자동화 엔진이 DB에서 다시 쓰기 때문에 자료 문제는 `banks/`에 따로 둡니다. `scripts/bank.js`가 둘을 합쳐 무한 문제·듀오링고 레슨·학습 경로에 보여 줍니다.
    - O/X 문제 형식: `{ t: 'ox', q, c: ['O','X'], a: 'O' 또는 'X', e }`. 무한 문제·레슨에서 큰 O/X 버튼으로 나오고 키보드 O·X로도 답합니다.
-   - 듀오링고 모드에서 과목 화면에 들어가면, 문제가 있는 과목(지금은 영어·통합사회·정보·일본어)은 맨 위에 ‘문제 레슨’(레슨 시작·단원별 진행)이 나옵니다.
+   - 듀오링고 모드에서 과목 화면에 들어가면, 문제가 있는 과목(지금은 국어·영어·통합사회·한국사·통합과학·정보·일본어)은 맨 위에 ‘문제 레슨’(레슨 시작·단원별 진행)이 나옵니다.
 
 ## 필기 (notes.html)
 
